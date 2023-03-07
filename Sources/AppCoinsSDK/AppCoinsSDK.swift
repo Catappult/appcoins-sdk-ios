@@ -22,6 +22,24 @@ public func presentPurchase() {
 class PurchaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Add a background view to the top half of the screen
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        self.view.addSubview(backgroundView)
+        backgroundView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            backgroundView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            backgroundView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            backgroundView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            backgroundView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.5)
+        ])
+        
+        // Add a tap gesture recognizer to dismiss the bottom sheet
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissPurchase))
+        backgroundView.addGestureRecognizer(tapGestureRecognizer)
+        
+        // Add the bottom sheet view
         let bottomSheetView = BottomSheetView()
         let content: () -> UIView = {
             return bottomSheetView.toUIView()
@@ -30,13 +48,18 @@ class PurchaseViewController: UIViewController {
         self.view.addSubview(wrapperView)
         wrapperView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
+            wrapperView.topAnchor.constraint(equalTo: backgroundView.bottomAnchor),
             wrapperView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             wrapperView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            wrapperView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-            wrapperView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.5)
+            wrapperView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
         ])
     }
+    
+    @objc private func dismissPurchase() {
+        self.dismiss(animated: true, completion: nil)
+    }
 }
+
 
 struct BottomSheetView: View {
     var body: some View {
