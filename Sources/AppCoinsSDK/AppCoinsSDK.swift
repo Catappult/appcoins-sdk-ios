@@ -40,7 +40,7 @@ class PurchaseViewController: UIViewController {
 //        backgroundView.addGestureRecognizer(tapGestureRecognizer)
         
         // Add the bottom sheet view
-        let bottomSheetView = BottomSheetView()
+        let bottomSheetView = BottomSheetView(dismiss: self.dismissPurchase)
         let content: () -> UIView = {
             return bottomSheetView.toUIView()
         }
@@ -63,9 +63,14 @@ class PurchaseViewController: UIViewController {
 
 
 struct BottomSheetView: View {
+    
+    var dismiss: () -> Void
+    
     var body: some View {
         VStack {
-            VStack{}.frame(maxWidth: .infinity, maxHeight: .infinity)
+            VStack{}
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .onTapGesture { dismiss() }
             
             ZStack {
                 ColorsUi.APC_DarkBlue
