@@ -25,7 +25,13 @@ class PurchaseViewController: UIViewController {
         
         // Add a background view to the top half of the screen
         let backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor.white.withAlphaComponent(0.3)
+        
+        let blurEffect = UIBlurEffect(style: .regular)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        blurView.frame = backgroundView.bounds
+        backgroundView.addSubview(blurView)
+
+//        backgroundView.backgroundColor = UIColor.white.withAlphaComponent(0.3)
         self.view.addSubview(backgroundView)
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -95,7 +101,7 @@ class BottomSheetWrapperView<Content: UIView>: UIView {
     }
     
     private func setup() {
-//        self.backgroundColor = .clear
+        self.backgroundColor = .clear
         self.addSubview(self.contentView)
         self.contentView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -106,6 +112,7 @@ class BottomSheetWrapperView<Content: UIView>: UIView {
         ])
     }
 }
+
 
 
 
