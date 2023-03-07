@@ -16,7 +16,7 @@ public func presentPurchase() {
     }
     let purchaseViewController = PurchaseViewController()
     purchaseViewController.modalPresentationStyle = .overFullScreen
-    rootViewController.present(purchaseViewController, animated: true, completion: nil)
+    rootViewController.present(purchaseViewController, animated: false, completion: nil)
 }
 
 class PurchaseViewController: UIViewController {
@@ -56,7 +56,7 @@ class PurchaseViewController: UIViewController {
     }
     
     @objc private func dismissPurchase() {
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: false, completion: nil)
     }
 }
 
@@ -66,7 +66,7 @@ struct BottomSheetView: View {
         VStack {
             Text("This is the bottom sheet")
         }
-        .frame(height: 300)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.green)
     }
 }
