@@ -23,22 +23,6 @@ class PurchaseViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Add a background view to the top half of the screen
-//        let backgroundView = UIView()
-//        backgroundView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
-//        self.view.addSubview(backgroundView)
-//        backgroundView.translatesAutoresizingMaskIntoConstraints = false
-//        NSLayoutConstraint.activate([
-//            backgroundView.topAnchor.constraint(equalTo: self.view.topAnchor),
-//            backgroundView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-//            backgroundView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-//            backgroundView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.5)
-//        ])
-//
-//        // Add a tap gesture recognizer to dismiss the bottom sheet
-//        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissPurchase))
-//        backgroundView.addGestureRecognizer(tapGestureRecognizer)
-        
         // Add the bottom sheet view
         let bottomSheetView = BottomSheetView(dismiss: self.dismissPurchase)
         let content: () -> UIView = {
@@ -78,6 +62,7 @@ struct BottomSheetView: View {
                 Text("This is the bottom sheet")
                     .foregroundColor(ColorsUi.APC_White)
             }
+            .onTapGesture { dismiss() }
             .transition(.move(edge: .bottom))
             .animation(.easeInOut(duration: 2))
             .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 2)
