@@ -52,9 +52,11 @@ struct BottomSheetView: View {
     
     var body: some View {
         VStack {
-            VStack{}
+            VStack{
+                Color.green.onTapGesture { dismiss() }
+            }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .onTapGesture { dismiss() }
+                
             
             ZStack {
                 ColorsUi.APC_DarkBlue
@@ -62,7 +64,6 @@ struct BottomSheetView: View {
                 Text("This is the bottom sheet")
                     .foregroundColor(ColorsUi.APC_White)
             }
-            .onTapGesture { dismiss() }
             .transition(.move(edge: .bottom))
             .animation(.easeInOut(duration: 2))
             .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 2)
