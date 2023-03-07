@@ -64,18 +64,23 @@ class PurchaseViewController: UIViewController {
 
 struct BottomSheetView: View {
     var body: some View {
-        ZStack {
-            ColorsUi.APC_DarkBlue
+        VStack {
+            VStack{}.frame(maxWidth: .infinity, maxHeight: .infinity)
             
-            Text("This is the bottom sheet")
-                .foregroundColor(ColorsUi.APC_White)
-        }
-        .transition(.move(edge: .bottom))
-        .animation(.easeInOut(duration: 2))
-        .frame(maxWidth: .infinity, maxHeight: UIScreen.main.bounds.height / 2)
-        .cornerRadius(13, corners: [.topLeft, .topRight])
-        .background(Color.black.opacity(0.3).ignoresSafeArea())
-        .ignoresSafeArea()
+            ZStack {
+                ColorsUi.APC_DarkBlue
+                
+                Text("This is the bottom sheet")
+                    .foregroundColor(ColorsUi.APC_White)
+            }
+            .transition(.move(edge: .bottom))
+            .animation(.easeInOut(duration: 2))
+            .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 2)
+            .cornerRadius(13, corners: [.topLeft, .topRight])
+            .background(Color.black.opacity(0.3).ignoresSafeArea())
+            .ignoresSafeArea()
+        }.ignoresSafeArea()
+        
     }
 }
 
