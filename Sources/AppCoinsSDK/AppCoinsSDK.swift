@@ -63,11 +63,14 @@ class PurchaseViewController: UIViewController {
 
 struct BottomSheetView: View {
     var body: some View {
-        VStack {
+        ZStack {
+            ColorsUi.APC_DarkBlue
+            
             Text("This is the bottom sheet")
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.green)
+        .ignoresSafeArea()
+        .cornerRadius(13, corners: [.topLeft, .topRight])
     }
 }
 
