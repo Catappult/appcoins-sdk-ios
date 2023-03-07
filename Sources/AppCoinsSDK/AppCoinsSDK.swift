@@ -24,20 +24,20 @@ class PurchaseViewController: UIViewController {
         super.viewDidLoad()
         
         // Add a background view to the top half of the screen
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
-        self.view.addSubview(backgroundView)
-        backgroundView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            backgroundView.topAnchor.constraint(equalTo: self.view.topAnchor),
-            backgroundView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            backgroundView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            backgroundView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.5)
-        ])
-        
-        // Add a tap gesture recognizer to dismiss the bottom sheet
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissPurchase))
-        backgroundView.addGestureRecognizer(tapGestureRecognizer)
+//        let backgroundView = UIView()
+//        backgroundView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+//        self.view.addSubview(backgroundView)
+//        backgroundView.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            backgroundView.topAnchor.constraint(equalTo: self.view.topAnchor),
+//            backgroundView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+//            backgroundView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+//            backgroundView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.5)
+//        ])
+//
+//        // Add a tap gesture recognizer to dismiss the bottom sheet
+//        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissPurchase))
+//        backgroundView.addGestureRecognizer(tapGestureRecognizer)
         
         // Add the bottom sheet view
         let bottomSheetView = BottomSheetView()
@@ -47,8 +47,9 @@ class PurchaseViewController: UIViewController {
         let wrapperView = BottomSheetWrapperView(content: content)
         self.view.addSubview(wrapperView)
         wrapperView.translatesAutoresizingMaskIntoConstraints = false
+        wrapperView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         NSLayoutConstraint.activate([
-            wrapperView.topAnchor.constraint(equalTo: backgroundView.bottomAnchor),
+            wrapperView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             wrapperView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             wrapperView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
             wrapperView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
@@ -71,7 +72,7 @@ struct BottomSheetView: View {
         }
         .transition(.move(edge: .bottom))
         .animation(.easeInOut(duration: 2))
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .frame(maxWidth: .infinity, maxHeight: UIScreen.main.bounds.height / 2)
         .cornerRadius(13, corners: [.topLeft, .topRight])
         .background(Color.black.opacity(0.3).ignoresSafeArea())
         .ignoresSafeArea()
