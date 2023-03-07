@@ -30,10 +30,10 @@ class PurchaseViewController: UIViewController {
         self.view.addSubview(wrapperView)
         wrapperView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            wrapperView.topAnchor.constraint(equalTo: self.view.topAnchor),
             wrapperView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             wrapperView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            wrapperView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+            wrapperView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            wrapperView.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.5)
         ])
     }
 }
