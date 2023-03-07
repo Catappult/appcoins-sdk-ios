@@ -72,8 +72,9 @@ struct BottomSheetView: View {
         .transition(.move(edge: .bottom))
         .animation(.easeInOut(duration: 2))
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .ignoresSafeArea()
         .cornerRadius(13, corners: [.topLeft, .topRight])
+        .background(Color.black.opacity(0.3))
+        .ignoresSafeArea()
     }
 }
 
