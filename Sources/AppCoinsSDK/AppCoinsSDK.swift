@@ -25,6 +25,7 @@ class PurchaseViewController: UIViewController {
         
         // Add a background view to the top half of the screen
         let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
         self.view.addSubview(backgroundView)
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -37,11 +38,6 @@ class PurchaseViewController: UIViewController {
         // Add a tap gesture recognizer to dismiss the bottom sheet
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissPurchase))
         backgroundView.addGestureRecognizer(tapGestureRecognizer)
-        
-        let blurEffect = UIBlurEffect(style: .regular)
-        let blurView = UIVisualEffectView(effect: blurEffect)
-        blurView.frame = backgroundView.bounds
-        backgroundView.addSubview(blurView)
         
         // Add the bottom sheet view
         let bottomSheetView = BottomSheetView()
@@ -71,7 +67,10 @@ struct BottomSheetView: View {
             ColorsUi.APC_DarkBlue
             
             Text("This is the bottom sheet")
+                .foregroundColor(ColorsUi.APC_White)
         }
+        .transition(.move(edge: .bottom))
+        .animation(.default)
         .cornerRadius(13, corners: [.topLeft, .topRight])
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .ignoresSafeArea()
