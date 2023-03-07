@@ -25,13 +25,6 @@ class PurchaseViewController: UIViewController {
         
         // Add a background view to the top half of the screen
         let backgroundView = UIView()
-        
-        let blurEffect = UIBlurEffect(style: .regular)
-        let blurView = UIVisualEffectView(effect: blurEffect)
-        blurView.frame = backgroundView.bounds
-        backgroundView.addSubview(blurView)
-
-//        backgroundView.backgroundColor = UIColor.white.withAlphaComponent(0.3)
         self.view.addSubview(backgroundView)
         backgroundView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -45,19 +38,25 @@ class PurchaseViewController: UIViewController {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissPurchase))
         backgroundView.addGestureRecognizer(tapGestureRecognizer)
         
+        let blurEffect = UIBlurEffect(style: .regular)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        blurView.frame = backgroundView.bounds
+        backgroundView.addSubview(blurView)
+        
         // Add the bottom sheet view
         let bottomSheetView = BottomSheetView()
         let content: () -> UIView = {
             return bottomSheetView.toUIView()
         }
         let wrapperView = BottomSheetWrapperView(content: content)
+        wrapperView.backgroundColor = UIColor.clear
         self.view.addSubview(wrapperView)
         wrapperView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             wrapperView.topAnchor.constraint(equalTo: backgroundView.bottomAnchor),
             wrapperView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
             wrapperView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            wrapperView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
+            wrapperView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
     
