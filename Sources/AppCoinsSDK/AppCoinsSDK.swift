@@ -70,10 +70,10 @@ struct BottomSheetView: View {
                 .foregroundColor(ColorsUi.APC_White)
         }
         .transition(.move(edge: .bottom))
-        .animation(.easeInOut(duration: 0.5))
+        .animation(.easeInOut(duration: 2))
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .cornerRadius(13, corners: [.topLeft, .topRight])
         .ignoresSafeArea()
+        .cornerRadius(13, corners: [.topLeft, .topRight])
     }
 }
 
