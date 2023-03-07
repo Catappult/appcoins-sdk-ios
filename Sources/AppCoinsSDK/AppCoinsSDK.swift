@@ -49,7 +49,6 @@ class PurchaseViewController: UIViewController {
             return bottomSheetView.toUIView()
         }
         let wrapperView = BottomSheetWrapperView(content: content)
-        wrapperView.backgroundColor = UIColor.clear
         self.view.addSubview(wrapperView)
         wrapperView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -73,9 +72,9 @@ struct BottomSheetView: View {
             
             Text("This is the bottom sheet")
         }
+        .cornerRadius(13, corners: [.topLeft, .topRight])
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .ignoresSafeArea()
-        .cornerRadius(13, corners: [.topLeft, .topRight])
     }
 }
 
@@ -103,6 +102,7 @@ class BottomSheetWrapperView<Content: UIView>: UIView {
         self.backgroundColor = .clear
         self.addSubview(self.contentView)
         self.contentView.translatesAutoresizingMaskIntoConstraints = false
+        self.contentView.backgroundColor = .clear
         NSLayoutConstraint.activate([
             self.contentView.topAnchor.constraint(equalTo: self.topAnchor),
             self.contentView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
