@@ -94,7 +94,7 @@ struct PurchaseBottomSheet: View {
                                     .padding(.top, 11)
                                 
 //                                Text("\(transaction!.appcAmount.currency) APPC")
-                                Text("\(transaction!.appcAmount) APPC")
+                                Text("\(transaction?.appcAmount ?? 0.0) APPC")
                                     .foregroundColor(ColorsUi.APC_Gray)
                                     .font(FontsUi.APC_Caption2)
                                     .frame(width: 240, alignment: .leading)
