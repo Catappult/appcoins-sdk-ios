@@ -61,12 +61,14 @@ struct PurchaseBottomSheet: View {
                         // Avatar and purchase
                         HStack(spacing: 0) {
                             VStack(spacing: 0) {
-                                URLImage(URL(string: transaction?.avatarUrl ?? "")!) { image in
-                                    image
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(width: 74, height: 74)
-                                        .clipShape(Circle())
+                                if let avatarURL = URL(string: transaction?.avatarUrl ?? "") {
+                                    URLImage(avatarURL) { image in
+                                        image
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 74, height: 74)
+                                            .clipShape(Circle())
+                                    }
                                 }
                             }
                             
