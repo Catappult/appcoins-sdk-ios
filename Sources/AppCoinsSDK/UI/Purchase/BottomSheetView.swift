@@ -17,7 +17,7 @@ struct BottomSheetView: View {
         VStack {
             VStack{ Color.clear.onTapGesture { dismiss() } }.frame(maxWidth: .infinity, maxHeight: .infinity)
 
-            PurchaseBottomSheet(transaction: nil, buyAction: {}, dismissAction: {}, setPaymentMethod: { _ in } )
+            PurchaseBottomSheet(transaction: nil, buyAction: {}, dismissAction: dismiss, setPaymentMethod: { _ in } )
             
             // Template
 //            ZStack {
