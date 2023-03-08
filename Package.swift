@@ -17,14 +17,17 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         .package(url: "https://github.com/skywinder/web3swift", branch: "develop"),
-        .package(url: "https://github.com/krzyzanowskim/CryptoSwift.git", branch: "main")
+        .package(url: "https://github.com/krzyzanowskim/CryptoSwift.git", branch: "main"),
+        .package(url: "https://github.com/dmytro-anokhin/url-image.git", .upToNextMajor(from: "3.0.0"))
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "AppCoinsSDK",
-            dependencies: []),
+            dependencies: [
+                .product(name: "URLImage", package: "url-image")
+            ]),
         .testTarget(
             name: "AppCoinsSDKTests",
             dependencies: ["AppCoinsSDK"]),
