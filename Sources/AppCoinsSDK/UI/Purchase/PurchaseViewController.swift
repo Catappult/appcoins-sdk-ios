@@ -21,6 +21,7 @@ class PurchaseViewController: UIViewController {
         self.view.addSubview(wrapperView)
         wrapperView.translatesAutoresizingMaskIntoConstraints = false
         wrapperView.backgroundColor = UIColor.black.withAlphaComponent(0.3)
+        
         NSLayoutConstraint.activate([
             wrapperView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
             wrapperView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),

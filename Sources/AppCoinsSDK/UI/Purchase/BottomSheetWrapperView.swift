@@ -27,10 +27,10 @@ class BottomSheetWrapperView<Content: UIView>: UIView {
         self.contentView.translatesAutoresizingMaskIntoConstraints = false
         self.contentView.backgroundColor = .clear
         NSLayoutConstraint.activate([
-            self.contentView.topAnchor.constraint(equalTo: self.topAnchor),
+            self.contentView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
             self.contentView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
             self.contentView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
-            self.contentView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
+            self.contentView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
 }

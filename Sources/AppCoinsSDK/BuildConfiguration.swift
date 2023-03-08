@@ -19,7 +19,5 @@ class BuildConfiguration {
     static var packageName : String {
         return Bundle.main.bundleIdentifier ?? ""
     }
-    
-//    static var assetsBundle : URL? { return Bundle.module.url(forResource: "Assets", withExtension: "xcassets") }
 }
 
