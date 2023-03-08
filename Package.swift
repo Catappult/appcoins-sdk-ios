@@ -27,7 +27,11 @@ let package = Package(
             name: "AppCoinsSDK",
             dependencies: [
                 .product(name: "URLImage", package: "url-image")
+            ],
+            resources: [
+                .process("Assets.xcassets"),
             ]),
+            
         .testTarget(
             name: "AppCoinsSDKTests",
             dependencies: ["AppCoinsSDK"]),
