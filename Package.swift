@@ -29,7 +29,7 @@ let package = Package(
                 .product(name: "URLImage", package: "url-image")
             ],
             resources: [
-                .process("Assets.xcassets"),
+                .process("Resources"),
             ]),
             
         .testTarget(

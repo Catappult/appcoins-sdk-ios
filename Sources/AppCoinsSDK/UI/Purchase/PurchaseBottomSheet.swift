@@ -25,14 +25,14 @@ struct PurchaseBottomSheet: View {
             VStack(spacing: 0) {
                 HStack {
                     VStack(spacing: 0) {
-                        Image("logo-wallet-white")
+                        Image("logo-wallet-white", bundle: Bundle.module)
                             .resizable()
                             .edgesIgnoringSafeArea(.all)
                             .frame(width: 83, height: 24)
                             .padding(.top, 24)
                         
                         HStack {
-                            Image("gift-1")
+                            Image("gift-1", bundle: Bundle.module)
                                 .resizable()
                                 .edgesIgnoringSafeArea(.all)
                                 .frame(width: 15, height: 15)
@@ -41,12 +41,14 @@ struct PurchaseBottomSheet: View {
 //                                .font(FontsUi.APC_Caption1_Bold)
                             Text("Purchase Bonus: 0.05 in APPC Credits")
                                 .font(FontsUi.APC_Caption1_Bold)
+                                .foregroundColor(ColorsUi.APC_White)
                                 
                         }.padding(.top, 17)
                         
                         
                         Text("You can see this bonus in your next purchase.")
                             .font(FontsUi.APC_Caption2)
+                            .foregroundColor(ColorsUi.APC_White)
                             .padding(.top, 6)
                             .padding(.bottom, 12)
                     }
@@ -116,7 +118,7 @@ struct PurchaseBottomSheet: View {
                                         
                                         HStack(spacing: 0) {
                                             VStack(spacing: 0) {
-                                                Image("appc-payment-method-pink")
+                                                Image("appc-payment-method-pink", bundle: Bundle.module)
                                                     .resizable()
                                                     .edgesIgnoringSafeArea(.all)
                                                     .frame(width: 48, height: 48)
