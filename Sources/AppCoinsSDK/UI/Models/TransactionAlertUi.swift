@@ -10,7 +10,6 @@ import Foundation
 struct TransactionAlertUi {
     
     let domain: String?
-    let avatarUrl: String
     let description: String?
     let category: TransactionCategory?
     let sku: String?
@@ -19,6 +18,7 @@ struct TransactionAlertUi {
     let appcAmount: Double
     let bonusCurrency: String
     let bonusAmount: Double
+    let walletBalance: String
     let paymentMethods: [PaymentMethodUi]
     
     func getTitle() -> String {

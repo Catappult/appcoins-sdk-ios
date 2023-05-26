@@ -16,9 +16,11 @@ let package = Package(
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-        .package(url: "https://github.com/skywinder/web3swift", branch: "develop"),
+        .package(url: "https://github.com/web3swift-team/web3swift.git", .upToNextMajor(from: "3.0.0")),
         .package(url: "https://github.com/krzyzanowskim/CryptoSwift.git", branch: "main"),
-        .package(url: "https://github.com/dmytro-anokhin/url-image.git", .upToNextMajor(from: "3.0.0"))
+        .package(url: "https://github.com/dmytro-anokhin/url-image.git", .upToNextMajor(from: "3.0.0")),
+        .package(url: "https://github.com/CSolanaM/SkeletonUI.git", branch: "master"),
+        .package(url: "https://github.com/TakeScoop/SwiftyRSA.git", .upToNextMajor(from: "1.8.0"))
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -26,14 +28,18 @@ let package = Package(
         .target(
             name: "AppCoinsSDK",
             dependencies: [
-                .product(name: "URLImage", package: "url-image")
+                .product(name: "URLImage", package: "url-image"),
+                .product(name: "CryptoSwift", package: "CryptoSwift"),
+                .product(name: "web3swift", package: "web3swift"),
+                .product(name: "SkeletonUI", package: "SkeletonUI"),
+                .product(name: "SwiftyRSA", package: "SwiftyRSA")
             ],
             resources: [
                 .process("Resources"),
             ]),
-            
         .testTarget(
             name: "AppCoinsSDKTests",
             dependencies: ["AppCoinsSDK"]),
     ]
 )
+

@@ -7,9 +7,9 @@
 
 import Foundation
 
-public enum TransactionCategory: String, Codable {
+enum TransactionCategory: String, Codable {
     
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         self = try TransactionCategory(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? .STANDARD
     }
     
