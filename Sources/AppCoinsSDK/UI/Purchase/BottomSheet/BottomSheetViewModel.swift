@@ -56,7 +56,10 @@ class BottomSheetViewModel : ObservableObject {
         if let product = tryAgainProduct, let domain = tryAgainDomain {
             let metadata = tryAgainMetadata
             let reference = tryAgainReference
-            buildTransaction(product: product, domain: domain, metadata: metadata, reference: reference)
+            DispatchQueue.main.async { self.purchaseState = .paying }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.buildTransaction(product: product, domain: domain, metadata: metadata, reference: reference)
+            }
         }
     }
     

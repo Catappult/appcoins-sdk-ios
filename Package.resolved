@@ -19,6 +19,33 @@
       }
     },
     {
+      "identity" : "skeletonui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/CSolanaM/SkeletonUI.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "e3cf87cb96a10562bc660c9d48418a395d8385ed"
+      }
+    },
+    {
+      "identity" : "swift-snapshot-testing",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pointfreeco/swift-snapshot-testing",
+      "state" : {
+        "revision" : "cef5b3f6f11781dd4591bdd1dd0a3d22bd609334",
+        "version" : "1.11.0"
+      }
+    },
+    {
+      "identity" : "swiftyrsa",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/TakeScoop/SwiftyRSA.git",
+      "state" : {
+        "revision" : "6521919ad0e99dff927685f142d8136479acb452",
+        "version" : "1.8.0"
+      }
+    },
+    {
       "identity" : "url-image",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/dmytro-anokhin/url-image.git",
@@ -30,10 +57,10 @@
     {
       "identity" : "web3swift",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/skywinder/web3swift",
+      "location" : "https://github.com/web3swift-team/web3swift.git",
       "state" : {
-        "branch" : "develop",
-        "revision" : "8cb9a20183f829f2989b0a1b2a1465c75aab6107"
+        "revision" : "16a2915ebd1a0fd33bf0a0ed5a9874909a6e187d",
+        "version" : "3.1.2"
       }
     }
   ],
