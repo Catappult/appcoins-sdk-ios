@@ -73,7 +73,6 @@ class TransactionRepository: TransactionRepositoryProtocol {
     func getTransactionInfo(uid: String, wa: String, waSignature: String, completion: @escaping (Result<Transaction, TransactionError>) -> Void) {
         billingService.getTransactionInfo(uid: uid, wa: wa, waSignature: waSignature) {
             result in
-            print("here")
             switch result {
             case .success(let transactionRaw):
                 if ["PENDING", "PENDING_SERVICE_AUTHORIZATION", "PROCESSING", "PENDING_USER_PAYMENT", "SETTLED"].contains(transactionRaw.status) {
@@ -195,7 +194,6 @@ class TransactionRepository: TransactionRepositoryProtocol {
             let isSuccessful = try clear.verify(with: publicKey, signature: signature, digestType: .sha1)
             return isSuccessful
         } catch {
-            print(error)
             return false
         }
     }
