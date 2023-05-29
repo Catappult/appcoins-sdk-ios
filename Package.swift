@@ -33,9 +33,6 @@ let package = Package(
                 .product(name: "web3swift", package: "web3swift"),
                 .product(name: "SkeletonUI", package: "SkeletonUI"),
                 .product(name: "SwiftyRSA", package: "SwiftyRSA")
-            ],
-            resources: [
-                .process("Resources"),
             ]),
         .testTarget(
             name: "AppCoinsSDKTests",
