@@ -11,12 +11,25 @@ import SwiftUI
 class BottomSheetViewModel : ObservableObject {
     
     @Published var purchaseState: PaymentState = .paying
+    @Published var dismissingSuccess: Bool = false
     @Published var transaction: TransactionAlertUi?
     @Published var finalWalletBalance: String?
     @Published var purchaseFailedMessage: String = Constants.somethingWentWrong
-    var transactionParameters: CreateTransactionRaw?
+    var transactionParameters: [String : String] = [:]
     
-    private var paymentMethodSelected: Int?
+    @Published var paymentMethodSelected: PaymentMethod?
+    
+    // Last Payment Method for initial transaction screen
+    @Published var showOtherPaymentMethods = false
+    @Published var lastPaymentMethod: PaymentMethod? = nil
+    // Show Log Out from PayPal option on Quick Screen
+    @Published var paypalLogOut = false
+    
+    // PayPal Variables
+    @Published var presentPayPalSheet : Bool = false
+    @Published var presentPayPalSheetURL : URL? = nil
+    @Published var presentPayPalSheetMethod : String? = nil
+    @Published var userDismissPayPalSheet : Bool = true
     
     var productUseCases: ProductUseCases = ProductUseCases()
     var transactionUseCases: TransactionUseCases = TransactionUseCases()
@@ -30,6 +43,9 @@ class BottomSheetViewModel : ObservableObject {
     var tryAgainReference: String? = nil
     
     init(dismiss: @escaping () -> Void) {
+        // Prevents Layout Warning Prints
+        UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
+        
         self.dismissVC = dismiss
         
         NotificationCenter.default.addObserver(self, selector: #selector(buildPurchase), name: Notification.Name("APPCBuildPurchase"), object: nil)
@@ -47,7 +63,9 @@ class BottomSheetViewModel : ObservableObject {
                 self.tryAgainMetadata = metadata
                 self.tryAgainReference = reference
                 
-                buildTransaction(product: product, domain: domain, metadata: metadata, reference: reference)
+                DispatchQueue(label: "build-transaction", qos: .userInteractive).async {
+                    self.buildTransaction(product: product, domain: domain, metadata: metadata, reference: reference)
+                }
             }
         }
     }
@@ -85,9 +103,9 @@ class BottomSheetViewModel : ObservableObject {
                                     switch result {
                                     case .success(let paymentMethods):
                                         
-                                        var uiMethods: [PaymentMethodUi] = []
+                                        var availablePaymentMethods: [PaymentMethod] = []
                                         for method in paymentMethods {
-                                            uiMethods.append(PaymentMethodUi(icon: method.icon, label: method.label))
+                                            if ["appcoins_credits", "paypal", "paypal_v2"].contains(method.name) { availablePaymentMethods.append(method) }
                                         }
                                         
                                         wallet.getBalance(wa: wa, currency: Coin(rawValue: product.priceCurrency) ?? .EUR) {
@@ -109,7 +127,7 @@ class BottomSheetViewModel : ObservableObject {
                                                     bonusCurrency: transactionBonus.currency.symbol,
                                                     bonusAmount: transactionBonus.value,
                                                     walletBalance: "\(balanceCurrency)\(String(format: "%.2f", balanceValue))",
-                                                    paymentMethods: uiMethods)
+                                                    paymentMethods: availablePaymentMethods)
                                                 
                                                 self.transactionUseCases.getDeveloperAddress(package: domain) {
                                                     result in
@@ -121,9 +139,65 @@ class BottomSheetViewModel : ObservableObject {
                                                         if metadata == "" { transactionMetadata = nil }
                                                         if reference == "" { transactionReference = nil }
                                                         
-                                                        self.transactionParameters = CreateTransactionRaw.getTransaction(domain: domain, price: String(appcAmount), product: product.sku, developerWa: developerWa, metadata: transactionMetadata, reference: transactionReference)
-                                                        
-                                                        DispatchQueue.main.async { self.transaction = build }
+                                                        self.transactionParameters = [
+                                                            "value": String(moneyAmount),
+                                                            "currency": "EUR",
+                                                            "developerWa": developerWa,
+                                                            "userWa": wa,
+                                                            "domain": domain,
+                                                            "product": product.sku,
+                                                            "appcAmount": String(appcAmount),
+                                                            "metadata": transactionMetadata ?? "",
+                                                            "reference": transactionReference ?? ""
+                                                         ]
+                                                            
+                                                        DispatchQueue.main.async {
+                                                            self.transaction = build
+                                                            
+                                                            if let selected = self.transaction?.paymentMethods.first { self.paymentMethodSelected = selected }
+                                                            
+                                                            // Other Payment Methods filtering
+                                                            if balance.appcoinsBalance < self.transaction?.appcAmount ?? 0 {
+                                                                if let index = self.transaction?.paymentMethods.firstIndex(where: { $0.name == "appcoins_credits" }) {
+                                                                    if var appcPM = self.transaction?.paymentMethods.remove(at: index) {
+                                                                        appcPM.disabled = true
+                                                                        self.transaction?.paymentMethods.append(appcPM)
+                                                                        if let selected = self.transaction?.paymentMethods.first { self.paymentMethodSelected = selected }
+                                                                    }
+                                                                }
+                                                            }
+                                                            
+                                                            // Quick view of last payment method used
+                                                            let lastPaymentMethod = self.transactionUseCases.getLastPaymentMethod()
+                                                            if lastPaymentMethod != "" {
+                                                                switch lastPaymentMethod {
+                                                                case "appcoins_credits":
+                                                                    if let appcPM = self.transaction?.paymentMethods.first(where: { $0.name == "appcoins_credits" && $0.disabled == false }) {
+                                                                        self.lastPaymentMethod = appcPM
+                                                                        self.paymentMethodSelected = appcPM
+                                                                    } else {
+                                                                        self.showOtherPaymentMethods = true
+                                                                    }
+                                                                case "paypal":
+                                                                    if let paypalPM = self.transaction?.paymentMethods.first(where: { $0.name == "paypal" || $0.name == "paypal_v2" }) {
+                                                                        if self.transactionUseCases.hasBillingAgreement() { self.paypalLogOut = true }
+                                                                        self.lastPaymentMethod = paypalPM
+                                                                        self.paymentMethodSelected = paypalPM
+                                                                    } else {
+                                                                        self.showOtherPaymentMethods = true
+                                                                    }
+                                                                default:
+                                                                    self.showOtherPaymentMethods = true
+                                                                }
+                                                            } else {
+                                                                if let appcPM = self.transaction?.paymentMethods.first(where: { $0.name == "appcoins_credits" && $0.disabled == false }) {
+                                                                    self.lastPaymentMethod = appcPM
+                                                                    self.paymentMethodSelected = appcPM
+                                                                } else {
+                                                                    self.showOtherPaymentMethods = true
+                                                                }
+                                                            }
+                                                        }
                                                     case .failure(let failure):
                                                         if failure == .noInternet {
                                                             let result : TransactionResult = .failed(error: .networkError)
@@ -203,10 +277,6 @@ class BottomSheetViewModel : ObservableObject {
         }
     }
     
-    func onPaymentMethodChanged(index: Int) {
-        paymentMethodSelected = index
-    }
-    
     func dismiss() {
         if purchaseState == .paying {
             let result : TransactionResult = .userCancelled
@@ -215,77 +285,253 @@ class BottomSheetViewModel : ObservableObject {
         self.dismissVC()
     }
     
+    func logoutPayPal() {
+        DispatchQueue.main.async { self.showOtherPaymentMethods = true }
+        DispatchQueue(label: "logout-paypal", qos: .userInteractive).async {
+            self.transactionUseCases.cancelBillingAgreement() { result in }
+        }
+    }
+    
+    func showPaymentMethodOptions() {
+        DispatchQueue.main.async { self.showOtherPaymentMethods = true }
+    }
+    
+    func selectPaymentMethod(paymentMethod: PaymentMethod) {
+        DispatchQueue.main.async { self.paymentMethodSelected = paymentMethod }
+    }
     
     func buy() {
         DispatchQueue.main.async { self.purchaseState = .processing }
         
         DispatchQueue(label: "buy-item", qos: .userInteractive).async {
-            if let wallet = self.walletUseCases.getClientWallet(), let wa = wallet.address, let raw = self.transactionParameters {
-                let waSignature = wallet.getSignedWalletAddress()
+            if self.paymentMethodSelected?.name == "appcoins_credits" {
+                 self.buyWithAppc()
+            } else if ["paypal", "paypal_v2"].contains(self.paymentMethodSelected?.name) {
+                 self.buyWithPayPal()
+            } else {
+                let result : TransactionResult = .failed(error: .systemError)
+                Utils.transactionResult(result: result)
+                DispatchQueue.main.async { self.purchaseState = .failed }
+            }
+        
+        }
+    }
+    
+    func buyWithAppc() {
+        let raw = CreateAPPCTransactionRaw.fromDictionary(dictionary: self.transactionParameters)
+        if let wallet = self.walletUseCases.getClientWallet(), let wa = wallet.address {
+            let waSignature = wallet.getSignedWalletAddress()
+            
+            self.transactionUseCases.createTransaction(wa: wa, waSignature: waSignature, raw: raw) {
+                result in
                 
-                self.transactionUseCases.createTransaction(wa: wa, waSignature: waSignature, raw: raw) {
-                    result in
-                    
-                    switch result {
-                    case .success(let transactionResponse):
-                        self.transactionUseCases.getTransactionInfo(uid: transactionResponse.uuid, wa: wa, waSignature: waSignature) {
+                switch result {
+                case .success(let transactionResponse):
+                    self.transactionUseCases.getTransactionInfo(uid: transactionResponse.uuid, wa: wa, waSignature: waSignature) {
+                        result in
+                        
+                        switch result {
+                        case .success(let transaction):
+                            if let purchaseUID = transaction.purchaseUID {
+                                wallet.getBalance(wa: wa, currency: Coin(rawValue: self.transaction?.moneyCurrency ?? "") ?? .EUR) {
+                                    result in
+                                    
+                                    switch result {
+                                    case .success(let balance):
+                                        Purchase.verify(purchaseUID: purchaseUID) {
+                                            result in
+                                            
+                                            switch result {
+                                            case .success(let purchase):
+                                                purchase.acknowledge() {
+                                                    error in
+                                                    if let error = error {
+                                                        DispatchQueue.main.async { self.purchaseState = .failed }
+                                                        
+                                                        let result : TransactionResult = .failed(error: error)
+                                                        Utils.transactionResult(result: result)
+                                                    } else {
+                                                        DispatchQueue.main.async {
+                                                            self.finalWalletBalance = "\(balance.balanceCurrency)\(String(format: "%.2f", balance.balance))"
+                                                            self.purchaseState = .success
+                                                        }
+                                                        
+                                                        let verificationResult: VerificationResult = .verified(purchase: purchase)
+                                                        let transactionResult: TransactionResult = .success(verificationResult: verificationResult)
+                                                        Utils.transactionResult(result: transactionResult)
+                                                        
+                                                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                                                            self.dismiss()
+                                                            withAnimation { self.dismissingSuccess = true }
+                                                        }
+                                                    }
+                                                }
+                                            case .failure(let error):
+                                                DispatchQueue.main.async { self.purchaseState = .failed }
+                                                
+                                                let result : TransactionResult = .failed(error: error)
+                                                Utils.transactionResult(result: result)
+                                            }
+                                        }
+                                    case .failure(let failure):
+                                        if failure == .noInternet {
+                                            let result : TransactionResult = .failed(error: .networkError)
+                                            Utils.transactionResult(result: result)
+                                        } else {
+                                            let result : TransactionResult = .failed(error: .systemError)
+                                            Utils.transactionResult(result: result)
+                                        }
+                                        DispatchQueue.main.async { self.purchaseState = .failed }
+                                    }
+                                }
+                            } else {
+                                let result : TransactionResult = .failed(error: .systemError)
+                                Utils.transactionResult(result: result)
+                                DispatchQueue.main.async { self.purchaseState = .failed }
+                            }
+                        case .failure(let failure):
+                            switch failure {
+                            case .failed(_):
+                                let result : TransactionResult = .failed(error: .systemError)
+                                Utils.transactionResult(result: result)
+                            case .noInternet:
+                                let result : TransactionResult = .failed(error: .networkError)
+                                Utils.transactionResult(result: result)
+                            default:
+                                let result : TransactionResult = .failed(error: .systemError)
+                                Utils.transactionResult(result: result)
+                            }
+                            DispatchQueue.main.async { self.purchaseState = .failed }
+                        }
+                    }
+                case .failure(let failure):
+                    switch failure {
+                    case .failed(let description):
+                        if let description = description { DispatchQueue.main.async { self.purchaseFailedMessage = description } }
+                        let result : TransactionResult = .failed(error: .systemError)
+                        Utils.transactionResult(result: result)
+                    case .noInternet:
+                        let result : TransactionResult = .failed(error: .networkError)
+                        Utils.transactionResult(result: result)
+                    default:
+                        let result : TransactionResult = .failed(error: .systemError)
+                        Utils.transactionResult(result: result)
+                    }
+                    DispatchQueue.main.async { self.purchaseState = .failed }
+                }
+            }
+        } else {
+            let result : TransactionResult = .failed(error: .notEntitled)
+            Utils.transactionResult(result: result)
+            DispatchQueue.main.async { self.purchaseState = .failed }
+        }
+    }
+    
+    func buyWithPayPal() {
+        let raw = CreateBAPayPalTransactionRaw.fromDictionary(dictionary: self.transactionParameters)
+        if let wallet = self.walletUseCases.getClientWallet(), let wa = wallet.address {
+            let waSignature = wallet.getSignedWalletAddress()
+            
+            self.transactionUseCases.createBAPayPalTransaction(wa: wa, waSignature: waSignature, raw: raw) {
+                result in
+                
+                switch result {
+                case .success(let transactionResponse):
+                    self.transactionUseCases.getTransactionInfo(uid: transactionResponse.uuid, wa: wa, waSignature: waSignature) {
+                        result in
+                        
+                        switch result {
+                        case .success(let transaction):
+                            if let purchaseUID = transaction.purchaseUID {
+                                wallet.getBalance(wa: wa, currency: Coin(rawValue: self.transaction?.moneyCurrency ?? "") ?? .EUR) {
+                                    result in
+                                    
+                                    switch result {
+                                    case .success(let balance):
+                                        Purchase.verify(purchaseUID: purchaseUID) {
+                                            result in
+                                            
+                                            switch result {
+                                            case .success(let purchase):
+                                                purchase.acknowledge() {
+                                                    error in
+                                                    if let error = error {
+                                                        DispatchQueue.main.async { self.purchaseState = .failed }
+                                                        
+                                                        let result : TransactionResult = .failed(error: error)
+                                                        Utils.transactionResult(result: result)
+                                                    } else {
+                                                        DispatchQueue.main.async {
+                                                            self.finalWalletBalance = "\(balance.balanceCurrency)\(String(format: "%.2f", balance.balance))"
+                                                            self.purchaseState = .success
+                                                        }
+                                                        
+                                                        let verificationResult: VerificationResult = .verified(purchase: purchase)
+                                                        let transactionResult: TransactionResult = .success(verificationResult: verificationResult)
+                                                        Utils.transactionResult(result: transactionResult)
+                                                        
+                                                        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                                                            self.dismiss()
+                                                            withAnimation { self.dismissingSuccess = true }
+                                                        }
+                                                    }
+                                                }
+                                            case .failure(let error):
+                                                DispatchQueue.main.async { self.purchaseState = .failed }
+                                                
+                                                let result : TransactionResult = .failed(error: error)
+                                                Utils.transactionResult(result: result)
+                                            }
+                                        }
+                                    case .failure(let failure):
+                                        if failure == .noInternet {
+                                            let result : TransactionResult = .failed(error: .networkError)
+                                            Utils.transactionResult(result: result)
+                                        } else {
+                                            let result : TransactionResult = .failed(error: .systemError)
+                                            Utils.transactionResult(result: result)
+                                        }
+                                        DispatchQueue.main.async { self.purchaseState = .failed }
+                                    }
+                                }
+                            } else {
+                                let result : TransactionResult = .failed(error: .systemError)
+                                Utils.transactionResult(result: result)
+                                DispatchQueue.main.async { self.purchaseState = .failed }
+                            }
+                        case .failure(let failure):
+                            switch failure {
+                            case .failed(_):
+                                let result : TransactionResult = .failed(error: .systemError)
+                                Utils.transactionResult(result: result)
+                            case .noInternet:
+                                let result : TransactionResult = .failed(error: .networkError)
+                                Utils.transactionResult(result: result)
+                            default:
+                                let result : TransactionResult = .failed(error: .systemError)
+                                Utils.transactionResult(result: result)
+                            }
+                            DispatchQueue.main.async { self.purchaseState = .failed }
+                        }
+                    }
+                case .failure(let error):
+                    switch error {
+                    case .noBillingAgreement:
+                        self.transactionUseCases.createBillingAgreementToken() {
                             result in
                             
                             switch result {
-                            case .success(let transaction):
-                                if let purchaseUID = transaction.purchaseUID {
-                                    wallet.getBalance(wa: wa, currency: Coin(rawValue: self.transaction?.moneyCurrency ?? "") ?? .EUR) {
-                                        result in
-                                        
-                                        switch result {
-                                        case .success(let balance):
-                                            DispatchQueue.main.async {
-                                                self.finalWalletBalance = "\(balance.balanceCurrency)\(String(format: "%.2f", balance.balance))"
-                                                self.purchaseState = .success
-                                            }
-                                            
-                                            Purchase.verify(purchaseUID: purchaseUID) {
-                                                result in
-                                                
-                                                switch result {
-                                                case .success(let purchase):
-                                                    purchase.acknowledge {
-                                                        error in
-                                                        if let error = error {
-                                                            let result : TransactionResult = .failed(error: error)
-                                                            Utils.transactionResult(result: result)
-                                                        } else {
-                                                            let verificationResult: VerificationResult = .verified(purchase: purchase)
-                                                            let transactionResult: TransactionResult = .success(verificationResult: verificationResult)
-                                                            Utils.transactionResult(result: transactionResult)
-                                                        }
-                                                    }
-                                                case .failure(let error):
-                                                    let result : TransactionResult = .failed(error: error)
-                                                    Utils.transactionResult(result: result)
-                                                }
-                                            }
-                                        case .failure(let failure):
-                                            if failure == .noInternet {
-                                                let result : TransactionResult = .failed(error: .networkError)
-                                                Utils.transactionResult(result: result)
-                                            } else {
-                                                let result : TransactionResult = .failed(error: .systemError)
-                                                Utils.transactionResult(result: result)
-                                            }
-                                            DispatchQueue.main.async { self.purchaseState = .failed }
-                                        }
+                            case .success(let response):
+                                if let redirectURL = URL(string: response.redirect.url) {
+                                    DispatchQueue.main.async {
+                                        self.presentPayPalSheetURL = redirectURL
+                                        self.presentPayPalSheetMethod = response.redirect.method
+                                        self.presentPayPalSheet = true
+                                        self.userDismissPayPalSheet = true
                                     }
-                                } else {
-                                    let result : TransactionResult = .failed(error: .systemError)
-                                    Utils.transactionResult(result: result)
-                                    DispatchQueue.main.async { self.purchaseState = .failed }
                                 }
-                            case .failure(let failure):
-                                switch failure {
-                                case .failed(_):
-                                    let result : TransactionResult = .failed(error: .systemError)
-                                    Utils.transactionResult(result: result)
+                            case .failure(let error):
+                                switch error {
                                 case .noInternet:
                                     let result : TransactionResult = .failed(error: .networkError)
                                     Utils.transactionResult(result: result)
@@ -293,28 +539,93 @@ class BottomSheetViewModel : ObservableObject {
                                     let result : TransactionResult = .failed(error: .systemError)
                                     Utils.transactionResult(result: result)
                                 }
-                                DispatchQueue.main.async { self.purchaseState = .failed }
                             }
                         }
-                    case .failure(let failure):
-                        switch failure {
-                        case .failed(let description):
-                            if let description = description { DispatchQueue.main.async { self.purchaseFailedMessage = description } }
-                            let result : TransactionResult = .failed(error: .systemError)
-                            Utils.transactionResult(result: result)
-                        case .noInternet:
-                            let result : TransactionResult = .failed(error: .networkError)
-                            Utils.transactionResult(result: result)
-                        default:
-                            let result : TransactionResult = .failed(error: .systemError)
-                            Utils.transactionResult(result: result)
-                        }
+                    case .failed(let description):
+                        if let description = description { DispatchQueue.main.async { self.purchaseFailedMessage = description } }
+                        let result : TransactionResult = .failed(error: .systemError)
+                        Utils.transactionResult(result: result)
+                        DispatchQueue.main.async { self.purchaseState = .failed }
+                    case .noInternet:
+                        let result : TransactionResult = .failed(error: .networkError)
+                        Utils.transactionResult(result: result)
+                        DispatchQueue.main.async { self.purchaseState = .failed }
+                    default:
+                        let result : TransactionResult = .failed(error: .systemError)
+                        Utils.transactionResult(result: result)
                         DispatchQueue.main.async { self.purchaseState = .failed }
                     }
                 }
-            } else {
-                let result : TransactionResult = .failed(error: .notEntitled)
+            }
+        } else {
+            let result : TransactionResult = .failed(error: .notEntitled)
+            Utils.transactionResult(result: result)
+            DispatchQueue.main.async { self.purchaseState = .failed }
+        }
+    }
+    
+    func dismissPayPalView() {
+        // only apply when it is the user dismissing the view
+        if self.userDismissPayPalSheet {
+            DispatchQueue.main.async {
+                self.presentPayPalSheet = false
+                let result : TransactionResult = .userCancelled
                 Utils.transactionResult(result: result)
+                self.dismissVC()
+            }
+        }
+    }
+    
+    func cancelBillingAgreementTokenPayPal(token: String?) {
+        DispatchQueue.main.async {
+            self.userDismissPayPalSheet = false
+            self.presentPayPalSheet = false
+        }
+        
+        if let token = token {
+            self.transactionUseCases.cancelBillingAgreementToken(token: token) {
+                result in
+                DispatchQueue.main.async {
+                    self.presentPayPalSheet = false
+                    let result : TransactionResult = .userCancelled
+                    Utils.transactionResult(result: result)
+                    self.dismissVC()
+                }
+            }
+        } else {
+            DispatchQueue.main.async {
+                self.presentPayPalSheet = false
+                let result : TransactionResult = .userCancelled
+                Utils.transactionResult(result: result)
+                self.dismissVC()
+            }
+        }
+    }
+    
+    func createBillingAgreementAndFinishTransaction(token: String) {
+        DispatchQueue.main.async {
+            self.userDismissPayPalSheet = false
+            self.presentPayPalSheet = false
+        }
+        
+        self.transactionUseCases.createBillingAgreement(token: token) {
+            result in
+            
+            switch result {
+            case .success(_):
+                self.buyWithPayPal()
+            case .failure(let error):
+                switch error {
+                case .failed(_):
+                    let result : TransactionResult = .failed(error: .systemError)
+                    Utils.transactionResult(result: result)
+                case .noInternet:
+                    let result : TransactionResult = .failed(error: .networkError)
+                    Utils.transactionResult(result: result)
+                default:
+                    let result : TransactionResult = .failed(error: .systemError)
+                    Utils.transactionResult(result: result)
+                }
                 DispatchQueue.main.async { self.purchaseState = .failed }
             }
         }

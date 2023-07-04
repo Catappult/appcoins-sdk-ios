@@ -51,8 +51,9 @@ class WalletLocalClient : WalletLocalService {
             do {
                 // generate a random password
                 let password = Utils.generateRandomPassword()
+                let private_key = Utils.generatePrivateKey()
                 
-                let keystore = try EthereumKeystoreV3.init(password: password)
+                let keystore = try EthereumKeystoreV3.init(privateKey: private_key, password: password)
                 let wallet_address = keystore?.getAddress()?.address
                 let data = try JSONEncoder().encode(keystore?.keystoreParams)
                 
@@ -73,6 +74,18 @@ class WalletLocalClient : WalletLocalService {
                         throw WalletLocalErrors.failedToCreate
                     }
                     
+                    // store private key
+                    do {
+                        try Utils.writeToKeychain(key: "\(wallet_address!)-pk", value: private_key.base64EncodedString())
+                    }
+                    catch {
+                        try FileManager.default.removeItem(atPath: fileURL.path)
+                        Utils.deleteFromKeychain(key: "\(wallet_address!)-pk")
+                        
+                        Utils.log(message: "\(error.localizedDescription)")
+                        throw WalletLocalErrors.failedToCreate
+                    }
+                    
                     // make new address active
                     do {
                         try Utils.writeToPreferences(key: "default-appcoins-wallet", value: wallet_address!)
@@ -81,21 +94,30 @@ class WalletLocalClient : WalletLocalService {
                     }
                     catch {
                         try FileManager.default.removeItem(atPath: fileURL.path)
+                        Utils.deleteFromKeychain(key: "\(wallet_address!)-pk")
                         Utils.deleteFromKeychain(key: wallet_address!)
                         
-                        Utils.log(message: "3: \(error.localizedDescription)")
+                        Utils.log(message: "4: \(error.localizedDescription)")
                         throw WalletLocalErrors.failedToCreate
                     }
                 } else {
                     print("Failed to create a new wallet address")
-                    Utils.log(message: "4: Failed to create a new wallet address")
+                    Utils.log(message: "5: Failed to create a new wallet address")
                     throw WalletLocalErrors.failedToCreate
                 }
             } catch {
-                Utils.log(message: "5: \(error.localizedDescription)")
+                Utils.log(message: "6: \(error.localizedDescription)")
                 throw WalletLocalErrors.failedToCreate
             }
         }
         return nil
+    }
+    
+    func getPrivateKey(address: String) -> Data? {
+        if let privateKeyString = Utils.readFromKeychain(key: "\(address)-pk") {
+            return Data(base64Encoded: privateKeyString)
+        } else {
+            return nil
+        }
     }
 }

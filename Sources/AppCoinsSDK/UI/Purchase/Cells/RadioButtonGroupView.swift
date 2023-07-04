@@ -5,78 +5,65 @@
 //  Created by aptoide on 09/03/2023.
 //
 
-import Foundation
 import SwiftUI
+import URLImage
 
 struct RadioButtonGroupView: View {
     
-    @State var selected: Int?
-    let setPaymentMethod: (Int) -> Void
-    let options: [PaymentMethodView]
+    @ObservedObject var viewModel: BottomSheetViewModel
     
     var body: some View {
         
-        VStack(spacing: 0) {
-            ForEach(options) { option in
-                HStack {
-                    option
-                        .onTapGesture {
-                            if (!option.disabled) {
-                                let index = options.firstIndex(of: option)!
-                                if(selected != index) {
-                                    // CHANGE IT LATER – right now only method available is AppCoins
-                                    // setPaymentMethod(index)
-                                    selected = index
-                                }
-                            }
-                        }.frame(width: 272, alignment: .leading)
-                        .padding(.leading, 20)
-                        .padding(.vertical, 11)
-                        
-                    if (!isEnabled(option)) {
-                        if (option.disabled) {
-                            Circle()
-                                .strokeBorder(ColorsUi.APC_LightGray, lineWidth: 2)
-                                .frame(width: 22, height: 22, alignment: .trailing)
-                                .padding(.trailing, 20)
-                        } else {
-                            Circle()
-                                .fill(ColorsUi.APC_Pink.opacity(0.2))
-                                .frame(width: 22, height: 22, alignment: .trailing)
-                                .padding(.trailing, 20)
+        if let options = viewModel.transaction?.paymentMethods {
+            VStack(spacing: 0) {
+                ForEach(options, id: \.self) { option in
+                    Button(action: {
+                        if (!option.disabled) {
+                            viewModel.selectPaymentMethod(paymentMethod: option)
                         }
-                    } else {
-                        Circle()
-                            .overlay(Image(systemName: "checkmark.circle.fill")
-                                .resizable()
-                                .edgesIgnoringSafeArea(.all)
-                                .foregroundColor(ColorsUi.APC_Pink)
-                            )
-                            .frame(width: 22, height: 22, alignment: .trailing)
-                            .padding(.trailing, 20)
-                            .foregroundColor(ColorsUi.APC_White)
+                    }) {
+                        ZStack {
+                            ColorsUi.APC_White
+                            HStack(spacing: 0) {
+                                PaymentMethodIcon(icon: option.icon, disabled: option.disabled)
+                                
+                                Text(option.label)
+                                    .foregroundColor(option.disabled ? ColorsUi.APC_Gray : ColorsUi.APC_Black)
+                                    .font(FontsUi.APC_Subheadline)
+                                    .lineLimit(1)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    
+                                if (viewModel.paymentMethodSelected?.name == option.name) {
+                                    Image(systemName: "checkmark.circle.fill")
+                                        .resizable()
+                                        .edgesIgnoringSafeArea(.all)
+                                        .foregroundColor(ColorsUi.APC_Pink)
+                                        .frame(width: 22, height: 22, alignment: .trailing)
+                                        .padding(.trailing, 16)
+                                } else {
+                                    Circle()
+                                        .strokeBorder(ColorsUi.APC_LightGray, lineWidth: 2)
+                                        .frame(width: 22, height: 22, alignment: .trailing)
+                                        .padding(.trailing, 16)
+                                }
+                                                            
+                                
+                            }.frame(width: 328)
+//                            .padding(.vertical, 11)
+                        }.frame(height: 44)
                     }
-                    
-                    
-                }.frame(width: 328)
                 
-                if (option != options.last) {
-                    Divider()
-                        .background(ColorsUi.APC_LightGray)
+                    if (option.name != options.last?.name) {
+                        Divider()
+                            .background(ColorsUi.APC_LightGray)
+                    }
+                        
                 }
-                    
-            }
-        }.background(ColorsUi.APC_White)
-            .frame(width: 328)
-            .cornerRadius(13)
+            }.background(ColorsUi.APC_White)
+                .frame(width: 328)
+                .cornerRadius(13)
+        }
         
-    }
-    
-    private func isEnabled(_ option: PaymentMethodView) -> Bool {
-        // For now, AppCoins Credits is always selected, change to option 0 later, when the others are no longer disabled
-        if(selected == nil && self.options.firstIndex(of: option) == 0) { return true }
-        else if(selected == options.firstIndex(of: option)) { return true }
-        else { return false }
     }
     
 }

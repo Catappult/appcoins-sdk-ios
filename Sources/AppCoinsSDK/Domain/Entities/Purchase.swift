@@ -94,6 +94,7 @@ public class Purchase: Codable {
         
         if let wallet = walletUseCases.getClientWallet(), let wa = wallet.address {
             let waSignature = wallet.getSignedWalletAddress()
+            
             let domain = Bundle.main.bundleIdentifier ?? ""
             transactionUseCases.consumePurchase(domain: domain, uid: self.uid, wa: wa, waSignature: waSignature) {
                 result in

@@ -62,6 +62,12 @@ struct Utils {
         return password
     }
     
+    static func generatePrivateKey() -> Data {
+        // Generate a random 32-byte private key
+        let privateKey = Data(count: 32).map { _ in UInt8.random(in: 0...255) }
+        return Data(privateKey)
+    }
+    
     static func transactionResult(result: TransactionResult) {
         NotificationCenter.default.post(name: NSNotification.Name("APPCPurchaseResult"), object: nil, userInfo: ["TransactionResult" : result])
     }

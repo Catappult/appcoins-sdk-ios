@@ -11,5 +11,6 @@ protocol WalletLocalService {
     
     func getActiveWallet() -> Wallet?
     func createNewWallet() throws -> Wallet?
+    func getPrivateKey(address: String) -> Data?
     
 }

@@ -11,7 +11,7 @@ class AppCoinGamificationServiceClient : AppCoinGamificationService {
     
     private let endpoint: String
     
-    init(endpoint: String = "https://apichain.dev.catappult.io/gamification") {
+    init(endpoint: String = BuildConfiguration.gamificationServiceURL) {
         self.endpoint = endpoint
     }
     

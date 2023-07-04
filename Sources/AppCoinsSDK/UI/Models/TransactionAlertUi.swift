@@ -19,7 +19,7 @@ struct TransactionAlertUi {
     let bonusCurrency: String
     let bonusAmount: Double
     let walletBalance: String
-    let paymentMethods: [PaymentMethodUi]
+    var paymentMethods: [PaymentMethod]
     
     func getTitle() -> String {
         return description ?? getCategory()

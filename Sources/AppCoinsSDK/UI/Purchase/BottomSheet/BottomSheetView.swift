@@ -26,16 +26,19 @@ struct BottomSheetView: View {
                     PurchaseBottomSheet(viewModel: viewModel)
                         .offset(y: isPresented ? 0 : UIScreen.main.bounds.height)
                         .transition(.move(edge: .bottom))
+                        .onAppear { withAnimation { isPresented = true } }
+                        .onDisappear { withAnimation { isPresented = false } }
                 }
                 
                 if viewModel.purchaseState == .processing {
                     ProcessingBottomSheet(viewModel: viewModel)
-                        .offset(y: isPresented ? 0 : UIScreen.main.bounds.height)
-                        .transition(.move(edge: .bottom))
                 }
             
                 if viewModel.purchaseState == .success {
                     SuccessBottomSheet(viewModel: viewModel)
+                        .offset(y: viewModel.dismissingSuccess ? 0 : 348)
+                        .transition(.move(edge: .top))
+                        .animation(.easeOut(duration: 0.5).delay(2.5))
                 }
                 
                 if viewModel.purchaseState == .failed {
@@ -47,8 +50,11 @@ struct BottomSheetView: View {
                 }
                 
             }
-            .onAppear { withAnimation { isPresented = true } }
-            .onDisappear { withAnimation { isPresented = false } }
+            .sheet(isPresented: $viewModel.presentPayPalSheet, onDismiss: viewModel.dismissPayPalView) {
+                if let presentURL = viewModel.presentPayPalSheetURL {
+                    PayPalWebView(url: presentURL, method: viewModel.presentPayPalSheetMethod ?? "POST", successHandler: viewModel.createBillingAgreementAndFinishTransaction, cancelHandler: viewModel.cancelBillingAgreementTokenPayPal)
+                }
+            }
         }.ignoresSafeArea()
     }
 }

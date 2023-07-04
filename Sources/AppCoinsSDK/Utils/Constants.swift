@@ -30,5 +30,6 @@ struct Constants {
     static let supportAvailableSoonTitle = "Available Soon"
     static let supportAvailableSoonMessage = "AppCoins Support is not available at the moment"
     static let appcCredits = "AppCoins Credits"
+    static let logOut = "Log out"
     
 }

@@ -14,6 +14,8 @@ class TransactionRepository: TransactionRepositoryProtocol {
     private let billingService: AppCoinBillingService = AppCoinBillingClient()
     private let aptoideService: AptoideService = AptoideServiceClient()
     private let productService: AppCoinProductService = AppCoinProductServiceClient()
+    private let walletService: WalletLocalService = WalletLocalClient()
+    private let userPreferencesService: UserPreferencesLocalService = UserPreferencesLocalClient()
     
     func getTransactionBonus(address: String, package_name: String, amount: String, currency: Coin, completion: @escaping (Result<TransactionBonus, TransactionError>) -> Void) {
         gamificationService.getTransactionBonus(address: address, package_name: package_name, amount: amount, currency: currency) {
@@ -66,8 +68,15 @@ class TransactionRepository: TransactionRepositoryProtocol {
         }
     }
     
-    func createTransaction(wa: String, waSignature: String, raw: CreateTransactionRaw, completion: @escaping (Result<CreateTransactionResponseRaw, TransactionError>) -> Void) {
-        billingService.createTransaction(wa: wa, waSignature: waSignature, raw: raw) {result in completion(result)}
+    func createTransaction(wa: String, waSignature: String, raw: CreateAPPCTransactionRaw, completion: @escaping (Result<CreateTransactionResponseRaw, TransactionError>) -> Void) {
+        billingService.createTransaction(wa: wa, waSignature: waSignature, raw: raw) {
+            result in
+            
+            switch result {
+                case .success(_): self.setLastPaymentMethod(paymentMethod: "appcoins_credits")
+                default: break
+            }
+            completion(result)}
     }
     
     func getTransactionInfo(uid: String, wa: String, waSignature: String, completion: @escaping (Result<Transaction, TransactionError>) -> Void) {
@@ -196,6 +205,104 @@ class TransactionRepository: TransactionRepositoryProtocol {
         } catch {
             return false
         }
+    }
+    
+    func createBAPayPalTransaction(wa: String, waSignature: String, raw: CreateBAPayPalTransactionRaw, completion: @escaping (Result<CreateBAPayPalTransactionResponseRaw, TransactionError>) -> Void) {
+        billingService.createBAPayPalTransaction(wa: wa, waSignature: waSignature, raw: raw) { result in
+            
+            switch result {
+                case .success(_):
+                    self.setLastPaymentMethod(paymentMethod: "paypal")
+                    self.storeBillingAgreementLocally(wa: wa)
+                default: break
+            }
+            completion(result) }
+    }
+    
+    func createBillingAgreementToken(completion: @escaping (Result<CreateBillingAgreementTokenResponseRaw, TransactionError>) -> Void) {
+        let returnURL = BuildConfiguration.billingServiceURL + "/gateways/paypal/billing-agreement/token/return/success"
+        let cancelURL = BuildConfiguration.billingServiceURL + "/gateways/paypal/billing-agreement/token/return/cancel"
+
+        let raw = CreateBillingAgreementTokenRaw(urls: CreateBillingAgreementTokenURLsRaw(returnURL: returnURL, cancelURL: cancelURL))
+        
+        if let wallet = walletService.getActiveWallet() {
+            let wa = wallet.getWalletAddress()
+            let waSignature = wallet.getSignedWalletAddress()
+            
+            billingService.createBillingAgreementToken(wa: wa, waSignature: waSignature, raw: raw) { result in
+                completion(result) }
+        } else { completion(.failure(.failed())) }
+    }
+    
+    func cancelBillingAgreementToken(token: String, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
+        if let wallet = walletService.getActiveWallet() {
+            let wa = wallet.getWalletAddress()
+            let waSignature = wallet.getSignedWalletAddress()
+            
+            billingService.cancelBillingAgreementToken(token: token, wa: wa, waSignature: waSignature) { result in
+                completion(result) }
+        } else { completion(.failure(.failed())) }
+    }
+    
+    func cancelBillingAgreement(completion: @escaping (Result<Bool, TransactionError>) -> Void) {
+        if let wallet = walletService.getActiveWallet() {
+            let wa = wallet.getWalletAddress()
+            let waSignature = wallet.getSignedWalletAddress()
+            
+            billingService.cancelBillingAgreement(wa: wa, waSignature: waSignature) { result in
+                self.removeBillingAgreementLocally(wa: wa)
+                completion(result)
+            }
+        } else { completion(.failure(.failed())) }
+    }
+    
+    func createBillingAgreement(token: String, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
+        if let wallet = walletService.getActiveWallet() {
+            let wa = wallet.getWalletAddress()
+            let waSignature = wallet.getSignedWalletAddress()
+            
+            billingService.createBillingAgreement(token: token, wa: wa, waSignature: waSignature) { result in
+                switch result {
+                case .success(_):
+                    self.storeBillingAgreementLocally(wa: wa)
+                    completion(.success(true))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
+        } else { completion(.failure(.failed())) }
+    }
+    
+    private func storeBillingAgreementLocally(wa: String) {
+        userPreferencesService.writeWalletBA(wa: wa)
+    }
+    
+    private func removeBillingAgreementLocally(wa: String) {
+        userPreferencesService.removeWalletBA(wa: wa)
+    }
+    
+    func getBillingAgreement(completion: @escaping (Result<Bool, TransactionError>) -> Void) {
+        if let wallet = walletService.getActiveWallet() {
+            let wa = wallet.getWalletAddress()
+            let waSignature = wallet.getSignedWalletAddress()
+            
+            billingService.getBillingAgreement(wa: wa, waSignature: waSignature) { result in completion(result) }
+        } else { completion(.failure(.failed())) }
+    }
+    
+    func hasBillingAgreement() -> Bool {
+        if let wallet = walletService.getActiveWallet() {
+            let wa = wallet.getWalletAddress()
+            return userPreferencesService.getWalletBA(wa: wa) != ""
+        } else { return false }
+    }
+    
+    func getLastPaymentMethod() -> String {
+        return userPreferencesService.getLastPaymentMethod()
+    }
+    
+    func setLastPaymentMethod(paymentMethod: String) {
+        userPreferencesService.setLastPaymentMethod(paymentMethod: paymentMethod)
     }
     
 }

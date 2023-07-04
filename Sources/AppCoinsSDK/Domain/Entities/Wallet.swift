@@ -22,6 +22,7 @@ class Wallet {
     private let keystore: EthereumKeystoreV3
     private let transactionService: AppCoinTransactionService = AppCoinTransactionClient()
     private let billingService: AppCoinBillingService = AppCoinBillingClient()
+    private let walletService: WalletLocalService = WalletLocalClient()
     
     init? (_ keystoreUrl: URL, _ password: String = "") {
         guard let data = try? Data(contentsOf: keystoreUrl) else { return nil }
@@ -73,8 +74,15 @@ class Wallet {
     }
     
     func getPrivateKey() -> Data {
-        let ethereumAddress = EthereumAddress(getWalletAddress())!
-        return try! keystore.UNSAFE_getPrivateKeyData(password: password, account: ethereumAddress)
+        if let privateKey = walletService.getPrivateKey(address: self.keystore.addresses!.first!.address) {
+            return privateKey
+        } else {
+            let ethereumAddress = EthereumAddress(getWalletAddress())!
+            let key = try! keystore.UNSAFE_getPrivateKeyData(password: password, account: ethereumAddress)
+            return key
+        }
+        
+        
     }
     
     func getWalletAddress() -> String {

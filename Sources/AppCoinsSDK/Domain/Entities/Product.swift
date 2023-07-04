@@ -93,16 +93,16 @@ public struct Product {
             // payload – information that the developer might want to pass with the transaction
             // orderID – a reference so that the developer can identify unique transactions
             NotificationCenter.default.post(name: NSNotification.Name("APPCBuildPurchase"), object: nil, userInfo: ["product" : self, "domain" : domain, "metadata" : payload, "reference" : orderID])
-            
-            var observer: NSObjectProtocol?
-            observer = NotificationCenter.default.addObserver(forName: Notification.Name("APPCPurchaseResult"), object: nil, queue: nil) { notification in
-                if let userInfo = notification.userInfo {
-                    if let status = userInfo["TransactionResult"] as? TransactionResult {
-                        completion(status)
-                        
-                        if let observer = observer {
-                            NotificationCenter.default.removeObserver(observer)
-                        }
+        }
+        
+        var observer: NSObjectProtocol?
+        observer = NotificationCenter.default.addObserver(forName: Notification.Name("APPCPurchaseResult"), object: nil, queue: nil) { notification in
+            if let userInfo = notification.userInfo {
+                if let status = userInfo["TransactionResult"] as? TransactionResult {
+                    completion(status)
+                    
+                    if let observer = observer {
+                        NotificationCenter.default.removeObserver(observer)
                     }
                 }
             }

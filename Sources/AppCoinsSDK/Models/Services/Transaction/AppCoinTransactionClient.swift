@@ -11,7 +11,7 @@ class AppCoinTransactionClient : AppCoinTransactionService {
     
     private let endpoint: String
     
-    init(endpoint: String = "https://apichain.dev.catappult.io/transaction") {
+    init(endpoint: String = BuildConfiguration.transactionServiceURL) {
         self.endpoint = endpoint
     }
     

@@ -11,7 +11,7 @@ class AppCoinProductServiceClient : AppCoinProductService {
     
     private let endpoint: String
     
-    init(endpoint: String = "https://api.dev.catappult.io/productv2/8.20200701") {
+    init(endpoint: String = BuildConfiguration.productServiceURL) {
         self.endpoint = endpoint
     }
     

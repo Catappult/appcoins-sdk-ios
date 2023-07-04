@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CreateTransactionRaw: Codable {
+struct CreateAPPCTransactionRaw: Codable {
     
     let origin: String?
     let domain: String
@@ -31,11 +31,27 @@ struct CreateTransactionRaw: Codable {
         case reference = "reference"
     }
     
-    static func getTransaction(domain: String, price: String, product: String, developerWa: String, metadata: String?, reference: String?) -> CreateTransactionRaw {
-        return CreateTransactionRaw(
-            origin: "BDS", domain: domain, price: price, priceCurrency: "APPC",
-            product: product, type: "INAPP", developerWa: developerWa, metadata: metadata, reference: reference)
+    static func fromDictionary(dictionary: [String : String]) -> CreateAPPCTransactionRaw {
+        // normalizes the price to adjust to different time zone price syntaxes
+        let normalizedPrice = (dictionary["appcAmount"] ?? "0.0").replacingOccurrences(of: ",", with: ".")
+        
+        var metadata: String?
+        if dictionary["metadata"] == "" { metadata = nil } else { metadata = dictionary["metadata"] }
+        var reference: String?
+        if dictionary["reference"] == "" { reference = nil } else { reference = dictionary["reference"] }
+        
+        return CreateAPPCTransactionRaw(
+            origin: "BDS", domain: dictionary["domain"]!, price: normalizedPrice, priceCurrency: "APPC",
+            product: dictionary["product"], type: "INAPP", developerWa: dictionary["developerWa"]!, metadata: metadata,
+            reference: reference
+        )
     }
+    
+//    static func getTransaction(domain: String, price: String, product: String, developerWa: String, metadata: String?, reference: String?) -> CreateTransactionRaw {
+//        return CreateTransactionRaw(
+//            origin: "BDS", domain: domain, price: price, priceCurrency: "APPC",
+//            product: product, type: "INAPP", developerWa: developerWa, metadata: metadata, reference: reference)
+//    }
     
 //    origin=BDS&
 //    domain=com.appcoins.trivialdrivesample.test&

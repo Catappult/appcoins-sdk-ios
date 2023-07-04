@@ -11,7 +11,7 @@ class AptoideServiceClient : AptoideService {
 
     private let endpoint: String
     
-    init(endpoint: String = "https://ws75-devel.aptoide.com/api/7") {
+    init(endpoint: String = BuildConfiguration.aptoideServiceURL) {
         self.endpoint = endpoint
     }
     

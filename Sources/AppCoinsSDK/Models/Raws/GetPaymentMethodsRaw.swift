@@ -17,13 +17,14 @@ struct GetPaymentMethodsRaw: Codable {
     
 }
 
-struct PaymentMethodsRaw: Codable {
+public struct PaymentMethodsRaw: Codable {
     
     let name: String
     let label: String
     let icon: String
     let status: String
     let message: String?
+    let gateway: PaymentMethodsGatewayRaw?
     let fee: String?
     
     enum CodingKeys: String, CodingKey {
@@ -32,7 +33,18 @@ struct PaymentMethodsRaw: Codable {
         case icon = "icon"
         case status = "status"
         case message = "message"
+        case gateway = "gateway"
         case fee = "fee"
+    }
+    
+}
+
+public struct PaymentMethodsGatewayRaw: Codable {
+    
+    let name: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case name = "name"
     }
     
 }

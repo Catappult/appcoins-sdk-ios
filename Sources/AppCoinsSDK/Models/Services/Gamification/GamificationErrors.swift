@@ -11,4 +11,5 @@ enum TransactionError: Error {
     case failed(description: String? = nil)
     case noInternet
     case general
+    case noBillingAgreement
 }
