@@ -9,9 +9,11 @@ import Foundation
 
 class ProductUseCases {
     
+    static var shared : ProductUseCases = ProductUseCases()
+    
     private var repository: ProductRepositoryProtocol
     
-    init(repository: ProductRepositoryProtocol = ProductRepository()) {
+    private init(repository: ProductRepositoryProtocol = ProductRepository()) {
         self.repository = repository
     }
     

@@ -10,6 +10,8 @@ import SwiftUI
 
 class BottomSheetViewModel : ObservableObject {
     
+    static var shared : BottomSheetViewModel = BottomSheetViewModel()
+    
     @Published var purchaseState: PaymentState = .paying
     @Published var dismissingSuccess: Bool = false
     @Published var transaction: TransactionAlertUi?
@@ -31,42 +33,68 @@ class BottomSheetViewModel : ObservableObject {
     @Published var presentPayPalSheetMethod : String? = nil
     @Published var userDismissPayPalSheet : Bool = true
     
-    var productUseCases: ProductUseCases = ProductUseCases()
-    var transactionUseCases: TransactionUseCases = TransactionUseCases()
-    var walletUseCases: WalletUseCases = WalletUseCases()
-    
-    var dismissVC: () -> Void
-    
+    var productUseCases: ProductUseCases = ProductUseCases.shared
+    var transactionUseCases: TransactionUseCases = TransactionUseCases.shared
+    var walletUseCases: WalletUseCases = WalletUseCases.shared
+        
     var tryAgainProduct: Product? = nil
     var tryAgainDomain: String? = nil
     var tryAgainMetadata: String? = nil
     var tryAgainReference: String? = nil
     
-    init(dismiss: @escaping () -> Void) {
+    var hasActiveTransaction = false
+    
+    private init() {
         // Prevents Layout Warning Prints
         UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
-        
-        self.dismissVC = dismiss
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(buildPurchase), name: Notification.Name("APPCBuildPurchase"), object: nil)
     }
     
-    @objc func buildPurchase(_ notification: Notification) {
-        NotificationCenter.default.removeObserver(self, name: Notification.Name("APPCBuildPurchase"), object: nil)
-        
-        if let userInfo = notification.userInfo {
-            if let product = userInfo["product"] as? Product, let domain = userInfo["domain"] as? String, var metadata = userInfo["metadata"] as? String?, var reference = userInfo["reference"] as? String? {
-                
-                // save request values to reload if needed
-                self.tryAgainProduct = product
-                self.tryAgainDomain = domain
-                self.tryAgainMetadata = metadata
-                self.tryAgainReference = reference
-                
-                DispatchQueue(label: "build-transaction", qos: .userInteractive).async {
-                    self.buildTransaction(product: product, domain: domain, metadata: metadata, reference: reference)
-                }
+    func dismissVC() {
+        if let rootViewController = UIApplication.shared.windows.first?.rootViewController,
+           let presentedPurchaseVC = rootViewController.presentedViewController as? PurchaseViewController {
+            
+            DispatchQueue.main.async {
+                presentedPurchaseVC.dismissPurchase()
+                self.hasActiveTransaction = false
+                self.reset()
             }
+        }
+    }
+    
+    private func reset() {
+        self.purchaseState = .paying
+        self.dismissingSuccess = false
+        self.transaction = nil
+        self.finalWalletBalance = nil
+        self.transactionParameters = [:]
+        
+        self.paymentMethodSelected = nil
+
+        self.showOtherPaymentMethods = false
+        self.lastPaymentMethod = nil
+        self.paypalLogOut = false
+        
+        self.presentPayPalSheet = false
+        self.presentPayPalSheetURL = nil
+        self.presentPayPalSheetMethod = nil
+        self.userDismissPayPalSheet = true
+
+        self.tryAgainProduct = nil
+        self.tryAgainDomain = nil
+        self.tryAgainMetadata = nil
+        self.tryAgainReference = nil
+    }
+    
+    func buildPurchase(product: Product, domain: String, metadata: String?, reference: String?) {
+        // save request values to reload if needed
+        self.tryAgainProduct = product
+        self.tryAgainDomain = domain
+        self.tryAgainMetadata = metadata
+        self.tryAgainReference = reference
+        self.hasActiveTransaction = true
+        
+        DispatchQueue(label: "build-transaction", qos: .userInteractive).async {
+            self.buildTransaction(product: product, domain: domain, metadata: metadata, reference: reference)
         }
     }
     

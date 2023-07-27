@@ -86,7 +86,7 @@ class TransactionRepository: TransactionRepositoryProtocol {
             case .success(let transactionRaw):
                 if ["PENDING", "PENDING_SERVICE_AUTHORIZATION", "PROCESSING", "PENDING_USER_PAYMENT", "SETTLED"].contains(transactionRaw.status) {
                     // Deal with incomplete transaction
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
                         self.getTransactionInfo(uid: uid, wa: wa, waSignature: waSignature) {
                             result in completion(result)
                         }
@@ -96,9 +96,26 @@ class TransactionRepository: TransactionRepositoryProtocol {
                     completion(.failure(.failed()))
                 } else if transactionRaw.status == "COMPLETED" {
                     completion(.success(Transaction(raw: transactionRaw)))
+                } else {
+                    print("Timed Out")
+                    // Deal with incomplete transaction
+                    DispatchQueue.main.async {
+                        self.getTransactionInfo(uid: uid, wa: wa, waSignature: waSignature) {
+                            result in completion(result)
+                        }
+                    }
                 }
             case .failure(let error):
-                completion(.failure(error))
+                switch error {
+                case .timeOut:
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                        self.getTransactionInfo(uid: uid, wa: wa, waSignature: waSignature) {
+                            result in completion(result)
+                        }
+                    }
+                default:
+                    completion(.failure(error))
+                }
             }
         }
     }

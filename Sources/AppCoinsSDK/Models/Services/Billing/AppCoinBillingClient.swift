@@ -67,8 +67,19 @@ class AppCoinBillingClient : AppCoinBillingService {
                 request.httpBody = body
                 request.httpMethod = "POST"
 
+                let startDate = Date()
+                print(startDate)
+                
                 // Right now not giving feedback on different types of errors
                 let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
+                    
+                    let endDate = Date()
+                    let calendar = Calendar.current
+                    let components = calendar.dateComponents([.second], from: startDate, to: endDate)
+                    if let seconds = components.second {
+                        print("Time elapsed: \(seconds) seconds")
+                    }
+                    
                     if let error = error {
                         if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
                             completion(.failure(.noInternet))
@@ -101,10 +112,31 @@ class AppCoinBillingClient : AppCoinBillingService {
     func getTransactionInfo(uid: String, wa: String, waSignature: String, completion: @escaping (Result<GetTransactionInfoRaw, TransactionError>) -> Void) {
         let route = "/transactions/\(uid)"
         if let url = URL(string: endpoint + route + "?wallet.address=\(wa)&wallet.signature=\(waSignature)") {
-            let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            
+            let configuration = URLSessionConfiguration.default
+            configuration.timeoutIntervalForRequest = 10
+            
+            let startDate = Date()
+            print(startDate)
+            
+            let task = URLSession(configuration: configuration).dataTask(with: url) { data, response, error in
+                
+                let endDate = Date()
+                let calendar = Calendar.current
+                let components = calendar.dateComponents([.second], from: startDate, to: endDate)
+                if let seconds = components.second {
+                    print("Time elapsed: \(seconds) seconds")
+                }
+                
                 if let error = error {
-                    if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
-                        completion(.failure(.noInternet))
+                    if let nsError = error as NSError? {
+                        if nsError.code == NSURLErrorNotConnectedToInternet {
+                            completion(.failure(.noInternet))
+                        } else if nsError.code == NSURLErrorTimedOut {
+                            completion(.failure(.timeOut))
+                        } else {
+                            completion(.failure(.failed()))
+                        }
                     } else {
                         completion(.failure(.failed()))
                     }
@@ -137,8 +169,19 @@ class AppCoinBillingClient : AppCoinBillingService {
                 // Magnes SDK integration will only be used when we're no longer using Jailbreak
 //                request.setValue(paypalClientMetadataID, forHTTPHeaderField: "PayPal-Client-Metadata-Id")
                 
+                let startDate = Date()
+                print(startDate)
+                
                 // Right now not giving feedback on different types of errors
                 let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
+                    
+                    let endDate = Date()
+                    let calendar = Calendar.current
+                    let components = calendar.dateComponents([.second], from: startDate, to: endDate)
+                    if let seconds = components.second {
+                        print("Time elapsed: \(seconds) seconds")
+                    }
+                    
                     if let error = error {
                         if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
                             completion(.failure(.noInternet))

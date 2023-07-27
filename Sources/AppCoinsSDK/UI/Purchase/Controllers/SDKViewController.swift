@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 struct SDKViewController {
-
+    
     static func presentPurchase() {
         guard let rootViewController = UIApplication.shared.windows.first?.rootViewController else {
             return
@@ -18,5 +18,4 @@ struct SDKViewController {
         purchaseViewController.modalPresentationStyle = .overFullScreen
         rootViewController.present(purchaseViewController, animated: false, completion: nil)
     }
-    
 }

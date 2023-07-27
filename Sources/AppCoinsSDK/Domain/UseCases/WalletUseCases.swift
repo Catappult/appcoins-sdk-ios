@@ -9,9 +9,11 @@ import Foundation
 
 class WalletUseCases {
     
+    static var shared : WalletUseCases = WalletUseCases()
+    
     private var repository: WalletRepositoryProtocol
     
-    init(repository: WalletRepositoryProtocol = WalletRepository()) {
+    private init(repository: WalletRepositoryProtocol = WalletRepository()) {
         self.repository = repository
     }
     

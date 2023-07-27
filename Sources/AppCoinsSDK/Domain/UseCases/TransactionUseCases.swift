@@ -9,9 +9,11 @@ import Foundation
 
 class TransactionUseCases {
     
+    static var shared : TransactionUseCases = TransactionUseCases()
+    
     private var repository: TransactionRepositoryProtocol
     
-    init(repository: TransactionRepositoryProtocol = TransactionRepository()) {
+    private init(repository: TransactionRepositoryProtocol = TransactionRepository()) {
         self.repository = repository
     }
     

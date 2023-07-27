@@ -35,8 +35,8 @@ public class Purchase: Codable {
     }
     
     static func verify(purchaseUID: String, completion: @escaping (Result<Purchase, AppCoinsSDKError>) -> Void ) {
-        let walletUseCases = WalletUseCases()
-        let transactionUseCases = TransactionUseCases()
+        let walletUseCases = WalletUseCases.shared
+        let transactionUseCases = TransactionUseCases.shared
         let domain = Bundle.main.bundleIdentifier ?? ""
         
         if let wallet = walletUseCases.getClientWallet(), let wa = wallet.address {
@@ -60,8 +60,8 @@ public class Purchase: Codable {
     
     // only accessible internally – the SDK acknowledges the purchase
     func acknowledge(completion: @escaping (AppCoinsSDKError?) -> Void) {
-        let walletUseCases = WalletUseCases()
-        let transactionUseCases = TransactionUseCases()
+        let walletUseCases = WalletUseCases.shared
+        let transactionUseCases = TransactionUseCases.shared
         let domain = Bundle.main.bundleIdentifier ?? ""
         
         if let wallet = walletUseCases.getClientWallet(), let wa = wallet.address {
@@ -89,8 +89,8 @@ public class Purchase: Codable {
     
     // accessible by the developer – the app consumes the purchase and attributes the item to the user
     public func consume(completion: @escaping (AppCoinsSDKError?) -> Void) {
-        let walletUseCases = WalletUseCases()
-        let transactionUseCases = TransactionUseCases()
+        let walletUseCases = WalletUseCases.shared
+        let transactionUseCases = TransactionUseCases.shared
         
         if let wallet = walletUseCases.getClientWallet(), let wa = wallet.address {
             let waSignature = wallet.getSignedWalletAddress()
@@ -118,8 +118,8 @@ public class Purchase: Codable {
     
     // get all the user's purchases
     public static func all(completion: @escaping (Result<[Purchase], AppCoinsSDKError>) -> Void) {
-        let walletUseCases = WalletUseCases()
-        let transactionUseCases = TransactionUseCases()
+        let walletUseCases = WalletUseCases.shared
+        let transactionUseCases = TransactionUseCases.shared
         
         if let wallet = walletUseCases.getClientWallet(), let wa = wallet.address {
             let waSignature = wallet.getSignedWalletAddress()
@@ -139,8 +139,8 @@ public class Purchase: Codable {
     }
     
     public static func latest(sku: String, completion: @escaping (Result<Purchase?, AppCoinsSDKError>) -> Void) {
-        let walletUseCases = WalletUseCases()
-        let transactionUseCases = TransactionUseCases()
+        let walletUseCases = WalletUseCases.shared
+        let transactionUseCases = TransactionUseCases.shared
         
         if let wallet = walletUseCases.getClientWallet(), let wa = wallet.address {
             let waSignature = wallet.getSignedWalletAddress()
@@ -161,8 +161,8 @@ public class Purchase: Codable {
     
     // we consider unfinished purchases any purchase that have neither been acknowledged nor consumed
     public static func unfinished(completion: @escaping (Result<[Purchase], AppCoinsSDKError>) -> Void) {
-        let walletUseCases = WalletUseCases()
-        let transactionUseCases = TransactionUseCases()
+        let walletUseCases = WalletUseCases.shared
+        let transactionUseCases = TransactionUseCases.shared
         
         if let wallet = walletUseCases.getClientWallet(), let wa = wallet.address {
             let waSignature = wallet.getSignedWalletAddress()

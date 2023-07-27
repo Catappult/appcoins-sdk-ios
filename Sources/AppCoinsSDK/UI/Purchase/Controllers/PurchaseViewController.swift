@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 
 class PurchaseViewController: UIViewController {
-    
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
     }
@@ -18,7 +17,7 @@ class PurchaseViewController: UIViewController {
         super.viewDidLoad()
         
         // Add the bottom sheet view
-        let bottomSheetView = BottomSheetView(viewModel: BottomSheetViewModel(dismiss: self.dismissPurchase))
+        let bottomSheetView = BottomSheetView()
         let content: () -> UIView = {
             return bottomSheetView.toUIView()
         }
@@ -34,7 +33,7 @@ class PurchaseViewController: UIViewController {
         ])
     }
     
-    @objc private func dismissPurchase() {
+    @objc func dismissPurchase() {
         self.dismiss(animated: false, completion: nil)
     }
 }

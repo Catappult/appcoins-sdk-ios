@@ -11,7 +11,7 @@ import UIKit
 
 struct BottomSheetView: View {
     
-    @ObservedObject var viewModel : BottomSheetViewModel
+    @ObservedObject var viewModel : BottomSheetViewModel = BottomSheetViewModel.shared
 
     @State private var isPresented = false
     
