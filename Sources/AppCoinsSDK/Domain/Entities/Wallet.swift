@@ -99,4 +99,57 @@ class Wallet {
          return signatureHex
      }
     
+    func getEWT() -> String? {
+        // Header
+        let headerString = "{\"typ\":\"EWT\"}"
+        let header = replaceInvalidCharacters(convertToBase64(headerString))
+        
+        if let payloadString = getPayload() {
+            let payload = replaceInvalidCharacters(payloadString)
+            let signedContent = signContent(content: payload)
+            return "Bearer \(header).\(payload).\(signedContent)".replacingOccurrences(of: "\n", with: "").replacingOccurrences(of: "\r", with: "")
+        }
+        return nil
+    }
+    
+    private func signContent(content: String) -> String {
+        let normalized = "\\x19Ethereum Signed Message:\n\(content.count)\(content)"
+        let hash = Digest.sha3(normalized.bytes, variant: .keccak256)
+        let (compressedSignature, _) = SECP256K1.signForRecovery(hash: Data(hash), privateKey: getPrivateKey(), useExtraEntropy: false)
+        let signatureHex = compressedSignature!.toHexString()
+        return signatureHex
+    }
+    
+    private func getPayload() -> String? {
+        if let address = self.address {
+            let timestamp = Int(Date().timeIntervalSince1970)
+            // Variable representing in seconds the time to live interval of the authentication token.
+            let TTL = 3600
+
+            let unixTimeWithTTL = timestamp + TTL
+            
+            var payloadJson : [String : Any] = [:]
+            payloadJson["iss"] = address
+            payloadJson["exp"] = unixTimeWithTTL
+            
+            if let jsonData = try? JSONSerialization.data(withJSONObject: payloadJson, options: []) {
+                if let jsonString = String(data: jsonData, encoding: .utf8) {
+                    return convertToBase64(jsonString)
+                }
+            }
+        }
+        return nil
+    }
+    
+    private func convertToBase64(_ ewtString: String) -> String {
+        return Data(ewtString.utf8).base64EncodedString()
+    }
+    
+    private func replaceInvalidCharacters(_ ewtString: String) -> String {
+        return ewtString
+                    .replacingOccurrences(of: "=", with: "")
+                    .replacingOccurrences(of: "+", with: "-")
+                    .replacingOccurrences(of: "/", with: "_")
+    }
+    
 }

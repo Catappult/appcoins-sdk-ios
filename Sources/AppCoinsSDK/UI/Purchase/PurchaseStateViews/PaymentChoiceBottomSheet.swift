@@ -1,0 +1,212 @@
+//
+//  PurchaseBottomSheet.swift
+//  
+//
+//  Created by aptoide on 07/03/2023.
+//
+
+import Foundation
+import SwiftUI
+import URLImage
+import SkeletonUI
+
+struct PaymentChoiceBottomSheet: View {
+    
+    @ObservedObject var viewModel: BottomSheetViewModel
+    
+    var body: some View {
+        
+        VStack(spacing: 0) {
+            HStack(spacing: 0) {}.frame(height: 23)
+            
+            // Avatar and purchase
+            HStack(spacing: 0) {
+                VStack(spacing: 0) {
+                    Image(uiImage: viewModel.getAppIcon())
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 74, height: 74)
+                        .clipShape(Circle())
+                }
+                
+                VStack(spacing: 0) {
+                    if let title = viewModel.transaction?.getTitle() {
+                        Text(title)
+                            .foregroundColor(ColorsUi.APC_Black)
+                            .font(FontsUi.APC_Body_Bold)
+                            .lineLimit(2)
+                            .frame(width: 240, alignment: .leading)
+                    } else {
+                        HStack(spacing: 0) {
+                            Text("XXXXX")
+                                .skeleton(with: true)
+                                .frame(width: 125, height: 22, alignment: .leading)
+                            VStack {}.frame(maxWidth: .infinity)
+                        }.frame(maxWidth: .infinity)
+                    }
+                    
+                    
+                    HStack(spacing: 0) {
+                        if let amount = viewModel.transaction?.moneyAmount {
+                            Text((Coin(rawValue: viewModel.transaction?.moneyCurrency ?? "")?.symbol ?? "") + String(amount))
+                                .foregroundColor(ColorsUi.APC_Black)
+                                .font(FontsUi.APC_Subheadline_Bold)
+                                .lineLimit(1)
+                                .padding(.trailing, 3)
+                            Text(viewModel.transaction?.moneyCurrency ?? "-")
+                                .foregroundColor(ColorsUi.APC_Black)
+                                .font(FontsUi.APC_Caption1_Bold)
+                                .lineLimit(1)
+                        } else {
+                            HStack(spacing: 0) {
+                                Text("XXXXX")
+                                    .skeleton(with: true)
+                                    .frame(width: 60, height: 14, alignment: .leading)
+                                VStack {}.frame(maxWidth: .infinity)
+                            }.frame(maxWidth: .infinity)
+                        }
+                    }.frame(width: 240, alignment: .bottomLeading)
+                        .padding(.top, 11)
+                    
+                    if let appcAmount = viewModel.transaction?.appcAmount {
+                        Text("\(String(format: "%.3f", appcAmount)) APPC")
+                            .foregroundColor(ColorsUi.APC_Gray)
+                            .font(FontsUi.APC_Caption2)
+                            .frame(width: 240, alignment: .leading)
+                    } else {
+                        HStack(spacing: 0) {
+                            Text("XXXXX")
+                                .skeleton(with: true)
+                                .frame(width: 55, height: 10, alignment: .leading)
+                                .padding(.top, 2)
+                            VStack {}.frame(maxWidth: .infinity)
+                        }.frame(maxWidth: .infinity)
+                    }
+                }.frame(width: 240, alignment: .topLeading)
+                    .padding(.leading, 16)
+                
+            }.frame(height: 74, alignment: .top)
+
+            HStack(spacing: 0) {}.frame(height: 23)
+            
+            if viewModel.lastPaymentMethod != nil || viewModel.showOtherPaymentMethods {
+                // Payment methods
+                HStack(spacing: 0) {
+                    
+                    VStack(spacing: 0) {
+                        
+                        if (!viewModel.showOtherPaymentMethods) {
+                            ZStack {
+                                ColorsUi.APC_White
+                                
+                                HStack(spacing: 0) {
+                                    VStack(spacing: 0) {
+                                        if let icon = URL(string: viewModel.lastPaymentMethod?.icon ?? "") {
+                                            PaymentMethodQuickIcon(icon: icon)
+                                        }
+                                    }
+                                    
+                                    VStack(spacing: 0) {
+                                        if viewModel.lastPaymentMethod?.name == "appcoins_credits" {
+                                            Text(viewModel.lastPaymentMethod?.label)
+                                                .foregroundColor(ColorsUi.APC_Black)
+                                                .font(FontsUi.APC_Callout)
+                                                .lineLimit(1)
+                                                .frame(width: 224, alignment: .leading)
+                                                .padding(.bottom, 4)
+                                            
+                                            Text(Constants.earnedEnoughAppcText)
+                                                .foregroundColor(ColorsUi.APC_Gray)
+                                                .font(FontsUi.APC_Caption1)
+                                                .lineLimit(2)
+                                                .frame(width: 224, alignment: .leading)
+                                        } else {
+                                            Text(viewModel.lastPaymentMethod?.label)
+                                                .foregroundColor(ColorsUi.APC_Black)
+                                                .font(FontsUi.APC_Callout)
+                                                .lineLimit(1)
+                                                .frame(width: 224, alignment: .leading)
+                                        }
+                                    }.frame(width: 224, alignment: .leading)
+                                        .padding(.leading, 16)
+                                }
+                            }.frame(width: 328, height: 88)
+                                .cornerRadius(13)
+                            
+                            HStack(spacing: 0){}.frame(height: 9)
+                            
+                            HStack(spacing: 0) {
+                                HStack(spacing: 0) {
+                                    if viewModel.paypalLogOut {
+                                        Button(action: viewModel.logoutPayPal) {
+                                            Text(Constants.logOut)
+                                                .foregroundColor(ColorsUi.APC_DarkGray)
+                                                .font(FontsUi.APC_Caption2_Bold)
+                                        }
+                                    }
+                                }.frame(width: 50, alignment: .leading)
+                                
+                                HStack(spacing: 0) {
+                                    Button(action: viewModel.showPaymentMethodOptions) {
+                                        Text(Constants.otherPaymentMethodsText)
+                                            .foregroundColor(ColorsUi.APC_Pink)
+                                            .font(FontsUi.APC_Footnote_Bold)
+                                            .lineLimit(1)
+                                            .padding(.trailing, 8)
+                                    }
+                                    Button(action: viewModel.showPaymentMethodOptions) {
+                                        Image(systemName: "chevron.forward")
+                                            .resizable()
+                                            .edgesIgnoringSafeArea(.all)
+                                            .foregroundColor(ColorsUi.APC_Pink)
+                                            .frame(width: 4, height: 8)
+                                    }
+                                }.frame(maxWidth: .infinity, alignment: .trailing)
+                            }.frame(width: 328, height: 18)
+                        } else {
+                            RadioButtonGroupView(viewModel: viewModel)
+                        }
+                    }
+                }
+            }
+            
+            HStack(spacing: 0){}.frame(height: 20)
+            
+            // Buying button
+            Button(action: {
+                DispatchQueue.main.async { viewModel.purchaseState = .processing }
+                viewModel.buy()
+            }) {
+                ZStack {
+                    if viewModel.transaction != nil {
+                        ColorsUi.APC_Pink
+                    } else {
+                        ColorsUi.APC_Gray
+                    }
+                    Text(Constants.buyText)
+                }
+            }
+            .disabled(viewModel.transaction == nil)
+            .frame(width: 328, height: 48)
+            .foregroundColor(ColorsUi.APC_White)
+            .cornerRadius(10)
+            
+            HStack(spacing: 0){}.frame(height: 14)
+            
+            Button(action: {
+                viewModel.dismiss()
+            }) {
+                Text(Constants.cancelText)
+                    .foregroundColor(ColorsUi.APC_DarkGray)
+                    .font(FontsUi.APC_Footnote_Bold)
+                    .lineLimit(1)
+            }
+            .frame(height: 18)
+            
+            HStack(spacing: 0){}.frame(height: 20)
+            
+        }
+    
+    }
+}
+

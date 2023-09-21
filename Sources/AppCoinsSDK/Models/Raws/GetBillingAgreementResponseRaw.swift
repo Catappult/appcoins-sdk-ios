@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct GetBillingAgreementResponseRaw: Codable {
+struct GetBillingAgreementResponseRaw: Codable {
     
     let uid: String
     let created: String
@@ -19,7 +19,7 @@ public struct GetBillingAgreementResponseRaw: Codable {
     
 }
 
-public struct GetBillingAgreementNotFoundResponseRaw: Codable {
+struct GetBillingAgreementNotFoundResponseRaw: Codable {
     
     let code: String
     let path: String

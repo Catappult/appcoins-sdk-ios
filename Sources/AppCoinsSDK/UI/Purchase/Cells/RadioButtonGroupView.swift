@@ -49,9 +49,8 @@ struct RadioButtonGroupView: View {
                                                             
                                 
                             }.frame(width: 328)
-//                            .padding(.vertical, 11)
                         }.frame(height: 44)
-                    }
+                    }.buttonStyle(flatButtonStyle())
                 
                     if (option.name != options.last?.name) {
                         Divider()

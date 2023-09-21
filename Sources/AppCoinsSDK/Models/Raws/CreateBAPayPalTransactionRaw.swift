@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct CreateBAPayPalTransactionRaw: Codable {
+struct CreateBAPayPalTransactionRaw: Codable {
     
     let origin: String?
     let domain: String
@@ -55,7 +55,7 @@ public struct CreateBAPayPalTransactionRaw: Codable {
     
 }
 
-public struct CreateBAPayPalTransactionResponseRaw: Codable {
+struct CreateBAPayPalTransactionResponseRaw: Codable {
     
     let uuid: String
     let status: CreateBAPayPalTransactionStatus
@@ -69,7 +69,7 @@ public struct CreateBAPayPalTransactionResponseRaw: Codable {
     
 }
 
-public struct CreateBAPayPalBillingAgreementNotFoundResponseRaw: Codable {
+struct CreateBAPayPalBillingAgreementNotFoundResponseRaw: Codable {
     
     let code: String
     let path: String?
@@ -85,9 +85,9 @@ public struct CreateBAPayPalBillingAgreementNotFoundResponseRaw: Codable {
     
 }
 
-public enum CreateBAPayPalTransactionStatus: String, Codable {
+enum CreateBAPayPalTransactionStatus: String, Codable {
     
-    public init(from decoder: Decoder) throws {
+    init(from decoder: Decoder) throws {
         self = try CreateBAPayPalTransactionStatus(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? .UNKNOWN
     }
     

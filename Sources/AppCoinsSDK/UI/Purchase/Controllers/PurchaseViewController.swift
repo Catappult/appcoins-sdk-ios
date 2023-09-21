@@ -13,6 +13,8 @@ class PurchaseViewController: UIViewController {
         return .portrait
     }
     
+    @ObservedObject private var keyboardObserver = KeyboardObserver.shared
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

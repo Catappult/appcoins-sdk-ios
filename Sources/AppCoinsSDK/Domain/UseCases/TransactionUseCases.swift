@@ -29,40 +29,44 @@ class TransactionUseCases {
         repository.getDeveloperAddress(package: package) {result in completion(result)}
     }
     
-    func createTransaction(wa: String, waSignature: String, raw: CreateAPPCTransactionRaw, completion: @escaping (Result<CreateTransactionResponseRaw, TransactionError>) -> Void) {
-        repository.createTransaction(wa: wa, waSignature: waSignature, raw: raw) {result in completion(result)}
+    func createTransaction(wa: Wallet, raw: CreateAPPCTransactionRaw, completion: @escaping (Result<CreateTransactionResponseRaw, TransactionError>) -> Void) {
+        repository.createTransaction(wa: wa, raw: raw) {result in completion(result)}
     }
     
-    func getTransactionInfo(uid: String, wa: String, waSignature: String, completion: @escaping (Result<Transaction, TransactionError>) -> Void) {
-        repository.getTransactionInfo(uid: uid, wa: wa, waSignature: waSignature) {result in completion(result)}
+    func getTransactionInfo(uid: String, wa: Wallet, completion: @escaping (Result<Transaction, TransactionError>) -> Void) {
+        repository.getTransactionInfo(uid: uid, wa: wa) {result in completion(result)}
     }
     
-    func getAllPurchases(domain: String, wa: String, waSignature: String, completion: @escaping (Result<[Purchase], ProductServiceError>) -> Void) {
-        repository.getAllPurchases(domain: domain, wa: wa, waSignature: waSignature) { result in completion(result) }
+    func getAllPurchases(domain: String, wa: Wallet, completion: @escaping (Result<[Purchase], ProductServiceError>) -> Void) {
+        repository.getAllPurchases(domain: domain, wa: wa) { result in completion(result) }
     }
     
-    func getLatestPurchase(domain: String, sku: String, wa: String, waSignature: String, completion: @escaping (Result<Purchase?, ProductServiceError>) -> Void) {
-        repository.getLatestPurchase(domain: domain, sku: sku, wa: wa, waSignature: waSignature) { result in completion(result) }
+    func getLatestPurchase(domain: String, sku: String, wa: Wallet, completion: @escaping (Result<Purchase?, ProductServiceError>) -> Void) {
+        repository.getLatestPurchase(domain: domain, sku: sku, wa: wa) { result in completion(result) }
     }
     
-    func getPurchasesByState(domain: String, state: String, wa: String, waSignature: String, completion: @escaping (Result<[Purchase], ProductServiceError>) -> Void) {
-        repository.getPurchasesByState(domain: domain, state: state, wa: wa, waSignature: waSignature) { result in completion(result) }
+    func getPurchasesByState(domain: String, state: String, wa: Wallet, completion: @escaping (Result<[Purchase], ProductServiceError>) -> Void) {
+        repository.getPurchasesByState(domain: domain, state: state, wa: wa) { result in completion(result) }
     }
     
-    func acknowledgePurchase(domain: String, uid: String, wa: String, waSignature: String, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
-        repository.acknowledgePurchase(domain: domain, uid: uid, wa: wa, waSignature: waSignature) { result in completion(result) }
+    func acknowledgePurchase(domain: String, uid: String, wa: Wallet, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
+        repository.acknowledgePurchase(domain: domain, uid: uid, wa: wa) { result in completion(result) }
     }
     
-    func consumePurchase(domain: String, uid: String, wa: String, waSignature: String, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
-        repository.consumePurchase(domain: domain, uid: uid, wa: wa, waSignature: waSignature) { result in completion(result) }
+    func consumePurchase(domain: String, uid: String, wa: Wallet, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
+        repository.consumePurchase(domain: domain, uid: uid, wa: wa) { result in completion(result) }
     }
     
-    func verifyPurchase(domain: String, uid: String, wa: String, waSignature: String, completion: @escaping (Result<Purchase, ProductServiceError>) -> Void) {
-        repository.verifyPurchase(domain: domain, uid: uid, wa: wa, waSignature: waSignature) { result in completion(result) }
+    func verifyPurchase(domain: String, uid: String, wa: Wallet, completion: @escaping (Result<Purchase, ProductServiceError>) -> Void) {
+        repository.verifyPurchase(domain: domain, uid: uid, wa: wa) { result in completion(result) }
     }
     
-    func createBAPayPalTransaction(wa: String, waSignature: String, raw: CreateBAPayPalTransactionRaw, completion: @escaping (Result<CreateBAPayPalTransactionResponseRaw, TransactionError>) -> Void) {
-        repository.createBAPayPalTransaction(wa: wa, waSignature: waSignature, raw: raw) { result in completion(result) }
+    func createAdyenTransaction(wa: Wallet, raw: CreateAdyenTransactionRaw, completion: @escaping (Result<AdyenTransactionSession, TransactionError>) -> Void) {
+        repository.createAdyenTransaction(wa: wa, raw: raw) { result in completion(result) }
+    }
+    
+    func createBAPayPalTransaction(wa: Wallet, raw: CreateBAPayPalTransactionRaw, completion: @escaping (Result<CreateBAPayPalTransactionResponseRaw, TransactionError>) -> Void) {
+        repository.createBAPayPalTransaction(wa: wa, raw: raw) { result in completion(result) }
     }
     
     func createBillingAgreementToken(completion: @escaping (Result<CreateBillingAgreementTokenResponseRaw, TransactionError>) -> Void) {

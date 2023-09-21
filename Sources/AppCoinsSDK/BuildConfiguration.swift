@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Adyen
 
 class BuildConfiguration {
     static let shared = BuildConfiguration()
@@ -67,9 +68,9 @@ class BuildConfiguration {
     static var billingServiceURL: String {
         switch environment {
             case .debugSDKDev, .releaseSDKDev:
-                return "https://api.dev.catappult.io/broker/8.20230522"
+                return "https://api.dev.catappult.io/broker/8.20200815"
             case .debugSDKProd, .releaseSDKProd:
-                return "https://api.catappult.io/broker/8.20230522"
+                return "https://api.catappult.io/broker/8.20200815"
         }
     }
     
@@ -90,6 +91,8 @@ class BuildConfiguration {
                 return "https://apichain.catappult.io/appc"
         }
     }
+    
+    static var adyenEnvironment: Adyen.Environment = .test
     
     static var userUID =  UIDevice.current.identifierForVendor!.uuidString
 }

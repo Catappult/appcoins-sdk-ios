@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct CreateBillingAgreementTokenRaw: Codable {
+struct CreateBillingAgreementTokenRaw: Codable {
     
     let urls: CreateBillingAgreementTokenURLsRaw
     
@@ -24,7 +24,7 @@ public struct CreateBillingAgreementTokenRaw: Codable {
     }
 }
 
-public struct CreateBillingAgreementTokenURLsRaw: Codable {
+struct CreateBillingAgreementTokenURLsRaw: Codable {
     
     let returnURL: String
     let cancelURL: String
@@ -44,7 +44,7 @@ public struct CreateBillingAgreementTokenURLsRaw: Codable {
     }
 }
 
-public struct CreateBillingAgreementTokenResponseRaw: Codable {
+struct CreateBillingAgreementTokenResponseRaw: Codable {
     
     let token: String
     let redirect: CreateBillingAgreementTokenResponseRedirectRaw
@@ -55,7 +55,7 @@ public struct CreateBillingAgreementTokenResponseRaw: Codable {
     }
 }
 
-public struct CreateBillingAgreementTokenResponseRedirectRaw: Codable {
+struct CreateBillingAgreementTokenResponseRedirectRaw: Codable {
     
     let url: String
     let method: String

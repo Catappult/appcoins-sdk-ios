@@ -12,50 +12,85 @@ import UIKit
 struct BottomSheetView: View {
     
     @ObservedObject var viewModel : BottomSheetViewModel = BottomSheetViewModel.shared
-
-    @State private var isPresented = false
+    @ObservedObject var adyenController: AdyenController = AdyenController.shared
     
     var body: some View {
         ZStack {
-            Color.black.opacity(0.3).onTapGesture { if viewModel.purchaseState != .processing { viewModel.dismiss() } }
-
-            VStack {
-                VStack{ }.frame(maxWidth: .infinity, maxHeight: .infinity)
-                
-                if viewModel.purchaseState == .paying {
-                    PurchaseBottomSheet(viewModel: viewModel)
-                        .offset(y: isPresented ? 0 : UIScreen.main.bounds.height)
-                        .transition(.move(edge: .bottom))
-                        .onAppear { withAnimation { isPresented = true } }
-                        .onDisappear { withAnimation { isPresented = false } }
-                }
-                
-                if viewModel.purchaseState == .processing {
-                    ProcessingBottomSheet(viewModel: viewModel)
-                }
             
-                if viewModel.purchaseState == .success {
-                    SuccessBottomSheet(viewModel: viewModel)
-                        .offset(y: viewModel.dismissingSuccess ? 0 : 348)
-                        .transition(.move(edge: .top))
-                        .animation(.easeOut(duration: 0.5).delay(2.5))
-                }
+            Color.black.opacity(0.3).onTapGesture { if viewModel.purchaseState != .processing && !(viewModel.purchaseState == .adyen && adyenController.state == .none) { viewModel.dismiss() } }
+                .ignoresSafeArea()
+            
+            ZStack {
+                // Background
+                VStack(spacing: 0) {
+                    Color.clear
+                        .frame(maxHeight: .infinity)
+                    
+                    if [.paying, .adyen].contains(viewModel.purchaseState) {
+                        if adyenController.state != .storedCreditCard {
+                            ColorsUi.APC_LightGray
+                                .frame(height: Utils.bottomSafeAreaHeight)
+                        }
+                    } else {
+                        ColorsUi.APC_DarkBlue
+                            .frame(height: Utils.bottomSafeAreaHeight)
+                    }
+                }.ignoresSafeArea()
                 
-                if viewModel.purchaseState == .failed {
-                    ErrorBottomSheet(viewModel: viewModel)
-                }
+                VStack(spacing: 0) {
+                    VStack{ }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                    
+                    if [.paying, .adyen].contains(viewModel.purchaseState) {
+                        PurchaseBottomSheet(viewModel: viewModel)
+                    }
+                    
+                    if viewModel.purchaseState == .processing {
+                        ProcessingBottomSheet(viewModel: viewModel)
+                    }
                 
-                if viewModel.purchaseState == .nointernet {
-                    NoInternetBottomSheet(viewModel: viewModel)
+                    if viewModel.purchaseState == .success {
+                        SuccessBottomSheet(viewModel: viewModel)
+                            .offset(y: viewModel.dismissingSuccess ? 0 : 348)
+                            .transition(.move(edge: .top))
+                            .animation(.easeOut(duration: 0.5).delay(2.5))
+                    }
+                    
+                    if viewModel.purchaseState == .failed {
+                        ErrorBottomSheet(viewModel: viewModel)
+                    }
+                    
+                    if viewModel.purchaseState == .nointernet {
+                        NoInternetBottomSheet(viewModel: viewModel)
+                    }
+                    
                 }
+//                .sheet(isPresented: $viewModel.presentPayPalSheet, onDismiss: viewModel.dismissPayPalView) {
+//                    if let presentURL = viewModel.presentPayPalSheetURL {
+//                        PayPalWebView(url: presentURL, method: viewModel.presentPayPalSheetMethod ?? "POST", successHandler: viewModel.createBillingAgreementAndFinishTransaction, cancelHandler: viewModel.cancelBillingAgreementTokenPayPal)
+//                    }
+//                }
                 
+                // Workaround to place multiple sheets on the same view on older iOS versions
+                // https://stackoverflow.com/a/64403206/18917552
+                HStack(spacing: 0) {}
+                    .sheet(isPresented: $viewModel.presentPayPalSheet, onDismiss: viewModel.dismissPayPalView) {
+                        if let presentURL = viewModel.presentPayPalSheetURL {
+                            PayPalWebView(url: presentURL, method: viewModel.presentPayPalSheetMethod ?? "POST", successHandler: viewModel.createBillingAgreementAndFinishTransaction, cancelHandler: viewModel.cancelBillingAgreementTokenPayPal)
+                        }
+                    }
+                
+                HStack(spacing: 0) {}
+                    .sheet(isPresented: $adyenController.presentAdyenRedirect) {
+                        if let viewController = adyenController.presentableComponent?.viewController {
+                            AdyenViewControllerWrapper(viewController: viewController)
+                        }
+                    }
             }
-            .sheet(isPresented: $viewModel.presentPayPalSheet, onDismiss: viewModel.dismissPayPalView) {
-                if let presentURL = viewModel.presentPayPalSheetURL {
-                    PayPalWebView(url: presentURL, method: viewModel.presentPayPalSheetMethod ?? "POST", successHandler: viewModel.createBillingAgreementAndFinishTransaction, cancelHandler: viewModel.cancelBillingAgreementTokenPayPal)
-                }
-            }
-        }.ignoresSafeArea()
+            .offset(y: viewModel.isBottomSheetPresented ? 0 : UIScreen.main.bounds.height)
+            .transition(.move(edge: viewModel.isBottomSheetPresented ? .bottom : .top))
+            .onAppear { withAnimation { viewModel.isBottomSheetPresented = true } }
+//            .onDisappear { withAnimation { viewModel.isBottomSheetPresented = false } }
+        }
     }
 }
 

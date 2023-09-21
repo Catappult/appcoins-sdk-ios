@@ -39,9 +39,8 @@ public class Purchase: Codable {
         let transactionUseCases = TransactionUseCases.shared
         let domain = Bundle.main.bundleIdentifier ?? ""
         
-        if let wallet = walletUseCases.getClientWallet(), let wa = wallet.address {
-            let waSignature = wallet.getSignedWalletAddress()
-            transactionUseCases.verifyPurchase(domain: domain, uid: purchaseUID, wa: wa, waSignature: waSignature) {
+        if let wallet = walletUseCases.getClientWallet() {
+            transactionUseCases.verifyPurchase(domain: domain, uid: purchaseUID, wa: wallet) {
                 result in
                 
                 switch result {
@@ -64,9 +63,8 @@ public class Purchase: Codable {
         let transactionUseCases = TransactionUseCases.shared
         let domain = Bundle.main.bundleIdentifier ?? ""
         
-        if let wallet = walletUseCases.getClientWallet(), let wa = wallet.address {
-            let waSignature = wallet.getSignedWalletAddress()
-            transactionUseCases.acknowledgePurchase(domain: domain, uid: self.uid, wa: wa, waSignature: waSignature) {
+        if let wallet = walletUseCases.getClientWallet() {
+            transactionUseCases.acknowledgePurchase(domain: domain, uid: self.uid, wa: wallet) {
                 result in
                 
                 switch result {
@@ -92,11 +90,10 @@ public class Purchase: Codable {
         let walletUseCases = WalletUseCases.shared
         let transactionUseCases = TransactionUseCases.shared
         
-        if let wallet = walletUseCases.getClientWallet(), let wa = wallet.address {
-            let waSignature = wallet.getSignedWalletAddress()
+        if let wallet = walletUseCases.getClientWallet() {
             
             let domain = Bundle.main.bundleIdentifier ?? ""
-            transactionUseCases.consumePurchase(domain: domain, uid: self.uid, wa: wa, waSignature: waSignature) {
+            transactionUseCases.consumePurchase(domain: domain, uid: self.uid, wa: wallet) {
                 result in
                 switch result {
                 case .success(_):
@@ -121,10 +118,9 @@ public class Purchase: Codable {
         let walletUseCases = WalletUseCases.shared
         let transactionUseCases = TransactionUseCases.shared
         
-        if let wallet = walletUseCases.getClientWallet(), let wa = wallet.address {
-            let waSignature = wallet.getSignedWalletAddress()
+        if let wallet = walletUseCases.getClientWallet() {
             let domain = Bundle.main.bundleIdentifier ?? ""
-            transactionUseCases.getAllPurchases(domain: domain, wa: wa, waSignature: waSignature) {
+            transactionUseCases.getAllPurchases(domain: domain, wa: wallet) {
                 result in
                 switch result {
                 case .success(let purchases):
@@ -142,10 +138,9 @@ public class Purchase: Codable {
         let walletUseCases = WalletUseCases.shared
         let transactionUseCases = TransactionUseCases.shared
         
-        if let wallet = walletUseCases.getClientWallet(), let wa = wallet.address {
-            let waSignature = wallet.getSignedWalletAddress()
+        if let wallet = walletUseCases.getClientWallet() {
             let domain = Bundle.main.bundleIdentifier ?? ""
-            transactionUseCases.getLatestPurchase(domain: domain, sku: sku, wa: wa, waSignature: waSignature) {
+            transactionUseCases.getLatestPurchase(domain: domain, sku: sku, wa: wallet) {
                 result in
                 switch result {
                 case .success(let purchase):
@@ -164,10 +159,9 @@ public class Purchase: Codable {
         let walletUseCases = WalletUseCases.shared
         let transactionUseCases = TransactionUseCases.shared
         
-        if let wallet = walletUseCases.getClientWallet(), let wa = wallet.address {
-            let waSignature = wallet.getSignedWalletAddress()
+        if let wallet = walletUseCases.getClientWallet() {
             let domain = Bundle.main.bundleIdentifier ?? ""
-            transactionUseCases.getPurchasesByState(domain: domain, state: "PENDING", wa: wa, waSignature: waSignature) {
+            transactionUseCases.getPurchasesByState(domain: domain, state: "PENDING", wa: wallet) {
                 result in
                 switch result {
                 case .success(let purchases):

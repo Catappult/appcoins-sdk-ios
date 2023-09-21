@@ -10,41 +10,25 @@ import Foundation
 
 protocol AppCoinBillingService {
     
-    func createTransaction(wa: String, waSignature: String, raw: CreateAPPCTransactionRaw, completion: @escaping (Result<CreateTransactionResponseRaw, TransactionError>) -> Void)
+    func createTransaction(wa: Wallet, raw: CreateAPPCTransactionRaw, completion: @escaping (Result<CreateTransactionResponseRaw, TransactionError>) -> Void)
     
     func getPaymentMethods(value: String, currency: Coin, result: @escaping (Result<GetPaymentMethodsRaw, BillingError>) -> Void)
     
     func convertCurrency(money: String, fromCurrency: Coin, toCurrency: Coin, result: @escaping (Result<ConvertCurrencyRaw, BillingError>) -> Void)
     
-    func getTransactionInfo(uid: String, wa: String, waSignature: String, completion: @escaping (Result<GetTransactionInfoRaw, TransactionError>) -> Void)
+    func getTransactionInfo(uid: String, wa: Wallet, completion: @escaping (Result<GetTransactionInfoRaw, TransactionError>) -> Void)
     
-    func createBAPayPalTransaction(wa: String, waSignature: String, raw: CreateBAPayPalTransactionRaw, completion: @escaping (Result<CreateBAPayPalTransactionResponseRaw, TransactionError>) -> Void)
+    func createAdyenTransaction(wa: Wallet, raw: CreateAdyenTransactionRaw, completion: @escaping (Result<CreateAdyenTransactionResponseRaw, TransactionError>) -> Void)
     
-    func createBillingAgreementToken(wa: String, waSignature: String, raw: CreateBillingAgreementTokenRaw, completion: @escaping (Result<CreateBillingAgreementTokenResponseRaw, TransactionError>) -> Void)
+    func createBAPayPalTransaction(wa: Wallet, raw: CreateBAPayPalTransactionRaw, completion: @escaping (Result<CreateBAPayPalTransactionResponseRaw, TransactionError>) -> Void)
     
-    func cancelBillingAgreementToken(token: String, wa: String, waSignature: String, completion: @escaping (Result<Bool, TransactionError>) -> Void)
+    func createBillingAgreementToken(wa: Wallet, raw: CreateBillingAgreementTokenRaw, completion: @escaping (Result<CreateBillingAgreementTokenResponseRaw, TransactionError>) -> Void)
     
-    func cancelBillingAgreement(wa: String, waSignature: String, completion: @escaping (Result<Bool, TransactionError>) -> Void)
+    func cancelBillingAgreementToken(token: String, wa: Wallet, completion: @escaping (Result<Bool, TransactionError>) -> Void)
     
-    func createBillingAgreement(token: String, wa: String, waSignature: String, completion: @escaping (Result<CreateBillingAgreementResponseRaw, TransactionError>) -> Void)
+    func cancelBillingAgreement(wa: Wallet, completion: @escaping (Result<Bool, TransactionError>) -> Void)
     
-    func getBillingAgreement(wa: String, waSignature: String, completion: @escaping (Result<Bool, TransactionError>) -> Void)
-}
-
-enum Coin: String {
+    func createBillingAgreement(token: String, wa: Wallet, completion: @escaping (Result<CreateBillingAgreementResponseRaw, TransactionError>) -> Void)
     
-    case ETH = "ETH"
-    case APPC = "APPC"
-    case EUR = "EUR"
-    case USD = "USD"
-    
-}
-
-extension Coin {
-    
-    var symbol: String {
-        let locale = NSLocale(localeIdentifier: self.rawValue)
-        return locale.displayName(forKey: NSLocale.Key.currencySymbol, value: self.rawValue) ?? ""
-    }
-    
+    func getBillingAgreement(wa: Wallet, completion: @escaping (Result<Bool, TransactionError>) -> Void)
 }

@@ -5,11 +5,13 @@
 //  Created by aptoide on 03/03/2023.
 //
 
-import Foundation
+import SwiftUI
 import os
 import Security
 
 struct Utils {
+    
+    static let bottomSafeAreaHeight: CGFloat = UIApplication.shared.windows[0].safeAreaInsets.bottom
  
     static func writeToPreferences(key: String, value: String?) throws -> Void {
         let preferences = UserDefaults.standard
@@ -72,4 +74,21 @@ struct Utils {
         NotificationCenter.default.post(name: NSNotification.Name("APPCPurchaseResult"), object: nil, userInfo: ["TransactionResult" : result])
     }
 
+    static func getAdyenGatewayAccess() -> String {
+        let obf: UInt8 = 0xAB
+        let keyData = Data(base64Encoded: "387Y3/Tg6eDn+536/vL54+qc7vmc+u/knO3q7emc/pzj//vz+w==")!
+        var deobf = Data()
+
+        for byte in keyData {
+            deobf.append(byte ^ obf)
+        }
+
+        return String(data: deobf, encoding: .utf8) ?? ""
+    }
+    
+    static func getCountryCode() -> String? {
+        if let countryCode = (Locale.current as NSLocale).object(forKey: .countryCode) as? String {
+            return countryCode
+        } else { return nil }
+    }
 }

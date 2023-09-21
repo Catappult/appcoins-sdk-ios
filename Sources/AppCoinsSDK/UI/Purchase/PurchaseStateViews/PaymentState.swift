@@ -10,6 +10,7 @@ import Foundation
 enum PaymentState {
     case none
     case paying
+    case adyen
     case processing
     case success
     case failed

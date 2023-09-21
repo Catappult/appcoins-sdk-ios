@@ -12,10 +12,10 @@ import URLImage
 struct ProcessingBottomSheet: View {
     
     @ObservedObject var viewModel: BottomSheetViewModel
+    @State private var isPresented = false
     
     var body: some View {
 
-            
         ZStack {
             ColorsUi.APC_DarkBlue
             
@@ -45,6 +45,10 @@ struct ProcessingBottomSheet: View {
             
         }.frame(width: UIScreen.main.bounds.size.width, height: 348)
             .cornerRadius(13, corners: [.topLeft, .topRight])
+            .offset(y: isPresented ? 0 : UIScreen.main.bounds.height)
+            .transition(.move(edge: isPresented ? .bottom : .top))
+            .onAppear { withAnimation { isPresented = true } }
+            .onDisappear { withAnimation { isPresented = false } }
         
     }
 }

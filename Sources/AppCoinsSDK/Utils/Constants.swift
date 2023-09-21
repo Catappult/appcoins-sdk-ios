@@ -31,5 +31,7 @@ struct Constants {
     static let supportAvailableSoonMessage = "AppCoins Support is not available at the moment"
     static let appcCredits = "AppCoins Credits"
     static let logOut = "Log out"
-    
+    static let chooseCard = "Choose a Card"
+    static let addCard = "Add new card"
+
 }

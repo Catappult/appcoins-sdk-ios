@@ -17,7 +17,7 @@ struct GetPaymentMethodsRaw: Codable {
     
 }
 
-public struct PaymentMethodsRaw: Codable {
+struct PaymentMethodsRaw: Codable {
     
     let name: String
     let label: String
@@ -39,7 +39,7 @@ public struct PaymentMethodsRaw: Codable {
     
 }
 
-public struct PaymentMethodsGatewayRaw: Codable {
+struct PaymentMethodsGatewayRaw: Codable {
     
     let name: String?
     

@@ -7,10 +7,13 @@
 
 import Foundation
 import SwiftUI
+import Adyen
 
 class BottomSheetViewModel : ObservableObject {
     
     static var shared : BottomSheetViewModel = BottomSheetViewModel()
+    
+    @Published var isBottomSheetPresented = false
     
     @Published var purchaseState: PaymentState = .paying
     @Published var dismissingSuccess: Bool = false
@@ -50,10 +53,20 @@ class BottomSheetViewModel : ObservableObject {
     }
     
     func dismissVC() {
+        if KeyboardObserver.shared.isKeyboardVisible {
+            AdyenController.shared.presentableComponent?.viewController.view.findAndResignFirstResponder()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) { withAnimation { self.isBottomSheetPresented = false } }
+        } else if !(self.purchaseState == .adyen && AdyenController.shared.state == .storedCreditCard) {
+            DispatchQueue.main.async { withAnimation { self.isBottomSheetPresented = false } }
+        }
+        
         if let rootViewController = UIApplication.shared.windows.first?.rootViewController,
            let presentedPurchaseVC = rootViewController.presentedViewController as? PurchaseViewController {
+    
+            var delay = 0.3
+            if KeyboardObserver.shared.isKeyboardVisible { delay = 0.45 }
             
-            DispatchQueue.main.async {
+            DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
                 presentedPurchaseVC.dismissPurchase()
                 self.hasActiveTransaction = false
                 self.reset()
@@ -83,6 +96,8 @@ class BottomSheetViewModel : ObservableObject {
         self.tryAgainDomain = nil
         self.tryAgainMetadata = nil
         self.tryAgainReference = nil
+        
+        AdyenController.shared.reset()
     }
     
     func buildPurchase(product: Product, domain: String, metadata: String?, reference: String?) {
@@ -110,6 +125,8 @@ class BottomSheetViewModel : ObservableObject {
     }
     
     func buildTransaction(product: Product, domain: String, metadata: String?, reference: String?) {
+        self.reset()
+        
         if let wallet = walletUseCases.getClientWallet(), let wa = wallet.address {
             self.productUseCases.getProductAppcValue(product: product) {
                 result in
@@ -133,7 +150,7 @@ class BottomSheetViewModel : ObservableObject {
                                         
                                         var availablePaymentMethods: [PaymentMethod] = []
                                         for method in paymentMethods {
-                                            if ["appcoins_credits", "paypal", "paypal_v2"].contains(method.name) { availablePaymentMethods.append(method) }
+                                            if ["appcoins_credits", "paypal", "paypal_v2", "credit_card"].contains(method.name) { availablePaymentMethods.append(method) }
                                         }
                                         
                                         wallet.getBalance(wa: wa, currency: Coin(rawValue: product.priceCurrency) ?? .EUR) {
@@ -207,10 +224,24 @@ class BottomSheetViewModel : ObservableObject {
                                                                         self.showOtherPaymentMethods = true
                                                                     }
                                                                 case "paypal":
-                                                                    if let paypalPM = self.transaction?.paymentMethods.first(where: { $0.name == "paypal" || $0.name == "paypal_v2" }) {
+                                                                    if let paypalPM = self.transaction?.paymentMethods.first(where: { $0.name == "paypal" }) {
+                                                                        self.lastPaymentMethod = paypalPM
+                                                                        self.paymentMethodSelected = paypalPM
+                                                                    } else {
+                                                                        self.showOtherPaymentMethods = true
+                                                                    }
+                                                                case "paypal_v2":
+                                                                    if let paypalPM = self.transaction?.paymentMethods.first(where: { $0.name == "paypal_v2" }) {
                                                                         if self.transactionUseCases.hasBillingAgreement() { self.paypalLogOut = true }
                                                                         self.lastPaymentMethod = paypalPM
                                                                         self.paymentMethodSelected = paypalPM
+                                                                    } else {
+                                                                        self.showOtherPaymentMethods = true
+                                                                    }
+                                                                case "credit_card":
+                                                                    if let ccPM = self.transaction?.paymentMethods.first(where: { $0.name == "credit_card" }) {
+                                                                        self.lastPaymentMethod = ccPM
+                                                                        self.paymentMethodSelected = ccPM
                                                                     } else {
                                                                         self.showOtherPaymentMethods = true
                                                                     }
@@ -306,10 +337,11 @@ class BottomSheetViewModel : ObservableObject {
     }
     
     func dismiss() {
-        if purchaseState == .paying {
+        if purchaseState == .paying || purchaseState == .adyen {
             let result : TransactionResult = .userCancelled
             Utils.transactionResult(result: result)
         }
+        if purchaseState == .adyen { AdyenController.shared.cancel() }
         self.dismissVC()
     }
     
@@ -329,33 +361,37 @@ class BottomSheetViewModel : ObservableObject {
     }
     
     func buy() {
-        DispatchQueue.main.async { self.purchaseState = .processing }
-        
         DispatchQueue(label: "buy-item", qos: .userInteractive).async {
             if self.paymentMethodSelected?.name == "appcoins_credits" {
-                 self.buyWithAppc()
-            } else if ["paypal", "paypal_v2"].contains(self.paymentMethodSelected?.name) {
-                 self.buyWithPayPal()
+                DispatchQueue.main.async { self.purchaseState = .processing }
+                self.buyWithAppc()
+            } else if self.paymentMethodSelected?.name == "credit_card" {
+                DispatchQueue.main.async { self.purchaseState = .adyen }
+                self.buyWithCreditCard()
+            } else if self.paymentMethodSelected?.name == "paypal" {
+                DispatchQueue.main.async { self.purchaseState = .processing }
+                self.buyWithPayPalAdyen()
+            } else if self.paymentMethodSelected?.name == "paypal_v2" {
+                DispatchQueue.main.async { self.purchaseState = .processing }
+                self.buyWithPayPalDirect()
             } else {
                 let result : TransactionResult = .failed(error: .systemError)
                 Utils.transactionResult(result: result)
                 DispatchQueue.main.async { self.purchaseState = .failed }
             }
-        
         }
     }
     
     func buyWithAppc() {
         let raw = CreateAPPCTransactionRaw.fromDictionary(dictionary: self.transactionParameters)
         if let wallet = self.walletUseCases.getClientWallet(), let wa = wallet.address {
-            let waSignature = wallet.getSignedWalletAddress()
             
-            self.transactionUseCases.createTransaction(wa: wa, waSignature: waSignature, raw: raw) {
+            self.transactionUseCases.createTransaction(wa: wallet, raw: raw) {
                 result in
                 
                 switch result {
                 case .success(let transactionResponse):
-                    self.transactionUseCases.getTransactionInfo(uid: transactionResponse.uuid, wa: wa, waSignature: waSignature) {
+                    self.transactionUseCases.getTransactionInfo(uid: transactionResponse.uuid, wa: wallet) {
                         result in
                         
                         switch result {
@@ -455,17 +491,223 @@ class BottomSheetViewModel : ObservableObject {
         }
     }
     
-    func buyWithPayPal() {
+    func buyWithCreditCard() {
+        self.transactionParameters["method"] = "credit_card"
+        
+        let raw = CreateAdyenTransactionRaw.fromDictionary(dictionary: self.transactionParameters)
+        switch raw {
+        case .success(let raw):
+            if let wallet = self.walletUseCases.getClientWallet() {
+                
+                self.transactionUseCases.createAdyenTransaction(wa: wallet, raw: raw) {
+                    result in
+                    
+                    switch result {
+                    case .success(let session):
+                        if let moneyAmount = self.transaction?.moneyAmount, let moneyCurrency = self.transaction?.moneyCurrency {
+                            AdyenController.shared.startSession(method: "credit_card", value: Decimal(moneyAmount), currency: moneyCurrency, session: session, successHandler: self.adyenSuccessHandler, awaitHandler: self.adyenFailedHandler, failedHandler: self.adyenFailedHandler, cancelHandler: self.adyenCancelHandler)
+                        } else {
+                            let result : TransactionResult = .failed(error: .notEntitled)
+                            Utils.transactionResult(result: result)
+                            DispatchQueue.main.async { self.purchaseState = .failed }
+                        }
+                        
+                    case .failure(let failure):
+                        switch failure {
+                        case .failed(let description):
+                            if let description = description { DispatchQueue.main.async { self.purchaseFailedMessage = description } }
+                            let result : TransactionResult = .failed(error: .systemError)
+                            Utils.transactionResult(result: result)
+                        case .noInternet:
+                            let result : TransactionResult = .failed(error: .networkError)
+                            Utils.transactionResult(result: result)
+                        default:
+                            let result : TransactionResult = .failed(error: .systemError)
+                            Utils.transactionResult(result: result)
+                        }
+                        DispatchQueue.main.async { self.purchaseState = .failed }
+                    }
+                }
+            } else {
+                let result : TransactionResult = .failed(error: .notEntitled)
+                Utils.transactionResult(result: result)
+                DispatchQueue.main.async { self.purchaseState = .failed }
+            }
+        case .failure(_):
+            let result : TransactionResult = .failed(error: .notEntitled)
+            Utils.transactionResult(result: result)
+            DispatchQueue.main.async { self.purchaseState = .failed }
+        }
+    }
+    
+    func buyWithPayPalAdyen() {
+        self.transactionParameters["method"] = "paypal"
+        
+        let raw = CreateAdyenTransactionRaw.fromDictionary(dictionary: self.transactionParameters)
+        switch raw {
+        case .success(let raw):
+            if let wallet = self.walletUseCases.getClientWallet() {
+                
+                self.transactionUseCases.createAdyenTransaction(wa: wallet, raw: raw) {
+                    result in
+                    
+                    switch result {
+                    case .success(let session):
+                        if let moneyAmount = self.transaction?.moneyAmount, let moneyCurrency = self.transaction?.moneyCurrency {
+                            AdyenController.shared.startSession(method: "paypal", value: Decimal(moneyAmount), currency: moneyCurrency, session: session, successHandler: self.adyenSuccessHandler, awaitHandler: self.adyenFailedHandler, failedHandler: self.adyenFailedHandler, cancelHandler: self.adyenCancelHandler)
+                        } else {
+                            let result : TransactionResult = .failed(error: .notEntitled)
+                            Utils.transactionResult(result: result)
+                            DispatchQueue.main.async { self.purchaseState = .failed }
+                        }
+                        
+                    case .failure(let failure):
+                        switch failure {
+                        case .failed(let description):
+                            if let description = description { DispatchQueue.main.async { self.purchaseFailedMessage = description } }
+                            let result : TransactionResult = .failed(error: .systemError)
+                            Utils.transactionResult(result: result)
+                        case .noInternet:
+                            let result : TransactionResult = .failed(error: .networkError)
+                            Utils.transactionResult(result: result)
+                        default:
+                            let result : TransactionResult = .failed(error: .systemError)
+                            Utils.transactionResult(result: result)
+                        }
+                        DispatchQueue.main.async { self.purchaseState = .failed }
+                    }
+                }
+            } else {
+                let result : TransactionResult = .failed(error: .notEntitled)
+                Utils.transactionResult(result: result)
+                DispatchQueue.main.async { self.purchaseState = .failed }
+            }
+        case .failure(_):
+            let result : TransactionResult = .failed(error: .notEntitled)
+            Utils.transactionResult(result: result)
+            DispatchQueue.main.async { self.purchaseState = .failed }
+        }
+    }
+    
+    func adyenSuccessHandler(method: String, transactionUID: String) {
+        DispatchQueue.main.async { self.purchaseState = .processing }
+        if let wallet = self.walletUseCases.getClientWallet(), let wa = wallet.address {
+            self.transactionUseCases.getTransactionInfo(uid: transactionUID, wa: wallet) {
+                result in
+                
+                switch result {
+                case .success(let transaction):
+                    if let purchaseUID = transaction.purchaseUID {
+                        wallet.getBalance(wa: wa, currency: Coin(rawValue: self.transaction?.moneyCurrency ?? "") ?? .EUR) {
+                            result in
+                            
+                            switch result {
+                            case .success(let balance):
+                                Purchase.verify(purchaseUID: purchaseUID) {
+                                    result in
+                                    
+                                    switch result {
+                                    case .success(let purchase):
+                                        purchase.acknowledge() {
+                                            error in
+                                            if let error = error {
+                                                DispatchQueue.main.async { self.purchaseState = .failed }
+                                                
+                                                let result : TransactionResult = .failed(error: error)
+                                                Utils.transactionResult(result: result)
+                                            } else {
+                                                DispatchQueue.main.async {
+                                                    self.finalWalletBalance = "\(balance.balanceCurrency)\(String(format: "%.2f", balance.balance))"
+                                                    self.purchaseState = .success
+                                                }
+                                                
+                                                let verificationResult: VerificationResult = .verified(purchase: purchase)
+                                                let transactionResult: TransactionResult = .success(verificationResult: verificationResult)
+                                                Utils.transactionResult(result: transactionResult)
+                                                
+                                                self.transactionUseCases.setLastPaymentMethod(paymentMethod: method)
+                                                
+                                                DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                                                    self.dismiss()
+                                                    withAnimation { self.dismissingSuccess = true }
+                                                }
+                                            }
+                                        }
+                                    case .failure(let error):
+                                        DispatchQueue.main.async { self.purchaseState = .failed }
+                                        
+                                        let result : TransactionResult = .failed(error: error)
+                                        Utils.transactionResult(result: result)
+                                    }
+                                }
+                            case .failure(let failure):
+                                if failure == .noInternet {
+                                    let result : TransactionResult = .failed(error: .networkError)
+                                    Utils.transactionResult(result: result)
+                                } else {
+                                    let result : TransactionResult = .failed(error: .systemError)
+                                    Utils.transactionResult(result: result)
+                                }
+                                DispatchQueue.main.async { self.purchaseState = .failed }
+                            }
+                        }
+                    } else {
+                        let result : TransactionResult = .failed(error: .systemError)
+                        Utils.transactionResult(result: result)
+                        DispatchQueue.main.async { self.purchaseState = .failed }
+                    }
+                case .failure(let failure):
+                    switch failure {
+                    case .failed(_):
+                        let result : TransactionResult = .failed(error: .systemError)
+                        Utils.transactionResult(result: result)
+                    case .noInternet:
+                        let result : TransactionResult = .failed(error: .networkError)
+                        Utils.transactionResult(result: result)
+                    default:
+                        let result : TransactionResult = .failed(error: .systemError)
+                        Utils.transactionResult(result: result)
+                    }
+                    DispatchQueue.main.async { self.purchaseState = .failed }
+                }
+            }
+        } else {
+            let result : TransactionResult = .failed(error: .systemError)
+            Utils.transactionResult(result: result)
+            DispatchQueue.main.async { self.purchaseState = .failed }
+        }
+    }
+
+    func adyenFailedHandler() {
+        let result : TransactionResult = .failed(error: .systemError)
+        Utils.transactionResult(result: result)
+        DispatchQueue.main.async { self.purchaseState = .failed }
+    }
+    
+    func adyenCancelHandler() {
+        let result : TransactionResult = .userCancelled
+        Utils.transactionResult(result: result)
+        self.dismissVC()
+    }
+    
+    func payWithStoredCreditCard(creditCard: StoredCardPaymentMethod) {
+        AdyenController.shared.chooseStoredCreditCardPayment(paymentMethod: creditCard)
+    }
+    
+    func payWithNewCreditCard() {
+        AdyenController.shared.chooseNewCreditCardPayment()
+    }
+    
+    func buyWithPayPalDirect() {
         let raw = CreateBAPayPalTransactionRaw.fromDictionary(dictionary: self.transactionParameters)
         if let wallet = self.walletUseCases.getClientWallet(), let wa = wallet.address {
-            let waSignature = wallet.getSignedWalletAddress()
             
-            self.transactionUseCases.createBAPayPalTransaction(wa: wa, waSignature: waSignature, raw: raw) {
+            self.transactionUseCases.createBAPayPalTransaction(wa: wallet, raw: raw) {
                 result in
                 
                 switch result {
                 case .success(let transactionResponse):
-                    self.transactionUseCases.getTransactionInfo(uid: transactionResponse.uuid, wa: wa, waSignature: waSignature) {
+                    self.transactionUseCases.getTransactionInfo(uid: transactionResponse.uuid, wa: wallet) {
                         result in
                         
                         switch result {
@@ -641,7 +883,7 @@ class BottomSheetViewModel : ObservableObject {
             
             switch result {
             case .success(_):
-                self.buyWithPayPal()
+                self.buyWithPayPalDirect()
             case .failure(let error):
                 switch error {
                 case .failed(_):

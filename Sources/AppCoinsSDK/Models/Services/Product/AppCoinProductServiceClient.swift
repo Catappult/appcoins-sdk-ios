@@ -57,12 +57,16 @@ class AppCoinProductServiceClient : AppCoinProductService {
         }
     }
     
-    func acknowledgePurchase(domain: String, uid: String, wa: String, waSignature: String, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
+    func acknowledgePurchase(domain: String, uid: String, wa: Wallet, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
         let route = "/applications/\(domain)/inapp/purchases/\(uid)/acknowledge"
-        if let url = URL(string: endpoint + route + "?wallet.address=\(wa)&wallet.signature=\(waSignature)") {
+        if let url = URL(string: endpoint + route) {
             
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
+            
+            if let ewt = wa.getEWT() {
+                request.setValue(ewt, forHTTPHeaderField: "authorization")
+            }
             
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
                 if let error = error {
@@ -86,12 +90,16 @@ class AppCoinProductServiceClient : AppCoinProductService {
         }
     }
     
-    func consumePurchase(domain: String, uid: String, wa: String, waSignature: String, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
+    func consumePurchase(domain: String, uid: String, wa: Wallet, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
         let route = "/applications/\(domain)/inapp/purchases/\(uid)/consume"
-        if let url = URL(string: endpoint + route + "?wallet.address=\(wa)&wallet.signature=\(waSignature)") {
+        if let url = URL(string: endpoint + route) {
             
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
+            
+            if let ewt = wa.getEWT() {
+                request.setValue(ewt, forHTTPHeaderField: "authorization")
+            }
             
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
                 if let error = error {
@@ -115,10 +123,17 @@ class AppCoinProductServiceClient : AppCoinProductService {
         }
     }
     
-    func getPurchaseInformation(domain: String, uid: String, wa: String, waSignature: String, result: @escaping (Result<PurchaseInformationRaw, ProductServiceError>) -> Void) {
+    func getPurchaseInformation(domain: String, uid: String, wa: Wallet, result: @escaping (Result<PurchaseInformationRaw, ProductServiceError>) -> Void) {
         let route = "/applications/\(domain)/inapp/consumable/purchases/\(uid)"
-        if let url = URL(string: endpoint + route + "?wallet.address=\(wa)&wallet.signature=\(waSignature)") {
-            let task = URLSession.shared.dataTask(with: url) { data, response, error in
+        if let url = URL(string: endpoint + route) {
+            
+            var request = URLRequest(url: url)
+            
+            if let ewt = wa.getEWT() {
+                request.setValue(ewt, forHTTPHeaderField: "authorization")
+            }
+            
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
                 if let error = error {
                     if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
                         result(.failure(.noInternet))
@@ -137,10 +152,17 @@ class AppCoinProductServiceClient : AppCoinProductService {
         }
     }
     
-    func getAllPurchases(domain: String, wa: String, waSignature: String, result: @escaping (Result<GetPurchasesRaw, ProductServiceError>) -> Void) {
+    func getAllPurchases(domain: String, wa: Wallet, result: @escaping (Result<GetPurchasesRaw, ProductServiceError>) -> Void) {
         let route = "/applications/\(domain)/inapp/consumable/purchases"
-        if let url = URL(string: endpoint + route + "?wallet.address=\(wa)&wallet.signature=\(waSignature)") {
-            let task = URLSession.shared.dataTask(with: url) { data, response, error in
+        if let url = URL(string: endpoint + route) {
+            
+            var request = URLRequest(url: url)
+            
+            if let ewt = wa.getEWT() {
+                request.setValue(ewt, forHTTPHeaderField: "authorization")
+            }
+            
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
                 if let error = error {
                     if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
                         result(.failure(.noInternet))
@@ -159,10 +181,17 @@ class AppCoinProductServiceClient : AppCoinProductService {
         }
     }
     
-    func getAllPurchasesBySKU(domain: String, sku: String, wa: String, waSignature: String, result: @escaping (Result<GetPurchasesRaw, ProductServiceError>) -> Void) {
+    func getAllPurchasesBySKU(domain: String, sku: String, wa: Wallet, result: @escaping (Result<GetPurchasesRaw, ProductServiceError>) -> Void) {
         let route = "/applications/\(domain)/inapp/consumable/purchases"
-        if let url = URL(string: endpoint + route + "?sku=\(sku)&wallet.address=\(wa)&wallet.signature=\(waSignature)") {
-            let task = URLSession.shared.dataTask(with: url) { data, response, error in
+        if let url = URL(string: endpoint + route + "?sku=\(sku)") {
+            
+            var request = URLRequest(url: url)
+            
+            if let ewt = wa.getEWT() {
+                request.setValue(ewt, forHTTPHeaderField: "authorization")
+            }
+            
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
                 if let error = error {
                     if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
                         result(.failure(.noInternet))
@@ -181,10 +210,17 @@ class AppCoinProductServiceClient : AppCoinProductService {
         }
     }
     
-    func getPurchasesByState(domain: String, state: String, wa: String, waSignature: String, result: @escaping (Result<GetPurchasesRaw, ProductServiceError>) -> Void) {
+    func getPurchasesByState(domain: String, state: String, wa: Wallet, result: @escaping (Result<GetPurchasesRaw, ProductServiceError>) -> Void) {
         let route = "/applications/\(domain)/inapp/consumable/purchases"
-        if let url = URL(string: endpoint + route + "?state=\(state)&wallet.address=\(wa)&wallet.signature=\(waSignature)") {
-            let task = URLSession.shared.dataTask(with: url) { data, response, error in
+        if let url = URL(string: endpoint + route + "?state=\(state)") {
+            
+            var request = URLRequest(url: url)
+            
+            if let ewt = wa.getEWT() {
+                request.setValue(ewt, forHTTPHeaderField: "authorization")
+            }
+            
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
                 if let error = error {
                     if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
                         result(.failure(.noInternet))

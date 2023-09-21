@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct CreateBillingAgreementResponseRaw: Codable {
+struct CreateBillingAgreementResponseRaw: Codable {
     
     let uid: String
     

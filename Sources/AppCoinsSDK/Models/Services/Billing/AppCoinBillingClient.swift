@@ -57,28 +57,22 @@ class AppCoinBillingClient : AppCoinBillingService {
         }
     }
 
-    func createTransaction(wa: String, waSignature: String, raw: CreateAPPCTransactionRaw, completion: @escaping (Result<CreateTransactionResponseRaw, TransactionError>) -> Void) {
+    func createTransaction(wa: Wallet, raw: CreateAPPCTransactionRaw, completion: @escaping (Result<CreateTransactionResponseRaw, TransactionError>) -> Void) {
         let route = "/gateways/appcoins_credits/transactions"
-        if let url = URL(string: endpoint + route + "?wallet.address=\(wa)&wallet.signature=\(waSignature)") {
+        if let url = URL(string: endpoint + route) {
             if let body = raw.toJSON() {
 
                 var request = URLRequest(url: url)
                 request.addValue("application/json", forHTTPHeaderField: "Content-Type")
                 request.httpBody = body
                 request.httpMethod = "POST"
-
-                let startDate = Date()
-                print(startDate)
                 
+                if let ewt = wa.getEWT() {
+                    request.setValue(ewt, forHTTPHeaderField: "authorization")
+                }
+
                 // Right now not giving feedback on different types of errors
                 let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
-                    
-                    let endDate = Date()
-                    let calendar = Calendar.current
-                    let components = calendar.dateComponents([.second], from: startDate, to: endDate)
-                    if let seconds = components.second {
-                        print("Time elapsed: \(seconds) seconds")
-                    }
                     
                     if let error = error {
                         if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
@@ -109,24 +103,20 @@ class AppCoinBillingClient : AppCoinBillingService {
         }
     }
     
-    func getTransactionInfo(uid: String, wa: String, waSignature: String, completion: @escaping (Result<GetTransactionInfoRaw, TransactionError>) -> Void) {
+    func getTransactionInfo(uid: String, wa: Wallet, completion: @escaping (Result<GetTransactionInfoRaw, TransactionError>) -> Void) {
         let route = "/transactions/\(uid)"
-        if let url = URL(string: endpoint + route + "?wallet.address=\(wa)&wallet.signature=\(waSignature)") {
+        if let url = URL(string: endpoint + route) {
             
             let configuration = URLSessionConfiguration.default
             configuration.timeoutIntervalForRequest = 10
             
-            let startDate = Date()
-            print(startDate)
+            var request = URLRequest(url: url)
             
-            let task = URLSession(configuration: configuration).dataTask(with: url) { data, response, error in
-                
-                let endDate = Date()
-                let calendar = Calendar.current
-                let components = calendar.dateComponents([.second], from: startDate, to: endDate)
-                if let seconds = components.second {
-                    print("Time elapsed: \(seconds) seconds")
-                }
+            if let ewt = wa.getEWT() {
+                request.setValue(ewt, forHTTPHeaderField: "authorization")
+            }
+            
+            let task = URLSession(configuration: configuration).dataTask(with: request) { data, response, error in
                 
                 if let error = error {
                     if let nsError = error as NSError? {
@@ -152,13 +142,54 @@ class AppCoinBillingClient : AppCoinBillingService {
         }
     }
     
-    func createBAPayPalTransaction(wa: String, waSignature: String, raw: CreateBAPayPalTransactionRaw, completion: @escaping (Result<CreateBAPayPalTransactionResponseRaw, TransactionError>) -> Void) {
+    func createAdyenTransaction(wa: Wallet, raw: CreateAdyenTransactionRaw, completion: @escaping (Result<CreateAdyenTransactionResponseRaw, TransactionError>) -> Void) {
+        
+        let route = "/gateways/session/transactions"
+        if let url = URL(string: endpoint + route) {
+            if let body = raw.toJSON() {
+                var request = URLRequest(url: url)
+                request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+                request.httpBody = body
+                request.httpMethod = "POST"
+                
+                if let ewt = wa.getEWT() {
+                    request.setValue(ewt, forHTTPHeaderField: "authorization")
+                }
+                
+                // Right now not giving feedback on different types of errors
+                let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
+                    if let error = error {
+                        if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
+                            completion(.failure(.noInternet))
+                        } else {
+                            completion(.failure(.failed()))
+                        }
+                    } else {
+                        if let data = data {
+                            if let successResponse = try? JSONDecoder().decode(CreateAdyenTransactionResponseRaw.self, from: data) {
+                                completion(.success(successResponse))
+                            } else {
+                                completion(.failure(.failed()))
+                            }
+                        } else {
+                            completion(.failure(.failed()))
+                        }
+                    }
+                    
+                    
+                })
+                task.resume()
+            }
+        }
+    }
+    
+    func createBAPayPalTransaction(wa: Wallet, raw: CreateBAPayPalTransactionRaw, completion: @escaping (Result<CreateBAPayPalTransactionResponseRaw, TransactionError>) -> Void) {
         
         // Magnes SDK integration will only be used when we're no longer using Jailbreak
 //        let paypalClientMetadataID = Utils.getMagnesSDKClientMetadataID()
         
         let route = "/gateways/paypal/transactions"
-        if let url = URL(string: endpoint + route + "?wallet.address=\(wa)&wallet.signature=\(waSignature)") {
+        if let url = URL(string: endpoint + route) {
             if let body = raw.toJSON() {
 
                 var request = URLRequest(url: url)
@@ -166,21 +197,15 @@ class AppCoinBillingClient : AppCoinBillingService {
                 request.httpBody = body
                 request.httpMethod = "POST"
                 
+                if let ewt = wa.getEWT() {
+                    request.setValue(ewt, forHTTPHeaderField: "authorization")
+                }
+                
                 // Magnes SDK integration will only be used when we're no longer using Jailbreak
 //                request.setValue(paypalClientMetadataID, forHTTPHeaderField: "PayPal-Client-Metadata-Id")
                 
-                let startDate = Date()
-                print(startDate)
-                
                 // Right now not giving feedback on different types of errors
                 let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
-                    
-                    let endDate = Date()
-                    let calendar = Calendar.current
-                    let components = calendar.dateComponents([.second], from: startDate, to: endDate)
-                    if let seconds = components.second {
-                        print("Time elapsed: \(seconds) seconds")
-                    }
                     
                     if let error = error {
                         if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
@@ -213,19 +238,23 @@ class AppCoinBillingClient : AppCoinBillingService {
         }
     }
     
-    func createBillingAgreementToken(wa: String, waSignature: String, raw: CreateBillingAgreementTokenRaw, completion: @escaping (Result<CreateBillingAgreementTokenResponseRaw, TransactionError>) -> Void) {
+    func createBillingAgreementToken(wa: Wallet, raw: CreateBillingAgreementTokenRaw, completion: @escaping (Result<CreateBillingAgreementTokenResponseRaw, TransactionError>) -> Void) {
         
         // Magnes SDK integration will only be used when we're no longer using Jailbreak
 //        let paypalClientMetadataID = Utils.getMagnesSDKClientMetadataID()
         
         let route = "/gateways/paypal/billing-agreement/token/create"
-        if let url = URL(string: endpoint + route + "?wallet.address=\(wa)&wallet.signature=\(waSignature)") {
+        if let url = URL(string: endpoint + route) {
             if let body = raw.toJSON() {
 
                 var request = URLRequest(url: url)
                 request.addValue("application/json", forHTTPHeaderField: "Content-Type")
                 request.httpBody = body
                 request.httpMethod = "POST"
+                
+                if let ewt = wa.getEWT() {
+                    request.setValue(ewt, forHTTPHeaderField: "authorization")
+                }
                 
                 // Magnes SDK integration will only be used when we're no longer using Jailbreak
 //                request.setValue(paypalClientMetadataID, forHTTPHeaderField: "PayPal-Client-Metadata-Id")
@@ -251,17 +280,21 @@ class AppCoinBillingClient : AppCoinBillingService {
         }
     }
 
-    func cancelBillingAgreementToken(token: String, wa: String, waSignature: String, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
+    func cancelBillingAgreementToken(token: String, wa: Wallet, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
         
         // Magnes SDK integration will only be used when we're no longer using Jailbreak
 //        let paypalClientMetadataID = Utils.getMagnesSDKClientMetadataID()
         
         let route = "/gateways/paypal/billing-agreement/token/cancel"
-        if let url = URL(string: endpoint + route + "?wallet.address=\(wa)&wallet.signature=\(waSignature)") {
+        if let url = URL(string: endpoint + route) {
             var request = URLRequest(url: url)
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.httpBody = "\"\(token)\"".data(using: .utf8)
             request.httpMethod = "POST"
+            
+            if let ewt = wa.getEWT() {
+                request.setValue(ewt, forHTTPHeaderField: "authorization")
+            }
             
             // Magnes SDK integration will only be used when we're no longer using Jailbreak
 //            request.setValue(paypalClientMetadataID, forHTTPHeaderField: "PayPal-Client-Metadata-Id")
@@ -288,15 +321,19 @@ class AppCoinBillingClient : AppCoinBillingService {
         }
     }
     
-    func cancelBillingAgreement(wa: String, waSignature: String, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
+    func cancelBillingAgreement(wa: Wallet, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
         
         // Magnes SDK integration will only be used when we're no longer using Jailbreak
 //        let paypalClientMetadataID = Utils.getMagnesSDKClientMetadataID()
         
         let route = "/gateways/paypal/billing-agreement/cancel"
-        if let url = URL(string: endpoint + route + "?wallet.address=\(wa)&wallet.signature=\(waSignature)") {
+        if let url = URL(string: endpoint + route) {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
+            
+            if let ewt = wa.getEWT() {
+                request.setValue(ewt, forHTTPHeaderField: "authorization")
+            }
             
             // Magnes SDK integration will only be used when we're no longer using Jailbreak
 //            request.setValue(paypalClientMetadataID, forHTTPHeaderField: "PayPal-Client-Metadata-Id")
@@ -323,18 +360,22 @@ class AppCoinBillingClient : AppCoinBillingService {
         }
     }
     
-    func createBillingAgreement(token: String, wa: String, waSignature: String, completion: @escaping (Result<CreateBillingAgreementResponseRaw, TransactionError>) -> Void) {
+    func createBillingAgreement(token: String, wa: Wallet, completion: @escaping (Result<CreateBillingAgreementResponseRaw, TransactionError>) -> Void) {
         
         // Magnes SDK integration will only be used when we're no longer using Jailbreak
 //        let paypalClientMetadataID = Utils.getMagnesSDKClientMetadataID()
         
         let route = "/gateways/paypal/billing-agreement/create"
-        if let url = URL(string: endpoint + route + "?wallet.address=\(wa)&wallet.signature=\(waSignature)") {
+        if let url = URL(string: endpoint + route) {
             var request = URLRequest(url: url)
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.httpBody = "\"\(token)\"".data(using: .utf8)
             request.httpMethod = "POST"
 
+            if let ewt = wa.getEWT() {
+                request.setValue(ewt, forHTTPHeaderField: "authorization")
+            }
+            
             // Magnes SDK integration will only be used when we're no longer using Jailbreak
 //            request.setValue(paypalClientMetadataID, forHTTPHeaderField: "PayPal-Client-Metadata-Id")
             
@@ -357,17 +398,24 @@ class AppCoinBillingClient : AppCoinBillingService {
         }
     }
     
-    func getBillingAgreement(wa: String, waSignature: String, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
+    func getBillingAgreement(wa: Wallet, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
         
         // Magnes SDK integration will only be used when we're no longer using Jailbreak
 //        let paypalClientMetadataID = Utils.getMagnesSDKClientMetadataID()
         
         let route = "/gateways/paypal/billing-agreement"
-        if let url = URL(string: endpoint + route + "?wallet.address=\(wa)&wallet.signature=\(waSignature)") {
+        if let url = URL(string: endpoint + route) {
+            
+            var request = URLRequest(url: url)
+        
+            if let ewt = wa.getEWT() {
+                request.setValue(ewt, forHTTPHeaderField: "authorization")
+            }
+            
             // Magnes SDK integration will only be used when we're no longer using Jailbreak
 //            request.setValue(paypalClientMetadataID, forHTTPHeaderField: "PayPal-Client-Metadata-Id")
             
-            let task = URLSession.shared.dataTask(with: url, completionHandler: { data, response, error in
+            let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
                 if let error = error {
                     if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
                         completion(.failure(.noInternet))

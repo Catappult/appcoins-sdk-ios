@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol UserPreferencesLocalService {
+protocol UserPreferencesLocalService {
     
     // Last Payment Method
     func getLastPaymentMethod() -> String

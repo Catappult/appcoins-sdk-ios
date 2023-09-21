@@ -51,7 +51,7 @@ struct GetTransactionInfoGatewayRaw: Codable {
     
 }
 
-public struct GetTransactionInfoMetadataRaw: Codable {
+struct GetTransactionInfoMetadataRaw: Codable {
     
     let developer_payload: String?
     let purchase_uid: String?
@@ -63,7 +63,7 @@ public struct GetTransactionInfoMetadataRaw: Codable {
     
 }
 
-public struct GetTransactionInfoPriceRaw: Codable {
+struct GetTransactionInfoPriceRaw: Codable {
     
     let currency: String?
     let value: String?
