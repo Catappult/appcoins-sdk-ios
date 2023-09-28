@@ -38,7 +38,7 @@ class AppCoinBillingClient : AppCoinBillingService {
     
     func getPaymentMethods(value: String, currency: Coin, result: @escaping (Result<GetPaymentMethodsRaw, BillingError>) -> Void) {
         let route = "/methods"
-        if let url = URL(string: endpoint + route + "?price.value=\(value)&price.currency=\(currency.rawValue)") {
+        if let url = URL(string: endpoint + route + "?price.value=\(value)&price.currency=\(currency.rawValue)&channel=IOS") {
             let task = URLSession.shared.dataTask(with: url) { data, response, error in
                 if let error = error {
                     if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
@@ -144,7 +144,7 @@ class AppCoinBillingClient : AppCoinBillingService {
     
     func createAdyenTransaction(wa: Wallet, raw: CreateAdyenTransactionRaw, completion: @escaping (Result<CreateAdyenTransactionResponseRaw, TransactionError>) -> Void) {
         
-        let route = "/gateways/session/transactions"
+        let route = "/gateways/adyen_v2/session"
         if let url = URL(string: endpoint + route) {
             if let body = raw.toJSON() {
                 var request = URLRequest(url: url)

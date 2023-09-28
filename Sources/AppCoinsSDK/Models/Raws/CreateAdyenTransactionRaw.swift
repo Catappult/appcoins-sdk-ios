@@ -53,7 +53,7 @@ struct CreateAdyenTransactionRaw: Codable {
             return .success(
                 CreateAdyenTransactionRaw(
                     origin: "BDS", domain: domain, price: normalizedPrice, priceCurrency: priceCurrency,
-                    product: dictionary["product"], type: "INAPP", method: method, developerWa: developerWa, paymentChannel: "iOS", paymentReturnUrl: "\(bundleID).iap://api.blockchainds.com/broker", userWa: userWa, metadata: metadata, reference: reference
+                    product: dictionary["product"], type: "INAPP", method: method, developerWa: developerWa, paymentChannel: "IOS", paymentReturnUrl: "\(bundleID).iap://api.blockchainds.com/broker", userWa: userWa, metadata: metadata, reference: reference
                 )
             )
         } else { return .failure(.failed()) }

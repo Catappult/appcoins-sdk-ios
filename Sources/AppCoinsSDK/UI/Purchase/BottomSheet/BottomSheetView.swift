@@ -64,11 +64,6 @@ struct BottomSheetView: View {
                     }
                     
                 }
-//                .sheet(isPresented: $viewModel.presentPayPalSheet, onDismiss: viewModel.dismissPayPalView) {
-//                    if let presentURL = viewModel.presentPayPalSheetURL {
-//                        PayPalWebView(url: presentURL, method: viewModel.presentPayPalSheetMethod ?? "POST", successHandler: viewModel.createBillingAgreementAndFinishTransaction, cancelHandler: viewModel.cancelBillingAgreementTokenPayPal)
-//                    }
-//                }
                 
                 // Workaround to place multiple sheets on the same view on older iOS versions
                 // https://stackoverflow.com/a/64403206/18917552
