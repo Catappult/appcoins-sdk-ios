@@ -9,15 +9,15 @@ import Foundation
 import Foundation
 import SwiftUI
 
-enum FancyToastStyle {
+internal enum FancyToastStyle {
     case error
     case warning
     case success
     case info
 }
 
-extension FancyToastStyle {
-    var themeColor: Color {
+internal extension FancyToastStyle {
+    internal var themeColor: Color {
         switch self {
         case .error: return Color.red
         case .warning: return Color.orange
@@ -26,7 +26,7 @@ extension FancyToastStyle {
         }
     }
     
-    var iconFileName: String {
+    internal var iconFileName: String {
         switch self {
         case .info: return "info.circle.fill"
         case .warning: return "exclamationmark.triangle.fill"
@@ -36,19 +36,19 @@ extension FancyToastStyle {
     }
 }
 
-struct FancyToast: Equatable {
-    var type: FancyToastStyle
-    var title: String
-    var message: String
-    var duration: Double = 3
+internal struct FancyToast: Equatable {
+    internal var type: FancyToastStyle
+    internal var title: String
+    internal var message: String
+    internal var duration: Double = 3
 }
 
-struct FancyToastView: View {
-    var type: FancyToastStyle
-    var title: String
-    var message: String
-    var onCancelTapped: (() -> Void)
-    var body: some View {
+internal struct FancyToastView: View {
+    internal var type: FancyToastStyle
+    internal var title: String
+    internal var message: String
+    internal var onCancelTapped: (() -> Void)
+    internal var body: some View {
         VStack(alignment: .leading) {
             HStack(alignment: .top) {
                 Image(systemName: type.iconFileName)
@@ -91,11 +91,11 @@ struct FancyToastView: View {
     }
 }
 
-struct FancyToastModifier: ViewModifier {
-    @Binding var toast: FancyToast?
+internal struct FancyToastModifier: ViewModifier {
+    @Binding internal var toast: FancyToast?
     @State private var workItem: DispatchWorkItem?
     
-    func body(content: Content) -> some View {
+    internal func body(content: Content) -> some View {
         content
             //.frame(maxWidth: .infinity, maxHeight: .infinity)
             .overlay(
@@ -109,7 +109,7 @@ struct FancyToastModifier: ViewModifier {
             }
     }
     
-    @ViewBuilder func mainToastView() -> some View {
+    @ViewBuilder internal func mainToastView() -> some View {
         if let toast = toast {
             VStack {
                 Spacer()
@@ -151,8 +151,8 @@ struct FancyToastModifier: ViewModifier {
     }
 }
 
-extension View {
-    func toastView(toast: Binding<FancyToast?>) -> some View {
+internal extension View {
+    internal func toastView(toast: Binding<FancyToast?>) -> some View {
         self.modifier(FancyToastModifier(toast: toast))
     }
 }

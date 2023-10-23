@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  AppCoinProductServiceClient.swift
 //  
 //
 //  Created by aptoide on 15/05/2023.
@@ -7,15 +7,15 @@
 
 import Foundation
 
-class AppCoinProductServiceClient : AppCoinProductService {
+internal class AppCoinProductServiceClient : AppCoinProductService {
     
     private let endpoint: String
     
-    init(endpoint: String = BuildConfiguration.productServiceURL) {
+    internal init(endpoint: String = BuildConfiguration.productServiceURL) {
         self.endpoint = endpoint
     }
     
-    func getProductInformation(domain: String, result: @escaping (Result<GetProductInformationRaw, ProductServiceError>) -> Void) {
+    internal func getProductInformation(domain: String, result: @escaping (Result<GetProductInformationRaw, ProductServiceError>) -> Void) {
         if let url = URL(string: endpoint + "/applications/\(domain)/inapp/consumables") {
             let task = URLSession.shared.dataTask(with: url) { data, response, error in
                 if let error = error {
@@ -36,7 +36,7 @@ class AppCoinProductServiceClient : AppCoinProductService {
         }
     }
     
-    func getProductInformation(domain: String, sku: String, result: @escaping (Result<GetProductInformationRaw, ProductServiceError>) -> Void) {
+    internal func getProductInformation(domain: String, sku: String, result: @escaping (Result<GetProductInformationRaw, ProductServiceError>) -> Void) {
         if let url = URL(string: endpoint + "/applications/\(domain)/inapp/consumables/?skus=\(sku)") {
             let task = URLSession.shared.dataTask(with: url) { data, response, error in
                 if let error = error {
@@ -57,7 +57,7 @@ class AppCoinProductServiceClient : AppCoinProductService {
         }
     }
     
-    func acknowledgePurchase(domain: String, uid: String, wa: Wallet, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
+    internal func acknowledgePurchase(domain: String, uid: String, wa: Wallet, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
         let route = "/applications/\(domain)/inapp/purchases/\(uid)/acknowledge"
         if let url = URL(string: endpoint + route) {
             
@@ -90,7 +90,7 @@ class AppCoinProductServiceClient : AppCoinProductService {
         }
     }
     
-    func consumePurchase(domain: String, uid: String, wa: Wallet, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
+    internal func consumePurchase(domain: String, uid: String, wa: Wallet, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
         let route = "/applications/\(domain)/inapp/purchases/\(uid)/consume"
         if let url = URL(string: endpoint + route) {
             
@@ -123,7 +123,7 @@ class AppCoinProductServiceClient : AppCoinProductService {
         }
     }
     
-    func getPurchaseInformation(domain: String, uid: String, wa: Wallet, result: @escaping (Result<PurchaseInformationRaw, ProductServiceError>) -> Void) {
+    internal func getPurchaseInformation(domain: String, uid: String, wa: Wallet, result: @escaping (Result<PurchaseInformationRaw, ProductServiceError>) -> Void) {
         let route = "/applications/\(domain)/inapp/consumable/purchases/\(uid)"
         if let url = URL(string: endpoint + route) {
             
@@ -152,7 +152,7 @@ class AppCoinProductServiceClient : AppCoinProductService {
         }
     }
     
-    func getAllPurchases(domain: String, wa: Wallet, result: @escaping (Result<GetPurchasesRaw, ProductServiceError>) -> Void) {
+    internal func getAllPurchases(domain: String, wa: Wallet, result: @escaping (Result<GetPurchasesRaw, ProductServiceError>) -> Void) {
         let route = "/applications/\(domain)/inapp/consumable/purchases"
         if let url = URL(string: endpoint + route) {
             
@@ -181,7 +181,7 @@ class AppCoinProductServiceClient : AppCoinProductService {
         }
     }
     
-    func getAllPurchasesBySKU(domain: String, sku: String, wa: Wallet, result: @escaping (Result<GetPurchasesRaw, ProductServiceError>) -> Void) {
+    internal func getAllPurchasesBySKU(domain: String, sku: String, wa: Wallet, result: @escaping (Result<GetPurchasesRaw, ProductServiceError>) -> Void) {
         let route = "/applications/\(domain)/inapp/consumable/purchases"
         if let url = URL(string: endpoint + route + "?sku=\(sku)") {
             
@@ -210,7 +210,7 @@ class AppCoinProductServiceClient : AppCoinProductService {
         }
     }
     
-    func getPurchasesByState(domain: String, state: String, wa: Wallet, result: @escaping (Result<GetPurchasesRaw, ProductServiceError>) -> Void) {
+    internal func getPurchasesByState(domain: String, state: String, wa: Wallet, result: @escaping (Result<GetPurchasesRaw, ProductServiceError>) -> Void) {
         let route = "/applications/\(domain)/inapp/consumable/purchases"
         if let url = URL(string: endpoint + route + "?state=\(state)") {
             
@@ -239,7 +239,7 @@ class AppCoinProductServiceClient : AppCoinProductService {
         }
     }
     
-    func getDeveloperPublicKey(domain: String, completion: @escaping (Result<String, ProductServiceError>) -> Void) {
+    internal func getDeveloperPublicKey(domain: String, completion: @escaping (Result<String, ProductServiceError>) -> Void) {
         if let url = URL(string: endpoint + "/applications/\(domain)/public-key") {
             let task = URLSession.shared.dataTask(with: url) { data, response, error in
                 if let error = error {

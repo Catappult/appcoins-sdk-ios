@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "AppCoinsSDK",
+    defaultLocalization: "en",
     platforms: [
         .iOS(.v14)
     ],

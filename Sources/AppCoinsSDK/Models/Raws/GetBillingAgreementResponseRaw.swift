@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  GetBillingAgreementResponseRaw.swift
 //  
 //
 //  Created by aptoide on 20/06/2023.
@@ -7,26 +7,26 @@
 
 import Foundation
 
-struct GetBillingAgreementResponseRaw: Codable {
+internal struct GetBillingAgreementResponseRaw: Codable {
     
-    let uid: String
-    let created: String
+    internal let uid: String
+    internal let created: String
     
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case uid = "uid"
         case created = "created"
     }
     
 }
 
-struct GetBillingAgreementNotFoundResponseRaw: Codable {
+internal struct GetBillingAgreementNotFoundResponseRaw: Codable {
     
-    let code: String
-    let path: String
-    let text: String?
-    let data: String?
+    internal let code: String
+    internal let path: String
+    internal let text: String?
+    internal let data: String?
     
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case code = "code"
         case path = "path"
         case text = "text"

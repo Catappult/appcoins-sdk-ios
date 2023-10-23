@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Transaction.swift
 //  
 //
 //  Created by aptoide on 22/05/2023.
@@ -7,25 +7,25 @@
 
 import Foundation
 
-struct Transaction {
+internal struct Transaction {
     
-    let uid: String
-    let domain: String
-    let product: String
-    let walletFrom: String
-    let country: String
-    let type: String
-    let reference: String?
-    let hash: String?
-    let origin: String
-    let status: String
-    let developerPayload: String?
-    let purchaseUID: String?
-    let priceCurrency: String?
-    let priceValue: String?
-    let priceAppc: String?
+    internal let uid: String
+    internal let domain: String
+    internal let product: String
+    internal let walletFrom: String
+    internal let country: String
+    internal let type: String
+    internal let reference: String?
+    internal let hash: String?
+    internal let origin: String
+    internal let status: String
+    internal let developerPayload: String?
+    internal let purchaseUID: String?
+    internal let priceCurrency: String?
+    internal let priceValue: String?
+    internal let priceAppc: String?
     
-    init(uid: String, domain: String, product: String, walletFrom: String, country: String, type: String, reference: String?, hash: String?, origin: String, status: String, developerPayload: String?, purchaseUID: String?, priceCurrency: String?, priceValue: String?, priceAppc: String?) {
+    internal init(uid: String, domain: String, product: String, walletFrom: String, country: String, type: String, reference: String?, hash: String?, origin: String, status: String, developerPayload: String?, purchaseUID: String?, priceCurrency: String?, priceValue: String?, priceAppc: String?) {
         self.uid = uid
         self.domain = domain
         self.product = product
@@ -43,7 +43,7 @@ struct Transaction {
         self.priceAppc = priceAppc
     }
     
-    init(raw: GetTransactionInfoRaw) {
+    internal init(raw: GetTransactionInfoRaw) {
         self.uid = raw.uid
         self.domain = raw.domain
         self.product = raw.product
@@ -60,5 +60,4 @@ struct Transaction {
         self.priceValue = raw.price?.value
         self.priceAppc = raw.price?.appc
     }
-    
 }

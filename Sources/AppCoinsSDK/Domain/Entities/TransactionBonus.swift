@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  TransactionBonus.swift
 //  
 //
 //  Created by aptoide on 16/05/2023.
@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct TransactionBonus {
+internal struct TransactionBonus {
     
-    let value: Double
-    let currency: Coin
+    internal let value: Double
+    internal let currency: Coin
     
 }

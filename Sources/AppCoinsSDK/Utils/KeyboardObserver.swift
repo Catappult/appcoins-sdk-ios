@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  KeyboardObserver.swift
 //  
 //
 //  Created by aptoide on 29/08/2023.
@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-class KeyboardObserver: ObservableObject {
-    @Published var isKeyboardVisible = false
-    @Published var keyboardHeight: CGFloat = 0
+internal class KeyboardObserver: ObservableObject {
+    @Published internal var isKeyboardVisible = false
+    @Published internal var keyboardHeight: CGFloat = 0
     
-    static var shared : KeyboardObserver = KeyboardObserver()
+    static internal var shared : KeyboardObserver = KeyboardObserver()
     
-    init() {
+    internal init() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
@@ -22,21 +22,21 @@ class KeyboardObserver: ObservableObject {
         NotificationCenter.default.removeObserver(self)
     }
     
-    @objc func keyboardWillShow(_ notification: Notification) {
+    @objc internal func keyboardWillShow(_ notification: Notification) {
         isKeyboardVisible = true
         if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
             keyboardHeight = keyboardSize.height
         }
     }
     
-    @objc func keyboardWillHide(_ notification: Notification) {
+    @objc internal func keyboardWillHide(_ notification: Notification) {
         DispatchQueue.main.async {
             self.isKeyboardVisible = false
             self.keyboardHeight = 0
         }
     }
     
-    func findFirstResponder(in view: UIView) -> UIResponder? {
+    internal func findFirstResponder(in view: UIView) -> UIResponder? {
         if view.isFirstResponder {
             return view
         }

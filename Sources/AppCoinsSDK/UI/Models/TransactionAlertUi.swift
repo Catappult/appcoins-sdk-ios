@@ -7,25 +7,25 @@
 
 import Foundation
 
-struct TransactionAlertUi {
+internal struct TransactionAlertUi {
     
-    let domain: String?
-    let description: String?
-    let category: TransactionCategory?
-    let sku: String?
-    let moneyAmount: Double
-    let moneyCurrency: String
-    let appcAmount: Double
-    let bonusCurrency: String
-    let bonusAmount: Double
-    let walletBalance: String
-    var paymentMethods: [PaymentMethod]
+    internal let domain: String?
+    internal let description: String?
+    internal let category: TransactionCategory?
+    internal let sku: String?
+    internal let moneyAmount: Double
+    internal let moneyCurrency: String
+    internal let appcAmount: Double
+    internal let bonusCurrency: String
+    internal let bonusAmount: Double
+    internal let walletBalance: String
+    internal var paymentMethods: [PaymentMethod]
     
-    func getTitle() -> String {
+    internal func getTitle() -> String {
         return description ?? getCategory()
     }
     
-    func getCategory() -> String {
+    internal func getCategory() -> String {
         switch category {
         case .TRANSFER_OFF_CHAIN: return "Transfer"
         case .BONUS: return "Bonus"

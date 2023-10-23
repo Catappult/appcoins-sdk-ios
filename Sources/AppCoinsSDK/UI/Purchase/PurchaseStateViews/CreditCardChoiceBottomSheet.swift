@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  CreditCardChoiceBottomSheet.swift
 //  
 //
 //  Created by aptoide on 29/08/2023.
@@ -10,14 +10,15 @@ import Adyen
 import AdyenCard
 import URLImage
 
-struct CreditCardChoiceBottomSheet: View {
+internal struct CreditCardChoiceBottomSheet: View {
     
-    @ObservedObject var viewModel: BottomSheetViewModel
-    @ObservedObject var adyenController: AdyenController = AdyenController.shared
+    @ObservedObject internal var viewModel: BottomSheetViewModel
+    @ObservedObject internal var adyenController: AdyenController = AdyenController.shared
+    @ObservedObject internal var adyenViewModel: AdyenViewModel = AdyenViewModel.shared
     
-    @State var chosenStoredCard: StoredCardPaymentMethod?
+    @State internal var chosenStoredCard: StoredCardPaymentMethod?
     
-    init(viewModel: BottomSheetViewModel) {
+    internal init(viewModel: BottomSheetViewModel) {
         self.viewModel = viewModel
         
         if let firstStoredCard = AdyenController.shared.session?.sessionContext.paymentMethods.stored.first as? StoredCardPaymentMethod {
@@ -26,7 +27,7 @@ struct CreditCardChoiceBottomSheet: View {
         }
     }
     
-    var body: some View {
+    internal var body: some View {
         
         VStack(spacing: 0) {
             
@@ -90,14 +91,14 @@ struct CreditCardChoiceBottomSheet: View {
             }
             
             HStack(spacing: 0) {
-                Button(action: viewModel.payWithNewCreditCard) {
+                Button(action: adyenViewModel.payWithNewCreditCard) {
                     Text(Constants.addCard)
                         .foregroundColor(ColorsUi.APC_Pink)
                         .font(FontsUi.APC_Footnote_Bold)
                         .lineLimit(1)
                         .padding(.trailing, 8)
                 }
-                Button(action: viewModel.payWithNewCreditCard) {
+                Button(action: adyenViewModel.payWithNewCreditCard) {
                     Image(systemName: "chevron.forward")
                         .resizable()
                         .edgesIgnoringSafeArea(.all)
@@ -108,11 +109,7 @@ struct CreditCardChoiceBottomSheet: View {
                 .padding(.top, 9)
                 .padding(.bottom, 18)
             
-            Button(action: {
-                if let storedPaymentMethod = self.chosenStoredCard {
-                    viewModel.payWithStoredCreditCard(creditCard: storedPaymentMethod)
-                }
-            }) {
+            Button(action: { if let storedPaymentMethod = self.chosenStoredCard { adyenViewModel.payWithStoredCreditCard(creditCard: storedPaymentMethod) }}) {
                 ZStack {
                     ColorsUi.APC_Pink
                     

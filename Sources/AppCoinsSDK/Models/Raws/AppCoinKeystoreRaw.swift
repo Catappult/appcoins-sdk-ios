@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  AppCoinKeystoreRaw.swift
 //  
 //
 //  Created by aptoide on 16/05/2023.
@@ -7,15 +7,15 @@
 
 import Foundation
 
-struct AppCoinKeystoreRaw: Decodable, Encodable {
+internal struct AppCoinKeystoreRaw: Decodable, Encodable {
     
-    let crypto: CryptoParamsV3
-    let id: String?
-    let version: Int
-    let isHDWallet: Bool
-    let address: String?
+    internal let crypto: CryptoParamsV3
+    internal let id: String?
+    internal let version: Int
+    internal let isHDWallet: Bool
+    internal let address: String?
     
-    init(from decoder: Decoder) throws {
+    internal init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         crypto = try values.decodeIfPresent(CryptoParamsV3.self, forKey: .crypto)!
         id = try values.decodeIfPresent(String.self, forKey: .id)
@@ -24,32 +24,32 @@ struct AppCoinKeystoreRaw: Decodable, Encodable {
         isHDWallet = try values.decodeIfPresent(Bool.self, forKey: .isHDWallet) ?? false
     }
     
-    func toJSON() -> Data! {
+    internal func toJSON() -> Data! {
         return try! JSONEncoder().encode(self)
     }
 
 }
 
-struct KdfParamsV3: Decodable, Encodable {
-    let salt: String
-    let dklen: Int
-    let n: Int?
-    let p: Int?
-    let r: Int?
-    let c: Int?
-    let prf: String?
+internal struct KdfParamsV3: Decodable, Encodable {
+    internal let salt: String
+    internal let dklen: Int
+    internal let n: Int?
+    internal let p: Int?
+    internal let r: Int?
+    internal let c: Int?
+    internal let prf: String?
 }
 
-struct CipherParamsV3: Decodable, Encodable {
-    let iv: String
+internal struct CipherParamsV3: Decodable, Encodable {
+    internal let iv: String
 }
 
-struct CryptoParamsV3: Decodable, Encodable {
-    let ciphertext: String
-    let cipher: String
-    let cipherparams: CipherParamsV3
-    let kdf: String
-    let kdfparams: KdfParamsV3
-    let mac: String
-    let version: String?
+internal struct CryptoParamsV3: Decodable, Encodable {
+    internal let ciphertext: String
+    internal let cipher: String
+    internal let cipherparams: CipherParamsV3
+    internal let kdf: String
+    internal let kdfparams: KdfParamsV3
+    internal let mac: String
+    internal let version: String?
 }

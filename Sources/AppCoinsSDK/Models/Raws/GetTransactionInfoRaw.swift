@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  GetTransactionInfoRaw.swift
 //  
 //
 //  Created by aptoide on 22/05/2023.
@@ -7,23 +7,23 @@
 
 import Foundation
 
-struct GetTransactionInfoRaw: Codable {
+internal struct GetTransactionInfoRaw: Codable {
     
-    let uid: String
-    let domain: String
-    let product: String
-    let wallet_from: String
-    let country: String
-    let type: String
-    let reference: String?
-    let hash: String?
-    let origin: String
-    let status: String
-    let gateway: GetTransactionInfoGatewayRaw?
-    let metadata: GetTransactionInfoMetadataRaw?
-    let price: GetTransactionInfoPriceRaw?
+    internal let uid: String
+    internal let domain: String
+    internal let product: String
+    internal let wallet_from: String
+    internal let country: String
+    internal let type: String
+    internal let reference: String?
+    internal let hash: String?
+    internal let origin: String
+    internal let status: String
+    internal let gateway: GetTransactionInfoGatewayRaw?
+    internal let metadata: GetTransactionInfoMetadataRaw?
+    internal let price: GetTransactionInfoPriceRaw?
     
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case uid = "uid"
         case domain = "domain"
         case product = "product"
@@ -41,35 +41,35 @@ struct GetTransactionInfoRaw: Codable {
     
 }
 
-struct GetTransactionInfoGatewayRaw: Codable {
+internal struct GetTransactionInfoGatewayRaw: Codable {
     
-    let name: String
+    internal let name: String
 
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case name = "name"
     }
     
 }
 
-struct GetTransactionInfoMetadataRaw: Codable {
+internal struct GetTransactionInfoMetadataRaw: Codable {
     
-    let developer_payload: String?
-    let purchase_uid: String?
+    internal let developer_payload: String?
+    internal let purchase_uid: String?
 
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case developer_payload = "developer_payload"
         case purchase_uid = "purchase_uid"
     }
     
 }
 
-struct GetTransactionInfoPriceRaw: Codable {
+internal struct GetTransactionInfoPriceRaw: Codable {
     
-    let currency: String?
-    let value: String?
-    let appc: String?
+    internal let currency: String?
+    internal let value: String?
+    internal let appc: String?
 
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case currency = "currency"
         case value = "value"
         case appc = "appc"

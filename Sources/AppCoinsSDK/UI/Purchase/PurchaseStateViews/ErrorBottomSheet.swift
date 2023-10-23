@@ -9,12 +9,12 @@ import Foundation
 import SwiftUI
 import URLImage
 
-struct ErrorBottomSheet: View {
+internal struct ErrorBottomSheet: View {
     
-    @ObservedObject var viewModel: BottomSheetViewModel
+    @ObservedObject internal var viewModel: BottomSheetViewModel
     @State private var toast: FancyToast? = nil
     
-    var body: some View {
+    internal var body: some View {
 
         ZStack {
             ColorsUi.APC_DarkBlue

@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  StoredCreditCardAlert.swift
 //  
 //
 //  Created by aptoide on 29/08/2023.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct StoredCreditCardAlert: View {
+internal struct StoredCreditCardAlert: View {
     
-    init() {
+    internal init() {
         if let alertController = AdyenController.shared.presentableComponent?.viewController, let rootViewController = UIApplication.shared.windows.first?.rootViewController,
                let presentedPurchaseVC = rootViewController.presentedViewController as? PurchaseViewController {
                 alertController.removeFromParent()
@@ -17,7 +17,7 @@ struct StoredCreditCardAlert: View {
         }
     }
     
-    var body: some View {
+    internal var body: some View {
         EmptyView()
             .animation(.easeInOut(duration: 0.3))
     }

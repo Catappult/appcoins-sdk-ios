@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  TransactionCategory.swift
 //  
 //
 //  Created by aptoide on 07/03/2023.
@@ -7,9 +7,9 @@
 
 import Foundation
 
-enum TransactionCategory: String, Codable {
+internal enum TransactionCategory: String, Codable {
     
-    init(from decoder: Decoder) throws {
+    internal init(from decoder: Decoder) throws {
         self = try TransactionCategory(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? .STANDARD
     }
     

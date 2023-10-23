@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  AppCoinsSDKError.swift
 //  
 //
 //  Created by aptoide on 22/05/2023.

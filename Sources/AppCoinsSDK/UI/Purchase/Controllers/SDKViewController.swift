@@ -8,9 +8,9 @@
 import Foundation
 import SwiftUI
 
-struct SDKViewController {
+internal struct SDKViewController {
     
-    static func presentPurchase() {
+    internal static func presentPurchase() {
         guard let rootViewController = UIApplication.shared.windows.first?.rootViewController else {
             return
         }

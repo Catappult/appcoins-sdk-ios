@@ -8,9 +8,9 @@
 import Foundation
 import SwiftUI
 
-struct PaymentMethodUi {
+internal struct PaymentMethodUi {
     
-    let icon: String
-    let label: String
+    internal let icon: String
+    internal let label: String
     
 }

@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  AppCoinGamificationServiceClient.swift
 //  
 //
 //  Created by aptoide on 16/05/2023.
@@ -7,15 +7,15 @@
 
 import Foundation
 
-class AppCoinGamificationServiceClient : AppCoinGamificationService {
+internal class AppCoinGamificationServiceClient : AppCoinGamificationService {
     
     private let endpoint: String
     
-    init(endpoint: String = BuildConfiguration.gamificationServiceURL) {
+    internal init(endpoint: String = BuildConfiguration.gamificationServiceURL) {
         self.endpoint = endpoint
     }
     
-    func getTransactionBonus(address: String, package_name: String, amount: String, currency: Coin, result: @escaping (Result<TransactionBonusRaw, TransactionError>) -> Void) {
+    internal func getTransactionBonus(address: String, package_name: String, amount: String, currency: Coin, result: @escaping (Result<TransactionBonusRaw, TransactionError>) -> Void) {
         let route = "/bonus_forecast"
         if let url = URL(string: endpoint + route + "?address=\(address)&package_name=\(package_name)&amount=\(amount)&currency=\(currency.rawValue)") {
             let task = URLSession.shared.dataTask(with: url) { data, response, error in

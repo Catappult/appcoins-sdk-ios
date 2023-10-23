@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  TransactionRepositoryProtocol.swift
 //  
 //
 //  Created by aptoide on 15/05/2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol TransactionRepositoryProtocol {
+internal protocol TransactionRepositoryProtocol {
     
     func getTransactionBonus(address: String, package_name: String, amount: String, currency: Coin, completion: @escaping (Result<TransactionBonus, TransactionError>) -> Void)
     
@@ -47,9 +47,11 @@ protocol TransactionRepositoryProtocol {
     
     func hasBillingAgreement() -> Bool
     
-    func getLastPaymentMethod() -> String
+    func getLastPaymentMethod() -> Method?
     
-    func setLastPaymentMethod(paymentMethod: String)
+    func setLastPaymentMethod(paymentMethod: Method)
+    
+    func transferAPPC(wa: Wallet, raw: TransferAPPCRaw, completion: @escaping (Result<TransferAPPCResponseRaw, TransactionError>) -> Void)
     
 }
 

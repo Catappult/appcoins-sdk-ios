@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  WalletLocalClient.swift
 //  
 //
 //  Created by aptoide on 16/05/2023.
@@ -9,11 +9,11 @@ import Foundation
 import web3swift
 import Web3Core
 
-class WalletLocalClient : WalletLocalService {
+internal class WalletLocalClient : WalletLocalService {
     
     private var keystoreURL: URL?
     
-    init() {
+    internal init() {
         do {
             let documentsDirectory = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
             let keystore = documentsDirectory.appendingPathComponent("wallet_keystore")
@@ -24,7 +24,7 @@ class WalletLocalClient : WalletLocalService {
         }
     }
     
-    func getActiveWallet() -> Wallet? {
+    internal func getActiveWallet() -> Wallet? {
         if let keystoreURL = keystoreURL {
             // get active wallet address
             let active_address = Utils.readFromPreferences(key: "default-appcoins-wallet")
@@ -46,7 +46,29 @@ class WalletLocalClient : WalletLocalService {
         return nil
     }
     
-    func createNewWallet() throws -> Wallet? {
+    internal func getWalletList() -> [Wallet] {
+        if let keystoreURL = keystoreURL {
+            do {
+                var walletList: [Wallet] = []
+                let keystores = try FileManager.default.contentsOfDirectory(at: keystoreURL, includingPropertiesForKeys: nil)
+                for keystore in keystores {
+                    let keystore_password = Utils.readFromKeychain(key: keystore.lastPathComponent)
+                    if keystore_password != nil {
+                        if let wallet = Wallet(keystore, keystore_password!) {
+                            walletList.append(wallet)
+                        }
+                    }
+                }
+                return walletList
+            } catch {
+                return []
+            }
+        }
+        
+        return []
+    }
+    
+    internal func createNewWallet() throws -> Wallet? {
         if let keystoreURL = keystoreURL {
             do {
                 // generate a random password
@@ -113,11 +135,76 @@ class WalletLocalClient : WalletLocalService {
         return nil
     }
     
-    func getPrivateKey(address: String) -> Data? {
+    internal func importWallet(keystore: String, password: String, privateKey: String, completion: @escaping (Result<Wallet?, WalletLocalErrors>) -> Void) {
+        if let keystoreURL = keystoreURL {
+            if let keystoreData = keystore.data(using: .utf8), let jsonObject = try? JSONSerialization.jsonObject(with: keystoreData, options: []) as? [String: Any] {
+                if let address = jsonObject["address"] as? String {
+                    let fileURL = keystoreURL.appendingPathComponent(address)
+                    
+                    do { try keystoreData.write(to: (fileURL)) } catch {
+                        Utils.log(message: "1: \(error.localizedDescription)")
+                        completion(.failure(WalletLocalErrors.failedToCreate))
+                    }
+                    
+                    // store address password
+                    do { try Utils.writeToKeychain(key: address, value: password) }
+                    catch {
+                        try? FileManager.default.removeItem(atPath: fileURL.path)
+                        
+                        Utils.log(message: "2: \(error.localizedDescription)")
+                        completion(.failure(WalletLocalErrors.failedToCreate))
+                    }
+                    
+                    // store private key
+                    do {
+                        try Utils.writeToKeychain(key: "\(address)-pk", value: privateKey)
+                    }
+                    catch {
+                        try? FileManager.default.removeItem(atPath: fileURL.path)
+                        Utils.deleteFromKeychain(key: "\(address)-pk")
+                        
+                        Utils.log(message: "\(error.localizedDescription)")
+                        completion(.failure(WalletLocalErrors.failedToCreate))
+                    }
+                    
+                    // make new address active
+                    do {
+                        try Utils.writeToPreferences(key: "default-appcoins-wallet", value: address)
+                        self.updateWalletSyncingStatus(status: .accepted)
+                        
+                        completion(.success(Wallet(fileURL, password)))
+                    }
+                    catch {
+                        try? FileManager.default.removeItem(atPath: fileURL.path)
+                        Utils.deleteFromKeychain(key: "\(address)-pk")
+                        Utils.deleteFromKeychain(key: address)
+                        
+                        Utils.log(message: "4: \(error.localizedDescription)")
+                        completion(.failure(WalletLocalErrors.failedToCreate))
+                    }
+                } else { completion(.failure(WalletLocalErrors.failedToCreate)) }
+            } else { completion(.failure(WalletLocalErrors.failedToCreate)) }
+        } else { completion(.failure(WalletLocalErrors.failedToCreate)) }
+    }
+    
+    internal func getPrivateKey(address: String) -> Data? {
         if let privateKeyString = Utils.readFromKeychain(key: "\(address)-pk") {
             return Data(base64Encoded: privateKeyString)
         } else {
             return nil
         }
     }
+    
+    internal func getWalletSyncingStatus() -> WalletSyncingStatus {
+        switch Utils.readFromPreferences(key: "walletSyncingStatus") {
+            case "accepted": return .accepted
+            case "rejected": return .rejected
+            default: return .none
+        }
+    }
+    
+    internal func updateWalletSyncingStatus(status: WalletSyncingStatus) {
+        try? Utils.writeToPreferences(key: "walletSyncingStatus", value: status.rawValue)
+    }
 }
+

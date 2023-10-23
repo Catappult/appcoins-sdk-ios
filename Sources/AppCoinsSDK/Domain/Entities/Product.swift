@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Product.swift
 //  
 //
 //  Created by aptoide on 15/05/2023.
@@ -18,7 +18,7 @@ public struct Product {
     public let priceLabel: String
     public let priceSymbol: String
     
-    init(sku: String, title: String, description: String, priceCurrency: String, priceValue: String, priceLabel: String, priceSymbol: String) {
+    internal init(sku: String, title: String, description: String, priceCurrency: String, priceValue: String, priceLabel: String, priceSymbol: String) {
         self.sku = sku
         self.title = title
         self.description = description
@@ -28,7 +28,7 @@ public struct Product {
         self.priceSymbol = priceSymbol
     }
     
-    init(raw: ProductInformationRaw) {
+    internal init(raw: ProductInformationRaw) {
         self.sku = raw.sku
         self.title = raw.title
         self.description = raw.description
@@ -83,7 +83,7 @@ public struct Product {
         }
     }
     
-    public func purchase(domain: String = (Bundle.main.bundleIdentifier ?? ""), payload: String = "", orderID: String = String(Date.timeIntervalSinceReferenceDate), completion: @escaping (TransactionResult) -> Void) {
+    public func purchase(domain: String = (Bundle.main.bundleIdentifier ?? ""), payload: String? = nil, orderID: String = String(Date.timeIntervalSinceReferenceDate), completion: @escaping (TransactionResult) -> Void) {
         
         if BottomSheetViewModel.shared.hasActiveTransaction {
             completion(.failed(error: .purchaseNotAllowed))
@@ -111,7 +111,5 @@ public struct Product {
                 }
             }
         }
-        
     }
-    
 }

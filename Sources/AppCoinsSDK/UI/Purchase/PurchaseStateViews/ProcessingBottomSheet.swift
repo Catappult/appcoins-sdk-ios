@@ -9,12 +9,12 @@ import Foundation
 import SwiftUI
 import URLImage
 
-struct ProcessingBottomSheet: View {
+internal struct ProcessingBottomSheet: View {
     
-    @ObservedObject var viewModel: BottomSheetViewModel
+    @ObservedObject internal var viewModel: BottomSheetViewModel
     @State private var isPresented = false
     
-    var body: some View {
+    internal var body: some View {
 
         ZStack {
             ColorsUi.APC_DarkBlue
@@ -27,7 +27,7 @@ struct ProcessingBottomSheet: View {
                     .frame(width: 83, height: 24)
                     .padding(.top, 24)
                 
-                Image(uiImage: viewModel.getAppIcon())
+                Image(uiImage: Utils.getAppIcon())
                     .resizable()
                     .scaledToFit()
                     .frame(width: 83, height: 83)
@@ -40,10 +40,10 @@ struct ProcessingBottomSheet: View {
                     .padding(.top, 50)
                     .padding(.bottom, 74)
                 
-            }.frame(height: 348, alignment: .top)
+            }.frame(height: 314 + Utils.bottomSafeAreaHeight, alignment: .top)
             
             
-        }.frame(width: UIScreen.main.bounds.size.width, height: 348)
+        }.frame(width: UIScreen.main.bounds.size.width, height: 314 + Utils.bottomSafeAreaHeight)
             .cornerRadius(13, corners: [.topLeft, .topRight])
             .offset(y: isPresented ? 0 : UIScreen.main.bounds.height)
             .transition(.move(edge: isPresented ? .bottom : .top))

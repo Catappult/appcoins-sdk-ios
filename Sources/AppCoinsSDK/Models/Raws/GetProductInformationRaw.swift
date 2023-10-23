@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  GetProductInformationRaw.swift
 //  
 //
 //  Created by aptoide on 15/05/2023.
@@ -7,24 +7,24 @@
 
 import Foundation
 
-struct GetProductInformationRaw: Codable {
+internal struct GetProductInformationRaw: Codable {
     
-    let items: [ProductInformationRaw]?
+    internal let items: [ProductInformationRaw]?
     
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case items = "items"
     }
     
 }
 
-struct ProductInformationRaw: Codable {
+internal struct ProductInformationRaw: Codable {
     
-    let sku: String
-    let title: String
-    let description: String?
-    let price: ProductPriceInformationRaw
+    internal let sku: String
+    internal let title: String
+    internal let description: String?
+    internal let price: ProductPriceInformationRaw
     
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case sku = "sku"
         case title = "title"
         case description = "description"
@@ -33,14 +33,14 @@ struct ProductInformationRaw: Codable {
     
 }
 
-struct ProductPriceInformationRaw: Codable {
+internal struct ProductPriceInformationRaw: Codable {
     
-    let currency: String
-    let value: String
-    let label: String
-    let symbol: String
+    internal let currency: String
+    internal let value: String
+    internal let label: String
+    internal let symbol: String
     
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case currency = "currency"
         case value = "value"
         case label = "label"

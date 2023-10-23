@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  AdyenSession.swift
 //  
 //
 //  Created by aptoide on 29/08/2023.
@@ -7,25 +7,25 @@
 
 import Foundation
 
-struct AdyenTransactionSession {
+internal struct AdyenTransactionSession {
     
-    let transactionUID: String
-    let sessionID: String
-    let sessionData: String
+    internal let transactionUID: String
+    internal let sessionID: String
+    internal let sessionData: String
     
-    init(transactionUID: String, sessionID: String, sessionData: String) {
+    internal init(transactionUID: String, sessionID: String, sessionData: String) {
         self.transactionUID = transactionUID
         self.sessionID = sessionID
         self.sessionData = sessionData
     }
     
-    init(raw: CreateAdyenTransactionResponseRaw) {
+    internal init(raw: CreateAdyenTransactionResponseRaw) {
         self.transactionUID = raw.uuid
         self.sessionID = raw.session.sessionID
         self.sessionData = raw.session.sessionData
     }
     
-    init(raw: TopUpAdyenResponseRaw) {
+    internal init(raw: TopUpAdyenResponseRaw) {
         self.transactionUID = raw.uuid
         self.sessionID = raw.session.sessionID
         self.sessionData = raw.session.sessionData

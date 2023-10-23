@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  PaymentMethodQuickIcon.swift
 //  
 //
 //  Created by aptoide on 20/06/2023.
@@ -8,11 +8,11 @@
 import SwiftUI
 import URLImage
 
-struct PaymentMethodQuickIcon: View {
+internal struct PaymentMethodQuickIcon: View {
     
-    var icon: URL
+    internal var icon: URL
     
-    var body: some View {
+    internal var body: some View {
         URLImage(icon,
                  inProgress: { progress in
                     RoundedRectangle(cornerRadius: 0)

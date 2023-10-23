@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  CreateBAPayPalTransactionRaw.swift
 //  
 //
 //  Created by aptoide on 20/06/2023.
@@ -7,20 +7,20 @@
 
 import Foundation
 
-struct CreateBAPayPalTransactionRaw: Codable {
+internal struct CreateBAPayPalTransactionRaw: Codable {
     
-    let origin: String?
-    let domain: String
-    let price: String?
-    let priceCurrency: String
-    let product: String?
-    let type: String
-    let developerWa: String
-    let userWa: String
-    let metadata: String?
-    let reference: String?
+    internal let origin: String?
+    internal let domain: String
+    internal let price: String?
+    internal let priceCurrency: String
+    internal let product: String?
+    internal let type: String
+    internal let developerWa: String
+    internal let userWa: String
+    internal let metadata: String?
+    internal let reference: String?
     
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case origin = "origin"
         case domain = "domain"
         case price = "price.value"
@@ -33,35 +33,28 @@ struct CreateBAPayPalTransactionRaw: Codable {
         case reference = "reference"
     }
     
-    static func fromDictionary(dictionary: [String : String]) -> CreateBAPayPalTransactionRaw {
+    internal static func fromParameters(parameters: TransactionParameters) -> CreateBAPayPalTransactionRaw {
         // normalizes the price to adjust to different time zone price syntaxes
-        let normalizedPrice = (dictionary["value"] ?? "0.0").replacingOccurrences(of: ",", with: ".")
-        
-        var metadata: String?
-        if dictionary["metadata"] == "" { metadata = nil } else { metadata = dictionary["metadata"] }
-        var reference: String?
-        if dictionary["reference"] == "" { reference = nil } else { reference = dictionary["reference"] }
+        let normalizedPrice = parameters.value.replacingOccurrences(of: ",", with: ".")
         
         return CreateBAPayPalTransactionRaw(
-            origin: "BDS", domain: dictionary["domain"]!, price: normalizedPrice, priceCurrency: dictionary["currency"]!,
-            product: dictionary["product"], type: "INAPP", developerWa: dictionary["developerWa"]!, userWa: dictionary["userWa"]!,
-            metadata: metadata, reference: reference
+            origin: "BDS", domain: parameters.domain, price: normalizedPrice, priceCurrency: parameters.currency, product: parameters.product, type: "INAPP", developerWa: parameters.developerWa, userWa: parameters.userWa, metadata: parameters.metadata, reference: parameters.reference
         )
     }
     
-    func toJSON() -> Data? {
+    internal func toJSON() -> Data? {
         return try? JSONEncoder().encode(self)
     }
     
 }
 
-struct CreateBAPayPalTransactionResponseRaw: Codable {
+internal struct CreateBAPayPalTransactionResponseRaw: Codable {
     
-    let uuid: String
-    let status: CreateBAPayPalTransactionStatus
-    let hash: String?
+    internal let uuid: String
+    internal let status: CreateBAPayPalTransactionStatus
+    internal let hash: String?
     
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case uuid = "uid"
         case status = "status"
         case hash = "hash"
@@ -69,14 +62,14 @@ struct CreateBAPayPalTransactionResponseRaw: Codable {
     
 }
 
-struct CreateBAPayPalBillingAgreementNotFoundResponseRaw: Codable {
+internal struct CreateBAPayPalBillingAgreementNotFoundResponseRaw: Codable {
     
-    let code: String
-    let path: String?
-    let text: String?
-    let data: String?
+    internal let code: String
+    internal let path: String?
+    internal let text: String?
+    internal let data: String?
     
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case code = "code"
         case path = "path"
         case text = "text"
@@ -85,9 +78,9 @@ struct CreateBAPayPalBillingAgreementNotFoundResponseRaw: Codable {
     
 }
 
-enum CreateBAPayPalTransactionStatus: String, Codable {
+internal enum CreateBAPayPalTransactionStatus: String, Codable {
     
-    init(from decoder: Decoder) throws {
+    internal init(from decoder: Decoder) throws {
         self = try CreateBAPayPalTransactionStatus(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? .UNKNOWN
     }
     

@@ -1,20 +1,19 @@
 //
 //  KeychainHelper.swift
-//  appcoins-wallet-ios
+//
 //
 //  Created by aptoide on 16/05/2023.
-//  Copyright © 2023 Tiago Teodoro. All rights reserved.
 //
 
 import Foundation
 import os
 
-final class KeychainHelper {
+final internal class KeychainHelper {
     
-    static let standard = KeychainHelper()
-    let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "network")
+    static internal let standard = KeychainHelper()
+    internal let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "network")
     
-    func save<T>(_ item: T, service: String, account: String) throws where T : Codable {
+    internal func save<T>(_ item: T, service: String, account: String) throws where T : Codable {
         
         do {
             // Encode as JSON data and save in keychain
@@ -26,7 +25,7 @@ final class KeychainHelper {
         }
     }
     
-    func read<T>(service: String, account: String, type: T.Type) -> T? where T : Codable {
+    internal func read<T>(service: String, account: String, type: T.Type) -> T? where T : Codable {
         
         // Read item data from keychain
         guard let data = read(service: service, account: account) else {
@@ -43,7 +42,7 @@ final class KeychainHelper {
         }
     }
     
-    func save(_ data: Data, service: String, account: String) throws {
+    internal func save(_ data: Data, service: String, account: String) throws {
         
         // Create query
         let query = [
@@ -78,7 +77,7 @@ final class KeychainHelper {
         
     }
     
-    func read(service: String, account: String) -> Data? {
+    internal func read(service: String, account: String) -> Data? {
         
         let query = [
             kSecAttrService: service,
@@ -93,7 +92,7 @@ final class KeychainHelper {
         return (result as? Data)
     }
 
-    func delete(service: String, account: String) {
+    internal func delete(service: String, account: String) {
         
         let query = [
             kSecAttrService: service,
@@ -106,10 +105,10 @@ final class KeychainHelper {
     }
 }
 
-enum KeychainError: Error {
+internal enum KeychainError: Error {
   case error
 }
 
-enum PreferencesError: Error {
+internal enum PreferencesError: Error {
   case error
 }

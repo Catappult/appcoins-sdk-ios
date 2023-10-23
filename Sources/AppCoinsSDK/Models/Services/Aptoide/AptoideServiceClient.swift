@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  AptoideServiceClient.swift
 //  
 //
 //  Created by aptoide on 18/05/2023.
@@ -7,15 +7,15 @@
 
 import Foundation
 
-class AptoideServiceClient : AptoideService {
+internal class AptoideServiceClient : AptoideService {
 
     private let endpoint: String
     
-    init(endpoint: String = BuildConfiguration.aptoideServiceURL) {
+    internal init(endpoint: String = BuildConfiguration.aptoideServiceURL) {
         self.endpoint = endpoint
     }
     
-    func getDeveloperWalletAddressByPackageName(package: String, result: @escaping (Result<FindDeveloperWalletAddressRaw, AptoideServiceError>) -> Void) {
+    internal func getDeveloperWalletAddressByPackageName(package: String, result: @escaping (Result<FindDeveloperWalletAddressRaw, AptoideServiceError>) -> Void) {
         let route = "/bds/apks/package/getOwnerWallet"
         if let url = URL(string: endpoint + route + "/package_name=\(package)") {
             let task = URLSession.shared.dataTask(with: url) { data, response, error in

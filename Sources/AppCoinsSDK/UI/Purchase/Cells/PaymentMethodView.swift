@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  PaymentMethodView.swift
 //  
 //
 //  Created by aptoide on 09/03/2023.
@@ -9,14 +9,14 @@ import Foundation
 import SwiftUI
 import URLImage
 
-struct PaymentMethodView: View, Identifiable, Equatable {
+internal struct PaymentMethodView: View, Identifiable, Equatable {
     
-    let id = UUID()
-    let icon: String
-    let name: String
-    let disabled: Bool
+    internal let id = UUID()
+    internal let icon: String
+    internal let name: String
+    internal let disabled: Bool
     
-    var body: some View {
+    internal var body: some View {
         HStack(spacing: 0) {
             if let icon = URL(string: icon) {
                 URLImage(icon,

@@ -1,6 +1,6 @@
 //
 //  BuildConfiguration.swift
-//  appcoins-sdk
+//
 //
 //  Created by aptoide on 02/03/2023.
 //
@@ -9,18 +9,18 @@ import Foundation
 import SwiftUI
 import Adyen
 
-class BuildConfiguration {
-    static let shared = BuildConfiguration()
+internal class BuildConfiguration {
+    static internal let shared = BuildConfiguration()
     
     // For now we only work on dev environment
-    static var environment: SDKEnvironment = .debugSDKDev
+    static internal var environment: SDKEnvironment = .debugSDKDev
     
     
-    static var packageName : String {
+    static internal var packageName : String {
         return Bundle.main.bundleIdentifier ?? ""
     }
     
-    static var appcDomain: String {
+    static internal var appcDomain: String {
         switch environment {
             case .debugSDKDev, .releaseSDKDev:
                 return "com.appcoins.wallet.dev"
@@ -29,7 +29,7 @@ class BuildConfiguration {
         }
     }
     
-    static var productServiceURL: String {
+    static internal var productServiceURL: String {
         switch environment {
             case .debugSDKDev, .releaseSDKDev:
                 return "https://api.dev.catappult.io/productv2/8.20200701"
@@ -38,7 +38,7 @@ class BuildConfiguration {
         }
     }
     
-    static var gamificationServiceURL: String {
+    static internal var gamificationServiceURL: String {
         switch environment {
             case .debugSDKDev, .releaseSDKDev:
                 return "https://apichain.dev.catappult.io/gamification"
@@ -47,7 +47,7 @@ class BuildConfiguration {
         }
     }
     
-    static var aptoideIosServiceURL: String {
+    static internal var aptoideIosServiceURL: String {
         switch environment {
             case .debugSDKDev, .releaseSDKDev:
                 return "https://api.aptoide.com/aptoide-ios/8.20220701"
@@ -56,7 +56,7 @@ class BuildConfiguration {
         }
     }
     
-    static var aptoideServiceURL: String {
+    static internal var aptoideServiceURL: String {
         switch environment {
             case .debugSDKDev, .releaseSDKDev:
                 return "https://ws75-devel.aptoide.com/api/7"
@@ -65,7 +65,7 @@ class BuildConfiguration {
         }
     }
     
-    static var billingServiceURL: String {
+    static internal var billingServiceURL: String {
         switch environment {
             case .debugSDKDev, .releaseSDKDev:
                 return "https://api.dev.catappult.io/broker/8.20200815"
@@ -74,7 +74,7 @@ class BuildConfiguration {
         }
     }
     
-    static var transactionServiceURL: String {
+    static internal var transactionServiceURL: String {
         switch environment {
             case .debugSDKDev, .releaseSDKDev:
                 return "https://apichain.dev.catappult.io/transaction"
@@ -83,7 +83,7 @@ class BuildConfiguration {
         }
     }
     
-    static var APPCServiceURL: String {
+    static internal var APPCServiceURL: String {
         switch environment {
             case .debugSDKDev, .releaseSDKDev:
                 return "https://apichain.dev.catappult.io/appc"
@@ -92,12 +92,14 @@ class BuildConfiguration {
         }
     }
     
-    static var adyenEnvironment: Adyen.Environment = .test
+    static internal var adyenEnvironment: Adyen.Environment = .test
     
-    static var userUID =  UIDevice.current.identifierForVendor!.uuidString
+    static internal var userUID =  UIDevice.current.identifierForVendor!.uuidString
+    
+    static internal var integratedMethods: [Method] = [.appc, .paypalAdyen, .paypalDirect, .creditCard]
 }
 
-enum SDKEnvironment: String {
+internal enum SDKEnvironment: String {
     case debugSDKDev = "Debug AppCoins SDK Dev"
     case releaseSDKDev = "Release AppCoins SDK Dev"
 

@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  CreateBillingAgreementResponseRaw.swift
 //  
 //
 //  Created by aptoide on 20/06/2023.
@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct CreateBillingAgreementResponseRaw: Codable {
+internal struct CreateBillingAgreementResponseRaw: Codable {
     
-    let uid: String
+    internal let uid: String
     
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case uid = "uid"
     }
 }

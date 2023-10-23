@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  ProductRepository.swift
 //  
 //
 //  Created by aptoide on 15/05/2023.
@@ -7,12 +7,12 @@
 
 import Foundation
 
-class ProductRepository: ProductRepositoryProtocol {
+internal class ProductRepository: ProductRepositoryProtocol {
     
     private let productService: AppCoinProductService = AppCoinProductServiceClient()
     private let billingService: AppCoinBillingService = AppCoinBillingClient()
 
-    func getProduct(domain: String, product: String, completion: @escaping (Result<Product, ProductServiceError>) -> Void) {
+    internal func getProduct(domain: String, product: String, completion: @escaping (Result<Product, ProductServiceError>) -> Void) {
         productService.getProductInformation(domain: domain, sku: product) {
             result in
             
@@ -29,7 +29,7 @@ class ProductRepository: ProductRepositoryProtocol {
         }
     }
     
-    func getAllProducts(domain: String, completion: @escaping (Result<[Product], ProductServiceError>) -> Void) {
+    internal func getAllProducts(domain: String, completion: @escaping (Result<[Product], ProductServiceError>) -> Void) {
         productService.getProductInformation(domain: domain) {
             result in
             
@@ -50,7 +50,7 @@ class ProductRepository: ProductRepositoryProtocol {
         }
     }
     
-    func getProductAppcValue(product: Product, completion: @escaping (Result<String, BillingError>) -> Void) {
+    internal func getProductAppcValue(product: Product, completion: @escaping (Result<String, BillingError>) -> Void) {
         
         if let fromCurrency = Coin(rawValue: product.priceCurrency) {
             billingService.convertCurrency(money: product.priceValue, fromCurrency: fromCurrency, toCurrency: .APPC) {

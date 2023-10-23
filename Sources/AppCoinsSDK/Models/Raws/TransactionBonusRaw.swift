@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  TransactionBonusRaw.swift
 //  
 //
 //  Created by aptoide on 16/05/2023.
@@ -7,15 +7,15 @@
 
 import Foundation
 
-struct TransactionBonusRaw: Codable {
+internal struct TransactionBonusRaw: Codable {
 
-    let level: Int
-    let bonus: Double
-    let status: String
-    let currency: String
-    let perks_bonus: [PerkBonusRaw]?
+    internal let level: Int
+    internal let bonus: Double
+    internal let status: String
+    internal let currency: String
+    internal let perks_bonus: [PerkBonusRaw]?
     
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case level = "level"
         case bonus = "bonus"
         case status = "status"
@@ -25,12 +25,12 @@ struct TransactionBonusRaw: Codable {
     
 }
 
-struct PerkBonusRaw: Codable {
+internal struct PerkBonusRaw: Codable {
     
-    let perk: String
-    let bonus_amount: Double
+    internal let perk: String
+    internal let bonus_amount: Double
     
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case perk = "perk"
         case bonus_amount = "bonus_amount"
     }

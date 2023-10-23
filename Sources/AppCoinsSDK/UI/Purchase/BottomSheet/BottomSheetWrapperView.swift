@@ -8,16 +8,16 @@
 import Foundation
 import UIKit
 
-class BottomSheetWrapperView<Content: UIView>: UIView {
-    let contentView: Content
+internal class BottomSheetWrapperView<Content: UIView>: UIView {
+    internal let contentView: Content
     
-    init(content: @escaping () -> Content) {
+    internal init(content: @escaping () -> Content) {
         self.contentView = content()
         super.init(frame: .zero)
         self.setup()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required internal init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     

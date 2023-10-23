@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  GetPaymentMethodsRaw.swift
 //  
 //
 //  Created by aptoide on 17/05/2023.
@@ -7,27 +7,27 @@
 
 import Foundation
 
-struct GetPaymentMethodsRaw: Codable {
+internal struct GetPaymentMethodsRaw: Codable {
     
-    let items: [PaymentMethodsRaw]?
+    internal let items: [PaymentMethodsRaw]?
     
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case items = "items"
     }
     
 }
 
-struct PaymentMethodsRaw: Codable {
+internal struct PaymentMethodsRaw: Codable {
     
-    let name: String
-    let label: String
-    let icon: String
-    let status: String
-    let message: String?
-    let gateway: PaymentMethodsGatewayRaw?
-    let fee: String?
+    internal let name: String
+    internal let label: String
+    internal let icon: String
+    internal let status: String
+    internal let message: String?
+    internal let gateway: PaymentMethodsGatewayRaw?
+    internal let fee: String?
     
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case name = "name"
         case label = "label"
         case icon = "icon"
@@ -39,11 +39,11 @@ struct PaymentMethodsRaw: Codable {
     
 }
 
-struct PaymentMethodsGatewayRaw: Codable {
+internal struct PaymentMethodsGatewayRaw: Codable {
     
-    let name: String?
+    internal let name: String?
     
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case name = "name"
     }
     

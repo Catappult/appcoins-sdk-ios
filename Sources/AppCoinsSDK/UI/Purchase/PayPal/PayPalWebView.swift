@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  PayPalWebView.swift
 //  
 //
 //  Created by aptoide on 20/06/2023.
@@ -8,13 +8,13 @@
 import SwiftUI
 import WebKit
 
-struct PayPalWebView: UIViewRepresentable {
-    var url: URL
-    var method: String
-    var successHandler: (_ token: String) -> Void
-    var cancelHandler: (_ token: String?) -> Void
+internal struct PayPalWebView: UIViewRepresentable {
+    internal var url: URL
+    internal var method: String
+    internal var successHandler: (_ token: String) -> Void
+    internal var cancelHandler: (_ token: String?) -> Void
     
-    func makeUIView(context: Context) -> WKWebView {
+    internal func makeUIView(context: Context) -> WKWebView {
         let webView = WKWebView()
         webView.navigationDelegate = context.coordinator
         context.coordinator.webView = webView
@@ -26,25 +26,25 @@ struct PayPalWebView: UIViewRepresentable {
         return webView
     }
 
-    func updateUIView(_ uiView: WKWebView, context: Context) {}
+    internal func updateUIView(_ uiView: WKWebView, context: Context) {}
 
-    func makeCoordinator() -> Coordinator {
+    internal func makeCoordinator() -> Coordinator {
         Coordinator(parent: self)
     }
 
-    class Coordinator: NSObject, WKNavigationDelegate {
-        let parent: PayPalWebView
-        var webView: WKWebView?
+    internal class Coordinator: NSObject, WKNavigationDelegate {
+        internal let parent: PayPalWebView
+        internal var webView: WKWebView?
 
-        init(parent: PayPalWebView) {
+        internal init(parent: PayPalWebView) {
             self.parent = parent
         }
 
-        func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        internal func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
             // The web page finished loading
         }
 
-        func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        internal func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
             let successURL = BuildConfiguration.billingServiceURL + "/gateways/paypal/billing-agreement/token/return/success"
             let cancelURL = BuildConfiguration.billingServiceURL + "/gateways/paypal/billing-agreement/token/return/cancel"
             

@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Purchase.swift
 //  
 //
 //  Created by aptoide on 24/05/2023.
@@ -13,10 +13,10 @@ public class Purchase: Codable {
     public let sku: String
     public var state: String
     public let orderUid: String
-    public let payload: String
+    public let payload: String?
     public let created: String
     
-    init(uid: String, sku: String, state: String, orderUid: String, payload: String, created: String) {
+    internal init(uid: String, sku: String, state: String, orderUid: String, payload: String?, created: String) {
         self.uid = uid
         self.sku = sku
         self.state = state
@@ -25,7 +25,7 @@ public class Purchase: Codable {
         self.created = created
     }
     
-    init(raw: PurchaseInformationRaw) {
+    internal init(raw: PurchaseInformationRaw) {
         self.uid = raw.uid
         self.sku = raw.sku
         self.state = raw.state
@@ -34,7 +34,7 @@ public class Purchase: Codable {
         self.created = raw.created
     }
     
-    static func verify(purchaseUID: String, completion: @escaping (Result<Purchase, AppCoinsSDKError>) -> Void ) {
+    internal static func verify(purchaseUID: String, completion: @escaping (Result<Purchase, AppCoinsSDKError>) -> Void ) {
         let walletUseCases = WalletUseCases.shared
         let transactionUseCases = TransactionUseCases.shared
         let domain = Bundle.main.bundleIdentifier ?? ""
@@ -58,7 +58,7 @@ public class Purchase: Codable {
     }
     
     // only accessible internally – the SDK acknowledges the purchase
-    func acknowledge(completion: @escaping (AppCoinsSDKError?) -> Void) {
+    internal func acknowledge(completion: @escaping (AppCoinsSDKError?) -> Void) {
         let walletUseCases = WalletUseCases.shared
         let transactionUseCases = TransactionUseCases.shared
         let domain = Bundle.main.bundleIdentifier ?? ""
@@ -90,26 +90,39 @@ public class Purchase: Codable {
         let walletUseCases = WalletUseCases.shared
         let transactionUseCases = TransactionUseCases.shared
         
-        if let wallet = walletUseCases.getClientWallet() {
-            
-            let domain = Bundle.main.bundleIdentifier ?? ""
-            transactionUseCases.consumePurchase(domain: domain, uid: self.uid, wa: wallet) {
-                result in
-                switch result {
-                case .success(_):
-                    self.state = "CONSUMED"
-                    completion(nil)
-                case .failure(let failure):
-                    switch failure {
-                    case .failed(_):
-                        completion(.unknown)
-                    case .noInternet:
-                        completion(.networkError)
-                    default:
-                        completion(.unknown)
+        let walletList = walletUseCases.getWalletList()
+        let domain = Bundle.main.bundleIdentifier ?? ""
+        
+        let group = DispatchGroup()
+        let queue = DispatchQueue(label: "consume-queue", attributes: .concurrent)
+        
+        var isConsumed = false
+        var isNetworkError = false
+        
+        for wallet in walletList {
+            group.enter()
+            queue.async {
+                transactionUseCases.consumePurchase(domain: domain, uid: self.uid, wa: wallet) {
+                    result in
+                    switch result {
+                    case .success(_):
+                        self.state = "CONSUMED"
+                        isConsumed = true
+                    case .failure(let failure):
+                        switch failure {
+                        case .noInternet: isNetworkError = true
+                        default: break
+                        }
                     }
-                }
+                    group.leave()
             }
+            }
+        }
+        
+        group.notify(queue: .main) {
+            if isConsumed { completion(nil) }
+            else if isNetworkError { completion(.networkError) }
+            else { completion(.unknown) }
         }
     }
     
@@ -118,18 +131,40 @@ public class Purchase: Codable {
         let walletUseCases = WalletUseCases.shared
         let transactionUseCases = TransactionUseCases.shared
         
-        if let wallet = walletUseCases.getClientWallet() {
-            let domain = Bundle.main.bundleIdentifier ?? ""
-            transactionUseCases.getAllPurchases(domain: domain, wa: wallet) {
-                result in
-                switch result {
-                case .success(let purchases):
-                    completion(.success(purchases))
-                case .failure(let failure):
-                    if failure == .failed { completion(.failure(.systemError)) }
-                    else if failure == .noInternet { completion(.failure(.networkError)) }
-                    else { completion(.failure(.unknown)) }
+        let walletList = walletUseCases.getWalletList()
+        let domain = Bundle.main.bundleIdentifier ?? ""
+        
+        let group = DispatchGroup()
+        let queue = DispatchQueue(label: "get-all-purchases-queue", attributes: .concurrent)
+        
+        var purchaseList : [Purchase] = []
+        var error : AppCoinsSDKError? = nil
+        
+        for wallet in walletList {
+            group.enter()
+            queue.async {
+                transactionUseCases.getAllPurchases(domain: domain, wa: wallet) {
+                    result in
+                    
+                    switch result {
+                    case .success(let purchases):
+                        purchaseList += purchases
+                    case .failure(let failure):
+                        if failure == .failed { error = .systemError }
+                        else if failure == .noInternet { error = .networkError }
+                        else { error = .unknown }
+                    }
+                    group.leave()
                 }
+            }
+        }
+        
+        group.notify(queue: .main) {
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                let sortedPurchases = sortPurchasesByCreated(purchases: purchaseList)
+                completion(.success(sortedPurchases))
             }
         }
     }
@@ -138,18 +173,40 @@ public class Purchase: Codable {
         let walletUseCases = WalletUseCases.shared
         let transactionUseCases = TransactionUseCases.shared
         
-        if let wallet = walletUseCases.getClientWallet() {
-            let domain = Bundle.main.bundleIdentifier ?? ""
-            transactionUseCases.getLatestPurchase(domain: domain, sku: sku, wa: wallet) {
-                result in
-                switch result {
-                case .success(let purchase):
-                    completion(.success(purchase))
-                case .failure(let failure):
-                    if failure == .failed { completion(.failure(.systemError)) }
-                    else if failure == .noInternet { completion(.failure(.networkError)) }
-                    else { completion(.failure(.unknown)) }
+        let walletList = walletUseCases.getWalletList()
+        let domain = Bundle.main.bundleIdentifier ?? ""
+        
+        let group = DispatchGroup()
+        let queue = DispatchQueue(label: "get-latest-purchase-queue", attributes: .concurrent)
+        
+        var purchaseList : [Purchase] = []
+        var error : AppCoinsSDKError? = nil
+        
+        for wallet in walletList {
+            group.enter()
+            queue.async {
+                transactionUseCases.getLatestPurchase(domain: domain, sku: sku, wa: wallet) {
+                    result in
+                    switch result {
+                    case .success(let purchase):
+                        if let purchase = purchase { purchaseList.append(purchase) }
+                    case .failure(let failure):
+                        if failure == .failed { error = .systemError }
+                        else if failure == .noInternet { error = .networkError }
+                        else { error = .unknown }
+                    }
+                    group.leave()
                 }
+            }
+        }
+
+        group.notify(queue: .main) {
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                let sortedPurchases = sortPurchasesByCreated(purchases: purchaseList)
+                if sortedPurchases.count > 0 { completion(.success(sortedPurchases.first)) }
+                else { completion(.success(nil)) }
             }
         }
     }
@@ -159,19 +216,52 @@ public class Purchase: Codable {
         let walletUseCases = WalletUseCases.shared
         let transactionUseCases = TransactionUseCases.shared
         
-        if let wallet = walletUseCases.getClientWallet() {
-            let domain = Bundle.main.bundleIdentifier ?? ""
-            transactionUseCases.getPurchasesByState(domain: domain, state: "PENDING", wa: wallet) {
-                result in
-                switch result {
-                case .success(let purchases):
-                    completion(.success(purchases))
-                case .failure(let failure):
-                    if failure == .failed { completion(.failure(.systemError)) }
-                    else if failure == .noInternet { completion(.failure(.networkError)) }
-                    else { completion(.failure(.unknown)) }
+        let walletList = walletUseCases.getWalletList()
+        let domain = Bundle.main.bundleIdentifier ?? ""
+        
+        let group = DispatchGroup()
+        let queue = DispatchQueue(label: "get-unfinished-purchases-queue", attributes: .concurrent)
+        
+        var purchaseList : [Purchase] = []
+        var error : AppCoinsSDKError? = nil
+        
+        for wallet in walletList {
+            group.enter()
+            queue.async {
+                transactionUseCases.getPurchasesByState(domain: domain, state: "PENDING", wa: wallet) {
+                    result in
+                    switch result {
+                    case .success(let purchases):
+                        purchaseList += purchases
+                    case .failure(let failure):
+                        if failure == .failed { error = .systemError }
+                        else if failure == .noInternet { error = .networkError }
+                        else { error = .unknown }
+                    }
+                    group.leave()
                 }
             }
         }
+        
+        group.notify(queue: .main) {
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                let sortedPurchases = sortPurchasesByCreated(purchases: purchaseList)
+                completion(.success(sortedPurchases))
+            }
+        }
+    }
+    
+    private static func sortPurchasesByCreated(purchases: [Purchase]) -> [Purchase] {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
+        
+        let sortedPurchases = purchases.sorted {
+            guard let date1 = formatter.date(from: $0.created) else { return false }
+            guard let date2 = formatter.date(from: $1.created) else { return true }
+            return date1 > date2
+        }
+        return sortedPurchases
     }
 }

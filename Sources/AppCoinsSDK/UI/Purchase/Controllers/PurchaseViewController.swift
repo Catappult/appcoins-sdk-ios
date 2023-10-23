@@ -8,14 +8,14 @@
 import Foundation
 import SwiftUI
 
-class PurchaseViewController: UIViewController {
+internal class PurchaseViewController: UIViewController {
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
     }
     
     @ObservedObject private var keyboardObserver = KeyboardObserver.shared
     
-    override func viewDidLoad() {
+    override internal func viewDidLoad() {
         super.viewDidLoad()
         
         // Add the bottom sheet view
@@ -35,7 +35,7 @@ class PurchaseViewController: UIViewController {
         ])
     }
     
-    @objc func dismissPurchase() {
+    @objc internal func dismissPurchase() {
         self.dismiss(animated: false, completion: nil)
     }
 }

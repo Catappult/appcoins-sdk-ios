@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  TransactionStatus.swift
 //  
 //
 //  Created by aptoide on 29/08/2023.
@@ -7,9 +7,9 @@
 
 import Foundation
 
-enum TransactionStatus: String, Codable {
+internal enum TransactionStatus: String, Codable {
     
-    init(from decoder: Decoder) throws {
+    internal init(from decoder: Decoder) throws {
         self = try TransactionStatus(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? .UNKNOWN
     }
     
@@ -24,5 +24,4 @@ enum TransactionStatus: String, Codable {
     case FRAUD = "FRAUD"
     case SETTLED = "SETTLED"
     case UNKNOWN
-    
 }

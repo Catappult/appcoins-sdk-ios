@@ -9,11 +9,12 @@ import Foundation
 import SwiftUI
 import URLImage
 
-struct SuccessBottomSheet: View {
+internal struct SuccessBottomSheet: View {
     
-    @ObservedObject var viewModel: BottomSheetViewModel
+    @ObservedObject internal var viewModel: BottomSheetViewModel
+    @ObservedObject internal var transactionViewModel: TransactionViewModel = TransactionViewModel.shared
     
-    var body: some View {
+    internal var body: some View {
 
         Button(action: { viewModel.dismiss() }) {
             ZStack {
@@ -38,18 +39,24 @@ struct SuccessBottomSheet: View {
                         .foregroundColor(ColorsUi.APC_White)
                         .padding(.top, 15)
                     
-                    HStack {
-                        Image("gift-1", bundle: Bundle.module)
-                            .resizable()
-                            .edgesIgnoringSafeArea(.all)
-                            .frame(width: 17, height: 17)
-                        
-                        Text(String(format: Constants.bonusReceived, "\(viewModel.transaction?.bonusCurrency ?? "")\(String(format: "%.2f", viewModel.transaction?.bonusAmount ?? 0.0))"))
-                            .font(FontsUi.APC_Subheadline_Bold)
-                            .foregroundColor(ColorsUi.APC_White)
-                            .frame(alignment: .bottom)
+                    if transactionViewModel.paymentMethodSelected?.name != Method.appc.rawValue {
+                        HStack {
+                            Image("gift-1", bundle: Bundle.module)
+                                .resizable()
+                                .edgesIgnoringSafeArea(.all)
+                                .frame(width: 17, height: 17)
                             
-                    }.padding(.top, 23)
+                            Text(String(format: Constants.bonusReceived, "\(transactionViewModel.transaction?.bonusCurrency ?? "")\(String(format: "%.2f", transactionViewModel.transaction?.bonusAmount ?? 0.0))"))
+                                .font(FontsUi.APC_Subheadline_Bold)
+                                .foregroundColor(ColorsUi.APC_White)
+                                .frame(alignment: .bottom)
+                                
+                        }.padding(.top, 23)
+                    } else {
+                        HStack {}
+                            .frame(height: 17)
+                            .padding(.top, 23)
+                    }
                     
                     HStack(spacing: 0) {
                         Image("pink-wallet", bundle: Bundle.module)
@@ -78,9 +85,11 @@ struct SuccessBottomSheet: View {
                 }.frame(height: 348, alignment: .top)
                 
                 
-            }.frame(width: UIScreen.main.bounds.size.width, height: 348)
+            }.frame(width: UIScreen.main.bounds.size.width, height: 314 + Utils.bottomSafeAreaHeight)
                 .cornerRadius(13, corners: [.topLeft, .topRight])
-        }
+        }.offset(y: viewModel.successAnimation ? 0 : 314 + Utils.bottomSafeAreaHeight)
+            .transition(viewModel.successAnimation ? .identity : .move(edge: .top))
+            .animation(.easeOut(duration: 0.5))
                 
     }
 }

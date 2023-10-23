@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  AdyenController.swift
 //  
 //
 //  Created by aptoide on 29/08/2023.
@@ -12,27 +12,27 @@ import AdyenCard
 import AdyenComponents
 import AdyenActions
 
-class AdyenController : AdyenSessionDelegate, PresentationDelegate, ObservableObject {
+internal class AdyenController : AdyenSessionDelegate, PresentationDelegate, ObservableObject {
     
-    static var shared: AdyenController = AdyenController()
+    internal static var shared: AdyenController = AdyenController()
     
-    var session: AdyenSession? = nil
-    var context: AdyenContext? = nil
-    var transactionUID: String? = nil
-    var method: String? = nil
+    internal var session: AdyenSession? = nil
+    internal var context: AdyenContext? = nil
+    internal var transactionUID: String? = nil
+    internal var method: Method? = nil
     
-    var successHandler: ((_ method: String, _ transactionUID: String) -> Void)?
-    var awaitHandler: (() -> Void)?
-    var failedHandler: (() -> Void)?
-    var cancelHandler: (() -> Void)?
+    internal var successHandler: ((_ method: Method, _ transactionUID: String) -> Void)?
+    internal var awaitHandler: (() -> Void)?
+    internal var failedHandler: (() -> Void)?
+    internal var cancelHandler: (() -> Void)?
     
-    @Published var presentableComponent: PresentableComponent? = nil
-    @Published var redirectComponent: RedirectComponent? = nil
-    @Published var presentAdyenRedirect: Bool = false
+    @Published internal var presentableComponent: PresentableComponent? = nil
+    @Published internal var redirectComponent: RedirectComponent? = nil
+    @Published internal var presentAdyenRedirect: Bool = false
     
-    @Published var state: AdyenState = .none
+    @Published internal var state: AdyenState = .none
     
-    func startSession(method: String, value: Decimal, currency: String, session: AdyenTransactionSession, successHandler: @escaping (_ method: String, _ transactionUID: String) -> Void, awaitHandler: @escaping () -> Void, failedHandler: @escaping () -> Void, cancelHandler: @escaping () -> Void) {
+    internal func startSession(method: Method, value: Decimal, currency: String, session: AdyenTransactionSession, successHandler: @escaping (_ method: Method, _ transactionUID: String) -> Void, awaitHandler: @escaping () -> Void, failedHandler: @escaping () -> Void, cancelHandler: @escaping () -> Void) {
         
         // successHandler and awaitHandler can be the same if the verification is always done with APPC service
         self.successHandler = successHandler
@@ -73,7 +73,7 @@ class AdyenController : AdyenSessionDelegate, PresentationDelegate, ObservableOb
                         self?.session = session
                         
                         if let paymentMethods = self?.session?.sessionContext.paymentMethods {
-                            if method == "credit_card" {
+                            if method == .creditCard {
                                 if paymentMethods.stored.isEmpty {
                                     if let paymentMethod = paymentMethods.paymentMethod(ofType: CardPaymentMethod.self) {
                                         self?.setUpNewCreditCardComponent(paymentMethod: paymentMethod, adyenContext: adyenContext)
@@ -81,7 +81,7 @@ class AdyenController : AdyenSessionDelegate, PresentationDelegate, ObservableOb
                                 } else {
                                     DispatchQueue.main.async { self?.state = .choosingCreditCard }
                                 }
-                            } else if method == "paypal" {
+                            } else if method == .paypalAdyen {
                                 if let paymentMethod = paymentMethods.regular.first(where: {$0.name == "PayPal"}) {
                                     self?.setUpPayPalRedirectComponent(paymentMethod: paymentMethod, adyenContext: adyenContext)
                                 } else { failedHandler() }
@@ -98,7 +98,7 @@ class AdyenController : AdyenSessionDelegate, PresentationDelegate, ObservableOb
         }
     }
     
-    func handleRedirectURL(redirectURL: URL?) -> Bool {
+    internal func handleRedirectURL(redirectURL: URL?) -> Bool {
         if let redirectURL = redirectURL, let bundleIdentifier = Bundle.main.bundleIdentifier, redirectURL.scheme == bundleIdentifier + ".iap" {
             RedirectComponent.applicationDidOpen(from: redirectURL)
             return true
@@ -106,11 +106,11 @@ class AdyenController : AdyenSessionDelegate, PresentationDelegate, ObservableOb
         return false
     }
     
-    func present(component: Adyen.PresentableComponent) {
+    internal func present(component: Adyen.PresentableComponent) {
         DispatchQueue.main.async { self.presentableComponent = component }
     }
     
-    func didComplete(with resultCode: SessionPaymentResultCode, component: Adyen.Component, session: AdyenSession) {
+    internal func didComplete(with resultCode: SessionPaymentResultCode, component: Adyen.Component, session: AdyenSession) {
         
         if component is RedirectComponent { self.presentAdyenRedirect = false }
         
@@ -153,7 +153,7 @@ class AdyenController : AdyenSessionDelegate, PresentationDelegate, ObservableOb
         }
     }
     
-    func didFail(with error: Error, from component: Adyen.Component, session: AdyenSession) {
+    internal func didFail(with error: Error, from component: Adyen.Component, session: AdyenSession) {
         if let componentError = error as? Adyen.ComponentError {
             switch componentError {
             case .cancelled:
@@ -164,7 +164,7 @@ class AdyenController : AdyenSessionDelegate, PresentationDelegate, ObservableOb
         } else if let failedHandler = self.failedHandler { failedHandler() }
     }
     
-    func cancel() {
+    internal func cancel() {
         if let cancelHandler = self.cancelHandler { cancelHandler() }
     }
     
@@ -172,13 +172,13 @@ class AdyenController : AdyenSessionDelegate, PresentationDelegate, ObservableOb
         DispatchQueue.main.async { self.state = .choosingCreditCard }
     }
     
-    func chooseNewCreditCardPayment() {
+    internal func chooseNewCreditCardPayment() {
         if let paymentMethods = self.session?.sessionContext.paymentMethods, let paymentMethod = paymentMethods.paymentMethod(ofType: CardPaymentMethod.self), let context = context {
             setUpNewCreditCardComponent(paymentMethod: paymentMethod, adyenContext: context)
         }
     }
     
-    func chooseStoredCreditCardPayment(paymentMethod: StoredCardPaymentMethod) {
+    internal func chooseStoredCreditCardPayment(paymentMethod: StoredCardPaymentMethod) {
         let paymentMethod = paymentMethod as AnyCardPaymentMethod
         if let context = context {
             setUpStoredCreditCardComponent(paymentMethod: paymentMethod, adyenContext: context)
@@ -264,11 +264,11 @@ class AdyenController : AdyenSessionDelegate, PresentationDelegate, ObservableOb
         return style
     }
     
-    func getCardLogo(for paymentMethod: StoredCardPaymentMethod) -> URL? {
+    internal func getCardLogo(for paymentMethod: StoredCardPaymentMethod) -> URL? {
         return LogoURLProvider(environment: BuildConfiguration.adyenEnvironment).logoURL(withName: paymentMethod.brand.rawValue)
     }
     
-    func reset() {
+    internal func reset() {
         DispatchQueue.main.async {
             self.state = .none
             self.session = nil
@@ -277,7 +277,7 @@ class AdyenController : AdyenSessionDelegate, PresentationDelegate, ObservableOb
         }
     }
     
-    enum AdyenState {
+    internal enum AdyenState {
         case none
         case choosingCreditCard
         case newCreditCard

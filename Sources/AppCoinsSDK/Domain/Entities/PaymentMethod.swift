@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  PaymentMethod.swift
 //  
 //
 //  Created by aptoide on 17/05/2023.
@@ -7,18 +7,17 @@
 
 import Foundation
 
-struct PaymentMethod: Hashable {
+internal struct PaymentMethod: Hashable {
+    internal let name: String
+    internal let label: String
+    internal let icon: String
+    internal let status: String
+    internal let message: String?
+    internal let gateway: String?
+    internal let fee: String?
+    internal var disabled: Bool
     
-    let name: String
-    let label: String
-    let icon: String
-    let status: String
-    let message: String?
-    let gateway: String?
-    let fee: String?
-    var disabled: Bool
-    
-    init(name: String, label: String, icon: String, status: String, message: String?, gateway: String?, fee: String?, disabled: Bool = false) {
+    internal init(name: String, label: String, icon: String, status: String, message: String?, gateway: String?, fee: String?, disabled: Bool = false) {
         self.name = name
         self.label = label
         self.icon = icon
@@ -29,7 +28,7 @@ struct PaymentMethod: Hashable {
         self.disabled = disabled
     }
     
-    init(raw: PaymentMethodsRaw) {
+    internal init(raw: PaymentMethodsRaw) {
         self.name = raw.name
         self.label = raw.label
         self.icon = raw.icon
@@ -39,5 +38,13 @@ struct PaymentMethod: Hashable {
         self.fee = raw.fee
         self.disabled = false
     }
+}
 
+internal enum Method: String {
+    
+    case appc = "appcoins_credits"
+    case creditCard = "credit_card"
+    case paypalAdyen = "paypal"
+    case paypalDirect = "paypal_v2"
+    
 }

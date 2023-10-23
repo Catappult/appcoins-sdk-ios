@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  AppCoinTransactionClient.swift
 //  
 //
 //  Created by aptoide on 16/05/2023.
@@ -7,15 +7,15 @@
 
 import Foundation
 
-class AppCoinTransactionClient : AppCoinTransactionService {
+internal class AppCoinTransactionClient : AppCoinTransactionService {
     
     private let endpoint: String
     
-    init(endpoint: String = BuildConfiguration.transactionServiceURL) {
+    internal init(endpoint: String = BuildConfiguration.transactionServiceURL) {
         self.endpoint = endpoint
     }
     
-    func getBalance(wa: String, result: @escaping (Result<AppCoinBalanceRaw, AppcTransactionError>) -> Void) {
+    internal func getBalance(wa: String, result: @escaping (Result<AppCoinBalanceRaw, AppcTransactionError>) -> Void) {
         if let url = URL(string: endpoint + "/wallet/\(wa)/info") {
             let task = URLSession.shared.dataTask(with: url) { data, response, error in
                 if let error = error {

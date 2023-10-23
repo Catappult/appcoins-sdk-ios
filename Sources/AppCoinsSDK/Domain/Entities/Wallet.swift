@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Wallet.swift
 //  
 //
 //  Created by aptoide on 16/05/2023.
@@ -11,12 +11,12 @@ import CryptoSwift
 import web3swift
 import Web3Core
 
-class Wallet {
+internal class Wallet {
     
-    var name: String?
-    var balance: Balance?
-    var address: String?
-    var creationDate: Date
+    internal var name: String?
+    internal var balance: Balance?
+    internal var address: String?
+    internal var creationDate: Date
     
     private let password: String
     private let keystore: EthereumKeystoreV3
@@ -24,7 +24,7 @@ class Wallet {
     private let billingService: AppCoinBillingService = AppCoinBillingClient()
     private let walletService: WalletLocalService = WalletLocalClient()
     
-    init? (_ keystoreUrl: URL, _ password: String = "") {
+    internal init? (_ keystoreUrl: URL, _ password: String = "") {
         guard let data = try? Data(contentsOf: keystoreUrl) else { return nil }
         guard let keystoreParams = try? JSONDecoder().decode(AppCoinKeystoreRaw.self, from: data) else { return nil }
         self.keystore = EthereumKeystoreV3(keystoreParams.toJSON())!
@@ -51,7 +51,7 @@ class Wallet {
         }
     }
     
-    func getBalance(wa: String, currency: Coin, completion: @escaping (Result<Balance, AppcTransactionError>) -> Void) {
+    internal func getBalance(wa: String, currency: Coin, completion: @escaping (Result<Balance, AppcTransactionError>) -> Void) {
         transactionService.getBalance(wa: wa) { result in
             switch result {
             case .success(let response):
@@ -73,7 +73,7 @@ class Wallet {
         }
     }
     
-    func getPrivateKey() -> Data {
+    internal func getPrivateKey() -> Data {
         if let privateKey = walletService.getPrivateKey(address: self.keystore.addresses!.first!.address) {
             return privateKey
         } else {
@@ -81,15 +81,13 @@ class Wallet {
             let key = try! keystore.UNSAFE_getPrivateKeyData(password: password, account: ethereumAddress)
             return key
         }
-        
-        
     }
     
-    func getWalletAddress() -> String {
+    internal func getWalletAddress() -> String {
         return self.keystore.addresses!.first!.address
     }
 
-    func getSignedWalletAddress() -> String {
+    internal func getSignedWalletAddress() -> String {
          let wa = keystore.addresses!.first
          let waChecksum = EthereumAddress.toChecksumAddress(getWalletAddress())
          let normalized = "\\x19Ethereum Signed Message:\n\(wa!.address.count)\(wa!.address)"
@@ -99,7 +97,7 @@ class Wallet {
          return signatureHex
      }
     
-    func getEWT() -> String? {
+    internal func getEWT() -> String? {
         // Header
         let headerString = "{\"typ\":\"EWT\"}"
         let header = replaceInvalidCharacters(convertToBase64(headerString))
@@ -151,5 +149,4 @@ class Wallet {
                     .replacingOccurrences(of: "+", with: "-")
                     .replacingOccurrences(of: "/", with: "_")
     }
-    
 }

@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  AdyenLoadingBottomSheet.swift
 //  
 //
 //  Created by aptoide on 29/08/2023.
@@ -8,11 +8,11 @@
 import SwiftUI
 import ActivityIndicatorView
 
-struct AdyenLoadingBottomSheet: View {
+internal struct AdyenLoadingBottomSheet: View {
     
-    @ObservedObject var viewModel: BottomSheetViewModel
+    @ObservedObject internal var viewModel: BottomSheetViewModel
     
-    var body: some View {
+    internal var body: some View {
         
         VStack(spacing: 0) {
             ZStack {

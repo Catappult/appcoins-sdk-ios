@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  CreateAdyenTransactionRaw.swift
 //  
 //
 //  Created by aptoide on 29/08/2023.
@@ -7,23 +7,23 @@
 
 import Foundation
 
-struct CreateAdyenTransactionRaw: Codable {
+internal struct CreateAdyenTransactionRaw: Codable {
     
-    let origin: String?
-    let domain: String
-    let price: String?
-    let priceCurrency: String
-    let product: String?
-    let type: String
-    let method: String
-    let developerWa: String
-    let paymentChannel: String
-    let paymentReturnUrl: String?
-    let userWa: String
-    let metadata: String?
-    let reference: String?
+    internal let origin: String?
+    internal let domain: String
+    internal let price: String?
+    internal let priceCurrency: String
+    internal let product: String?
+    internal let type: String
+    internal let method: String
+    internal let developerWa: String
+    internal let paymentChannel: String
+    internal let paymentReturnUrl: String?
+    internal let userWa: String
+    internal let metadata: String?
+    internal let reference: String?
     
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case origin = "origin"
         case domain = "domain"
         case price = "price.value"
@@ -40,55 +40,49 @@ struct CreateAdyenTransactionRaw: Codable {
     }
     
     // Review static credit_card use as method
-    static func fromDictionary(dictionary: [String : String]) -> Result<CreateAdyenTransactionRaw, TransactionError> {
+    internal static func fromParameters(parameters: TransactionParameters) -> Result<CreateAdyenTransactionRaw, TransactionError> {
         // normalizes the price to adjust to different time zone price syntaxes
-        let normalizedPrice = (dictionary["value"] ?? "0.0").replacingOccurrences(of: ",", with: ".")
+        let normalizedPrice = parameters.value.replacingOccurrences(of: ",", with: ".")
         
-        var metadata: String?
-        if dictionary["metadata"] == "" { metadata = nil } else { metadata = dictionary["metadata"] }
-        var reference: String?
-        if dictionary["reference"] == "" { reference = nil } else { reference = dictionary["reference"] }
-        
-        if let domain = dictionary["domain"], let priceCurrency = dictionary["currency"], let method = dictionary["method"], let developerWa = dictionary["developerWa"], let userWa = dictionary["userWa"], let bundleID = Bundle.main.bundleIdentifier {
+        if let method = parameters.method, let bundleID = Bundle.main.bundleIdentifier {
             return .success(
                 CreateAdyenTransactionRaw(
-                    origin: "BDS", domain: domain, price: normalizedPrice, priceCurrency: priceCurrency,
-                    product: dictionary["product"], type: "INAPP", method: method, developerWa: developerWa, paymentChannel: "IOS", paymentReturnUrl: "\(bundleID).iap://api.blockchainds.com/broker", userWa: userWa, metadata: metadata, reference: reference
+                    origin: "BDS", domain: parameters.domain, price: normalizedPrice, priceCurrency: parameters.currency,
+                    product: parameters.product, type: "INAPP", method: method, developerWa: parameters.developerWa, paymentChannel: "IOS", paymentReturnUrl: "\(bundleID).iap://api.blockchainds.com/broker", userWa: parameters.userWa, metadata: parameters.metadata, reference: parameters.reference
                 )
             )
         } else { return .failure(.failed()) }
     }
     
-    func toJSON() -> Data? {
+    internal func toJSON() -> Data? {
         return try? JSONEncoder().encode(self)
     }
     
 }
 
-struct CreateAdyenTransactionResponseRaw: Codable {
+internal struct CreateAdyenTransactionResponseRaw: Codable {
     
-    let uuid: String
-    let status: TransactionStatus
-    let reference: String?
-    let hash: String?
-    let session: CreateAdyenTransactionResponseSessionRaw
+    internal let uuid: String
+    internal let status: TransactionStatus
+    internal let reference: String?
+    internal let hash: String?
+    internal let session: CreateAdyenTransactionResponseSessionRaw
     
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case uuid = "uid"
         case status = "status"
         case reference = "reference"
         case hash = "hash"
         case session = "session"
     }
-    
 }
 
-struct CreateAdyenTransactionResponseSessionRaw: Codable {
+internal struct CreateAdyenTransactionResponseSessionRaw: Codable {
     
-    let sessionID: String
-    let sessionData: String
+    internal let sessionID: String
+    internal let sessionData: String
     
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case sessionID = "id"
         case sessionData = "sessionData"
     }

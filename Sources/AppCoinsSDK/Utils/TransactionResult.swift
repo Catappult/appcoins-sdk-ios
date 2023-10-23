@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  TransactionResult.swift
 //  
 //
 //  Created by aptoide on 24/05/2023.

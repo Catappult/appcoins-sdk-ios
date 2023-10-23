@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  BillingErrors.swift
 //  
 //
 //  Created by aptoide on 15/05/2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum BillingError: Error {
+internal enum BillingError: Error {
     case failed
     case noInternet
 }

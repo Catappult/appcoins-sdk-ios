@@ -8,18 +8,19 @@
 import SwiftUI
 import URLImage
 
-struct RadioButtonGroupView: View {
+internal struct RadioButtonGroupView: View {
     
-    @ObservedObject var viewModel: BottomSheetViewModel
+    @ObservedObject internal var viewModel: BottomSheetViewModel
+    @ObservedObject internal var transactionViewModel: TransactionViewModel = TransactionViewModel.shared
     
-    var body: some View {
+    internal var body: some View {
         
-        if let options = viewModel.transaction?.paymentMethods {
+        if let options = transactionViewModel.transaction?.paymentMethods {
             VStack(spacing: 0) {
                 ForEach(options, id: \.self) { option in
                     Button(action: {
                         if (!option.disabled) {
-                            viewModel.selectPaymentMethod(paymentMethod: option)
+                            transactionViewModel.selectPaymentMethod(paymentMethod: option)
                         }
                     }) {
                         ZStack {
@@ -33,7 +34,7 @@ struct RadioButtonGroupView: View {
                                     .lineLimit(1)
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                     
-                                if (viewModel.paymentMethodSelected?.name == option.name) {
+                                if (transactionViewModel.paymentMethodSelected?.name == option.name) {
                                     Image(systemName: "checkmark.circle.fill")
                                         .resizable()
                                         .edgesIgnoringSafeArea(.all)

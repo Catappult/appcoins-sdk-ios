@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Balance.swift
 //  
 //
 //  Created by aptoide on 16/05/2023.
@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct Balance {
+internal struct Balance {
     
-    let balanceCurrency: String
-    let balance: Double
-    let appcoinsBalance: Double
+    internal let balanceCurrency: String
+    internal let balance: Double
+    internal let appcoinsBalance: Double
     
 }

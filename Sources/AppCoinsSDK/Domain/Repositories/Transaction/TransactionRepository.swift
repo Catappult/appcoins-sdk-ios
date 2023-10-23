@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  TransactionRepository.swift
 //  
 //
 //  Created by aptoide on 15/05/2023.
@@ -8,7 +8,7 @@
 import Foundation
 import SwiftyRSA
 
-class TransactionRepository: TransactionRepositoryProtocol {
+internal class TransactionRepository: TransactionRepositoryProtocol {
     
     private let gamificationService: AppCoinGamificationService = AppCoinGamificationServiceClient()
     private let billingService: AppCoinBillingService = AppCoinBillingClient()
@@ -17,7 +17,7 @@ class TransactionRepository: TransactionRepositoryProtocol {
     private let walletService: WalletLocalService = WalletLocalClient()
     private let userPreferencesService: UserPreferencesLocalService = UserPreferencesLocalClient()
     
-    func getTransactionBonus(address: String, package_name: String, amount: String, currency: Coin, completion: @escaping (Result<TransactionBonus, TransactionError>) -> Void) {
+    internal func getTransactionBonus(address: String, package_name: String, amount: String, currency: Coin, completion: @escaping (Result<TransactionBonus, TransactionError>) -> Void) {
         gamificationService.getTransactionBonus(address: address, package_name: package_name, amount: amount, currency: currency) {
             result in
             
@@ -34,7 +34,7 @@ class TransactionRepository: TransactionRepositoryProtocol {
         }
     }
     
-    func getPaymentMethods(value: String, currency: Coin, completion: @escaping (Result<[PaymentMethod], BillingError>) -> Void) {
+    internal func getPaymentMethods(value: String, currency: Coin, completion: @escaping (Result<[PaymentMethod], BillingError>) -> Void) {
         billingService.getPaymentMethods(value: value, currency: currency) {
             result in
             
@@ -55,7 +55,7 @@ class TransactionRepository: TransactionRepositoryProtocol {
         }
     }
     
-    func getDeveloperAddress(package: String, completion: @escaping (Result<String, AptoideServiceError>) -> Void) {
+    internal func getDeveloperAddress(package: String, completion: @escaping (Result<String, AptoideServiceError>) -> Void) {
         aptoideService.getDeveloperWalletAddressByPackageName(package: package) {
             result in
             
@@ -68,18 +68,11 @@ class TransactionRepository: TransactionRepositoryProtocol {
         }
     }
     
-    func createTransaction(wa: Wallet, raw: CreateAPPCTransactionRaw, completion: @escaping (Result<CreateTransactionResponseRaw, TransactionError>) -> Void) {
-        billingService.createTransaction(wa: wa, raw: raw) {
-            result in
-            
-            switch result {
-                case .success(_): self.setLastPaymentMethod(paymentMethod: "appcoins_credits")
-                default: break
-            }
-            completion(result)}
+    internal func createTransaction(wa: Wallet, raw: CreateAPPCTransactionRaw, completion: @escaping (Result<CreateTransactionResponseRaw, TransactionError>) -> Void) {
+        billingService.createTransaction(wa: wa, raw: raw) { result in completion(result) }
     }
     
-    func getTransactionInfo(uid: String, wa: Wallet, completion: @escaping (Result<Transaction, TransactionError>) -> Void) {
+    internal func getTransactionInfo(uid: String, wa: Wallet, completion: @escaping (Result<Transaction, TransactionError>) -> Void) {
         billingService.getTransactionInfo(uid: uid, wa: wa) {
             result in
             switch result {
@@ -119,7 +112,7 @@ class TransactionRepository: TransactionRepositoryProtocol {
         }
     }
     
-    func getAllPurchases(domain: String, wa: Wallet, completion: @escaping (Result<[Purchase], ProductServiceError>) -> Void) {
+    internal func getAllPurchases(domain: String, wa: Wallet, completion: @escaping (Result<[Purchase], ProductServiceError>) -> Void) {
         productService.getAllPurchases(domain: domain, wa: wa) {
             result in
             switch result {
@@ -135,7 +128,7 @@ class TransactionRepository: TransactionRepositoryProtocol {
         }
     }
     
-    func getLatestPurchase(domain: String, sku: String, wa: Wallet, completion: @escaping (Result<Purchase?, ProductServiceError>) -> Void) {
+    internal func getLatestPurchase(domain: String, sku: String, wa: Wallet, completion: @escaping (Result<Purchase?, ProductServiceError>) -> Void) {
         productService.getAllPurchasesBySKU(domain: domain, sku: sku, wa: wa) {
             result in
             switch result {
@@ -152,7 +145,7 @@ class TransactionRepository: TransactionRepositoryProtocol {
         }
     }
     
-    func getPurchasesByState(domain: String, state: String, wa: Wallet, completion: @escaping (Result<[Purchase], ProductServiceError>) -> Void) {
+    internal func getPurchasesByState(domain: String, state: String, wa: Wallet, completion: @escaping (Result<[Purchase], ProductServiceError>) -> Void) {
         productService.getPurchasesByState(domain: domain, state: state, wa: wa) {
             result in
             switch result {
@@ -168,15 +161,15 @@ class TransactionRepository: TransactionRepositoryProtocol {
         }
     }
     
-    func acknowledgePurchase(domain: String, uid: String, wa: Wallet, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
+    internal func acknowledgePurchase(domain: String, uid: String, wa: Wallet, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
         productService.acknowledgePurchase(domain: domain, uid: uid, wa: wa) { result in completion(result) }
     }
     
-    func consumePurchase(domain: String, uid: String, wa: Wallet, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
+    internal func consumePurchase(domain: String, uid: String, wa: Wallet, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
         productService.consumePurchase(domain: domain, uid: uid, wa: wa) { result in completion(result) }
     }
     
-    func verifyPurchase(domain: String, uid: String, wa: Wallet, completion: @escaping (Result<Purchase, ProductServiceError>) -> Void) {
+    internal func verifyPurchase(domain: String, uid: String, wa: Wallet, completion: @escaping (Result<Purchase, ProductServiceError>) -> Void) {
         productService.getPurchaseInformation(domain: domain, uid: uid, wa: wa) {
             result in
             
@@ -184,11 +177,9 @@ class TransactionRepository: TransactionRepositoryProtocol {
             case .success(let purchaseRaw):
                 self.productService.getDeveloperPublicKey(domain: domain) {
                     result in
-                    
                     switch result {
                     case .success(let publicKeyString):
                         let verified = self.verifyPurchaseSignature(publicKeyString: publicKeyString, signature: purchaseRaw.verification.signature, message: purchaseRaw.verification.data)
-                        
                         if verified {
                             completion(.success(Purchase(raw: purchaseRaw)))
                         } else {
@@ -223,7 +214,7 @@ class TransactionRepository: TransactionRepositoryProtocol {
         }
     }
     
-    func createAdyenTransaction(wa: Wallet, raw: CreateAdyenTransactionRaw, completion: @escaping (Result<AdyenTransactionSession, TransactionError>) -> Void) {
+    internal func createAdyenTransaction(wa: Wallet, raw: CreateAdyenTransactionRaw, completion: @escaping (Result<AdyenTransactionSession, TransactionError>) -> Void) {
         billingService.createAdyenTransaction(wa: wa, raw: raw) { result in
             switch result {
             case .success(let transactionResponse):
@@ -234,19 +225,18 @@ class TransactionRepository: TransactionRepositoryProtocol {
         }
     }
     
-    func createBAPayPalTransaction(wa: Wallet, raw: CreateBAPayPalTransactionRaw, completion: @escaping (Result<CreateBAPayPalTransactionResponseRaw, TransactionError>) -> Void) {
+    internal func createBAPayPalTransaction(wa: Wallet, raw: CreateBAPayPalTransactionRaw, completion: @escaping (Result<CreateBAPayPalTransactionResponseRaw, TransactionError>) -> Void) {
         billingService.createBAPayPalTransaction(wa: wa, raw: raw) { result in
             
             switch result {
                 case .success(_):
-                    self.setLastPaymentMethod(paymentMethod: "paypal_v2")
-                self.storeBillingAgreementLocally(wa: wa.getWalletAddress())
+                    self.storeBillingAgreementLocally(wa: wa.getWalletAddress())
                 default: break
             }
             completion(result) }
     }
     
-    func createBillingAgreementToken(completion: @escaping (Result<CreateBillingAgreementTokenResponseRaw, TransactionError>) -> Void) {
+    internal func createBillingAgreementToken(completion: @escaping (Result<CreateBillingAgreementTokenResponseRaw, TransactionError>) -> Void) {
         let returnURL = BuildConfiguration.billingServiceURL + "/gateways/paypal/billing-agreement/token/return/success"
         let cancelURL = BuildConfiguration.billingServiceURL + "/gateways/paypal/billing-agreement/token/return/cancel"
 
@@ -258,14 +248,14 @@ class TransactionRepository: TransactionRepositoryProtocol {
         } else { completion(.failure(.failed())) }
     }
     
-    func cancelBillingAgreementToken(token: String, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
+    internal func cancelBillingAgreementToken(token: String, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
         if let wallet = walletService.getActiveWallet() {
             billingService.cancelBillingAgreementToken(token: token, wa: wallet) { result in
                 completion(result) }
         } else { completion(.failure(.failed())) }
     }
     
-    func cancelBillingAgreement(completion: @escaping (Result<Bool, TransactionError>) -> Void) {
+    internal func cancelBillingAgreement(completion: @escaping (Result<Bool, TransactionError>) -> Void) {
         if let wallet = walletService.getActiveWallet() {
             billingService.cancelBillingAgreement(wa: wallet) { result in
                 self.removeBillingAgreementLocally(wa: wallet.getWalletAddress())
@@ -274,7 +264,7 @@ class TransactionRepository: TransactionRepositoryProtocol {
         } else { completion(.failure(.failed())) }
     }
     
-    func createBillingAgreement(token: String, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
+    internal func createBillingAgreement(token: String, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
         if let wallet = walletService.getActiveWallet() {
             billingService.createBillingAgreement(token: token, wa: wallet) { result in
                 switch result {
@@ -296,25 +286,28 @@ class TransactionRepository: TransactionRepositoryProtocol {
         userPreferencesService.removeWalletBA(wa: wa)
     }
     
-    func getBillingAgreement(completion: @escaping (Result<Bool, TransactionError>) -> Void) {
+    internal func getBillingAgreement(completion: @escaping (Result<Bool, TransactionError>) -> Void) {
         if let wallet = walletService.getActiveWallet() {
             billingService.getBillingAgreement(wa: wallet) { result in completion(result) }
         } else { completion(.failure(.failed())) }
     }
     
-    func hasBillingAgreement() -> Bool {
+    internal func hasBillingAgreement() -> Bool {
         if let wallet = walletService.getActiveWallet() {
             let wa = wallet.getWalletAddress()
             return userPreferencesService.getWalletBA(wa: wa) != ""
         } else { return false }
     }
     
-    func getLastPaymentMethod() -> String {
+    internal func getLastPaymentMethod() -> Method? {
         return userPreferencesService.getLastPaymentMethod()
     }
     
-    func setLastPaymentMethod(paymentMethod: String) {
+    internal func setLastPaymentMethod(paymentMethod: Method) {
         userPreferencesService.setLastPaymentMethod(paymentMethod: paymentMethod)
     }
     
+    internal func transferAPPC(wa: Wallet, raw: TransferAPPCRaw, completion: @escaping (Result<TransferAPPCResponseRaw, TransactionError>) -> Void) {
+        billingService.transferAPPC(wa: wa, raw: raw) { result in completion(result) }
+    }
 }

@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  GetPurchaseInformationRaw.swift
 //  
 //
 //  Created by aptoide on 23/05/2023.
@@ -7,26 +7,26 @@
 
 import Foundation
 
-struct GetPurchasesRaw: Codable {
+internal struct GetPurchasesRaw: Codable {
     
-    let items: [PurchaseInformationRaw]
+    internal let items: [PurchaseInformationRaw]
     
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case items = "items"
     }
 }
 
-struct PurchaseInformationRaw: Codable {
+internal struct PurchaseInformationRaw: Codable {
     
-    let uid: String
-    let sku: String
-    let state: String
-    let order_uid: String
-    let payload: String
-    let created: String
-    let verification: PurchaseVerificationRaw
+    internal let uid: String
+    internal let sku: String
+    internal let state: String
+    internal let order_uid: String
+    internal let payload: String?
+    internal let created: String
+    internal let verification: PurchaseVerificationRaw
     
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case uid = "uid"
         case sku = "sku"
         case state = "state"
@@ -37,13 +37,13 @@ struct PurchaseInformationRaw: Codable {
     }
 }
 
-struct PurchaseVerificationRaw: Codable {
+internal struct PurchaseVerificationRaw: Codable {
     
-    let type: String
-    let data: String
-    let signature: String
+    internal let type: String
+    internal let data: String
+    internal let signature: String
     
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case type = "type"
         case data = "data"
         case signature = "signature"

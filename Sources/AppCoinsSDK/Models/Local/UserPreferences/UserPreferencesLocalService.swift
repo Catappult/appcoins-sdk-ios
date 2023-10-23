@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  UserPreferencesLocalService.swift
 //  
 //
 //  Created by aptoide on 20/06/2023.
@@ -7,11 +7,11 @@
 
 import Foundation
 
-protocol UserPreferencesLocalService {
+internal protocol UserPreferencesLocalService {
     
     // Last Payment Method
-    func getLastPaymentMethod() -> String
-    func setLastPaymentMethod(paymentMethod: String)
+    func getLastPaymentMethod() -> Method?
+    func setLastPaymentMethod(paymentMethod: Method)
     
     // Wallet Billing Agreement
     func getWalletBA(wa: String) -> String

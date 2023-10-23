@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  AppCoinProductService.swift
 //  
 //
 //  Created by aptoide on 15/05/2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol AppCoinProductService {
+internal protocol AppCoinProductService {
     
     func getProductInformation(domain: String, result: @escaping (Result<GetProductInformationRaw, ProductServiceError>) -> Void)
     

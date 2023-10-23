@@ -1,5 +1,5 @@
 //
-//  PurchaseBottomSheet.swift
+//  PaymentChoiceBottomSheet.swift
 //  
 //
 //  Created by aptoide on 07/03/2023.
@@ -10,11 +10,13 @@ import SwiftUI
 import URLImage
 import SkeletonUI
 
-struct PaymentChoiceBottomSheet: View {
+internal struct PaymentChoiceBottomSheet: View {
     
-    @ObservedObject var viewModel: BottomSheetViewModel
+    @ObservedObject internal var viewModel: BottomSheetViewModel
+    @ObservedObject internal var paypalViewModel: PayPalDirectViewModel = PayPalDirectViewModel.shared
+    @ObservedObject internal var transactionViewModel: TransactionViewModel = TransactionViewModel.shared
     
-    var body: some View {
+    internal var body: some View {
         
         VStack(spacing: 0) {
             HStack(spacing: 0) {}.frame(height: 23)
@@ -22,7 +24,7 @@ struct PaymentChoiceBottomSheet: View {
             // Avatar and purchase
             HStack(spacing: 0) {
                 VStack(spacing: 0) {
-                    Image(uiImage: viewModel.getAppIcon())
+                    Image(uiImage: Utils.getAppIcon())
                         .resizable()
                         .scaledToFit()
                         .frame(width: 74, height: 74)
@@ -30,7 +32,7 @@ struct PaymentChoiceBottomSheet: View {
                 }
                 
                 VStack(spacing: 0) {
-                    if let title = viewModel.transaction?.getTitle() {
+                    if let title = transactionViewModel.transaction?.getTitle() {
                         Text(title)
                             .foregroundColor(ColorsUi.APC_Black)
                             .font(FontsUi.APC_Body_Bold)
@@ -47,13 +49,13 @@ struct PaymentChoiceBottomSheet: View {
                     
                     
                     HStack(spacing: 0) {
-                        if let amount = viewModel.transaction?.moneyAmount {
-                            Text((Coin(rawValue: viewModel.transaction?.moneyCurrency ?? "")?.symbol ?? "") + String(amount))
+                        if let amount = transactionViewModel.transaction?.moneyAmount {
+                            Text((Coin(rawValue: transactionViewModel.transaction?.moneyCurrency ?? "")?.symbol ?? "") + String(amount))
                                 .foregroundColor(ColorsUi.APC_Black)
                                 .font(FontsUi.APC_Subheadline_Bold)
                                 .lineLimit(1)
                                 .padding(.trailing, 3)
-                            Text(viewModel.transaction?.moneyCurrency ?? "-")
+                            Text(transactionViewModel.transaction?.moneyCurrency ?? "-")
                                 .foregroundColor(ColorsUi.APC_Black)
                                 .font(FontsUi.APC_Caption1_Bold)
                                 .lineLimit(1)
@@ -68,7 +70,7 @@ struct PaymentChoiceBottomSheet: View {
                     }.frame(width: 240, alignment: .bottomLeading)
                         .padding(.top, 11)
                     
-                    if let appcAmount = viewModel.transaction?.appcAmount {
+                    if let appcAmount = transactionViewModel.transaction?.appcAmount {
                         Text("\(String(format: "%.3f", appcAmount)) APPC")
                             .foregroundColor(ColorsUi.APC_Gray)
                             .font(FontsUi.APC_Caption2)
@@ -89,26 +91,26 @@ struct PaymentChoiceBottomSheet: View {
 
             HStack(spacing: 0) {}.frame(height: 23)
             
-            if viewModel.lastPaymentMethod != nil || viewModel.showOtherPaymentMethods {
+            if transactionViewModel.lastPaymentMethod != nil || transactionViewModel.showOtherPaymentMethods {
                 // Payment methods
                 HStack(spacing: 0) {
                     
                     VStack(spacing: 0) {
                         
-                        if (!viewModel.showOtherPaymentMethods) {
+                        if (!transactionViewModel.showOtherPaymentMethods) {
                             ZStack {
                                 ColorsUi.APC_White
                                 
                                 HStack(spacing: 0) {
                                     VStack(spacing: 0) {
-                                        if let icon = URL(string: viewModel.lastPaymentMethod?.icon ?? "") {
+                                        if let icon = URL(string: transactionViewModel.lastPaymentMethod?.icon ?? "") {
                                             PaymentMethodQuickIcon(icon: icon)
                                         }
                                     }
                                     
                                     VStack(spacing: 0) {
-                                        if viewModel.lastPaymentMethod?.name == "appcoins_credits" {
-                                            Text(viewModel.lastPaymentMethod?.label)
+                                        if transactionViewModel.lastPaymentMethod?.name == Method.appc.rawValue {
+                                            Text(transactionViewModel.lastPaymentMethod?.label)
                                                 .foregroundColor(ColorsUi.APC_Black)
                                                 .font(FontsUi.APC_Callout)
                                                 .lineLimit(1)
@@ -121,7 +123,7 @@ struct PaymentChoiceBottomSheet: View {
                                                 .lineLimit(2)
                                                 .frame(width: 224, alignment: .leading)
                                         } else {
-                                            Text(viewModel.lastPaymentMethod?.label)
+                                            Text(transactionViewModel.lastPaymentMethod?.label)
                                                 .foregroundColor(ColorsUi.APC_Black)
                                                 .font(FontsUi.APC_Callout)
                                                 .lineLimit(1)
@@ -137,8 +139,8 @@ struct PaymentChoiceBottomSheet: View {
                             
                             HStack(spacing: 0) {
                                 HStack(spacing: 0) {
-                                    if viewModel.paypalLogOut {
-                                        Button(action: viewModel.logoutPayPal) {
+                                    if transactionViewModel.paypalLogOut {
+                                        Button(action: paypalViewModel.logoutPayPal) {
                                             Text(Constants.logOut)
                                                 .foregroundColor(ColorsUi.APC_DarkGray)
                                                 .font(FontsUi.APC_Caption2_Bold)
@@ -147,14 +149,14 @@ struct PaymentChoiceBottomSheet: View {
                                 }.frame(width: 50, alignment: .leading)
                                 
                                 HStack(spacing: 0) {
-                                    Button(action: viewModel.showPaymentMethodOptions) {
+                                    Button(action: transactionViewModel.showPaymentMethodOptions) {
                                         Text(Constants.otherPaymentMethodsText)
                                             .foregroundColor(ColorsUi.APC_Pink)
                                             .font(FontsUi.APC_Footnote_Bold)
                                             .lineLimit(1)
                                             .padding(.trailing, 8)
                                     }
-                                    Button(action: viewModel.showPaymentMethodOptions) {
+                                    Button(action: transactionViewModel.showPaymentMethodOptions) {
                                         Image(systemName: "chevron.forward")
                                             .resizable()
                                             .edgesIgnoringSafeArea(.all)
@@ -178,7 +180,7 @@ struct PaymentChoiceBottomSheet: View {
                 viewModel.buy()
             }) {
                 ZStack {
-                    if viewModel.transaction != nil {
+                    if transactionViewModel.transaction != nil {
                         ColorsUi.APC_Pink
                     } else {
                         ColorsUi.APC_Gray
@@ -186,7 +188,7 @@ struct PaymentChoiceBottomSheet: View {
                     Text(Constants.buyText)
                 }
             }
-            .disabled(viewModel.transaction == nil)
+            .disabled(transactionViewModel.transaction == nil)
             .frame(width: 328, height: 48)
             .foregroundColor(ColorsUi.APC_White)
             .cornerRadius(10)

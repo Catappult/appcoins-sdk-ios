@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  PaymentMethodIcon.swift
 //  
 //
 //  Created by aptoide on 20/06/2023.
@@ -8,12 +8,12 @@
 import SwiftUI
 import URLImage
 
-struct PaymentMethodIcon: View {
+internal struct PaymentMethodIcon: View {
     
-    var icon: String
-    var disabled: Bool
+    internal var icon: String
+    internal var disabled: Bool
     
-    var body: some View {
+    internal var body: some View {
         if let icon = URL(string: icon) {
             URLImage(icon,
                      inProgress: {

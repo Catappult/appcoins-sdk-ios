@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  WalletLocalErrors.swift
 //  
 //
 //  Created by aptoide on 16/05/2023.
@@ -7,6 +7,6 @@
 
 import Foundation
 
-enum WalletLocalErrors: Error {
+internal enum WalletLocalErrors: Error {
     case failedToCreate
 }

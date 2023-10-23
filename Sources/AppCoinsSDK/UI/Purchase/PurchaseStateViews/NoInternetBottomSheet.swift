@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  NoInternetBottomSheet.swift
 //  
 //
 //  Created by aptoide on 25/05/2023.
@@ -9,11 +9,11 @@ import Foundation
 import SwiftUI
 import URLImage
 
-struct NoInternetBottomSheet: View {
+internal struct NoInternetBottomSheet: View {
     
-    @ObservedObject var viewModel: BottomSheetViewModel
+    @ObservedObject internal var viewModel: BottomSheetViewModel
     
-    var body: some View {
+    internal var body: some View {
 
         ZStack {
             ColorsUi.APC_DarkBlue

@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  CreateAPPCTransactionRaw.swift
 //  
 //
 //  Created by aptoide on 17/05/2023.
@@ -7,19 +7,19 @@
 
 import Foundation
 
-struct CreateAPPCTransactionRaw: Codable {
+internal struct CreateAPPCTransactionRaw: Codable {
     
-    let origin: String?
-    let domain: String
-    let price: String?
-    let priceCurrency: String
-    let product: String?
-    let type: String
-    let developerWa: String
-    let metadata: String?
-    let reference: String?
+    internal let origin: String?
+    internal let domain: String
+    internal let price: String?
+    internal let priceCurrency: String
+    internal let product: String?
+    internal let type: String
+    internal let developerWa: String
+    internal let metadata: String?
+    internal let reference: String?
     
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case origin = "origin"
         case domain = "domain"
         case price = "price.value"
@@ -31,51 +31,27 @@ struct CreateAPPCTransactionRaw: Codable {
         case reference = "reference"
     }
     
-    static func fromDictionary(dictionary: [String : String]) -> CreateAPPCTransactionRaw {
+    internal static func fromParameters(parameters: TransactionParameters) -> CreateAPPCTransactionRaw {
         // normalizes the price to adjust to different time zone price syntaxes
-        let normalizedPrice = (dictionary["appcAmount"] ?? "0.0").replacingOccurrences(of: ",", with: ".")
+        let normalizedPrice = (parameters.appcAmount).replacingOccurrences(of: ",", with: ".")
         
-        var metadata: String?
-        if dictionary["metadata"] == "" { metadata = nil } else { metadata = dictionary["metadata"] }
-        var reference: String?
-        if dictionary["reference"] == "" { reference = nil } else { reference = dictionary["reference"] }
-        
-        return CreateAPPCTransactionRaw(
-            origin: "BDS", domain: dictionary["domain"]!, price: normalizedPrice, priceCurrency: "APPC",
-            product: dictionary["product"], type: "INAPP", developerWa: dictionary["developerWa"]!, metadata: metadata,
-            reference: reference
+        return CreateAPPCTransactionRaw(origin: "BDS", domain: parameters.domain, price: normalizedPrice, priceCurrency: "APPC", product: parameters.product, type: "INAPP", developerWa: parameters.developerWa, metadata: parameters.metadata, reference: parameters.reference
         )
     }
     
-//    static func getTransaction(domain: String, price: String, product: String, developerWa: String, metadata: String?, reference: String?) -> CreateTransactionRaw {
-//        return CreateTransactionRaw(
-//            origin: "BDS", domain: domain, price: price, priceCurrency: "APPC",
-//            product: product, type: "INAPP", developerWa: developerWa, metadata: metadata, reference: reference)
-//    }
-    
-//    origin=BDS&
-//    domain=com.appcoins.trivialdrivesample.test&
-//    price.value=99.73&
-//    price.currency=APPC&
-//    product=gas&
-//    type=INAPP&
-//    wallets.developer=0x123c2124b7f2c18b502296ba884d9cde201f1c32&
-//    metadata=PAYLOAD%20TESTING&
-//    reference=orderId%3D1684401478330
-    
-    func toJSON() -> Data? {
+    internal func toJSON() -> Data? {
         return try? JSONEncoder().encode(self)
     }
     
 }
 
-struct CreateTransactionResponseRaw: Codable {
+internal struct CreateTransactionResponseRaw: Codable {
     
-    let uuid: String
-    let status: CreateTransactionStatus
-    let hash: String?
+    internal let uuid: String
+    internal let status: CreateTransactionStatus
+    internal let hash: String?
     
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case uuid = "uid"
         case status = "status"
         case hash = "hash"
@@ -83,9 +59,9 @@ struct CreateTransactionResponseRaw: Codable {
     
 }
 
-enum CreateTransactionStatus: String, Codable {
+internal enum CreateTransactionStatus: String, Codable {
     
-    init(from decoder: Decoder) throws {
+    internal init(from decoder: Decoder) throws {
         self = try CreateTransactionStatus(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? .UNKNOWN
     }
     
@@ -103,28 +79,27 @@ enum CreateTransactionStatus: String, Codable {
     
 }
 
-struct CreateTransactionErrorRaw: Codable {
+internal struct CreateTransactionErrorRaw: Codable {
     
-    let code: String
-    let path: String
-    let text: String
-    let data: CreateTransactionErrorDataRaw
+    internal let code: String
+    internal let path: String
+    internal let text: String
+    internal let data: CreateTransactionErrorDataRaw
     
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case code = "code"
         case path = "path"
         case text = "text"
         case data = "data"
     }
-    
 }
 
-struct CreateTransactionErrorDataRaw: Codable {
+internal struct CreateTransactionErrorDataRaw: Codable {
     
-    let enduser: String
-    let technical: String
+    internal let enduser: String
+    internal let technical: String
     
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case enduser = "enduser"
         case technical = "technical"
     }

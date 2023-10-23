@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Extensions.swift
 //  
 //
 //  Created by aptoide on 21/09/2023.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-extension UIView {
-    func findAndResignFirstResponder() {
+internal extension UIView {
+    internal func findAndResignFirstResponder() {
         if isFirstResponder {
             resignFirstResponder()
         } else {

@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  CreditCardBottomSheet.swift
 //  
 //
 //  Created by aptoide on 29/08/2023.
@@ -9,14 +9,14 @@ import Foundation
 import SwiftUI
 import ActivityIndicatorView
 
-struct CreditCardBottomSheet: View {
+internal struct CreditCardBottomSheet: View {
     
-    @ObservedObject var viewModel: BottomSheetViewModel
-    @ObservedObject var adyenController: AdyenController = AdyenController.shared
+    @ObservedObject internal var viewModel: BottomSheetViewModel
+    @ObservedObject internal var adyenController: AdyenController = AdyenController.shared
     
-    @Binding var dynamicHeight: CGFloat
+    @Binding internal var dynamicHeight: CGFloat
     
-    var body: some View {
+    internal var body: some View {
        
         VStack(spacing: 0) {
             if let viewController = adyenController.presentableComponent?.viewController {
