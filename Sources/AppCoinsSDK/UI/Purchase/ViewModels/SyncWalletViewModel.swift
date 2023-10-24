@@ -30,8 +30,8 @@ internal class SyncWalletViewModel : ObservableObject {
         
         if let publicKey = SecureEnvelopeClient.shared.publicKey, let publicKeyString = SecureEnvelopeClient.secKeyToString(publicKey) {
             
-            let walletPath = "com.aptoide.appcoins-wallet.import://"
-            let refererUrlEndpoint = "wallet.appcoins.io/import"
+            let walletPath = "com.aptoide.appcoins-wallet.sync://"
+            let refererUrlEndpoint = "wallet.appcoins.io/sync"
             let parameters = "?return=\(Bundle.main.bundleIdentifier!).iap&pk=\(publicKeyString)"
             let fullUrl = walletPath + refererUrlEndpoint + parameters
             

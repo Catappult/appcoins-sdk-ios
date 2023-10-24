@@ -14,7 +14,7 @@ public struct RedirectHandler {
             
             if let host = redirectURL.host, host == "wallet.appcoins.io" {
                 let pathRoot = redirectURL.pathComponents[1]
-                if pathRoot == "import" {
+                if pathRoot == "sync" {
                     SyncWalletViewModel.shared.importWalletReturn(redirectURL: redirectURL)
                     return true
                 }
