@@ -180,7 +180,7 @@ internal class SyncWalletViewModel : ObservableObject {
     // Install the AppCoins Wallet App
     internal func installWallet() {
         let storePath = "com.aptoide.aptoide-store://"
-        let refererUrlEndpoint = "aptoide.com/app/com.aptoide.appcoins-wallet?action=open"
+        let refererUrlEndpoint = "aptoide.com/app/com.aptoide.appcoins-wallet?action=install"
         let fullUrl = storePath + refererUrlEndpoint
         
         UIApplication.shared.open(URL(string: fullUrl)!, options: [:]) {
