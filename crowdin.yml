@@ -1,0 +1,3 @@
+files:
+  - source: /Sources/AppCoinsSDK/Localization/en.lproj/*.*
+    translation: /Sources/AppCoinsSDK/Localization/%locale_with_underscore%.lproj/%original_file_name%
