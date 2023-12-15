@@ -22,10 +22,10 @@
 "Choose a Card" = "कार्ड निवडा";
 "Add new card" = "नविन कार्ड जोडा";
 "You already have the AppCoins Wallet installed!" = "आपल्याकडे अॅपकॉईन्स वॉलेट आधीच इंस्टॉल केलेले आहे!";
-"It seems your wallet is not synced yet!" = "It seems your wallet is not synced yet!";
-"In just a few seconds you can sync the AppCoins Wallet to *earn even more rewards*." = "In just a few seconds you can sync the AppCoins Wallet to *earn even more rewards*.";
-"Sync Wallet" = "Sync Wallet";
-"Skip and buy" = "Skip and buy";
-"Install the AppCoins Wallet to receive *even more rewards*." = "Install the AppCoins Wallet to receive *even more rewards*.";
+"It seems your wallet is not synced yet!" = "आपले वॉलेट अजुन सिंक झालेले नाही असे दिसतेय!";
+"In just a few seconds you can sync the AppCoins Wallet to *earn even more rewards*." = "काही सेकंदातच आपण अॅपकॉईन्स वॉलेटला सिंक करुन *अधिक जास्त रिवॉर्डस मिळवा*.";
+"Sync Wallet" = "वॉलेट सिंक करा";
+"Skip and buy" = "वगळा आणि खरेदी करा";
+"Install the AppCoins Wallet to receive *even more rewards*." = "*अधिक जास्त रिवॉर्डस* मिळविण्यासाठी अॅप कॉईन्स वॉलेट इंस्टॉल करा.";
 "Install" = "इंस्टॉल";
 "Skip" = "वगळा";
