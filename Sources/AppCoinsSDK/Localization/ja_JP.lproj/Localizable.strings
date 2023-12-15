@@ -23,9 +23,9 @@
 "Add new card" = "新しいカードの追加";
 "You already have the AppCoins Wallet installed!" = "すでにAppCoins Walletがインストールされています";
 "It seems your wallet is not synced yet!" = "ウォレットがまだ同期されていないようです";
-"In just a few seconds you can sync the AppCoins Wallet to *earn even more rewards*." = "In just a few seconds you can sync the AppCoins Wallet to *earn even more rewards*.";
-"Sync Wallet" = "Sync Wallet";
-"Skip and buy" = "Skip and buy";
-"Install the AppCoins Wallet to receive *even more rewards*." = "Install the AppCoins Wallet to receive *even more rewards*.";
+"In just a few seconds you can sync the AppCoins Wallet to *earn even more rewards*." = "わずか数秒でAppCoins Walletを同期し、*さらに多くのリワード*を獲得することができます。";
+"Sync Wallet" = "ウォレットを同期";
+"Skip and buy" = "スキップして購入";
+"Install the AppCoins Wallet to receive *even more rewards*." = "AppCoinsウォレットをインストールすると、*さらに多くのリワード*を受け取ることができます。";
 "Install" = "インストール";
 "Skip" = "スキップ";
