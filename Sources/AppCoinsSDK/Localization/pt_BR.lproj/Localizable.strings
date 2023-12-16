@@ -21,11 +21,11 @@
 "Log out" = "Sair";
 "Choose a Card" = "Escolha um Cartão";
 "Add new card" = "Adicionar novo cartão";
-"You already have the AppCoins Wallet installed!" = "You already have the AppCoins Wallet installed!";
-"It seems your wallet is not synced yet!" = "It seems your wallet is not synced yet!";
-"In just a few seconds you can sync the AppCoins Wallet to *earn even more rewards*." = "In just a few seconds you can sync the AppCoins Wallet to *earn even more rewards*.";
-"Sync Wallet" = "Sync Wallet";
-"Skip and buy" = "Skip and buy";
-"Install the AppCoins Wallet to receive *even more rewards*." = "Install the AppCoins Wallet to receive *even more rewards*.";
+"You already have the AppCoins Wallet installed!" = "O AppCoins Wallet já está instalado!";
+"It seems your wallet is not synced yet!" = "Parece que sua carteira ainda não foi sincronizada!";
+"In just a few seconds you can sync the AppCoins Wallet to *earn even more rewards*." = "Em poucos segundos, você pode sincronizar sua AppCoins Wallet para *ganhar ainda mais recompensas*.";
+"Sync Wallet" = "Sincronizar Carteira";
+"Skip and buy" = "Ignorar e comprar";
+"Install the AppCoins Wallet to receive *even more rewards*." = "Instale a AppCoins Wallet para receber *ainda mais recompensas*.";
 "Install" = "Instalar";
 "Skip" = "Pular";
