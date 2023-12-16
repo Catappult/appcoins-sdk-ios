@@ -1,9 +1,9 @@
-"Purchase Bonus: %@ in APPC Credits" = "Purchase Bonus: %@ in AppCoins Credits";
-"You can see this bonus in your next purchase." = "You can use this bonus in your next purchase.";
+"Purchase Bonus: %@ in APPC Credits" = "Aankoopbonus: %@ in AppCoins Credits";
+"You can see this bonus in your next purchase." = "Je kunt deze bonus bij je volgende aankoop gebruiken.";
 "You earned enough AppCoins Credits for this purchase. Enjoy!" = "Je hebt genoeg AppCoins Credits verdiend voor deze aankoop. Veel plezier!";
 "Other payment methods" = "Andere betaalmethoden";
 "Buy" = "Kopen";
-"Cancel" = "Cancel";
+"Cancel" = "Annuleren";
 "Success" = "Done!";
 "%@ Bonus Received" = "%@ Bonus Received";
 "Tap to go back to the game" = "Go back to the game";
