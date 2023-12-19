@@ -41,7 +41,8 @@ let package = Package(
                 .product(name: "AdyenComponents", package: "adyen-ios"),
                 .product(name: "AdyenSession", package: "adyen-ios"),
                 .product(name: "ActivityIndicatorView", package: "ActivityIndicatorView"),
-            ]),
+            ],
+            resources: [.process("Localization")]),
         .testTarget(
             name: "AppCoinsSDKTests",
             dependencies: ["AppCoinsSDK"]),
