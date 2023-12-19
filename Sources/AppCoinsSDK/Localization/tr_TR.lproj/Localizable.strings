@@ -1,9 +1,9 @@
-"Purchase Bonus: %@ in APPC Credits" = "Purchase Bonus: %@ in AppCoins Credits";
-"You can see this bonus in your next purchase." = "You can use this bonus in your next purchase.";
+"Purchase Bonus: %@ in APPC Credits" = "Satın Alma Bonusu: %@ AppCoins Kredisi";
+"You can see this bonus in your next purchase." = "Bu bonusu bir sonraki satın alma işleminde kullanabilirsin.";
 "You earned enough AppCoins Credits for this purchase. Enjoy!" = "Bu satın alma işlemi için yeterli AppCoins Credits kazandınız. Keyfini çıkarın!";
 "Other payment methods" = "Diğer ödeme yöntemleri";
 "Buy" = "Satın Al";
-"Cancel" = "Cancel";
+"Cancel" = "İptal et";
 "Success" = "Done!";
 "%@ Bonus Received" = "%@ Bonus Received";
 "Tap to go back to the game" = "Go back to the game";
