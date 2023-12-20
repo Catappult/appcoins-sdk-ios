@@ -1,5 +1,5 @@
 "Purchase Bonus: %@ in APPC Credits" = "Bonus la achiziție: %@ în AppCoins Credits";
-"You can see this bonus in your next purchase." = "Poți folosi acest la următoarea ta achiziție.";
+"You can see this bonus in your next purchase." = "Poți folosi acest bonus la următoarea ta achiziție.";
 "You earned enough AppCoins Credits for this purchase. Enjoy!" = "Ai câștigat suficiente AppCoins Credits pentru această cumpărătură. Bucură-te de ea!";
 "Other payment methods" = "Alte metode de plată";
 "Buy" = "Cumpără";
@@ -23,9 +23,9 @@
 "Add new card" = "Adaugă card nou";
 "You already have the AppCoins Wallet installed!" = "Ai instalat deja AppCoins Wallet!";
 "It seems your wallet is not synced yet!" = "Se pare că încă nu ți-ai sincronizat portofelul!";
-"In just a few seconds you can sync the AppCoins Wallet to *earn even more rewards*." = "În doar câteva secunde, poți sincroniza AppCoins Wallet, pentru *a câștiga și mai multe recompense*.";
+"In just a few seconds you can sync the AppCoins Wallet to *earn even more rewards*." = "În doar câteva secunde, poți sincroniza AppCoins Wallet, ca *să câștigi și mai multe recompense*.";
 "Sync Wallet" = "Sincronizează Portofel";
-"Skip and buy" = "Skip and buy";
-"Install the AppCoins Wallet to receive *even more rewards*." = "Install the AppCoins Wallet to receive *even more rewards*.";
+"Skip and buy" = "Omite și cumpără";
+"Install the AppCoins Wallet to receive *even more rewards*." = "Instalează AppCoins Wallet ca să primești *și mai multe recompense*.";
 "Install" = "Instalează";
 "Skip" = "Sari";
