@@ -21,11 +21,11 @@
 "Log out" = "خروج از سیستم";
 "Choose a Card" = "انتخاب کارت";
 "Add new card" = "افزودن کارت جدید";
-"You already have the AppCoins Wallet installed!" = "You already have the AppCoins Wallet installed!";
-"It seems your wallet is not synced yet!" = "It seems your wallet is not synced yet!";
-"In just a few seconds you can sync the AppCoins Wallet to *earn even more rewards*." = "In just a few seconds you can sync the AppCoins Wallet to *earn even more rewards*.";
-"Sync Wallet" = "Sync Wallet";
-"Skip and buy" = "Skip and buy";
-"Install the AppCoins Wallet to receive *even more rewards*." = "Install the AppCoins Wallet to receive *even more rewards*.";
+"You already have the AppCoins Wallet installed!" = "شما پیشاپیش AppCoins Wallet را نصب کرده‌اید!";
+"It seems your wallet is not synced yet!" = "به نظر می‌رسد که کیف پول شما هنوز همگام سازی نشده است!";
+"In just a few seconds you can sync the AppCoins Wallet to *earn even more rewards*." = "در چند لحظه می‌توانید AppCoins Wallet خود را همگام سازی کنید تا *پاداش‌های بیشتری بدست آورید*.";
+"Sync Wallet" = "همگام‌سازی کیف پول";
+"Skip and buy" = "عبور و خرید";
+"Install the AppCoins Wallet to receive *even more rewards*." = "AppCoins Wallet را نصب کنید تا *پاداش‌های بیشتری* بدست آورید.";
 "Install" = "نصب";
 "Skip" = "پرش";
