@@ -12,12 +12,12 @@ internal struct Transaction {
     internal let uid: String
     internal let domain: String
     internal let product: String
-    internal let walletFrom: String
-    internal let country: String
-    internal let type: String
+    internal let walletFrom: String?
+    internal let country: String?
+    internal let type: String?
     internal let reference: String?
     internal let hash: String?
-    internal let origin: String
+    internal let origin: String?
     internal let status: String
     internal let developerPayload: String?
     internal let purchaseUID: String?
@@ -25,7 +25,7 @@ internal struct Transaction {
     internal let priceValue: String?
     internal let priceAppc: String?
     
-    internal init(uid: String, domain: String, product: String, walletFrom: String, country: String, type: String, reference: String?, hash: String?, origin: String, status: String, developerPayload: String?, purchaseUID: String?, priceCurrency: String?, priceValue: String?, priceAppc: String?) {
+    internal init(uid: String, domain: String, product: String, walletFrom: String?, country: String?, type: String?, reference: String?, hash: String?, origin: String?, status: String, developerPayload: String?, purchaseUID: String?, priceCurrency: String?, priceValue: String?, priceAppc: String?) {
         self.uid = uid
         self.domain = domain
         self.product = product

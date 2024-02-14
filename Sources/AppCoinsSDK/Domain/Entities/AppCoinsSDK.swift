@@ -6,12 +6,17 @@
 //
 
 import Foundation
+import StoreKit
 
-public struct RedirectHandler {
+public struct AppCoinsSDK {
     
+    static public func isAvailable() async -> Bool {
+        if #available(iOS 17.4, *) { return await ExternalPurchase.canPresent }
+        else { return false }
+    }
+
     static public func handle(redirectURL: URL?) -> Bool {
         if let redirectURL = redirectURL {
-            
             if let host = redirectURL.host, host == "wallet.appcoins.io" {
                 let pathRoot = redirectURL.pathComponents[1]
                 if pathRoot == "sync" {

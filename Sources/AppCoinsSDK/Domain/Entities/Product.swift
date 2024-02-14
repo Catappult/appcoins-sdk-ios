@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftyRSA
+import StoreKit
 
 public struct Product {
     
@@ -38,78 +39,97 @@ public struct Product {
         self.priceSymbol = raw.price.symbol
     }
     
-    static public func products(domain: String = (Bundle.main.bundleIdentifier ?? ""), for identifiers: [String]? = nil, completion: @escaping (Result<[Product], AppCoinsSDKError>) -> Void) {
+    static public func products(domain: String = (Bundle.main.bundleIdentifier ?? ""), for identifiers: [String]? = nil) async throws -> [Product] {
 
         let productUseCases: ProductUseCases = ProductUseCases.shared
         
         if let identifiers = identifiers {
-            productUseCases.getAllProducts(domain: domain) { result in
-                switch result {
-                case .success(let products):
-                    var finalProducts : [Product] = []
-                    for product in products {
-                        if identifiers.contains(product.sku) {
-                            finalProducts.append(product)
+            return try await withCheckedThrowingContinuation { continuation in
+                productUseCases.getAllProducts(domain: domain) { result in
+                    switch result {
+                    case .success(let products):
+                        var finalProducts : [Product] = []
+                        for product in products {
+                            if identifiers.contains(product.sku) {
+                                finalProducts.append(product)
+                            }
                         }
-                    }
-                    completion(.success(finalProducts))
-                case .failure(let failure):
-                    switch failure {
-                    case .failed:
-                        completion(.failure(.systemError))
-                    case .noInternet:
-                        completion(.failure(.networkError))
-                    default:
-                        completion(.failure(.systemError))
+                        continuation.resume(returning: finalProducts)
+                    case .failure(let failure):
+                        switch failure {
+                        case .failed:
+                            continuation.resume(throwing: AppCoinsSDKError.systemError)
+                        case .noInternet:
+                            continuation.resume(throwing: AppCoinsSDKError.networkError)
+                        default:
+                            continuation.resume(throwing: AppCoinsSDKError.systemError)
+                        }
                     }
                 }
             }
         } else {
-            productUseCases.getAllProducts(domain: domain) { result in
-                switch result {
-                case .success(let products):
-                    completion(.success(products))
-                case .failure(let failure):
-                    switch failure {
-                    case .failed:
-                        completion(.failure(.systemError))
-                    case .noInternet:
-                        completion(.failure(.networkError))
-                    default:
-                        completion(.failure(.systemError))
+            return try await withCheckedThrowingContinuation { continuation in
+                productUseCases.getAllProducts(domain: domain) { result in
+                    switch result {
+                    case .success(let products):
+                        continuation.resume(returning: products)
+                    case .failure(let failure):
+                        switch failure {
+                        case .failed:
+                            continuation.resume(throwing: AppCoinsSDKError.systemError)
+                        case .noInternet:
+                            continuation.resume(throwing: AppCoinsSDKError.networkError)
+                        default:
+                            continuation.resume(throwing: AppCoinsSDKError.systemError)
+                        }
                     }
                 }
             }
         }
     }
     
-    public func purchase(domain: String = (Bundle.main.bundleIdentifier ?? ""), payload: String? = nil, orderID: String = String(Date.timeIntervalSinceReferenceDate), completion: @escaping (TransactionResult) -> Void) {
+    public func purchase(domain: String = (Bundle.main.bundleIdentifier ?? ""), payload: String? = nil, orderID: String = String(Date.timeIntervalSinceReferenceDate)) async -> TransactionResult {
         
-        if BottomSheetViewModel.shared.hasActiveTransaction {
-            completion(.failed(error: .purchaseNotAllowed))
-        } else {
-            DispatchQueue.main.async {
-                SDKViewController.presentPurchase()
-                
-                // product – the SKU product
-                // domain – the app's domain registered in catappult
-                // payload – information that the developer might want to pass with the transaction
-                // orderID – a reference so that the developer can identify unique transactions
-                BottomSheetViewModel.shared.buildPurchase(product: self, domain: domain, metadata: payload, reference: orderID)
-            }
-            
-            var observer: NSObjectProtocol?
-            observer = NotificationCenter.default.addObserver(forName: Notification.Name("APPCPurchaseResult"), object: nil, queue: nil) { notification in
-                if let userInfo = notification.userInfo {
-                    if let status = userInfo["TransactionResult"] as? TransactionResult {
-                        completion(status)
+        if #available(iOS 17.4, *) {
+            if await !AppCoinsSDK.isAvailable() || BottomSheetViewModel.shared.hasActiveTransaction {
+                return .failed(error: .purchaseNotAllowed)
+            } else {
+                let result = try? await ExternalPurchase.presentNoticeSheet()
+                switch result {
+                case .continued:
+                    return .failed(error: .unknown)
+                case .cancelled:
+                    return .userCancelled
+                case .continuedWithExternalPurchaseToken(let token):
+                    DispatchQueue.main.async {
+                        SDKViewController.presentPurchase()
                         
-                        if let observer = observer {
-                            NotificationCenter.default.removeObserver(observer)
+                        // product – the SKU product
+                        // domain – the app's domain registered in catappult
+                        // payload – information that the developer might want to pass with the transaction
+                        // orderID – a reference so that the developer can identify unique transactions
+                        BottomSheetViewModel.shared.buildPurchase(product: self, domain: domain, metadata: payload, reference: orderID)
+                    }
+                    
+                    let result = try? await withCheckedThrowingContinuation { continuation in
+                        var observer: NSObjectProtocol?
+                        observer = NotificationCenter.default.addObserver(forName: Notification.Name("APPCPurchaseResult"), object: nil, queue: nil) { notification in
+                            if let userInfo = notification.userInfo {
+                                if let status = userInfo["TransactionResult"] as? TransactionResult {
+                                    continuation.resume(returning: status)
+                                    
+                                    if let observer = observer {
+                                        NotificationCenter.default.removeObserver(observer)
+                                    }
+                                }
+                            }
                         }
                     }
+                    
+                    if let result = result { return result } else { return .failed(error: .unknown) }
+                default: return .failed(error: .unknown)
                 }
             }
-        }
+        } else { return .failed(error: .purchaseNotAllowed) }
     }
 }

@@ -14,7 +14,7 @@
 "Wallet Balance: " = "ยอดคงเหลือในวอลเล็ต: ";
 "No internet connection" = "ไม่มีการเชื่อมต่ออินเตอร์เน็ต";
 "It seems you're not connected to the Internet. Check your connection and try again!" = "ดูเหมือนว่าคุณไม่ได้เชื่อมต่อกับอินเทอร์เน็ต ตรวจสอบการเชื่อมต่อของคุณแล้วลองอีกครั้ง!";
-"Retry Connection" = "ลอง";
+"Retry Connection" = "ลอง";h
 "Available Soon" = "มีเร็วๆนี้";
 "AppCoins Support is not available at the moment" = "การรองรับ AppCoins ไม่สามารถใช้งานได้ในขณะนี้";
 "AppCoins Credits" = "เครดิต AppCoins";
