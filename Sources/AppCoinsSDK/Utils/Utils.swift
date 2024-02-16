@@ -92,10 +92,6 @@ internal struct Utils {
         } else { return nil }
     }
     
-    static internal func isWalletInstalled() -> Bool {
-        return UIApplication.shared.canOpenURL((URL(string: "com.aptoide.appcoins-wallet://"))!)
-    }
-    
     static internal func getAppIcon() -> UIImage {
         if let icons = Bundle.main.infoDictionary?["CFBundleIcons"] as? [String: Any],
            let primaryIcon = icons["CFBundlePrimaryIcon"] as? [String: Any],

@@ -41,6 +41,7 @@ internal class BottomSheetViewModel : ObservableObject {
     internal var productUseCases: ProductUseCases = ProductUseCases.shared
     internal var transactionUseCases: TransactionUseCases = TransactionUseCases.shared
     internal var walletUseCases: WalletUseCases = WalletUseCases.shared
+    internal var walletApplicationUseCases: WalletApplicationUseCases = WalletApplicationUseCases.shared
     
     private init() { UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable") } // Prevents Layout Warning Prints
     
@@ -79,7 +80,7 @@ internal class BottomSheetViewModel : ObservableObject {
     }
 
     internal func initiateTransaction(product: Product, domain: String, metadata: String?, reference: String?) {
-        if Utils.isWalletInstalled() {
+        if walletApplicationUseCases.isWalletAvailable() && walletApplicationUseCases.isWalletInstalled() {
             let newWalletSyncingStatus = self.walletUseCases.getWalletSyncingStatus()
             DispatchQueue.main.async { self.walletSyncingStatus = newWalletSyncingStatus }
 
@@ -289,7 +290,7 @@ internal class BottomSheetViewModel : ObservableObject {
     internal func setPurchaseState(newState: PurchaseState) { DispatchQueue.main.async { self.purchaseState = newState } }
     
     internal func successfulTransaction(purchase: Purchase, balance: Balance, method: Method) {
-        if walletUseCases.getWalletSyncingStatus() == .accepted {
+        if !walletApplicationUseCases.isWalletAvailable() || walletUseCases.getWalletSyncingStatus() == .accepted {
             DispatchQueue.main.async {
                 self.finalWalletBalance = "\(balance.balanceCurrency)\(String(format: "%.2f", balance.balance))"
                 self.purchaseState = .success
@@ -303,7 +304,7 @@ internal class BottomSheetViewModel : ObservableObject {
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) { self.dismissSuccessWithAnimation() }
         } else {
-            if Utils.isWalletInstalled() {
+            if walletApplicationUseCases.isWalletInstalled() {
                 DispatchQueue.main.async { self.purchaseState = .successAskForSync }
             } else {
                 DispatchQueue.main.async { self.purchaseState = .successAskForInstall }
