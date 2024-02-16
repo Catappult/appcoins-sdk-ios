@@ -9,4 +9,6 @@ import Foundation
 
 internal protocol WalletApplicationRepositoryProtocol {
     
+    func isWalletAvailable(completion: @escaping (Bool) -> Void)
+    
 }

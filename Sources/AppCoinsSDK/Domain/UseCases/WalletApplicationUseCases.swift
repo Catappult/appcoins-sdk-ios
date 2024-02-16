@@ -21,8 +21,8 @@ internal class WalletApplicationUseCases {
         return UIApplication.shared.canOpenURL((URL(string: "com.aptoide.appcoins-wallet://"))!)
     }
     
-    internal func isWalletAvailable() -> Bool {
-        return false
+    internal func isWalletAvailable(completion: @escaping (Bool) -> Void) {
+        repository.isWalletAvailable() { result in completion(result) }
     }
     
 }

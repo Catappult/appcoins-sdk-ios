@@ -9,4 +9,6 @@ import Foundation
 
 internal protocol AptoideIOSService {
     
+    func isWalletAvailable(result: @escaping (Result<Bool, AptoideIOSServiceError>) -> Void)
+    
 }

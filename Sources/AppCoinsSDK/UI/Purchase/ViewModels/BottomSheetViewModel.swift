@@ -80,19 +80,23 @@ internal class BottomSheetViewModel : ObservableObject {
     }
 
     internal func initiateTransaction(product: Product, domain: String, metadata: String?, reference: String?) {
-        if walletApplicationUseCases.isWalletAvailable() && walletApplicationUseCases.isWalletInstalled() {
-            let newWalletSyncingStatus = self.walletUseCases.getWalletSyncingStatus()
-            DispatchQueue.main.async { self.walletSyncingStatus = newWalletSyncingStatus }
+        walletApplicationUseCases.isWalletAvailable() {
+            walletAvailable in
+            
+            if walletAvailable && self.walletApplicationUseCases.isWalletInstalled() {
+                let newWalletSyncingStatus = self.walletUseCases.getWalletSyncingStatus()
+                DispatchQueue.main.async { self.walletSyncingStatus = newWalletSyncingStatus }
 
-            switch newWalletSyncingStatus {
-            case .accepted: TransactionViewModel.shared.buildTransaction()
-            case .rejected: TransactionViewModel.shared.buildTransaction()
-            case .none: DispatchQueue.main.async { self.purchaseState = .initialAskForSync }
+                switch newWalletSyncingStatus {
+                case .accepted: TransactionViewModel.shared.buildTransaction()
+                case .rejected: TransactionViewModel.shared.buildTransaction()
+                case .none: DispatchQueue.main.async { self.purchaseState = .initialAskForSync }
+                }
+            } else {
+                if [.accepted, .rejected].contains(self.walletUseCases.getWalletSyncingStatus()) { self.walletUseCases.updateWalletSyncingStatus(status: .none) }
+                DispatchQueue.main.async { self.walletSyncingStatus = .none }
+                TransactionViewModel.shared.buildTransaction()
             }
-        } else {
-            if [.accepted, .rejected].contains(walletUseCases.getWalletSyncingStatus()) { walletUseCases.updateWalletSyncingStatus(status: .none) }
-            DispatchQueue.main.async { self.walletSyncingStatus = .none }
-            TransactionViewModel.shared.buildTransaction()
         }
     }
     
@@ -290,29 +294,33 @@ internal class BottomSheetViewModel : ObservableObject {
     internal func setPurchaseState(newState: PurchaseState) { DispatchQueue.main.async { self.purchaseState = newState } }
     
     internal func successfulTransaction(purchase: Purchase, balance: Balance, method: Method) {
-        if !walletApplicationUseCases.isWalletAvailable() || walletUseCases.getWalletSyncingStatus() == .accepted {
-            DispatchQueue.main.async {
-                self.finalWalletBalance = "\(balance.balanceCurrency)\(String(format: "%.2f", balance.balance))"
-                self.purchaseState = .success
-            }
+        walletApplicationUseCases.isWalletAvailable() {
+            walletAvailable in
             
-            let verificationResult: VerificationResult = .verified(purchase: purchase)
-            let transactionResult: TransactionResult = .success(verificationResult: verificationResult)
-            Utils.transactionResult(result: transactionResult)
-            
-            self.transactionUseCases.setLastPaymentMethod(paymentMethod: method)
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) { self.dismissSuccessWithAnimation() }
-        } else {
-            if walletApplicationUseCases.isWalletInstalled() {
-                DispatchQueue.main.async { self.purchaseState = .successAskForSync }
+            if !walletAvailable || self.walletUseCases.getWalletSyncingStatus() == .accepted {
+                DispatchQueue.main.async {
+                    self.finalWalletBalance = "\(balance.balanceCurrency)\(String(format: "%.2f", balance.balance))"
+                    self.purchaseState = .success
+                }
+                
+                let verificationResult: VerificationResult = .verified(purchase: purchase)
+                let transactionResult: TransactionResult = .success(verificationResult: verificationResult)
+                Utils.transactionResult(result: transactionResult)
+                
+                self.transactionUseCases.setLastPaymentMethod(paymentMethod: method)
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) { self.dismissSuccessWithAnimation() }
             } else {
-                DispatchQueue.main.async { self.purchaseState = .successAskForInstall }
+                if self.walletApplicationUseCases.isWalletInstalled() {
+                    DispatchQueue.main.async { self.purchaseState = .successAskForSync }
+                } else {
+                    DispatchQueue.main.async { self.purchaseState = .successAskForInstall }
+                }
+                
+                self.purchase = purchase
+                self.purchaseCompleted = true
+                self.transactionUseCases.setLastPaymentMethod(paymentMethod: method)
             }
-            
-            self.purchase = purchase
-            self.purchaseCompleted = true
-            self.transactionUseCases.setLastPaymentMethod(paymentMethod: method)
         }
     }
     
