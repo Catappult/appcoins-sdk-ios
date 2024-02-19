@@ -40,7 +40,7 @@ internal struct PaymentChoiceBottomSheet: View {
                             .frame(width: 240, alignment: .leading)
                     } else {
                         HStack(spacing: 0) {
-                            Text("XXXXX")
+                            Text("")
                                 .skeleton(with: true)
                                 .frame(width: 125, height: 22, alignment: .leading)
                             VStack {}.frame(maxWidth: .infinity)
@@ -61,7 +61,7 @@ internal struct PaymentChoiceBottomSheet: View {
                                 .lineLimit(1)
                         } else {
                             HStack(spacing: 0) {
-                                Text("XXXXX")
+                                Text("")
                                     .skeleton(with: true)
                                     .frame(width: 60, height: 14, alignment: .leading)
                                 VStack {}.frame(maxWidth: .infinity)
@@ -71,13 +71,13 @@ internal struct PaymentChoiceBottomSheet: View {
                         .padding(.top, 11)
                     
                     if let appcAmount = transactionViewModel.transaction?.appcAmount {
-                        Text("\(String(format: "%.3f", appcAmount)) APPC")
+                        Text(verbatim: String(format: "%.3f", appcAmount) + " APPC")
                             .foregroundColor(ColorsUi.APC_Gray)
                             .font(FontsUi.APC_Caption2)
                             .frame(width: 240, alignment: .leading)
                     } else {
                         HStack(spacing: 0) {
-                            Text("XXXXX")
+                            Text("")
                                 .skeleton(with: true)
                                 .frame(width: 55, height: 10, alignment: .leading)
                                 .padding(.top, 2)
