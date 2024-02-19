@@ -56,7 +56,7 @@ internal struct CreditCardChoiceBottomSheet: View {
                                                 .animation(.easeIn(duration: 0.3))
                                         }
                                         
-                                        Text("····  \(paymentMethod.lastFour)")
+                                        Text(verbatim: "···· " + paymentMethod.lastFour)
                                             .foregroundColor(ColorsUi.APC_Black)
                                             .font(FontsUi.APC_Subheadline)
                                             .lineLimit(1)

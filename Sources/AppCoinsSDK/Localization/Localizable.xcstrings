@@ -1,0 +1,381 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+
+    },
+    "add_card_button" : {
+      "comment" : "Add new card",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Add new card"
+          }
+        }
+      }
+    },
+    "appc_credits" : {
+      "comment" : "AppCoins Credits",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AppCoins Credits"
+          }
+        }
+      }
+    },
+    "appcoins_support_button" : {
+      "comment" : "AppCoins Support",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AppCoins Support"
+          }
+        }
+      }
+    },
+    "back_to_game_body" : {
+      "comment" : "Tap to go back to the game",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap to go back to the game"
+          }
+        }
+      }
+    },
+    "bonus_received_body" : {
+      "comment" : "%@ Bonus Received",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ Bonus Received"
+          }
+        }
+      }
+    },
+    "buy_button" : {
+      "comment" : "Buy",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buy"
+          }
+        }
+      }
+    },
+    "cancel_button" : {
+      "comment" : "Cancel",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        }
+      }
+    },
+    "choose_card_title" : {
+      "comment" : "Choose a Card",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose a Card"
+          }
+        }
+      }
+    },
+    "earned_enough_appc_body" : {
+      "comment" : "You earned enough AppCoins Credits for this purchase. Enjoy!",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You earned enough AppCoins Credits for this purchase. Enjoy!"
+          }
+        }
+      }
+    },
+    "error_title" : {
+      "comment" : "Error",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error"
+          }
+        }
+      }
+    },
+    "install_button" : {
+      "comment" : "Install",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Install"
+          }
+        }
+      }
+    },
+    "install_wallet_body" : {
+      "comment" : "Install the AppCoins Wallet to receive *even more rewards*.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Install the AppCoins Wallet to receive *even more rewards*."
+          }
+        }
+      }
+    },
+    "log_out_button" : {
+      "comment" : "Log out",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Log out"
+          }
+        }
+      }
+    },
+    "no_internet_body" : {
+      "comment" : "It seems you're not connected to the Internet. Check your connection and try again!",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "It seems you're not connected to the Internet. Check your connection and try again!"
+          }
+        }
+      }
+    },
+    "no_internet_title" : {
+      "comment" : "No internet connection",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No internet connection"
+          }
+        }
+      }
+    },
+    "other_payment_methods_body" : {
+      "comment" : "Other payment methods",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Other payment methods"
+          }
+        }
+      }
+    },
+    "purchase_bonus_body" : {
+      "comment" : "You can see this bonus in your next purchase.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can see this bonus in your next purchase."
+          }
+        }
+      }
+    },
+    "purchase_bonus_title" : {
+      "comment" : "Purchase Bonus: %@ in APPC Credits",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Purchase Bonus: %@ in APPC Credits"
+          }
+        }
+      }
+    },
+    "retry_connection_button" : {
+      "comment" : "Retry Connection",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retry Connection"
+          }
+        }
+      }
+    },
+    "skip_button" : {
+      "comment" : "Skip",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skip"
+          }
+        }
+      }
+    },
+    "skip_sync_button" : {
+      "comment" : "Skip and buy",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skip and buy"
+          }
+        }
+      }
+    },
+    "something_went_wrong_body" : {
+      "comment" : "Oops, something went wrong. Try again!",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oops, something went wrong. Try again!"
+          }
+        }
+      }
+    },
+    "something_went_wrong_title" : {
+      "comment" : "Something went wrong!",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Something went wrong!"
+          }
+        }
+      }
+    },
+    "success_title" : {
+      "comment" : "Success",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Success"
+          }
+        }
+      }
+    },
+    "support_available_soon_body" : {
+      "comment" : "AppCoins Support is not available at the moment",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AppCoins Support is not available at the moment"
+          }
+        }
+      }
+    },
+    "support_available_soon_title" : {
+      "comment" : "Available Soon",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Available Soon"
+          }
+        }
+      }
+    },
+    "sync_wallet_body" : {
+      "comment" : "In just a few seconds you can sync the AppCoins Wallet to *earn even more rewards*.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In just a few seconds you can sync the AppCoins Wallet to *earn even more rewards*."
+          }
+        }
+      }
+    },
+    "sync_wallet_button" : {
+      "comment" : "Sync Wallet",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sync Wallet"
+          }
+        }
+      }
+    },
+    "wallet_already_installed_title" : {
+      "comment" : "You already have the AppCoins Wallet installed!",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You already have the AppCoins Wallet installed!"
+          }
+        }
+      }
+    },
+    "wallet_balance_body" : {
+      "comment" : "Wallet Balance: %@",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wallet Balance: %@"
+          }
+        }
+      }
+    },
+    "wallet_not_synced_title" : {
+      "comment" : "It seems your wallet is not synced yet!",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "It seems your wallet is not synced yet!"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

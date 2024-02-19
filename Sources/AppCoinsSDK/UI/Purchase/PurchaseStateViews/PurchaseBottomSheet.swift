@@ -99,7 +99,7 @@ internal struct PurchaseBottomSheet: View {
                                         .frame(height: 16)
                                 } else {
                                     HStack(spacing: 0) {
-                                        Text("––––––")
+                                        Text("")
                                             .skeleton(with: true)
                                             .font(FontsUi.APC_Caption1_Bold)
                                             .opacity(0.1)
@@ -121,17 +121,21 @@ internal struct PurchaseBottomSheet: View {
                                 .edgesIgnoringSafeArea(.all)
                                 .frame(width: 19, height: 16)
                             
-                            Text(Constants.walletBalance)
-                                .font(FontsUi.APC_Caption1_Bold)
-                                .foregroundColor(ColorsUi.APC_Pink)
-                                .padding(.leading, 6.22)
-                            
                             if let balance = transactionViewModel.transaction?.walletBalance {
-                                Text(balance)
-                                    .font(FontsUi.APC_Caption1_Bold)
-                                    .foregroundColor(ColorsUi.APC_White)
+                                StyledText(
+                                    String(format: Constants.walletBalance, "*\(balance)*"),
+                                    textStyle: FontsUi.APC_Caption1_Bold,
+                                    boldStyle: FontsUi.APC_Caption1_Bold,
+                                    textColorRegular: ColorsUi.APC_Pink,
+                                    textColorBold: ColorsUi.APC_White)
+                                    .padding(.leading, 6.22)
                             } else {
-                                Text("0.00€")
+                                Text(String(format: Constants.walletBalance, ""))
+                                    .font(FontsUi.APC_Caption1_Bold)
+                                    .foregroundColor(ColorsUi.APC_Pink)
+                                    .padding(.leading, 6.22)
+                                
+                                Text("")
                                     .skeleton(with: true)
                                     .font(FontsUi.APC_Caption1_Bold)
                                     .opacity(0.1)
