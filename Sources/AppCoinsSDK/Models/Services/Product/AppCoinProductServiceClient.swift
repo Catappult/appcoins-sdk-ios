@@ -65,7 +65,7 @@ internal class AppCoinProductServiceClient : AppCoinProductService {
             request.httpMethod = "POST"
             
             if let ewt = wa.getEWT() {
-                request.setValue(ewt, forHTTPHeaderField: "authorization")
+                request.setValue(ewt, forHTTPHeaderField: "Authorization")
             }
             
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -98,7 +98,7 @@ internal class AppCoinProductServiceClient : AppCoinProductService {
             request.httpMethod = "POST"
             
             if let ewt = wa.getEWT() {
-                request.setValue(ewt, forHTTPHeaderField: "authorization")
+                request.setValue(ewt, forHTTPHeaderField: "Authorization")
             }
             
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -130,7 +130,7 @@ internal class AppCoinProductServiceClient : AppCoinProductService {
             var request = URLRequest(url: url)
             
             if let ewt = wa.getEWT() {
-                request.setValue(ewt, forHTTPHeaderField: "authorization")
+                request.setValue(ewt, forHTTPHeaderField: "Authorization")
             }
             
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -159,7 +159,7 @@ internal class AppCoinProductServiceClient : AppCoinProductService {
             var request = URLRequest(url: url)
             
             if let ewt = wa.getEWT() {
-                request.setValue(ewt, forHTTPHeaderField: "authorization")
+                request.setValue(ewt, forHTTPHeaderField: "Authorization")
             }
             
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -188,7 +188,7 @@ internal class AppCoinProductServiceClient : AppCoinProductService {
             var request = URLRequest(url: url)
             
             if let ewt = wa.getEWT() {
-                request.setValue(ewt, forHTTPHeaderField: "authorization")
+                request.setValue(ewt, forHTTPHeaderField: "Authorization")
             }
             
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -217,7 +217,7 @@ internal class AppCoinProductServiceClient : AppCoinProductService {
             var request = URLRequest(url: url)
             
             if let ewt = wa.getEWT() {
-                request.setValue(ewt, forHTTPHeaderField: "authorization")
+                request.setValue(ewt, forHTTPHeaderField: "Authorization")
             }
             
             let task = URLSession.shared.dataTask(with: request) { data, response, error in

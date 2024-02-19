@@ -12,12 +12,12 @@ internal struct GetTransactionInfoRaw: Codable {
     internal let uid: String
     internal let domain: String
     internal let product: String
-    internal let wallet_from: String
-    internal let country: String
-    internal let type: String
+    internal let wallet_from: String?
+    internal let country: String?
+    internal let type: String?
     internal let reference: String?
     internal let hash: String?
-    internal let origin: String
+    internal let origin: String?
     internal let status: String
     internal let gateway: GetTransactionInfoGatewayRaw?
     internal let metadata: GetTransactionInfoMetadataRaw?

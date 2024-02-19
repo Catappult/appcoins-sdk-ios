@@ -18,7 +18,13 @@ internal class AppCoinBillingClient : AppCoinBillingService {
     internal func convertCurrency(money: String, fromCurrency: Coin, toCurrency: Coin, result: @escaping (Result<ConvertCurrencyRaw, BillingError>) -> Void) {
         let route = "/exchanges/"
         if let url = URL(string: endpoint + route + "\(fromCurrency.rawValue)/convert/\(money)?to=\(toCurrency.rawValue)") {
-            let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            
+            var request = URLRequest(url: url)
+            
+            let userAgent = "AppCoinsWalletIOS/.."
+            request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
+            
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
                 if let error = error {
                     if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
                         result(.failure(.noInternet))
@@ -39,7 +45,13 @@ internal class AppCoinBillingClient : AppCoinBillingService {
     internal func getPaymentMethods(value: String, currency: Coin, result: @escaping (Result<GetPaymentMethodsRaw, BillingError>) -> Void) {
         let route = "/methods"
         if let url = URL(string: endpoint + route + "?price.value=\(value)&price.currency=\(currency.rawValue)&channel=IOS") {
-            let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            
+            var request = URLRequest(url: url)
+            
+            let userAgent = "AppCoinsWalletIOS/.."
+            request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
+            
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
                 if let error = error {
                     if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
                         result(.failure(.noInternet))
@@ -67,8 +79,11 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                 request.httpBody = body
                 request.httpMethod = "POST"
                 
+                let userAgent = "AppCoinsWalletIOS/.."
+                request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
+                
                 if let ewt = wa.getEWT() {
-                    request.setValue(ewt, forHTTPHeaderField: "authorization")
+                    request.setValue(ewt, forHTTPHeaderField: "Authorization")
                 }
 
                 // Right now not giving feedback on different types of errors
@@ -113,8 +128,11 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                 request.httpBody = body
                 request.httpMethod = "POST"
                 
+                let userAgent = "AppCoinsWalletIOS/.."
+                request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
+                
                 if let ewt = wa.getEWT() {
-                    request.setValue(ewt, forHTTPHeaderField: "authorization")
+                    request.setValue(ewt, forHTTPHeaderField: "Authorization")
                 }
                 
                 // Right now not giving feedback on different types of errors
@@ -158,8 +176,11 @@ internal class AppCoinBillingClient : AppCoinBillingService {
             
             var request = URLRequest(url: url)
             
+            let userAgent = "AppCoinsWalletIOS/.."
+            request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
+            
             if let ewt = wa.getEWT() {
-                request.setValue(ewt, forHTTPHeaderField: "authorization")
+                request.setValue(ewt, forHTTPHeaderField: "Authorization")
             }
             
             let task = URLSession(configuration: configuration).dataTask(with: request) { data, response, error in
@@ -198,8 +219,11 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                 request.httpBody = body
                 request.httpMethod = "POST"
                 
+                let userAgent = "AppCoinsWalletIOS/.."
+                request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
+                
                 if let ewt = wa.getEWT() {
-                    request.setValue(ewt, forHTTPHeaderField: "authorization")
+                    request.setValue(ewt, forHTTPHeaderField: "Authorization")
                 }
                 
                 // Right now not giving feedback on different types of errors
@@ -237,14 +261,16 @@ internal class AppCoinBillingClient : AppCoinBillingService {
         let route = "/gateways/paypal/transactions"
         if let url = URL(string: endpoint + route) {
             if let body = raw.toJSON() {
-
                 var request = URLRequest(url: url)
                 request.addValue("application/json", forHTTPHeaderField: "Content-Type")
                 request.httpBody = body
                 request.httpMethod = "POST"
                 
+                let userAgent = "AppCoinsWalletIOS/.."
+                request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
+                
                 if let ewt = wa.getEWT() {
-                    request.setValue(ewt, forHTTPHeaderField: "authorization")
+                    request.setValue(ewt, forHTTPHeaderField: "Authorization")
                 }
                 
                 // Magnes SDK integration will only be used when we're no longer using Jailbreak
@@ -298,8 +324,11 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                 request.httpBody = body
                 request.httpMethod = "POST"
                 
+                let userAgent = "AppCoinsWalletIOS/.."
+                request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
+                
                 if let ewt = wa.getEWT() {
-                    request.setValue(ewt, forHTTPHeaderField: "authorization")
+                    request.setValue(ewt, forHTTPHeaderField: "Authorization")
                 }
                 
                 // Magnes SDK integration will only be used when we're no longer using Jailbreak
@@ -338,8 +367,11 @@ internal class AppCoinBillingClient : AppCoinBillingService {
             request.httpBody = "\"\(token)\"".data(using: .utf8)
             request.httpMethod = "POST"
             
+            let userAgent = "AppCoinsWalletIOS/.."
+            request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
+            
             if let ewt = wa.getEWT() {
-                request.setValue(ewt, forHTTPHeaderField: "authorization")
+                request.setValue(ewt, forHTTPHeaderField: "Authorization")
             }
             
             // Magnes SDK integration will only be used when we're no longer using Jailbreak
@@ -377,8 +409,11 @@ internal class AppCoinBillingClient : AppCoinBillingService {
             var request = URLRequest(url: url)
             request.httpMethod = "POST"
             
+            let userAgent = "AppCoinsWalletIOS/.."
+            request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
+            
             if let ewt = wa.getEWT() {
-                request.setValue(ewt, forHTTPHeaderField: "authorization")
+                request.setValue(ewt, forHTTPHeaderField: "Authorization")
             }
             
             // Magnes SDK integration will only be used when we're no longer using Jailbreak
@@ -417,9 +452,12 @@ internal class AppCoinBillingClient : AppCoinBillingService {
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.httpBody = "\"\(token)\"".data(using: .utf8)
             request.httpMethod = "POST"
+            
+            let userAgent = "AppCoinsWalletIOS/.."
+            request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
 
             if let ewt = wa.getEWT() {
-                request.setValue(ewt, forHTTPHeaderField: "authorization")
+                request.setValue(ewt, forHTTPHeaderField: "Authorization")
             }
             
             // Magnes SDK integration will only be used when we're no longer using Jailbreak
@@ -453,9 +491,12 @@ internal class AppCoinBillingClient : AppCoinBillingService {
         if let url = URL(string: endpoint + route) {
             
             var request = URLRequest(url: url)
+            
+            let userAgent = "AppCoinsWalletIOS/.."
+            request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
         
             if let ewt = wa.getEWT() {
-                request.setValue(ewt, forHTTPHeaderField: "authorization")
+                request.setValue(ewt, forHTTPHeaderField: "Authorization")
             }
             
             // Magnes SDK integration will only be used when we're no longer using Jailbreak
