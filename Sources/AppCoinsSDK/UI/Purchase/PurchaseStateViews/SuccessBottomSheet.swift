@@ -85,9 +85,9 @@ internal struct SuccessBottomSheet: View {
                 }.frame(height: 348, alignment: .top)
                 
                 
-            }.frame(width: UIScreen.main.bounds.size.width, height: 314 + Utils.bottomSafeAreaHeight)
+            }.frame(width: UIScreen.main.bounds.size.width, height: 348 + Utils.bottomSafeAreaHeight)
                 .cornerRadius(13, corners: [.topLeft, .topRight])
-        }.offset(y: viewModel.successAnimation ? 0 : 314 + Utils.bottomSafeAreaHeight)
+        }.offset(y: viewModel.successAnimation ? 0 : 348 + Utils.bottomSafeAreaHeight)
             .transition(viewModel.successAnimation ? .identity : .move(edge: .top))
             .animation(.easeOut(duration: 0.5))
                 

@@ -1,6 +1,6 @@
 //
-//  RedirectHandler.swift
-//  
+//  AppCoinsSDK.swift
+//
 //
 //  Created by aptoide on 21/09/2023.
 //
