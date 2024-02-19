@@ -22,7 +22,8 @@ internal class WalletApplicationUseCases {
     }
     
     internal func isWalletAvailable(completion: @escaping (Bool) -> Void) {
-        repository.isWalletAvailable() { result in completion(result) }
+        completion(false) // wallet not available yet
+//        repository.isWalletAvailable() { result in completion(result) }
     }
     
 }
