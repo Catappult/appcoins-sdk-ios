@@ -61,7 +61,7 @@ internal class TransactionViewModel : ObservableObject {
     }
     
     internal func buildTransaction() {
-        bottomSheetViewModel.setPurchaseState(newState: .failed)
+        bottomSheetViewModel.setPurchaseState(newState: .paying)
         
         if let product = product, let domain = domain, let token = token {
             if let wallet = walletUseCases.getClientWallet(), let wa = wallet.address {
