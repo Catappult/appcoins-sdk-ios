@@ -22,6 +22,7 @@ internal class TransactionViewModel : ObservableObject {
     internal var domain: String? = nil
     internal var metadata: String? = nil
     internal var reference: String? = nil
+    internal var token: String? = nil
     
     @Published internal var transaction: TransactionAlertUi?
     internal var transactionParameters: TransactionParameters?
@@ -39,6 +40,7 @@ internal class TransactionViewModel : ObservableObject {
         self.domain = nil
         self.metadata = nil
         self.reference = nil
+        self.token = nil
         
         self.transaction = nil
         self.transactionParameters = nil
@@ -50,17 +52,18 @@ internal class TransactionViewModel : ObservableObject {
     }
     
     // Called when a user starts a product purchase
-    internal func setUpTransaction(product: Product, domain: String, metadata: String?, reference: String?) {
+    internal func setUpTransaction(product: Product, domain: String, metadata: String?, reference: String?, token: String) {
         self.product = product
         self.domain = domain
         self.metadata = metadata
         self.reference = reference
+        self.token = token
     }
     
     internal func buildTransaction() {
-        bottomSheetViewModel.setPurchaseState(newState: .paying)
+        bottomSheetViewModel.setPurchaseState(newState: .failed)
         
-        if let product = product, let domain = domain {
+        if let product = product, let domain = domain, let token = token {
             if let wallet = walletUseCases.getClientWallet(), let wa = wallet.address {
                 // 1. Get product value
                 getProductAppcValue(product: product) {
@@ -91,7 +94,7 @@ internal class TransactionViewModel : ObservableObject {
                                             self.transaction = TransactionAlertUi(domain: domain, description: product.title, category: .IAP, sku: product.sku, moneyAmount: moneyAmount, moneyCurrency: product.priceCurrency, appcAmount: appcValue, bonusCurrency: transactionBonus.currency.symbol, bonusAmount: transactionBonus.value, walletBalance: "\(balanceCurrency)\(String(format: "%.2f", balanceValue))", paymentMethods: availablePaymentMethods)
                                             
                                             // 7. Build the parameters to process the transaction
-                                            self.transactionParameters = TransactionParameters(value: String(moneyAmount), currency: Coin.EUR.rawValue, developerWa: developerWa, userWa: wa, domain: domain, product: product.sku, appcAmount: String(appcValue), metadata: self.metadata, reference: self.reference)
+                                            self.transactionParameters = TransactionParameters(value: String(moneyAmount), currency: Coin.EUR.rawValue, developerWa: developerWa, userWa: wa, domain: domain, product: product.sku, appcAmount: String(appcValue), metadata: self.metadata, reference: self.reference, token: token)
                                             
                                             // 8. Show payment method options
                                             self.showPaymentMethodsOnBuild(balance: balance)

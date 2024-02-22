@@ -236,6 +236,7 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                         }
                     } else {
                         if let data = data {
+                            print(String(data: data, encoding: .utf8))
                             if let successResponse = try? JSONDecoder().decode(CreateAdyenTransactionResponseRaw.self, from: data) {
                                 completion(.success(successResponse))
                             } else {
@@ -245,8 +246,6 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                             completion(.failure(.failed()))
                         }
                     }
-                    
-                    
                 })
                 task.resume()
             }
