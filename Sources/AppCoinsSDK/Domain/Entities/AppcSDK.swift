@@ -8,7 +8,7 @@
 import Foundation
 import StoreKit
 
-public struct AppCoinsSDK {
+public struct AppcSDK {
     
     static public func isAvailable() async -> Bool {
         if #available(iOS 17.4, *) { return await ExternalPurchase.canPresent }

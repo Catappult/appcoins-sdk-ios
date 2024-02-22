@@ -255,8 +255,8 @@ internal class AppCoinBillingClient : AppCoinBillingService {
     
     internal func createBAPayPalTransaction(wa: Wallet, raw: CreateBAPayPalTransactionRaw, completion: @escaping (Result<CreateBAPayPalTransactionResponseRaw, TransactionError>) -> Void) {
         
-        // Magnes SDK integration will only be used when we're no longer using Jailbreak
-//        let paypalClientMetadataID = Utils.getMagnesSDKClientMetadataID()
+        // Magnes SDK integration
+        let paypalClientMetadataID = Utils.getMagnesSDKClientMetadataID()
         
         let route = "/gateways/paypal/transactions"
         if let url = URL(string: endpoint + route) {
@@ -273,8 +273,8 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                     request.setValue(ewt, forHTTPHeaderField: "Authorization")
                 }
                 
-                // Magnes SDK integration will only be used when we're no longer using Jailbreak
-//                request.setValue(paypalClientMetadataID, forHTTPHeaderField: "PayPal-Client-Metadata-Id")
+                // Magnes SDK integration
+                request.setValue(paypalClientMetadataID, forHTTPHeaderField: "PayPal-Client-Metadata-Id")
                 
                 // Right now not giving feedback on different types of errors
                 let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
@@ -312,8 +312,8 @@ internal class AppCoinBillingClient : AppCoinBillingService {
     
     internal func createBillingAgreementToken(wa: Wallet, raw: CreateBillingAgreementTokenRaw, completion: @escaping (Result<CreateBillingAgreementTokenResponseRaw, TransactionError>) -> Void) {
         
-        // Magnes SDK integration will only be used when we're no longer using Jailbreak
-//        let paypalClientMetadataID = Utils.getMagnesSDKClientMetadataID()
+        // Magnes SDK integration
+        let paypalClientMetadataID = Utils.getMagnesSDKClientMetadataID()
         
         let route = "/gateways/paypal/billing-agreement/token/create"
         if let url = URL(string: endpoint + route) {
@@ -331,8 +331,8 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                     request.setValue(ewt, forHTTPHeaderField: "Authorization")
                 }
                 
-                // Magnes SDK integration will only be used when we're no longer using Jailbreak
-//                request.setValue(paypalClientMetadataID, forHTTPHeaderField: "PayPal-Client-Metadata-Id")
+                // Magnes SDK integration
+                request.setValue(paypalClientMetadataID, forHTTPHeaderField: "PayPal-Client-Metadata-Id")
                 
                 // Right now not giving feedback on different types of errors
                 let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
@@ -357,8 +357,8 @@ internal class AppCoinBillingClient : AppCoinBillingService {
 
     internal func cancelBillingAgreementToken(token: String, wa: Wallet, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
         
-        // Magnes SDK integration will only be used when we're no longer using Jailbreak
-//        let paypalClientMetadataID = Utils.getMagnesSDKClientMetadataID()
+        // Magnes SDK integration
+        let paypalClientMetadataID = Utils.getMagnesSDKClientMetadataID()
         
         let route = "/gateways/paypal/billing-agreement/token/cancel"
         if let url = URL(string: endpoint + route) {
@@ -374,8 +374,8 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                 request.setValue(ewt, forHTTPHeaderField: "Authorization")
             }
             
-            // Magnes SDK integration will only be used when we're no longer using Jailbreak
-//            request.setValue(paypalClientMetadataID, forHTTPHeaderField: "PayPal-Client-Metadata-Id")
+            // Magnes SDK integration
+            request.setValue(paypalClientMetadataID, forHTTPHeaderField: "PayPal-Client-Metadata-Id")
             
             let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
                 if let error = error {
@@ -401,8 +401,8 @@ internal class AppCoinBillingClient : AppCoinBillingService {
     
     internal func cancelBillingAgreement(wa: Wallet, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
         
-        // Magnes SDK integration will only be used when we're no longer using Jailbreak
-//        let paypalClientMetadataID = Utils.getMagnesSDKClientMetadataID()
+        // Magnes SDK integration
+        let paypalClientMetadataID = Utils.getMagnesSDKClientMetadataID()
         
         let route = "/gateways/paypal/billing-agreement/cancel"
         if let url = URL(string: endpoint + route) {
@@ -416,8 +416,8 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                 request.setValue(ewt, forHTTPHeaderField: "Authorization")
             }
             
-            // Magnes SDK integration will only be used when we're no longer using Jailbreak
-//            request.setValue(paypalClientMetadataID, forHTTPHeaderField: "PayPal-Client-Metadata-Id")
+            // Magnes SDK integration
+            request.setValue(paypalClientMetadataID, forHTTPHeaderField: "PayPal-Client-Metadata-Id")
             
             let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
                 if let error = error {
@@ -443,8 +443,8 @@ internal class AppCoinBillingClient : AppCoinBillingService {
     
     internal func createBillingAgreement(token: String, wa: Wallet, completion: @escaping (Result<CreateBillingAgreementResponseRaw, TransactionError>) -> Void) {
         
-        // Magnes SDK integration will only be used when we're no longer using Jailbreak
-//        let paypalClientMetadataID = Utils.getMagnesSDKClientMetadataID()
+        // Magnes SDK integration
+        let paypalClientMetadataID = Utils.getMagnesSDKClientMetadataID()
         
         let route = "/gateways/paypal/billing-agreement/create"
         if let url = URL(string: endpoint + route) {
@@ -460,8 +460,8 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                 request.setValue(ewt, forHTTPHeaderField: "Authorization")
             }
             
-            // Magnes SDK integration will only be used when we're no longer using Jailbreak
-//            request.setValue(paypalClientMetadataID, forHTTPHeaderField: "PayPal-Client-Metadata-Id")
+            // Magnes SDK integration
+            request.setValue(paypalClientMetadataID, forHTTPHeaderField: "PayPal-Client-Metadata-Id")
             
             let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
                 if let error = error {
@@ -484,8 +484,8 @@ internal class AppCoinBillingClient : AppCoinBillingService {
     
     internal func getBillingAgreement(wa: Wallet, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
         
-        // Magnes SDK integration will only be used when we're no longer using Jailbreak
-//        let paypalClientMetadataID = Utils.getMagnesSDKClientMetadataID()
+        // Magnes SDK integration
+        let paypalClientMetadataID = Utils.getMagnesSDKClientMetadataID()
         
         let route = "/gateways/paypal/billing-agreement"
         if let url = URL(string: endpoint + route) {
@@ -499,8 +499,8 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                 request.setValue(ewt, forHTTPHeaderField: "Authorization")
             }
             
-            // Magnes SDK integration will only be used when we're no longer using Jailbreak
-//            request.setValue(paypalClientMetadataID, forHTTPHeaderField: "PayPal-Client-Metadata-Id")
+            // Magnes SDK integration
+            request.setValue(paypalClientMetadataID, forHTTPHeaderField: "PayPal-Client-Metadata-Id")
             
             let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
                 if let error = error {

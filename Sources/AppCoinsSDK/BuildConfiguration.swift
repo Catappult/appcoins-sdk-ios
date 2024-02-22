@@ -13,7 +13,7 @@ internal class BuildConfiguration {
     static internal let shared = BuildConfiguration()
     
     // For now we only work on dev environment
-    static internal var environment: SDKEnvironment = .debugSDKDev
+    static internal var environment: SDKEnvironment = .debugSDKProd
     
     
     static internal var packageName : String {
@@ -92,7 +92,14 @@ internal class BuildConfiguration {
         }
     }
     
-    static internal var adyenEnvironment: Adyen.Environment = .test
+    static internal var adyenEnvironment: Adyen.Environment {
+        switch environment {
+            case .debugSDKDev, .releaseSDKDev:
+                return .test
+            case .debugSDKProd, .releaseSDKProd:
+                return .liveEurope
+        }
+    }
     
     static internal var userUID =  UIDevice.current.identifierForVendor!.uuidString
     

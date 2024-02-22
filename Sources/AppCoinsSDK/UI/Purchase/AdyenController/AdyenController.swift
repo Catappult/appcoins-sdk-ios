@@ -85,8 +85,8 @@ internal class AdyenController : AdyenSessionDelegate, PresentationDelegate, Obs
                                 if let paymentMethod = paymentMethods.regular.first(where: {$0.name == "PayPal"}) {
                                     self?.setUpPayPalRedirectComponent(paymentMethod: paymentMethod, adyenContext: adyenContext)
                                 } else { failedHandler() }
-                            }
-                        }
+                            } else { failedHandler() }
+                        } else { failedHandler() }
 
                         case .failure(_):
                             failedHandler()
@@ -228,7 +228,6 @@ internal class AdyenController : AdyenSessionDelegate, PresentationDelegate, Obs
         let paypalComponent = InstantPaymentComponent(paymentMethod: paymentMethod,
                                                       context: adyenContext,
                                                       order: nil)
-
         paypalComponent.delegate = session
         paypalComponent.initiatePayment()
         self.presentAdyenRedirect = true

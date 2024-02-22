@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import PPRiskMagnes
 
 // Helper to the BottomSheetViewModel
 internal class PayPalDirectViewModel : ObservableObject {
@@ -40,6 +41,9 @@ internal class PayPalDirectViewModel : ObservableObject {
     // 2. If the user does not have a Billing Agreement: prompts the PayPal WebView for the user to create a BA
     internal func buyWithPayPalDirect(raw: CreateBAPayPalTransactionRaw, wallet: Wallet, completion: @escaping (Result<String, TransactionError>) -> Void) {
         self.raw = raw
+        
+        let magnesSDK = MagnesSDK.shared()
+        try? magnesSDK.setUp()
         
         self.transactionUseCases.createBAPayPalTransaction(wa: wallet, raw: raw) {
             result in
