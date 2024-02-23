@@ -44,7 +44,11 @@ internal struct ErrorBottomSheet: View {
                     .padding(.top, 15)
                 
                 Button(action: {
-                    toast = FancyToast(type: .info, title: Constants.supportAvailableSoonTitle, message: Constants.supportAvailableSoonMessage)
+                    if let emailURL = URL(string: "mailto:ios.store@aptoide.zendesk.com") {
+                        UIApplication.shared.open(emailURL)
+                    } else {
+                        toast = FancyToast(type: .info, title: Constants.supportAvailableSoonTitle, message: Constants.supportAvailableSoonMessage)
+                    }
                 }) {
                     HStack {
                         Image(systemName: "paperplane.fill")
