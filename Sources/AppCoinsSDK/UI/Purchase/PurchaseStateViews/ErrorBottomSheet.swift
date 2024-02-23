@@ -44,7 +44,15 @@ internal struct ErrorBottomSheet: View {
                     .padding(.top, 15)
                 
                 Button(action: {
-                    if let emailURL = URL(string: "mailto:ios.store@aptoide.zendesk.com") {
+                    var subject: String
+                    if let address = WalletUseCases.shared.getClientWallet()?.address {
+                        subject = "[iOS] Payment Support: \(address)"
+                    } else {
+                        subject = "[iOS] Payment Support"
+                    }
+                    
+                    if let subject = subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+                        let emailURL = URL(string: "mailto:info@appcoins.io?subject=\(subject)") {
                         UIApplication.shared.open(emailURL)
                     } else {
                         toast = FancyToast(type: .info, title: Constants.supportAvailableSoonTitle, message: Constants.supportAvailableSoonMessage)
