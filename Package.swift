@@ -43,10 +43,7 @@ let package = Package(
                 .product(name: "ActivityIndicatorView", package: "ActivityIndicatorView"),
             ],
             resources: [.process("Localization")]),
-        .binaryTarget(name: "PPRiskMagnes", path: "./Sources/AppCoinsSDK/Frameworks/PPRiskMagnes.xcframework"),
-        .testTarget(
-            name: "AppCoinsSDKTests",
-            dependencies: ["AppCoinsSDK"]),
+        .binaryTarget(name: "PPRiskMagnes", path: "./Sources/AppCoinsSDK/Frameworks/PPRiskMagnes.xcframework")
     ]
 )
 
