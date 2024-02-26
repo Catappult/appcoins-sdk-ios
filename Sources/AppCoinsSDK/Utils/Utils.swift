@@ -29,7 +29,6 @@ internal struct Utils {
         
         // Save to disk
         let didSave = preferences.synchronize()
-        if !didSave { print("ERROR") } // TODO couldn't save
     }
     
     static internal func readFromPreferences(key: String) -> String {

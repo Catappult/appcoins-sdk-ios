@@ -37,10 +37,8 @@ internal class WalletLocalClient : WalletLocalService {
                     let keystore = keystoreURL.appendingPathComponent(active_address)
                     return Wallet(keystore, active_password!)
                 
-                // TODO deal with no address on keychain – onboarding wallet
                 } else { return nil }
                 
-            // TODO deal with no address on keychain – onboarding wallet
             } else { return nil }
         }
         return nil
