@@ -19,8 +19,9 @@ internal struct TransactionParameters {
     internal var method: String?
     internal let metadata: String?
     internal let reference: String?
+    internal let token: String
 
-    init(value: String, currency: String, developerWa: String, userWa: String, domain: String, product: String, appcAmount: String, method: String? = nil, metadata: String?, reference: String?) {
+    init(value: String, currency: String, developerWa: String, userWa: String, domain: String, product: String, appcAmount: String, method: String? = nil, metadata: String?, reference: String?, token: String) {
         self.value = value
         self.currency = currency
         self.developerWa = developerWa
@@ -31,6 +32,7 @@ internal struct TransactionParameters {
         self.method = method
         self.metadata = metadata
         self.reference = reference
+        self.token = token
     }
     
     internal mutating func setMethod(method: Method) { self.method = method.rawValue }

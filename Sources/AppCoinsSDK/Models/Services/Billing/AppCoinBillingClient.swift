@@ -245,8 +245,6 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                             completion(.failure(.failed()))
                         }
                     }
-                    
-                    
                 })
                 task.resume()
             }
