@@ -91,7 +91,7 @@ public struct Product {
     public func purchase(domain: String = (Bundle.main.bundleIdentifier ?? ""), payload: String? = nil, orderID: String = String(Date.timeIntervalSinceReferenceDate)) async -> TransactionResult {
         
         if #available(iOS 17.4, *) {
-            if await !AppCoinsSDK.isAvailable() || BottomSheetViewModel.shared.hasActiveTransaction {
+            if await !AppcSDK.isAvailable() || BottomSheetViewModel.shared.hasActiveTransaction {
                 return .failed(error: .purchaseNotAllowed)
             } else {
                 let result = try? await ExternalPurchase.presentNoticeSheet()
