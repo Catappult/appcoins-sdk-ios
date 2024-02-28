@@ -3269,7 +3269,7 @@
       }
     },
     "purchase_bonus_title" : {
-      "comment" : "Purchase Bonus: %@ in APPC Credits",
+      "comment" : "Purchase Bonus: %@ in AppCoins Credits",
       "extractionState" : "manual",
       "localizations" : {
         "ar" : {
