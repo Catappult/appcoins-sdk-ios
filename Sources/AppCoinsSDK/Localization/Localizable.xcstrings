@@ -3358,8 +3358,8 @@
         },
         "mr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Purchase Bonus: %@ in APPC Credits"
+            "state" : "translated",
+            "value" : "खरेदी बोनस: अॅपकॉईन्स क्रेडीटस मध्ये %@"
           }
         },
         "ms" : {
@@ -5578,8 +5578,8 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Wallet Balance: %@"
+            "state" : "translated",
+            "value" : "رصيد المحفظة: %@"
           }
         },
         "bn" : {
@@ -5590,14 +5590,14 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Wallet Balance: %@"
+            "state" : "translated",
+            "value" : "Wallet-Guthaben: %@"
           }
         },
         "el" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Wallet Balance: %@"
+            "state" : "translated",
+            "value" : "Υπόλοιπο Wallet: %@"
           }
         },
         "en" : {
@@ -5614,14 +5614,14 @@
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Wallet Balance: %@"
+            "state" : "translated",
+            "value" : "بالانس کیف پول: %@"
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Wallet Balance: %@"
+            "state" : "translated",
+            "value" : "Solde du portefeuille : %@"
           }
         },
         "hi" : {
@@ -5632,56 +5632,56 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Wallet Balance: %@"
+            "state" : "translated",
+            "value" : "Egyenleg a tárcán: %@"
           }
         },
         "id" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Wallet Balance: %@"
+            "state" : "translated",
+            "value" : "Saldo Dompet: %@"
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Wallet Balance: %@"
+            "state" : "translated",
+            "value" : "Saldo del wallet: %@"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Wallet Balance: %@"
+            "state" : "translated",
+            "value" : "ウォレットの残高: %@"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Wallet Balance: %@"
+            "state" : "translated",
+            "value" : "지갑 잔액: %@"
           }
         },
         "mr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Wallet Balance: %@"
+            "state" : "translated",
+            "value" : "वॉलेट शिल्लक: %@"
           }
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Wallet Balance: %@"
+            "state" : "translated",
+            "value" : "Baki Dompet: %@"
           }
         },
         "my" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Wallet Balance: %@"
+            "state" : "translated",
+            "value" : "ပိုက္ဆံအိတ္ လက္က်န္ေငြ - %@"
           }
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Wallet Balance: %@"
+            "state" : "translated",
+            "value" : "Saldo van wallet: %@"
           }
         },
         "pa" : {
@@ -5692,14 +5692,14 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Wallet Balance: %@"
+            "state" : "translated",
+            "value" : "Saldo Portfela: %@"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Wallet Balance: %@"
+            "state" : "translated",
+            "value" : "Saldo da Carteira: %@"
           }
         },
         "pt-PT" : {
@@ -5710,50 +5710,50 @@
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Wallet Balance: %@"
+            "state" : "translated",
+            "value" : "Balanță portofel: %@"
           }
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Wallet Balance: %@"
+            "state" : "translated",
+            "value" : "Баланс кошелька: %@"
           }
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Wallet Balance: %@"
+            "state" : "translated",
+            "value" : "Stanje novčanika: %@"
           }
         },
         "th" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Wallet Balance: %@"
+            "state" : "translated",
+            "value" : "ยอดคงเหลือในวอลเล็ต: %@"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Wallet Balance: %@"
+            "state" : "translated",
+            "value" : "Cüzdan Bakiyesi: %@"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Wallet Balance: %@"
+            "state" : "translated",
+            "value" : "Баланс гаманця: %@"
           }
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Wallet Balance: %@"
+            "state" : "translated",
+            "value" : "Số dư trên Ví: %@"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Wallet Balance: %@"
+            "state" : "translated",
+            "value" : "钱包余额: %@"
           }
         },
         "zh-Hant" : {
