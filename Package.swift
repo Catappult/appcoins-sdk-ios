@@ -17,13 +17,13 @@ let package = Package(
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-        .package(url: "https://github.com/web3swift-team/web3swift.git", .upToNextMajor(from: "3.0.0")),
-        .package(url: "https://github.com/krzyzanowskim/CryptoSwift.git", branch: "main"),
-        .package(url: "https://github.com/dmytro-anokhin/url-image.git", .upToNextMajor(from: "3.0.0")),
-        .package(url: "https://github.com/CSolanaM/SkeletonUI.git", branch: "master"),
-        .package(url: "https://github.com/TakeScoop/SwiftyRSA.git", .upToNextMajor(from: "1.8.0")),
-        .package(url: "https://github.com/Adyen/adyen-ios.git", .exact("5.1.0")),
-        .package(url: "https://github.com/exyte/ActivityIndicatorView.git", .upToNextMajor(from: "1.0.0"))
+        .package(url: "https://github.com/web3swift-team/web3swift.git", .upToNextMinor(from: "3.2.0")),
+        .package(url: "https://github.com/krzyzanowskim/CryptoSwift.git", .upToNextMinor(from: "1.5.1")),
+        .package(url: "https://github.com/dmytro-anokhin/url-image.git", .upToNextMinor(from: "3.0.0")),
+        .package(url: "https://github.com/CSolanaM/SkeletonUI.git", .upToNextMinor(from: "2.0.1")),
+        .package(url: "https://github.com/TakeScoop/SwiftyRSA.git", .upToNextMinor(from: "1.8.0")),
+        .package(url: "https://github.com/Adyen/adyen-ios.git", exact: "5.1.0"),
+        .package(url: "https://github.com/exyte/ActivityIndicatorView.git", .upToNextMinor(from: "1.1.0"))
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
