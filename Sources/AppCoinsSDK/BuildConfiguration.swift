@@ -61,7 +61,7 @@ internal class BuildConfiguration {
             case .debugSDKDev, .releaseSDKDev:
                 return "https://ws75-devel.aptoide.com/api/7"
             case .debugSDKProd, .releaseSDKProd:
-                return "https://ws75-devel.aptoide.com/api/7"
+                return "https://ws75-secondary.aptoide.com/api/7"
         }
     }
     
