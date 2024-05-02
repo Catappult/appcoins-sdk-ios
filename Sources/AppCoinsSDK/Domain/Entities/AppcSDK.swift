@@ -11,7 +11,7 @@ import StoreKit
 public struct AppcSDK {
     
     static public func isAvailable() async -> Bool {
-        if #available(iOS 17.4, *) { return await ExternalPurchase.canPresent }
+        if #available(iOS 17.4, *) { return true }
         else { return false }
     }
 
