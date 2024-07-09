@@ -7,6 +7,7 @@
 
 import Foundation
 import StoreKit
+import IndicativeLibrary
 
 public struct AppcSDK {
     
