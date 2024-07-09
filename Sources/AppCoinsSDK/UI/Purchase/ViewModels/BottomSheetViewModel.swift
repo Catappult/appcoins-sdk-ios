@@ -17,7 +17,6 @@ internal class BottomSheetViewModel : ObservableObject {
     internal var domain: String? = nil
     internal var metadata: String? = nil
     internal var reference: String? = nil
-    internal var token: String? = nil
     
     // The purchase resulting from the completed transaction, used for when there's a sync or an install after the purchase has been completed
     private var purchase: Purchase? = nil
@@ -69,14 +68,13 @@ internal class BottomSheetViewModel : ObservableObject {
     }
     
     // Called when a user starts a product purchase
-    internal func buildPurchase(product: Product, domain: String, metadata: String?, reference: String?, token: String) {
+    internal func buildPurchase(product: Product, domain: String, metadata: String?, reference: String?) {
         self.hasActiveTransaction = true
         self.product = product
         self.domain = domain
         self.metadata = metadata
         self.reference = reference
-        self.token = token
-        TransactionViewModel.shared.setUpTransaction(product: product, domain: domain, metadata: metadata, reference: reference, token: token)
+        TransactionViewModel.shared.setUpTransaction(product: product, domain: domain, metadata: metadata, reference: reference)
         
         DispatchQueue(label: "build-transaction", qos: .userInteractive).async { self.initiateTransaction() }
     }

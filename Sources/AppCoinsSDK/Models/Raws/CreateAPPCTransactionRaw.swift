@@ -19,7 +19,6 @@ internal struct CreateAPPCTransactionRaw: Codable {
     internal let channel: String
     internal let metadata: String?
     internal let reference: String?
-    internal let token: String
     
     internal enum CodingKeys: String, CodingKey {
         case origin = "origin"
@@ -32,14 +31,13 @@ internal struct CreateAPPCTransactionRaw: Codable {
         case channel = "channel"
         case metadata = "metadata"
         case reference = "reference"
-        case token = "ios.token"
     }
     
     internal static func fromParameters(parameters: TransactionParameters) -> CreateAPPCTransactionRaw {
         // normalizes the price to adjust to different time zone price syntaxes
         let normalizedPrice = (parameters.appcAmount).replacingOccurrences(of: ",", with: ".")
         
-        return CreateAPPCTransactionRaw(origin: "BDS", domain: parameters.domain, price: normalizedPrice, priceCurrency: "APPC", product: parameters.product, type: "INAPP", developerWa: parameters.developerWa, channel: "IOS", metadata: parameters.metadata, reference: parameters.reference, token: parameters.token
+        return CreateAPPCTransactionRaw(origin: "BDS", domain: parameters.domain, price: normalizedPrice, priceCurrency: "APPC", product: parameters.product, type: "INAPP", developerWa: parameters.developerWa, channel: "IOS", metadata: parameters.metadata, reference: parameters.reference
         )
     }
     
