@@ -31,6 +31,7 @@ let package = Package(
         .target(
             name: "AppCoinsSDK",
             dependencies: [
+                "IndicativeLibrary",
                 .product(name: "URLImage", package: "url-image"),
                 .product(name: "CryptoSwift", package: "CryptoSwift"),
                 .product(name: "web3swift", package: "web3swift"),
@@ -43,7 +44,16 @@ let package = Package(
                 .product(name: "ActivityIndicatorView", package: "ActivityIndicatorView"),
             ],
             resources: [.process("Localization")]),
+        .target(
+            name: "IndicativeLibrary",
+            path: "Sources/Indicative",
+            publicHeadersPath: ".",
+            cSettings: [
+                .headerSearchPath("Sources/Indicative"),
+                .define("SWIFT_PACKAGE")
+            ]),
         .binaryTarget(name: "PPRiskMagnes", path: "./Sources/AppCoinsSDK/Frameworks/PPRiskMagnes.xcframework")
+        
     ]
 )
 
