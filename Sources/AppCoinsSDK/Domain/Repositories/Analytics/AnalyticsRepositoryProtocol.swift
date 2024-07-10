@@ -10,7 +10,7 @@ import Foundation
 protocol AnalyticsRepositoryProtocol {
     
     func initialize()
-    func recordEvent()
-    func recordUserFlow()
+    func recordPurchaseIntent()
+    func recordUnexpectedFailure()
     
 }

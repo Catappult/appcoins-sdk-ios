@@ -9,6 +9,7 @@ import Foundation
 
 protocol AnalyticsService {
     func initialize()
-    func recordEvent()
-    func recordUserFlow()
+    func recordPurchaseIntent()
+    func recordPaymentStatus(status: String)
+    func recordUnexpectedFailure()
 }

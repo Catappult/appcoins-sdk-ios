@@ -16,6 +16,7 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
     private let productService: AppCoinProductService = AppCoinProductServiceClient()
     private let walletService: WalletLocalService = WalletLocalClient()
     private let userPreferencesService: UserPreferencesLocalService = UserPreferencesLocalClient()
+    private let AnalyticsService: AnalyticsService = IndicativeAnalyticsClient()
     
     internal func getTransactionBonus(address: String, package_name: String, amount: String, currency: Coin, completion: @escaping (Result<TransactionBonus, TransactionError>) -> Void) {
         gamificationService.getTransactionBonus(address: address, package_name: package_name, amount: amount, currency: currency) {
@@ -78,6 +79,14 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
             switch result {
             case .success(let transactionRaw):
                 if ["PENDING", "PENDING_SERVICE_AUTHORIZATION", "PROCESSING", "PENDING_USER_PAYMENT", "SETTLED"].contains(transactionRaw.status) {
+                    
+                    var list = ["PENDING", "PENDING_SERVICE_AUTHORIZATION", "PROCESSING", "PENDING_USER_PAYMENT", "SETTLED"]
+                    
+                    if list.contains(transactionRaw.status) {
+                        self.AnalyticsService.recordPaymentStatus()
+                        list = list.filter { $0 != transactionRaw.status }
+                    }
+                    
                     // Deal with incomplete transaction
                     DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
                         self.getTransactionInfo(uid: uid, wa: wa) {
@@ -88,6 +97,7 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
                     // Deal with different types of errors
                     completion(.failure(.failed()))
                 } else if transactionRaw.status == "COMPLETED" {
+                    self.AnalyticsService.recordPaymentStatus()
                     completion(.success(Transaction(raw: transactionRaw)))
                 } else {
                     // Deal with incomplete transaction

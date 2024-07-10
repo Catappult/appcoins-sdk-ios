@@ -18,8 +18,7 @@ class AnalyticsUseCases {
     
     func initialize() { repository.initialize() }
     
-    func recordEvent() { repository.recordEvent() }
+    func recordPurchaseIntent() { repository.recordPurchaseIntent() }
     
-    func recordUserFlow() { repository.recordUserFlow() }
-    
+    func recordUnexpectedFailure() { repository.recordUnexpectedFailure() }
 }

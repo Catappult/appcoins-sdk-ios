@@ -12,6 +12,8 @@ class AnalyticsRepository: AnalyticsRepositoryProtocol {
     private let AnalyticsService: AnalyticsService = IndicativeAnalyticsClient()
     
     func initialize() { AnalyticsService.initialize() }
-    func recordEvent() {}
-    func recordUserFlow() {}
+    func recordPurchaseIntent() {
+        AnalyticsService.recordPurchaseIntent()
+    }
+    func recordUnexpectedFailure() {}
 }

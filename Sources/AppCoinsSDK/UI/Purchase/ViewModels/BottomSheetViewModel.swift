@@ -382,4 +382,8 @@ internal class BottomSheetViewModel : ObservableObject {
     }
     
     internal func hasCompletedPurchase() -> Bool { return purchaseCompleted }
+    
+    internal func recordIntentClick() {
+        AnalyticsUseCases.shared.recordPurchaseIntent()
+    }
 }

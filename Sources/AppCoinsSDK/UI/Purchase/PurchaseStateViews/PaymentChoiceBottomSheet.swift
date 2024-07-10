@@ -177,6 +177,7 @@ internal struct PaymentChoiceBottomSheet: View {
             // Buying button
             Button(action: {
                 DispatchQueue.main.async { viewModel.purchaseState = .processing }
+                viewModel.recordIntentClick()
                 viewModel.buy()
             }) {
                 ZStack {
