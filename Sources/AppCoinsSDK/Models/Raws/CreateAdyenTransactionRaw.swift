@@ -23,7 +23,6 @@ internal struct CreateAdyenTransactionRaw: Codable {
     internal let userWa: String
     internal let metadata: String?
     internal let reference: String?
-    internal let token: String
     
     internal enum CodingKeys: String, CodingKey {
         case origin = "origin"
@@ -40,7 +39,6 @@ internal struct CreateAdyenTransactionRaw: Codable {
         case userWa = "wallets.user"
         case metadata = "metadata"
         case reference = "reference"
-        case token = "ios.token"
     }
     
     // Review static credit_card use as method
@@ -52,7 +50,7 @@ internal struct CreateAdyenTransactionRaw: Codable {
             return .success(
                 CreateAdyenTransactionRaw(
                     origin: "BDS", domain: parameters.domain, price: normalizedPrice, priceCurrency: parameters.currency,
-                    product: parameters.product, type: "INAPP", method: method, developerWa: parameters.developerWa, channel: "IOS", paymentChannel: "IOS", paymentReturnUrl: "\(bundleID).iap://api.blockchainds.com/broker", userWa: parameters.userWa, metadata: parameters.metadata, reference: parameters.reference, token: parameters.token
+                    product: parameters.product, type: "INAPP", method: method, developerWa: parameters.developerWa, channel: "IOS", paymentChannel: "IOS", paymentReturnUrl: "\(bundleID).iap://api.blockchainds.com/broker", userWa: parameters.userWa, metadata: parameters.metadata, reference: parameters.reference
                 )
             )
         } else { return .failure(.failed()) }

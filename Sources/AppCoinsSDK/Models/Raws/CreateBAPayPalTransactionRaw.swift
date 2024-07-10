@@ -20,7 +20,6 @@ internal struct CreateBAPayPalTransactionRaw: Codable {
     internal let channel: String
     internal let metadata: String?
     internal let reference: String?
-    internal let token: String
     
     internal enum CodingKeys: String, CodingKey {
         case origin = "origin"
@@ -34,7 +33,6 @@ internal struct CreateBAPayPalTransactionRaw: Codable {
         case channel = "channel"
         case metadata = "metadata"
         case reference = "reference"
-        case token = "ios.token"
     }
     
     internal static func fromParameters(parameters: TransactionParameters) -> CreateBAPayPalTransactionRaw {
@@ -42,7 +40,7 @@ internal struct CreateBAPayPalTransactionRaw: Codable {
         let normalizedPrice = parameters.value.replacingOccurrences(of: ",", with: ".")
         
         return CreateBAPayPalTransactionRaw(
-            origin: "BDS", domain: parameters.domain, price: normalizedPrice, priceCurrency: parameters.currency, product: parameters.product, type: "INAPP", developerWa: parameters.developerWa, userWa: parameters.userWa, channel: "IOS", metadata: parameters.metadata, reference: parameters.reference, token: parameters.token
+            origin: "BDS", domain: parameters.domain, price: normalizedPrice, priceCurrency: parameters.currency, product: parameters.product, type: "INAPP", developerWa: parameters.developerWa, userWa: parameters.userWa, channel: "IOS", metadata: parameters.metadata, reference: parameters.reference
         )
     }
     
