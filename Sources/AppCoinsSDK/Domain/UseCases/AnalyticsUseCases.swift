@@ -16,8 +16,8 @@ class AnalyticsUseCases {
         self.repository = repository
     }
     
-    func initialize() {}
+    func initialize() { repository.initialize() }
     
-    func recordEvent() {}
+    func recordEvent() { repository.recordEvent() }
     
 }
