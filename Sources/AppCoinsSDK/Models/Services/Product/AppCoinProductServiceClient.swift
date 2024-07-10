@@ -15,8 +15,8 @@ internal class AppCoinProductServiceClient : AppCoinProductService {
         self.endpoint = endpoint
     }
     
-    internal func getProductInformation(domain: String, result: @escaping (Result<GetProductInformationRaw, ProductServiceError>) -> Void) {
-        if let url = URL(string: endpoint + "/applications/\(domain)/inapp/consumables") {
+    internal func getProductInformation(domain: String, currency: Coin = .EUR, result: @escaping (Result<GetProductInformationRaw, ProductServiceError>) -> Void) {
+        if let url = URL(string: endpoint + "/applications/\(domain)/inapp/consumables?currency=\(currency.rawValue)") {
             let task = URLSession.shared.dataTask(with: url) { data, response, error in
                 if let error = error {
                     if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
@@ -36,8 +36,8 @@ internal class AppCoinProductServiceClient : AppCoinProductService {
         }
     }
     
-    internal func getProductInformation(domain: String, sku: String, result: @escaping (Result<GetProductInformationRaw, ProductServiceError>) -> Void) {
-        if let url = URL(string: endpoint + "/applications/\(domain)/inapp/consumables/?skus=\(sku)") {
+    internal func getProductInformation(domain: String, sku: String, currency: Coin = .EUR, result: @escaping (Result<GetProductInformationRaw, ProductServiceError>) -> Void) {
+        if let url = URL(string: endpoint + "/applications/\(domain)/inapp/consumables/?skus=\(sku)&currency=\(currency.rawValue)") {
             let task = URLSession.shared.dataTask(with: url) { data, response, error in
                 if let error = error {
                     if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
