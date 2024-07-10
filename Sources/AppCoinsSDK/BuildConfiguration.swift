@@ -13,7 +13,7 @@ internal class BuildConfiguration {
     static internal let shared = BuildConfiguration()
     
     // For now we only work on dev environment
-    static internal var environment: SDKEnvironment = .releaseSDKProd
+    static internal var environment: SDKEnvironment = .releaseSDKDev
     
     
     static internal var packageName : String {

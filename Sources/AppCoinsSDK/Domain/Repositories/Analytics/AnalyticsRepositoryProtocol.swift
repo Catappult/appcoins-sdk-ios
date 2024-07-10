@@ -11,5 +11,6 @@ protocol AnalyticsRepositoryProtocol {
     
     func initialize()
     func recordEvent()
+    func recordUserFlow()
     
 }

@@ -20,4 +20,6 @@ class AnalyticsUseCases {
     
     func recordEvent() { repository.recordEvent() }
     
+    func recordUserFlow() { repository.recordUserFlow() }
+    
 }

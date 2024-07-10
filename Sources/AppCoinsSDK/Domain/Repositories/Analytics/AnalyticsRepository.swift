@@ -9,6 +9,9 @@ import Foundation
 
 class AnalyticsRepository: AnalyticsRepositoryProtocol {
     
-    func initialize() {}
+    private let AnalyticsService: AnalyticsService = IndicativeAnalyticsClient()
+    
+    func initialize() { AnalyticsService.initialize() }
     func recordEvent() {}
+    func recordUserFlow() {}
 }

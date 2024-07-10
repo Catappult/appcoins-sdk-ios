@@ -17,6 +17,9 @@ public struct AppcSDK {
     }
 
     static public func handle(redirectURL: URL?) -> Bool {
+        
+        AnalyticsUseCases.shared.initialize()
+        
         if let redirectURL = redirectURL {
             if let host = redirectURL.host, host == "wallet.appcoins.io" {
                 let pathRoot = redirectURL.pathComponents[1]

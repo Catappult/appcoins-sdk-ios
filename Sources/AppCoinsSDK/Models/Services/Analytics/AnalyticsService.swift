@@ -10,4 +10,5 @@ import Foundation
 protocol AnalyticsService {
     func initialize()
     func recordEvent()
+    func recordUserFlow()
 }
