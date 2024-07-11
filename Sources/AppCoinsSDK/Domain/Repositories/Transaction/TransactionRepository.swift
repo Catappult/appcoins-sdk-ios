@@ -17,7 +17,7 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
     private let walletService: WalletLocalService = WalletLocalClient()
     private let userPreferencesService: UserPreferencesLocalService = UserPreferencesLocalClient()
     private let AnalyticsService: AnalyticsService = IndicativeAnalyticsClient()
-    var successArr = ["PENDING", "PENDING_SERVICE_AUTHORIZATION", "PROCESSING", "PENDING_USER_PAYMENT", "SETTLED", "INVALID_TRANSACTION", "FAILED", "CANCELED", "FRAUD", "UNKNOWN"]
+    var successList = ["PENDING", "PENDING_SERVICE_AUTHORIZATION", "PROCESSING", "PENDING_USER_PAYMENT", "SETTLED", "INVALID_TRANSACTION", "FAILED", "CANCELED", "FRAUD", "UNKNOWN"]
     
     internal func getTransactionBonus(address: String, package_name: String, amount: String, currency: Coin, completion: @escaping (Result<TransactionBonus, TransactionError>) -> Void) {
         gamificationService.getTransactionBonus(address: address, package_name: package_name, amount: amount, currency: currency) {
@@ -81,9 +81,9 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
             case .success(let transactionRaw):
                 if ["PENDING", "PENDING_SERVICE_AUTHORIZATION", "PROCESSING", "PENDING_USER_PAYMENT", "SETTLED"].contains(transactionRaw.status) {
                     
-                    if self.successArr.contains(transactionRaw.status) {
+                    if self.successList.contains(transactionRaw.status) {
                         self.AnalyticsService.recordPaymentStatus(status: transactionRaw.status)
-                        self.successArr = self.successArr.filter { $0 != transactionRaw.status }
+                        self.successList = self.successList.filter { $0 != transactionRaw.status }
                     }
                     
                     // Deal with incomplete transaction
@@ -94,9 +94,9 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
                     }
                 } else if ["INVALID_TRANSACTION", "FAILED", "CANCELED", "FRAUD", "UNKNOWN"].contains(transactionRaw.status) {
                     
-                    if self.successArr.contains(transactionRaw.status) {
+                    if self.successList.contains(transactionRaw.status) {
                         self.AnalyticsService.recordPaymentStatus(status: transactionRaw.status)
-                        self.successArr = self.successArr.filter { $0 != transactionRaw.status }
+                        self.successList = self.successList.filter { $0 != transactionRaw.status }
                     }
                     
                     // Deal with different types of errors
