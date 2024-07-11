@@ -13,7 +13,7 @@ import MarketplaceKit
 public struct AppcSDK {
     
     static public func isAvailable() async -> Bool {
-        if #available(iOS 17.4, *) { 
+        if #available(iOS 17.4, *) {
             do {
                 let storefront = try await AppDistributor.current
                 switch storefront {

@@ -12,15 +12,13 @@ public struct AnalyticsUserProperties {
     let aptoideBundleID: String
     let environment: String
     let theme: String
-    let versionCode: String // shortVersionString aptoide store
     let iosVersion: String
     let iphoneModel: String
     
-    init(aptoideBundleID: String, environment: String, theme: String, versionCode: String, iosVersion: String, iphoneModel: String) {
+    init(aptoideBundleID: String, environment: String, theme: String, iosVersion: String, iphoneModel: String) {
         self.aptoideBundleID = aptoideBundleID
         self.environment = environment
         self.theme = theme
-        self.versionCode = versionCode
         self.iosVersion = iosVersion
         self.iphoneModel = iphoneModel
     }
@@ -30,7 +28,6 @@ public struct AnalyticsUserProperties {
             "aptoide_package": aptoideBundleID,
             "environment": environment,
             "theme": theme,
-            "app_version_code": versionCode,
             "ios_version": iosVersion,
             "iphone_model": iphoneModel
         ]

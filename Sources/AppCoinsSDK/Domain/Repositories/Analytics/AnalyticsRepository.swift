@@ -38,11 +38,10 @@ internal class AnalyticsRepository: AnalyticsRepositoryProtocol {
             }
             
             let theme = "system_light"
-            let aptoideShortVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "Unknown Version"
             let deviceModel = Device.current.description
             let iosVersion = Device.current.systemVersion?.description ?? "Unknown iOS version"
             
-            return AnalyticsUserProperties(aptoideBundleID: aptoideBundleID, environment: environment, theme: theme, versionCode: aptoideShortVersion, iosVersion: iosVersion, iphoneModel: deviceModel)
+            return AnalyticsUserProperties(aptoideBundleID: aptoideBundleID, environment: environment, theme: theme, iosVersion: iosVersion, iphoneModel: deviceModel)
         }
     }
 }

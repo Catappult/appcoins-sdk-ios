@@ -1,6 +1,6 @@
 //
 //  TransactionRepository.swift
-//  
+//
 //
 //  Created by aptoide on 15/05/2023.
 //
@@ -86,13 +86,13 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
                         }
                     }
                 } else if ["INVALID_TRANSACTION", "FAILED", "CANCELED", "FRAUD", "UNKNOWN"].contains(transactionRaw.status) {
-                        self.AnalyticsService.recordPaymentStatus(status: transactionRaw.status)
+                    
+                    self.AnalyticsService.recordPaymentStatus(status: transactionRaw.status)
                     // Deal with different types of errors
                     completion(.failure(.failed()))
                 } else if transactionRaw.status == "COMPLETED" {
                     
                     self.AnalyticsService.recordPaymentStatus(status: transactionRaw.status)
-                    
                     completion(.success(Transaction(raw: transactionRaw)))
                 } else {
                     // Deal with incomplete transaction
@@ -234,9 +234,9 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
         billingService.createBAPayPalTransaction(wa: wa, raw: raw) { result in
             
             switch result {
-                case .success(_):
-                    self.storeBillingAgreementLocally(wa: wa.getWalletAddress())
-                default: break
+            case .success(_):
+                self.storeBillingAgreementLocally(wa: wa.getWalletAddress())
+            default: break
             }
             completion(result) }
     }
@@ -244,7 +244,7 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
     internal func createBillingAgreementToken(completion: @escaping (Result<CreateBillingAgreementTokenResponseRaw, TransactionError>) -> Void) {
         let returnURL = BuildConfiguration.billingServiceURL + "/gateways/paypal/billing-agreement/token/return/success"
         let cancelURL = BuildConfiguration.billingServiceURL + "/gateways/paypal/billing-agreement/token/return/cancel"
-
+        
         let raw = CreateBillingAgreementTokenRaw(urls: CreateBillingAgreementTokenURLsRaw(returnURL: returnURL, cancelURL: cancelURL))
         
         if let wallet = walletService.getActiveWallet() {

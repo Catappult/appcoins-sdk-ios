@@ -16,7 +16,6 @@ internal class IndicativeAnalyticsClient: AnalyticsService {
     }
     
     internal func recordPurchaseIntent(paymentMethod: String) {
-        print("paymentMethod: \(paymentMethod)")
         Indicative.record("ios_sdk_iap_purchase_intent_click", withProperties: ["paymentMethod": paymentMethod])
     }
     
