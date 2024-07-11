@@ -12,9 +12,14 @@ import Adyen
 internal class BuildConfiguration {
     static internal let shared = BuildConfiguration()
     
-    // For now we only work on dev environment
-    static internal var environment: SDKEnvironment = .releaseSDKProd
+    static internal var isDev: Bool {
+        return Bundle.main.bundleIdentifier == "com.appcoins.trivialdrivesample.test"
+    }
     
+    static internal var environment: SDKEnvironment {
+        if BuildConfiguration.isDev { return .releaseSDKDev }
+        else { return .releaseSDKProd }
+    }
     
     static internal var packageName : String {
         return Bundle.main.bundleIdentifier ?? ""
