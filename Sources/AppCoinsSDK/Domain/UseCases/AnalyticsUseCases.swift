@@ -7,12 +7,12 @@
 
 import Foundation
 
-class AnalyticsUseCases {
+internal class AnalyticsUseCases {
     
     static let shared = AnalyticsUseCases()
     private var repository: AnalyticsRepositoryProtocol
     
-    init(repository: AnalyticsRepositoryProtocol = AnalyticsRepository()) {
+    private init(repository: AnalyticsRepositoryProtocol = AnalyticsRepository()) {
         self.repository = repository
     }
     

@@ -8,20 +8,22 @@
 import Foundation
 import DeviceKit
 
-class AnalyticsRepository: AnalyticsRepositoryProtocol {
+internal class AnalyticsRepository: AnalyticsRepositoryProtocol {
     
     private let AnalyticsService: AnalyticsService = IndicativeAnalyticsClient()
     private var userProperties: AnalyticsUserProperties? = nil
     
-    func initialize() { AnalyticsService.initialize(userProperties: self.getUserProperties()) }
-    func recordPurchaseIntent(paymentMethod: String) {
+    internal func initialize() { AnalyticsService.initialize(userProperties: self.getUserProperties()) }
+    
+    internal func recordPurchaseIntent(paymentMethod: String) {
         AnalyticsService.recordPurchaseIntent(paymentMethod: paymentMethod)
     }
-    func recordStartConnection() {
+    
+    internal func recordStartConnection() {
         AnalyticsService.recordStartConnection()
     }
     
-    func getUserProperties() -> AnalyticsUserProperties {
+    internal func getUserProperties() -> AnalyticsUserProperties {
         if let userProp = self.userProperties {
             return userProp
         } else {

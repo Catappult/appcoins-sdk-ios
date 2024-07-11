@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol AnalyticsRepositoryProtocol {
+internal protocol AnalyticsRepositoryProtocol {
     
     func initialize()
     func recordPurchaseIntent(paymentMethod: String)
