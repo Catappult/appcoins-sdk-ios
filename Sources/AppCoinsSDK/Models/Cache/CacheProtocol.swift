@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol CacheProtocol {
+internal protocol CacheProtocol {
     associatedtype Key: Hashable
     associatedtype Value
     

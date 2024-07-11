@@ -7,22 +7,22 @@
 
 import Foundation
 
-class InMemoryCache<Key: Hashable & Codable, Value: Codable>: CacheProtocol {
+internal class InMemoryCache<Key: Hashable & Codable, Value: Codable>: CacheProtocol {
     private let cache = NSCache<WrappedKey<Key>, Entry>()
     
-    func getValue(forKey key: Key) -> Value? {
+    internal func getValue(forKey key: Key) -> Value? {
         return cache.object(forKey: WrappedKey(key))?.value
     }
 
-    func setValue(_ value: Value, forKey key: Key, storageOption: StorageOption) {
+    internal func setValue(_ value: Value, forKey key: Key, storageOption: StorageOption) {
         cache.setObject(Entry(value: value), forKey: WrappedKey(key))
     }
 
-    func removeValue(forKey key: Key) {
+    internal func removeValue(forKey key: Key) {
         cache.removeObject(forKey: WrappedKey(key))
     }
 
-    func clearCache() {
+    internal func clearCache() {
         cache.removeAllObjects()
     }
     
@@ -34,14 +34,14 @@ class InMemoryCache<Key: Hashable & Codable, Value: Codable>: CacheProtocol {
         }
     }
     
-    final class WrappedKey<Key: Hashable & Codable>: NSObject {
-        let key: Key
+    internal final class WrappedKey<Key: Hashable & Codable>: NSObject {
+        internal let key: Key
 
-        init(_ key: Key) { self.key = key }
+        internal init(_ key: Key) { self.key = key }
 
-        override var hash: Int { return key.hashValue }
+        override internal var hash: Int { return key.hashValue }
 
-        override func isEqual(_ object: Any?) -> Bool {
+        override internal func isEqual(_ object: Any?) -> Bool {
             guard let value = object as? WrappedKey else {
                 return false
             }

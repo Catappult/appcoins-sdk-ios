@@ -7,16 +7,16 @@
 
 import Foundation
 
-class Cache<Key: Hashable & Codable, Value: Codable>: CacheProtocol {
+internal class Cache<Key: Hashable & Codable, Value: Codable>: CacheProtocol {
     private let memoryCache: InMemoryCache<Key, Value>
     private let diskCache: DiskCache<Key, Value>
 
-    init(cacheName: String) {
+    internal init(cacheName: String) {
         self.memoryCache = InMemoryCache<Key, Value>()
         self.diskCache = DiskCache<Key, Value>(cacheName: cacheName)
     }
     
-    func getValue(forKey key: Key) -> Value? {
+    internal func getValue(forKey key: Key) -> Value? {
         if let value = memoryCache.getValue(forKey: key) {
             return value
         }
@@ -27,7 +27,7 @@ class Cache<Key: Hashable & Codable, Value: Codable>: CacheProtocol {
         return nil
     }
     
-    func setValue(_ value: Value, forKey key: Key, storageOption: StorageOption) {
+    internal func setValue(_ value: Value, forKey key: Key, storageOption: StorageOption) {
         switch storageOption {
         case .memory:
             memoryCache.setValue(value, forKey: key, storageOption: storageOption)
@@ -37,12 +37,12 @@ class Cache<Key: Hashable & Codable, Value: Codable>: CacheProtocol {
         }
     }
     
-    func removeValue(forKey key: Key) {
+    internal func removeValue(forKey key: Key) {
         memoryCache.removeValue(forKey: key)
         diskCache.removeValue(forKey: key)
     }
     
-    func clearCache() {
+    internal func clearCache() {
         memoryCache.clearCache()
         diskCache.clearCache()
     }

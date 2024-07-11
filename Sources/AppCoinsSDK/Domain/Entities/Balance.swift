@@ -7,7 +7,7 @@
 
 import Foundation
 
-internal struct Balance {
+internal struct Balance: Codable {
     
     internal let balanceCurrency: String
     internal let balance: Double

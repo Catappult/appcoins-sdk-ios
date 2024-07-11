@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DiskCache<Key: Hashable & Codable, Value: Codable>: CacheProtocol {
+internal class DiskCache<Key: Hashable & Codable, Value: Codable>: CacheProtocol {
     private let fileManager = FileManager.default
     private let fileURL: URL
     
@@ -30,7 +30,7 @@ class DiskCache<Key: Hashable & Codable, Value: Codable>: CacheProtocol {
         }
     }
     
-    func getValue(forKey key: Key) -> Value? {
+    internal func getValue(forKey key: Key) -> Value? {
         guard var cache = loadCache() else {
             return nil
         }
@@ -44,7 +44,7 @@ class DiskCache<Key: Hashable & Codable, Value: Codable>: CacheProtocol {
         }
     }
     
-    func setValue(_ value: Value, forKey key: Key, storageOption: StorageOption) {
+    internal func setValue(_ value: Value, forKey key: Key, storageOption: StorageOption) {
         var ttl: TimeInterval
         switch storageOption {
         case .memory:
@@ -58,7 +58,7 @@ class DiskCache<Key: Hashable & Codable, Value: Codable>: CacheProtocol {
         saveCache(cache)
     }
     
-    func removeValue(forKey key: Key) {
+    internal func removeValue(forKey key: Key) {
         guard var cache = loadCache() else {
             return
         }
@@ -66,7 +66,7 @@ class DiskCache<Key: Hashable & Codable, Value: Codable>: CacheProtocol {
         saveCache(cache)
     }
     
-    func clearCache() {
+    internal func clearCache() {
         try? fileManager.removeItem(at: fileURL)
     }
     

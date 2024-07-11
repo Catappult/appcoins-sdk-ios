@@ -11,7 +11,7 @@ import CryptoSwift
 import web3swift
 import Web3Core
 
-internal class Wallet {
+internal class Wallet: Codable {
     
     internal var name: String?
     internal var balance: Balance?
@@ -148,5 +148,46 @@ internal class Wallet {
                     .replacingOccurrences(of: "=", with: "")
                     .replacingOccurrences(of: "+", with: "-")
                     .replacingOccurrences(of: "/", with: "_")
+    }
+    
+    
+    // Conform to Codable Protocol
+    
+    internal enum CodingKeys: CodingKey {
+        case name
+        case balance
+        case address
+        case creationDate
+        case password
+        case keystoreData
+    }
+    
+    internal required init(from decoder: any Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        name = try container.decode(String.self, forKey: .name)
+        balance = try container.decode(Balance.self, forKey: .balance)
+        address = try container.decode(String.self, forKey: .address)
+        creationDate = try container.decode(Date.self, forKey: .creationDate)
+        password = try container.decode(String.self, forKey: .password)
+        
+        let keystoreData = try container.decode(Data.self, forKey: .keystoreData)
+        guard let keystore = EthereumKeystoreV3(keystoreData) else {
+            throw DecodingError.dataCorruptedError(forKey: .keystoreData, in: container, debugDescription: "Failed to decode keystore data")
+        }
+        self.keystore = keystore
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(name, forKey: .name)
+        try container.encode(balance, forKey: .balance)
+        try container.encode(address, forKey: .address)
+        try container.encode(creationDate, forKey: .creationDate)
+        try container.encode(password, forKey: .password)
+        
+        guard let keystoreData = try self.keystore.serialize() else {
+            throw EncodingError.invalidValue(self.keystore, EncodingError.Context(codingPath: [CodingKeys.keystoreData], debugDescription: "Failed to encode keystore data"))
+        }
+        try container.encode(keystoreData, forKey: .keystoreData)
     }
 }

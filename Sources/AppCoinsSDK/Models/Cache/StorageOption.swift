@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum StorageOption {
+internal enum StorageOption {
     case memory
     case disk(ttl: TimeInterval)
 }
