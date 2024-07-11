@@ -16,9 +16,9 @@ class AnalyticsUseCases {
         self.repository = repository
     }
     
-    func initialize() { repository.initialize() }
+    internal func initialize() { repository.initialize() }
     
-    func recordPurchaseIntent() { repository.recordPurchaseIntent() }
+    internal func recordPurchaseIntent() { repository.recordPurchaseIntent() }
     
-    func recordUnexpectedFailure() { repository.recordUnexpectedFailure() }
+    internal func recordStartConnection() { repository.recordStartConnection() }
 }

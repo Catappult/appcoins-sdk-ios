@@ -386,4 +386,8 @@ internal class BottomSheetViewModel : ObservableObject {
     internal func recordIntentClick() {
         AnalyticsUseCases.shared.recordPurchaseIntent()
     }
+    
+    internal func recordStartConnection() {
+        AnalyticsUseCases.shared.recordStartConnection()
+    }
 }

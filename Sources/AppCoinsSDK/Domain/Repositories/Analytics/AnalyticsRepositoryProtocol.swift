@@ -11,6 +11,6 @@ protocol AnalyticsRepositoryProtocol {
     
     func initialize()
     func recordPurchaseIntent()
-    func recordUnexpectedFailure()
+    func recordStartConnection()
     
 }

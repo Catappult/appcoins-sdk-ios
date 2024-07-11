@@ -202,7 +202,10 @@ internal struct PurchaseBottomSheet: View {
         .animation(.easeInOut(duration: 0.3), value: dynamicPadding != 0)
         .offset(y: isPresented ? 0 : UIScreen.main.bounds.height)
         .transition(.move(edge: isPresented ? .bottom : .top))
-        .onAppear { withAnimation { isPresented = true } }
+        .onAppear { withAnimation {
+            viewModel.recordStartConnection()
+            isPresented = true }
+        }
         
     }
     

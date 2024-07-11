@@ -13,7 +13,6 @@ class IndicativeAnalyticsClient: AnalyticsService {
     func initialize(userProperties: AnalyticsUserProperties) {
         Indicative.launch(self.getApiKey())
         Indicative.addCommonProperties(userProperties.toDict())
-        Indicative.record("ios_sdk_start_connection")
     }
     
     func recordPurchaseIntent() {
@@ -24,7 +23,9 @@ class IndicativeAnalyticsClient: AnalyticsService {
         Indicative.record("ios_sdk_iap_payment_status_feedback", withProperties: ["paymentStatus" : status])
     }
     
-    func recordUnexpectedFailure() {}
+    func recordStartConnection() {
+        Indicative.record("ios_sdk_start_connection")
+    }
     
     func getApiKey() -> String {
         switch BuildConfiguration.environment {
