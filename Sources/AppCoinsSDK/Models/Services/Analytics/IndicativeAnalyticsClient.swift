@@ -10,8 +10,9 @@ import IndicativeLibrary
 
 class IndicativeAnalyticsClient: AnalyticsService {
     
-    func initialize() {
+    func initialize(userProperties: AnalyticsUserProperties) {
         Indicative.launch(self.getApiKey())
+        Indicative.addCommonProperties(userProperties.toDict())
         Indicative.record("ios_sdk_start_connection")
     }
     

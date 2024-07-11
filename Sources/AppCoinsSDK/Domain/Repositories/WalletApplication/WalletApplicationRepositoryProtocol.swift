@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  WalletApplicationRepositoryProtocol.swift
 //  
 //
 //  Created by aptoide on 16/02/2024.
