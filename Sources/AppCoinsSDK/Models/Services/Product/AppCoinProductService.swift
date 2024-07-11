@@ -9,9 +9,9 @@ import Foundation
 
 internal protocol AppCoinProductService {
     
-    func getProductInformation(domain: String, result: @escaping (Result<GetProductInformationRaw, ProductServiceError>) -> Void)
+    func getProductInformation(domain: String, currency: Coin, result: @escaping (Result<GetProductInformationRaw, ProductServiceError>) -> Void)
     
-    func getProductInformation(domain: String, sku: String, result: @escaping (Result<GetProductInformationRaw, ProductServiceError>) -> Void)
+    func getProductInformation(domain: String, sku: String, currency: Coin, result: @escaping (Result<GetProductInformationRaw, ProductServiceError>) -> Void)
     
     func acknowledgePurchase(domain: String, uid: String, wa: Wallet, completion: @escaping (Result<Bool, TransactionError>) -> Void)
     
