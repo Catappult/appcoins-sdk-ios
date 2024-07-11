@@ -18,7 +18,7 @@ class AnalyticsUseCases {
     
     internal func initialize() { repository.initialize() }
     
-    internal func recordPurchaseIntent() { repository.recordPurchaseIntent() }
+    internal func recordPurchaseIntent(paymentMethod: String) { repository.recordPurchaseIntent(paymentMethod: paymentMethod) }
     
     internal func recordStartConnection() { repository.recordStartConnection() }
 }

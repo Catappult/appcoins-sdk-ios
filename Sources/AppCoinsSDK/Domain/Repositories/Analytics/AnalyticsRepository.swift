@@ -14,8 +14,8 @@ class AnalyticsRepository: AnalyticsRepositoryProtocol {
     private var userProperties: AnalyticsUserProperties? = nil
     
     func initialize() { AnalyticsService.initialize(userProperties: self.getUserProperties()) }
-    func recordPurchaseIntent() {
-        AnalyticsService.recordPurchaseIntent()
+    func recordPurchaseIntent(paymentMethod: String) {
+        AnalyticsService.recordPurchaseIntent(paymentMethod: paymentMethod)
     }
     func recordStartConnection() {
         AnalyticsService.recordStartConnection()

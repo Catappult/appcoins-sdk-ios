@@ -10,7 +10,7 @@ import Foundation
 protocol AnalyticsRepositoryProtocol {
     
     func initialize()
-    func recordPurchaseIntent()
+    func recordPurchaseIntent(paymentMethod: String)
     func recordStartConnection()
     
 }

@@ -15,12 +15,13 @@ class IndicativeAnalyticsClient: AnalyticsService {
         Indicative.addCommonProperties(userProperties.toDict())
     }
     
-    func recordPurchaseIntent() {
-        Indicative.record("ios_sdk_iap_purchase_intent_click")
+    func recordPurchaseIntent(paymentMethod: String) {
+        print("paymentMethod: \(paymentMethod)")
+        Indicative.record("ios_sdk_iap_purchase_intent_click", withProperties: ["paymentMethod": paymentMethod])
     }
     
     func recordPaymentStatus(status: String) {
-        Indicative.record("ios_sdk_iap_payment_status_feedback", withProperties: ["paymentStatus" : status])
+        Indicative.record("ios_sdk_iap_payment_status_feedback", withProperties: ["paymentStatus": status])
     }
     
     func recordStartConnection() {
