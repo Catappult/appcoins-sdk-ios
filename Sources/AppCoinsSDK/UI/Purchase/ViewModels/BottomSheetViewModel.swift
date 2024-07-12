@@ -149,6 +149,9 @@ internal class BottomSheetViewModel : ObservableObject {
     
     // User presses buy button
     internal func buy() {
+        
+        self.recordIntentClick(paymentMethod: TransactionViewModel.shared.paymentMethodSelected?.name ?? "")
+        
         DispatchQueue(label: "buy-item", qos: .userInteractive).async {
             switch TransactionViewModel.shared.paymentMethodSelected?.name {
             case Method.appc.rawValue:
