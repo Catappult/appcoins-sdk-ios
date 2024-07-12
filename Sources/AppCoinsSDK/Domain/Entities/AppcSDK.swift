@@ -32,7 +32,7 @@ public struct AppcSDK {
 
     static public func handle(redirectURL: URL?) -> Bool {
         
-        AnalyticsUseCases.shared.initialize()
+        AppcSDKInternal.internalInit()
         
         if let redirectURL = redirectURL {
             if let host = redirectURL.host, host == "wallet.appcoins.io" {

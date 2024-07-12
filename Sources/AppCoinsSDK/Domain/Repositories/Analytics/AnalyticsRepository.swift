@@ -41,7 +41,10 @@ internal class AnalyticsRepository: AnalyticsRepositoryProtocol {
             let deviceModel = Device.current.description
             let iosVersion = Device.current.systemVersion?.description ?? "Unknown iOS version"
             
-            return AnalyticsUserProperties(aptoideBundleID: aptoideBundleID, environment: environment, theme: theme, iosVersion: iosVersion, iphoneModel: deviceModel)
+            let prop = AnalyticsUserProperties(aptoideBundleID: aptoideBundleID, environment: environment, theme: theme, iosVersion: iosVersion, iphoneModel: deviceModel)
+            self.userProperties = prop
+            
+            return prop
         }
     }
 }
