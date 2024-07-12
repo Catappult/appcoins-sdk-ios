@@ -9,7 +9,7 @@ import Foundation
 
 internal class AppcSDKInternal {
     
-    static internal func internalInit() {
+    static internal func initialize() {
         AnalyticsUseCases.shared.initialize()
     }
 }
