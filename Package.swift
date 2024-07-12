@@ -33,7 +33,6 @@ let package = Package(
             name: "AppCoinsSDK",
             dependencies: [
                 "IndicativeLibrary",
-                "DeviceKit",
                 .product(name: "URLImage", package: "url-image"),
                 .product(name: "CryptoSwift", package: "CryptoSwift"),
                 .product(name: "web3swift", package: "web3swift"),
@@ -44,6 +43,7 @@ let package = Package(
                 .product(name: "AdyenComponents", package: "adyen-ios"),
                 .product(name: "AdyenSession", package: "adyen-ios"),
                 .product(name: "ActivityIndicatorView", package: "ActivityIndicatorView"),
+                .product(name: "DeviceKit", package: "DeviceKit")
             ],
             resources: [.process("Localization")]),
         .target(
