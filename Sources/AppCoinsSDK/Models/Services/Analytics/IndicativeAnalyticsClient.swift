@@ -10,8 +10,8 @@ import IndicativeLibrary
 
 internal class IndicativeAnalyticsClient: AnalyticsService {
     
-    internal func initialize(userProperties: AnalyticsUserProperties) {
-        Indicative.launch(self.getApiKey())
+    internal func initialize(userProperties: AnalyticsUserProperties, environment: String) {
+        Indicative.launch(Connect.shared.get(environment: environment))
         Indicative.addCommonProperties(userProperties.toDict())
     }
     
@@ -25,14 +25,5 @@ internal class IndicativeAnalyticsClient: AnalyticsService {
     
     internal func recordStartConnection() {
         Indicative.record("ios_sdk_start_connection")
-    }
-    
-    internal func getApiKey() -> String {
-        switch BuildConfiguration.environment {
-        case .debugSDKDev, .releaseSDKDev:
-            return Keys.apiDev
-        case .debugSDKProd, .releaseSDKProd:
-            return Keys.apiProd
-        }
     }
 }

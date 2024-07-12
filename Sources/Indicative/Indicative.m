@@ -117,7 +117,7 @@ static Indicative* mIndicative = nil;
     if(INDICATIVE_DEBUG) {
         NSLog(@"[Indicative] Initializing...");
         if(apiKey) {
-            NSLog(@"[Indicative] Using API Key: %@", apiKey);
+            NSLog(@"[Indicative] Connected");
         } else {
             NSLog(@"[Indicative] Tried to initialize with a null API Key!");
         }
