@@ -23,6 +23,8 @@ internal class AnalyticsRepository: AnalyticsRepositoryProtocol {
         AnalyticsService.recordStartConnection()
     }
     
+    internal func recordPaymentStatus(status: String) { AnalyticsService.recordPaymentStatus(status: status) }
+    
     internal func getUserProperties() -> AnalyticsUserProperties {
         if let userProp = self.userProperties {
             return userProp

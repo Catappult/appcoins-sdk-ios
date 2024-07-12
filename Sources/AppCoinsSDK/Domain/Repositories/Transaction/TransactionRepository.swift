@@ -16,7 +16,6 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
     private let productService: AppCoinProductService = AppCoinProductServiceClient()
     private let walletService: WalletLocalService = WalletLocalClient()
     private let userPreferencesService: UserPreferencesLocalService = UserPreferencesLocalClient()
-    private let AnalyticsService: AnalyticsService = IndicativeAnalyticsClient()
     
     internal func getTransactionBonus(address: String, package_name: String, amount: String, currency: Coin, completion: @escaping (Result<TransactionBonus, TransactionError>) -> Void) {
         gamificationService.getTransactionBonus(address: address, package_name: package_name, amount: amount, currency: currency) {
@@ -87,12 +86,12 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
                     }
                 } else if ["INVALID_TRANSACTION", "FAILED", "CANCELED", "FRAUD", "UNKNOWN"].contains(transactionRaw.status) {
                     
-                    self.AnalyticsService.recordPaymentStatus(status: transactionRaw.status)
+                    AnalyticsUseCases.shared.recordPaymentStatus(status: transactionRaw.status)
                     // Deal with different types of errors
                     completion(.failure(.failed()))
                 } else if transactionRaw.status == "COMPLETED" {
                     
-                    self.AnalyticsService.recordPaymentStatus(status: transactionRaw.status)
+                    AnalyticsUseCases.shared.recordPaymentStatus(status: transactionRaw.status)
                     completion(.success(Transaction(raw: transactionRaw)))
                 } else {
                     // Deal with incomplete transaction
