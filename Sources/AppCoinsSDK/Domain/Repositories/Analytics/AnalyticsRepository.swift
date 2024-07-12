@@ -27,7 +27,7 @@ internal class AnalyticsRepository: AnalyticsRepositoryProtocol {
         if let userProp = self.userProperties {
             return userProp
         } else {
-            let aptoideBundleID = Bundle.main.bundleIdentifier ?? "Unknown Bundle ID"
+            let applicationBundleID = Bundle.main.bundleIdentifier ?? "Unknown Bundle ID"
             
             var environment = ""
             switch BuildConfiguration.environment {
@@ -41,7 +41,7 @@ internal class AnalyticsRepository: AnalyticsRepositoryProtocol {
             let deviceModel = Device.current.description
             let iosVersion = Device.current.systemVersion?.description ?? "Unknown iOS version"
             
-            let prop = AnalyticsUserProperties(aptoideBundleID: aptoideBundleID, environment: environment, theme: theme, iosVersion: iosVersion, iphoneModel: deviceModel)
+            let prop = AnalyticsUserProperties(applicationBundleID: applicationBundleID, environment: environment, theme: theme, iosVersion: iosVersion, iphoneModel: deviceModel)
             self.userProperties = prop
             
             return prop

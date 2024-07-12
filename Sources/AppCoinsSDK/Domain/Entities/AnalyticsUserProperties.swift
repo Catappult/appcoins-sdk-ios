@@ -9,14 +9,14 @@ import Foundation
 
 public struct AnalyticsUserProperties {
     
-    let aptoideBundleID: String
+    let applicationBundleID: String
     let environment: String
     let theme: String
     let iosVersion: String
     let iphoneModel: String
     
-    init(aptoideBundleID: String, environment: String, theme: String, iosVersion: String, iphoneModel: String) {
-        self.aptoideBundleID = aptoideBundleID
+    init(applicationBundleID: String, environment: String, theme: String, iosVersion: String, iphoneModel: String) {
+        self.applicationBundleID = applicationBundleID
         self.environment = environment
         self.theme = theme
         self.iosVersion = iosVersion
@@ -25,7 +25,7 @@ public struct AnalyticsUserProperties {
     
     func toDict() -> [AnyHashable : Any] {
         return [
-            "aptoide_package": aptoideBundleID,
+            "application_package": applicationBundleID,
             "environment": environment,
             "theme": theme,
             "ios_version": iosVersion,
