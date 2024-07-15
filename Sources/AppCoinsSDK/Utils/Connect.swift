@@ -1,5 +1,5 @@
 //
-//  Connect.swift
+//  Maze.swift
 //
 //
 //  Created by Graciano Caldeira on 12/07/2024.
@@ -8,11 +8,11 @@
 import Foundation
 import CommonCrypto
 
-internal class Connect {
+internal class Maze {
     
     private let apiKey = "IaY8iJ0amBu1hc68cmQMlS9W"
     private let type = "mrm0EaNLza04b7cz"
-    static let shared: Connect = Connect()
+    static let shared: Maze = Maze()
     
     private init() {}
     
