@@ -11,7 +11,7 @@ import DeviceKit
 internal class AnalyticsRepository: AnalyticsRepositoryProtocol {
     
     private let AnalyticsService: AnalyticsService = IndicativeAnalyticsClient()
-    private var userProperties: AnalyticsUserProperties? = nil
+    private var UserPropertiesCache: Cache<String, AnalyticsUserProperties> = Cache(cacheName: "UserProperties")
     private let dev = "9dzeuP8lxyesMDl4sr5YICM9GBGl2MpflHjO/3NVEYoOBUhS6r2lPIUS6QWVcgzYs2sM5bUVMg3JRmDDJKRECg=="
     private let prod = "XSD6BIfei99TpkuCIdS5ZrcqUk/3sYOqJZ4MwtOpzkwrEfBRIRb/QtLwP58atuETwAP53lnBCbrWQwzxSMlMJQ=="
     
@@ -38,9 +38,11 @@ internal class AnalyticsRepository: AnalyticsRepositoryProtocol {
     internal func recordPaymentStatus(status: String) { AnalyticsService.recordPaymentStatus(status: status) }
     
     internal func getUserProperties() -> AnalyticsUserProperties {
-        if let userProp = self.userProperties {
+        if let userProp = self.UserPropertiesCache.getValue(forKey: "userproperties") {
+            print("entrou no if")
             return userProp
         } else {
+            print("entrou no else")
             let applicationBundleID = Bundle.main.bundleIdentifier ?? "Unknown Bundle ID"
             
             var environment = ""
@@ -56,7 +58,8 @@ internal class AnalyticsRepository: AnalyticsRepositoryProtocol {
             let iosVersion = Device.current.systemVersion?.description ?? "Unknown iOS version"
             
             let prop = AnalyticsUserProperties(applicationBundleID: applicationBundleID, environment: environment, theme: theme, iosVersion: iosVersion, iphoneModel: deviceModel)
-            self.userProperties = prop
+            
+            self.UserPropertiesCache.setValue(prop, forKey: "userproperties", storageOption: .memory)
             
             return prop
         }
