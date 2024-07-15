@@ -16,7 +16,6 @@ internal class AnalyticsRepository: AnalyticsRepositoryProtocol {
     private let prod = "XSD6BIfei99TpkuCIdS5ZrcqUk/3sYOqJZ4MwtOpzkwrEfBRIRb/QtLwP58atuETwAP53lnBCbrWQwzxSMlMJQ=="
     
     internal func initialize() {
-        
         var environment = ""
         switch BuildConfiguration.environment {
         case .debugSDKDev, .releaseSDKDev:
@@ -42,7 +41,6 @@ internal class AnalyticsRepository: AnalyticsRepositoryProtocol {
             print("entrou no if")
             return userProp
         } else {
-            print("entrou no else")
             let applicationBundleID = Bundle.main.bundleIdentifier ?? "Unknown Bundle ID"
             
             var environment = ""
@@ -64,4 +62,5 @@ internal class AnalyticsRepository: AnalyticsRepositoryProtocol {
             return prop
         }
     }
-}
+}    
+

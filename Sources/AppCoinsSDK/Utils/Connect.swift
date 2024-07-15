@@ -16,40 +16,30 @@ internal class Connect {
     
     private init() {}
     
-    internal func getConnection(environment: String) -> String? {
-        guard let decrypted = decrypt(key: environment) else {
-            return nil
-        }
-        return deobfuscate(key: decrypted)
-    }
-    
-    private func deobfuscate(key: String) -> String? {
-        guard let data = Data(base64Encoded: key) else {
-            return nil
-        }
-        return String(data: data, encoding: .utf8)
-    }
-    
-    private func decrypt(key: String) -> String? {
-        guard let data = Data(base64Encoded: key) else {
-            return nil
-        }
-        var buffer = [UInt8](repeating: 0, count: data.count + kCCBlockSizeAES128)
-        var numBytesDecrypted: size_t = 0
-        let cryptStatus = CCCrypt(
-            CCOperation(kCCDecrypt),
-            CCAlgorithm(kCCAlgorithmAES128),
-            CCOptions(kCCOptionPKCS7Padding),
-            apiKey, kCCKeySizeAES256,
-            type,
-            (data as NSData).bytes, data.count,
-            &buffer, buffer.count,
-            &numBytesDecrypted
-        )
-        if cryptStatus == kCCSuccess {
-            let decryptedData = Data(bytes: buffer, count: numBytesDecrypted)
-            return String(data: decryptedData, encoding: .utf8)
+    internal func getConnection(environment: [UInt8]) -> String? {
+        if let encodedString = String(bytes: environment, encoding: .utf8) {
+            guard let data = Data(base64Encoded: encodedString) else { return nil }
+            var buffer = [UInt8](repeating: 0, count: data.count + kCCBlockSizeAES128)
+            var numBytesDecrypted: size_t = 0
+            let cryptStatus = CCCrypt(
+                CCOperation(kCCDecrypt),
+                CCAlgorithm(kCCAlgorithmAES128),
+                CCOptions(kCCOptionPKCS7Padding),
+                apiKey, kCCKeySizeAES256,
+                type,
+                (data as NSData).bytes, data.count,
+                &buffer, buffer.count,
+                &numBytesDecrypted
+            )
+            if cryptStatus == kCCSuccess {
+                let data = Data(bytes: buffer, count: numBytesDecrypted)
+                guard let newData = Data(base64Encoded: data) else { return nil }
+                return String(data: newData, encoding: .utf8)
+            } else {
+                return nil
+            }
         } else {
+            print("Failed!")
             return nil
         }
     }
