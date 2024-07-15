@@ -16,7 +16,7 @@ internal class AttributionUseCases {
         self.repository = repository
     }
     
-    internal func getAttribution() { repository.getAttribution() }
+    internal func getAttribution(completion: @escaping (Result<Attribution, Error>) -> Void) { repository.getAttribution { result in } }
     internal func getGuestUID() -> String { repository.getGuestUID() }
     
 }

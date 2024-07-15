@@ -8,6 +8,6 @@
 import Foundation
 
 internal protocol AttributionRepositoryProtocol {
-    func getAttribution()
+    func getAttribution(completion: @escaping (Result<Attribution, Error>) -> Void)
     func getGuestUID() -> String
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct AnalyticsUserProperties {
+public struct AnalyticsUserProperties: Codable {
     
     let applicationBundleID: String
     let environment: String

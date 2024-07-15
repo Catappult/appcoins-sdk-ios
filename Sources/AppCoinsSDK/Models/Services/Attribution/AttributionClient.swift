@@ -15,10 +15,7 @@ internal class AttributionClient: AttributionService {
         self.endpoint = endpoint
     }
     
-    
-    func getAttribution(bundleID: String, result: @escaping (Result<AttributionRaw, Error>) -> Void) {
-        print("entrou no client - getAttribution")
-        
+    internal func getAttribution(bundleID: String, result: @escaping (Result<AttributionRaw, Error>) -> Void) {
         if #available(iOS 16.0, *) {
             if let requestURL = URL(string: "\(endpoint)/api/v1/attribution") {
                 var request = URLRequest(url: requestURL.appending(queryItems: [URLQueryItem(name: "package_name", value: bundleID)]))
@@ -31,7 +28,7 @@ internal class AttributionClient: AttributionService {
                     
                     if let error = error {
                         if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
-                            result(.failure(nsError))
+                            result(.failure(error))
                         } else {
                             result(.failure(error))
                         }
@@ -44,7 +41,6 @@ internal class AttributionClient: AttributionService {
                     }
                 }
                 task.resume()
-                
             }
         }
     }
