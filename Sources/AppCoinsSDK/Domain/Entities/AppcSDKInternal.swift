@@ -13,10 +13,8 @@ internal class AppcSDKInternal {
         AnalyticsUseCases.shared.initialize()
         AttributionUseCases.shared.getAttribution { result in
             switch result {
-            case .success:
-                break
-            case .failure:
-                break
+            case .success: break
+            case .failure: break
             }
         }
     }
