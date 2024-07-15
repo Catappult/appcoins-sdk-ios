@@ -246,7 +246,7 @@ internal class BottomSheetViewModel : ObservableObject {
     }
     
     internal func finishPurchase(transactionUuid: String, method: Method) {
-        if let wallet = self.walletUseCases.getClientWallet(), let wa = wallet.address {
+        if let wallet = self.walletUseCases.getClientWallet() {
             
             self.transactionUseCases.getTransactionInfo(uid: transactionUuid, wa: wallet) {
                 result in
@@ -254,7 +254,7 @@ internal class BottomSheetViewModel : ObservableObject {
                 switch result {
                 case .success(let transaction):
                     if let purchaseUID = transaction.purchaseUID {
-                        wallet.getBalance(wa: wa, currency: Coin(rawValue: TransactionViewModel.shared.transaction?.moneyCurrency ?? "") ?? .EUR) {
+                        wallet.getBalance(currency: Coin(rawValue: TransactionViewModel.shared.transaction?.moneyCurrency ?? "") ?? .EUR) {
                             result in
                             switch result {
                             case .success(let balance):

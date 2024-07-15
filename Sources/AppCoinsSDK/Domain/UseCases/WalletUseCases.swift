@@ -17,15 +17,19 @@ internal class WalletUseCases {
         self.repository = repository
     }
     
-    internal func getWalletList() -> [Wallet] {
+    internal func getWalletList() -> [ClientWallet] {
         return repository.getWalletList()
     }
     
-    internal func getClientWallet() -> Wallet? {
+    internal func getGuestWallet(guestUID: String, completion: @escaping (Result<GuestWallet, APPCServiceError>) -> Void) {
+        repository.getGuestWallet(guestUID: guestUID) { result in completion(result) }
+    }
+    
+    internal func getClientWallet() -> ClientWallet? {
         return repository.getClientWallet()
     }
     
-    internal func importWallet(keystore: String, password: String, privateKey: String, completion: @escaping (Result<Wallet?, WalletLocalErrors>) -> Void) {
+    internal func importWallet(keystore: String, password: String, privateKey: String, completion: @escaping (Result<ClientWallet?, WalletLocalErrors>) -> Void) {
         repository.importWallet(keystore: keystore, password: password, privateKey: privateKey) { result in completion(result) }
     }
     

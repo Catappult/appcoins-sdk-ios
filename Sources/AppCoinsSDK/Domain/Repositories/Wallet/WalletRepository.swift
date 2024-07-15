@@ -11,11 +11,12 @@ import SwiftUI
 internal class WalletRepository: WalletRepositoryProtocol {
         
     private var walletService: WalletLocalService = WalletLocalClient()
+    private var appcService: APPCService = APPCServiceClient()
     
-    private let ActiveWalletCache: Cache<String, Wallet?> = Cache(cacheName: "ActiveWalletCache")
-    private let WalletListCache: Cache<String, [Wallet]> = Cache(cacheName: "WalletListCache")
+    private let ActiveWalletCache: Cache<String, ClientWallet?> = Cache(cacheName: "ActiveWalletCache")
+    private let WalletListCache: Cache<String, [ClientWallet]> = Cache(cacheName: "WalletListCache")
     
-    internal func getClientWallet() -> Wallet? {
+    internal func getClientWallet() -> ClientWallet? {
         if let clientWallet = self.ActiveWalletCache.getValue(forKey: "activeWallet") {
             return clientWallet
         } else {
@@ -35,7 +36,22 @@ internal class WalletRepository: WalletRepositoryProtocol {
         }
     }
     
-    internal func getWalletList() -> [Wallet] {
+    internal func getGuestWallet(guestUID: String, completion: @escaping (Result<GuestWallet, APPCServiceError>) -> Void) {
+        appcService.getGuestWallet(guestUID: guestUID) { result in
+            switch result {
+            case .success(let guestWalletRaw):
+                if let ewt = guestWalletRaw.ewt, let signature = guestWalletRaw.signature {
+                    completion(.success(GuestWallet(address: guestWalletRaw.address, ewt: ewt, signature: signature)))
+                } else {
+                    completion(.failure(.failed))
+                }
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    internal func getWalletList() -> [ClientWallet] {
         if let walletList = WalletListCache.getValue(forKey: "walletList") {
             if walletList.isEmpty {
                 let newWalletList = walletService.getWalletList()
@@ -51,7 +67,7 @@ internal class WalletRepository: WalletRepositoryProtocol {
         }
     }
     
-    internal func importWallet(keystore: String, password: String, privateKey: String, completion: @escaping (Result<Wallet?, WalletLocalErrors>) -> Void) {
+    internal func importWallet(keystore: String, password: String, privateKey: String, completion: @escaping (Result<ClientWallet?, WalletLocalErrors>) -> Void) {
         walletService.importWallet(keystore: keystore, password: password, privateKey: privateKey) { result in
             switch result {
             case .success(let newWallet):
