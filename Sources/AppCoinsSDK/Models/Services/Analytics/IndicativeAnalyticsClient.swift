@@ -10,11 +10,6 @@ import IndicativeLibrary
 
 internal class IndicativeAnalyticsClient: AnalyticsService {
     
-<<<<<<< HEAD
-    internal func initialize(userProperties: AnalyticsUserProperties, environment: String) {
-        
-        Indicative.launch(Connect.shared.getConnection(environment: environment))
-=======
     internal let dev: [UInt8] = [57, 100, 122, 101, 117, 80, 56, 108, 120, 121, 101, 115, 77, 68, 108, 52, 115, 114, 53, 89, 73,
                                  67, 77, 57, 71, 66, 71, 108, 50, 77, 112, 102, 108, 72, 106, 79, 47, 51, 78, 86, 69, 89, 111, 79, 66,
                                  85, 104, 83, 54, 114, 50, 108, 80, 73, 85, 83, 54, 81, 87, 86, 99, 103, 122, 89, 115, 50, 115, 77, 53,
@@ -31,7 +26,6 @@ internal class IndicativeAnalyticsClient: AnalyticsService {
         case .debugSDKProd, .releaseSDKProd:
             Indicative.launch(Maze.shared.getConnection(environment: self.prod))
         }
->>>>>>> feature/APP-2650_sdk_analytics
         Indicative.addCommonProperties(userProperties.toDict())
     }
     
