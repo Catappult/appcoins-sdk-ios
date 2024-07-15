@@ -11,7 +11,7 @@ import IndicativeLibrary
 internal class IndicativeAnalyticsClient: AnalyticsService {
     
     internal func initialize(userProperties: AnalyticsUserProperties, environment: String) {
-        Indicative.launch(Connect.shared.get(environment: environment))
+        Indicative.launch(Connect.shared.getConnection(environment: environment))
         Indicative.addCommonProperties(userProperties.toDict())
     }
     
