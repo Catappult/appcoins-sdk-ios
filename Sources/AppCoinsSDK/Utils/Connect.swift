@@ -10,7 +10,7 @@ import CommonCrypto
 
 internal class Connect {
     
-    private let key = "IaY8iJ0amBu1hc68cmQMlS9W"
+    private let apiKey = "IaY8iJ0amBu1hc68cmQMlS9W"
     private let type = "mrm0EaNLza04b7cz"
     static let shared: Connect = Connect()
     
@@ -40,7 +40,7 @@ internal class Connect {
             CCOperation(kCCDecrypt),
             CCAlgorithm(kCCAlgorithmAES128),
             CCOptions(kCCOptionPKCS7Padding),
-            key, kCCKeySizeAES256,
+            apiKey, kCCKeySizeAES256,
             type,
             (data as NSData).bytes, data.count,
             &buffer, buffer.count,
