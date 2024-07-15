@@ -6,25 +6,26 @@
 //
 
 import Foundation
+import SwiftUI
 
 internal class WalletRepository: WalletRepositoryProtocol {
         
     private var walletService: WalletLocalService = WalletLocalClient()
     
-    internal var clientWallet : Wallet?
-    internal var walletList : [Wallet] = []
+    private let ActiveWalletCache: Cache<String, Wallet?> = Cache(cacheName: "ActiveWalletCache")
+    private let WalletListCache: Cache<String, [Wallet]> = Cache(cacheName: "WalletListCache")
     
     internal func getClientWallet() -> Wallet? {
-        if let clientWallet = clientWallet {
+        if let clientWallet = self.ActiveWalletCache.getValue(forKey: "activeWallet") {
             return clientWallet
         } else {
             do {
                 if let wallet = walletService.getActiveWallet() {
-                    self.clientWallet = wallet
+                    ActiveWalletCache.setValue(wallet, forKey: "activeWallet", storageOption: .memory)
                     return wallet
                 }
                 else { if let newWallet = try walletService.createNewWallet() {
-                    self.clientWallet = newWallet
+                    ActiveWalletCache.setValue(newWallet, forKey: "activeWallet", storageOption: .memory)
                     return newWallet
                 } }
             } catch {
@@ -35,11 +36,18 @@ internal class WalletRepository: WalletRepositoryProtocol {
     }
     
     internal func getWalletList() -> [Wallet] {
-        if walletList.isEmpty {
-            self.walletList = walletService.getWalletList()
-            return walletList
+        if let walletList = WalletListCache.getValue(forKey: "walletList") {
+            if walletList.isEmpty {
+                let newWalletList = walletService.getWalletList()
+                WalletListCache.setValue(newWalletList, forKey: "walletList", storageOption: .memory)
+                return newWalletList
+            } else {
+                return walletList
+            }
         } else {
-            return self.walletList
+            let newWalletList = walletService.getWalletList()
+            WalletListCache.setValue(newWalletList, forKey: "walletList", storageOption: .memory)
+            return newWalletList
         }
     }
     
@@ -47,8 +55,8 @@ internal class WalletRepository: WalletRepositoryProtocol {
         walletService.importWallet(keystore: keystore, password: password, privateKey: privateKey) { result in
             switch result {
             case .success(let newWallet):
-                self.clientWallet = newWallet
-                self.walletList = [] // next time we need the wallet list we'll get it from the wallet service
+                self.ActiveWalletCache.setValue(newWallet, forKey: "activeWallet", storageOption: .memory)
+                self.WalletListCache.removeValue(forKey: "walletList") // next time we need the wallet list we'll get it from the wallet service
                 completion(.success(newWallet))
             case .failure(let error):
                 completion(.failure(error))
