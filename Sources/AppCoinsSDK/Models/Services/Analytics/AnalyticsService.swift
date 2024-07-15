@@ -8,7 +8,7 @@
 import Foundation
 
 internal protocol AnalyticsService {
-    func initialize(userProperties: AnalyticsUserProperties, environment: String)
+    func initialize(userProperties: AnalyticsUserProperties)
     func recordPurchaseIntent(paymentMethod: String)
     func recordPaymentStatus(status: String)
     func recordStartConnection()
