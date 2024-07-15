@@ -28,9 +28,8 @@ internal class AnalyticsRepository: AnalyticsRepositoryProtocol {
     internal func recordPaymentStatus(status: String) { AnalyticsService.recordPaymentStatus(status: status) }
     
     internal func getUserProperties() -> AnalyticsUserProperties {
-        if let userProp = self.UserPropertiesCache.getValue(forKey: "userproperties") {
-            print("entrou no if")
-            return userProp
+        if let userProperties = self.UserPropertiesCache.getValue(forKey: "userproperties") {
+            return userProperties
         } else {
             let applicationBundleID = Bundle.main.bundleIdentifier ?? "Unknown Bundle ID"
             
@@ -46,11 +45,11 @@ internal class AnalyticsRepository: AnalyticsRepositoryProtocol {
             let deviceModel = Device.current.description
             let iosVersion = Device.current.systemVersion?.description ?? "Unknown iOS version"
             
-            let prop = AnalyticsUserProperties(applicationBundleID: applicationBundleID, environment: environment, theme: theme, iosVersion: iosVersion, iphoneModel: deviceModel)
+            let properties = AnalyticsUserProperties(applicationBundleID: applicationBundleID, environment: environment, theme: theme, iosVersion: iosVersion, iphoneModel: deviceModel)
             
-            self.UserPropertiesCache.setValue(prop, forKey: "userproperties", storageOption: .memory)
+            self.UserPropertiesCache.setValue(properties, forKey: "userproperties", storageOption: .memory)
             
-            return prop
+            return properties
         }
     }
 }
