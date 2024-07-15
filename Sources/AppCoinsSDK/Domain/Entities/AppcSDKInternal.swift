@@ -12,6 +12,5 @@ internal class AppcSDKInternal {
     static internal func initialize() {
         AnalyticsUseCases.shared.initialize()
         AttributionUseCases.shared.getAttribution()
-        print("appc sdk internal guestUID:\(AttributionUseCases.shared.getGuestUID())")
     }
 }
