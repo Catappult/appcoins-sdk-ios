@@ -19,7 +19,7 @@ internal class IndicativeAnalyticsClient: AnalyticsService {
                                   102, 66, 82, 73, 82, 98, 47, 81, 116, 76, 119, 80, 53, 56, 97, 116, 117, 69, 84, 119, 65, 80, 53,
                                   51, 108, 110, 66, 67, 98, 114, 87, 81, 119, 122, 120, 83, 77, 108, 77, 74, 81, 61, 61]
     
-    internal func initialize(userProperties: AnalyticsUserProperties, environment: String) {
+    internal func initialize(userProperties: AnalyticsUserProperties) {
         switch BuildConfiguration.environment {
         case .debugSDKDev, .releaseSDKDev:
             Indicative.launch(Maze.shared.getConnection(environment: self.dev))

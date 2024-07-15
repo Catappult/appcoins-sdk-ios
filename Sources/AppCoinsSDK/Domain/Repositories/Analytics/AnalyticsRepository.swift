@@ -12,18 +12,9 @@ internal class AnalyticsRepository: AnalyticsRepositoryProtocol {
     
     private let AnalyticsService: AnalyticsService = IndicativeAnalyticsClient()
     private var UserPropertiesCache: Cache<String, AnalyticsUserProperties> = Cache(cacheName: "UserProperties")
-    private let dev = "9dzeuP8lxyesMDl4sr5YICM9GBGl2MpflHjO/3NVEYoOBUhS6r2lPIUS6QWVcgzYs2sM5bUVMg3JRmDDJKRECg=="
-    private let prod = "XSD6BIfei99TpkuCIdS5ZrcqUk/3sYOqJZ4MwtOpzkwrEfBRIRb/QtLwP58atuETwAP53lnBCbrWQwzxSMlMJQ=="
     
     internal func initialize() {
-        var environment = ""
-        switch BuildConfiguration.environment {
-        case .debugSDKDev, .releaseSDKDev:
-            environment = self.dev
-        case .debugSDKProd, .releaseSDKProd:
-            environment = self.prod
-        }
-        AnalyticsService.initialize(userProperties: self.getUserProperties(), environment: environment)
+        AnalyticsService.initialize(userProperties: self.getUserProperties())
     }
     
     internal func recordPurchaseIntent(paymentMethod: String) {
@@ -62,5 +53,5 @@ internal class AnalyticsRepository: AnalyticsRepositoryProtocol {
             return prop
         }
     }
-}    
+}
 
