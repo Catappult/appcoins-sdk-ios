@@ -22,9 +22,9 @@ internal class IndicativeAnalyticsClient: AnalyticsService {
     internal func initialize(userProperties: AnalyticsUserProperties) {
         switch BuildConfiguration.environment {
         case .debugSDKDev, .releaseSDKDev:
-            Indicative.launch(Maze.shared.getConnection(environment: self.dev))
+            Indicative.launch(Maze.shared.get(key: self.dev))
         case .debugSDKProd, .releaseSDKProd:
-            Indicative.launch(Maze.shared.getConnection(environment: self.prod))
+            Indicative.launch(Maze.shared.get(key: self.prod))
         }
         Indicative.addCommonProperties(userProperties.toDict())
     }

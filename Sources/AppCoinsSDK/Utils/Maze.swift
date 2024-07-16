@@ -16,8 +16,8 @@ internal class Maze {
     
     private init() {}
     
-    internal func getConnection(environment: [UInt8]) -> String? {
-        if let encodedString = String(bytes: environment, encoding: .utf8) {
+    internal func get(key: [UInt8]) -> String? {
+        if let encodedString = String(bytes: key, encoding: .utf8) {
             guard let data = Data(base64Encoded: encodedString) else { return nil }
             var buffer = [UInt8](repeating: 0, count: data.count + kCCBlockSizeAES128)
             var numBytesDecrypted: size_t = 0
