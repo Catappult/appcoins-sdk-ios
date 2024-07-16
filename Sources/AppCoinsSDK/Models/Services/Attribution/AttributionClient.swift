@@ -15,7 +15,7 @@ internal class AttributionClient: AttributionService {
         self.endpoint = endpoint
     }
     
-    internal func getAttribution(bundleID: String, oemID: String?, guestUID: String?, result: @escaping (Result<AttributionRaw, AttributionServiceErrors>) -> Void) {
+    internal func getAttribution(bundleID: String, oemID: String?, guestUID: String?, result: @escaping (Result<AttributionRaw, Error>) -> Void) {
         
         var guestUIDItem = ""
         if let guestUID = guestUID { guestUIDItem = "&guest_uid=\(guestUID)" }
@@ -34,15 +34,15 @@ internal class AttributionClient: AttributionService {
                 
                 if let error = error {
                     if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
-                        result(.failure(.noInternet))
+                        result(.failure(nsError))
                     } else {
-                        result(.failure(.failed))
+                        result(.failure(error))
                     }
                 } else {
                     if let data = data, let findResult = try? JSONDecoder().decode(AttributionRaw.self, from: data) {
                         result(.success(findResult))
                     }  else if let error = error {
-                        result(.failure(.failed))
+                        result(.failure(error))
                     }
                 }
             }

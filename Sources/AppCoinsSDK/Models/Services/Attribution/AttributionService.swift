@@ -8,5 +8,5 @@
 import Foundation
 
 internal protocol AttributionService {
-    func getAttribution(bundleID: String, oemID: String?, guestUID: String?, result: @escaping (Result<AttributionRaw, AttributionServiceErrors>) -> Void)
+    func getAttribution(bundleID: String, oemID: String?, guestUID: String?, result: @escaping (Result<AttributionRaw, Error>) -> Void)
 }
