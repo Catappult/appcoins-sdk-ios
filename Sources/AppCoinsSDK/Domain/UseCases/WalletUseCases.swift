@@ -17,12 +17,44 @@ internal class WalletUseCases {
         self.repository = repository
     }
     
-    internal func getWalletList() -> [ClientWallet] {
-        return repository.getWalletList()
+    internal func getWallet(completion: @escaping (Result<Wallet, APPCServiceError>) -> Void)  {
+        // Should be fetched from MMP
+        var guestUID: String = "0123456789012345678901234567890123456789"
+        
+        repository.getGuestWallet(guestUID: guestUID) {
+            result in
+            
+            switch result {
+            case .success(let guestWallet):
+                completion(.success(guestWallet))
+            case .failure(let error):
+                if let clientWallet = self.repository.getClientWallet() {
+                    completion(.success(clientWallet))
+                } else {
+                    completion(.failure(error))
+                }
+            }
+        }
     }
     
-    internal func getGuestWallet(guestUID: String, completion: @escaping (Result<GuestWallet, APPCServiceError>) -> Void) {
-        repository.getGuestWallet(guestUID: guestUID) { result in completion(result) }
+    internal func getWalletList(completion: @escaping ([Wallet]) -> Void) {
+        // Should be fetched from MMP
+        var guestUID: String = "0123456789012345678901234567890123456789"
+        
+        repository.getGuestWallet(guestUID: guestUID) {
+            result in
+            
+            var clientWallets: [Wallet] = self.repository.getWalletList()
+            
+            switch result {
+            case .success(let guestWallet):
+                clientWallets.append(guestWallet)
+                completion(clientWallets)
+            case .failure(_):
+                completion(clientWallets)
+            }
+            
+        }
     }
     
     internal func getClientWallet() -> ClientWallet? {

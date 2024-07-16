@@ -172,22 +172,30 @@ internal class BottomSheetViewModel : ObservableObject {
     internal func buyWithAppc() {
         if let parameters = TransactionViewModel.shared.transactionParameters {
             let raw = CreateAPPCTransactionRaw.fromParameters(parameters: parameters)
-            if let wallet = self.walletUseCases.getClientWallet() {
-                self.transactionUseCases.createTransaction(wa: wallet, raw: raw) {
-                    result in
-                    
-                    switch result {
-                    case .success(let transactionResponse):
-                        self.finishPurchase(transactionUuid: transactionResponse.uuid, method: .appc)
-                    case .failure(let error):
-                        switch error {
-                        case .failed(let description): self.transactionFailedWith(error: .systemError, description: description)
-                        case .noInternet: self.transactionFailedWith(error: .networkError)
-                        default: self.transactionFailedWith(error: .systemError)
+            
+            self.walletUseCases.getWallet() {
+                result in
+                
+                switch result {
+                case .success(let wallet):
+                    self.transactionUseCases.createTransaction(wa: wallet, raw: raw) {
+                        result in
+                        
+                        switch result {
+                        case .success(let transactionResponse):
+                            self.finishPurchase(transactionUuid: transactionResponse.uuid, method: .appc)
+                        case .failure(let error):
+                            switch error {
+                            case .failed(let description): self.transactionFailedWith(error: .systemError, description: description)
+                            case .noInternet: self.transactionFailedWith(error: .networkError)
+                            default: self.transactionFailedWith(error: .systemError)
+                            }
                         }
                     }
+                case .failure(_):
+                    self.transactionFailedWith(error: .notEntitled)
                 }
-            } else { self.transactionFailedWith(error: .notEntitled) }
+            }
         } else { self.transactionFailedWith(error: .systemError) }
     }
     
@@ -197,11 +205,18 @@ internal class BottomSheetViewModel : ObservableObject {
             let raw = CreateAdyenTransactionRaw.fromParameters(parameters: parameters)
             switch raw {
             case .success(let raw):
-                if let wallet = self.walletUseCases.getClientWallet() {
-                    if let moneyAmount = TransactionViewModel.shared.transaction?.moneyAmount, let moneyCurrrency = TransactionViewModel.shared.transaction?.moneyCurrency {
-                        AdyenViewModel.shared.buyWithCreditCard(raw: raw, wallet: wallet, moneyAmount: moneyAmount, moneyCurrency: moneyCurrrency)
-                    } else { self.transactionFailedWith(error: .systemError) }
-                } else { self.transactionFailedWith(error: .notEntitled) }
+                self.walletUseCases.getWallet() {
+                    result in
+                    
+                    switch result {
+                    case .success(let wallet):
+                        if let moneyAmount = TransactionViewModel.shared.transaction?.moneyAmount, let moneyCurrrency = TransactionViewModel.shared.transaction?.moneyCurrency {
+                            AdyenViewModel.shared.buyWithCreditCard(raw: raw, wallet: wallet, moneyAmount: moneyAmount, moneyCurrency: moneyCurrrency)
+                        } else { self.transactionFailedWith(error: .systemError) }
+                    case .failure(_):
+                        self.transactionFailedWith(error: .notEntitled)
+                    }
+                }
             case .failure(_): self.transactionFailedWith(error: .unknown)
             }
         } else { self.transactionFailedWith(error: .systemError) }
@@ -213,81 +228,99 @@ internal class BottomSheetViewModel : ObservableObject {
             let raw = CreateAdyenTransactionRaw.fromParameters(parameters: parameters)
             switch raw {
             case .success(let raw):
-                if let wallet = self.walletUseCases.getClientWallet() {
-                    if let moneyAmount = TransactionViewModel.shared.transaction?.moneyAmount, let moneyCurrrency = TransactionViewModel.shared.transaction?.moneyCurrency {
-                        AdyenViewModel.shared.buyWithPayPalAdyen(raw: raw, wallet: wallet, moneyAmount: moneyAmount, moneyCurrency: moneyCurrrency)
-                    } else { self.transactionFailedWith(error: .systemError) }
-                } else { self.transactionFailedWith(error: .notEntitled) }
+                self.walletUseCases.getWallet() {
+                    result in
+                    
+                    switch result {
+                    case .success(let wallet):
+                        if let moneyAmount = TransactionViewModel.shared.transaction?.moneyAmount, let moneyCurrrency = TransactionViewModel.shared.transaction?.moneyCurrency {
+                            AdyenViewModel.shared.buyWithPayPalAdyen(raw: raw, wallet: wallet, moneyAmount: moneyAmount, moneyCurrency: moneyCurrrency)
+                        } else { self.transactionFailedWith(error: .systemError) }
+                    case .failure(_):
+                        self.transactionFailedWith(error: .notEntitled)
+                    }
+                }
             case .failure(_): self.transactionFailedWith(error: .unknown)
             }
         } else { self.transactionFailedWith(error: .systemError) }
     }
     
     internal func buyWithPayPalDirect() {
-        if let wallet = self.walletUseCases.getClientWallet() {
-            if let parameters = TransactionViewModel.shared.transactionParameters {
-                let raw = CreateBAPayPalTransactionRaw.fromParameters(parameters: parameters)
-                PayPalDirectViewModel.shared.buyWithPayPalDirect(raw: raw, wallet: wallet) {
+        self.walletUseCases.getWallet() {
+            result in
+            
+            switch result {
+            case .success(let wallet):
+                if let parameters = TransactionViewModel.shared.transactionParameters {
+                    let raw = CreateBAPayPalTransactionRaw.fromParameters(parameters: parameters)
+                    PayPalDirectViewModel.shared.buyWithPayPalDirect(raw: raw, wallet: wallet) {
+                        result in
+                        
+                        switch result {
+                        case .success(let uuid):
+                            self.finishPurchase(transactionUuid: uuid, method: .paypalDirect)
+                        case .failure(let error):
+                            switch error {
+                            case .failed(let description): self.transactionFailedWith(error: .systemError, description: description)
+                            case .noInternet: self.transactionFailedWith(error: .networkError)
+                            default: self.transactionFailedWith(error: .systemError)
+                            }
+                        }
+                    }
+                } else { self.transactionFailedWith(error: .systemError) }
+            case .failure(_):
+                self.transactionFailedWith(error: .notEntitled)
+            }
+        }
+    }
+    
+    internal func finishPurchase(transactionUuid: String, method: Method) {
+        self.walletUseCases.getWallet() {
+            result in
+            
+            switch result {
+            case .success(let wallet):
+                self.transactionUseCases.getTransactionInfo(uid: transactionUuid, wa: wallet) {
                     result in
                     
                     switch result {
-                    case .success(let uuid):
-                        self.finishPurchase(transactionUuid: uuid, method: .paypalDirect)
-                    case .failure(let error):
-                        switch error {
-                        case .failed(let description): self.transactionFailedWith(error: .systemError, description: description)
+                    case .success(let transaction):
+                        if let purchaseUID = transaction.purchaseUID {
+                            wallet.getBalance(currency: Coin(rawValue: TransactionViewModel.shared.transaction?.moneyCurrency ?? "") ?? .EUR) {
+                                result in
+                                switch result {
+                                case .success(let balance):
+                                    Purchase.verify(purchaseUID: purchaseUID) {
+                                        result in
+                                        switch result {
+                                        case .success(let purchase):
+                                            purchase.acknowledge() {
+                                                error in
+                                                if let error = error { self.transactionFailedWith(error: error) }
+                                                else {
+                                                    self.successfulTransaction(purchase: purchase, balance: balance, method: method)
+                                                }
+                                            }
+                                        case .failure(let error): self.transactionFailedWith(error: error)
+                                        }
+                                    }
+                                case .failure(let failure):
+                                    if failure == .noInternet { self.transactionFailedWith(error: .networkError) }
+                                    else { self.transactionFailedWith(error: .systemError) }
+                                }
+                            }
+                        } else { self.transactionFailedWith(error: .systemError) }
+                    case .failure(let failure):
+                        switch failure {
+                        case .failed(_): self.transactionFailedWith(error: .systemError)
                         case .noInternet: self.transactionFailedWith(error: .networkError)
                         default: self.transactionFailedWith(error: .systemError)
                         }
                     }
                 }
-            } else { transactionFailedWith(error: .systemError) }
-        } else { transactionFailedWith(error: .notEntitled) }
-    }
-    
-    internal func finishPurchase(transactionUuid: String, method: Method) {
-        if let wallet = self.walletUseCases.getClientWallet() {
-            
-            self.transactionUseCases.getTransactionInfo(uid: transactionUuid, wa: wallet) {
-                result in
-                
-                switch result {
-                case .success(let transaction):
-                    if let purchaseUID = transaction.purchaseUID {
-                        wallet.getBalance(currency: Coin(rawValue: TransactionViewModel.shared.transaction?.moneyCurrency ?? "") ?? .EUR) {
-                            result in
-                            switch result {
-                            case .success(let balance):
-                                Purchase.verify(purchaseUID: purchaseUID) {
-                                    result in
-                                    switch result {
-                                    case .success(let purchase):
-                                        purchase.acknowledge() {
-                                            error in
-                                            if let error = error { self.transactionFailedWith(error: error) }
-                                            else {
-                                                self.successfulTransaction(purchase: purchase, balance: balance, method: method)
-                                            }
-                                        }
-                                    case .failure(let error): self.transactionFailedWith(error: error)
-                                    }
-                                }
-                            case .failure(let failure):
-                                if failure == .noInternet { self.transactionFailedWith(error: .networkError) }
-                                else { self.transactionFailedWith(error: .systemError) }
-                            }
-                        }
-                    } else { self.transactionFailedWith(error: .systemError) }
-                case .failure(let failure):
-                    switch failure {
-                    case .failed(_): self.transactionFailedWith(error: .systemError)
-                    case .noInternet: self.transactionFailedWith(error: .networkError)
-                    default: self.transactionFailedWith(error: .systemError)
-                    }
-                }
+            case .failure(_):
+                self.transactionFailedWith(error: .notEntitled)
             }
-        } else {
-            self.transactionFailedWith(error: .notEntitled)
         }
     }
     

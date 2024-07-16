@@ -26,7 +26,6 @@ internal class AppCoinTransactionClient : AppCoinTransactionService {
                     }
                 } else {
                     if let data = data, let balance = try? JSONDecoder().decode(AppCoinBalanceRaw.self, from: data) {
-                        print(balance)
                         result(.success(balance))
                     } else { result(.failure(.failed)) }
                 }

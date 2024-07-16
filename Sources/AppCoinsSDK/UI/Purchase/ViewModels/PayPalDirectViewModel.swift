@@ -130,17 +130,26 @@ internal class PayPalDirectViewModel : ObservableObject {
             
             switch result {
             case .success(_):
-                if let raw = self.raw, let wallet = self.walletUseCases.getClientWallet() {
-                    self.buyWithPayPalDirect(raw: raw, wallet: wallet) {
+                if let raw = self.raw {
+                    self.walletUseCases.getWallet() {
                         result in
+                        
                         switch result {
-                        case .success(let uuid): self.bottomSheetViewModel.finishPurchase(transactionUuid: uuid, method: .paypalDirect)
-                            case .failure(let error):
-                                switch error {
-                                case .failed(let description): self.bottomSheetViewModel.transactionFailedWith(error: .systemError, description: description)
-                                case .noInternet: self.bottomSheetViewModel.transactionFailedWith(error: .networkError)
-                                default: self.bottomSheetViewModel.transactionFailedWith(error: .systemError)
+                        case .success(let wallet):
+                            self.buyWithPayPalDirect(raw: raw, wallet: wallet) {
+                                result in
+                                switch result {
+                                case .success(let uuid): self.bottomSheetViewModel.finishPurchase(transactionUuid: uuid, method: .paypalDirect)
+                                    case .failure(let error):
+                                        switch error {
+                                        case .failed(let description): self.bottomSheetViewModel.transactionFailedWith(error: .systemError, description: description)
+                                        case .noInternet: self.bottomSheetViewModel.transactionFailedWith(error: .networkError)
+                                        default: self.bottomSheetViewModel.transactionFailedWith(error: .systemError)
+                                    }
+                                }
                             }
+                        case .failure(_):
+                            self.bottomSheetViewModel.transactionFailedWith(error: .notEntitled)
                         }
                     }
                 } else { self.bottomSheetViewModel.transactionFailedWith(error: .notEntitled) }
