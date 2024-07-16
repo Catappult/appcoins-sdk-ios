@@ -10,11 +10,6 @@ import Foundation
 internal class AppcSDKInternal {
     
     static internal func initialize() {
-        AttributionUseCases.shared.getAttribution { result in
-            switch result {
-            case .success: break
-            case .failure: break
-            }
-        }
+        AttributionUseCases.shared.getAttribution()
     }
 }

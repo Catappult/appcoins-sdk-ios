@@ -10,19 +10,18 @@ import Foundation
 internal class AttributionRepository: AttributionRepositoryProtocol {
     
     private let AttributionService: AttributionService = AttributionClient()
-    private var GuestUIDCache: Cache<String, Attribution> = Cache(cacheName: "Attribution")
     
-    internal func getAttribution(completion: @escaping (Result<Attribution, Error>) -> Void) {
-        if let attribution = self.GuestUIDCache.getValue(forKey: "attribution") {
-            completion(.success(attribution))
-        } else {
-            self.AttributionService.getAttribution(bundleID: Bundle.main.bundleIdentifier ?? "") { result in
-                switch result {
-                case .success(let attributionRaw):
-                    self.GuestUIDCache.setValue(Attribution(attributionRaw), forKey: "attribution", storageOption: .memory)
-                    completion(.success(Attribution(attributionRaw)))
-                case .failure: break
-                }
+    internal func getAttribution() {
+        
+        let oemID = UserDefaults.standard.string(forKey: "attribution-oemid")
+        let guestUID = UserDefaults.standard.string(forKey: "attribution-guestuid")
+        
+        self.AttributionService.getAttribution(bundleID: Bundle.main.bundleIdentifier ?? "", oemID: oemID, guestUID: guestUID) { result in
+            switch result {
+            case .success(let attributionRaw):
+                if oemID == nil, let rawOemID = attributionRaw.oemID { UserDefaults.standard.set(rawOemID, forKey: "attribution-oemid") }
+                if guestUID == nil { UserDefaults.standard.set(String(attributionRaw.guestUID), forKey: "attribution-guestuid") }
+            case .failure: break
             }
         }
     }

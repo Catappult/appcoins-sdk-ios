@@ -8,5 +8,5 @@
 import Foundation
 
 internal protocol AttributionRepositoryProtocol {
-    func getAttribution(completion: @escaping (Result<Attribution, Error>) -> Void)
+    func getAttribution()
 }
