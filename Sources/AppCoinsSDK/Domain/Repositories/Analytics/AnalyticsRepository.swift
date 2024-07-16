@@ -31,7 +31,7 @@ internal class AnalyticsRepository: AnalyticsRepositoryProtocol {
         if let userProperties = self.UserPropertiesCache.getValue(forKey: "userproperties") {
             return userProperties
         } else {
-            let applicationBundleID = Bundle.main.bundleIdentifier ?? "Unknown Bundle ID"
+            let package = Bundle.main.bundleIdentifier ?? "Unknown Bundle ID"
             
             var environment = ""
             switch BuildConfiguration.environment {
@@ -45,7 +45,7 @@ internal class AnalyticsRepository: AnalyticsRepositoryProtocol {
             let deviceModel = Device.current.description
             let iosVersion = Device.current.systemVersion?.description ?? "Unknown iOS version"
             
-            let properties = AnalyticsUserProperties(applicationBundleID: applicationBundleID, environment: environment, theme: theme, iosVersion: iosVersion, iphoneModel: deviceModel)
+            let properties = AnalyticsUserProperties(package: package, environment: environment, theme: theme, iosVersion: iosVersion, iphoneModel: deviceModel)
             
             self.UserPropertiesCache.setValue(properties, forKey: "userproperties", storageOption: .memory)
             

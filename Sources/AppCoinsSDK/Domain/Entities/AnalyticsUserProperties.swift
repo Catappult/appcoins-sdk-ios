@@ -9,14 +9,14 @@ import Foundation
 
 public struct AnalyticsUserProperties: Codable {
     
-    let applicationBundleID: String
+    let package: String
     let environment: String
     let theme: String
     let iosVersion: String
     let iphoneModel: String
     
-    init(applicationBundleID: String, environment: String, theme: String, iosVersion: String, iphoneModel: String) {
-        self.applicationBundleID = applicationBundleID
+    init(package: String, environment: String, theme: String, iosVersion: String, iphoneModel: String) {
+        self.package = package
         self.environment = environment
         self.theme = theme
         self.iosVersion = iosVersion
@@ -25,7 +25,7 @@ public struct AnalyticsUserProperties: Codable {
     
     func toDict() -> [AnyHashable : Any] {
         return [
-            "application_package": applicationBundleID,
+            "application_package": package,
             "environment": environment,
             "theme": theme,
             "ios_version": iosVersion,
