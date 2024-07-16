@@ -39,7 +39,6 @@ internal class Maze {
                 return nil
             }
         } else {
-            print("Failed!")
             return nil
         }
     }
