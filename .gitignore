@@ -71,6 +71,3 @@ mono_crash.*
 
 ## macOS
 .DS_Store
-
-## .config file
-Sources/AppCoinsSDK/Config.swift
