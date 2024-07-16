@@ -106,7 +106,7 @@ internal class BuildConfiguration {
         }
     }
     
-    static internal var attributionServiceBaseURL: String {
+    static internal var mmpServiceBaseURL: String {
         switch environment {
         case .debugSDKDev, .releaseSDKDev:
             return "https://aptoide-mmp.dev.aptoide.com"

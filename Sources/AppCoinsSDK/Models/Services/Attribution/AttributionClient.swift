@@ -11,7 +11,7 @@ internal class AttributionClient: AttributionService {
     
     private let endpoint: String
     
-    internal init(endpoint: String = BuildConfiguration.attributionServiceBaseURL) {
+    internal init(endpoint: String = BuildConfiguration.mmpServiceBaseURL) {
         self.endpoint = endpoint
     }
     
