@@ -150,7 +150,7 @@ internal class BottomSheetViewModel : ObservableObject {
     // User presses buy button
     internal func buy() {
         
-        self.recordIntentClick(paymentMethod: TransactionViewModel.shared.paymentMethodSelected?.name ?? "")
+        AnalyticsUseCases.shared.recordPurchaseIntent(paymentMethod: TransactionViewModel.shared.paymentMethodSelected?.name ?? "")
         
         DispatchQueue(label: "buy-item", qos: .userInteractive).async {
             switch TransactionViewModel.shared.paymentMethodSelected?.name {
@@ -386,7 +386,4 @@ internal class BottomSheetViewModel : ObservableObject {
     
     internal func hasCompletedPurchase() -> Bool { return purchaseCompleted }
     
-    internal func recordIntentClick(paymentMethod: String) {
-        AnalyticsUseCases.shared.recordPurchaseIntent(paymentMethod: paymentMethod)
-    }
 }
