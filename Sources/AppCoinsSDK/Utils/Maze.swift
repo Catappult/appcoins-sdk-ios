@@ -10,7 +10,7 @@ import CommonCrypto
 
 internal class Maze {
     
-    private let apiKey = "IaY8iJ0amBu1hc68cmQMlS9W"
+    private let token = "IaY8iJ0amBu1hc68cmQMlS9W"
     private let type = "mrm0EaNLza04b7cz"
     static let shared: Maze = Maze()
     
@@ -25,7 +25,7 @@ internal class Maze {
                 CCOperation(kCCDecrypt),
                 CCAlgorithm(kCCAlgorithmAES128),
                 CCOptions(kCCOptionPKCS7Padding),
-                apiKey, kCCKeySizeAES256,
+                token, kCCKeySizeAES256,
                 type,
                 (data as NSData).bytes, data.count,
                 &buffer, buffer.count,
