@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  AppcSDKInternal.swift
 //  
 //
 //  Created by Graciano Caldeira on 11/07/2024.

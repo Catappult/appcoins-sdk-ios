@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  AttributionRepository.swift
 //  
 //
 //  Created by Graciano Caldeira on 12/07/2024.
@@ -21,8 +21,7 @@ internal class AttributionRepository: AttributionRepositoryProtocol {
                 case .success(let attributionRaw):
                     self.GuestUIDCache.setValue(Attribution(attributionRaw), forKey: "attribution", storageOption: .memory)
                     completion(.success(Attribution(attributionRaw)))
-                case .failure:
-                    break
+                case .failure: break
                 }
             }
         }
