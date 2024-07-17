@@ -106,6 +106,15 @@ internal class BuildConfiguration {
         }
     }
     
+    static internal var mmpServiceBaseURL: String {
+        switch environment {
+        case .debugSDKDev, .releaseSDKDev:
+            return "https://aptoide-mmp.dev.aptoide.com"
+        case .debugSDKProd, .releaseSDKProd:
+            return "https://aptoide-mmp.aptoide.com"
+        }
+    }
+    
     static internal var userUID =  UIDevice.current.identifierForVendor!.uuidString
     
     static internal var integratedMethods: [Method] = [.appc, .paypalAdyen, .paypalDirect, .creditCard]
