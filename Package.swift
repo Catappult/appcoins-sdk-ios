@@ -23,7 +23,8 @@ let package = Package(
         .package(url: "https://github.com/CSolanaM/SkeletonUI.git", .upToNextMinor(from: "2.0.1")),
         .package(url: "https://github.com/TakeScoop/SwiftyRSA.git", .upToNextMinor(from: "1.8.0")),
         .package(url: "https://github.com/Adyen/adyen-ios.git", exact: "5.1.0"),
-        .package(url: "https://github.com/exyte/ActivityIndicatorView.git", .upToNextMinor(from: "1.1.0"))
+        .package(url: "https://github.com/exyte/ActivityIndicatorView.git", .upToNextMinor(from: "1.1.0")),
+        .package(url: "https://github.com/devicekit/DeviceKit.git", .upToNextMinor(from: "4.0.0"))
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -31,6 +32,7 @@ let package = Package(
         .target(
             name: "AppCoinsSDK",
             dependencies: [
+                "IndicativeLibrary",
                 .product(name: "URLImage", package: "url-image"),
                 .product(name: "CryptoSwift", package: "CryptoSwift"),
                 .product(name: "web3swift", package: "web3swift"),
@@ -41,9 +43,19 @@ let package = Package(
                 .product(name: "AdyenComponents", package: "adyen-ios"),
                 .product(name: "AdyenSession", package: "adyen-ios"),
                 .product(name: "ActivityIndicatorView", package: "ActivityIndicatorView"),
+                .product(name: "DeviceKit", package: "DeviceKit")
             ],
             resources: [.process("Localization")]),
+        .target(
+            name: "IndicativeLibrary",
+            path: "Sources/Indicative",
+            publicHeadersPath: ".",
+            cSettings: [
+                .headerSearchPath("Sources/Indicative"),
+                .define("SWIFT_PACKAGE")
+            ]),
         .binaryTarget(name: "PPRiskMagnes", path: "./Sources/AppCoinsSDK/Frameworks/PPRiskMagnes.xcframework")
+        
     ]
 )
 
