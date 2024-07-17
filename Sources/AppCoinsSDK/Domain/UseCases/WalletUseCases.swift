@@ -12,49 +12,56 @@ internal class WalletUseCases {
     static var shared : WalletUseCases = WalletUseCases()
     
     private var repository: WalletRepositoryProtocol
+    private var mmpRepository: MMPRepositoryProtocol
     
-    private init(repository: WalletRepositoryProtocol = WalletRepository()) {
+    private init(repository: WalletRepositoryProtocol = WalletRepository(), mmpRepository: MMPRepositoryProtocol = MMPRepository()) {
         self.repository = repository
+        self.mmpRepository = mmpRepository
     }
     
     internal func getWallet(completion: @escaping (Result<Wallet, APPCServiceError>) -> Void)  {
-        // Should be fetched from MMP
-        var guestUID: String = "0123456789012345678901234567890123456789"
+        if let clientWallet = self.repository.getClientWallet() { completion(.success(clientWallet)) }
+        else { completion(.failure(.failed)) }
         
-        repository.getGuestWallet(guestUID: guestUID) {
-            result in
-            
-            switch result {
-            case .success(let guestWallet):
-                completion(.success(guestWallet))
-            case .failure(let error):
-                if let clientWallet = self.repository.getClientWallet() {
-                    completion(.success(clientWallet))
-                } else {
-                    completion(.failure(error))
-                }
-            }
-        }
+        // We will not be using guestWallets yet
+//        if let guestUID = mmpRepository.getGuestUID() {
+//            repository.getGuestWallet(guestUID: guestUID) {
+//                result in
+//                
+//                switch result {
+//                case .success(let guestWallet):
+//                    completion(.success(guestWallet))
+//                case .failure(let error):
+//                    if let clientWallet = self.repository.getClientWallet() {
+//                        completion(.success(clientWallet))
+//                    } else {
+//                        completion(.failure(error))
+//                    }
+//                }
+//            }
+//        }
     }
     
     internal func getWalletList(completion: @escaping ([Wallet]) -> Void) {
-        // Should be fetched from MMP
-        var guestUID: String = "0123456789012345678901234567890123456789"
+        completion(self.repository.getWalletList())
         
-        repository.getGuestWallet(guestUID: guestUID) {
-            result in
-            
-            var clientWallets: [Wallet] = self.repository.getWalletList()
-            
-            switch result {
-            case .success(let guestWallet):
-                clientWallets.append(guestWallet)
-                completion(clientWallets)
-            case .failure(_):
-                completion(clientWallets)
-            }
-            
-        }
+        // We will not be using guestWallets yet
+//        if let guestUID = mmpRepository.getGuestUID() {
+//            repository.getGuestWallet(guestUID: guestUID) {
+//                result in
+//                
+//                var clientWallets: [Wallet] = self.repository.getWalletList()
+//                
+//                switch result {
+//                case .success(let guestWallet):
+//                    clientWallets.append(guestWallet)
+//                    completion(clientWallets)
+//                case .failure(_):
+//                    completion(clientWallets)
+//                }
+//                
+//            }
+//        }
     }
     
     internal func getClientWallet() -> ClientWallet? {

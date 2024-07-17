@@ -7,6 +7,6 @@
 
 import Foundation
 
-internal protocol AttributionService {
+internal protocol MMPService {
     func getAttribution(bundleID: String, result: @escaping (Result<AttributionRaw, Error>) -> Void)
 }

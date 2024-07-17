@@ -10,7 +10,7 @@ import Foundation
 internal class AppcSDKInternal {
     
     static internal func initialize() {
-        AttributionUseCases.shared.getAttribution()
+        MMPUseCases.shared.getAttribution()
         AnalyticsUseCases.shared.initialize()
     }
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-internal class AttributionClient: AttributionService {
+internal class MMPClient: MMPService {
     
     private let endpoint: String
     

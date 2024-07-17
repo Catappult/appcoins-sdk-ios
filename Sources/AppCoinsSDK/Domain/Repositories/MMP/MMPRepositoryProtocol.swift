@@ -7,6 +7,7 @@
 
 import Foundation
 
-internal protocol AttributionRepositoryProtocol {
+internal protocol MMPRepositoryProtocol {
     func getAttribution()
+    func getGuestUID() -> String?
 }
