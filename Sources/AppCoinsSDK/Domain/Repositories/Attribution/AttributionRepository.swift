@@ -16,13 +16,18 @@ internal class AttributionRepository: AttributionRepositoryProtocol {
         let oemID = UserDefaults.standard.string(forKey: "attribution-oemid")
         let guestUID = UserDefaults.standard.string(forKey: "attribution-guestuid")
         
-        self.AttributionService.getAttribution(bundleID: BuildConfiguration.packageName, oemID: oemID, guestUID: guestUID) { result in
-            switch result {
-            case .success(let attributionRaw):
-                if oemID == nil, let rawOemID = attributionRaw.oemID, rawOemID != "" { UserDefaults.standard.set(rawOemID, forKey: "attribution-oemid") }
-                if guestUID == nil { UserDefaults.standard.set(String(attributionRaw.guestUID), forKey: "attribution-guestuid") }
-            case .failure: break
+        // Check if request has already been triggered
+        if guestUID == nil {
+            self.AttributionService.getAttribution(bundleID: BuildConfiguration.packageName) { result in
+                switch result {
+                case .success(let attributionRaw):
+                    UserDefaults.standard.set(String(attributionRaw.guestUID), forKey: "attribution-guestuid")
+                    
+                    if let rawOemID = attributionRaw.oemID, rawOemID != "" { UserDefaults.standard.set(rawOemID, forKey: "attribution-oemid") }
+                case .failure: break
+                }
             }
         }
+        
     }
 }
