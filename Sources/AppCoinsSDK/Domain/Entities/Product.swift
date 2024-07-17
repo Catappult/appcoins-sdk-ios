@@ -93,6 +93,9 @@ public struct Product {
         if await !AppcSDK.isAvailable() || BottomSheetViewModel.shared.hasActiveTransaction {
             return .failed(error: .purchaseNotAllowed)
         } else {
+            
+            AnalyticsUseCases.shared.recordStartConnection()
+            
             DispatchQueue.main.async {
                 SDKViewController.presentPurchase()
                 

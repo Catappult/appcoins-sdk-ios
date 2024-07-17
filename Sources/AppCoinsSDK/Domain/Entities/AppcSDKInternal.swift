@@ -11,5 +11,6 @@ internal class AppcSDKInternal {
     
     static internal func initialize() {
         AttributionUseCases.shared.getAttribution()
+        AnalyticsUseCases.shared.initialize()
     }
 }
