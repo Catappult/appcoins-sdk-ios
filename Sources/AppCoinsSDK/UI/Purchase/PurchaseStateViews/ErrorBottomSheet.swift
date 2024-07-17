@@ -13,6 +13,7 @@ internal struct ErrorBottomSheet: View {
     
     @ObservedObject internal var viewModel: BottomSheetViewModel
     @State private var toast: FancyToast? = nil
+    @State var address: String?
     
     internal var body: some View {
 
@@ -44,24 +45,16 @@ internal struct ErrorBottomSheet: View {
                     .padding(.top, 15)
                 
                 Button(action: {
-                    WalletUseCases.shared.getWallet() {
-                        result in
-                        
-                        var subject: String
-                        
-                        switch result {
-                        case .success(let wallet):
-                            subject = "[iOS] Payment Support: \(wallet.getWalletAddress())"
-                        case .failure(let failure):
-                            subject = "[iOS] Payment Support"
-                        }
-                        
-                        if let subject = subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-                            let emailURL = URL(string: "mailto:info@appcoins.io?subject=\(subject)") {
-                            UIApplication.shared.open(emailURL)
-                        } else {
-                            toast = FancyToast(type: .info, title: Constants.supportAvailableSoonTitle, message: Constants.supportAvailableSoonMessage)
-                        }
+                    var subject: String
+                    
+                    if let address = address { subject = "[iOS] Payment Support: \(address)" }
+                    else { subject = "[iOS] Payment Support" }
+                    
+                    if let subject = subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+                        let emailURL = URL(string: "mailto:info@appcoins.io?subject=\(subject)") {
+                        UIApplication.shared.open(emailURL)
+                    } else {
+                        toast = FancyToast(type: .info, title: Constants.supportAvailableSoonTitle, message: Constants.supportAvailableSoonMessage)
                     }
                 }) {
                     HStack {
@@ -95,6 +88,16 @@ internal struct ErrorBottomSheet: View {
         }.frame(width: UIScreen.main.bounds.size.width, height: 396)
             .cornerRadius(13, corners: [.topLeft, .topRight])
             .toastView(toast: $toast)
+            .onAppear {
+                WalletUseCases.shared.getWallet() { result in
+                    switch result {
+                    case .success(let wallet):
+                        self.address = wallet.getWalletAddress()
+                    case .failure(let failure):
+                        break
+                    }
+                }
+            }
         
     }
 }
