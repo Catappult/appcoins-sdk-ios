@@ -36,7 +36,7 @@ internal struct CreditCardChoiceBottomSheet: View {
                 Text(Constants.chooseCard)
                     .font(FontsUi.APC_Body_Bold)
                     .foregroundColor(ColorsUi.APC_Black)
-                    .frame(width: 328, height: 22, alignment: .leading)
+                    .frame(width: UIScreen.main.bounds.width - 64, height: 22, alignment: .leading)
                     .padding(.top, 24)
                     .padding(.bottom, 18)
                 
@@ -75,7 +75,7 @@ internal struct CreditCardChoiceBottomSheet: View {
                                                 .frame(width: 22, height: 22, alignment: .trailing)
                                                 .padding(.trailing, 16)
                                         }
-                                    }.frame(width: 328, height: 44)
+                                    }.frame(width: UIScreen.main.bounds.width - 64, height: 44)
                                 }
                             }.buttonStyle(flatButtonStyle())
                     
@@ -86,7 +86,7 @@ internal struct CreditCardChoiceBottomSheet: View {
                                 .background(ColorsUi.APC_Gray)
                         }
                     }
-                }.frame(width: 328)
+                }.frame(width: UIScreen.main.bounds.width - 64)
                 .cornerRadius(13)
             }
             
@@ -105,7 +105,7 @@ internal struct CreditCardChoiceBottomSheet: View {
                         .foregroundColor(ColorsUi.APC_Pink)
                         .frame(width: 4, height: 8)
                 }
-            }.frame(width: 328, height: 18, alignment: .trailing)
+            }.frame(width: UIScreen.main.bounds.width - 64, height: 18, alignment: .trailing)
                 .padding(.top, 9)
                 .padding(.bottom, 18)
             
@@ -118,7 +118,7 @@ internal struct CreditCardChoiceBottomSheet: View {
                         .font(FontsUi.APC_Body_Bold)
                 }
             }
-            .frame(width: 328, height: 48)
+            .frame(width: UIScreen.main.bounds.width - 64, height: 48)
             .foregroundColor(ColorsUi.APC_White)
             .cornerRadius(10)
             

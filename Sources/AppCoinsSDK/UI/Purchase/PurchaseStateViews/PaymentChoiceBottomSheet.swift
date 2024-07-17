@@ -31,13 +31,15 @@ internal struct PaymentChoiceBottomSheet: View {
                         .clipShape(Circle())
                 }
                 
+                VStack(spacing: 0){}.frame(width: 16)
+                
                 VStack(spacing: 0) {
                     if let title = transactionViewModel.transaction?.getTitle() {
                         Text(title)
                             .foregroundColor(ColorsUi.APC_Black)
                             .font(FontsUi.APC_Body_Bold)
                             .lineLimit(2)
-                            .frame(width: 240, alignment: .leading)
+                            .frame(width: UIScreen.main.bounds.width - 154, alignment: .leading)
                     } else {
                         HStack(spacing: 0) {
                             Text("")
@@ -67,14 +69,14 @@ internal struct PaymentChoiceBottomSheet: View {
                                 VStack {}.frame(maxWidth: .infinity)
                             }.frame(maxWidth: .infinity)
                         }
-                    }.frame(width: 240, alignment: .bottomLeading)
+                    }.frame(width: UIScreen.main.bounds.width - 154, alignment: .bottomLeading)
                         .padding(.top, 11)
                     
                     if let appcAmount = transactionViewModel.transaction?.appcAmount {
                         Text(verbatim: String(format: "%.3f", appcAmount) + " APPC")
                             .foregroundColor(ColorsUi.APC_Gray)
                             .font(FontsUi.APC_Caption2)
-                            .frame(width: 240, alignment: .leading)
+                            .frame(width: UIScreen.main.bounds.width - 154, alignment: .leading)
                     } else {
                         HStack(spacing: 0) {
                             Text("")
@@ -84,10 +86,9 @@ internal struct PaymentChoiceBottomSheet: View {
                             VStack {}.frame(maxWidth: .infinity)
                         }.frame(maxWidth: .infinity)
                     }
-                }.frame(width: 240, alignment: .topLeading)
-                    .padding(.leading, 16)
+                }.frame(width: UIScreen.main.bounds.width - 154, alignment: .topLeading)
                 
-            }.frame(height: 74, alignment: .top)
+            }.frame(width: UIScreen.main.bounds.width - 64, height: 74, alignment: .top)
 
             HStack(spacing: 0) {}.frame(height: 23)
             
@@ -114,25 +115,25 @@ internal struct PaymentChoiceBottomSheet: View {
                                                 .foregroundColor(ColorsUi.APC_Black)
                                                 .font(FontsUi.APC_Callout)
                                                 .lineLimit(1)
-                                                .frame(width: 224, alignment: .leading)
+                                                .frame(width: UIScreen.main.bounds.width - 168, alignment: .leading)
                                                 .padding(.bottom, 4)
                                             
                                             Text(Constants.earnedEnoughAppcText)
                                                 .foregroundColor(ColorsUi.APC_Gray)
                                                 .font(FontsUi.APC_Caption1)
                                                 .lineLimit(2)
-                                                .frame(width: 224, alignment: .leading)
+                                                .frame(width: UIScreen.main.bounds.width - 168, alignment: .leading)
                                         } else {
                                             Text(transactionViewModel.lastPaymentMethod?.label)
                                                 .foregroundColor(ColorsUi.APC_Black)
                                                 .font(FontsUi.APC_Callout)
                                                 .lineLimit(1)
-                                                .frame(width: 224, alignment: .leading)
+                                                .frame(width: UIScreen.main.bounds.width - 168, alignment: .leading)
                                         }
-                                    }.frame(width: 224, alignment: .leading)
+                                    }.frame(width: UIScreen.main.bounds.width - 168, alignment: .leading)
                                         .padding(.leading, 16)
                                 }
-                            }.frame(width: 328, height: 88)
+                            }.frame(width: UIScreen.main.bounds.width - 64, height: 88)
                                 .cornerRadius(13)
                             
                             HStack(spacing: 0){}.frame(height: 9)
@@ -164,7 +165,7 @@ internal struct PaymentChoiceBottomSheet: View {
                                             .frame(width: 4, height: 8)
                                     }
                                 }.frame(maxWidth: .infinity, alignment: .trailing)
-                            }.frame(width: 328, height: 18)
+                            }.frame(width: UIScreen.main.bounds.width - 64, height: 18)
                         } else {
                             RadioButtonGroupView(viewModel: viewModel)
                         }
@@ -189,7 +190,7 @@ internal struct PaymentChoiceBottomSheet: View {
                 }
             }
             .disabled(transactionViewModel.transaction == nil)
-            .frame(width: 328, height: 48)
+            .frame(width: UIScreen.main.bounds.width - 64, height: 48)
             .foregroundColor(ColorsUi.APC_White)
             .cornerRadius(10)
             

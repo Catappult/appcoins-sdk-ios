@@ -49,7 +49,7 @@ internal struct RadioButtonGroupView: View {
                                 }
                                                             
                                 
-                            }.frame(width: 328)
+                            }.frame(width: UIScreen.main.bounds.width - 64)
                         }.frame(height: 44)
                     }.buttonStyle(flatButtonStyle())
                 
@@ -60,7 +60,7 @@ internal struct RadioButtonGroupView: View {
                         
                 }
             }.background(ColorsUi.APC_White)
-                .frame(width: 328)
+                .frame(width: UIScreen.main.bounds.width - 64)
                 .cornerRadius(13)
         }
         

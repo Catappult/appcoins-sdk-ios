@@ -68,7 +68,7 @@ internal struct ErrorBottomSheet: View {
                             .font(FontsUi.APC_Body_Bold)
                     }
                 }
-                .frame(width: 328, height: 48)
+                .frame(width: UIScreen.main.bounds.width - 64, height: 48)
                 .background(ColorsUi.APC_OpaqueBlack)
                 .foregroundColor(ColorsUi.APC_White)
                 .cornerRadius(10)
