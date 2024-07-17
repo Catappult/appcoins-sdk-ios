@@ -17,13 +17,14 @@ internal class AttributionClient: AttributionService {
     
     internal func getAttribution(bundleID: String, oemID: String?, guestUID: String?, result: @escaping (Result<AttributionRaw, Error>) -> Void) {
         
-        var guestUIDItem = ""
-        if let guestUID = guestUID { guestUIDItem = "&guest_uid=\(guestUID)" }
-        var oemIDItem = ""
-        if let oemID = oemID { oemIDItem = "&oemid=\(oemID)" }
+        var queryItems = [String]()
+        queryItems.append("package_name=\(bundleID)")
+        if let guestUID = guestUID { queryItems.append("guest_uid=\(guestUID)") }
+        if let oemID = oemID { queryItems.append("oemid=\(oemID)") }
+        let queryString = queryItems.joined(separator: "&")
 
-        if let requestURL = URL(string: "\(endpoint)/api/v1/attribution?package_name=\(bundleID)\(oemIDItem)\(guestUIDItem)") {
-            
+        if let requestURL = URL(string: "\(endpoint)/api/v1/attribution?\(queryString)") {
+            print(requestURL.absoluteString)
             var request = URLRequest(url: requestURL)
 
             request.httpMethod = "GET"

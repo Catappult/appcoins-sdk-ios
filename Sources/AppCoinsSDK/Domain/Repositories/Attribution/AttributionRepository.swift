@@ -16,10 +16,10 @@ internal class AttributionRepository: AttributionRepositoryProtocol {
         let oemID = UserDefaults.standard.string(forKey: "attribution-oemid")
         let guestUID = UserDefaults.standard.string(forKey: "attribution-guestuid")
         
-        self.AttributionService.getAttribution(bundleID: Bundle.main.bundleIdentifier ?? "", oemID: oemID, guestUID: guestUID) { result in
+        self.AttributionService.getAttribution(bundleID: BuildConfiguration.packageName, oemID: oemID, guestUID: guestUID) { result in
             switch result {
             case .success(let attributionRaw):
-                if oemID == nil, let rawOemID = attributionRaw.oemID { UserDefaults.standard.set(rawOemID, forKey: "attribution-oemid") }
+                if oemID == nil, let rawOemID = attributionRaw.oemID, rawOemID != "" { UserDefaults.standard.set(rawOemID, forKey: "attribution-oemid") }
                 if guestUID == nil { UserDefaults.standard.set(String(attributionRaw.guestUID), forKey: "attribution-guestuid") }
             case .failure: break
             }
