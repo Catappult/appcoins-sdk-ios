@@ -24,7 +24,7 @@ internal class WalletLocalClient : WalletLocalService {
         }
     }
     
-    internal func getActiveWallet() -> Wallet? {
+    internal func getActiveWallet() -> ClientWallet? {
         if let keystoreURL = keystoreURL {
             // get active wallet address
             let active_address = Utils.readFromPreferences(key: "default-appcoins-wallet")
@@ -35,7 +35,7 @@ internal class WalletLocalClient : WalletLocalService {
                 
                 if active_password != nil {
                     let keystore = keystoreURL.appendingPathComponent(active_address)
-                    return Wallet(keystore, active_password!)
+                    return ClientWallet(keystore, active_password!)
                 
                 } else { return nil }
                 
@@ -44,15 +44,15 @@ internal class WalletLocalClient : WalletLocalService {
         return nil
     }
     
-    internal func getWalletList() -> [Wallet] {
+    internal func getWalletList() -> [ClientWallet] {
         if let keystoreURL = keystoreURL {
             do {
-                var walletList: [Wallet] = []
+                var walletList: [ClientWallet] = []
                 let keystores = try FileManager.default.contentsOfDirectory(at: keystoreURL, includingPropertiesForKeys: nil)
                 for keystore in keystores {
                     let keystore_password = Utils.readFromKeychain(key: keystore.lastPathComponent)
                     if keystore_password != nil {
-                        if let wallet = Wallet(keystore, keystore_password!) {
+                        if let wallet = ClientWallet(keystore, keystore_password!) {
                             walletList.append(wallet)
                         }
                     }
@@ -66,7 +66,7 @@ internal class WalletLocalClient : WalletLocalService {
         return []
     }
     
-    internal func createNewWallet() throws -> Wallet? {
+    internal func createNewWallet() throws -> ClientWallet? {
         if let keystoreURL = keystoreURL {
             do {
                 // generate a random password
@@ -110,7 +110,7 @@ internal class WalletLocalClient : WalletLocalService {
                     do {
                         try Utils.writeToPreferences(key: "default-appcoins-wallet", value: wallet_address!)
                         
-                        return Wallet(fileURL, password)
+                        return ClientWallet(fileURL, password)
                     }
                     catch {
                         try FileManager.default.removeItem(atPath: fileURL.path)
@@ -133,7 +133,7 @@ internal class WalletLocalClient : WalletLocalService {
         return nil
     }
     
-    internal func importWallet(keystore: String, password: String, privateKey: String, completion: @escaping (Result<Wallet?, WalletLocalErrors>) -> Void) {
+    internal func importWallet(keystore: String, password: String, privateKey: String, completion: @escaping (Result<ClientWallet?, WalletLocalErrors>) -> Void) {
         if let keystoreURL = keystoreURL {
             if let keystoreData = keystore.data(using: .utf8), let jsonObject = try? JSONSerialization.jsonObject(with: keystoreData, options: []) as? [String: Any] {
                 if let address = jsonObject["address"] as? String {
@@ -170,7 +170,7 @@ internal class WalletLocalClient : WalletLocalService {
                         try Utils.writeToPreferences(key: "default-appcoins-wallet", value: address)
                         self.updateWalletSyncingStatus(status: .accepted)
                         
-                        completion(.success(Wallet(fileURL, password)))
+                        completion(.success(ClientWallet(fileURL, password)))
                     }
                     catch {
                         try? FileManager.default.removeItem(atPath: fileURL.path)

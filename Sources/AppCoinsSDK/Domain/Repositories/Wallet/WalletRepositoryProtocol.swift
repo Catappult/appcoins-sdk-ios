@@ -9,9 +9,10 @@ import Foundation
 
 internal protocol WalletRepositoryProtocol {
     
-    func getClientWallet() -> Wallet?
-    func getWalletList() -> [Wallet]
-    func importWallet(keystore: String, password: String, privateKey: String, completion: @escaping (Result<Wallet?, WalletLocalErrors>) -> Void)
+    func getClientWallet() -> ClientWallet?
+    func getGuestWallet(guestUID: String, completion: @escaping (Result<GuestWallet, APPCServiceError>) -> Void)
+    func getWalletList() -> [ClientWallet]
+    func importWallet(keystore: String, password: String, privateKey: String, completion: @escaping (Result<ClientWallet?, WalletLocalErrors>) -> Void)
     func getWalletSyncingStatus() -> WalletSyncingStatus
     func updateWalletSyncingStatus(status: WalletSyncingStatus)
     

@@ -39,19 +39,30 @@ public class Purchase: Codable {
         let transactionUseCases = TransactionUseCases.shared
         let domain = Bundle.main.bundleIdentifier ?? ""
         
-        if let wallet = walletUseCases.getClientWallet() {
-            transactionUseCases.verifyPurchase(domain: domain, uid: purchaseUID, wa: wallet) {
-                result in
-                
-                switch result {
-                case .success(let purchase):
-                    completion(.success(purchase))
-                case .failure(let failure):
-                    if failure == .noInternet {
-                        completion(.failure(.networkError))
-                    } else {
-                        completion(.failure(.systemError))
+        walletUseCases.getWallet() {
+            result in
+            
+            switch result {
+            case .success(let wallet):
+                transactionUseCases.verifyPurchase(domain: domain, uid: purchaseUID, wa: wallet) {
+                    result in
+                    
+                    switch result {
+                    case .success(let purchase):
+                        completion(.success(purchase))
+                    case .failure(let failure):
+                        if failure == .noInternet {
+                            completion(.failure(.networkError))
+                        } else {
+                            completion(.failure(.systemError))
+                        }
                     }
+                }
+            case .failure(let failure):
+                if failure == .noInternet {
+                    completion(.failure(.networkError))
+                } else {
+                    completion(.failure(.systemError))
                 }
             }
         }
@@ -63,24 +74,31 @@ public class Purchase: Codable {
         let transactionUseCases = TransactionUseCases.shared
         let domain = Bundle.main.bundleIdentifier ?? ""
         
-        if let wallet = walletUseCases.getClientWallet() {
-            transactionUseCases.acknowledgePurchase(domain: domain, uid: self.uid, wa: wallet) {
-                result in
-                
-                switch result {
-                case .success(_):
-                    self.state = "ACKNOWLEDGED"
-                    completion(nil)
-                case .failure(let failure):
-                    switch failure {
-                    case .failed(_):
-                        completion(.systemError)
-                    case .noInternet:
-                        completion(.networkError)
-                    default:
-                        completion(.systemError)
+        walletUseCases.getWallet() {
+            result in
+            
+            switch result {
+            case .success(let wallet):
+                transactionUseCases.acknowledgePurchase(domain: domain, uid: self.uid, wa: wallet) {
+                    result in
+                    
+                    switch result {
+                    case .success(_):
+                        self.state = "ACKNOWLEDGED"
+                        completion(nil)
+                    case .failure(let failure):
+                        switch failure {
+                        case .failed(_):
+                            completion(.systemError)
+                        case .noInternet:
+                            completion(.networkError)
+                        default:
+                            completion(.systemError)
+                        }
                     }
                 }
+            case .failure(_):
+                break
             }
         }
     }
@@ -91,39 +109,40 @@ public class Purchase: Codable {
             let walletUseCases = WalletUseCases.shared
             let transactionUseCases = TransactionUseCases.shared
             
-            let walletList = walletUseCases.getWalletList()
-            let domain = Bundle.main.bundleIdentifier ?? ""
-            
-            let group = DispatchGroup()
-            let queue = DispatchQueue(label: "consume-queue", attributes: .concurrent)
-            
-            var isConsumed = false
-            var isNetworkError = false
-            
-            for wallet in walletList {
-                group.enter()
-                queue.sync {
-                    transactionUseCases.consumePurchase(domain: domain, uid: self.uid, wa: wallet) {
-                        result in
-                        switch result {
-                        case .success(_):
-                            self.state = "CONSUMED"
-                            isConsumed = true
-                        case .failure(let failure):
-                            switch failure {
-                            case .noInternet: isNetworkError = true
-                            default: break
+            walletUseCases.getWalletList() { walletList in
+                let domain = Bundle.main.bundleIdentifier ?? ""
+                
+                let group = DispatchGroup()
+                let queue = DispatchQueue(label: "consume-queue", attributes: .concurrent)
+                
+                var isConsumed = false
+                var isNetworkError = false
+                
+                for wallet in walletList {
+                    group.enter()
+                    queue.sync {
+                        transactionUseCases.consumePurchase(domain: domain, uid: self.uid, wa: wallet) {
+                            result in
+                            switch result {
+                            case .success(_):
+                                self.state = "CONSUMED"
+                                isConsumed = true
+                            case .failure(let failure):
+                                switch failure {
+                                case .noInternet: isNetworkError = true
+                                default: break
+                                }
                             }
+                            group.leave()
                         }
-                        group.leave()
                     }
                 }
-            }
-            
-            group.notify(queue: .main) {
-                if isConsumed { continuation.resume() }
-                else if isNetworkError { continuation.resume(throwing: AppCoinsSDKError.networkError) }
-                else { continuation.resume(throwing: AppCoinsSDKError.unknown) }
+                
+                group.notify(queue: .main) {
+                    if isConsumed { continuation.resume() }
+                    else if isNetworkError { continuation.resume(throwing: AppCoinsSDKError.networkError) }
+                    else { continuation.resume(throwing: AppCoinsSDKError.unknown) }
+                }
             }
         }
     }
@@ -134,40 +153,41 @@ public class Purchase: Codable {
             let walletUseCases = WalletUseCases.shared
             let transactionUseCases = TransactionUseCases.shared
             
-            let walletList = walletUseCases.getWalletList()
-            let domain = Bundle.main.bundleIdentifier ?? ""
-            
-            let group = DispatchGroup()
-            let queue = DispatchQueue(label: "get-all-purchases-queue", attributes: .concurrent)
-            
-            var purchaseList : [Purchase] = []
-            var error : AppCoinsSDKError? = nil
-            
-            for wallet in walletList {
-                group.enter()
-                queue.sync {
-                    transactionUseCases.getAllPurchases(domain: domain, wa: wallet) {
-                        result in
-                        
-                        switch result {
-                        case .success(let purchases):
-                            purchaseList += purchases
-                        case .failure(let failure):
-                            if failure == .failed { error = .systemError }
-                            else if failure == .noInternet { error = .networkError }
-                            else { error = .unknown }
+            walletUseCases.getWalletList() { walletList in
+                let domain = Bundle.main.bundleIdentifier ?? ""
+                
+                let group = DispatchGroup()
+                let queue = DispatchQueue(label: "get-all-purchases-queue", attributes: .concurrent)
+                
+                var purchaseList : [Purchase] = []
+                var error : AppCoinsSDKError? = nil
+                
+                for wallet in walletList {
+                    group.enter()
+                    queue.sync {
+                        transactionUseCases.getAllPurchases(domain: domain, wa: wallet) {
+                            result in
+                            
+                            switch result {
+                            case .success(let purchases):
+                                purchaseList += purchases
+                            case .failure(let failure):
+                                if failure == .failed { error = .systemError }
+                                else if failure == .noInternet { error = .networkError }
+                                else { error = .unknown }
+                            }
+                            group.leave()
                         }
-                        group.leave()
                     }
                 }
-            }
-            
-            group.notify(queue: .main) {
-                if let error = error {
-                    continuation.resume(throwing: error)
-                } else {
-                    let sortedPurchases = sortPurchasesByCreated(purchases: purchaseList)
-                    continuation.resume(returning: sortedPurchases)
+                
+                group.notify(queue: .main) {
+                    if let error = error {
+                        continuation.resume(throwing: error)
+                    } else {
+                        let sortedPurchases = sortPurchasesByCreated(purchases: purchaseList)
+                        continuation.resume(returning: sortedPurchases)
+                    }
                 }
             }
         }
@@ -178,39 +198,40 @@ public class Purchase: Codable {
             let walletUseCases = WalletUseCases.shared
             let transactionUseCases = TransactionUseCases.shared
             
-            let walletList = walletUseCases.getWalletList()
-            let domain = Bundle.main.bundleIdentifier ?? ""
-            
-            let group = DispatchGroup()
-            let queue = DispatchQueue(label: "get-latest-purchase-queue", attributes: .concurrent)
-            
-            var purchaseList : [Purchase] = []
-            var error : AppCoinsSDKError? = nil
-            
-            for wallet in walletList {
-                group.enter()
-                queue.sync {
-                    transactionUseCases.getLatestPurchase(domain: domain, sku: sku, wa: wallet) {
-                        result in
-                        switch result {
-                        case .success(let purchase):
-                            if let purchase = purchase { purchaseList.append(purchase) }
-                        case .failure(let failure):
-                            if failure == .failed { error = .systemError }
-                            else if failure == .noInternet { error = .networkError }
-                            else { error = .unknown }
+            walletUseCases.getWalletList { walletList in
+                let domain = Bundle.main.bundleIdentifier ?? ""
+                
+                let group = DispatchGroup()
+                let queue = DispatchQueue(label: "get-latest-purchase-queue", attributes: .concurrent)
+                
+                var purchaseList : [Purchase] = []
+                var error : AppCoinsSDKError? = nil
+                
+                for wallet in walletList {
+                    group.enter()
+                    queue.sync {
+                        transactionUseCases.getLatestPurchase(domain: domain, sku: sku, wa: wallet) {
+                            result in
+                            switch result {
+                            case .success(let purchase):
+                                if let purchase = purchase { purchaseList.append(purchase) }
+                            case .failure(let failure):
+                                if failure == .failed { error = .systemError }
+                                else if failure == .noInternet { error = .networkError }
+                                else { error = .unknown }
+                            }
+                            group.leave()
                         }
-                        group.leave()
                     }
                 }
-            }
-            
-            group.notify(queue: .main) {
-                if let error = error {
-                    continuation.resume(throwing: error)
-                } else {
-                    let sortedPurchases = sortPurchasesByCreated(purchases: purchaseList)
-                    continuation.resume(returning: sortedPurchases.first)
+                
+                group.notify(queue: .main) {
+                    if let error = error {
+                        continuation.resume(throwing: error)
+                    } else {
+                        let sortedPurchases = sortPurchasesByCreated(purchases: purchaseList)
+                        continuation.resume(returning: sortedPurchases.first)
+                    }
                 }
             }
         }
@@ -222,39 +243,40 @@ public class Purchase: Codable {
             let walletUseCases = WalletUseCases.shared
             let transactionUseCases = TransactionUseCases.shared
             
-            let walletList = walletUseCases.getWalletList()
-            let domain = Bundle.main.bundleIdentifier ?? ""
-            
-            let group = DispatchGroup()
-            let queue = DispatchQueue(label: "get-unfinished-purchases-queue", attributes: .concurrent)
-            
-            var purchaseList : [Purchase] = []
-            var error : AppCoinsSDKError? = nil
-            
-            for wallet in walletList {
-                group.enter()
-                queue.sync {
-                    transactionUseCases.getPurchasesByState(domain: domain, state: "PENDING", wa: wallet) {
-                        result in
-                        switch result {
-                        case .success(let purchases):
-                            purchaseList += purchases
-                        case .failure(let failure):
-                            if failure == .failed { error = .systemError }
-                            else if failure == .noInternet { error = .networkError }
-                            else { error = .unknown }
+            walletUseCases.getWalletList { walletList in
+                let domain = Bundle.main.bundleIdentifier ?? ""
+                
+                let group = DispatchGroup()
+                let queue = DispatchQueue(label: "get-unfinished-purchases-queue", attributes: .concurrent)
+                
+                var purchaseList : [Purchase] = []
+                var error : AppCoinsSDKError? = nil
+                
+                for wallet in walletList {
+                    group.enter()
+                    queue.sync {
+                        transactionUseCases.getPurchasesByState(domain: domain, state: "PENDING", wa: wallet) {
+                            result in
+                            switch result {
+                            case .success(let purchases):
+                                purchaseList += purchases
+                            case .failure(let failure):
+                                if failure == .failed { error = .systemError }
+                                else if failure == .noInternet { error = .networkError }
+                                else { error = .unknown }
+                            }
+                            group.leave()
                         }
-                        group.leave()
                     }
                 }
-            }
-            
-            group.notify(queue: .main) {
-                if let error = error {
-                    continuation.resume(throwing: error)
-                } else {
-                    let sortedPurchases = sortPurchasesByCreated(purchases: purchaseList)
-                    continuation.resume(returning: sortedPurchases)
+                
+                group.notify(queue: .main) {
+                    if let error = error {
+                        continuation.resume(throwing: error)
+                    } else {
+                        let sortedPurchases = sortPurchasesByCreated(purchases: purchaseList)
+                        continuation.resume(returning: sortedPurchases)
+                    }
                 }
             }
         }

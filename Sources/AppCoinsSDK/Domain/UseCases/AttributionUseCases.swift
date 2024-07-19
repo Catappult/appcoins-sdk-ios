@@ -7,15 +7,17 @@
 
 import Foundation
 
-internal class AttributionUseCases {
+internal class MMPUseCases {
     
-    internal static let shared: AttributionUseCases = AttributionUseCases()
-    private let repository: AttributionRepositoryProtocol
+    internal static let shared: MMPUseCases = MMPUseCases()
+    private let repository: MMPRepositoryProtocol
     
-    internal init(repository: AttributionRepositoryProtocol = AttributionRepository()) {
+    internal init(repository: MMPRepositoryProtocol = MMPRepository()) {
         self.repository = repository
     }
     
     internal func getAttribution() { repository.getAttribution() }
+    
+    internal func getGuestUID() -> String? { return repository.getGuestUID() }
     
 }

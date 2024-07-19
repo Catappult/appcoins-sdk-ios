@@ -144,10 +144,10 @@ internal class SyncWalletViewModel : ObservableObject {
         if let keystoreData = keystore.data(using: .utf8), let jsonObject = try? JSONSerialization.jsonObject(with: keystoreData, options: []) as? [String: Any], let address = jsonObject["address"] as? String {
             
             // 2. Get the SDK's Wallet address
-            if let currentWallet = self.walletUseCases.getClientWallet(), let currentWalletAddress = currentWallet.address {
+            if let currentWallet = self.walletUseCases.getClientWallet() {
                 
                 // 3. Get the current APPC balance from the SDKs Wallet to transfer it to the user's Wallet
-                currentWallet.getBalance(wa: currentWalletAddress, currency: .APPC) {
+                currentWallet.getBalance(currency: .APPC) {
                     result in
                     switch result {
                     case .success(let balance):

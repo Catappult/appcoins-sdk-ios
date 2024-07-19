@@ -13,6 +13,7 @@ internal struct ErrorBottomSheet: View {
     
     @ObservedObject internal var viewModel: BottomSheetViewModel
     @State private var toast: FancyToast? = nil
+    @State var address: String?
     
     internal var body: some View {
 
@@ -45,11 +46,9 @@ internal struct ErrorBottomSheet: View {
                 
                 Button(action: {
                     var subject: String
-                    if let address = WalletUseCases.shared.getClientWallet()?.address {
-                        subject = "[iOS] Payment Support: \(address)"
-                    } else {
-                        subject = "[iOS] Payment Support"
-                    }
+                    
+                    if let address = address { subject = "[iOS] Payment Support: \(address)" }
+                    else { subject = "[iOS] Payment Support" }
                     
                     if let subject = subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
                         let emailURL = URL(string: "mailto:info@appcoins.io?subject=\(subject)") {
@@ -69,7 +68,7 @@ internal struct ErrorBottomSheet: View {
                             .font(FontsUi.APC_Body_Bold)
                     }
                 }
-                .frame(width: 328, height: 48)
+                .frame(width: UIScreen.main.bounds.width - 64, height: 48)
                 .background(ColorsUi.APC_OpaqueBlack)
                 .foregroundColor(ColorsUi.APC_White)
                 .cornerRadius(10)
@@ -89,6 +88,16 @@ internal struct ErrorBottomSheet: View {
         }.frame(width: UIScreen.main.bounds.size.width, height: 396)
             .cornerRadius(13, corners: [.topLeft, .topRight])
             .toastView(toast: $toast)
+            .onAppear {
+                WalletUseCases.shared.getWallet() { result in
+                    switch result {
+                    case .success(let wallet):
+                        self.address = wallet.getWalletAddress()
+                    case .failure(let failure):
+                        break
+                    }
+                }
+            }
         
     }
 }

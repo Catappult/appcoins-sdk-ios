@@ -7,9 +7,9 @@
 
 import Foundation
 
-internal class AttributionRepository: AttributionRepositoryProtocol {
+internal class MMPRepository: MMPRepositoryProtocol {
     
-    private let AttributionService: AttributionService = AttributionClient()
+    private let MMPService: MMPService = MMPClient()
     
     internal func getAttribution() {
         
@@ -18,7 +18,7 @@ internal class AttributionRepository: AttributionRepositoryProtocol {
         
         // Check if request has already been triggered
         if guestUID == nil {
-            self.AttributionService.getAttribution(bundleID: BuildConfiguration.packageName) { result in
+            self.MMPService.getAttribution(bundleID: BuildConfiguration.packageName) { result in
                 switch result {
                 case .success(let attributionRaw):
                     UserDefaults.standard.set(String(attributionRaw.guestUID), forKey: "attribution-guestuid")
@@ -28,6 +28,11 @@ internal class AttributionRepository: AttributionRepositoryProtocol {
                 }
             }
         }
+    }
+    
+    internal func getGuestUID() -> String? {
+        if let guestUID = UserDefaults.standard.string(forKey: "attribution-guestuid") { return guestUID }
         
+        return nil
     }
 }
