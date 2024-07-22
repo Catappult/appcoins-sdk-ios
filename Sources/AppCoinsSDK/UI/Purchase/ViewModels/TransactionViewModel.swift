@@ -94,8 +94,11 @@ internal class TransactionViewModel : ObservableObject {
                                                 // 6. Build the Transaction UI
                                                 self.transaction = TransactionAlertUi(domain: domain, description: product.title, category: .IAP, sku: product.sku, moneyAmount: moneyAmount, moneyCurrency: product.priceCurrency, appcAmount: appcValue, bonusCurrency: transactionBonus.currency.symbol, bonusAmount: transactionBonus.value, walletBalance: "\(balanceCurrency)\(String(format: "%.2f", balanceValue))", paymentMethods: availablePaymentMethods)
                                                 
+                                                let guestUID = MMPUseCases.shared.getGuestUID()
+                                                let oemID = MMPUseCases.shared.getOEMID()
+                                                
                                                 // 7. Build the parameters to process the transaction
-                                                self.transactionParameters = TransactionParameters(value: String(moneyAmount), currency: Coin.EUR.rawValue, developerWa: developerWa, userWa: wallet.getWalletAddress(), domain: domain, product: product.sku, appcAmount: String(appcValue), metadata: self.metadata, reference: self.reference)
+                                                self.transactionParameters = TransactionParameters(value: String(moneyAmount), currency: Coin.EUR.rawValue, developerWa: developerWa, userWa: wallet.getWalletAddress(), domain: domain, product: product.sku, appcAmount: String(appcValue), guestUID: guestUID, oemID: oemID, metadata: self.metadata, reference: self.reference)
                                                 
                                                 // 8. Show payment method options
                                                 self.showPaymentMethodsOnBuild(balance: balance)

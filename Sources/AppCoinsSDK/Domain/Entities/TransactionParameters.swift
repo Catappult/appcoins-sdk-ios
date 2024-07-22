@@ -17,10 +17,12 @@ internal struct TransactionParameters {
     internal let product: String
     internal let appcAmount: String
     internal var method: String?
+    internal let guestUID: String?
+    internal let oemID: String?
     internal let metadata: String?
     internal let reference: String?
 
-    init(value: String, currency: String, developerWa: String, userWa: String, domain: String, product: String, appcAmount: String, method: String? = nil, metadata: String?, reference: String?) {
+    init(value: String, currency: String, developerWa: String, userWa: String, domain: String, product: String, appcAmount: String, method: String? = nil, guestUID: String?, oemID: String?, metadata: String?, reference: String?) {
         self.value = value
         self.currency = currency
         self.developerWa = developerWa
@@ -29,6 +31,8 @@ internal struct TransactionParameters {
         self.product = product
         self.appcAmount = appcAmount
         self.method = method
+        self.guestUID = guestUID
+        self.oemID = oemID
         self.metadata = metadata
         self.reference = reference
     }

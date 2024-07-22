@@ -12,12 +12,14 @@ internal class MMPUseCases {
     internal static let shared: MMPUseCases = MMPUseCases()
     private let repository: MMPRepositoryProtocol
     
-    internal init(repository: MMPRepositoryProtocol = MMPRepository()) {
+    private init(repository: MMPRepositoryProtocol = MMPRepository()) {
         self.repository = repository
     }
     
     internal func getAttribution() { repository.getAttribution() }
     
     internal func getGuestUID() -> String? { return repository.getGuestUID() }
+    
+    internal func getOEMID() -> String? { return repository.getOEMID() }
     
 }
