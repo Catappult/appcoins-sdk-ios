@@ -115,6 +115,8 @@ internal class BuildConfiguration {
         }
     }
     
+    static internal var aptoideOEMID = "a37f1d7a4599d0ba60f23f9ff7b9ce95"
+    
     static internal var userUID =  UIDevice.current.identifierForVendor!.uuidString
     
     static internal var integratedMethods: [Method] = [.appc, .paypalAdyen, .paypalDirect, .creditCard]

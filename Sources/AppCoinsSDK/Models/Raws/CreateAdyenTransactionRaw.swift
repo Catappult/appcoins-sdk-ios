@@ -21,6 +21,8 @@ internal struct CreateAdyenTransactionRaw: Codable {
     internal let paymentChannel: String
     internal let paymentReturnUrl: String?
     internal let userWa: String
+    internal let guestUID: String?
+    internal let oemID: String?
     internal let metadata: String?
     internal let reference: String?
     
@@ -37,6 +39,8 @@ internal struct CreateAdyenTransactionRaw: Codable {
         case paymentChannel = "payment.channel"
         case paymentReturnUrl = "payment.return_url"
         case userWa = "wallets.user"
+        case guestUID = "entity.guest_id"
+        case oemID = "entity.oemid"
         case metadata = "metadata"
         case reference = "reference"
     }
@@ -50,7 +54,7 @@ internal struct CreateAdyenTransactionRaw: Codable {
             return .success(
                 CreateAdyenTransactionRaw(
                     origin: "BDS", domain: parameters.domain, price: normalizedPrice, priceCurrency: parameters.currency,
-                    product: parameters.product, type: "INAPP", method: method, developerWa: parameters.developerWa, channel: "IOS", paymentChannel: "IOS", paymentReturnUrl: "\(bundleID).iap://api.blockchainds.com/broker", userWa: parameters.userWa, metadata: parameters.metadata, reference: parameters.reference
+                    product: parameters.product, type: "INAPP", method: method, developerWa: parameters.developerWa, channel: "IOS", paymentChannel: "IOS", paymentReturnUrl: "\(bundleID).iap://api.blockchainds.com/broker", userWa: parameters.userWa, guestUID: parameters.guestUID, oemID: parameters.oemID, metadata: parameters.metadata, reference: parameters.reference
                 )
             )
         } else { return .failure(.failed()) }

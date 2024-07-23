@@ -32,7 +32,11 @@ internal class MMPRepository: MMPRepositoryProtocol {
     
     internal func getGuestUID() -> String? {
         if let guestUID = UserDefaults.standard.string(forKey: "attribution-guestuid") { return guestUID }
-        
         return nil
+    }
+    
+    internal func getOEMID() -> String? {
+        if let oemID = UserDefaults.standard.string(forKey: "attribution-oemid") { return oemID }
+        else { return BuildConfiguration.aptoideOEMID }
     }
 }
