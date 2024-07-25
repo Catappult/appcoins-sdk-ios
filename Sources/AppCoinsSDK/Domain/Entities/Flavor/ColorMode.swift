@@ -8,6 +8,6 @@
 import Foundation
 
 internal enum ColorMode {
-    case LIGHT
-    case DARK
+    case light
+    case dark
 }

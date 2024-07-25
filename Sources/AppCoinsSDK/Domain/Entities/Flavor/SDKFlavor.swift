@@ -13,12 +13,12 @@ internal struct SDKFlavor {
     internal var userFlavor: UserFlavor? = nil
     internal var mode: FlavorMode
     
-    internal init(mode: FlavorMode = .USER, userFlavor: UserFlavor) {
+    internal init(mode: FlavorMode = .user, userFlavor: UserFlavor) {
         self.mode = mode
         self.userFlavor = userFlavor
     }
     
-    internal init(mode: FlavorMode = .DEFAULT, defaultFlavor: DefaultFlavor) {
+    internal init(mode: FlavorMode = .standard, defaultFlavor: DefaultFlavor) {
         self.mode = mode
         self.defaultFlavor = defaultFlavor
     }

@@ -18,18 +18,18 @@ internal struct UserFlavor {
     }
     
     internal func get() -> (ColorFlavor, ColorMode) {
-        if self.getUserMode() == .LIGHT {
-            return (self.lightMode, .LIGHT)
+        if self.getUserMode() == .light {
+            return (self.lightMode, .light)
         } else {
-            return (self.darkMode, .DARK)
+            return (self.darkMode, .dark)
         }
     }
     
     private func getUserMode() -> ColorMode {
         if BuildConfiguration.userColorScheme == .light {
-            return .LIGHT
+            return .light
         } else {
-            return .DARK
+            return .dark
         }
     }
 }

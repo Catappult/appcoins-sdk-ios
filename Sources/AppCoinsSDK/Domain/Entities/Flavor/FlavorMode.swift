@@ -8,6 +8,6 @@
 import Foundation
 
 internal enum FlavorMode {
-    case USER
-    case DEFAULT
+    case user
+    case standard
 }
