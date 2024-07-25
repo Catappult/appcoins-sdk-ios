@@ -29,7 +29,7 @@ internal struct CreditCardBottomSheet: View {
                     adyenController.cancel()
                 }) {
                     Text(Constants.cancelText)
-                        .foregroundColor(ColorsUi.APC_DarkGray)
+                        .foregroundColor(APPCColor.darkGray)
                         .font(FontsUi.APC_Footnote_Bold)
                         .lineLimit(1)
                 }.padding(.top, 4)
@@ -37,7 +37,7 @@ internal struct CreditCardBottomSheet: View {
             } else {
                 ZStack {
                     ActivityIndicatorView(
-                        isVisible: .constant(true), type: .growingArc(ColorsUi.APC_Gray, lineWidth: 1.5))
+                        isVisible: .constant(true), type: .growingArc(APPCColor.gray, lineWidth: 1.5))
                         .frame(width: 41, height: 41)
                     
                     Image("loading-appc-icon", bundle: Bundle.module)

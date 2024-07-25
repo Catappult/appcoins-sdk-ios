@@ -6,16 +6,15 @@
 //
 
 import Foundation
-import SwiftUI
 
 internal struct ColorFlavor {
     
-    internal let buttonColor: ColorsUi
-    internal let backgroundColor: ColorsUi
-    internal let bannerColor: ColorsUi
-    internal let paymentColor: ColorsUi
+    internal let buttonColor: APPCColor
+    internal let backgroundColor: APPCColor
+    internal let bannerColor: APPCColor
+    internal let paymentColor: APPCColor
     
-    init(buttonColor: ColorsUi, backgroundColor: ColorsUi, brandingColor: ColorsUi, paymentColor: ColorsUi) {
+    init(buttonColor: APPCColor, backgroundColor: APPCColor, brandingColor: APPCColor, paymentColor: APPCColor) {
         self.buttonColor = buttonColor
         self.backgroundColor = backgroundColor
         self.bannerColor = brandingColor

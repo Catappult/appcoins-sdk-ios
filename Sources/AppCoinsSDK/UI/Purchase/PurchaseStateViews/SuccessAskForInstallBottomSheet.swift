@@ -17,7 +17,7 @@ internal struct SuccessAskForInstallBottomSheet: View {
     internal var body: some View {
 
         ZStack {
-            ColorsUi.APC_DarkBlue
+            APPCColor.darkBlue
             
             Image("wallet-sync-shades-2", bundle: Bundle.module)
                 .resizable()
@@ -33,7 +33,7 @@ internal struct SuccessAskForInstallBottomSheet: View {
                 
                 Text(Constants.successText)
                     .font(FontsUi.APC_Title3_Bold)
-                    .foregroundColor(ColorsUi.APC_White)
+                    .foregroundColor(APPCColor.white)
                     .frame(width: 200, height: 24)
                     .padding(.top, 8)
                 
@@ -46,7 +46,7 @@ internal struct SuccessAskForInstallBottomSheet: View {
                         
                         Text(String(format: Constants.bonusReceived, "\(transactionViewModel.transaction?.bonusCurrency ?? "")\(String(format: "%.2f", transactionViewModel.transaction?.bonusAmount ?? 0.0))"))
                             .font(FontsUi.APC_Subheadline_Bold)
-                            .foregroundColor(ColorsUi.APC_White)
+                            .foregroundColor(APPCColor.white)
                             .frame(alignment: .bottom)
                             
                     }
@@ -63,18 +63,18 @@ internal struct SuccessAskForInstallBottomSheet: View {
                     .frame(width: 200, height: 144)
                     .padding(.top, 38)
                 
-                StyledText(Constants.titleWalletInstallSuccess, textStyle: FontsUi.APC_Subheadline_Bold, boldStyle: FontsUi.APC_Subheadline_Bold, textColorRegular: ColorsUi.APC_White, textColorBold: ColorsUi.APC_Pink)
+                StyledText(Constants.titleWalletInstallSuccess, textStyle: FontsUi.APC_Subheadline_Bold, boldStyle: FontsUi.APC_Subheadline_Bold, textColorRegular: APPCColor.white, textColorBold: APPCColor.pink)
                     .multilineTextAlignment(.center)
                     .frame(width: 280, height: 40)
                     .padding(.top, 24)
             
                 Button(action: SyncWalletViewModel.shared.installWallet) {
                     ZStack {
-                        ColorsUi.APC_Pink
+                        APPCColor.pink
                         
                         Text(Constants.install)
                             .font(FontsUi.APC_Body_Bold)
-                            .foregroundColor(ColorsUi.APC_White)
+                            .foregroundColor(APPCColor.white)
                     }
                     .frame(width: UIScreen.main.bounds.size.width - 48, height: 48)
                     .cornerRadius(10)
@@ -84,7 +84,7 @@ internal struct SuccessAskForInstallBottomSheet: View {
                 Button(action: viewModel.skipWalletInstall) {
                     Text(Constants.skip)
                         .font(FontsUi.APC_Footnote_Bold)
-                        .foregroundColor(ColorsUi.APC_White)
+                        .foregroundColor(APPCColor.white)
                         .padding(.top, 14)
                 }
                 

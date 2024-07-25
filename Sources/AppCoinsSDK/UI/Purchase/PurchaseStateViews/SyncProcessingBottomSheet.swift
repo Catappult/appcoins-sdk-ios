@@ -16,7 +16,7 @@ internal struct SyncProcessingBottomSheet: View {
     internal var body: some View {
 
         ZStack {
-            ColorsUi.APC_DarkBlue
+            APPCColor.darkBlue
             
             VStack(spacing: 0) {
                 
@@ -30,7 +30,7 @@ internal struct SyncProcessingBottomSheet: View {
             
             ProgressView()
                 .scaleEffect(1.75, anchor: .center)
-                .progressViewStyle(CircularProgressViewStyle(tint: ColorsUi.APC_White))
+                .progressViewStyle(CircularProgressViewStyle(tint: APPCColor.white))
             
         }.frame(width: UIScreen.main.bounds.size.width, height: 314 + Utils.bottomSafeAreaHeight)
             .cornerRadius(13, corners: [.topLeft, .topRight])

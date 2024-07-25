@@ -120,14 +120,14 @@ internal struct BottomSheetView: View {
                     
                     if [.paying, .adyen].contains(viewModel.purchaseState) {
                         if adyenController.state != .storedCreditCard {
-                            ColorsUi.APC_LightGray
+                            APPCColor.lightGray
                                 .frame(height: Utils.bottomSafeAreaHeight)
                                 .offset(y: isSafeAreaPresented ? 0 : UIScreen.main.bounds.height)
                                 .transition(.move(edge: isSafeAreaPresented ? .bottom : .top))
                                 .onAppear { withAnimation { isSafeAreaPresented = true } }
                         }
                     } else if ![.initialAskForSync, .successAskForInstall, .successAskForSync].contains(viewModel.purchaseState) {
-                        ColorsUi.APC_DarkBlue
+                        APPCColor.darkBlue
                             .frame(height: Utils.bottomSafeAreaHeight)
                     }
                 }.ignoresSafeArea()
