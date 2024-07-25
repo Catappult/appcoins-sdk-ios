@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 import Adyen
+import DeviceKit
 
 internal class BuildConfiguration {
     static internal let shared = BuildConfiguration()
@@ -120,6 +121,8 @@ internal class BuildConfiguration {
     static internal var userUID =  UIDevice.current.identifierForVendor!.uuidString
     
     static internal var integratedMethods: [Method] = [.appc, .paypalAdyen, .paypalDirect, .creditCard]
+    
+    static internal var userColorScheme = UITraitCollection.current.userInterfaceStyle
 }
 
 internal enum SDKEnvironment: String {
