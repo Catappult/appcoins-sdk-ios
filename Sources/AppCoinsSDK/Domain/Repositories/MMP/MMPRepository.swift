@@ -11,8 +11,7 @@ internal class MMPRepository: MMPRepositoryProtocol {
     
     private let MMPService: MMPService = MMPClient()
     
-    internal func getAttribution() {
-        
+    internal func getAttribution(completion: @escaping () -> Void) {
         let oemID = UserDefaults.standard.string(forKey: "attribution-oemid")
         let guestUID = UserDefaults.standard.string(forKey: "attribution-guestuid")
         
@@ -22,8 +21,8 @@ internal class MMPRepository: MMPRepositoryProtocol {
                 switch result {
                 case .success(let attributionRaw):
                     UserDefaults.standard.set(String(attributionRaw.guestUID), forKey: "attribution-guestuid")
-                    
                     if let rawOemID = attributionRaw.oemID, rawOemID != "" { UserDefaults.standard.set(rawOemID, forKey: "attribution-oemid") }
+                    completion()
                 case .failure: break
                 }
             }

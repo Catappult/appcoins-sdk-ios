@@ -8,5 +8,6 @@
 import Foundation
 
 internal protocol PayFlowRepositoryProtocol {
-    
+    func setPayFlow()
+    func getPayFlow() -> PayFlowType
 }

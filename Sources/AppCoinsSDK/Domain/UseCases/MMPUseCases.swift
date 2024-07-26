@@ -16,7 +16,7 @@ internal class MMPUseCases {
         self.repository = repository
     }
     
-    internal func getAttribution() { repository.getAttribution() }
+    internal func getAttribution(completion: @escaping () -> Void) { repository.getAttribution { completion() } }
     
     internal func getGuestUID() -> String? { return repository.getGuestUID() }
     

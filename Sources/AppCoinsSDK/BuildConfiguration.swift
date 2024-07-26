@@ -115,11 +115,26 @@ internal class BuildConfiguration {
         }
     }
     
+    static internal var payFlowServiceBaseURL: String {
+        switch environment {
+        case .debugSDKDev, .releaseSDKDev:
+            return "https://payflowsdk.dev.aptoide.com"
+        case .debugSDKProd, .releaseSDKProd:
+            return "https://payflowsdk.aptoide.com"
+        }
+    }
+    
     static internal var aptoideOEMID = "a37f1d7a4599d0ba60f23f9ff7b9ce95"
     
     static internal var userUID =  UIDevice.current.identifierForVendor!.uuidString
     
     static internal var integratedMethods: [Method] = [.appc, .paypalAdyen, .paypalDirect, .creditCard]
+    
+    static internal var packageVersion : String {
+        return Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
+    }
+    
+    static internal var vercode = 9
 }
 
 internal enum SDKEnvironment: String {
