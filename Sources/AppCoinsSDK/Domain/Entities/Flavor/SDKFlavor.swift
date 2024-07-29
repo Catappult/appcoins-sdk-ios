@@ -24,10 +24,8 @@ internal struct SDKFlavor {
     }
     
     internal func get() -> Flavor? {
-        if let userFlavor = self.userFlavor {
-            return Flavor(colorFlavor: userFlavor.get().0, colorMode: userFlavor.get().1)
-        } else if let defaultFlavor = self.defaultFlavor {
-            return Flavor(colorFlavor: defaultFlavor.flavor, colorMode: defaultFlavor.mode)
+        if let (colorFlavor, colorMode) = self.userFlavor?.get() {
+            return Flavor(colorFlavor: colorFlavor, colorMode: colorMode)
         } else { return nil }
     }
 }

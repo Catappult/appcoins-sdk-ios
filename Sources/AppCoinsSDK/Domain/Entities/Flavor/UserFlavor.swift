@@ -26,10 +26,8 @@ internal struct UserFlavor {
     }
     
     private func getUserMode() -> ColorMode {
-        if BuildConfiguration.userColorScheme == .light {
-            return .light
-        } else {
+        if BuildConfiguration.userColorScheme == .dark {
             return .dark
-        }
+        } else { return .light }
     }
 }
