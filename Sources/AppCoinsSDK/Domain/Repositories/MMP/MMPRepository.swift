@@ -22,11 +22,11 @@ internal class MMPRepository: MMPRepositoryProtocol {
                 case .success(let attributionRaw):
                     UserDefaults.standard.set(String(attributionRaw.guestUID), forKey: "attribution-guestuid")
                     if let rawOemID = attributionRaw.oemID, rawOemID != "" { UserDefaults.standard.set(rawOemID, forKey: "attribution-oemid") }
-                    completion()
                 case .failure: break
                 }
             }
         }
+        completion()
     }
     
     internal func getGuestUID() -> String? {
