@@ -17,7 +17,7 @@ internal class PayFlowRepository: PayFlowRepositoryProtocol {
     }
     
     internal func setPayFlow() {
-        self.PayFlowService.setPayFlow(package: BuildConfiguration.packageName, packageVercode: BuildConfiguration.packageVersion, sdkVercode: BuildConfiguration.vercode, locale: nil, oemID: mmpRepository.getOEMID(), oemIDType: nil, country: nil, os: "ios") { result in
+        self.PayFlowService.setPayFlow(package: BuildConfiguration.packageName, packageVercode: BuildConfiguration.packageVersion, sdkVercode: BuildConfiguration.vercode, locale: Locale.current.regionCode?.lowercased(), oemID: mmpRepository.getOEMID(), oemIDType: nil, country: nil, os: "ios") { result in
             switch result {
             case .success(let payFlowDataRaw):
                 try? Utils.writeToPreferences(key: "pay-flow-method", value: payFlowDataRaw.paymentFlow)
