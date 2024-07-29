@@ -10,12 +10,14 @@ import Foundation
 internal class PayFlowRepository: PayFlowRepositoryProtocol {
     
     private let PayFlowService: PayFlowService = PayFlowClient()
+    private let mmpRepository: MMPRepositoryProtocol
+    
+    internal init(repository: MMPRepositoryProtocol = MMPRepository()) {
+        self.mmpRepository = repository
+    }
     
     internal func setPayFlow() {
-        
-        let oemID = UserDefaults.standard.string(forKey: "attribution-oemid")
-        
-        self.PayFlowService.setPayFlow(package: BuildConfiguration.packageName, packageVercode: BuildConfiguration.packageVersion, sdkVercode: BuildConfiguration.vercode, locale: nil, oemID: oemID, oemIDType: nil, country: nil, os: "ios") { result in
+        self.PayFlowService.setPayFlow(package: BuildConfiguration.packageName, packageVercode: BuildConfiguration.packageVersion, sdkVercode: BuildConfiguration.vercode, locale: nil, oemID: mmpRepository.getOEMID(), oemIDType: nil, country: nil, os: "ios") { result in
             switch result {
             case .success(let payFlowDataRaw):
                 try? Utils.writeToPreferences(key: "pay-flow-method", value: payFlowDataRaw.paymentFlow)
