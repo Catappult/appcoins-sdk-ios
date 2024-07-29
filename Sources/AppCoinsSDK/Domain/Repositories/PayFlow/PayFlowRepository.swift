@@ -20,7 +20,7 @@ internal class PayFlowRepository: PayFlowRepositoryProtocol {
         self.PayFlowService.setPayFlow(package: BuildConfiguration.packageName, packageVercode: BuildConfiguration.packageVersion, sdkVercode: BuildConfiguration.vercode, locale: Locale.current.regionCode?.lowercased(), oemID: mmpRepository.getOEMID(), oemIDType: nil, country: nil, os: "ios") { result in
             switch result {
             case .success(let payFlowDataRaw):
-                try? Utils.writeToPreferences(key: "pay-flow-method", value: payFlowDataRaw.paymentFlow)
+                try? Utils.writeToPreferences(key: "pay-flow-type", value: payFlowDataRaw.paymentFlow)
             case .failure:
                 break
             }
@@ -29,7 +29,7 @@ internal class PayFlowRepository: PayFlowRepositoryProtocol {
     
     func getPayFlow() -> PayFlowType {
         
-        if Utils.readFromPreferences(key: "pay-flow-method") == PayFlowType.d2c.rawValue {
+        if Utils.readFromPreferences(key: "pay-flow-type") == PayFlowType.d2c.rawValue {
             return .d2c
         } else { return .standard }
     }
