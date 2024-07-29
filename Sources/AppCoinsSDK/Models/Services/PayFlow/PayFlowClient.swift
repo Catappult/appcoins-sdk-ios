@@ -33,7 +33,10 @@ internal class PayFlowClient: PayFlowService {
             var components = URLComponents(url: requestUrl, resolvingAgainstBaseURL: false)
             components?.queryItems = queryItems
             
-            guard let url = components?.url else { fatalError() }
+            guard let url = components?.url else {
+                result(.failure(.failed))
+                return
+            }
             
             var request = URLRequest(url: url)
             
