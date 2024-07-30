@@ -9,12 +9,11 @@ import SwiftUI
 
 struct GamificationBanner: View {
     
-    var flavor: Flavor
+//    var flavor: Flavor
     var bonusValue: Double
     
     var body: some View {
-        VStack(spacing: 0) {
-            
-        }
+        
+        Text("")
     }
 }

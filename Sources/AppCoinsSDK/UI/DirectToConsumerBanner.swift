@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DirectToConsumerBanner: View {
     
-    var flavor: Flavor
+//    var flavor: Flavor
     var discount: Int
     
     var body: some View {
