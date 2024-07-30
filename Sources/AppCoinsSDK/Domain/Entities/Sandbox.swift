@@ -10,19 +10,9 @@ import Foundation
 public struct Sandbox {
     
     // This method should be accessed by developers for testing purposes only
-    static public func getTestingWalletAddress() async -> String? {
-        return try? await withCheckedThrowingContinuation { continuation in
-            WalletUseCases.shared.getWallet() {
-                result in
-                
-                switch result {
-                case .success(let wallet):
-                    continuation.resume(returning: wallet.getWalletAddress())
-                case .failure(_):
-                    continuation.resume(returning: nil)
-                }
-            }
-        }
+    // This method should be accessed by developers for testing purposes only
+    static public func getTestingWalletAddress() -> String? {
+        return WalletUseCases.shared.getClientWallet()?.getWalletAddress()
     }
     
 }
