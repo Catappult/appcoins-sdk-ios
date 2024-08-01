@@ -35,7 +35,7 @@ internal struct CreditCardChoiceBottomSheet: View {
                 
                 Text(Constants.chooseCard)
                     .font(FontsUi.APC_Body_Bold)
-                    .foregroundColor(ColorsUi.APC_Black)
+                    .foregroundColor(APPCColor.black)
                     .frame(width: UIScreen.main.bounds.width - 64, height: 22, alignment: .leading)
                     .padding(.top, 24)
                     .padding(.bottom, 18)
@@ -46,7 +46,7 @@ internal struct CreditCardChoiceBottomSheet: View {
                         if let paymentMethod = storedPaymentMethods[paymentMethodNumber] as? StoredCardPaymentMethod {
                             Button(action: { self.chosenStoredCard = paymentMethod }) {
                                 ZStack {
-                                    ColorsUi.APC_White
+                                    APPCColor.white
                                     HStack(spacing: 0) {
                                         
                                         if let image = adyenController.getCardLogo(for: paymentMethod) {
@@ -57,7 +57,7 @@ internal struct CreditCardChoiceBottomSheet: View {
                                         }
                                         
                                         Text(verbatim: "···· " + paymentMethod.lastFour)
-                                            .foregroundColor(ColorsUi.APC_Black)
+                                            .foregroundColor(APPCColor.black)
                                             .font(FontsUi.APC_Subheadline)
                                             .lineLimit(1)
                                             .frame(maxWidth: .infinity, alignment: .leading)
@@ -66,12 +66,12 @@ internal struct CreditCardChoiceBottomSheet: View {
                                             Image(systemName: "checkmark.circle.fill")
                                                 .resizable()
                                                 .edgesIgnoringSafeArea(.all)
-                                                .foregroundColor(ColorsUi.APC_Pink)
+                                                .foregroundColor(APPCColor.pink)
                                                 .frame(width: 22, height: 22, alignment: .trailing)
                                                 .padding(.trailing, 16)
                                         } else {
                                             Circle()
-                                                .strokeBorder(ColorsUi.APC_LightGray, lineWidth: 2)
+                                                .strokeBorder(APPCColor.lightGray, lineWidth: 2)
                                                 .frame(width: 22, height: 22, alignment: .trailing)
                                                 .padding(.trailing, 16)
                                         }
@@ -83,7 +83,7 @@ internal struct CreditCardChoiceBottomSheet: View {
                     
                         if paymentMethodNumber < storedPaymentMethods.count - 1 {
                             Divider()
-                                .background(ColorsUi.APC_Gray)
+                                .background(APPCColor.gray)
                         }
                     }
                 }.frame(width: UIScreen.main.bounds.width - 64)
@@ -93,7 +93,7 @@ internal struct CreditCardChoiceBottomSheet: View {
             HStack(spacing: 0) {
                 Button(action: adyenViewModel.payWithNewCreditCard) {
                     Text(Constants.addCard)
-                        .foregroundColor(ColorsUi.APC_Pink)
+                        .foregroundColor(APPCColor.pink)
                         .font(FontsUi.APC_Footnote_Bold)
                         .lineLimit(1)
                         .padding(.trailing, 8)
@@ -102,7 +102,7 @@ internal struct CreditCardChoiceBottomSheet: View {
                     Image(systemName: "chevron.forward")
                         .resizable()
                         .edgesIgnoringSafeArea(.all)
-                        .foregroundColor(ColorsUi.APC_Pink)
+                        .foregroundColor(APPCColor.pink)
                         .frame(width: 4, height: 8)
                 }
             }.frame(width: UIScreen.main.bounds.width - 64, height: 18, alignment: .trailing)
@@ -111,22 +111,22 @@ internal struct CreditCardChoiceBottomSheet: View {
             
             Button(action: { if let storedPaymentMethod = self.chosenStoredCard { adyenViewModel.payWithStoredCreditCard(creditCard: storedPaymentMethod) }}) {
                 ZStack {
-                    ColorsUi.APC_Pink
+                    APPCColor.pink
                     
                     Text(Constants.buyText)
-                        .foregroundColor(ColorsUi.APC_White)
+                        .foregroundColor(APPCColor.white)
                         .font(FontsUi.APC_Body_Bold)
                 }
             }
             .frame(width: UIScreen.main.bounds.width - 64, height: 48)
-            .foregroundColor(ColorsUi.APC_White)
+            .foregroundColor(APPCColor.white)
             .cornerRadius(10)
             
             Button(action: {
                 adyenController.cancel()
             }) {
                 Text(Constants.cancelText)
-                    .foregroundColor(ColorsUi.APC_DarkGray)
+                    .foregroundColor(APPCColor.darkGray)
                     .font(FontsUi.APC_Footnote_Bold)
                     .lineLimit(1)
             }

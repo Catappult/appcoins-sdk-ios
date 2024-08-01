@@ -16,7 +16,7 @@ internal struct NoInternetBottomSheet: View {
     internal var body: some View {
 
         ZStack {
-            ColorsUi.APC_DarkBlue
+            APPCColor.darkBlue
                 
             VStack(spacing: 0) {
                 ZStack {
@@ -30,23 +30,23 @@ internal struct NoInternetBottomSheet: View {
                         
                         Text(Constants.noInternetTitle)
                             .font(FontsUi.APC_Title3_Bold)
-                            .foregroundColor(ColorsUi.APC_White)
+                            .foregroundColor(APPCColor.white)
                             .padding(.top, 16)
                         
                         Text(Constants.noInternetText)
                             .font(FontsUi.APC_Footnote)
-                            .foregroundColor(ColorsUi.APC_White)
+                            .foregroundColor(APPCColor.white)
                             .padding(.top, 15)
                             .frame(width: UIScreen.main.bounds.width - 48)
                             .multilineTextAlignment(.center)
                         
                         Button(action: {viewModel.reload()}) {
                             ZStack {
-                                ColorsUi.APC_Pink
+                                APPCColor.pink
                                 
                                 Text(Constants.retryConnection)
                                     .font(FontsUi.APC_Body_Bold)
-                                    .foregroundColor(ColorsUi.APC_White)
+                                    .foregroundColor(APPCColor.white)
                             }.frame(width: UIScreen.main.bounds.width - 48, height: 48)
                                 .cornerRadius(10)
                                 .padding(.top, 54)

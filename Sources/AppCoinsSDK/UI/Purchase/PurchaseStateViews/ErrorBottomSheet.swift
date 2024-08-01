@@ -18,7 +18,7 @@ internal struct ErrorBottomSheet: View {
     internal var body: some View {
 
         ZStack {
-            ColorsUi.APC_DarkBlue
+            APPCColor.darkBlue
                 
             VStack(spacing: 0) {
                 
@@ -36,12 +36,12 @@ internal struct ErrorBottomSheet: View {
                 
                 Text(Constants.errorText)
                     .font(FontsUi.APC_Title3_Bold)
-                    .foregroundColor(ColorsUi.APC_White)
+                    .foregroundColor(APPCColor.white)
                     .padding(.top, 16)
                 
                 Text(viewModel.purchaseFailedMessage)
                     .font(FontsUi.APC_Footnote)
-                    .foregroundColor(ColorsUi.APC_White)
+                    .foregroundColor(APPCColor.white)
                     .padding(.top, 15)
                 
                 Button(action: {
@@ -61,7 +61,7 @@ internal struct ErrorBottomSheet: View {
                         Image(systemName: "paperplane.fill")
                             .resizable()
                             .edgesIgnoringSafeArea(.all)
-                            .foregroundColor(ColorsUi.APC_White)
+                            .foregroundColor(APPCColor.white)
                             .frame(width: 20, height: 20)
                         
                         Text(Constants.appcSupport)
@@ -69,14 +69,14 @@ internal struct ErrorBottomSheet: View {
                     }
                 }
                 .frame(width: UIScreen.main.bounds.width - 64, height: 48)
-                .background(ColorsUi.APC_OpaqueBlack)
-                .foregroundColor(ColorsUi.APC_White)
+                .background(APPCColor.opaqueBlack)
+                .foregroundColor(APPCColor.white)
                 .cornerRadius(10)
                 .padding(.top, 36)
                 
                 Button(action: { viewModel.dismiss() }) {
                     Text(Constants.cancelText)
-                        .foregroundColor(ColorsUi.APC_DarkGray)
+                        .foregroundColor(APPCColor.darkGray)
                         .font(FontsUi.APC_Footnote_Bold)
                         .lineLimit(1)
                 }

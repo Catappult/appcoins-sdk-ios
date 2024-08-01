@@ -241,24 +241,24 @@ internal class AdyenController : AdyenSessionDelegate, PresentationDelegate, Obs
     private func getCreditCardFormStyle() -> FormComponentStyle {
         var style = FormComponentStyle()
         
-        style.backgroundColor = UIColor(ColorsUi.APC_LightGray)
-        style.textField.title.color = UIColor(ColorsUi.APC_DarkGray)
-        style.textField.text.color = UIColor(ColorsUi.APC_Black)
+        style.backgroundColor = UIColor(APPCColor.lightGray)
+        style.textField.title.color = UIColor(APPCColor.darkGray)
+        style.textField.text.color = UIColor(APPCColor.black)
         
-        style.textField.tintColor = UIColor(ColorsUi.APC_Black)
+        style.textField.tintColor = UIColor(APPCColor.black)
         
-        style.textField.placeholderText?.color = UIColor(ColorsUi.APC_LightGray)
+        style.textField.placeholderText?.color = UIColor(APPCColor.lightGray)
         style.textField.placeholderText?.font = UIFont(name: "SFProText-Semibold", size: 17) ?? UIFont.systemFont(ofSize: 17, weight: .semibold)
         
-        style.mainButtonItem.button.backgroundColor = UIColor(ColorsUi.APC_Pink)
+        style.mainButtonItem.button.backgroundColor = UIColor(APPCColor.pink)
         style.mainButtonItem.button.cornerRounding = .fixed(10)
-        style.mainButtonItem.button.title.color = UIColor(ColorsUi.APC_White)
+        style.mainButtonItem.button.title.color = UIColor(APPCColor.white)
         style.mainButtonItem.button.title.font = UIFont(name: "SFProText-Semibold", size: 17) ?? UIFont.systemFont(ofSize: 17, weight: .semibold)
         
-        style.toggle.title.color = UIColor(ColorsUi.APC_Black)
+        style.toggle.title.color = UIColor(APPCColor.black)
         style.toggle.title.textAlignment = .right
         style.toggle.title.font = UIFont(name: "SFProText-Medium", size: 14) ?? UIFont.systemFont(ofSize: 14, weight: .medium)
-        style.toggle.tintColor = UIColor(ColorsUi.APC_Pink)
+        style.toggle.tintColor = UIColor(APPCColor.pink)
         
         return style
     }

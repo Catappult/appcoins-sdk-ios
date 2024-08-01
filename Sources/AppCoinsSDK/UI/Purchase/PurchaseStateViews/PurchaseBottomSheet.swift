@@ -73,7 +73,7 @@ internal struct PurchaseBottomSheet: View {
     internal var body: some View {
         
         ZStack {
-            ColorsUi.APC_DarkBlue
+            APPCColor.darkBlue
             
             VStack(spacing: 0) {
                 
@@ -95,7 +95,7 @@ internal struct PurchaseBottomSheet: View {
                                 if let bonusCurrency = transactionViewModel.transaction?.bonusCurrency, let bonusAmount = transactionViewModel.transaction?.bonusAmount {
                                     Text(String(format: Constants.purchaseBonus, "\(bonusCurrency)\(String(format: "%.3f", bonusAmount))"))
                                         .font(FontsUi.APC_Caption1_Bold)
-                                        .foregroundColor(ColorsUi.APC_White)
+                                        .foregroundColor(APPCColor.white)
                                         .frame(height: 16)
                                 } else {
                                     HStack(spacing: 0) {
@@ -110,7 +110,7 @@ internal struct PurchaseBottomSheet: View {
                             
                             Text(Constants.canSeeBonusText)
                                 .font(FontsUi.APC_Caption2)
-                                .foregroundColor(ColorsUi.APC_Gray)
+                                .foregroundColor(APPCColor.gray)
                                 .frame(height: 13)
                                 .padding(.top, 6)
                         }
@@ -126,13 +126,13 @@ internal struct PurchaseBottomSheet: View {
                                     String(format: Constants.walletBalance, "*\(balance)*"),
                                     textStyle: FontsUi.APC_Caption1_Bold,
                                     boldStyle: FontsUi.APC_Caption1_Bold,
-                                    textColorRegular: ColorsUi.APC_Pink,
-                                    textColorBold: ColorsUi.APC_White)
+                                    textColorRegular: APPCColor.pink,
+                                    textColorBold: APPCColor.white)
                                     .padding(.leading, 6.22)
                             } else {
                                 Text(String(format: Constants.walletBalance, ""))
                                     .font(FontsUi.APC_Caption1_Bold)
-                                    .foregroundColor(ColorsUi.APC_Pink)
+                                    .foregroundColor(APPCColor.pink)
                                     .padding(.leading, 6.22)
                                 
                                 Text("")
@@ -149,7 +149,7 @@ internal struct PurchaseBottomSheet: View {
                 }.frame(width: UIScreen.main.bounds.size.width, height: blueStripeHeight)
                 
                 ZStack() {
-                    ColorsUi.APC_LightGray
+                    APPCColor.lightGray
                     
                     if viewModel.purchaseState == .paying {
                         PaymentChoiceBottomSheet(viewModel: viewModel)

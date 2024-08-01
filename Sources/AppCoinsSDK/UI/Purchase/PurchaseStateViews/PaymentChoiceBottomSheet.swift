@@ -36,7 +36,7 @@ internal struct PaymentChoiceBottomSheet: View {
                 VStack(spacing: 0) {
                     if let title = transactionViewModel.transaction?.getTitle() {
                         Text(title)
-                            .foregroundColor(ColorsUi.APC_Black)
+                            .foregroundColor(APPCColor.black)
                             .font(FontsUi.APC_Body_Bold)
                             .lineLimit(2)
                             .frame(width: UIScreen.main.bounds.width - 154, alignment: .leading)
@@ -53,12 +53,12 @@ internal struct PaymentChoiceBottomSheet: View {
                     HStack(spacing: 0) {
                         if let amount = transactionViewModel.transaction?.moneyAmount {
                             Text((Coin(rawValue: transactionViewModel.transaction?.moneyCurrency ?? "")?.symbol ?? "") + String(amount))
-                                .foregroundColor(ColorsUi.APC_Black)
+                                .foregroundColor(APPCColor.black)
                                 .font(FontsUi.APC_Subheadline_Bold)
                                 .lineLimit(1)
                                 .padding(.trailing, 3)
                             Text(transactionViewModel.transaction?.moneyCurrency ?? "-")
-                                .foregroundColor(ColorsUi.APC_Black)
+                                .foregroundColor(APPCColor.black)
                                 .font(FontsUi.APC_Caption1_Bold)
                                 .lineLimit(1)
                         } else {
@@ -74,7 +74,7 @@ internal struct PaymentChoiceBottomSheet: View {
                     
                     if let appcAmount = transactionViewModel.transaction?.appcAmount {
                         Text(verbatim: String(format: "%.3f", appcAmount) + " APPC")
-                            .foregroundColor(ColorsUi.APC_Gray)
+                            .foregroundColor(APPCColor.gray)
                             .font(FontsUi.APC_Caption2)
                             .frame(width: UIScreen.main.bounds.width - 154, alignment: .leading)
                     } else {
@@ -100,7 +100,7 @@ internal struct PaymentChoiceBottomSheet: View {
                         
                         if (!transactionViewModel.showOtherPaymentMethods) {
                             ZStack {
-                                ColorsUi.APC_White
+                                APPCColor.white
                                 
                                 HStack(spacing: 0) {
                                     VStack(spacing: 0) {
@@ -112,20 +112,20 @@ internal struct PaymentChoiceBottomSheet: View {
                                     VStack(spacing: 0) {
                                         if transactionViewModel.lastPaymentMethod?.name == Method.appc.rawValue {
                                             Text(transactionViewModel.lastPaymentMethod?.label)
-                                                .foregroundColor(ColorsUi.APC_Black)
+                                                .foregroundColor(APPCColor.black)
                                                 .font(FontsUi.APC_Callout)
                                                 .lineLimit(1)
                                                 .frame(width: UIScreen.main.bounds.width - 168, alignment: .leading)
                                                 .padding(.bottom, 4)
                                             
                                             Text(Constants.earnedEnoughAppcText)
-                                                .foregroundColor(ColorsUi.APC_Gray)
+                                                .foregroundColor(APPCColor.gray)
                                                 .font(FontsUi.APC_Caption1)
                                                 .lineLimit(2)
                                                 .frame(width: UIScreen.main.bounds.width - 168, alignment: .leading)
                                         } else {
                                             Text(transactionViewModel.lastPaymentMethod?.label)
-                                                .foregroundColor(ColorsUi.APC_Black)
+                                                .foregroundColor(APPCColor.black)
                                                 .font(FontsUi.APC_Callout)
                                                 .lineLimit(1)
                                                 .frame(width: UIScreen.main.bounds.width - 168, alignment: .leading)
@@ -143,7 +143,7 @@ internal struct PaymentChoiceBottomSheet: View {
                                     if transactionViewModel.paypalLogOut {
                                         Button(action: paypalViewModel.logoutPayPal) {
                                             Text(Constants.logOut)
-                                                .foregroundColor(ColorsUi.APC_DarkGray)
+                                                .foregroundColor(APPCColor.darkGray)
                                                 .font(FontsUi.APC_Caption2_Bold)
                                         }
                                     }
@@ -152,7 +152,7 @@ internal struct PaymentChoiceBottomSheet: View {
                                 HStack(spacing: 0) {
                                     Button(action: transactionViewModel.showPaymentMethodOptions) {
                                         Text(Constants.otherPaymentMethodsText)
-                                            .foregroundColor(ColorsUi.APC_Pink)
+                                            .foregroundColor(APPCColor.pink)
                                             .font(FontsUi.APC_Footnote_Bold)
                                             .lineLimit(1)
                                             .padding(.trailing, 8)
@@ -161,7 +161,7 @@ internal struct PaymentChoiceBottomSheet: View {
                                         Image(systemName: "chevron.forward")
                                             .resizable()
                                             .edgesIgnoringSafeArea(.all)
-                                            .foregroundColor(ColorsUi.APC_Pink)
+                                            .foregroundColor(APPCColor.pink)
                                             .frame(width: 4, height: 8)
                                     }
                                 }.frame(maxWidth: .infinity, alignment: .trailing)
@@ -182,16 +182,16 @@ internal struct PaymentChoiceBottomSheet: View {
             }) {
                 ZStack {
                     if transactionViewModel.transaction != nil {
-                        ColorsUi.APC_Pink
+                        APPCColor.pink
                     } else {
-                        ColorsUi.APC_Gray
+                        APPCColor.gray
                     }
                     Text(Constants.buyText)
                 }
             }
             .disabled(transactionViewModel.transaction == nil)
             .frame(width: UIScreen.main.bounds.width - 64, height: 48)
-            .foregroundColor(ColorsUi.APC_White)
+            .foregroundColor(APPCColor.white)
             .cornerRadius(10)
             
             HStack(spacing: 0){}.frame(height: 14)
@@ -200,7 +200,7 @@ internal struct PaymentChoiceBottomSheet: View {
                 viewModel.dismiss()
             }) {
                 Text(Constants.cancelText)
-                    .foregroundColor(ColorsUi.APC_DarkGray)
+                    .foregroundColor(APPCColor.darkGray)
                     .font(FontsUi.APC_Footnote_Bold)
                     .lineLimit(1)
             }
