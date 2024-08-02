@@ -20,6 +20,6 @@ internal class MMPUseCases {
     
     internal func getGuestUID() -> String? { return repository.getGuestUID() }
     
-    internal func getOEMID() -> String? { return repository.getOEMID() }
+    internal func getOEMID() -> String { return repository.getOEMID() }
     
 }

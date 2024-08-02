@@ -8,6 +8,6 @@
 import Foundation
 
 internal protocol PayFlowRepositoryProtocol {
-    func setPayFlow()
+    func setPayFlow(oemID: String)
     func getPayFlow() -> PayFlowType
 }

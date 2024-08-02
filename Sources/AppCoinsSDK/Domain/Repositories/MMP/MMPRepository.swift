@@ -34,7 +34,7 @@ internal class MMPRepository: MMPRepositoryProtocol {
         return nil
     }
     
-    internal func getOEMID() -> String? {
+    internal func getOEMID() -> String {
         if let oemID = UserDefaults.standard.string(forKey: "attribution-oemid") { return oemID }
         else { return BuildConfiguration.aptoideOEMID }
     }
