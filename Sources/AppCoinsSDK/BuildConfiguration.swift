@@ -134,7 +134,7 @@ internal class BuildConfiguration {
         return Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
     }
     
-    static internal var vercode = 9
+    static internal var vercode = 10
 }
 
 internal enum SDKEnvironment: String {
