@@ -18,7 +18,7 @@ internal struct SuccessBottomSheet: View {
 
         Button(action: { viewModel.dismiss() }) {
             ZStack {
-                ColorsUi.APC_DarkBlue
+                APPCColor.darkBlue
                 
                 VStack(spacing: 0) {
                     
@@ -36,7 +36,7 @@ internal struct SuccessBottomSheet: View {
                     
                     Text(Constants.successText)
                         .font(FontsUi.APC_Title3_Bold)
-                        .foregroundColor(ColorsUi.APC_White)
+                        .foregroundColor(APPCColor.white)
                         .padding(.top, 15)
                     
                     if transactionViewModel.paymentMethodSelected?.name != Method.appc.rawValue {
@@ -48,7 +48,7 @@ internal struct SuccessBottomSheet: View {
                             
                             Text(String(format: Constants.bonusReceived, "\(transactionViewModel.transaction?.bonusCurrency ?? "")\(String(format: "%.2f", transactionViewModel.transaction?.bonusAmount ?? 0.0))"))
                                 .font(FontsUi.APC_Subheadline_Bold)
-                                .foregroundColor(ColorsUi.APC_White)
+                                .foregroundColor(APPCColor.white)
                                 .frame(alignment: .bottom)
                                 
                         }.padding(.top, 23)
@@ -69,13 +69,13 @@ internal struct SuccessBottomSheet: View {
                                 String(format: Constants.walletBalance, "*\(balance)*"),
                                 textStyle: FontsUi.APC_Caption1_Bold,
                                 boldStyle: FontsUi.APC_Caption1_Bold,
-                                textColorRegular: ColorsUi.APC_Pink,
-                                textColorBold: ColorsUi.APC_White)
+                                textColorRegular: APPCColor.pink,
+                                textColorBold: APPCColor.white)
                                 .padding(.leading, 6.22)
                         } else {
                             Text(String(format: Constants.walletBalance, ""))
                                 .font(FontsUi.APC_Caption1_Bold)
-                                .foregroundColor(ColorsUi.APC_Pink)
+                                .foregroundColor(APPCColor.pink)
                                 .padding(.leading, 6.22)
                             
                             Text("")

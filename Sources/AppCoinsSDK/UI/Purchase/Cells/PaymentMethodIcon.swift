@@ -19,13 +19,13 @@ internal struct PaymentMethodIcon: View {
                      inProgress: {
                 progress in
                    RoundedRectangle(cornerRadius: 0)
-                       .foregroundColor(ColorsUi.APC_White)
+                       .foregroundColor(APPCColor.white)
                        .frame(width: 24, height: 24)
                        .clipShape(Circle())
             }, failure: {
                 error,retry in
                    RoundedRectangle(cornerRadius: 0)
-                       .foregroundColor(ColorsUi.APC_White)
+                       .foregroundColor(APPCColor.white)
                        .frame(width: 24, height: 24)
                        .clipShape(Circle())
                         .onAppear{ retry() }

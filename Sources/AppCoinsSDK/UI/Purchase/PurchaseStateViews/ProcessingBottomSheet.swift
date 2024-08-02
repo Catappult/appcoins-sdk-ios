@@ -17,7 +17,7 @@ internal struct ProcessingBottomSheet: View {
     internal var body: some View {
 
         ZStack {
-            ColorsUi.APC_DarkBlue
+            APPCColor.darkBlue
             
             VStack(spacing: 0) {
                 
@@ -36,7 +36,7 @@ internal struct ProcessingBottomSheet: View {
                 
                 ProgressView()
                     .scaleEffect(1.75, anchor: .center)
-                    .progressViewStyle(CircularProgressViewStyle(tint: ColorsUi.APC_White))
+                    .progressViewStyle(CircularProgressViewStyle(tint: APPCColor.white))
                     .padding(.top, 50)
                     .padding(.bottom, 74)
                 

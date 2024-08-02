@@ -16,7 +16,7 @@ internal struct SyncErrorBottomSheet: View {
     internal var body: some View {
 
         ZStack {
-            ColorsUi.APC_DarkBlue
+            APPCColor.darkBlue
             
             VStack(spacing: 0) {
                 
@@ -33,7 +33,7 @@ internal struct SyncErrorBottomSheet: View {
                 
                 Text(Constants.somethingWentWrongShort)
                     .font(FontsUi.APC_Title3_Bold)
-                    .foregroundColor(ColorsUi.APC_White)
+                    .foregroundColor(APPCColor.white)
                     .frame(height: 25)
                     .padding(.top, 15)
                 

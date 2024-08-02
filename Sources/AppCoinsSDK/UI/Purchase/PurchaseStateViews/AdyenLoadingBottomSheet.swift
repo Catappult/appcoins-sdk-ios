@@ -17,7 +17,7 @@ internal struct AdyenLoadingBottomSheet: View {
         VStack(spacing: 0) {
             ZStack {
                 ActivityIndicatorView(
-                    isVisible: .constant(true), type: .growingArc(ColorsUi.APC_Gray, lineWidth: 1.5))
+                    isVisible: .constant(true), type: .growingArc(APPCColor.gray, lineWidth: 1.5))
                 .frame(width: 41, height: 41)
                 
                 Image("loading-appc-icon", bundle: Bundle.module)

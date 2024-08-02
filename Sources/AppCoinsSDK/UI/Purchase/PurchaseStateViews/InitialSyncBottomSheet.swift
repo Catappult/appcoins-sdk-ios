@@ -16,7 +16,7 @@ internal struct InitialSyncBottomSheet: View {
     internal var body: some View {
 
         ZStack {
-            ColorsUi.APC_DarkBlue
+            APPCColor.darkBlue
 
             Image("wallet-sync-shades", bundle: Bundle.module)
                 .resizable()
@@ -33,7 +33,7 @@ internal struct InitialSyncBottomSheet: View {
                 
                 Text(Constants.titleWalletInitialSync)
                     .font(FontsUi.APC_Title3_Bold)
-                    .foregroundColor(ColorsUi.APC_White)
+                    .foregroundColor(APPCColor.white)
                     .multilineTextAlignment(.center)
                     .frame(width: 296, height: 56)
                     .padding(.top, 14)
@@ -47,26 +47,26 @@ internal struct InitialSyncBottomSheet: View {
                 VStack(spacing: 0) {
                     Text(Constants.subtitleWalletInitialSync)
                         .font(FontsUi.APC_Caption1_Bold)
-                        .foregroundColor(ColorsUi.APC_White)
+                        .foregroundColor(APPCColor.white)
                         .multilineTextAlignment(.center)
                     
                     StyledText(
                         Constants.bodyWalletInitialSync,
                         textStyle: FontsUi.APC_Caption1,
                         boldStyle: FontsUi.APC_Caption1_Bold,
-                        textColorRegular: ColorsUi.APC_White,
-                        textColorBold: ColorsUi.APC_Pink)
+                        textColorRegular: APPCColor.white,
+                        textColorBold: APPCColor.pink)
                         .multilineTextAlignment(.center)
                 }.frame(width: 280, height: 48)
                 .padding(.top, 16)
                 
                 Button(action: SyncWalletViewModel.shared.importWallet) {
                     ZStack {
-                        ColorsUi.APC_Pink
+                        APPCColor.pink
                         
                         Text(Constants.syncWallet)
                             .font(FontsUi.APC_Body_Bold)
-                            .foregroundColor(ColorsUi.APC_White)
+                            .foregroundColor(APPCColor.white)
                     }
                     .frame(width: UIScreen.main.bounds.size.width - 48, height: 48)
                     .cornerRadius(10)
@@ -76,7 +76,7 @@ internal struct InitialSyncBottomSheet: View {
                 Button(action: viewModel.skipWalletSync) {
                     Text(Constants.skipAndBuy)
                         .font(FontsUi.APC_Footnote_Bold)
-                        .foregroundColor(ColorsUi.APC_White)
+                        .foregroundColor(APPCColor.white)
                         .padding(.top, 14)
                 }
                     

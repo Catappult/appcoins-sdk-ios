@@ -16,13 +16,13 @@ internal struct PaymentMethodQuickIcon: View {
         URLImage(icon,
                  inProgress: { progress in
                     RoundedRectangle(cornerRadius: 0)
-                        .foregroundColor(ColorsUi.APC_LightGray)
+                        .foregroundColor(APPCColor.lightGray)
                         .frame(width: 48, height: 48)
                         .clipShape(Circle())
                     },
                  failure: {error,retry in
                     RoundedRectangle(cornerRadius: 0)
-                        .foregroundColor(ColorsUi.APC_LightGray)
+                        .foregroundColor(APPCColor.lightGray)
                         .frame(width: 48, height: 48)
                         .clipShape(Circle())
                         .onAppear{ retry() }},

@@ -24,12 +24,12 @@ internal struct RadioButtonGroupView: View {
                         }
                     }) {
                         ZStack {
-                            ColorsUi.APC_White
+                            APPCColor.white
                             HStack(spacing: 0) {
                                 PaymentMethodIcon(icon: option.icon, disabled: option.disabled)
                                 
                                 Text(option.label)
-                                    .foregroundColor(option.disabled ? ColorsUi.APC_Gray : ColorsUi.APC_Black)
+                                    .foregroundColor(option.disabled ? APPCColor.gray : APPCColor.black)
                                     .font(FontsUi.APC_Subheadline)
                                     .lineLimit(1)
                                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -38,12 +38,12 @@ internal struct RadioButtonGroupView: View {
                                     Image(systemName: "checkmark.circle.fill")
                                         .resizable()
                                         .edgesIgnoringSafeArea(.all)
-                                        .foregroundColor(ColorsUi.APC_Pink)
+                                        .foregroundColor(APPCColor.pink)
                                         .frame(width: 22, height: 22, alignment: .trailing)
                                         .padding(.trailing, 16)
                                 } else {
                                     Circle()
-                                        .strokeBorder(ColorsUi.APC_LightGray, lineWidth: 2)
+                                        .strokeBorder(APPCColor.lightGray, lineWidth: 2)
                                         .frame(width: 22, height: 22, alignment: .trailing)
                                         .padding(.trailing, 16)
                                 }
@@ -55,11 +55,11 @@ internal struct RadioButtonGroupView: View {
                 
                     if (option.name != options.last?.name) {
                         Divider()
-                            .background(ColorsUi.APC_LightGray)
+                            .background(APPCColor.gray)
                     }
                         
                 }
-            }.background(ColorsUi.APC_White)
+            }.background(APPCColor.white)
                 .frame(width: UIScreen.main.bounds.width - 64)
                 .cornerRadius(13)
         }

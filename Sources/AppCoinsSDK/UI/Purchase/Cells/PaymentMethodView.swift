@@ -23,13 +23,13 @@ internal struct PaymentMethodView: View, Identifiable, Equatable {
                          inProgress: {
                     progress in
                        RoundedRectangle(cornerRadius: 0)
-                           .foregroundColor(ColorsUi.APC_White)
+                           .foregroundColor(APPCColor.white)
                            .frame(width: 24, height: 24)
                            .clipShape(Circle())
                 }, failure: {
                     error,retry in
                        RoundedRectangle(cornerRadius: 0)
-                           .foregroundColor(ColorsUi.APC_White)
+                           .foregroundColor(APPCColor.white)
                            .frame(width: 24, height: 24)
                            .clipShape(Circle())
                             .onAppear{ retry() }
@@ -47,7 +47,7 @@ internal struct PaymentMethodView: View, Identifiable, Equatable {
             }
             
             Text(name)
-                .foregroundColor(disabled ? ColorsUi.APC_Gray : ColorsUi.APC_Black)
+                .foregroundColor(disabled ? APPCColor.gray : APPCColor.black)
                 .font(FontsUi.APC_Subheadline)
                 .lineLimit(1)
         }
