@@ -10,9 +10,7 @@ import Foundation
 internal class AppcSDKInternal {
     
     static internal func initialize() {
-        DispatchQueue.global(qos: .background).async {
-            MMPUseCases.shared.getAttribution { PayFlowUseCases.shared.setPayFlow() }
-        }
+        MMPUseCases.shared.getAttribution { PayFlowUseCases.shared.setPayFlow() }
         AnalyticsUseCases.shared.initialize()
     }
 }
