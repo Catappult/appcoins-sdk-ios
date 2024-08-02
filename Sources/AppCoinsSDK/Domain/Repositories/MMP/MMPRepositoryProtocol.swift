@@ -8,7 +8,7 @@
 import Foundation
 
 internal protocol MMPRepositoryProtocol {
-    func getAttribution()
+    func getAttribution(completion: @escaping () -> Void)
     func getGuestUID() -> String?
-    func getOEMID() -> String?
+    func getOEMID() -> String
 }
