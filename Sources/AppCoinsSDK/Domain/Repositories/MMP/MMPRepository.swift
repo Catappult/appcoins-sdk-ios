@@ -24,9 +24,9 @@ internal class MMPRepository: MMPRepositoryProtocol {
                     if let rawOemID = attributionRaw.oemID, rawOemID != "" { UserDefaults.standard.set(rawOemID, forKey: "attribution-oemid") }
                 case .failure: break
                 }
+                completion()
             }
         }
-        completion()
     }
     
     internal func getGuestUID() -> String? {
