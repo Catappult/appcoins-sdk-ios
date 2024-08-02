@@ -55,7 +55,7 @@ internal class PayFlowClient: PayFlowService {
                 } else {
                     if let data = data, let findResult = try? JSONDecoder().decode(PayFlowDataRaw.self, from: data) {
                         result(.success(findResult))
-                    }  else {
+                    } else {
                         result(.failure(.failed))
                     }
                 }

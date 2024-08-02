@@ -26,7 +26,7 @@ internal class MMPRepository: MMPRepositoryProtocol {
                 }
                 completion()
             }
-        }
+        } else { completion() }
     }
     
     internal func getGuestUID() -> String? {
