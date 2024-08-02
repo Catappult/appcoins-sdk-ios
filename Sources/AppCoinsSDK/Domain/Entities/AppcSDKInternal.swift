@@ -10,7 +10,7 @@ import Foundation
 internal class AppcSDKInternal {
     
     static internal func initialize() {
-        MMPUseCases.shared.getAttribution { PayFlowUseCases.shared.setPayFlow() }
         AnalyticsUseCases.shared.initialize()
+        MMPUseCases.shared.getAttribution { PayFlowUseCases.shared.setPayFlow() }
     }
 }
