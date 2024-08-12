@@ -15,14 +15,38 @@ public class Purchase: Codable {
     public let orderUid: String
     public let payload: String?
     public let created: String
+    public let verification: PurchaseVerification
+
+    public class PurchaseVerification: Codable {
+        public let type: String
+        public let data: PurchaseVerificationData
+        public let signature: String
+        
+        internal init(raw: PurchaseVerificationRaw) {
+            self.type = raw.type
+            self.signature = raw.signature
+            self.data = PurchaseVerificationData(raw: raw.data)
+        }
+    }
     
-    internal init(uid: String, sku: String, state: String, orderUid: String, payload: String?, created: String) {
-        self.uid = uid
-        self.sku = sku
-        self.state = state
-        self.orderUid = orderUid
-        self.payload = payload
-        self.created = created
+    public class PurchaseVerificationData: Codable {
+        public let orderId: String
+        public let packageName: String
+        public let productId: String
+        public let purchaseTime: Int
+        public let purchaseToken: String
+        public let purchaseState: Int
+        public let developerPayload: String
+        
+        internal init(raw: PurchaseVerificationDataRaw) {
+            self.orderId = raw.orderId
+            self.packageName = raw.packageName
+            self.productId = raw.productId
+            self.purchaseTime = raw.purchaseTime
+            self.purchaseToken = raw.purchaseToken
+            self.purchaseState = raw.purchaseState
+            self.developerPayload = raw.developerPayload
+        }
     }
     
     internal init(raw: PurchaseInformationRaw) {
@@ -32,6 +56,7 @@ public class Purchase: Codable {
         self.orderUid = raw.order_uid
         self.payload = raw.payload
         self.created = raw.created
+        self.verification = PurchaseVerification(raw: raw.verification)
     }
     
     internal static func verify(purchaseUID: String, completion: @escaping (Result<Purchase, AppCoinsSDKError>) -> Void ) {

@@ -176,14 +176,13 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
     internal func verifyPurchase(domain: String, uid: String, wa: Wallet, completion: @escaping (Result<Purchase, ProductServiceError>) -> Void) {
         productService.getPurchaseInformation(domain: domain, uid: uid, wa: wa) {
             result in
-            
             switch result {
             case .success(let purchaseRaw):
                 self.productService.getDeveloperPublicKey(domain: domain) {
                     result in
                     switch result {
                     case .success(let publicKeyString):
-                        let verified = self.verifyPurchaseSignature(publicKeyString: publicKeyString, signature: purchaseRaw.verification.signature, message: purchaseRaw.verification.data)
+                        let verified = self.verifyPurchaseSignature(publicKeyString: publicKeyString, signature: purchaseRaw.verification.signature, message: purchaseRaw.verification.originalData)
                         if verified {
                             completion(.success(Purchase(raw: purchaseRaw)))
                         } else {
