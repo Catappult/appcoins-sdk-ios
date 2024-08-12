@@ -18,7 +18,13 @@ internal class APPCServiceClient : APPCService {
     internal func getGuestWallet(guestUID: String, result: @escaping (Result<GuestWalletRaw, APPCServiceError>) -> Void) {
         let route = "/guest_wallet"
         if let url = URL(string: endpoint + route + "?id=\(guestUID)") {
-            let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            
+            var request = URLRequest(url: url)
+            
+            let userAgent = "AppCoinsWalletIOS/.."
+            request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
+            
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
                 if let error = error {
                     if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
                         result(.failure(.noInternet))
