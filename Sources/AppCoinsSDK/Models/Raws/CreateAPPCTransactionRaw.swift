@@ -17,6 +17,7 @@ internal struct CreateAPPCTransactionRaw: Codable {
     internal let type: String
     internal let developerWa: String
     internal let channel: String
+    internal let platform: String
     internal let guestUID: String?
     internal let oemID: String?
     internal let metadata: String?
@@ -31,6 +32,7 @@ internal struct CreateAPPCTransactionRaw: Codable {
         case type = "type"
         case developerWa = "wallets.developer"
         case channel = "channel"
+        case platform = "platform"
         case guestUID = "entity.guest_id"
         case oemID = "entity.oemid"
         case metadata = "metadata"
@@ -41,7 +43,7 @@ internal struct CreateAPPCTransactionRaw: Codable {
         // normalizes the price to adjust to different time zone price syntaxes
         let normalizedPrice = (parameters.appcAmount).replacingOccurrences(of: ",", with: ".")
         
-        return CreateAPPCTransactionRaw(origin: "BDS", domain: parameters.domain, price: normalizedPrice, priceCurrency: "APPC", product: parameters.product, type: "INAPP", developerWa: parameters.developerWa, channel: "IOS", guestUID: parameters.guestUID, oemID: parameters.oemID, metadata: parameters.metadata, reference: parameters.reference
+        return CreateAPPCTransactionRaw(origin: "BDS", domain: parameters.domain, price: normalizedPrice, priceCurrency: "APPC", product: parameters.product, type: "INAPP", developerWa: parameters.developerWa, channel: "IOS", platform: "IOS", guestUID: parameters.guestUID, oemID: parameters.oemID, metadata: parameters.metadata, reference: parameters.reference
         )
     }
     

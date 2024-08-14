@@ -37,9 +37,9 @@ internal class BuildConfiguration {
     static internal var productServiceURL: String {
         switch environment {
             case .debugSDKDev, .releaseSDKDev:
-                return "https://api.dev.catappult.io/productv2/8.20200701"
+                return "https://api.dev.catappult.io/productv2/8.20240812"
             case .debugSDKProd, .releaseSDKProd:
-                return "https://api.catappult.io/productv2/8.20200701"
+                return "https://api.catappult.io/productv2/8.20240812"
         }
     }
     
@@ -73,9 +73,9 @@ internal class BuildConfiguration {
     static internal var billingServiceURL: String {
         switch environment {
             case .debugSDKDev, .releaseSDKDev:
-                return "https://api.dev.catappult.io/broker/8.20200815"
+                return "https://api.dev.catappult.io/broker/8.20240812"
             case .debugSDKProd, .releaseSDKProd:
-                return "https://api.catappult.io/broker/8.20200815"
+                return "https://api.catappult.io/broker/8.20240812"
         }
     }
     
