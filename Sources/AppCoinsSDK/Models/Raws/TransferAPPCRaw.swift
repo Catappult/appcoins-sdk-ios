@@ -15,6 +15,7 @@ internal struct TransferAPPCRaw: Codable {
     internal let priceCurrency: String
     internal let type: String
     internal let userWa: String
+    internal let platform: String
     
     internal enum CodingKeys: String, CodingKey {
         case origin = "origin"
@@ -23,11 +24,12 @@ internal struct TransferAPPCRaw: Codable {
         case priceCurrency = "price.currency"
         case type = "type"
         case userWa = "wallets.user"
+        case platform = "platform"
     }
     
     internal static func from(price: String, currency: String, userWa: String) -> TransferAPPCRaw {
         return TransferAPPCRaw (
-            origin: "BDS", domain: BuildConfiguration.appcDomain, price: price, priceCurrency: currency, type: "TRANSFER", userWa: userWa
+            origin: "BDS", domain: BuildConfiguration.appcDomain, price: price, priceCurrency: currency, type: "TRANSFER", userWa: userWa, platform: "IOS"
         )
     }
     
