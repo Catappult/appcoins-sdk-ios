@@ -193,15 +193,12 @@ internal class TransactionViewModel : ObservableObject {
     }
     
     private func showPaymentMethodsOnBuild(balance: Balance) {
-        if let selected = self.transaction?.paymentMethods.first { self.paymentMethodSelected = selected }
-        
         // Other Payment Methods filtering
         if balance.appcoinsBalance < self.transaction?.appcAmount ?? 0 {
             if let index = self.transaction?.paymentMethods.firstIndex(where: { $0.name == Method.appc.rawValue }) {
                 if var appcPM = self.transaction?.paymentMethods.remove(at: index) {
                     appcPM.disabled = true
                     self.transaction?.paymentMethods.append(appcPM)
-                    if let selected = self.transaction?.paymentMethods.first { self.paymentMethodSelected = selected }
                 }
             }
         }
@@ -215,6 +212,11 @@ internal class TransactionViewModel : ObservableObject {
                     self.lastPaymentMethod = appcPM
                     self.paymentMethodSelected = appcPM
                 } else {
+                    if let paypal = self.transaction?.paymentMethods.first(where: { $0.name == Method.paypalAdyen.rawValue || $0.name == Method.paypalDirect.rawValue }) {
+                        self.paymentMethodSelected = paypal
+                    } else if let selected = self.transaction?.paymentMethods.first {
+                        self.paymentMethodSelected = selected
+                    }
                     self.showOtherPaymentMethods = true
                 }
             case Method.paypalAdyen:
@@ -222,6 +224,11 @@ internal class TransactionViewModel : ObservableObject {
                     self.lastPaymentMethod = paypalPM
                     self.paymentMethodSelected = paypalPM
                 } else {
+                    if let paypal = self.transaction?.paymentMethods.first(where: { $0.name == Method.paypalAdyen.rawValue || $0.name == Method.paypalDirect.rawValue }) {
+                        self.paymentMethodSelected = paypal
+                    } else if let selected = self.transaction?.paymentMethods.first {
+                        self.paymentMethodSelected = selected
+                    }
                     self.showOtherPaymentMethods = true
                 }
             case Method.paypalDirect:
@@ -230,6 +237,11 @@ internal class TransactionViewModel : ObservableObject {
                     self.lastPaymentMethod = paypalPM
                     self.paymentMethodSelected = paypalPM
                 } else {
+                    if let paypal = self.transaction?.paymentMethods.first(where: { $0.name == Method.paypalAdyen.rawValue || $0.name == Method.paypalDirect.rawValue }) {
+                        self.paymentMethodSelected = paypal
+                    } else if let selected = self.transaction?.paymentMethods.first {
+                        self.paymentMethodSelected = selected
+                    }
                     self.showOtherPaymentMethods = true
                 }
             case Method.creditCard:
@@ -237,6 +249,11 @@ internal class TransactionViewModel : ObservableObject {
                     self.lastPaymentMethod = ccPM
                     self.paymentMethodSelected = ccPM
                 } else {
+                    if let paypal = self.transaction?.paymentMethods.first(where: { $0.name == Method.paypalAdyen.rawValue || $0.name == Method.paypalDirect.rawValue }) {
+                        self.paymentMethodSelected = paypal
+                    } else if let selected = self.transaction?.paymentMethods.first {
+                        self.paymentMethodSelected = selected
+                    }
                     self.showOtherPaymentMethods = true
                 }
             default:
@@ -247,6 +264,9 @@ internal class TransactionViewModel : ObservableObject {
                 self.lastPaymentMethod = appcPM
                 self.paymentMethodSelected = appcPM
             } else {
+                if let paypal = self.transaction?.paymentMethods.first(where: { $0.name == Method.paypalAdyen.rawValue || $0.name == Method.paypalDirect.rawValue }) {
+                    self.paymentMethodSelected = paypal
+                }
                 self.showOtherPaymentMethods = true
             }
         }

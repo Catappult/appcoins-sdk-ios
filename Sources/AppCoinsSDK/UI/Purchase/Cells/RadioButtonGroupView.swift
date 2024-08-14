@@ -27,6 +27,8 @@ internal struct RadioButtonGroupView: View {
                             ColorsUi.APC_White
                             HStack(spacing: 0) {
                                 PaymentMethodIcon(icon: option.icon, disabled: option.disabled)
+                                    .frame(width: 24, height: 24)
+                                    .padding(.horizontal, 16)
                                 
                                 Text(option.label)
                                     .foregroundColor(option.disabled ? ColorsUi.APC_Gray : ColorsUi.APC_Black)
