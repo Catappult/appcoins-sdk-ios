@@ -257,6 +257,11 @@ internal class TransactionViewModel : ObservableObject {
                     self.showOtherPaymentMethods = true
                 }
             default:
+                if let paypal = self.transaction?.paymentMethods.first(where: { $0.name == Method.paypalAdyen.rawValue || $0.name == Method.paypalDirect.rawValue }) {
+                    self.paymentMethodSelected = paypal
+                } else if let selected = self.transaction?.paymentMethods.first {
+                    self.paymentMethodSelected = selected
+                }
                 self.showOtherPaymentMethods = true
             }
         } else {
@@ -266,6 +271,8 @@ internal class TransactionViewModel : ObservableObject {
             } else {
                 if let paypal = self.transaction?.paymentMethods.first(where: { $0.name == Method.paypalAdyen.rawValue || $0.name == Method.paypalDirect.rawValue }) {
                     self.paymentMethodSelected = paypal
+                } else if let selected = self.transaction?.paymentMethods.first {
+                    self.paymentMethodSelected = selected
                 }
                 self.showOtherPaymentMethods = true
             }
