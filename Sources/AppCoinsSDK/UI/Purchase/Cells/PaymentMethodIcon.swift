@@ -29,8 +29,7 @@ internal struct PaymentMethodIcon: View {
                        .frame(width: 24, height: 24)
                        .clipShape(Circle())
                         .onAppear{ retry() }
-            },
-                     content: {
+            }, content: {
                 image in
                     image
                         .resizable()
