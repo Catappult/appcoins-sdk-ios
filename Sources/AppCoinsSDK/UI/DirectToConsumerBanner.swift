@@ -10,7 +10,7 @@ import SwiftUI
 struct DirectToConsumerBanner: View {
     
 //    var flavor: Flavor
-    var discount: Int
+    var discount: Int = 10
     
     var body: some View {
         VStack(spacing: 0) {

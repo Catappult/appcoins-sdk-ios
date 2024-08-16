@@ -47,7 +47,8 @@ struct PurchaseDetailView: View {
                 }
             }
             
-        }.frame(width: UIScreen.main.bounds.size.width, height: height )
-            .cornerRadius(13, corners: [.topLeft, .topRight])
+        }
+        .frame(width: UIScreen.main.bounds.size.width, height: height)
+        .cornerRadius(13, corners: [.topLeft, .topRight])
     }
 }

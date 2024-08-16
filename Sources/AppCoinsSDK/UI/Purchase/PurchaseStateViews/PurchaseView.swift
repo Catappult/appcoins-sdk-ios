@@ -74,7 +74,7 @@ internal struct PurchaseView: View {
         
         ZStack {
             
-            ColorsUi.APC_DarkBlue
+            
             
             VStack(spacing: 0) {
                 PurchaseBannerView(transactionViewModel: transactionViewModel, height: blueStripeHeight)
