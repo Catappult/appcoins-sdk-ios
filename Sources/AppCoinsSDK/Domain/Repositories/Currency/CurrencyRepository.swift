@@ -24,7 +24,7 @@ internal class CurrencyRepository: CurrencyRepositoryProtocol {
                         currencyList.append(Currency(currencyRaw: itemRaw))
                     }
                     self.CurrencyListCache.setValue(currencyList, forKey: "currencyList", storageOption: .memory)
-                    self.CurrencyListCache.setValue(currencyList, forKey: "currencyList", storageOption: .disk(ttl: 1800)) // 30min
+                    self.CurrencyListCache.setValue(currencyList, forKey: "currencyList", storageOption: .disk(ttl: 1800))
                     completion(.success(currencyList))
                 case .failure(let error):
                     completion(.failure(error))
