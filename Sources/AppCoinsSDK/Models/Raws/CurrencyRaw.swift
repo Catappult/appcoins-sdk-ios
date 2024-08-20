@@ -22,4 +22,19 @@ internal struct CurrencyRaw: Codable {
         case type = "type"
         case flag = "flag"
     }
+    
+    
+}
+
+internal struct CurrencyListRaw: Codable {
+    
+    let items: [CurrencyRaw]
+    let next: String?
+    let previous: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case items = "items"
+        case next = "next"
+        case previous = "previous"
+    }
 }
