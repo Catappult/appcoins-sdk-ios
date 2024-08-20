@@ -23,7 +23,6 @@ internal class CurrencyRepository: CurrencyRepositoryProtocol {
                     for itemRaw in currencyListRaw.items {
                         currencyList.append(Currency(currencyRaw: itemRaw))
                     }
-                    self.CurrencyListCache.setValue(currencyList, forKey: "currencyList", storageOption: .memory)
                     self.CurrencyListCache.setValue(currencyList, forKey: "currencyList", storageOption: .disk(ttl: 24 * 3600))
                     completion(.success(currencyList))
                 case .failure(let error):
