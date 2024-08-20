@@ -20,8 +20,6 @@ internal class Currency: Codable {
         self.label = currencyRaw.label
         self.sign = currencyRaw.sign
         self.type = currencyRaw.type
-        if let url = URL(string: currencyRaw.flag) {
-            self.flag = url
-        } else { self.flag = nil }
+        self.flag = URL(string: currencyRaw.flag)
     }
 }
