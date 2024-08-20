@@ -33,5 +33,5 @@ internal protocol AppCoinBillingService {
     
     func getBillingAgreement(wa: Wallet, completion: @escaping (Result<Bool, TransactionError>) -> Void)
     
-    func getSupportedCurrencies(result: @escaping (Result<CurrencyListRaw, BillingError>) -> Void)
+    func getSupportedCurrencies(result: @escaping (Result<[CurrencyRaw], BillingError>) -> Void)
 }

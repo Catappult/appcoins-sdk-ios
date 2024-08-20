@@ -20,7 +20,7 @@ internal class CurrencyRepository: CurrencyRepositoryProtocol {
                 switch result {
                 case .success(let currencyListRaw):
                     var currencyList: [Currency] = []
-                    for itemRaw in currencyListRaw.items {
+                    for itemRaw in currencyListRaw {
                         currencyList.append(Currency(currencyRaw: itemRaw))
                     }
                     self.CurrencyListCache.setValue(currencyList, forKey: "currencyList", storageOption: .disk(ttl: 30 * 24 * 3600))

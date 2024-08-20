@@ -29,12 +29,24 @@ internal struct CurrencyRaw: Codable {
 internal struct CurrencyListRaw: Codable {
     
     let items: [CurrencyRaw]
-    let next: String?
-    let previous: String?
+    let next: Cursor?
+    let previous: Cursor?
     
     enum CodingKeys: String, CodingKey {
         case items = "items"
         case next = "next"
         case previous = "previous"
+    }
+    
+    internal struct Cursor: Codable {
+        let cursor: String
+        let query: String
+        let url: String
+        
+        enum CodingKeys: String, CodingKey {
+            case cursor = "cursor"
+            case query = "query"
+            case url = "url"
+        }
     }
 }
