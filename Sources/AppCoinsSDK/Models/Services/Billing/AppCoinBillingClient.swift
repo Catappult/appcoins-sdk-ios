@@ -553,4 +553,32 @@ internal class AppCoinBillingClient : AppCoinBillingService {
         }
     }
     
+    internal func cacheUserCurrency(result: @escaping (Result<UserCurrencyRaw, BillingError>) -> Void) {
+        if let requestURL = URL(string: "\(endpoint)/exchanges/APPC/convert/1.0") {
+            var request = URLRequest(url: requestURL)
+            
+            request.httpMethod = "GET"
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.timeoutInterval = 10
+            
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                
+                if let error = error {
+                    if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
+                        result(.failure(.noInternet))
+                    } else {
+                        result(.failure(.failed))
+                    }
+                } else {
+                    if let data = data, let findResult = try? JSONDecoder().decode(UserCurrencyRaw.self, from: data) {
+                        result(.success(findResult))
+                    } else {
+                        result(.failure(.failed))
+                    }
+                }
+            }
+            task.resume()
+        }
+    }
+    
 }
