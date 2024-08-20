@@ -30,60 +30,7 @@ The billing flow in your application with the SDK is as follows:
    7. This will automatically write your app’s identifier in the "Keychain Groups" text box, you should replace it with “com.aptoide.appcoins-wallet“;
    8. Xcode will automatically generate an entitlements file (e.g., YourAppName.entitlements) and add it to your project;
 
-3. **Add StoreKit External Purchase Entitlement**  
-   To comply with Apple's rules for Alternative Payment Service Providers the application will need to add the StoreKit External Purchase Entitlement. To do so, follow these steps:
-   1. Select your project in the project navigator (left sidebar);
-   2. Select your target under "TARGETS";
-   3. Go to the "Signing & Capabilities" tab;
-   4. Click the "+" button to add a new capability;
-   5. Search for "StoreKit External Purchase" and select it;
-   6. Enable the "StoreKit External Purchase" capability by double-clicking it;
-
-4. **Add StoreKit External Purchase Property List Key**  
-   To comply with Apple's rules for Alternative Payment Service Providers the application will need to add a Property List Key (SKExternalPurchase) indicating the countries where your application supports external purchases. To do this, follow these steps:
-
-   1. In the project navigator (left sidebar), select your project.
-   2. Under "TARGETS", select your target.
-   3. Navigate to the "Info" tab.
-   4. If it doesn't already exist, add a new property called "SKExternalPurchase".
-   5. Click the "+" button to add a country to the list.
-
-   The list of EU country codes to add if your app supports alternative payment processing for all countries in the European Union is the following:
-
-   ```xml
-   <key>SKExternalPurchase</key>
-   	<array>
-   		<string>at</string>
-   		<string>be</string>
-   		<string>bg</string>
-   		<string>hr</string>
-   		<string>cy</string>
-   		<string>cz</string>
-   		<string>dk</string>
-   		<string>ee</string>
-   		<string>fi</string>
-   		<string>fr</string>
-   		<string>de</string>
-   		<string>gr</string>
-   		<string>hu</string>
-   		<string>ie</string>
-   		<string>it</string>
-   		<string>lv</string>
-   		<string>lt</string>
-   		<string>lu</string>
-   		<string>mt</string>
-   		<string>nl</string>
-   		<string>pl</string>
-   		<string>pt</string>
-   		<string>ro</string>
-   		<string>sk</string>
-   		<string>si</string>
-   		<string>es</string>
-   		<string>se</string>
-   	</array>
-   ```
-
-5. **Add AppCoins SDK URL Type**  
+3. **Add AppCoins SDK URL Type**  
    To manage redirect deep links for specific payment method integrations, your application must include a URL Type in the info.plist file. To do this, follow these steps:
    1. In the project navigator (left sidebar), select your project.
    2. Under "TARGETS", select your target.
@@ -92,7 +39,7 @@ The billing flow in your application with the SDK is as follows:
    5. Click the "+" button to add a new URL Type.
    6. Set the URL Scheme to "$(PRODUCT_BUNDLE_IDENTIFIER).iap" and the role to "Editor".
 
-6. **Add AppCoins Wallet Queried URL Scheme**  
+4. **Add AppCoins Wallet Queried URL Scheme**  
    To enable the SDK to detect the presence of the AppCoins Wallet app, allowing users to make payments using their Wallet, you need to include the AppCoins Wallet URL scheme in your list of queried URL schemes. Follow these steps to achieve this:
    1. In the project navigator (left sidebar), select your project.
    2. Under "TARGETS", select your target.
@@ -199,6 +146,22 @@ Now that you have the SDK and necessary permissions set-up you can start making 
       let purchases = try await Purchase.unfinished()
       ```
 
+### Testing
+
+To test the SDK integration during development, you'll need to set the installation source for development builds, simulating that the app is being distributed through Aptoide. This action will enable the SDK's `isAvailable` method.
+
+Follow these steps:
+
+1. In your target build settings, search for "Marketplaces".
+2. Under "Deployment", set the key "Marketplaces" or "Alternative Distribution - Marketplaces" to "com.aptoide.ios.store".
+
+   ![d9d8b6a-image](https://github.com/user-attachments/assets/6b804dde-26c1-4d60-8f1f-42a95c4fdf81)
+3. In your scheme, go to the "Run" tab, then navigate to the "Options" tab. In the "Distribution" dropdown, select "com.aptoide.ios.store".
+
+   ![3af7e14-image](https://github.com/user-attachments/assets/f0a4c178-60b2-40c0-9984-183875ed1686)
+
+For more information, please refer to Apple's official documentation: <https://developer.apple.com/documentation/appdistribution/distributing-your-app-on-an-alternative-marketplace#Test-your-app-during-development>
+
 ## Extra Steps
 
 ### Add Localization
@@ -242,6 +205,31 @@ The SDK integration is based on four main classes of objects that handle its log
 - `orderUid`: String - The orderUid associated with the purchase. Example: ZWYXGYZCPWHZDZUK4H
 - `payload`: String - The developer Payload. Example: 707048467.998992
 - `created`: String - The creation date for the purchase. Example: 2023-01-01T10:21:29.014456Z
+- `verification`: PurchaseVerification - The verification data associated with the purchase.
+
+#### PurchaseVerification
+
+`PurchaseVerification` represents an in-app purchase verification data.
+
+**Properties:**
+
+- `type`: String - The type of verification made. Example: GOOGLE
+- `signature`: String - The purchase signature. Example: C4x6cr0HJk0KkRqJXUrRAhdANespHEsyx6ajRjbG5G/v3uBzlthkUe8BO7NXH/1Yi/UhS5sk7huA+hB8EbaQK9bwaiV/Z3dISl5jgYqzSEz1c/PFPwVEHZTMrdU07i/q4FD33x0LZIxrv2XYbAcyNVRY3GLJpgzAB8NvKtumbWrbV6XG4gBmYl9w4oUgJLnedii02beKlvmR7suQcqIqlSKA9WEH2s7sCxB5+kYwjQ5oHttmOQENnJXlFRBQrhW89bl18rccF05ur71wNOU6KgMcwppUccvIfXUpDFKhXQs4Ut6c492/GX1+KzbhotDmxSLQb6aw6/l/kzaSxNyjHg==
+- `data`: PurchaseVerificationData - The data associated with the verification of the purchase.
+
+#### PurchaseVerificationData
+
+`PurchaseVerificationData` represents the body of an in-app purchase verification data.
+
+**Properties:**
+
+- `orderId`: String - The orderUid associated with the purchase. Example: 372EXWQFTVMKS6HI
+- `packageName`: String - Bundle ID of the product's application. Example: com.appcoins.trivialdrivesample
+- `productId`: String - Unique identifier for the product that was purchased. Example: gas
+- `purchaseTime`: Integer - The time the product was purchased. Example: 1583058465823
+- `purchaseToken`: String - The token provided to the user's device when the product was purchased. Example: catappult.inapp.purchase.SZYJ5ZRWUATW5YU2
+- `purchaseState`: Integer - The purchase state of the order. Possible values are: 0 (Purchased) and 1 (Canceled)
+- `developerPayload`: String - A developer-specified string that contains supplemental information about an order. Example: myOrderId:12345678
 
 ### AppcSDK
 
