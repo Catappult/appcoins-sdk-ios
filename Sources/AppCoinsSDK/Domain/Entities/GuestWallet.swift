@@ -22,11 +22,11 @@ internal class GuestWallet: Wallet, Codable {
         self.signature = signature
     }
 
-    func getBalance(currency: Coin, completion: @escaping (Result<Balance, AppcTransactionError>) -> Void) {
+    func getBalance(currency: String, completion: @escaping (Result<Balance, AppcTransactionError>) -> Void) {
         transactionService.getBalance(wa: address) { result in
             switch result {
             case .success(let response):
-                self.billingService.convertCurrency(money: String(response.usdBalance), fromCurrency: .USD, toCurrency: currency) {
+                self.billingService.convertCurrency(money: String(response.usdBalance), fromCurrency: "USD", toCurrency: currency) {
                     result in
                     
                     switch result {

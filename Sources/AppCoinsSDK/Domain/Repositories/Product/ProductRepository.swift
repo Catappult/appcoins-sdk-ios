@@ -51,9 +51,7 @@ internal class ProductRepository: ProductRepositoryProtocol {
     }
     
     internal func getProductAppcValue(product: Product, completion: @escaping (Result<String, BillingError>) -> Void) {
-        
-        if let fromCurrency = Coin(rawValue: product.priceCurrency) {
-            billingService.convertCurrency(money: product.priceValue, fromCurrency: fromCurrency, toCurrency: .APPC) {
+        billingService.convertCurrency(money: product.priceValue, fromCurrency: product.priceCurrency, toCurrency: "APPC") {
                 result in
                 switch result {
                 case .success(let converted):
@@ -62,7 +60,7 @@ internal class ProductRepository: ProductRepositoryProtocol {
                     completion(.failure(error))
                 }
             }
-        }
+        
     }
     
 }

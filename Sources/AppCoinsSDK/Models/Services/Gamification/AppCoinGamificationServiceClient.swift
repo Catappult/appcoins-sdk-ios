@@ -15,9 +15,9 @@ internal class AppCoinGamificationServiceClient : AppCoinGamificationService {
         self.endpoint = endpoint
     }
     
-    internal func getTransactionBonus(address: String, package_name: String, amount: String, currency: Coin, result: @escaping (Result<TransactionBonusRaw, TransactionError>) -> Void) {
+    internal func getTransactionBonus(address: String, package_name: String, amount: String, currency: String, result: @escaping (Result<TransactionBonusRaw, TransactionError>) -> Void) {
         let route = "/bonus_forecast"
-        if let url = URL(string: endpoint + route + "?address=\(address)&package_name=\(package_name)&amount=\(amount)&currency=\(currency.rawValue)") {
+        if let url = URL(string: endpoint + route + "?address=\(address)&package_name=\(package_name)&amount=\(amount)&currency=\(currency)") {
             
             var request = URLRequest(url: url)
             

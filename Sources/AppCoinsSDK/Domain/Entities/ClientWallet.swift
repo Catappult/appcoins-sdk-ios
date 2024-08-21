@@ -39,7 +39,7 @@ internal class ClientWallet: Wallet, Codable {
             let bdname = Utils.readFromPreferences(key: address)
             if bdname != "" { self.name = bdname } else { self.name = address }
             
-            getBalance(currency: .EUR) {
+            getBalance(currency: "EUR") {
                 result in
                 switch result {
                 case .success(let balance):
@@ -51,12 +51,12 @@ internal class ClientWallet: Wallet, Codable {
         }
     }
     
-    internal func getBalance(currency: Coin, completion: @escaping (Result<Balance, AppcTransactionError>) -> Void) {
+    internal func getBalance(currency: String, completion: @escaping (Result<Balance, AppcTransactionError>) -> Void) {
         if let address = self.address {
             transactionService.getBalance(wa: address) { result in
                 switch result {
                 case .success(let response):
-                    self.billingService.convertCurrency(money: String(response.usdBalance), fromCurrency: .USD, toCurrency: currency) {
+                    self.billingService.convertCurrency(money: String(response.usdBalance), fromCurrency: "USD", toCurrency: currency) {
                         result in
                         
                         switch result {

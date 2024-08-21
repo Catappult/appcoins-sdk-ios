@@ -15,12 +15,12 @@ internal class AppCoinBillingClient : AppCoinBillingService {
         self.endpoint = endpoint
     }
 
-    internal func convertCurrency(money: String, fromCurrency: Coin, toCurrency: Coin, result: @escaping (Result<ConvertCurrencyRaw, BillingError>) -> Void) {
+    internal func convertCurrency(money: String, fromCurrency: String, toCurrency: String, result: @escaping (Result<ConvertCurrencyRaw, BillingError>) -> Void) {
         
         if var urlComponents = URLComponents(string: endpoint) {
-            urlComponents.path += "/exchanges/\(fromCurrency.rawValue)/convert/\(money)"
+            urlComponents.path += "/exchanges/\(fromCurrency)/convert/\(money)"
             urlComponents.queryItems = [
-                URLQueryItem(name: "to", value: toCurrency.rawValue)
+                URLQueryItem(name: "to", value: toCurrency)
             ]
             
             if let url = urlComponents.url {
@@ -48,13 +48,13 @@ internal class AppCoinBillingClient : AppCoinBillingService {
         }
     }
     
-    internal func getPaymentMethods(value: String, currency: Coin, result: @escaping (Result<GetPaymentMethodsRaw, BillingError>) -> Void) {
+    internal func getPaymentMethods(value: String, currency: String, result: @escaping (Result<GetPaymentMethodsRaw, BillingError>) -> Void) {
         
         if var urlComponents = URLComponents(string: endpoint) {
             urlComponents.path += "/methods"
             urlComponents.queryItems = [
                 URLQueryItem(name: "price.value", value: value),
-                URLQueryItem(name: "price.currency", value: currency.rawValue),
+                URLQueryItem(name: "price.currency", value: currency),
                 URLQueryItem(name: "channel", value: "IOS")
             ]
             

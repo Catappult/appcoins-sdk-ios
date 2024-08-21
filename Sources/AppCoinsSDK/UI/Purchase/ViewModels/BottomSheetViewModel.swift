@@ -289,7 +289,7 @@ internal class BottomSheetViewModel : ObservableObject {
                     switch result {
                     case .success(let transaction):
                         if let purchaseUID = transaction.purchaseUID {
-                            wallet.getBalance(currency: Coin(rawValue: TransactionViewModel.shared.transaction?.moneyCurrency ?? "") ?? .EUR) {
+                            wallet.getBalance(currency: TransactionViewModel.shared.transaction?.moneyCurrency ?? "EUR") {
                                 result in
                                 switch result {
                                 case .success(let balance):

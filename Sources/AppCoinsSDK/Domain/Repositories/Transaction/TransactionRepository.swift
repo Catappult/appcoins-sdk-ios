@@ -17,24 +17,27 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
     private let walletService: WalletLocalService = WalletLocalClient()
     private let userPreferencesService: UserPreferencesLocalService = UserPreferencesLocalClient()
     
-    internal func getTransactionBonus(address: String, package_name: String, amount: String, currency: Coin, completion: @escaping (Result<TransactionBonus, TransactionError>) -> Void) {
+    internal func getTransactionBonus(address: String, package_name: String, amount: String, currency: String, completion: @escaping (Result<TransactionBonus, TransactionError>) -> Void) {
         gamificationService.getTransactionBonus(address: address, package_name: package_name, amount: amount, currency: currency) {
             result in
             
             switch result {
             case .success(let bonusRaw):
-                if let currency = Coin(rawValue: bonusRaw.currency) {
-                    completion(.success(TransactionBonus(value: bonusRaw.bonus, currency: currency)))
-                } else {
-                    completion(.failure(.failed()))
+                self.billingService.getUserCurrency { result in
+                    switch result {
+                    case .success(let userCurrency):
+                        completion(.success(TransactionBonus(value: bonusRaw.bonus, currency: currency, currencySymbol: userCurrency.sign)))
+                    case .failure: break
+                    }
                 }
+                
             case .failure(let error):
                 completion(.failure(error))
             }
         }
     }
     
-    internal func getPaymentMethods(value: String, currency: Coin, completion: @escaping (Result<[PaymentMethod], BillingError>) -> Void) {
+    internal func getPaymentMethods(value: String, currency: String, completion: @escaping (Result<[PaymentMethod], BillingError>) -> Void) {
         billingService.getPaymentMethods(value: value, currency: currency) {
             result in
             

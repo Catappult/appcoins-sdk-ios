@@ -52,7 +52,7 @@ internal struct PaymentChoiceBottomSheet: View {
                     
                     HStack(spacing: 0) {
                         if let amount = transactionViewModel.transaction?.moneyAmount {
-                            Text((Coin(rawValue: transactionViewModel.transaction?.moneyCurrency ?? "")?.symbol ?? "") + String(amount))
+                            Text((transactionViewModel.transaction?.bonusCurrency ?? "") + String(amount))
                                 .foregroundColor(ColorsUi.APC_Black)
                                 .font(FontsUi.APC_Subheadline_Bold)
                                 .lineLimit(1)

@@ -70,17 +70,21 @@ internal class TransactionViewModel : ObservableObject {
                     self.getProductAppcValue(product: product) {
                         appcValue in
                         
-                        if let moneyAmount = Double(product.priceValue), let productCurrency = Coin(rawValue: product.priceCurrency) {
+                        if let moneyAmount = Double(product.priceValue) {
+                            
+                            print("MONEYAMOUNT: \(moneyAmount)")
+                            
+                            
                             // 2. Get user bonus
-                            self.getTransactionBonus(address: wallet.getWalletAddress(), domain: domain, amount: product.priceValue, currency: productCurrency) {
+                            self.getTransactionBonus(address: wallet.getWalletAddress(), domain: domain, amount: product.priceValue, currency: product.priceCurrency) {
                             transactionBonus in
                             
                                 // 3. Get payment methods available
-                                self.getPaymentMethods(value: product.priceValue, currency: productCurrency) {
+                                self.getPaymentMethods(value: product.priceValue, currency: product.priceCurrency) {
                                     availablePaymentMethods in
 
                                     // 4. Get user's balance
-                                    self.getWalletBalance(wallet: wallet, currency: Coin(rawValue: product.priceCurrency) ?? .EUR) {
+                                    self.getWalletBalance(wallet: wallet, currency: product.priceCurrency ?? "EUR") {
                                         balance in
                                         
                                         let balanceValue = balance.balance
@@ -92,13 +96,17 @@ internal class TransactionViewModel : ObservableObject {
                                             
                                             DispatchQueue.main.async {
                                                 // 6. Build the Transaction UI
-                                                self.transaction = TransactionAlertUi(domain: domain, description: product.title, category: .IAP, sku: product.sku, moneyAmount: moneyAmount, moneyCurrency: product.priceCurrency, appcAmount: appcValue, bonusCurrency: transactionBonus.currency.symbol, bonusAmount: transactionBonus.value, walletBalance: "\(balanceCurrency)\(String(format: "%.2f", balanceValue))", paymentMethods: availablePaymentMethods)
+                                                
+                                                
+                                                print("MONEYAMOUNT: \(moneyAmount)")
+                                                
+                                                self.transaction = TransactionAlertUi(domain: domain, description: product.title, category: .IAP, sku: product.sku, moneyAmount: moneyAmount, moneyCurrency: product.priceCurrency, appcAmount: appcValue, bonusCurrency: transactionBonus.currencySymbol, bonusAmount: transactionBonus.value, walletBalance: "\(balanceCurrency)\(String(format: "%.2f", balanceValue))", paymentMethods: availablePaymentMethods)
                                                 
                                                 let guestUID = MMPUseCases.shared.getGuestUID()
                                                 let oemID = MMPUseCases.shared.getOEMID()
                                                 
                                                 // 7. Build the parameters to process the transaction
-                                                self.transactionParameters = TransactionParameters(value: String(moneyAmount), currency: Coin.EUR.rawValue, developerWa: developerWa, userWa: wallet.getWalletAddress(), domain: domain, product: product.sku, appcAmount: String(appcValue), guestUID: guestUID, oemID: oemID, metadata: self.metadata, reference: self.reference)
+                                                self.transactionParameters = TransactionParameters(value: String(moneyAmount), currency: product.priceCurrency ?? "EUR", developerWa: developerWa, userWa: wallet.getWalletAddress(), domain: domain, product: product.sku, appcAmount: String(appcValue), guestUID: guestUID, oemID: oemID, metadata: self.metadata, reference: self.reference)
                                                 
                                                 // 8. Show payment method options
                                                 self.showPaymentMethodsOnBuild(balance: balance)
@@ -131,7 +139,7 @@ internal class TransactionViewModel : ObservableObject {
         }
     }
 
-    private func getTransactionBonus(address: String, domain: String, amount: String, currency: Coin, completion: @escaping (TransactionBonus) -> Void) {
+    private func getTransactionBonus(address: String, domain: String, amount: String, currency: String, completion: @escaping (TransactionBonus) -> Void) {
         self.transactionUseCases.getTransactionBonus(address: address, package_name: domain, amount: amount, currency: currency) {
             result in
             switch result {
@@ -147,7 +155,7 @@ internal class TransactionViewModel : ObservableObject {
         }
     }
     
-    private func getPaymentMethods(value: String, currency: Coin, completion: @escaping ([PaymentMethod]) -> Void) {
+    private func getPaymentMethods(value: String, currency: String, completion: @escaping ([PaymentMethod]) -> Void) {
         self.transactionUseCases.getPaymentMethods(value: value, currency: currency) {
             result in
             
@@ -165,7 +173,7 @@ internal class TransactionViewModel : ObservableObject {
         }
     }
     
-    private func getWalletBalance(wallet: Wallet, currency: Coin, completion: @escaping (Balance) -> Void) {
+    private func getWalletBalance(wallet: Wallet, currency: String, completion: @escaping (Balance) -> Void) {
         wallet.getBalance(currency: currency) {
             result in
             
