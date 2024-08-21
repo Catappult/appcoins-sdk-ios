@@ -12,17 +12,31 @@ internal class ProductUseCases {
     static var shared : ProductUseCases = ProductUseCases()
     
     private var repository: ProductRepositoryProtocol
+    private var currencyRepository: CurrencyRepositoryProtocol
     
-    private init(repository: ProductRepositoryProtocol = ProductRepository()) {
+    private init(repository: ProductRepositoryProtocol = ProductRepository(), currencyRepository: CurrencyRepositoryProtocol = CurrencyRepository()) {
         self.repository = repository
+        self.currencyRepository = currencyRepository
     }
     
-    internal func getProduct(domain: String, product: String, currency: Coin = .EUR, completion: @escaping (Result<Product, ProductServiceError>) -> Void) {
-        repository.getProduct(domain: domain, product: product, currency: currency) { result in completion(result) }
+    internal func getProduct(domain: String, product: String, completion: @escaping (Result<Product, ProductServiceError>) -> Void) {
+        currencyRepository.getUserCurrency { result in
+            switch result {
+            case .success(let userCurrency): 
+                self.repository.getProduct(domain: domain, product: product, currency: userCurrency) { result in completion(result) }
+            case .failure: break
+            }
+        }
     }
     
-    internal func getAllProducts(domain: String, currency: Coin = .EUR, completion: @escaping (Result<[Product], ProductServiceError>) -> Void) {
-        repository.getAllProducts(domain: domain, currency: currency) { result in completion(result) }
+    internal func getAllProducts(domain: String, completion: @escaping (Result<[Product], ProductServiceError>) -> Void) {
+        currencyRepository.getUserCurrency { result in
+            switch result {
+            case .success(let userCurrency):
+                self.repository.getAllProducts(domain: domain, currency: userCurrency) { result in completion(result) }
+            case .failure: break
+            }
+        }
     }
     
     internal func getProductAppcValue(product: Product, completion: @escaping (Result<String, BillingError>) -> Void) {
