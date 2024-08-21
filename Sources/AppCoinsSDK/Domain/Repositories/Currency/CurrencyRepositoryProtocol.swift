@@ -8,6 +8,5 @@
 import Foundation
 
 internal protocol CurrencyRepositoryProtocol {
-    func cacheUserCurrency()
-    func getUserCurrency() -> UserCurrency?
+    func getUserCurrency(completion: @escaping (Result<Currency, BillingError>) -> Void)
 }

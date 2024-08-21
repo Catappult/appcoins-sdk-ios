@@ -1,23 +1,25 @@
 //
-//  UserCurrency.swift
-//  
+//  Currency.swift
 //
-//  Created by Graciano Caldeira on 20/08/2024.
+//
+//  Created by Graciano Caldeira on 16/08/2024.
 //
 
 import Foundation
 
-internal class UserCurrency: Codable {
+internal class Currency: Codable {
     
     let currency: String
     let label: String
     let sign: String
-    let value: String
+    let type: String?
+    let flag: URL?
     
     init(userCurrencyRaw: UserCurrencyRaw) {
         self.currency = userCurrencyRaw.currency
         self.label = userCurrencyRaw.label
         self.sign = userCurrencyRaw.sign
-        self.value = userCurrencyRaw.value
+        self.type = nil
+        self.flag = nil
     }
 }
