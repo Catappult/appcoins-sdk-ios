@@ -10,7 +10,6 @@ import Foundation
 internal struct TransactionBonus {
     
     internal let value: Double
-    internal let currency: String
-    internal let currencySymbol: String
+    internal let currency: Currency
     
 }

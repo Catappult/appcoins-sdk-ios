@@ -26,7 +26,7 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
                 self.billingService.getUserCurrency { result in
                     switch result {
                     case .success(let userCurrency):
-                        completion(.success(TransactionBonus(value: bonusRaw.bonus, currency: currency, currencySymbol: userCurrency.sign)))
+                        completion(.success(TransactionBonus(value: bonusRaw.bonus, currency: Currency(userCurrencyRaw: userCurrency))))
                     case .failure: break
                     }
                 }
