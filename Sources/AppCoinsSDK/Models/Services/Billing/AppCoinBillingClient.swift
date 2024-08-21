@@ -553,7 +553,7 @@ internal class AppCoinBillingClient : AppCoinBillingService {
         }
     }
     
-    internal func cacheUserCurrency(result: @escaping (Result<UserCurrencyRaw, BillingError>) -> Void) {
+    internal func getUserCurrency(result: @escaping (Result<UserCurrencyRaw, BillingError>) -> Void) {
         if let requestURL = URL(string: "\(endpoint)/exchanges/APPC/convert/1.0") {
             var request = URLRequest(url: requestURL)
             
