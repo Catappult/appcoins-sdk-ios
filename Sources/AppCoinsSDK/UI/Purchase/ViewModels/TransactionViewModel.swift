@@ -81,7 +81,7 @@ internal class TransactionViewModel : ObservableObject {
                                     availablePaymentMethods in
                                     
                                     // 4. Get user's balance
-                                    self.getWalletBalance(wallet: wallet, currency: product.priceCurrency ?? "EUR") {
+                                    self.getWalletBalance(wallet: wallet, currency: product.priceCurrency) {
                                         balance in
                                         
                                         let balanceValue = balance.balance
@@ -100,7 +100,7 @@ internal class TransactionViewModel : ObservableObject {
                                                 let oemID = MMPUseCases.shared.getOEMID()
                                                 
                                                 // 7. Build the parameters to process the transaction
-                                                self.transactionParameters = TransactionParameters(value: String(moneyAmount), currency: product.priceCurrency ?? "EUR", developerWa: developerWa, userWa: wallet.getWalletAddress(), domain: domain, product: product.sku, appcAmount: String(appcValue), guestUID: guestUID, oemID: oemID, metadata: self.metadata, reference: self.reference)
+                                                self.transactionParameters = TransactionParameters(value: String(moneyAmount), currency: product.priceCurrency, developerWa: developerWa, userWa: wallet.getWalletAddress(), domain: domain, product: product.sku, appcAmount: String(appcValue), guestUID: guestUID, oemID: oemID, metadata: self.metadata, reference: self.reference)
                                                 
                                                 // 8. Show payment method options
                                                 self.showPaymentMethodsOnBuild(balance: balance)
