@@ -3079,8 +3079,8 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You can use this bonus in your next purchase."
+            "state" : "translated",
+            "value" : "يمكن استخدام هذه المكافأة في مشترياتك القادمة."
           }
         },
         "bn" : {
@@ -3091,14 +3091,14 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You can use this bonus in your next purchase."
+            "state" : "translated",
+            "value" : "Du kannst diesen Bonus bei deinem nächsten Einkauf verwenden."
           }
         },
         "el" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You can use this bonus in your next purchase."
+            "state" : "translated",
+            "value" : "Μπορείτε να χρησιμοποιήσετε αυτό το bonus στην επόμενη αγορά σας."
           }
         },
         "en" : {
@@ -3109,158 +3109,158 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You can use this bonus in your next purchase."
+            "state" : "translated",
+            "value" : "Puedes usar este bonus en tu próxima compra."
           }
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You can use this bonus in your next purchase."
+            "state" : "translated",
+            "value" : "شما می‌توانید از این بونوس در خرید بعدی خود استفاده کنید."
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You can use this bonus in your next purchase."
+            "state" : "translated",
+            "value" : "Vous pouvez utiliser ce bonus lors de votre prochain achat."
           }
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You can use this bonus in your next purchase."
+            "state" : "translated",
+            "value" : "आप इस बोनस का उपयोग अपनी अगली खरीद में कर सकते हैं।"
           }
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You can use this bonus in your next purchase."
+            "state" : "translated",
+            "value" : "A bónuszt a következő vásárlás során használhatod fel."
           }
         },
         "id" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You can use this bonus in your next purchase."
+            "state" : "translated",
+            "value" : "Anda bisa menggunakan bonus ini di pembelian berikutnya."
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You can use this bonus in your next purchase."
+            "state" : "translated",
+            "value" : "Potrai usare questo bonus al tuo prossimo acquisto."
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You can use this bonus in your next purchase."
+            "state" : "translated",
+            "value" : "このボーナスは次回のお買い物でご利用いただけます。"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You can use this bonus in your next purchase."
+            "state" : "translated",
+            "value" : "다음 구매에서 이 보너스를 사용하실 수 있습니다."
           }
         },
         "mr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You can use this bonus in your next purchase."
+            "state" : "translated",
+            "value" : "आपल्या पुढील खरेदीत आपण हा बोन वापरु शकता."
           }
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You can use this bonus in your next purchase."
+            "state" : "translated",
+            "value" : "Anda boleh guna bonus ini dalam pembelian seterusnya."
           }
         },
         "my" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You can use this bonus in your next purchase."
+            "state" : "translated",
+            "value" : "ဤေဘာနပ္စ္ကို သင့္ေနာက္တစ္္ႀကိမ္ ၀ယ္ယူမႈတြင္ သံုးႏိုင္္ပါသည္။"
           }
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You can use this bonus in your next purchase."
+            "state" : "translated",
+            "value" : "Je kunt deze bonus bij je volgende aankoop gebruiken."
           }
         },
         "pa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You can use this bonus in your next purchase."
+            "state" : "translated",
+            "value" : "ਤੁਸੀਂ ਇਸ ਬੋਨਸ ਨੂੰ ਆਪਣੀ ਅਗਲੀ ਖਰੀਦ ਵਿਚ ਵਰਤ ਸਕਦੇ ਹੋ|"
           }
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You can use this bonus in your next purchase."
+            "state" : "translated",
+            "value" : "Wykorzystaj ten bonus przy następnych zakupach."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You can use this bonus in your next purchase."
+            "state" : "translated",
+            "value" : "Você pode usar este bônus em sua próxima compra."
           }
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You can use this bonus in your next purchase."
+            "state" : "translated",
+            "value" : "Podes usar este bónus na tua próxima compra."
           }
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You can use this bonus in your next purchase."
+            "state" : "translated",
+            "value" : "Poți folosi acest bonus la următoarea ta achiziție."
           }
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You can use this bonus in your next purchase."
+            "state" : "translated",
+            "value" : "Вы можете использовать этот бонус при следующей покупке."
           }
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You can use this bonus in your next purchase."
+            "state" : "translated",
+            "value" : "Ovaj bonus možete da upotrebite prilikom sledeće kupovine."
           }
         },
         "th" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You can use this bonus in your next purchase."
+            "state" : "translated",
+            "value" : "คุณสามารถใช้โบนัสนี้ในการซื้อครั้งต่อไปของคุณ"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You can use this bonus in your next purchase."
+            "state" : "translated",
+            "value" : "Bu bonusu bir sonraki satın alma işleminde kullanabilirsin."
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You can use this bonus in your next purchase."
+            "state" : "translated",
+            "value" : "Ви можете використати цей бонус під час наступної покупки."
           }
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You can use this bonus in your next purchase."
+            "state" : "translated",
+            "value" : "Bạn có thể sử dụng phần thưởng này trong lần mua hàng tiếp theo."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You can use this bonus in your next purchase."
+            "state" : "translated",
+            "value" : "您可以在下次购买时使用此奖金。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You can use this bonus in your next purchase."
+            "state" : "translated",
+            "value" : "您可以在下次購買時使用獎勵。"
           }
         }
       }
@@ -3271,8 +3271,8 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Purchase Bonus: %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "مكافأة المشتريات: %@ AppCoins Credits"
           }
         },
         "bn" : {
@@ -3283,14 +3283,14 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Purchase Bonus: %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "Kaufbonus: %@ in AppCoins Credits"
           }
         },
         "el" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Purchase Bonus: %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "Bonus Αγοράς: %@ σε AppCoins Credits"
           }
         },
         "en" : {
@@ -3301,20 +3301,20 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Purchase Bonus: %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "Bonus de Compra: %@ en AppCoins Credits"
           }
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Purchase Bonus: %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "بونوس بخرید: %@ در AppCoins Credits"
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Purchase Bonus: %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "Bonus d'achat : %@ en AppCoins Credits"
           }
         },
         "hi" : {
@@ -3325,56 +3325,56 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Purchase Bonus: %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "Vásárlás utáni bónusz: %@ AppCoins kreditben"
           }
         },
         "id" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Purchase Bonus: %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "Bonus Pembelian: Kredit AppCoins %@"
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Purchase Bonus: %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "Bonus acquisti: %@ in AppCoins Credits"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Purchase Bonus: %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "購入ボーナス：%@のAppCoinsクレジット"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Purchase Bonus: %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "구매 보너스: AppCoins 크레디트로 %@"
           }
         },
         "mr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Purchase Bonus: %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "खरेदी बोनस: अॅपकॉईन्स क्रेडीटस मध्ये %@"
           }
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Purchase Bonus: %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "Bonus Pembelian: %@ dalam Kredit AppCoins"
           }
         },
         "my" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Purchase Bonus: %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "ဝယ္ယူမႈေဘာနပ္စ္ - %@ ကို AppCoins Credits အေနျဖင့္"
           }
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Purchase Bonus: %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "Aankoopbonus: %@ in AppCoins Credits"
           }
         },
         "pa" : {
@@ -3385,68 +3385,68 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Purchase Bonus: %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "Bonus zakupowy: %@ w AppCoins Credits"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Purchase Bonus: %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "Bônus de Compra: %@ em Créditos AppCoins"
           }
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Purchase Bonus: %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "Bónus de compra: %@ em AppCoins Credits"
           }
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Purchase Bonus: %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "Bonus la achiziție: %@ în AppCoins Credits"
           }
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Purchase Bonus: %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "Бонус за покупку: %@ в AppCoins Credits"
           }
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Purchase Bonus: %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "Kupite bonus od: %@ u AppCoins Credits"
           }
         },
         "th" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Purchase Bonus: %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "โบนัสการซื้อ: %@ ในเครดิต AppCoins"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Purchase Bonus: %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "Satın Alma Bonusu: %@ AppCoins Kredisi"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Purchase Bonus: %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "Бонус за покупку: %@ в AppCoin Credits"
           }
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Purchase Bonus: %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "Tiền thưởng mua hàng: %@ bằng AppCoins Credits"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Purchase Bonus: %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "购买奖金：价值%@的AppCoins 积分"
           }
         },
         "zh-Hant" : {
