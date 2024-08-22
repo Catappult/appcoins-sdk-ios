@@ -2,7 +2,7 @@
 //  CurrencyUseCases.swift
 //
 //
-//  Created by Graciano Caldeira on 20/08/2024.
+//  Created by Graciano Caldeira on 16/08/2024.
 //
 
 import Foundation
@@ -20,4 +20,7 @@ internal class CurrencyUseCases {
         repository.getUserCurrency { result in completion(result) }
     }
     
+    internal func getSupportedCurrencies(completion: @escaping (Result<[Currency], BillingError>) -> Void) {
+        self.repository.getSupportedCurrencies { result in completion(result) }
+    }
 }

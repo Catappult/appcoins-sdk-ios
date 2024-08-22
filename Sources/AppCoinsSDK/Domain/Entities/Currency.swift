@@ -21,5 +21,12 @@ internal class Currency: Codable {
         self.sign = userCurrencyRaw.sign
         self.type = nil
         self.flag = nil
+    
+    init(currencyRaw: CurrencyRaw) {
+        self.currency = currencyRaw.currency
+        self.label = currencyRaw.label
+        self.sign = currencyRaw.sign
+        self.type = currencyRaw.type
+        self.flag = URL(string: currencyRaw.flag)
     }
 }
