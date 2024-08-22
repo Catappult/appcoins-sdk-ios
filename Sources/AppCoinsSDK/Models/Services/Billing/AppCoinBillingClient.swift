@@ -554,43 +554,54 @@ internal class AppCoinBillingClient : AppCoinBillingService {
     }
     
     internal func getSupportedCurrencies(result: @escaping (Result<[CurrencyRaw], BillingError>) -> Void) {
-        var allCurrencies: [CurrencyRaw] = []
+        var currencies: [CurrencyRaw] = []
         
-        func getAllCurrencies(url: URL? = nil) {
-            if let requestURL = url ?? URL(string: "\(endpoint)/currencies?type=FIAT&icon.height=128") {
-                var request = URLRequest(url: requestURL)
+        if var urlComponents = URLComponents(string: endpoint) {
+            urlComponents.path += "/currencies"
+            urlComponents.queryItems = [
+                URLQueryItem(name: "type", value: "FIAT"),
+                URLQueryItem(name: "icon.height", value: "128")
+            ]
+            
+            if let url = urlComponents.url {
                 
-                request.httpMethod = "GET"
-                request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-                request.timeoutInterval = 10
-                
-                let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                func getNextCurrenciesBatch(url: URL) {
+                    var request = URLRequest(url: url)
                     
-                    if let error = error {
-                        if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
-                            result(.failure(.noInternet))
-                        } else {
-                            result(.failure(.failed))
-                        }
-                    } else {
-                        if let data = data, let findResult = try? JSONDecoder().decode(CurrencyListRaw.self, from: data) {
-                            
-                            allCurrencies.append(contentsOf: findResult.items)
-                            
-                            if let nextString = findResult.next?.url, let nextURL = URL(string: nextString) {
-                                getAllCurrencies(url: nextURL)
+                    print("request: \(request)")
+                    
+                    request.httpMethod = "GET"
+                    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+                    request.timeoutInterval = 10
+                    
+                    let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                        
+                        if let error = error {
+                            if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
+                                result(.failure(.noInternet))
                             } else {
-                                result(.success(allCurrencies))
+                                result(.failure(.failed))
                             }
                         } else {
-                            result(.failure(.failed))
+                            if let data = data, let findResult = try? JSONDecoder().decode(CurrencyListRaw.self, from: data) {
+                                
+                                currencies.append(contentsOf: findResult.items)
+                                
+                                if let nextString = findResult.next?.url, let nextURL = URL(string: nextString) {
+                                    getNextCurrenciesBatch (url: nextURL)
+                                } else {
+                                    result(.success(currencies))
+                                }
+                            } else {
+                                result(.failure(.failed))
+                            }
                         }
                     }
+                    task.resume()
                 }
-                task.resume()
+                getNextCurrenciesBatch(url: url)
             }
         }
-        getAllCurrencies()
     }
     
 }
