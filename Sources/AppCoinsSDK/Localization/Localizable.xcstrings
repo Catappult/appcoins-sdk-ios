@@ -3077,7 +3077,7 @@
       }
     },
     "purchase_bonus_body" : {
-      "comment" : "You can see this bonus in your next purchase.",
+      "comment" : "You can use this bonus in your next purchase.",
       "extractionState" : "manual",
       "localizations" : {
         "ar" : {
@@ -3107,7 +3107,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "You can see this bonus in your next purchase."
+            "value" : "You can use this bonus in your next purchase."
           }
         },
         "es" : {
@@ -3299,7 +3299,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Purchase Bonus: %@ in APPC Credits"
+            "value" : "Purchase Bonus: %@ in AppCoins Credits"
           }
         },
         "es" : {
