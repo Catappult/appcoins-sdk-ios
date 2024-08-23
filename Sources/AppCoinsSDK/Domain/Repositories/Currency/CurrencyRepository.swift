@@ -19,7 +19,7 @@ internal class CurrencyRepository: CurrencyRepositoryProtocol {
                 AppCoinBillingService.getUserCurrency { result in
                     switch result {
                     case .success(let userCurrencyRaw):
-                        self.UserCurrency.setValue(Currency(userCurrencyRaw: userCurrencyRaw), forKey: "userCurrency", storageOption: .disk(ttl: 24 * 3600))
+                        self.UserCurrency.setValue(Currency(userCurrencyRaw: userCurrencyRaw), forKey: "userCurrency", storageOption: .memory)
                         completion(.success(Currency(userCurrencyRaw: userCurrencyRaw)))
                     case .failure(let error): completion(.failure(error))
                     }

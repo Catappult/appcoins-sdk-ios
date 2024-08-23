@@ -93,7 +93,6 @@ internal class TransactionViewModel : ObservableObject {
                                             
                                             DispatchQueue.main.async {
                                                 // 6. Build the Transaction UI
-                                                
                                                 self.transaction = TransactionAlertUi(domain: domain, description: product.title, category: .IAP, sku: product.sku, moneyAmount: moneyAmount, moneyCurrency: product.priceCurrency, appcAmount: appcValue, bonusCurrency: transactionBonus.currency.sign, bonusAmount: transactionBonus.value, walletBalance: "\(balanceCurrency)\(String(format: "%.2f", balanceValue))", paymentMethods: availablePaymentMethods)
                                                 
                                                 let guestUID = MMPUseCases.shared.getGuestUID()
