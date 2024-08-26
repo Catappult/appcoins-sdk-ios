@@ -20,8 +20,8 @@ internal class CurrencyRepository: CurrencyRepositoryProtocol {
             AppCoinBillingService.convertCurrency(money: "1.0", fromCurrency: "APPC", toCurrency: nil) { result in
                 switch result {
                 case .success(let userCurrencyRaw):
-                    self.UserCurrency.setValue(Currency(userCurrencyRaw: userCurrencyRaw), forKey: "userCurrency", storageOption: .memory)
-                    completion(.success(Currency(userCurrencyRaw: userCurrencyRaw)))
+                    self.UserCurrency.setValue(Currency(convertCurrencyRaw: userCurrencyRaw), forKey: "userCurrency", storageOption: .memory)
+                    completion(.success(Currency(convertCurrencyRaw: userCurrencyRaw)))
                 case .failure(let error): completion(.failure(error))
                 }
             }

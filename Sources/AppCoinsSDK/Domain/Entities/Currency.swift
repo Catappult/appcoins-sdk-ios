@@ -16,9 +16,9 @@ internal class Currency: Codable {
     let flag: URL?
     
     init(convertCurrencyRaw: ConvertCurrencyRaw) {
-        self.currency = userCurrencyRaw.currency
-        self.label = userCurrencyRaw.label
-        self.sign = userCurrencyRaw.sign
+        self.currency = convertCurrencyRaw.currency
+        self.label = convertCurrencyRaw.label
+        self.sign = convertCurrencyRaw.sign
         self.type = nil
         self.flag = nil
     }
