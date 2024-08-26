@@ -15,7 +15,7 @@ internal class AppCoinBillingClient : AppCoinBillingService {
         self.endpoint = endpoint
     }
 
-    internal func convertCurrency(money: String, fromCurrency: String, toCurrency: String, result: @escaping (Result<ConvertCurrencyRaw, BillingError>) -> Void) {
+    internal func convertCurrency(money: String, fromCurrency: String, toCurrency: String?, result: @escaping (Result<ConvertCurrencyRaw, BillingError>) -> Void) {
         
         if var urlComponents = URLComponents(string: endpoint) {
             urlComponents.path += "/exchanges/\(fromCurrency)/convert/\(money)"
@@ -550,6 +550,55 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                 }
             })
             task.resume()
+        }
+    }     
+      
+    internal func getSupportedCurrencies(result: @escaping (Result<[CurrencyRaw], BillingError>) -> Void) {
+        var currencies: [CurrencyRaw] = []
+        
+        if var urlComponents = URLComponents(string: endpoint) {
+            urlComponents.path += "/currencies"
+            urlComponents.queryItems = [
+                URLQueryItem(name: "type", value: "FIAT"),
+                URLQueryItem(name: "icon.height", value: "128")
+            ]
+            
+            if let url = urlComponents.url {
+                
+                func getNextCurrenciesBatch(url: URL) {
+                    var request = URLRequest(url: url)
+                    
+                    request.httpMethod = "GET"
+                    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+                    request.timeoutInterval = 10
+                    
+                    let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                        
+                        if let error = error {
+                            if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
+                                result(.failure(.noInternet))
+                            } else {
+                                result(.failure(.failed))
+                            }
+                        } else {
+                            if let data = data, let findResult = try? JSONDecoder().decode(CurrencyListRaw.self, from: data) {
+                                
+                                currencies.append(contentsOf: findResult.items)
+                                
+                                if let nextString = findResult.next?.url, let nextURL = URL(string: nextString) {
+                                    getNextCurrenciesBatch (url: nextURL)
+                                } else {
+                                    result(.success(currencies))
+                                }
+                            } else {
+                                result(.failure(.failed))
+                            }
+                        }
+                    }
+                    task.resume()
+                }
+                getNextCurrenciesBatch(url: url)
+            }
         }
     }
     
