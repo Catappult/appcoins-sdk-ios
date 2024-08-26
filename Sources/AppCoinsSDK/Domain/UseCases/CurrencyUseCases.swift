@@ -16,6 +16,10 @@ internal class CurrencyUseCases {
         self.repository = repository
     }
     
+    internal func getUserCurrency(completion: @escaping (Result<Currency, BillingError>) -> Void) {
+        repository.getUserCurrency { result in completion(result) }
+    }
+    
     internal func getSupportedCurrencies(completion: @escaping (Result<[Currency], BillingError>) -> Void) {
         self.repository.getSupportedCurrencies { result in completion(result) }
     }

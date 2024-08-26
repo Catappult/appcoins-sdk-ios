@@ -15,13 +15,18 @@ internal class AppCoinBillingClient : AppCoinBillingService {
         self.endpoint = endpoint
     }
 
-    internal func convertCurrency(money: String, fromCurrency: Coin, toCurrency: Coin, result: @escaping (Result<ConvertCurrencyRaw, BillingError>) -> Void) {
+    internal func convertCurrency(money: String, fromCurrency: Coin, toCurrency: Coin?, result: @escaping (Result<ConvertCurrencyRaw, BillingError>) -> Void) {
         
         if var urlComponents = URLComponents(string: endpoint) {
             urlComponents.path += "/exchanges/\(fromCurrency.rawValue)/convert/\(money)"
-            urlComponents.queryItems = [
-                URLQueryItem(name: "to", value: toCurrency.rawValue)
-            ]
+            
+            var queryItems: [URLQueryItem] = []
+            
+            if let toCurrency = toCurrency {
+                queryItems.append(URLQueryItem(name: "to", value: toCurrency.rawValue))
+            }
+            
+            urlComponents.queryItems = queryItems
             
             if let url = urlComponents.url {
                 var request = URLRequest(url: url)
@@ -551,8 +556,8 @@ internal class AppCoinBillingClient : AppCoinBillingService {
             })
             task.resume()
         }
-    }
-    
+    }     
+      
     internal func getSupportedCurrencies(result: @escaping (Result<[CurrencyRaw], BillingError>) -> Void) {
         var currencies: [CurrencyRaw] = []
         
