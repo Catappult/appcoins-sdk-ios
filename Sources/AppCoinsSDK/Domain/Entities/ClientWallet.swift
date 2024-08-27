@@ -39,38 +39,44 @@ internal class ClientWallet: Wallet, Codable {
             let bdname = Utils.readFromPreferences(key: address)
             if bdname != "" { self.name = bdname } else { self.name = address }
             
-            getBalance(currency: "EUR") {
-                result in
+            billingService.convertCurrency(money: "1.0", fromCurrency: "APPC", toCurrency: nil) { result in
                 switch result {
-                case .success(let balance):
-                    self.balance = balance
-                case .failure(_):
-                    break
+                case .success(let convertCurrencyRaw):
+                    self.getBalance(currency: Currency(convertCurrencyRaw: convertCurrencyRaw), currencyString: nil) {
+                        result in
+                        switch result {
+                        case .success(let balance):
+                            self.balance = balance
+                        case .failure(_):
+                            break
+                        }
+                    }
+                case .failure: break
                 }
             }
         }
     }
     
-    internal func getBalance(currency: String, completion: @escaping (Result<Balance, AppcTransactionError>) -> Void) {
+    internal func getBalance(currency: Currency?, currencyString: String?, completion: @escaping (Result<Balance, AppcTransactionError>) -> Void) {
         if let address = self.address {
-            transactionService.getBalance(wa: address) { result in
-                switch result {
-                case .success(let response):
-                    self.billingService.convertCurrency(money: String(response.usdBalance), fromCurrency: "USD", toCurrency: currency) {
-                        result in
-                        
-                        switch result {
-                        case .success(let currencyResponse):
-                            let balance = Balance(balanceCurrency: currencyResponse.sign, balance: Double(currencyResponse.value) ?? 0.0, appcoinsBalance: response.appcNormalizedBalance)
-                            completion(.success(balance))
-                        case .failure(_):
-                            completion(.failure(.failed))
-                        }
+            if let currency = currency {
+                transactionService.getBalance(wa: address, currency: currency, currencyString: nil) { result in
+                    switch result {
+                    case .success(let response):
+                        completion(.success(Balance(balanceCurrency: response.symbol, balance: response.appcFiatBalance, appcoinsBalance: response.appcNormalizedBalance)))
+                    case .failure(let error):
+                        completion(.failure(error))
                     }
-                case .failure(let error):
-                    completion(.failure(error))
                 }
-                
+            } else if let currency = currencyString {
+                transactionService.getBalance(wa: address, currency: nil, currencyString: currency) { result in
+                    switch result {
+                    case .success(let response):
+                        completion(.success(Balance(balanceCurrency: response.symbol, balance: response.appcFiatBalance, appcoinsBalance: response.appcNormalizedBalance)))
+                    case .failure(let error):
+                        completion(.failure(error))
+                    }
+                }
             }
         }
     }

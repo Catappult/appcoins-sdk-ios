@@ -9,7 +9,7 @@ import Foundation
 
 internal protocol Wallet: Codable {
     
-    func getBalance(currency: String, completion: @escaping (Result<Balance, AppcTransactionError>) -> Void)
+    func getBalance(currency: Currency?, currencyString: String?, completion: @escaping (Result<Balance, AppcTransactionError>) -> Void)
     func getWalletAddress() -> String
     func getSignedWalletAddress() -> String
     func getEWT() -> String?

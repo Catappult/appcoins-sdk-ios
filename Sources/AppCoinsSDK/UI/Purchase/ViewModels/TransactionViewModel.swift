@@ -16,6 +16,7 @@ internal class TransactionViewModel : ObservableObject {
     internal var walletUseCases: WalletUseCases = WalletUseCases.shared
     internal var productUseCases: ProductUseCases = ProductUseCases.shared
     internal var bottomSheetViewModel: BottomSheetViewModel = BottomSheetViewModel.shared
+    internal var currencyUseCases: CurrencyUseCases = CurrencyUseCases.shared
     
     // Transaction attributes
     internal var product: Product? = nil
@@ -81,28 +82,32 @@ internal class TransactionViewModel : ObservableObject {
                                     availablePaymentMethods in
                                     
                                     // 4. Get user's balance
-                                    self.getWalletBalance(wallet: wallet, currency: product.priceCurrency) {
-                                        balance in
+                                    self.getUserCurrency { 
+                                        userCurrency in
                                         
-                                        let balanceValue = balance.balance
-                                        let balanceCurrency = balance.balanceCurrency
-                                        
-                                        // 5. Get developer's address
-                                        self.getDeveloperAddress(domain: domain) {
-                                            developerWa in
+                                        self.getWalletBalance(wallet: wallet, currency: userCurrency) {
+                                            balance in
                                             
-                                            DispatchQueue.main.async {
-                                                // 6. Build the Transaction UI
-                                                self.transaction = TransactionAlertUi(domain: domain, description: product.title, category: .IAP, sku: product.sku, moneyAmount: moneyAmount, moneyCurrency: product.priceCurrency, appcAmount: appcValue, bonusCurrency: transactionBonus.currency.sign, bonusAmount: transactionBonus.value, walletBalance: "\(balanceCurrency)\(String(format: "%.2f", balanceValue))", paymentMethods: availablePaymentMethods)
+                                            let balanceValue = balance.balance
+                                            let balanceCurrency = balance.balanceCurrency
+                                            
+                                            // 5. Get developer's address
+                                            self.getDeveloperAddress(domain: domain) {
+                                                developerWa in
                                                 
-                                                let guestUID = MMPUseCases.shared.getGuestUID()
-                                                let oemID = MMPUseCases.shared.getOEMID()
-                                                
-                                                // 7. Build the parameters to process the transaction
-                                                self.transactionParameters = TransactionParameters(value: String(moneyAmount), currency: product.priceCurrency, developerWa: developerWa, userWa: wallet.getWalletAddress(), domain: domain, product: product.sku, appcAmount: String(appcValue), guestUID: guestUID, oemID: oemID, metadata: self.metadata, reference: self.reference)
-                                                
-                                                // 8. Show payment method options
-                                                self.showPaymentMethodsOnBuild(balance: balance)
+                                                DispatchQueue.main.async {
+                                                    // 6. Build the Transaction UI
+                                                    self.transaction = TransactionAlertUi(domain: domain, description: product.title, category: .IAP, sku: product.sku, moneyAmount: moneyAmount, moneyCurrency: product.priceCurrency, appcAmount: appcValue, bonusCurrency: transactionBonus.currency.sign, bonusAmount: transactionBonus.value, walletBalance: "\(balanceCurrency)\(String(format: "%.2f", balanceValue))", paymentMethods: availablePaymentMethods)
+                                                    
+                                                    let guestUID = MMPUseCases.shared.getGuestUID()
+                                                    let oemID = MMPUseCases.shared.getOEMID()
+                                                    
+                                                    // 7. Build the parameters to process the transaction
+                                                    self.transactionParameters = TransactionParameters(value: String(moneyAmount), currency: product.priceCurrency, developerWa: developerWa, userWa: wallet.getWalletAddress(), domain: domain, product: product.sku, appcAmount: String(appcValue), guestUID: guestUID, oemID: oemID, metadata: self.metadata, reference: self.reference)
+                                                    
+                                                    // 8. Show payment method options
+                                                    self.showPaymentMethodsOnBuild(balance: balance)
+                                                }
                                             }
                                         }
                                     }
@@ -166,8 +171,8 @@ internal class TransactionViewModel : ObservableObject {
         }
     }
     
-    private func getWalletBalance(wallet: Wallet, currency: String, completion: @escaping (Balance) -> Void) {
-        wallet.getBalance(currency: currency) {
+    private func getWalletBalance(wallet: Wallet, currency: Currency, completion: @escaping (Balance) -> Void) {
+        wallet.getBalance(currency: currency, currencyString: nil) {
             result in
             
             switch result {
@@ -283,4 +288,14 @@ internal class TransactionViewModel : ObservableObject {
     internal func showPaymentMethodOptions() { DispatchQueue.main.async { self.showOtherPaymentMethods = true } }
     
     internal func selectPaymentMethod(paymentMethod: PaymentMethod) { DispatchQueue.main.async { self.paymentMethodSelected = paymentMethod } }
+    
+    internal func getUserCurrency(completion: @escaping (Currency) -> Void) {
+        self.currencyUseCases.getUserCurrency { result in
+            switch result {
+            case .success(let userCurrency):
+                completion(userCurrency)
+            case .failure: break
+            }
+        }
+    }
 }

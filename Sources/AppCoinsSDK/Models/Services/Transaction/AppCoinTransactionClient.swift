@@ -15,29 +15,42 @@ internal class AppCoinTransactionClient : AppCoinTransactionService {
         self.endpoint = endpoint
     }
     
-    internal func getBalance(wa: String, result: @escaping (Result<AppCoinBalanceRaw, AppcTransactionError>) -> Void) {
-        if let url = URL(string: endpoint + "/wallet/\(wa)/info") {
+    internal func getBalance(wa: String, currency: Currency?, currencyString: String?, result: @escaping (Result<AppCoinBalanceRaw, AppcTransactionError>) -> Void) {
+        
+        if var urlComponents = URLComponents(string: endpoint) {
+            urlComponents.path += "/1.20230807/wallet/\(wa)/info"
             
-            var request = URLRequest(url: url)
+            var queryItems: [URLQueryItem] = []
             
-            let userAgent = "AppCoinsWalletIOS/.."
-            request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
-            
-            let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                if let error = error {
-                    if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
-                        result(.failure(.noInternet))
-                    } else {
-                        result(.failure(.failed))
-                    }
-                } else {
-                    if let data = data, let balance = try? JSONDecoder().decode(AppCoinBalanceRaw.self, from: data) {
-                        result(.success(balance))
-                    } else { result(.failure(.failed)) }
-                }
-                
+            if let currency = currency {
+                queryItems.append(URLQueryItem(name: "currency", value: currency.currency))
+            } else if let currency = currencyString {
+                queryItems.append(URLQueryItem(name: "currency", value: currency))
             }
-            task.resume()
+            
+            urlComponents.queryItems = queryItems
+            
+            if let url = urlComponents.url {
+                var request = URLRequest(url: url)
+                
+                let userAgent = "AppCoinsWalletIOS/.."
+                request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
+                
+                let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                    if let error = error {
+                        if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
+                            result(.failure(.noInternet))
+                        } else {
+                            result(.failure(.failed))
+                        }
+                    } else {
+                        if let data = data, let balance = try? JSONDecoder().decode(AppCoinBalanceRaw.self, from: data) {
+                            result(.success(balance))
+                        } else { result(.failure(.failed)) }
+                    }
+                }
+                task.resume()
+            }
         }
     }
     
