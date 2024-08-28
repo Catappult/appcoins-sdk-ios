@@ -17,7 +17,7 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
     private let walletService: WalletLocalService = WalletLocalClient()
     private let userPreferencesService: UserPreferencesLocalService = UserPreferencesLocalClient()
     
-    internal func getTransactionBonus(address: String, package_name: String, amount: String, currency: String, completion: @escaping (Result<TransactionBonus, TransactionError>) -> Void) {
+    internal func getTransactionBonus(address: String, package_name: String, amount: String, currency: Currency, completion: @escaping (Result<TransactionBonus, TransactionError>) -> Void) {
         gamificationService.getTransactionBonus(address: address, package_name: package_name, amount: amount, currency: currency) {
             result in
             

@@ -17,7 +17,7 @@ internal class TransactionUseCases {
         self.repository = repository
     }
     
-    internal func getTransactionBonus(address: String, package_name: String, amount: String, currency: String, completion: @escaping (Result<TransactionBonus, TransactionError>) -> Void) {
+    internal func getTransactionBonus(address: String, package_name: String, amount: String, currency: Currency, completion: @escaping (Result<TransactionBonus, TransactionError>) -> Void) {
         repository.getTransactionBonus(address: address, package_name: package_name, amount: amount, currency: currency) { result in completion(result) }
     }
     

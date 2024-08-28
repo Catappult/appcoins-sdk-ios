@@ -62,61 +62,63 @@ internal class TransactionViewModel : ObservableObject {
         bottomSheetViewModel.setPurchaseState(newState: .paying)
         
         if let product = product, let domain = domain {
-            walletUseCases.getWallet() {
-                result in
+            
+            self.getSupportedCurrencies(currency: product.priceCurrency) { 
+                currency in
                 
-                switch result {
-                case .success(let wallet):
-                    // 1. Get product value
-                    self.getProductAppcValue(product: product) {
-                        appcValue in
-                        
-                        if let moneyAmount = Double(product.priceValue) {
+                self.walletUseCases.getWallet() {
+                    result in
+                    
+                    switch result {
+                    case .success(let wallet):
+                        // 1. Get product value
+                        self.getProductAppcValue(product: product) {
+                            appcValue in
                             
-                            // 2. Get user bonus
-                            self.getTransactionBonus(address: wallet.getWalletAddress(), domain: domain, amount: product.priceValue, currency: product.priceCurrency) {
-                                transactionBonus in
+                            if let moneyAmount = Double(product.priceValue) {
                                 
-                                // 3. Get payment methods available
-                                self.getPaymentMethods(value: product.priceValue, currency: product.priceCurrency) {
-                                    availablePaymentMethods in
+                                // 2. Get user bonus
+                                self.getTransactionBonus(address: wallet.getWalletAddress(), domain: domain, amount: product.priceValue, currency: currency) {
+                                    transactionBonus in
                                     
-                                    // 4. Get user's balance
-                                    self.getUserCurrency { 
-                                        userCurrency in
+                                    // 3. Get payment methods available
+                                    self.getPaymentMethods(value: product.priceValue, currency: product.priceCurrency) {
+                                        availablePaymentMethods in
                                         
-                                        self.getWalletBalance(wallet: wallet, currency: userCurrency) {
-                                            balance in
-                                            
-                                            let balanceValue = balance.balance
-                                            let balanceCurrency = balance.balanceCurrency
-                                            
-                                            // 5. Get developer's address
-                                            self.getDeveloperAddress(domain: domain) {
-                                                developerWa in
+                                        // 4. Get user's balance
+                                            self.getWalletBalance(wallet: wallet, currency: currency) {
+                                                balance in
                                                 
-                                                DispatchQueue.main.async {
-                                                    // 6. Build the Transaction UI
-                                                    self.transaction = TransactionAlertUi(domain: domain, description: product.title, category: .IAP, sku: product.sku, moneyAmount: moneyAmount, moneyCurrency: product.priceCurrency, appcAmount: appcValue, bonusCurrency: transactionBonus.currency.sign, bonusAmount: transactionBonus.value, walletBalance: "\(balanceCurrency)\(String(format: "%.2f", balanceValue))", paymentMethods: availablePaymentMethods)
+                                                let balanceValue = balance.balance
+                                                let balanceCurrency = balance.balanceCurrency
+                                                
+                                                // 5. Get developer's address
+                                                self.getDeveloperAddress(domain: domain) {
+                                                    developerWa in
                                                     
-                                                    let guestUID = MMPUseCases.shared.getGuestUID()
-                                                    let oemID = MMPUseCases.shared.getOEMID()
-                                                    
-                                                    // 7. Build the parameters to process the transaction
-                                                    self.transactionParameters = TransactionParameters(value: String(moneyAmount), currency: product.priceCurrency, developerWa: developerWa, userWa: wallet.getWalletAddress(), domain: domain, product: product.sku, appcAmount: String(appcValue), guestUID: guestUID, oemID: oemID, metadata: self.metadata, reference: self.reference)
-                                                    
-                                                    // 8. Show payment method options
-                                                    self.showPaymentMethodsOnBuild(balance: balance)
+                                                    DispatchQueue.main.async {
+                                                        // 6. Build the Transaction UI
+                                                        self.transaction = TransactionAlertUi(domain: domain, description: product.title, category: .IAP, sku: product.sku, moneyAmount: moneyAmount, moneyCurrency: product.priceCurrency, appcAmount: appcValue, bonusCurrency: transactionBonus.currency.sign, bonusAmount: transactionBonus.value, walletBalance: "\(balanceCurrency)\(String(format: "%.2f", balanceValue))", paymentMethods: availablePaymentMethods)
+                                                        
+                                                        let guestUID = MMPUseCases.shared.getGuestUID()
+                                                        let oemID = MMPUseCases.shared.getOEMID()
+                                                        
+                                                        // 7. Build the parameters to process the transaction
+                                                        self.transactionParameters = TransactionParameters(value: String(moneyAmount), currency: product.priceCurrency, developerWa: developerWa, userWa: wallet.getWalletAddress(), domain: domain, product: product.sku, appcAmount: String(appcValue), guestUID: guestUID, oemID: oemID, metadata: self.metadata, reference: self.reference)
+                                                        
+                                                        // 8. Show payment method options
+                                                        self.showPaymentMethodsOnBuild(balance: balance)
+                                                    }
                                                 }
                                             }
-                                        }
+                                        
                                     }
                                 }
-                            }
-                        } else { self.bottomSheetViewModel.transactionFailedWith(error: .unknown) }
+                            } else { self.bottomSheetViewModel.transactionFailedWith(error: .unknown) }
+                        }
+                    case .failure(_):
+                        self.bottomSheetViewModel.transactionFailedWith(error: .notEntitled)
                     }
-                case .failure(_):
-                    self.bottomSheetViewModel.transactionFailedWith(error: .notEntitled)
                 }
             }
         } else { bottomSheetViewModel.transactionFailedWith(error: .systemError) }
@@ -137,7 +139,7 @@ internal class TransactionViewModel : ObservableObject {
         }
     }
     
-    private func getTransactionBonus(address: String, domain: String, amount: String, currency: String, completion: @escaping (TransactionBonus) -> Void) {
+    private func getTransactionBonus(address: String, domain: String, amount: String, currency: Currency, completion: @escaping (TransactionBonus) -> Void) {
         self.transactionUseCases.getTransactionBonus(address: address, package_name: domain, amount: amount, currency: currency) {
             result in
             switch result {
@@ -295,6 +297,18 @@ internal class TransactionViewModel : ObservableObject {
             case .success(let userCurrency):
                 completion(userCurrency)
             case .failure: break
+            }
+        }
+    }
+    
+    internal func getSupportedCurrencies(currency: String, completion: @escaping (Currency) -> Void) {
+        currencyUseCases.getSupportedCurrencies { result in
+            switch result {
+            case .success(let supportedCurrencyRawList):
+                if let currency = supportedCurrencyRawList.first(where: { $0.currency == currency }) {
+                    completion(currency)
+                }
+            case .failure(let failure): break
             }
         }
     }
