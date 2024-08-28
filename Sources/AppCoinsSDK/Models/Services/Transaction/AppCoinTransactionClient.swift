@@ -1,6 +1,6 @@
 //
 //  AppCoinTransactionClient.swift
-//  
+//
 //
 //  Created by aptoide on 16/05/2023.
 //
@@ -15,20 +15,12 @@ internal class AppCoinTransactionClient : AppCoinTransactionService {
         self.endpoint = endpoint
     }
     
-    internal func getBalance(wa: String, currency: Currency?, currencyString: String?, result: @escaping (Result<AppCoinBalanceRaw, AppcTransactionError>) -> Void) {
+    internal func getBalance(wa: String, currency: Currency, result: @escaping (Result<AppCoinBalanceRaw, AppcTransactionError>) -> Void) {
         
         if var urlComponents = URLComponents(string: endpoint) {
             urlComponents.path += "/1.20230807/wallet/\(wa)/info"
             
-            var queryItems: [URLQueryItem] = []
-            
-            if let currency = currency {
-                queryItems.append(URLQueryItem(name: "currency", value: currency.currency))
-            } else if let currency = currencyString {
-                queryItems.append(URLQueryItem(name: "currency", value: currency))
-            }
-            
-            urlComponents.queryItems = queryItems
+            urlComponents.queryItems = [URLQueryItem(name: "currency", value: currency.currency)]
             
             if let url = urlComponents.url {
                 var request = URLRequest(url: url)

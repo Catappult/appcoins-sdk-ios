@@ -174,7 +174,7 @@ internal class TransactionViewModel : ObservableObject {
     }
     
     private func getWalletBalance(wallet: Wallet, currency: Currency, completion: @escaping (Balance) -> Void) {
-        wallet.getBalance(currency: currency, currencyString: nil) {
+        wallet.getBalance(currency: currency) {
             result in
             
             switch result {
@@ -298,7 +298,7 @@ internal class TransactionViewModel : ObservableObject {
                 if let currency = supportedCurrencyRawList.first(where: { $0.currency == currency }) {
                     completion(currency)
                 }
-            case .failure(let failure): break
+            case .failure: break
             }
         }
     }

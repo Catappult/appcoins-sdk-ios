@@ -17,7 +17,7 @@ internal class CurrencyRepository: CurrencyRepositoryProtocol {
         if let userCurrency = self.UserCurrency.getValue(forKey: "userCurrency") {
             completion(.success(userCurrency))
         } else {
-            AppCoinBillingService.convertCurrency(money: "1.0", fromCurrency: "APPC", toCurrency: nil) { result in
+            AppCoinBillingService.convertCurrency(money: "1.0", fromCurrency: Currency.appcCurrency.currency, toCurrency: nil) { result in
                 switch result {
                 case .success(let userCurrencyRaw):
                     self.UserCurrency.setValue(Currency(convertCurrencyRaw: userCurrencyRaw), forKey: "userCurrency", storageOption: .memory)

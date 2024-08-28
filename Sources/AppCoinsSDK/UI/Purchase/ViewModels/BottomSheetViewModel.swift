@@ -42,6 +42,7 @@ internal class BottomSheetViewModel : ObservableObject {
     internal var transactionUseCases: TransactionUseCases = TransactionUseCases.shared
     internal var walletUseCases: WalletUseCases = WalletUseCases.shared
     internal var walletApplicationUseCases: WalletApplicationUseCases = WalletApplicationUseCases.shared
+    internal var currencyUseCases: CurrencyUseCases = CurrencyUseCases.shared
     
     private init() { UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable") } // Prevents Layout Warning Prints
     
@@ -289,27 +290,35 @@ internal class BottomSheetViewModel : ObservableObject {
                     switch result {
                     case .success(let transaction):
                         if let purchaseUID = transaction.purchaseUID {
-                            wallet.getBalance(currency: nil, currencyString: TransactionViewModel.shared.transaction?.moneyCurrency ?? "EUR") {
-                                result in
+                            self.currencyUseCases.getSupportedCurrencies { result in
                                 switch result {
-                                case .success(let balance):
-                                    Purchase.verify(purchaseUID: purchaseUID) {
-                                        result in
-                                        switch result {
-                                        case .success(let purchase):
-                                            purchase.acknowledge() {
-                                                error in
-                                                if let error = error { self.transactionFailedWith(error: error) }
-                                                else {
-                                                    self.successfulTransaction(purchase: purchase, balance: balance, method: method)
+                                case .success(let currencyList):
+                                    if let transactionMoneyCurrency = currencyList.first(where: { $0.currency == TransactionViewModel.shared.transaction?.moneyCurrency }) {
+                                        wallet.getBalance(currency: transactionMoneyCurrency) {
+                                            result in
+                                            switch result {
+                                            case .success(let balance):
+                                                Purchase.verify(purchaseUID: purchaseUID) {
+                                                    result in
+                                                    switch result {
+                                                    case .success(let purchase):
+                                                        purchase.acknowledge() {
+                                                            error in
+                                                            if let error = error { self.transactionFailedWith(error: error) }
+                                                            else {
+                                                                self.successfulTransaction(purchase: purchase, balance: balance, method: method)
+                                                            }
+                                                        }
+                                                    case .failure(let error): self.transactionFailedWith(error: error)
+                                                    }
                                                 }
+                                            case .failure(let failure):
+                                                if failure == .noInternet { self.transactionFailedWith(error: .networkError) }
+                                                else { self.transactionFailedWith(error: .systemError) }
                                             }
-                                        case .failure(let error): self.transactionFailedWith(error: error)
                                         }
                                     }
-                                case .failure(let failure):
-                                    if failure == .noInternet { self.transactionFailedWith(error: .networkError) }
-                                    else { self.transactionFailedWith(error: .systemError) }
+                                case .failure: break
                                 }
                             }
                         } else { self.transactionFailedWith(error: .systemError) }

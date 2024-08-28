@@ -23,7 +23,7 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
             
             switch result {
             case .success(let bonusRaw):
-                self.billingService.convertCurrency(money: "1.0", fromCurrency: "APPC", toCurrency: nil) { result in
+                self.billingService.convertCurrency(money: "1.0", fromCurrency: Currency.appcCurrency.currency, toCurrency: nil) { result in
                     switch result {
                     case .success(let userCurrency):
                         completion(.success(TransactionBonus(value: bonusRaw.bonus, currency: Currency(convertCurrencyRaw: userCurrency))))

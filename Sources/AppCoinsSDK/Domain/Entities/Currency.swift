@@ -15,6 +15,8 @@ internal class Currency: Codable {
     let type: String?
     let flag: URL?
     
+    static let appcCurrency: Currency = Currency(currencyRaw: CurrencyRaw(currency: "APPC", label: "AppCoins", sign: "", type: "CRYPTO", flag: ""))
+    
     init(convertCurrencyRaw: ConvertCurrencyRaw) {
         self.currency = convertCurrencyRaw.currency
         self.label = convertCurrencyRaw.label
