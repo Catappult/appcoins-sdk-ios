@@ -291,16 +291,6 @@ internal class TransactionViewModel : ObservableObject {
     
     internal func selectPaymentMethod(paymentMethod: PaymentMethod) { DispatchQueue.main.async { self.paymentMethodSelected = paymentMethod } }
     
-    internal func getUserCurrency(completion: @escaping (Currency) -> Void) {
-        self.currencyUseCases.getUserCurrency { result in
-            switch result {
-            case .success(let userCurrency):
-                completion(userCurrency)
-            case .failure: break
-            }
-        }
-    }
-    
     internal func getSupportedCurrencies(currency: String, completion: @escaping (Currency) -> Void) {
         currencyUseCases.getSupportedCurrencies { result in
             switch result {
