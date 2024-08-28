@@ -293,11 +293,11 @@ internal class BottomSheetViewModel : ObservableObject {
                                 result in
                                 switch result {
                                 case .success(let balance):
-                                    Purchase.verify(purchaseUID: purchaseUID) {
+                                    Purchase.verify(domain: transaction.domain ,purchaseUID: purchaseUID) {
                                         result in
                                         switch result {
                                         case .success(let purchase):
-                                            purchase.acknowledge() {
+                                            purchase.acknowledge(domain: transaction.domain) {
                                                 error in
                                                 if let error = error { self.transactionFailedWith(error: error) }
                                                 else {
