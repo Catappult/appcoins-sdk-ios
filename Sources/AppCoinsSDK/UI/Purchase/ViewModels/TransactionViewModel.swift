@@ -82,7 +82,7 @@ internal class TransactionViewModel : ObservableObject {
                                     transactionBonus in
                                     
                                     // 3. Get payment methods available
-                                    self.getPaymentMethods(value: product.priceValue, currency: product.priceCurrency) {
+                                    self.getPaymentMethods(value: product.priceValue, currency: currency) {
                                         availablePaymentMethods in
                                         
                                         // 4. Get user's balance
@@ -155,7 +155,7 @@ internal class TransactionViewModel : ObservableObject {
         }
     }
     
-    private func getPaymentMethods(value: String, currency: String, completion: @escaping ([PaymentMethod]) -> Void) {
+    private func getPaymentMethods(value: String, currency: Currency, completion: @escaping ([PaymentMethod]) -> Void) {
         self.transactionUseCases.getPaymentMethods(value: value, currency: currency) {
             result in
             

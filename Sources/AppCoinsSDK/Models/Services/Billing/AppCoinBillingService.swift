@@ -11,7 +11,7 @@ internal protocol AppCoinBillingService {
     
     func createTransaction(wa: Wallet, raw: CreateAPPCTransactionRaw, completion: @escaping (Result<CreateTransactionResponseRaw, TransactionError>) -> Void)
     
-    func getPaymentMethods(value: String, currency: String, result: @escaping (Result<GetPaymentMethodsRaw, BillingError>) -> Void)
+    func getPaymentMethods(value: String, currency: Currency, result: @escaping (Result<GetPaymentMethodsRaw, BillingError>) -> Void)
     
     func convertCurrency(money: String, fromCurrency: String, toCurrency: String?, result: @escaping (Result<ConvertCurrencyRaw, BillingError>) -> Void)
     

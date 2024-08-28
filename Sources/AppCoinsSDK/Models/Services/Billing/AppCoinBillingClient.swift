@@ -48,13 +48,13 @@ internal class AppCoinBillingClient : AppCoinBillingService {
         }
     }
     
-    internal func getPaymentMethods(value: String, currency: String, result: @escaping (Result<GetPaymentMethodsRaw, BillingError>) -> Void) {
+    internal func getPaymentMethods(value: String, currency: Currency, result: @escaping (Result<GetPaymentMethodsRaw, BillingError>) -> Void) {
         
         if var urlComponents = URLComponents(string: endpoint) {
             urlComponents.path += "/methods"
             urlComponents.queryItems = [
                 URLQueryItem(name: "price.value", value: value),
-                URLQueryItem(name: "price.currency", value: currency),
+                URLQueryItem(name: "price.currency", value: currency.currency),
                 URLQueryItem(name: "channel", value: "IOS")
             ]
             

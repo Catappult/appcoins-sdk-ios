@@ -21,7 +21,7 @@ internal class TransactionUseCases {
         repository.getTransactionBonus(address: address, package_name: package_name, amount: amount, currency: currency) { result in completion(result) }
     }
     
-    internal func getPaymentMethods(value: String, currency: String, completion: @escaping (Result<[PaymentMethod], BillingError>) -> Void) {
+    internal func getPaymentMethods(value: String, currency: Currency, completion: @escaping (Result<[PaymentMethod], BillingError>) -> Void) {
         repository.getPaymentMethods(value: value, currency: currency) { result in completion(result) }
     }
     

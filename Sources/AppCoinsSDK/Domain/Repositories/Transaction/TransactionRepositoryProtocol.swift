@@ -11,7 +11,7 @@ internal protocol TransactionRepositoryProtocol {
     
     func getTransactionBonus(address: String, package_name: String, amount: String, currency: Currency, completion: @escaping (Result<TransactionBonus, TransactionError>) -> Void)
     
-    func getPaymentMethods(value: String, currency: String, completion: @escaping (Result<[PaymentMethod], BillingError>) -> Void)
+    func getPaymentMethods(value: String, currency: Currency, completion: @escaping (Result<[PaymentMethod], BillingError>) -> Void)
     
     func getDeveloperAddress(package: String, completion: @escaping (Result<String, AptoideServiceError>) -> Void)
     

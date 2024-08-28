@@ -36,7 +36,7 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
         }
     }
     
-    internal func getPaymentMethods(value: String, currency: String, completion: @escaping (Result<[PaymentMethod], BillingError>) -> Void) {
+    internal func getPaymentMethods(value: String, currency: Currency, completion: @escaping (Result<[PaymentMethod], BillingError>) -> Void) {
         billingService.getPaymentMethods(value: value, currency: currency) {
             result in
             
