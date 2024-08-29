@@ -38,6 +38,8 @@ internal struct PaymentMethod: Hashable {
         self.fee = raw.fee
         self.disabled = false
     }
+    
+    internal mutating func disable() { self.disabled = true }
 }
 
 internal enum Method: String {
@@ -46,5 +48,6 @@ internal enum Method: String {
     case creditCard = "credit_card"
     case paypalAdyen = "paypal"
     case paypalDirect = "paypal_v2"
+    case sandbox = "sandbox"
     
 }

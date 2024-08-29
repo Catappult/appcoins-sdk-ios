@@ -34,8 +34,8 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
         }
     }
     
-    internal func getPaymentMethods(value: String, currency: Coin, completion: @escaping (Result<[PaymentMethod], BillingError>) -> Void) {
-        billingService.getPaymentMethods(value: value, currency: currency) {
+    internal func getPaymentMethods(value: String, currency: Coin, wallet: Wallet, domain: String, completion: @escaping (Result<[PaymentMethod], BillingError>) -> Void) {
+        billingService.getPaymentMethods(value: value, currency: currency, wallet: wallet, domain: domain) {
             result in
             
             switch result {
@@ -66,10 +66,6 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
                 completion(.failure(error))
             }
         }
-    }
-    
-    internal func createTransaction(wa: Wallet, raw: CreateAPPCTransactionRaw, completion: @escaping (Result<CreateTransactionResponseRaw, TransactionError>) -> Void) {
-        billingService.createTransaction(wa: wa, raw: raw) { result in completion(result) }
     }
     
     internal func getTransactionInfo(uid: String, wa: Wallet, completion: @escaping (Result<Transaction, TransactionError>) -> Void) {
@@ -215,6 +211,14 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
         } catch {
             return false
         }
+    }
+    
+    internal func createAPPCTransaction(wa: Wallet, raw: CreateAPPCTransactionRaw, completion: @escaping (Result<CreateAPPCTransactionResponseRaw, TransactionError>) -> Void) {
+        billingService.createAPPCTransaction(wa: wa, raw: raw) { result in completion(result) }
+    }
+    
+    internal func createSandboxTransaction(wa: Wallet, raw: CreateSandboxTransactionRaw, completion: @escaping (Result<CreateSandboxTransactionResponseRaw, TransactionError>) -> Void) {
+        billingService.createSandboxTransaction(wa: wa, raw: raw) { result in completion(result) }
     }
     
     internal func createAdyenTransaction(wa: Wallet, raw: CreateAdyenTransactionRaw, completion: @escaping (Result<AdyenTransactionSession, TransactionError>) -> Void) {
