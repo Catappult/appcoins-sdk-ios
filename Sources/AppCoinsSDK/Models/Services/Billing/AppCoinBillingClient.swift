@@ -41,18 +41,19 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                             result(.success(convertion))
                         } else { result(.failure(.failed)) }
                     }
-                    
                 }
                 task.resume()
             }
         }
     }
     
-    internal func getPaymentMethods(value: String, currency: Coin, result: @escaping (Result<GetPaymentMethodsRaw, BillingError>) -> Void) {
+    internal func getPaymentMethods(value: String, currency: Coin, wallet: Wallet, domain: String, result: @escaping (Result<GetPaymentMethodsRaw, BillingError>) -> Void) {
         
         if var urlComponents = URLComponents(string: endpoint) {
             urlComponents.path += "/methods"
             urlComponents.queryItems = [
+                URLQueryItem(name: "domain", value: domain),
+                URLQueryItem(name: "wallet.address", value: wallet.getWalletAddress()),
                 URLQueryItem(name: "price.value", value: value),
                 URLQueryItem(name: "price.currency", value: currency.rawValue),
                 URLQueryItem(name: "channel", value: "IOS")
@@ -76,61 +77,8 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                             result(.success(convertion))
                         } else { result(.failure(.failed)) }
                     }
-                    
                 }
                 task.resume()
-            }
-        }
-    }
-
-    internal func createTransaction(wa: Wallet, raw: CreateAPPCTransactionRaw, completion: @escaping (Result<CreateTransactionResponseRaw, TransactionError>) -> Void) {
-        
-        if var urlComponents = URLComponents(string: endpoint) {
-            urlComponents.path += "/gateways/appcoins_credits/transactions"
-            
-            if let url = urlComponents.url {
-                if let body = raw.toJSON() {
-                    var request = URLRequest(url: url)
-                    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-                    request.httpBody = body
-                    request.httpMethod = "POST"
-                    
-                    let userAgent = "AppCoinsWalletIOS/.."
-                    request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
-                    
-                    if let ewt = wa.getEWT() {
-                        request.setValue(ewt, forHTTPHeaderField: "Authorization")
-                    }
-                    
-                    // Right now not giving feedback on different types of errors
-                    let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
-                        
-                        if let error = error {
-                            if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
-                                completion(.failure(.noInternet))
-                            } else {
-                                completion(.failure(.failed()))
-                            }
-                        } else {
-                            if let data = data {
-                                if let txResponse = try? JSONDecoder().decode(CreateTransactionResponseRaw.self, from: data) {
-                                    completion(.success(txResponse))
-                                } else {
-                                    if let errorResponse = try? JSONDecoder().decode(CreateTransactionErrorRaw.self, from: data) {
-                                        completion(.failure(.failed(description: errorResponse.data.enduser)))
-                                    } else {
-                                        completion(.failure(.general))
-                                    }
-                                }
-                            } else {
-                                completion(.failure(.general))
-                            }
-                        }
-                        
-                        
-                    })
-                    task.resume()
-                }
             }
         }
     }
@@ -172,7 +120,7 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                                 if let txResponse = try? JSONDecoder().decode(TransferAPPCResponseRaw.self, from: data) {
                                     completion(.success(txResponse))
                                 } else {
-                                    if let errorResponse = try? JSONDecoder().decode(CreateTransactionErrorRaw.self, from: data) {
+                                    if let errorResponse = try? JSONDecoder().decode(TransferAPPCTransactionErrorRaw.self, from: data) {
                                         completion(.failure(.failed(description: errorResponse.data.enduser)))
                                     } else {
                                         completion(.failure(.general))
@@ -182,8 +130,6 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                                 completion(.failure(.general))
                             }
                         }
-                        
-                        
                     })
                     task.resume()
                 }
@@ -231,6 +177,106 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                     }
                 }
                 task.resume()
+            }
+        }
+    }
+    
+    internal func createAPPCTransaction(wa: Wallet, raw: CreateAPPCTransactionRaw, completion: @escaping (Result<CreateAPPCTransactionResponseRaw, TransactionError>) -> Void) {
+        
+        if var urlComponents = URLComponents(string: endpoint) {
+            urlComponents.path += "/gateways/appcoins_credits/transactions"
+            
+            if let url = urlComponents.url {
+                if let body = raw.toJSON() {
+                    var request = URLRequest(url: url)
+                    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+                    request.httpBody = body
+                    request.httpMethod = "POST"
+                    
+                    let userAgent = "AppCoinsWalletIOS/.."
+                    request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
+                    
+                    if let ewt = wa.getEWT() {
+                        request.setValue(ewt, forHTTPHeaderField: "Authorization")
+                    }
+                    
+                    // Right now not giving feedback on different types of errors
+                    let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
+                        
+                        if let error = error {
+                            if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
+                                completion(.failure(.noInternet))
+                            } else {
+                                completion(.failure(.failed()))
+                            }
+                        } else {
+                            if let data = data {
+                                if let txResponse = try? JSONDecoder().decode(CreateAPPCTransactionResponseRaw.self, from: data) {
+                                    completion(.success(txResponse))
+                                } else {
+                                    if let errorResponse = try? JSONDecoder().decode(CreateAPPCTransactionErrorRaw.self, from: data) {
+                                        completion(.failure(.failed(description: errorResponse.data.enduser)))
+                                    } else {
+                                        completion(.failure(.general))
+                                    }
+                                }
+                            } else {
+                                completion(.failure(.general))
+                            }
+                        }
+                    })
+                    task.resume()
+                }
+            }
+        }
+    }
+    
+    internal func createSandboxTransaction(wa: Wallet, raw: CreateSandboxTransactionRaw, completion: @escaping (Result<CreateSandboxTransactionResponseRaw, TransactionError>) -> Void) {
+        
+        if var urlComponents = URLComponents(string: endpoint) {
+            urlComponents.path += "/gateways/sandbox/transactions"
+            
+            if let url = urlComponents.url {
+                if let body = raw.toJSON() {
+                    var request = URLRequest(url: url)
+                    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+                    request.httpBody = body
+                    request.httpMethod = "POST"
+                    
+                    let userAgent = "AppCoinsWalletIOS/.."
+                    request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
+                    
+                    if let ewt = wa.getEWT() {
+                        request.setValue(ewt, forHTTPHeaderField: "Authorization")
+                    }
+                    
+                    // Right now not giving feedback on different types of errors
+                    let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
+                        
+                        if let error = error {
+                            if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
+                                completion(.failure(.noInternet))
+                            } else {
+                                completion(.failure(.failed()))
+                            }
+                        } else {
+                            if let data = data {
+                                if let txResponse = try? JSONDecoder().decode(CreateSandboxTransactionResponseRaw.self, from: data) {
+                                    completion(.success(txResponse))
+                                } else {
+                                    if let errorResponse = try? JSONDecoder().decode(CreateSandboxTransactionErrorRaw.self, from: data) {
+                                        completion(.failure(.failed(description: errorResponse.data.enduser)))
+                                    } else {
+                                        completion(.failure(.general))
+                                    }
+                                }
+                            } else {
+                                completion(.failure(.general))
+                            }
+                        }
+                    })
+                    task.resume()
+                }
             }
         }
     }
@@ -331,8 +377,6 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                                 completion(.failure(.failed()))
                             }
                         }
-                        
-                        
                     })
                     task.resume()
                 }

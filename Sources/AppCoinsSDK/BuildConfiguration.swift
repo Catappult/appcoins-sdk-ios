@@ -119,7 +119,7 @@ internal class BuildConfiguration {
     
     static internal var userUID =  UIDevice.current.identifierForVendor!.uuidString
     
-    static internal var integratedMethods: [Method] = [.appc, .paypalAdyen, .paypalDirect, .creditCard]
+    static internal var integratedMethods: [Method] = [.appc, .paypalAdyen, .paypalDirect, .creditCard, .sandbox]
     
     static internal var sdkShortVersion: String = "1.2.0"
 }
