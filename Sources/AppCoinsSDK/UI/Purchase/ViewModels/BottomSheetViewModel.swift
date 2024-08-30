@@ -167,6 +167,9 @@ internal class BottomSheetViewModel : ObservableObject {
             case Method.paypalDirect.rawValue:
                 DispatchQueue.main.async { self.purchaseState = .processing }
                 self.buyWithPayPalDirect()
+            case Method.sandbox.rawValue:
+                DispatchQueue.main.async { self.purchaseState = .processing }
+                self.buyWithSandbox()
             default:
                 self.transactionFailedWith(error: .systemError)
             }
@@ -182,12 +185,42 @@ internal class BottomSheetViewModel : ObservableObject {
                 
                 switch result {
                 case .success(let wallet):
-                    self.transactionUseCases.createTransaction(wa: wallet, raw: raw) {
+                    self.transactionUseCases.createAPPCTransaction(wa: wallet, raw: raw) {
                         result in
                         
                         switch result {
                         case .success(let transactionResponse):
                             self.finishPurchase(transactionUuid: transactionResponse.uuid, method: .appc)
+                        case .failure(let error):
+                            switch error {
+                            case .failed(let description): self.transactionFailedWith(error: .systemError, description: description)
+                            case .noInternet: self.transactionFailedWith(error: .networkError)
+                            default: self.transactionFailedWith(error: .systemError)
+                            }
+                        }
+                    }
+                case .failure(_):
+                    self.transactionFailedWith(error: .notEntitled)
+                }
+            }
+        } else { self.transactionFailedWith(error: .systemError) }
+    }
+    
+    internal func buyWithSandbox() {
+        if let parameters = TransactionViewModel.shared.transactionParameters {
+            let raw = CreateSandboxTransactionRaw.fromParameters(parameters: parameters)
+            
+            self.walletUseCases.getWallet() {
+                result in
+                
+                switch result {
+                case .success(let wallet):
+                    self.transactionUseCases.createSandboxTransaction(wa: wallet, raw: raw) {
+                        result in
+                        
+                        switch result {
+                        case .success(let transactionResponse):
+                            self.finishPurchase(transactionUuid: transactionResponse.uuid, method: .sandbox)
                         case .failure(let error):
                             switch error {
                             case .failed(let description): self.transactionFailedWith(error: .systemError, description: description)

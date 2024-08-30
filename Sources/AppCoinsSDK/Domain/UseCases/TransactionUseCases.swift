@@ -21,16 +21,12 @@ internal class TransactionUseCases {
         repository.getTransactionBonus(wallet: wallet, package_name: package_name, amount: amount, currency: currency) { result in completion(result) }
     }
     
-    internal func getPaymentMethods(value: String, currency: Currency, completion: @escaping (Result<[PaymentMethod], BillingError>) -> Void) {
-        repository.getPaymentMethods(value: value, currency: currency) { result in completion(result) }
+    internal func getPaymentMethods(value: String, currency: Currency, wallet: Wallet, domain: String, completion: @escaping (Result<[PaymentMethod], BillingError>) -> Void) {
+        repository.getPaymentMethods(value: value, currency: currency, wallet: wallet, domain: domain) { result in completion(result) }
     }
     
     internal func getDeveloperAddress(package: String, completion: @escaping (Result<String, AptoideServiceError>) -> Void) {
         repository.getDeveloperAddress(package: package) {result in completion(result)}
-    }
-    
-    internal func createTransaction(wa: Wallet, raw: CreateAPPCTransactionRaw, completion: @escaping (Result<CreateTransactionResponseRaw, TransactionError>) -> Void) {
-        repository.createTransaction(wa: wa, raw: raw) {result in completion(result)}
     }
     
     internal func getTransactionInfo(uid: String, wa: Wallet, completion: @escaping (Result<Transaction, TransactionError>) -> Void) {
@@ -59,6 +55,14 @@ internal class TransactionUseCases {
     
     internal func verifyPurchase(domain: String, uid: String, wa: Wallet, completion: @escaping (Result<Purchase, ProductServiceError>) -> Void) {
         repository.verifyPurchase(domain: domain, uid: uid, wa: wa) { result in completion(result) }
+    }
+    
+    internal func createAPPCTransaction(wa: Wallet, raw: CreateAPPCTransactionRaw, completion: @escaping (Result<CreateAPPCTransactionResponseRaw, TransactionError>) -> Void) {
+        repository.createAPPCTransaction(wa: wa, raw: raw) {result in completion(result)}
+    }
+    
+    internal func createSandboxTransaction(wa: Wallet, raw: CreateSandboxTransactionRaw, completion: @escaping (Result<CreateSandboxTransactionResponseRaw, TransactionError>) -> Void) {
+        repository.createSandboxTransaction(wa: wa, raw: raw) {result in completion(result)}
     }
     
     internal func createAdyenTransaction(wa: Wallet, raw: CreateAdyenTransactionRaw, completion: @escaping (Result<AdyenTransactionSession, TransactionError>) -> Void) {

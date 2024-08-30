@@ -79,47 +79,46 @@ internal class TransactionViewModel : ObservableObject {
                                 appcValue in
                                 
                                 if let moneyAmount = Double(product.priceValue) {
-                                    
                                     // 4. Get user bonus
                                     self.getTransactionBonus(wallet: wallet, domain: domain, amount: product.priceValue, currency: productCurrency) {
                                         transactionBonus in
                                         
                                         // 5. Get payment methods available
-                                        self.getPaymentMethods(value: product.priceValue, currency: productCurrency) {
+                                        self.getPaymentMethods(value: product.priceValue, currency: productCurrency, wallet: wallet, domain: domain) {
                                             availablePaymentMethods in
                                             
-                                                // 6. Get user's balance
-                                                self.getWalletBalance(wallet: wallet) {
-                                                    balance in
-                                                    
-                                                    let balanceValue = balance.balance
-                                                    let balanceCurrency = balance.balanceCurrency
-                                                    
-                                                    // 7. Get developer's address
-                                                    self.getDeveloperAddress(domain: domain) {
-                                                        developerWa in
+                                            // 6. Get user's balance
+                                            self.getWalletBalance(wallet: wallet) {
+                                                balance in
                                                         
-                                                        DispatchQueue.main.async {
-                                                            // 8. Build the Transaction UI
-                                                            self.transaction = TransactionAlertUi(domain: domain, description: product.title, category: .IAP, sku: product.sku, moneyAmount: moneyAmount, moneyCurrency: productCurrency, appcAmount: appcValue, bonusAmount: transactionBonus.value, bonusCurrency: transactionBonus.currency, balanceAmount: balanceValue, balanceCurrency: balanceCurrency, paymentMethods: availablePaymentMethods)
-                                                            
-                                                            let guestUID = MMPUseCases.shared.getGuestUID()
-                                                            let oemID = MMPUseCases.shared.getOEMID()
-                                                            
-                                                            // 9. Build the parameters to process the transaction
-                                                            self.transactionParameters = TransactionParameters(value: String(moneyAmount), currency: product.priceCurrency, developerWa: developerWa, userWa: wallet.getWalletAddress(), domain: domain, product: product.sku, appcAmount: String(appcValue), guestUID: guestUID, oemID: oemID, metadata: self.metadata, reference: self.reference)
-                                                            
-                                                            // 10. Show payment method options
-                                                            self.showPaymentMethodsOnBuild(balance: balance)
-                                                        }
+                                                let balanceValue = balance.balance
+                                                let balanceCurrency = balance.balanceCurrency
+                                                
+                                                // 7. Get developer's address
+                                                self.getDeveloperAddress(domain: domain) {
+                                                    developerWa in
+                                                    
+                                                    DispatchQueue.main.async {
+                                                        // 8. Build the Transaction UI
+                                                        self.transaction = TransactionAlertUi(domain: domain, description: product.title, category: .IAP, sku: product.sku, moneyAmount: moneyAmount, moneyCurrency: productCurrency, appcAmount: appcValue, bonusAmount: transactionBonus.value, bonusCurrency: transactionBonus.currency, balanceAmount: balanceValue, balanceCurrency: balanceCurrency, paymentMethods: availablePaymentMethods)
+                                                        
+                                                        let guestUID = MMPUseCases.shared.getGuestUID()
+                                                        let oemID = MMPUseCases.shared.getOEMID()
+                                                        
+                                                        // 9. Build the parameters to process the transaction
+                                                        self.transactionParameters = TransactionParameters(value: String(moneyAmount), currency: product.priceCurrency, developerWa: developerWa, userWa: wallet.getWalletAddress(), domain: domain, product: product.sku, appcAmount: String(appcValue), guestUID: guestUID, oemID: oemID, metadata: self.metadata, reference: self.reference)
+                                                        
+                                                        // 10. Show payment method options
+                                                        self.showPaymentMethodsOnBuild(balance: balance)
                                                     }
                                                 }
+                                            }
                                         }
                                     }
                                 } else { self.bottomSheetViewModel.transactionFailedWith(error: .unknown) }
                             }
                         case .failure(_):
-                            self.bottomSheetViewModel.transactionFailedWith(error: .notEntitled)
+                            self.bottomSheetViewModel.transactionFailedWith(error: .systemError)
                         }
                     }
                 case .failure(_):
@@ -160,8 +159,8 @@ internal class TransactionViewModel : ObservableObject {
         }
     }
     
-    private func getPaymentMethods(value: String, currency: Currency, completion: @escaping ([PaymentMethod]) -> Void) {
-        self.transactionUseCases.getPaymentMethods(value: value, currency: currency) {
+    private func getPaymentMethods(value: String, currency: Currency, wallet: Wallet, domain: String, completion: @escaping ([PaymentMethod]) -> Void) {
+        self.transactionUseCases.getPaymentMethods(value: value, currency: currency, wallet: wallet, domain: domain) {
             result in
             
             switch result {
@@ -206,89 +205,61 @@ internal class TransactionViewModel : ObservableObject {
     }
     
     private func showPaymentMethodsOnBuild(balance: Balance) {
-        // Other Payment Methods filtering
-        if balance.appcoinsBalance < self.transaction?.appcAmount ?? 0 {
-            if let index = self.transaction?.paymentMethods.firstIndex(where: { $0.name == Method.appc.rawValue }) {
-                if var appcPM = self.transaction?.paymentMethods.remove(at: index) {
-                    appcPM.disabled = true
-                    self.transaction?.paymentMethods.append(appcPM)
+        // Filter out the AppCoins payment method if balance is insufficient
+        disableAppCoinsIfNeeded(balance: balance)
+        
+        // Quick view of the last payment method used
+        if let lastPaymentMethod = self.transactionUseCases.getLastPaymentMethod() {
+            showQuickPaymentMethod(lastPaymentMethod)
+        } else {
+            selectDefaultPaymentMethod()
+        }
+        
+        func disableAppCoinsIfNeeded(balance: Balance) {
+            if balance.appcoinsBalance < self.transaction?.appcAmount ?? 0,
+               let index = self.transaction?.paymentMethods.firstIndex(where: { $0.name == Method.appc.rawValue }) {
+                if var appcPaymentMethod = self.transaction?.paymentMethods[index] {
+                    appcPaymentMethod.disable()
+                    self.transaction?.paymentMethods[index] = appcPaymentMethod
                 }
             }
         }
         
-        // Quick view of last payment method used
-        let lastPaymentMethod = self.transactionUseCases.getLastPaymentMethod()
-        if let lastPaymentMethod = lastPaymentMethod {
-            switch lastPaymentMethod {
-            case Method.appc:
-                if let appcPM = self.transaction?.paymentMethods.first(where: { $0.name == Method.appc.rawValue && $0.disabled == false }) {
-                    self.lastPaymentMethod = appcPM
-                    self.paymentMethodSelected = appcPM
-                } else {
-                    if let paypal = self.transaction?.paymentMethods.first(where: { $0.name == Method.paypalAdyen.rawValue || $0.name == Method.paypalDirect.rawValue }) {
-                        self.paymentMethodSelected = paypal
-                    } else if let selected = self.transaction?.paymentMethods.first {
-                        self.paymentMethodSelected = selected
-                    }
-                    self.showOtherPaymentMethods = true
-                }
-            case Method.paypalAdyen:
-                if let paypalPM = self.transaction?.paymentMethods.first(where: { $0.name == Method.paypalAdyen.rawValue }) {
-                    self.lastPaymentMethod = paypalPM
-                    self.paymentMethodSelected = paypalPM
-                } else {
-                    if let paypal = self.transaction?.paymentMethods.first(where: { $0.name == Method.paypalAdyen.rawValue || $0.name == Method.paypalDirect.rawValue }) {
-                        self.paymentMethodSelected = paypal
-                    } else if let selected = self.transaction?.paymentMethods.first {
-                        self.paymentMethodSelected = selected
-                    }
-                    self.showOtherPaymentMethods = true
-                }
-            case Method.paypalDirect:
-                if let paypalPM = self.transaction?.paymentMethods.first(where: { $0.name == Method.paypalDirect.rawValue }) {
-                    if self.transactionUseCases.hasBillingAgreement() { self.paypalLogOut = true }
-                    self.lastPaymentMethod = paypalPM
-                    self.paymentMethodSelected = paypalPM
-                } else {
-                    if let paypal = self.transaction?.paymentMethods.first(where: { $0.name == Method.paypalAdyen.rawValue || $0.name == Method.paypalDirect.rawValue }) {
-                        self.paymentMethodSelected = paypal
-                    } else if let selected = self.transaction?.paymentMethods.first {
-                        self.paymentMethodSelected = selected
-                    }
-                    self.showOtherPaymentMethods = true
-                }
-            case Method.creditCard:
-                if let ccPM = self.transaction?.paymentMethods.first(where: { $0.name == Method.creditCard.rawValue }) {
-                    self.lastPaymentMethod = ccPM
-                    self.paymentMethodSelected = ccPM
-                } else {
-                    if let paypal = self.transaction?.paymentMethods.first(where: { $0.name == Method.paypalAdyen.rawValue || $0.name == Method.paypalDirect.rawValue }) {
-                        self.paymentMethodSelected = paypal
-                    } else if let selected = self.transaction?.paymentMethods.first {
-                        self.paymentMethodSelected = selected
-                    }
-                    self.showOtherPaymentMethods = true
-                }
-            default:
-                if let paypal = self.transaction?.paymentMethods.first(where: { $0.name == Method.paypalAdyen.rawValue || $0.name == Method.paypalDirect.rawValue }) {
-                    self.paymentMethodSelected = paypal
-                } else if let selected = self.transaction?.paymentMethods.first {
-                    self.paymentMethodSelected = selected
-                }
+        func selectDefaultPaymentMethod() {
+            if let appcPaymentMethod = self.transaction?.paymentMethods.first(where: { $0.name == Method.appc.rawValue && !$0.disabled }) {
+                self.lastPaymentMethod = appcPaymentMethod
+                self.paymentMethodSelected = appcPaymentMethod
+            } else if let fallback = findFallbackPaymentMethod() {
+                self.paymentMethodSelected = fallback
                 self.showOtherPaymentMethods = true
             }
-        } else {
-            if let appcPM = self.transaction?.paymentMethods.first(where: { $0.name == Method.appc.rawValue && $0.disabled == false }) {
-                self.lastPaymentMethod = appcPM
-                self.paymentMethodSelected = appcPM
+        }
+
+        func showQuickPaymentMethod(_ lastPaymentMethod: Method) {
+            if let selectedMethod = self.transaction?.paymentMethods.first(where: { $0.name == lastPaymentMethod.rawValue && !$0.disabled }) {
+                self.lastPaymentMethod = selectedMethod
+                self.paymentMethodSelected = selectedMethod
             } else {
-                if let paypal = self.transaction?.paymentMethods.first(where: { $0.name == Method.paypalAdyen.rawValue || $0.name == Method.paypalDirect.rawValue }) {
-                    self.paymentMethodSelected = paypal
-                } else if let selected = self.transaction?.paymentMethods.first {
-                    self.paymentMethodSelected = selected
+                handleFallbackPaymentMethod(for: lastPaymentMethod)
+            }
+            
+            func handleFallbackPaymentMethod(for method: Method) {
+                if let fallback = findFallbackPaymentMethod() {
+                    self.paymentMethodSelected = fallback
                 }
+                
+                if method == .paypalDirect, self.transactionUseCases.hasBillingAgreement() {
+                    self.paypalLogOut = true
+                }
+                
                 self.showOtherPaymentMethods = true
             }
+        }
+        
+        func findFallbackPaymentMethod() -> PaymentMethod? {
+            return self.transaction?.paymentMethods.first(where: {
+                $0.name == Method.paypalAdyen.rawValue || $0.name == Method.paypalDirect.rawValue
+            }) ?? self.transaction?.paymentMethods.first
         }
     }
     

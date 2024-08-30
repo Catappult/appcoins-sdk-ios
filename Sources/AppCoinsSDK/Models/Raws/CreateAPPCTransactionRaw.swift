@@ -9,7 +9,6 @@ import Foundation
 
 internal struct CreateAPPCTransactionRaw: Codable {
     
-    internal let origin: String?
     internal let domain: String
     internal let price: String?
     internal let priceCurrency: String
@@ -24,7 +23,6 @@ internal struct CreateAPPCTransactionRaw: Codable {
     internal let reference: String?
     
     internal enum CodingKeys: String, CodingKey {
-        case origin = "origin"
         case domain = "domain"
         case price = "price.value"
         case priceCurrency = "price.currency"
@@ -43,7 +41,7 @@ internal struct CreateAPPCTransactionRaw: Codable {
         // normalizes the price to adjust to different time zone price syntaxes
         let normalizedPrice = (parameters.appcAmount).replacingOccurrences(of: ",", with: ".")
         
-        return CreateAPPCTransactionRaw(origin: "BDS", domain: parameters.domain, price: normalizedPrice, priceCurrency: "APPC", product: parameters.product, type: "INAPP", developerWa: parameters.developerWa, channel: "IOS", platform: "IOS", guestUID: parameters.guestUID, oemID: parameters.oemID, metadata: parameters.metadata, reference: parameters.reference
+        return CreateAPPCTransactionRaw(domain: parameters.domain, price: normalizedPrice, priceCurrency: "APPC", product: parameters.product, type: "INAPP", developerWa: parameters.developerWa, channel: "IOS", platform: "IOS", guestUID: parameters.guestUID, oemID: parameters.oemID, metadata: parameters.metadata, reference: parameters.reference
         )
     }
     
@@ -53,10 +51,10 @@ internal struct CreateAPPCTransactionRaw: Codable {
     
 }
 
-internal struct CreateTransactionResponseRaw: Codable {
+internal struct CreateAPPCTransactionResponseRaw: Codable {
     
     internal let uuid: String
-    internal let status: CreateTransactionStatus
+    internal let status: CreateAPPCTransactionStatus
     internal let hash: String?
     
     internal enum CodingKeys: String, CodingKey {
@@ -67,10 +65,10 @@ internal struct CreateTransactionResponseRaw: Codable {
     
 }
 
-internal enum CreateTransactionStatus: String, Codable {
+internal enum CreateAPPCTransactionStatus: String, Codable {
     
     internal init(from decoder: Decoder) throws {
-        self = try CreateTransactionStatus(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? .UNKNOWN
+        self = try CreateAPPCTransactionStatus(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? .UNKNOWN
     }
     
     case PENDING = "PENDING"
@@ -87,12 +85,12 @@ internal enum CreateTransactionStatus: String, Codable {
     
 }
 
-internal struct CreateTransactionErrorRaw: Codable {
+internal struct CreateAPPCTransactionErrorRaw: Codable {
     
     internal let code: String
     internal let path: String
     internal let text: String
-    internal let data: CreateTransactionErrorDataRaw
+    internal let data: CreateAPPCTransactionErrorDataRaw
     
     internal enum CodingKeys: String, CodingKey {
         case code = "code"
@@ -102,7 +100,7 @@ internal struct CreateTransactionErrorRaw: Codable {
     }
 }
 
-internal struct CreateTransactionErrorDataRaw: Codable {
+internal struct CreateAPPCTransactionErrorDataRaw: Codable {
     
     internal let enduser: String
     internal let technical: String
