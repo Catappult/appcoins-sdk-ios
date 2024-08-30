@@ -1,6 +1,6 @@
 //
 //  BottomSheetViewModel.swift
-//  
+//
 //
 //  Created by aptoide on 08/03/2023.
 //
@@ -21,7 +21,7 @@ internal class BottomSheetViewModel : ObservableObject {
     // The purchase resulting from the completed transaction, used for when there's a sync or an install after the purchase has been completed
     private var purchase: Purchase? = nil
     private var purchaseCompleted: Bool = false
-
+    
     // Purchase status
     @Published internal var purchaseState: PurchaseState = .none
     @Published internal var walletSyncingStatus: WalletSyncingStatus = .none
@@ -35,7 +35,7 @@ internal class BottomSheetViewModel : ObservableObject {
     // Variables used for BottomSheet text variable displays
     @Published internal var finalWalletBalance: String?
     @Published internal var purchaseFailedMessage: String = Constants.somethingWentWrong
-
+    
     internal var hasActiveTransaction = false
     
     internal var productUseCases: ProductUseCases = ProductUseCases.shared
@@ -79,7 +79,7 @@ internal class BottomSheetViewModel : ObservableObject {
         
         DispatchQueue(label: "build-transaction", qos: .userInteractive).async { self.initiateTransaction() }
     }
-
+    
     internal func initiateTransaction() {
         walletApplicationUseCases.isWalletAvailable() {
             walletAvailable in
@@ -87,7 +87,7 @@ internal class BottomSheetViewModel : ObservableObject {
             if walletAvailable && self.walletApplicationUseCases.isWalletInstalled() {
                 let newWalletSyncingStatus = self.walletUseCases.getWalletSyncingStatus()
                 DispatchQueue.main.async { self.walletSyncingStatus = newWalletSyncingStatus }
-
+                
                 switch newWalletSyncingStatus {
                 case .accepted: TransactionViewModel.shared.buildTransaction()
                 case .rejected: TransactionViewModel.shared.buildTransaction()
@@ -135,7 +135,7 @@ internal class BottomSheetViewModel : ObservableObject {
         
         if let rootViewController = UIApplication.shared.windows.first?.rootViewController,
            let presentedPurchaseVC = rootViewController.presentedViewController as? PurchaseViewController {
-    
+            
             var delay = 0.3
             if KeyboardObserver.shared.isKeyboardVisible { delay = 0.45 }
             
@@ -293,29 +293,27 @@ internal class BottomSheetViewModel : ObservableObject {
                             self.currencyUseCases.getSupportedCurrencies { result in
                                 switch result {
                                 case .success(let currencyList):
-                                    if let transactionMoneyCurrency = currencyList.first(where: { $0.currency == TransactionViewModel.shared.transaction?.moneyCurrency }) {
-                                        wallet.getBalance(currency: transactionMoneyCurrency) {
-                                            result in
-                                            switch result {
-                                            case .success(let balance):
-                                                Purchase.verify(purchaseUID: purchaseUID) {
-                                                    result in
-                                                    switch result {
-                                                    case .success(let purchase):
-                                                        purchase.acknowledge() {
-                                                            error in
-                                                            if let error = error { self.transactionFailedWith(error: error) }
-                                                            else {
-                                                                self.successfulTransaction(purchase: purchase, balance: balance, method: method)
-                                                            }
+                                    wallet.getBalance {
+                                        result in
+                                        switch result {
+                                        case .success(let balance):
+                                            Purchase.verify(purchaseUID: purchaseUID) {
+                                                result in
+                                                switch result {
+                                                case .success(let purchase):
+                                                    purchase.acknowledge() {
+                                                        error in
+                                                        if let error = error { self.transactionFailedWith(error: error) }
+                                                        else {
+                                                            self.successfulTransaction(purchase: purchase, balance: balance, method: method)
                                                         }
-                                                    case .failure(let error): self.transactionFailedWith(error: error)
                                                     }
+                                                case .failure(let error): self.transactionFailedWith(error: error)
                                                 }
-                                            case .failure(let failure):
-                                                if failure == .noInternet { self.transactionFailedWith(error: .networkError) }
-                                                else { self.transactionFailedWith(error: .systemError) }
                                             }
+                                        case .failure(let failure):
+                                            if failure == .noInternet { self.transactionFailedWith(error: .networkError) }
+                                            else { self.transactionFailedWith(error: .systemError) }
                                         }
                                     }
                                 case .failure: break
@@ -414,7 +412,7 @@ internal class BottomSheetViewModel : ObservableObject {
                 self.walletUseCases.updateWalletSyncingStatus(status: .rejected)
             }
         }
-
+        
         if hasCompletedPurchase(), let purchase = purchase {
             let verificationResult: VerificationResult = .verified(purchase: purchase)
             let transactionResult: TransactionResult = .success(verificationResult: verificationResult)

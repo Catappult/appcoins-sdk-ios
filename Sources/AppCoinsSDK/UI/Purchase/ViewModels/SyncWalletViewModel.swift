@@ -147,7 +147,7 @@ internal class SyncWalletViewModel : ObservableObject {
             if let currentWallet = self.walletUseCases.getClientWallet() {
                 
                 // 3. Get the current APPC balance from the SDKs Wallet to transfer it to the user's Wallet
-                currentWallet.getBalance(currency: Currency.appcCurrency) {
+                currentWallet.getBalance {
                     result in
                     switch result {
                     case .success(let balance):

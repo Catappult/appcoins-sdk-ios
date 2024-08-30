@@ -86,7 +86,7 @@ internal class TransactionViewModel : ObservableObject {
                                         availablePaymentMethods in
                                         
                                         // 4. Get user's balance
-                                            self.getWalletBalance(wallet: wallet, currency: currency) {
+                                            self.getWalletBalance(wallet: wallet) {
                                                 balance in
                                                 
                                                 let balanceValue = balance.balance
@@ -173,8 +173,8 @@ internal class TransactionViewModel : ObservableObject {
         }
     }
     
-    private func getWalletBalance(wallet: Wallet, currency: Currency, completion: @escaping (Balance) -> Void) {
-        wallet.getBalance(currency: currency) {
+    private func getWalletBalance(wallet: Wallet, completion: @escaping (Balance) -> Void) {
+        wallet.getBalance {
             result in
             
             switch result {

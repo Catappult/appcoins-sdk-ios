@@ -39,33 +39,34 @@ internal class ClientWallet: Wallet, Codable {
             let bdname = Utils.readFromPreferences(key: address)
             if bdname != "" { self.name = bdname } else { self.name = address }
             
-            billingService.convertCurrency(money: "1.0", fromCurrency: Currency.appcCurrency.currency, toCurrency: nil) { result in
+            self.getBalance {
+                result in
                 switch result {
-                case .success(let convertCurrencyRaw):
-                    self.getBalance(currency: Currency(convertCurrencyRaw: convertCurrencyRaw)) {
-                        result in
-                        switch result {
-                        case .success(let balance):
-                            self.balance = balance
-                        case .failure(_):
-                            break
-                        }
-                    }
-                case .failure: break
+                case .success(let balance):
+                    self.balance = balance
+                case .failure(_):
+                    break
                 }
             }
         }
     }
     
-    internal func getBalance(currency: Currency, completion: @escaping (Result<Balance, AppcTransactionError>) -> Void) {
-        if let address = self.address {
-            transactionService.getBalance(wa: address, currency: currency) { result in
-                switch result {
-                case .success(let response):
-                    completion(.success(Balance(balanceCurrency: response.symbol, balance: response.appcFiatBalance, appcoinsBalance: response.appcNormalizedBalance)))
-                case .failure(let error):
-                    completion(.failure(error))
+    internal func getBalance(completion: @escaping (Result<Balance, AppcTransactionError>) -> Void) {
+        billingService.convertCurrency(money: "1.0", fromCurrency: Currency.appcCurrency.currency, toCurrency: nil) { result in
+            switch result {
+            case .success(let convertCurrencyRaw):
+                if let address = self.address {
+                    self.transactionService.getBalance(wa: address, currency: Currency(convertCurrencyRaw: convertCurrencyRaw)) { result in
+                        switch result {
+                        case .success(let response):
+                            completion(.success(Balance(balanceCurrency: response.symbol, balance: response.appcFiatBalance, appcoinsBalance: response.appcNormalizedBalance)))
+                        case .failure(let error):
+                            completion(.failure(error))
+                        }
+                    }
                 }
+            case .failure:
+                completion(.failure(.failed))
             }
         }
     }
