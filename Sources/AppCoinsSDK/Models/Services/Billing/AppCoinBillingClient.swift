@@ -41,7 +41,6 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                             result(.success(convertion))
                         } else { result(.failure(.failed)) }
                     }
-                    
                 }
                 task.resume()
             }
@@ -78,7 +77,6 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                             result(.success(convertion))
                         } else { result(.failure(.failed)) }
                     }
-                    
                 }
                 task.resume()
             }
@@ -132,8 +130,6 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                                 completion(.failure(.general))
                             }
                         }
-                        
-                        
                     })
                     task.resume()
                 }
@@ -228,8 +224,6 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                                 completion(.failure(.general))
                             }
                         }
-                        
-                        
                     })
                     task.resume()
                 }
@@ -280,8 +274,6 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                                 completion(.failure(.general))
                             }
                         }
-                        
-                        
                     })
                     task.resume()
                 }
@@ -370,7 +362,6 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                             }
                         } else {
                             if let data = data {
-                                print(String(data: data, encoding: .utf8))
                                 if let successResponse = try? JSONDecoder().decode(CreateBAPayPalTransactionResponseRaw.self, from: data) {
                                     completion(.success(successResponse))
                                 } else if let BANotFounResponse = try? JSONDecoder().decode(CreateBAPayPalBillingAgreementNotFoundResponseRaw.self, from: data) {
@@ -386,8 +377,6 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                                 completion(.failure(.failed()))
                             }
                         }
-                        
-                        
                     })
                     task.resume()
                 }
