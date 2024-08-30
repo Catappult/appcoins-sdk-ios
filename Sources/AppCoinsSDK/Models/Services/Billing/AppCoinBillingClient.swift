@@ -570,6 +570,9 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                 func getNextCurrenciesBatch(url: URL) {
                     var request = URLRequest(url: url)
                     
+                    let userAgent = "AppCoinsWalletIOS/.."
+                    request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
+                    
                     request.httpMethod = "GET"
                     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
                     request.timeoutInterval = 10
