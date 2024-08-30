@@ -1,13 +1,13 @@
 //
-//  CreateBAPayPalTransactionRaw.swift
-//  
+//  CreateSandboxTransactionRaw.swift
 //
-//  Created by aptoide on 20/06/2023.
+//
+//  Created by aptoide on 28/08/2024.
 //
 
 import Foundation
 
-internal struct CreateBAPayPalTransactionRaw: Codable {
+internal struct CreateSandboxTransactionRaw: Codable {
     
     internal let domain: String
     internal let price: String?
@@ -15,7 +15,6 @@ internal struct CreateBAPayPalTransactionRaw: Codable {
     internal let product: String?
     internal let type: String
     internal let developerWa: String
-    internal let userWa: String
     internal let channel: String
     internal let platform: String
     internal let guestUID: String?
@@ -30,7 +29,6 @@ internal struct CreateBAPayPalTransactionRaw: Codable {
         case product = "product"
         case type = "type"
         case developerWa = "wallets.developer"
-        case userWa = "wallets.user"
         case channel = "channel"
         case platform = "platform"
         case guestUID = "entity.guest_id"
@@ -39,12 +37,11 @@ internal struct CreateBAPayPalTransactionRaw: Codable {
         case reference = "reference"
     }
     
-    internal static func fromParameters(parameters: TransactionParameters) -> CreateBAPayPalTransactionRaw {
+    internal static func fromParameters(parameters: TransactionParameters) -> CreateSandboxTransactionRaw {
         // normalizes the price to adjust to different time zone price syntaxes
-        let normalizedPrice = parameters.value.replacingOccurrences(of: ",", with: ".")
+        let normalizedPrice = (parameters.appcAmount).replacingOccurrences(of: ",", with: ".")
         
-        return CreateBAPayPalTransactionRaw(
-            domain: parameters.domain, price: normalizedPrice, priceCurrency: parameters.currency, product: parameters.product, type: "INAPP", developerWa: parameters.developerWa, userWa: parameters.userWa, channel: "IOS", platform: "IOS", guestUID: parameters.guestUID, oemID: parameters.oemID, metadata: parameters.metadata, reference: parameters.reference
+        return CreateSandboxTransactionRaw(domain: parameters.domain, price: normalizedPrice, priceCurrency: "APPC", product: parameters.product, type: "INAPP", developerWa: parameters.developerWa, channel: "IOS", platform: "IOS", guestUID: parameters.guestUID, oemID: parameters.oemID, metadata: parameters.metadata, reference: parameters.reference
         )
     }
     
@@ -54,10 +51,10 @@ internal struct CreateBAPayPalTransactionRaw: Codable {
     
 }
 
-internal struct CreateBAPayPalTransactionResponseRaw: Codable {
+internal struct CreateSandboxTransactionResponseRaw: Codable {
     
     internal let uuid: String
-    internal let status: CreateBAPayPalTransactionStatus
+    internal let status: CreateSandboxTransactionStatus
     internal let hash: String?
     
     internal enum CodingKeys: String, CodingKey {
@@ -68,26 +65,10 @@ internal struct CreateBAPayPalTransactionResponseRaw: Codable {
     
 }
 
-internal struct CreateBAPayPalBillingAgreementNotFoundResponseRaw: Codable {
-    
-    internal let code: String
-    internal let path: String?
-    internal let text: String?
-    internal let data: String?
-    
-    internal enum CodingKeys: String, CodingKey {
-        case code = "code"
-        case path = "path"
-        case text = "text"
-        case data = "data"
-    }
-    
-}
-
-internal enum CreateBAPayPalTransactionStatus: String, Codable {
+internal enum CreateSandboxTransactionStatus: String, Codable {
     
     internal init(from decoder: Decoder) throws {
-        self = try CreateBAPayPalTransactionStatus(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? .UNKNOWN
+        self = try CreateSandboxTransactionStatus(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? .UNKNOWN
     }
     
     case PENDING = "PENDING"
@@ -103,3 +84,31 @@ internal enum CreateBAPayPalTransactionStatus: String, Codable {
     case UNKNOWN
     
 }
+
+internal struct CreateSandboxTransactionErrorRaw: Codable {
+    
+    internal let code: String
+    internal let path: String
+    internal let text: String
+    internal let data: CreateSandboxTransactionErrorDataRaw
+    
+    internal enum CodingKeys: String, CodingKey {
+        case code = "code"
+        case path = "path"
+        case text = "text"
+        case data = "data"
+    }
+}
+
+internal struct CreateSandboxTransactionErrorDataRaw: Codable {
+    
+    internal let enduser: String
+    internal let technical: String
+    
+    internal enum CodingKeys: String, CodingKey {
+        case enduser = "enduser"
+        case technical = "technical"
+    }
+    
+}
+

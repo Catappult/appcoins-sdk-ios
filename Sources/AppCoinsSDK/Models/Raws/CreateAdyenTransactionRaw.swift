@@ -9,7 +9,6 @@ import Foundation
 
 internal struct CreateAdyenTransactionRaw: Codable {
     
-    internal let origin: String?
     internal let domain: String
     internal let price: String?
     internal let priceCurrency: String
@@ -28,7 +27,6 @@ internal struct CreateAdyenTransactionRaw: Codable {
     internal let reference: String?
     
     internal enum CodingKeys: String, CodingKey {
-        case origin = "origin"
         case domain = "domain"
         case price = "price.value"
         case priceCurrency = "price.currency"
@@ -55,7 +53,7 @@ internal struct CreateAdyenTransactionRaw: Codable {
         if let method = parameters.method, let bundleID = Bundle.main.bundleIdentifier {
             return .success(
                 CreateAdyenTransactionRaw(
-                    origin: "BDS", domain: parameters.domain, price: normalizedPrice, priceCurrency: parameters.currency,
+                    domain: parameters.domain, price: normalizedPrice, priceCurrency: parameters.currency,
                     product: parameters.product, type: "INAPP", method: method, developerWa: parameters.developerWa, channel: "IOS", platform: "IOS", paymentChannel: "IOS", paymentReturnUrl: "\(bundleID).iap://api.blockchainds.com/broker", userWa: parameters.userWa, guestUID: parameters.guestUID, oemID: parameters.oemID, metadata: parameters.metadata, reference: parameters.reference
                 )
             )

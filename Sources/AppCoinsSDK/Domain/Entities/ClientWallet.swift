@@ -20,8 +20,6 @@ internal class ClientWallet: Wallet, Codable {
     
     private let password: String
     private let keystore: EthereumKeystoreV3
-    private let transactionService: AppCoinTransactionService = AppCoinTransactionClient()
-    private let billingService: AppCoinBillingService = AppCoinBillingClient()
     private let walletService: WalletLocalService = WalletLocalClient()
     
     internal init? (_ keystoreUrl: URL, _ password: String = "") {
@@ -39,7 +37,7 @@ internal class ClientWallet: Wallet, Codable {
             let bdname = Utils.readFromPreferences(key: address)
             if bdname != "" { self.name = bdname } else { self.name = address }
             
-            getBalance(currency: .EUR) {
+            self.getBalance {
                 result in
                 switch result {
                 case .success(let balance):
@@ -51,32 +49,28 @@ internal class ClientWallet: Wallet, Codable {
         }
     }
     
-    internal func getBalance(currency: Coin, completion: @escaping (Result<Balance, AppcTransactionError>) -> Void) {
-        if let address = self.address {
-            transactionService.getBalance(wa: address) { result in
-                switch result {
-                case .success(let response):
-                    self.billingService.convertCurrency(money: String(response.usdBalance), fromCurrency: .USD, toCurrency: currency) {
-                        result in
-                        
+    internal func getBalance(completion: @escaping (Result<Balance, AppcTransactionError>) -> Void) {
+        CurrencyUseCases.shared.getUserCurrency { result in
+            switch result {
+            case .success(let currency):
+                if let address = self.address {
+                    WalletUseCases.shared.getWalletBalance(wallet: self, currency: currency) { result in
                         switch result {
-                        case .success(let currencyResponse):
-                            let balance = Balance(balanceCurrency: currencyResponse.sign, balance: Double(currencyResponse.value) ?? 0.0, appcoinsBalance: response.appcNormalizedBalance)
+                        case .success(let balance):
                             completion(.success(balance))
-                        case .failure(_):
-                            completion(.failure(.failed))
+                        case .failure(let error):
+                            completion(.failure(error))
                         }
                     }
-                case .failure(let error):
-                    completion(.failure(error))
                 }
-                
+            case .failure:
+                completion(.failure(.failed))
             }
         }
     }
     
     internal func getPrivateKey() -> Data {
-        if let privateKey = walletService.getPrivateKey(address: self.keystore.addresses!.first!.address) {
+        if let privateKey = WalletUseCases.shared.getWalletPrivateKey(wallet: self) {
             return privateKey
         } else {
             let ethereumAddress = EthereumAddress(getWalletAddress())!

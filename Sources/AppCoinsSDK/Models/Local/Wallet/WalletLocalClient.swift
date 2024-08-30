@@ -185,8 +185,8 @@ internal class WalletLocalClient : WalletLocalService {
         } else { completion(.failure(WalletLocalErrors.failedToCreate)) }
     }
     
-    internal func getPrivateKey(address: String) -> Data? {
-        if let privateKeyString = Utils.readFromKeychain(key: "\(address)-pk") {
+    internal func getPrivateKey(wallet: Wallet) -> Data? {
+        if let privateKeyString = Utils.readFromKeychain(key: "\(wallet.getWalletAddress())-pk") {
             return Data(base64Encoded: privateKeyString)
         } else {
             return nil

@@ -124,4 +124,15 @@ public struct Product {
             if let result = result { return result } else { return .failed(error: .unknown) }
         }
     }
+    
+    internal func getCurrency(completion: @escaping (Result<Currency, BillingError>) -> Void) {
+        CurrencyUseCases.shared.getSupportedCurrency(currency: self.priceCurrency) { result in
+            switch result {
+            case .success(let currency):
+                completion(.success(currency))
+            case .failure(let failure):
+                completion(.failure(failure))
+            }
+        }
+    }
 }

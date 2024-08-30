@@ -9,9 +9,10 @@ import Foundation
 import SwiftUI
 
 internal class WalletRepository: WalletRepositoryProtocol {
-        
+    
     private var walletService: WalletLocalService = WalletLocalClient()
     private var appcService: APPCService = APPCServiceClient()
+    private var appcTransactionService: AppCoinTransactionService = AppCoinTransactionClient()
     
     private let ActiveWalletCache: Cache<String, ClientWallet?> = Cache(cacheName: "ActiveWalletCache")
     private let WalletListCache: Cache<String, [ClientWallet]> = Cache(cacheName: "WalletListCache")
@@ -83,4 +84,21 @@ internal class WalletRepository: WalletRepositoryProtocol {
     internal func getWalletSyncingStatus() -> WalletSyncingStatus { return walletService.getWalletSyncingStatus() }
     
     internal func updateWalletSyncingStatus(status: WalletSyncingStatus) { walletService.updateWalletSyncingStatus(status: status) }
+    
+    internal func getWalletBalance(wallet: Wallet, currency: Currency, completion: @escaping (Result<Balance, AppcTransactionError>) -> Void) {
+        appcTransactionService.getBalance(wallet: wallet, currency: currency) {
+            result in
+            
+            switch result {
+            case .success(let balanceRaw):
+                completion(.success(Balance(raw: balanceRaw, currency: currency)))
+            case .failure(let failure):
+                completion(.failure(failure))
+            }
+        }
+    }
+    
+    internal func getWalletPrivateKey(wallet: Wallet) -> Data? {
+        return walletService.getPrivateKey(wallet: wallet)
+    }
 }

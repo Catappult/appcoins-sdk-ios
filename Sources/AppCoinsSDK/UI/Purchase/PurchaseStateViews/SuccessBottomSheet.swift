@@ -46,7 +46,7 @@ internal struct SuccessBottomSheet: View {
                                 .edgesIgnoringSafeArea(.all)
                                 .frame(width: 17, height: 17)
                             
-                            Text(String(format: Constants.bonusReceived, "\(transactionViewModel.transaction?.bonusCurrency ?? "")\(String(format: "%.2f", transactionViewModel.transaction?.bonusAmount ?? 0.0))"))
+                            Text(String(format: Constants.bonusReceived, "\(transactionViewModel.transaction?.bonusCurrency.sign ?? "")\(String(format: "%.2f", transactionViewModel.transaction?.bonusAmount ?? 0.0))"))
                                 .font(FontsUi.APC_Subheadline_Bold)
                                 .foregroundColor(ColorsUi.APC_White)
                                 .frame(alignment: .bottom)

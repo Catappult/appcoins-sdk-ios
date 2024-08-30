@@ -17,25 +17,21 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
     private let walletService: WalletLocalService = WalletLocalClient()
     private let userPreferencesService: UserPreferencesLocalService = UserPreferencesLocalClient()
     
-    internal func getTransactionBonus(address: String, package_name: String, amount: String, currency: Coin, completion: @escaping (Result<TransactionBonus, TransactionError>) -> Void) {
-        gamificationService.getTransactionBonus(address: address, package_name: package_name, amount: amount, currency: currency) {
+    internal func getTransactionBonus(wallet: Wallet, package_name: String, amount: String, currency: Currency, completion: @escaping (Result<TransactionBonus, TransactionError>) -> Void) {
+        gamificationService.getTransactionBonus(wallet: wallet, package_name: package_name, amount: amount, currency: currency) {
             result in
             
             switch result {
             case .success(let bonusRaw):
-                if let currency = Coin(rawValue: bonusRaw.currency) {
-                    completion(.success(TransactionBonus(value: bonusRaw.bonus, currency: currency)))
-                } else {
-                    completion(.failure(.failed()))
-                }
+                completion(.success(TransactionBonus(value: bonusRaw.bonus, currency: currency)))
             case .failure(let error):
                 completion(.failure(error))
             }
         }
     }
     
-    internal func getPaymentMethods(value: String, currency: Coin, completion: @escaping (Result<[PaymentMethod], BillingError>) -> Void) {
-        billingService.getPaymentMethods(value: value, currency: currency) {
+    internal func getPaymentMethods(value: String, currency: Currency, wallet: Wallet, domain: String, completion: @escaping (Result<[PaymentMethod], BillingError>) -> Void) {
+        billingService.getPaymentMethods(value: value, currency: currency, wallet: wallet, domain: domain) {
             result in
             
             switch result {
@@ -66,10 +62,6 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
                 completion(.failure(error))
             }
         }
-    }
-    
-    internal func createTransaction(wa: Wallet, raw: CreateAPPCTransactionRaw, completion: @escaping (Result<CreateTransactionResponseRaw, TransactionError>) -> Void) {
-        billingService.createTransaction(wa: wa, raw: raw) { result in completion(result) }
     }
     
     internal func getTransactionInfo(uid: String, wa: Wallet, completion: @escaping (Result<Transaction, TransactionError>) -> Void) {
@@ -215,6 +207,14 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
         } catch {
             return false
         }
+    }
+    
+    internal func createAPPCTransaction(wa: Wallet, raw: CreateAPPCTransactionRaw, completion: @escaping (Result<CreateAPPCTransactionResponseRaw, TransactionError>) -> Void) {
+        billingService.createAPPCTransaction(wa: wa, raw: raw) { result in completion(result) }
+    }
+    
+    internal func createSandboxTransaction(wa: Wallet, raw: CreateSandboxTransactionRaw, completion: @escaping (Result<CreateSandboxTransactionResponseRaw, TransactionError>) -> Void) {
+        billingService.createSandboxTransaction(wa: wa, raw: raw) { result in completion(result) }
     }
     
     internal func createAdyenTransaction(wa: Wallet, raw: CreateAdyenTransactionRaw, completion: @escaping (Result<AdyenTransactionSession, TransactionError>) -> Void) {

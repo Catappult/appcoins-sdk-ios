@@ -75,4 +75,12 @@ internal class WalletUseCases {
     internal func getWalletSyncingStatus() -> WalletSyncingStatus { return repository.getWalletSyncingStatus() }
     
     internal func updateWalletSyncingStatus(status: WalletSyncingStatus) { repository.updateWalletSyncingStatus(status: status) }
+    
+    internal func getWalletBalance(wallet: Wallet, currency: Currency, completion: @escaping (Result<Balance, AppcTransactionError>) -> Void) {
+        repository.getWalletBalance(wallet: wallet, currency: currency) { result in completion(result) }
+    }
+    
+    internal func getWalletPrivateKey(wallet: Wallet) -> Data? {
+        return repository.getWalletPrivateKey(wallet: wallet)
+    }
 }

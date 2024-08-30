@@ -9,6 +9,6 @@ import Foundation
 
 internal protocol AppCoinGamificationService {
     
-    func getTransactionBonus(address: String, package_name: String, amount: String, currency: Coin, result: @escaping (Result<TransactionBonusRaw, TransactionError>) -> Void)
+    func getTransactionBonus(wallet: Wallet, package_name: String, amount: String, currency: Currency, result: @escaping (Result<TransactionBonusRaw, TransactionError>) -> Void)
     
 }
