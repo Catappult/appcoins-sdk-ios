@@ -22,8 +22,6 @@ internal struct CurrencyRaw: Codable {
         case type = "type"
         case flag = "flag"
     }
-    
-    
 }
 
 internal struct CurrencyListRaw: Codable {
