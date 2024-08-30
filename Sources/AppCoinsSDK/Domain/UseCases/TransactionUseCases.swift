@@ -17,11 +17,11 @@ internal class TransactionUseCases {
         self.repository = repository
     }
     
-    internal func getTransactionBonus(address: String, package_name: String, amount: String, currency: Coin, completion: @escaping (Result<TransactionBonus, TransactionError>) -> Void) {
-        repository.getTransactionBonus(address: address, package_name: package_name, amount: amount, currency: currency) { result in completion(result) }
+    internal func getTransactionBonus(wallet: Wallet, package_name: String, amount: String, currency: Currency, completion: @escaping (Result<TransactionBonus, TransactionError>) -> Void) {
+        repository.getTransactionBonus(wallet: wallet, package_name: package_name, amount: amount, currency: currency) { result in completion(result) }
     }
     
-    internal func getPaymentMethods(value: String, currency: Coin, completion: @escaping (Result<[PaymentMethod], BillingError>) -> Void) {
+    internal func getPaymentMethods(value: String, currency: Currency, completion: @escaping (Result<[PaymentMethod], BillingError>) -> Void) {
         repository.getPaymentMethods(value: value, currency: currency) { result in completion(result) }
     }
     

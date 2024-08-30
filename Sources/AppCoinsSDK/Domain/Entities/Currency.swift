@@ -15,10 +15,18 @@ internal class Currency: Codable {
     let type: String?
     let flag: URL?
     
+    init(currency: String, label: String, sign: String, type: String?, flag: URL?) {
+        self.currency = currency
+        self.label = label
+        self.sign = sign
+        self.type = type
+        self.flag = flag
+    }
+    
     init(convertCurrencyRaw: ConvertCurrencyRaw) {
-        self.currency = userCurrencyRaw.currency
-        self.label = userCurrencyRaw.label
-        self.sign = userCurrencyRaw.sign
+        self.currency = convertCurrencyRaw.currency
+        self.label = convertCurrencyRaw.label
+        self.sign = convertCurrencyRaw.sign
         self.type = nil
         self.flag = nil
     }
@@ -28,6 +36,12 @@ internal class Currency: Codable {
         self.label = currencyRaw.label
         self.sign = currencyRaw.sign
         self.type = currencyRaw.type
-        self.flag = URL(string: currencyRaw.flag)
+        
+        if let flag = currencyRaw.flag { self.flag = URL(string: flag) }
+        else { self.flag = nil }
     }
+}
+
+extension Currency {
+    static let APPC: Currency = Currency(currency: "APPC", label: "AppCoins", sign: "", type: "CRYPTO", flag: nil)
 }

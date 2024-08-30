@@ -15,11 +15,11 @@ internal class AppCoinProductServiceClient : AppCoinProductService {
         self.endpoint = endpoint
     }
     
-    internal func getProductInformation(domain: String, currency: Coin = .EUR, result: @escaping (Result<GetProductInformationRaw, ProductServiceError>) -> Void) {
+    internal func getProductInformation(domain: String, currency: Currency, result: @escaping (Result<GetProductInformationRaw, ProductServiceError>) -> Void) {
         if var urlComponents = URLComponents(string: endpoint) {
             urlComponents.path += "/applications/\(domain)/inapp/consumables"
             urlComponents.queryItems = [
-                URLQueryItem(name: "currency", value: currency.rawValue),
+                URLQueryItem(name: "currency", value: currency.currency),
                 URLQueryItem(name: "platform", value: "IOS")
             ]
             
@@ -49,12 +49,12 @@ internal class AppCoinProductServiceClient : AppCoinProductService {
         }
     }
     
-    internal func getProductInformation(domain: String, sku: String, currency: Coin = .EUR, result: @escaping (Result<GetProductInformationRaw, ProductServiceError>) -> Void) {
+    internal func getProductInformation(domain: String, sku: String, currency: Currency, result: @escaping (Result<GetProductInformationRaw, ProductServiceError>) -> Void) {
         if var urlComponents = URLComponents(string: endpoint) {
             urlComponents.path += "/applications/\(domain)/inapp/consumables"
             urlComponents.queryItems = [
                 URLQueryItem(name: "skus", value: sku),
-                URLQueryItem(name: "currency", value: currency.rawValue),
+                URLQueryItem(name: "currency", value: currency.currency),
                 URLQueryItem(name: "platform", value: "IOS")
             ]
             

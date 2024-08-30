@@ -18,13 +18,13 @@ internal class AdyenViewModel : ObservableObject {
     
     private init() {}
     
-    internal func buyWithCreditCard(raw: CreateAdyenTransactionRaw, wallet: Wallet, moneyAmount: Double, moneyCurrency: String) {
+    internal func buyWithCreditCard(raw: CreateAdyenTransactionRaw, wallet: Wallet, moneyAmount: Double, moneyCurrency: Currency) {
         self.transactionUseCases.createAdyenTransaction(wa: wallet, raw: raw) {
             result in
             
             switch result {
             case .success(let session):
-                AdyenController.shared.startSession(method: Method.creditCard, value: Decimal(moneyAmount), currency: moneyCurrency, session: session, successHandler: self.adyenSuccessHandler, awaitHandler: self.adyenFailedHandler, failedHandler: self.adyenFailedHandler, cancelHandler: self.adyenCancelHandler)
+                AdyenController.shared.startSession(method: Method.creditCard, value: Decimal(moneyAmount), currency: moneyCurrency.currency, session: session, successHandler: self.adyenSuccessHandler, awaitHandler: self.adyenFailedHandler, failedHandler: self.adyenFailedHandler, cancelHandler: self.adyenCancelHandler)
             case .failure(let error):
                 switch error {
                 case .failed(let description):
@@ -38,13 +38,13 @@ internal class AdyenViewModel : ObservableObject {
         }
     }
     
-    internal func buyWithPayPalAdyen(raw: CreateAdyenTransactionRaw, wallet: Wallet, moneyAmount: Double, moneyCurrency: String) {
+    internal func buyWithPayPalAdyen(raw: CreateAdyenTransactionRaw, wallet: Wallet, moneyAmount: Double, moneyCurrency: Currency) {
         self.transactionUseCases.createAdyenTransaction(wa: wallet, raw: raw) {
             result in
             
             switch result {
             case .success(let session):
-                AdyenController.shared.startSession(method: Method.paypalAdyen, value: Decimal(moneyAmount), currency: moneyCurrency, session: session, successHandler: self.adyenSuccessHandler, awaitHandler: self.adyenFailedHandler, failedHandler: self.adyenFailedHandler, cancelHandler: self.adyenCancelHandler)
+                AdyenController.shared.startSession(method: Method.paypalAdyen, value: Decimal(moneyAmount), currency: moneyCurrency.currency, session: session, successHandler: self.adyenSuccessHandler, awaitHandler: self.adyenFailedHandler, failedHandler: self.adyenFailedHandler, cancelHandler: self.adyenCancelHandler)
             case .failure(let error):
                 switch error {
                 case .failed(let description):

@@ -92,7 +92,7 @@ internal struct PurchaseBottomSheet: View {
                                     .edgesIgnoringSafeArea(.all)
                                     .frame(width: 15, height: 15)
                                 
-                                if let bonusCurrency = transactionViewModel.transaction?.bonusCurrency, let bonusAmount = transactionViewModel.transaction?.bonusAmount {
+                                if let bonusCurrency = transactionViewModel.transaction?.bonusCurrency.sign, let bonusAmount = transactionViewModel.transaction?.bonusAmount {
                                     Text(String(format: Constants.purchaseBonus, "\(bonusCurrency)\(String(format: "%.3f", bonusAmount))"))
                                         .font(FontsUi.APC_Caption1_Bold)
                                         .foregroundColor(ColorsUi.APC_White)
@@ -121,9 +121,9 @@ internal struct PurchaseBottomSheet: View {
                                 .edgesIgnoringSafeArea(.all)
                                 .frame(width: 19, height: 16)
                             
-                            if let balance = transactionViewModel.transaction?.walletBalance {
+                            if let balanceCurrency = transactionViewModel.transaction?.balanceCurrency.sign, let balanceValue = transactionViewModel.transaction?.balanceAmount {
                                 StyledText(
-                                    String(format: Constants.walletBalance, "*\(balance)*"),
+                                    String(format: Constants.walletBalance, "*\(balanceCurrency)\(String(format: "%.2f", balanceValue))*"),
                                     textStyle: FontsUi.APC_Caption1_Bold,
                                     boldStyle: FontsUi.APC_Caption1_Bold,
                                     textColorRegular: ColorsUi.APC_Pink,

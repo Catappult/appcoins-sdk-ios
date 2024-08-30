@@ -15,18 +15,15 @@ internal class AppCoinBillingClient : AppCoinBillingService {
         self.endpoint = endpoint
     }
 
-    internal func convertCurrency(money: String, fromCurrency: Coin, toCurrency: Coin?, result: @escaping (Result<ConvertCurrencyRaw, BillingError>) -> Void) {
+    internal func convertCurrency(money: String, fromCurrency: Currency, toCurrency: Currency?, result: @escaping (Result<ConvertCurrencyRaw, BillingError>) -> Void) {
         
         if var urlComponents = URLComponents(string: endpoint) {
-            urlComponents.path += "/exchanges/\(fromCurrency.rawValue)/convert/\(money)"
+            urlComponents.path += "/exchanges/\(fromCurrency.currency)/convert/\(money)"
             
-            var queryItems: [URLQueryItem] = []
-            
-            if let toCurrency = toCurrency {
-                queryItems.append(URLQueryItem(name: "to", value: toCurrency.rawValue))
+            urlComponents.queryItems = []
+            if let toCurrency = toCurrency?.currency {
+                urlComponents.queryItems?.append( URLQueryItem(name: "to", value: toCurrency) )
             }
-            
-            urlComponents.queryItems = queryItems
             
             if let url = urlComponents.url {
                 var request = URLRequest(url: url)
@@ -53,13 +50,13 @@ internal class AppCoinBillingClient : AppCoinBillingService {
         }
     }
     
-    internal func getPaymentMethods(value: String, currency: Coin, result: @escaping (Result<GetPaymentMethodsRaw, BillingError>) -> Void) {
+    internal func getPaymentMethods(value: String, currency: Currency, result: @escaping (Result<GetPaymentMethodsRaw, BillingError>) -> Void) {
         
         if var urlComponents = URLComponents(string: endpoint) {
             urlComponents.path += "/methods"
             urlComponents.queryItems = [
                 URLQueryItem(name: "price.value", value: value),
-                URLQueryItem(name: "price.currency", value: currency.rawValue),
+                URLQueryItem(name: "price.currency", value: currency.currency),
                 URLQueryItem(name: "channel", value: "IOS")
             ]
             
@@ -573,6 +570,9 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                 func getNextCurrenciesBatch(url: URL) {
                     var request = URLRequest(url: url)
                     
+                    let userAgent = "AppCoinsWalletIOS/.."
+                    request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
+                    
                     request.httpMethod = "GET"
                     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
                     request.timeoutInterval = 10
@@ -606,5 +606,4 @@ internal class AppCoinBillingClient : AppCoinBillingService {
             }
         }
     }
-    
 }

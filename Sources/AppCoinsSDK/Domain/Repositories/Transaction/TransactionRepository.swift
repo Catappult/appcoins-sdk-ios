@@ -17,24 +17,20 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
     private let walletService: WalletLocalService = WalletLocalClient()
     private let userPreferencesService: UserPreferencesLocalService = UserPreferencesLocalClient()
     
-    internal func getTransactionBonus(address: String, package_name: String, amount: String, currency: Coin, completion: @escaping (Result<TransactionBonus, TransactionError>) -> Void) {
-        gamificationService.getTransactionBonus(address: address, package_name: package_name, amount: amount, currency: currency) {
+    internal func getTransactionBonus(wallet: Wallet, package_name: String, amount: String, currency: Currency, completion: @escaping (Result<TransactionBonus, TransactionError>) -> Void) {
+        gamificationService.getTransactionBonus(wallet: wallet, package_name: package_name, amount: amount, currency: currency) {
             result in
             
             switch result {
             case .success(let bonusRaw):
-                if let currency = Coin(rawValue: bonusRaw.currency) {
-                    completion(.success(TransactionBonus(value: bonusRaw.bonus, currency: currency)))
-                } else {
-                    completion(.failure(.failed()))
-                }
+                completion(.success(TransactionBonus(value: bonusRaw.bonus, currency: currency)))
             case .failure(let error):
                 completion(.failure(error))
             }
         }
     }
     
-    internal func getPaymentMethods(value: String, currency: Coin, completion: @escaping (Result<[PaymentMethod], BillingError>) -> Void) {
+    internal func getPaymentMethods(value: String, currency: Currency, completion: @escaping (Result<[PaymentMethod], BillingError>) -> Void) {
         billingService.getPaymentMethods(value: value, currency: currency) {
             result in
             
