@@ -12,8 +12,8 @@ internal struct CurrencyRaw: Codable {
     let currency: String
     let label: String
     let sign: String
-    let type: String
-    let flag: String
+    let type: String?
+    let flag: String?
     
     enum CodingKeys: String, CodingKey {
         case currency = "currency"

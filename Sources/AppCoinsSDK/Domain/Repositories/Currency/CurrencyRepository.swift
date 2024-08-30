@@ -17,7 +17,7 @@ internal class CurrencyRepository: CurrencyRepositoryProtocol {
         if let userCurrency = self.UserCurrency.getValue(forKey: "userCurrency") {
             completion(.success(userCurrency))
         } else {
-            AppCoinBillingService.convertCurrency(money: "1.0", fromCurrency: Currency.appcCurrency.currency, toCurrency: nil) { result in
+            AppCoinBillingService.convertCurrency(money: "1.0", fromCurrency: Currency.APPC, toCurrency: nil) { result in
                 switch result {
                 case .success(let userCurrencyRaw):
                     self.UserCurrency.setValue(Currency(convertCurrencyRaw: userCurrencyRaw), forKey: "userCurrency", storageOption: .memory)
@@ -44,6 +44,19 @@ internal class CurrencyRepository: CurrencyRepositoryProtocol {
                 case .failure(let error):
                     completion(.failure(error))
                 }
+            }
+        }
+    }
+    
+    internal func getSupportedCurrency(currency: String, completion: @escaping (Result<Currency, BillingError>) -> Void) {
+        self.getSupportedCurrencies { result in
+            switch result {
+            case .success(let supportedCurrencies):
+                if let supportedCurrency = supportedCurrencies.first(where: { $0.currency == currency }) {
+                    completion(.success(supportedCurrency))
+                } else { completion(.failure(.failed)) }
+            case .failure(let failure):
+                completion(.failure(failure))
             }
         }
     }

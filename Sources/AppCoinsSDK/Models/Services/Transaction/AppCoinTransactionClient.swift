@@ -15,10 +15,10 @@ internal class AppCoinTransactionClient : AppCoinTransactionService {
         self.endpoint = endpoint
     }
     
-    internal func getBalance(wa: String, currency: Currency, result: @escaping (Result<AppCoinBalanceRaw, AppcTransactionError>) -> Void) {
+    internal func getBalance(wallet: Wallet, currency: Currency, result: @escaping (Result<AppCoinBalanceRaw, AppcTransactionError>) -> Void) {
         
         if var urlComponents = URLComponents(string: endpoint) {
-            urlComponents.path += "/1.20230807/wallet/\(wa)/info"
+            urlComponents.path += "/1.20230807/wallet/\(wallet.getWalletAddress())/info"
             
             urlComponents.queryItems = [URLQueryItem(name: "currency", value: currency.currency)]
             

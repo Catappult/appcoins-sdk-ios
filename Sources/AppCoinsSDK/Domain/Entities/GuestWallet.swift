@@ -13,10 +13,6 @@ internal class GuestWallet: Wallet, Codable {
     internal let ewt: String
     internal let signature: String
     
-    private let transactionService: AppCoinTransactionService = AppCoinTransactionClient()
-    private let billingService: AppCoinBillingService = AppCoinBillingClient()
-    private let currencyUseCases: CurrencyUseCases = CurrencyUseCases.shared
-    
     internal init(address: String, ewt: String, signature: String) {
         self.address = address
         self.ewt = ewt
@@ -24,13 +20,13 @@ internal class GuestWallet: Wallet, Codable {
     }
 
     func getBalance(completion: @escaping (Result<Balance, AppcTransactionError>) -> Void) {
-        currencyUseCases.getUserCurrency { result in
+        CurrencyUseCases.shared.getUserCurrency { result in
             switch result {
             case .success(let currency):
-                self.transactionService.getBalance(wa: self.address, currency: currency) { result in
+                WalletUseCases.shared.getWalletBalance(wallet: self, currency: currency) { result in
                     switch result {
-                    case .success(let response):
-                        completion(.success(Balance(balanceCurrency: response.symbol, balance: response.appcFiatBalance, appcoinsBalance: response.appcNormalizedBalance)))
+                    case .success(let balance):
+                        completion(.success(balance))
                     case .failure(let error):
                         completion(.failure(error))
                     }

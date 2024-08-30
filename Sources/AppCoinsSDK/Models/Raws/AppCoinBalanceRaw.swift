@@ -12,10 +12,10 @@ internal struct AppCoinBalanceRaw: Codable {
     internal let wallet: String?
     internal let ethBalance: Double
     internal let appcBalance: Double
-    internal var appcNormalizedBalance: Double {
-        return appcBalance / pow(10, 18)
-    }
     internal let appcCBalance: Double
+    internal var appcCNormalizedBalance: Double {
+        return appcCBalance / pow(10, 18)
+    }
     internal let currency: String
     internal let symbol: String
     internal let ethFiatBalance: Double
@@ -50,7 +50,6 @@ internal struct AppCoinBalanceRaw: Codable {
         case lastBackupDate = "last_backup_date"
         case sentryBreadCrumbs = "sentry_breadcrumbs"
         case intercomActive = "intercom_active"
-
     }
     
     internal struct BlockLevel: Codable {

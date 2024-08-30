@@ -8,5 +8,5 @@
 import Foundation
 
 internal protocol AppCoinTransactionService {
-    func getBalance(wa: String, currency: Currency, result: @escaping (Result<AppCoinBalanceRaw, AppcTransactionError>) -> Void)
+    func getBalance(wallet: Wallet, currency: Currency, result: @escaping (Result<AppCoinBalanceRaw, AppcTransactionError>) -> Void)
 }

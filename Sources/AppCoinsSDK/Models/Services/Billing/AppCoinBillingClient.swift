@@ -15,13 +15,15 @@ internal class AppCoinBillingClient : AppCoinBillingService {
         self.endpoint = endpoint
     }
 
-    internal func convertCurrency(money: String, fromCurrency: String, toCurrency: String?, result: @escaping (Result<ConvertCurrencyRaw, BillingError>) -> Void) {
+    internal func convertCurrency(money: String, fromCurrency: Currency, toCurrency: Currency?, result: @escaping (Result<ConvertCurrencyRaw, BillingError>) -> Void) {
         
         if var urlComponents = URLComponents(string: endpoint) {
-            urlComponents.path += "/exchanges/\(fromCurrency)/convert/\(money)"
-            urlComponents.queryItems = [
-                URLQueryItem(name: "to", value: toCurrency)
-            ]
+            urlComponents.path += "/exchanges/\(fromCurrency.currency)/convert/\(money)"
+            
+            urlComponents.queryItems = []
+            if let toCurrency = toCurrency?.currency {
+                urlComponents.queryItems?.append( URLQueryItem(name: "to", value: toCurrency) )
+            }
             
             if let url = urlComponents.url {
                 var request = URLRequest(url: url)
@@ -601,33 +603,4 @@ internal class AppCoinBillingClient : AppCoinBillingService {
             }
         }
     }
-    
-    internal func getUserCurrency(result: @escaping (Result<UserCurrencyRaw, BillingError>) -> Void) {
-        if let requestURL = URL(string: "\(endpoint)/exchanges/APPC/convert/1.0") {
-            var request = URLRequest(url: requestURL)
-            
-            request.httpMethod = "GET"
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.timeoutInterval = 10
-            
-            let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                
-                if let error = error {
-                    if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
-                        result(.failure(.noInternet))
-                    } else {
-                        result(.failure(.failed))
-                    }
-                } else {
-                    if let data = data, let findResult = try? JSONDecoder().decode(UserCurrencyRaw.self, from: data) {
-                        result(.success(findResult))
-                    } else {
-                        result(.failure(.failed))
-                    }
-                }
-            }
-            task.resume()
-        }
-    }
-    
 }

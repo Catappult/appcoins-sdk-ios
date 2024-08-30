@@ -290,33 +290,27 @@ internal class BottomSheetViewModel : ObservableObject {
                     switch result {
                     case .success(let transaction):
                         if let purchaseUID = transaction.purchaseUID {
-                            self.currencyUseCases.getSupportedCurrencies { result in
+                            wallet.getBalance {
+                                result in
                                 switch result {
-                                case .success(let currencyList):
-                                    wallet.getBalance {
+                                case .success(let balance):
+                                    Purchase.verify(purchaseUID: purchaseUID) {
                                         result in
                                         switch result {
-                                        case .success(let balance):
-                                            Purchase.verify(purchaseUID: purchaseUID) {
-                                                result in
-                                                switch result {
-                                                case .success(let purchase):
-                                                    purchase.acknowledge() {
-                                                        error in
-                                                        if let error = error { self.transactionFailedWith(error: error) }
-                                                        else {
-                                                            self.successfulTransaction(purchase: purchase, balance: balance, method: method)
-                                                        }
-                                                    }
-                                                case .failure(let error): self.transactionFailedWith(error: error)
+                                        case .success(let purchase):
+                                            purchase.acknowledge() {
+                                                error in
+                                                if let error = error { self.transactionFailedWith(error: error) }
+                                                else {
+                                                    self.successfulTransaction(purchase: purchase, balance: balance, method: method)
                                                 }
                                             }
-                                        case .failure(let failure):
-                                            if failure == .noInternet { self.transactionFailedWith(error: .networkError) }
-                                            else { self.transactionFailedWith(error: .systemError) }
+                                        case .failure(let error): self.transactionFailedWith(error: error)
                                         }
                                     }
-                                case .failure: break
+                                case .failure(let failure):
+                                    if failure == .noInternet { self.transactionFailedWith(error: .networkError) }
+                                    else { self.transactionFailedWith(error: .systemError) }
                                 }
                             }
                         } else { self.transactionFailedWith(error: .systemError) }
@@ -342,7 +336,7 @@ internal class BottomSheetViewModel : ObservableObject {
             
             if !walletAvailable || self.walletUseCases.getWalletSyncingStatus() == .accepted {
                 DispatchQueue.main.async {
-                    self.finalWalletBalance = "\(balance.balanceCurrency)\(String(format: "%.2f", balance.balance))"
+                    self.finalWalletBalance = "\(balance.balanceCurrency.sign)\(String(format: "%.2f", balance.balance))"
                     self.purchaseState = .success
                 }
                 

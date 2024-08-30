@@ -13,7 +13,7 @@ internal protocol AppCoinBillingService {
     
     func getPaymentMethods(value: String, currency: Currency, result: @escaping (Result<GetPaymentMethodsRaw, BillingError>) -> Void)
     
-    func convertCurrency(money: String, fromCurrency: String, toCurrency: String?, result: @escaping (Result<ConvertCurrencyRaw, BillingError>) -> Void)
+    func convertCurrency(money: String, fromCurrency: Currency, toCurrency: Currency?, result: @escaping (Result<ConvertCurrencyRaw, BillingError>) -> Void)
     
     func transferAPPC(wa: Wallet, raw: TransferAPPCRaw, completion: @escaping (Result<TransferAPPCResponseRaw, TransactionError>) -> Void)
     

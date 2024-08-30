@@ -20,8 +20,6 @@ internal class ClientWallet: Wallet, Codable {
     
     private let password: String
     private let keystore: EthereumKeystoreV3
-    private let transactionService: AppCoinTransactionService = AppCoinTransactionClient()
-    private let billingService: AppCoinBillingService = AppCoinBillingClient()
     private let walletService: WalletLocalService = WalletLocalClient()
     
     internal init? (_ keystoreUrl: URL, _ password: String = "") {
@@ -52,14 +50,14 @@ internal class ClientWallet: Wallet, Codable {
     }
     
     internal func getBalance(completion: @escaping (Result<Balance, AppcTransactionError>) -> Void) {
-        billingService.convertCurrency(money: "1.0", fromCurrency: Currency.appcCurrency.currency, toCurrency: nil) { result in
+        CurrencyUseCases.shared.getUserCurrency { result in
             switch result {
-            case .success(let convertCurrencyRaw):
+            case .success(let currency):
                 if let address = self.address {
-                    self.transactionService.getBalance(wa: address, currency: Currency(convertCurrencyRaw: convertCurrencyRaw)) { result in
+                    WalletUseCases.shared.getWalletBalance(wallet: self, currency: currency) { result in
                         switch result {
-                        case .success(let response):
-                            completion(.success(Balance(balanceCurrency: response.symbol, balance: response.appcFiatBalance, appcoinsBalance: response.appcNormalizedBalance)))
+                        case .success(let balance):
+                            completion(.success(balance))
                         case .failure(let error):
                             completion(.failure(error))
                         }
@@ -72,7 +70,7 @@ internal class ClientWallet: Wallet, Codable {
     }
     
     internal func getPrivateKey() -> Data {
-        if let privateKey = walletService.getPrivateKey(address: self.keystore.addresses!.first!.address) {
+        if let privateKey = WalletUseCases.shared.getWalletPrivateKey(wallet: self) {
             return privateKey
         } else {
             let ethereumAddress = EthereumAddress(getWalletAddress())!

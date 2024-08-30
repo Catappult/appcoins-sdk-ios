@@ -17,19 +17,13 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
     private let walletService: WalletLocalService = WalletLocalClient()
     private let userPreferencesService: UserPreferencesLocalService = UserPreferencesLocalClient()
     
-    internal func getTransactionBonus(address: String, package_name: String, amount: String, currency: Currency, completion: @escaping (Result<TransactionBonus, TransactionError>) -> Void) {
-        gamificationService.getTransactionBonus(address: address, package_name: package_name, amount: amount, currency: currency) {
+    internal func getTransactionBonus(wallet: Wallet, package_name: String, amount: String, currency: Currency, completion: @escaping (Result<TransactionBonus, TransactionError>) -> Void) {
+        gamificationService.getTransactionBonus(wallet: wallet, package_name: package_name, amount: amount, currency: currency) {
             result in
             
             switch result {
             case .success(let bonusRaw):
-                self.billingService.convertCurrency(money: "1.0", fromCurrency: Currency.appcCurrency.currency, toCurrency: nil) { result in
-                    switch result {
-                    case .success(let userCurrency):
-                        completion(.success(TransactionBonus(value: bonusRaw.bonus, currency: Currency(convertCurrencyRaw: userCurrency))))
-                    case .failure: break
-                    }
-                }
+                completion(.success(TransactionBonus(value: bonusRaw.bonus, currency: currency)))
             case .failure(let error):
                 completion(.failure(error))
             }
