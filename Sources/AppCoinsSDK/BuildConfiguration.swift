@@ -13,7 +13,7 @@ internal class BuildConfiguration {
     static internal let shared = BuildConfiguration()
     
     static internal var isDev: Bool {
-        return ["com.appcoins.trivialdrivesample.test", "com.aptoide.ios.store"].contains(Bundle.main.bundleIdentifier) 
+        return Bundle.main.bundleIdentifier == "com.appcoins.trivialdrivesample.test"
     }
     
     static internal var environment: SDKEnvironment {
