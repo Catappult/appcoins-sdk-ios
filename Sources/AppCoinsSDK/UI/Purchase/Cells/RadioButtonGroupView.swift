@@ -62,8 +62,8 @@ internal struct RadioButtonGroupView: View {
                         
                 }
             }.background(ColorsUi.APC_White)
-                .frame(width: UIScreen.main.bounds.width - 64)
-                .cornerRadius(13)
+                .frame(width: UIScreen.main.bounds.width - 32)
+                .cornerRadius(10)
         }
         
     }

@@ -19,17 +19,14 @@ internal struct PaymentChoiceBottomSheet: View {
     internal var body: some View {
         
         VStack(spacing: 0) {
-            HStack(spacing: 0) {}.frame(height: 23)
             
             // Avatar and purchase
             HStack(spacing: 0) {
-                VStack(spacing: 0) {
                     Image(uiImage: Utils.getAppIcon())
                         .resizable()
                         .scaledToFit()
                         .frame(width: 74, height: 74)
                         .clipShape(Circle())
-                }
                 
                 VStack(spacing: 0){}.frame(width: 16)
                 
@@ -48,7 +45,6 @@ internal struct PaymentChoiceBottomSheet: View {
                             VStack {}.frame(maxWidth: .infinity)
                         }.frame(maxWidth: .infinity)
                     }
-                    
                     
                     HStack(spacing: 0) {
                         if let amount = transactionViewModel.transaction?.moneyAmount {
@@ -69,7 +65,8 @@ internal struct PaymentChoiceBottomSheet: View {
                                 VStack {}.frame(maxWidth: .infinity)
                             }.frame(maxWidth: .infinity)
                         }
-                    }.frame(width: UIScreen.main.bounds.width - 154, alignment: .bottomLeading)
+                    }
+                    .frame(width: UIScreen.main.bounds.width - 154, alignment: .bottomLeading)
                         .padding(.top, 11)
                     
                     if let appcAmount = transactionViewModel.transaction?.appcAmount {
@@ -86,11 +83,26 @@ internal struct PaymentChoiceBottomSheet: View {
                             VStack {}.frame(maxWidth: .infinity)
                         }.frame(maxWidth: .infinity)
                     }
-                }.frame(width: UIScreen.main.bounds.width - 154, alignment: .topLeading)
+                }
                 
-            }.frame(width: UIScreen.main.bounds.width - 64, height: 74, alignment: .top)
+                Button {
+                    print("you're dead")
+                } label: {
+                    ZStack {
+                        Circle()
+                            .fill(Color(UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5))) // Cor padrão do botão fechar da Apple
+                            .frame(width: 30, height: 30)
+                        
+                        Image(systemName: "xmark")
+                            .foregroundColor(Color(UIColor(red: 0.24, green: 0.24, blue: 0.24, alpha: 1)))
+                        
+                    }
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+                
+            }.frame(width: UIScreen.main.bounds.width - 32, height: 74, alignment: .top)
 
-            HStack(spacing: 0) {}.frame(height: 23)
+            HStack(spacing: 0) {}.frame(height: 16)
             
             if transactionViewModel.lastPaymentMethod != nil || transactionViewModel.showOtherPaymentMethods {
                 // Payment methods
@@ -173,7 +185,7 @@ internal struct PaymentChoiceBottomSheet: View {
                 }
             }
             
-            HStack(spacing: 0){}.frame(height: 20)
+            HStack(spacing: 0){}.frame(height: 26)
             
             // Buying button
             Button(action: {
@@ -190,26 +202,11 @@ internal struct PaymentChoiceBottomSheet: View {
                 }
             }
             .disabled(transactionViewModel.transaction == nil)
-            .frame(width: UIScreen.main.bounds.width - 64, height: 48)
+            .frame(width: UIScreen.main.bounds.width - 48, height: 50)
             .foregroundColor(ColorsUi.APC_White)
-            .cornerRadius(10)
-            
-            HStack(spacing: 0){}.frame(height: 14)
-            
-            Button(action: {
-                viewModel.dismiss()
-            }) {
-                Text(Constants.cancelText)
-                    .foregroundColor(ColorsUi.APC_DarkGray)
-                    .font(FontsUi.APC_Footnote_Bold)
-                    .lineLimit(1)
-            }
-            .frame(height: 18)
-            
-            HStack(spacing: 0){}.frame(height: 20)
-            
+            .cornerRadius(12)
         }
-    
+        .background(Color.red.opacity(0.5))
     }
 }
 
