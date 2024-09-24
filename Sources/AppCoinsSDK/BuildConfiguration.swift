@@ -61,15 +61,6 @@ internal class BuildConfiguration {
         }
     }
     
-    static internal var aptoideServiceURL: String {
-        switch environment {
-            case .debugSDKDev, .releaseSDKDev:
-                return "https://ws75-devel.aptoide.com/api/7"
-            case .debugSDKProd, .releaseSDKProd:
-                return "https://ws75-secondary.aptoide.com/api/7"
-        }
-    }
-    
     static internal var billingServiceURL: String {
         switch environment {
             case .debugSDKDev, .releaseSDKDev:

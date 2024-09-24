@@ -185,20 +185,7 @@ internal class TransactionViewModel : ObservableObject {
             }
         }
     }
-    
-    private func getDeveloperAddress(domain: String, completion: @escaping (String) -> Void) {
-        self.transactionUseCases.getDeveloperAddress(package: domain) {
-            result in
-            switch result {
-            case .success(let developerWa):
-                completion(developerWa)
-            case .failure(let failure):
-                if failure == .noInternet { self.bottomSheetViewModel.transactionFailedWith(error: .networkError) }
-                else { self.bottomSheetViewModel.transactionFailedWith(error: .systemError) }
-            }
-        }
-    }
-    
+        
     private func showPaymentMethodsOnBuild(balance: Balance) {
         // Filter out the AppCoins payment method if balance is insufficient
         disableAppCoinsIfNeeded(balance: balance)

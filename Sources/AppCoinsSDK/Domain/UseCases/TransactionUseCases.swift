@@ -24,11 +24,7 @@ internal class TransactionUseCases {
     internal func getPaymentMethods(value: String, currency: Currency, wallet: Wallet, domain: String, completion: @escaping (Result<[PaymentMethod], BillingError>) -> Void) {
         repository.getPaymentMethods(value: value, currency: currency, wallet: wallet, domain: domain) { result in completion(result) }
     }
-    
-    internal func getDeveloperAddress(package: String, completion: @escaping (Result<String, AptoideServiceError>) -> Void) {
-        repository.getDeveloperAddress(package: package) {result in completion(result)}
-    }
-    
+        
     internal func getTransactionInfo(uid: String, wa: Wallet, completion: @escaping (Result<Transaction, TransactionError>) -> Void) {
         repository.getTransactionInfo(uid: uid, wa: wa) {result in completion(result)}
     }
