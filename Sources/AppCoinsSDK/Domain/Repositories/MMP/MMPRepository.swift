@@ -18,7 +18,7 @@ internal class MMPRepository: MMPRepositoryProtocol {
         
         // Check if request has already been triggered
         if guestUID == nil {
-            self.MMPService.getAttribution(bundleID: BuildConfiguration.packageName) { result in
+            self.MMPService.getAttribution(bundleID: Bundle.main.bundleIdentifier ?? "") { result in
                 switch result {
                 case .success(let attributionRaw):
                     UserDefaults.standard.set(String(attributionRaw.guestUID), forKey: "attribution-guestuid")

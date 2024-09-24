@@ -59,10 +59,9 @@ public class Purchase: Codable {
         self.verification = PurchaseVerification(raw: raw.verification)
     }
     
-    internal static func verify(purchaseUID: String, completion: @escaping (Result<Purchase, AppCoinsSDKError>) -> Void ) {
+    internal static func verify(domain: String = (Bundle.main.bundleIdentifier ?? ""), purchaseUID: String, completion: @escaping (Result<Purchase, AppCoinsSDKError>) -> Void ) {
         let walletUseCases = WalletUseCases.shared
         let transactionUseCases = TransactionUseCases.shared
-        let domain = Bundle.main.bundleIdentifier ?? ""
         
         walletUseCases.getWallet() {
             result in
@@ -94,10 +93,9 @@ public class Purchase: Codable {
     }
     
     // only accessible internally – the SDK acknowledges the purchase
-    internal func acknowledge(completion: @escaping (AppCoinsSDKError?) -> Void) {
+    internal func acknowledge(domain: String = (Bundle.main.bundleIdentifier ?? ""), completion: @escaping (AppCoinsSDKError?) -> Void) {
         let walletUseCases = WalletUseCases.shared
         let transactionUseCases = TransactionUseCases.shared
-        let domain = Bundle.main.bundleIdentifier ?? ""
         
         walletUseCases.getWallet() {
             result in
@@ -129,13 +127,12 @@ public class Purchase: Codable {
     }
     
     // accessible by the developer – the app consumes the purchase and attributes the item to the user
-    public func finish() async throws {
+    public func finish(domain: String = (Bundle.main.bundleIdentifier ?? "")) async throws {
         return try await withCheckedThrowingContinuation { continuation in
             let walletUseCases = WalletUseCases.shared
             let transactionUseCases = TransactionUseCases.shared
             
             walletUseCases.getWalletList() { walletList in
-                let domain = Bundle.main.bundleIdentifier ?? ""
                 
                 let group = DispatchGroup()
                 let queue = DispatchQueue(label: "consume-queue", attributes: .concurrent)
@@ -173,13 +170,12 @@ public class Purchase: Codable {
     }
     
     // get all the user's purchases
-    public static func all() async throws -> [Purchase] {
+    public static func all(domain: String = (Bundle.main.bundleIdentifier ?? "")) async throws -> [Purchase] {
         return try await withCheckedThrowingContinuation { continuation in
             let walletUseCases = WalletUseCases.shared
             let transactionUseCases = TransactionUseCases.shared
             
             walletUseCases.getWalletList() { walletList in
-                let domain = Bundle.main.bundleIdentifier ?? ""
                 
                 let group = DispatchGroup()
                 let queue = DispatchQueue(label: "get-all-purchases-queue", attributes: .concurrent)
@@ -218,13 +214,12 @@ public class Purchase: Codable {
         }
     }
     
-    public static func latest(sku: String) async throws -> Purchase? {
+    public static func latest(domain: String = (Bundle.main.bundleIdentifier ?? ""), sku: String) async throws -> Purchase? {
         return try await withCheckedThrowingContinuation { continuation in
             let walletUseCases = WalletUseCases.shared
             let transactionUseCases = TransactionUseCases.shared
             
             walletUseCases.getWalletList { walletList in
-                let domain = Bundle.main.bundleIdentifier ?? ""
                 
                 let group = DispatchGroup()
                 let queue = DispatchQueue(label: "get-latest-purchase-queue", attributes: .concurrent)
@@ -263,13 +258,12 @@ public class Purchase: Codable {
     }
     
     // we consider unfinished purchases any purchase that have neither been acknowledged nor consumed
-    public static func unfinished() async throws -> [Purchase] {
+    public static func unfinished(domain: String = (Bundle.main.bundleIdentifier ?? "")) async throws -> [Purchase] {
         return try await withCheckedThrowingContinuation { continuation in
             let walletUseCases = WalletUseCases.shared
             let transactionUseCases = TransactionUseCases.shared
             
             walletUseCases.getWalletList { walletList in
-                let domain = Bundle.main.bundleIdentifier ?? ""
                 
                 let group = DispatchGroup()
                 let queue = DispatchQueue(label: "get-unfinished-purchases-queue", attributes: .concurrent)
