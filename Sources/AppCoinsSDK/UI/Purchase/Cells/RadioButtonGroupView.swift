@@ -52,7 +52,7 @@ internal struct RadioButtonGroupView: View {
                                                             
                                 
                             }.frame(width: UIScreen.main.bounds.width - 64)
-                        }.frame(height: 44)
+                        }.frame(height: 50)
                     }.buttonStyle(flatButtonStyle())
                 
                     if (option.name != options.last?.name) {

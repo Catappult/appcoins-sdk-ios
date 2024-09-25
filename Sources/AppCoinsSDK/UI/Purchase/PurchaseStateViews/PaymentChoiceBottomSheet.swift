@@ -20,6 +20,9 @@ internal struct PaymentChoiceBottomSheet: View {
         
         VStack(spacing: 0) {
             
+            VStack {Text("abc")}.frame(height: 15)
+                .background(Color.red)
+            
             // Avatar and purchase
             HStack(spacing: 0) {
                     Image(uiImage: Utils.getAppIcon())
@@ -28,7 +31,8 @@ internal struct PaymentChoiceBottomSheet: View {
                         .frame(width: 74, height: 74)
                         .clipShape(Circle())
                 
-                VStack(spacing: 0){}.frame(width: 16)
+                VStack {Text("abc")}.frame(height: 15)
+                    .background(Color.red)
                 
                 VStack(spacing: 0) {
                     if let title = transactionViewModel.transaction?.getTitle() {
@@ -62,12 +66,13 @@ internal struct PaymentChoiceBottomSheet: View {
                                 Text("")
                                     .skeleton(with: true)
                                     .frame(width: 60, height: 14, alignment: .leading)
-                                VStack {}.frame(maxWidth: .infinity)
                             }.frame(maxWidth: .infinity)
                         }
                     }
                     .frame(width: UIScreen.main.bounds.width - 154, alignment: .bottomLeading)
-                        .padding(.top, 11)
+                        
+                    
+                    VStack {}.frame(height: 4)
                     
                     if let appcAmount = transactionViewModel.transaction?.appcAmount {
                         Text(verbatim: String(format: "%.3f", appcAmount) + " APPC")
@@ -80,17 +85,16 @@ internal struct PaymentChoiceBottomSheet: View {
                                 .skeleton(with: true)
                                 .frame(width: 55, height: 10, alignment: .leading)
                                 .padding(.top, 2)
-                            VStack {}.frame(maxWidth: .infinity)
                         }.frame(maxWidth: .infinity)
                     }
                 }
                 
                 Button {
-                    print("you're dead")
+                    viewModel.dismiss()
                 } label: {
                     ZStack {
                         Circle()
-                            .fill(Color(UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.5))) // Cor padrão do botão fechar da Apple
+                            .fill(Color(UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 0.5)))
                             .frame(width: 30, height: 30)
                         
                         Image(systemName: "xmark")
@@ -102,14 +106,13 @@ internal struct PaymentChoiceBottomSheet: View {
                 
             }.frame(width: UIScreen.main.bounds.width - 32, height: 74, alignment: .top)
 
-            HStack(spacing: 0) {}.frame(height: 16)
+            HStack(spacing: 0) {Text("abc")}.frame(height: 15)
+                .background(Color.red)
             
             if transactionViewModel.lastPaymentMethod != nil || transactionViewModel.showOtherPaymentMethods {
                 // Payment methods
                 HStack(spacing: 0) {
-                    
                     VStack(spacing: 0) {
-                        
                         if (!transactionViewModel.showOtherPaymentMethods) {
                             ZStack {
                                 ColorsUi.APC_White
@@ -145,10 +148,12 @@ internal struct PaymentChoiceBottomSheet: View {
                                     }.frame(width: UIScreen.main.bounds.width - 168, alignment: .leading)
                                         .padding(.leading, 16)
                                 }
-                            }.frame(width: UIScreen.main.bounds.width - 64, height: 88)
-                                .cornerRadius(13)
+                            }
+                            .frame(width: UIScreen.main.bounds.width - 48, height: 88)
+                            .cornerRadius(13)
                             
-                            HStack(spacing: 0){}.frame(height: 9)
+                            HStack(spacing: 0){Text("abc")}.frame(height: 16)
+                                .background(Color.red)
                             
                             HStack(spacing: 0) {
                                 HStack(spacing: 0) {
@@ -165,19 +170,12 @@ internal struct PaymentChoiceBottomSheet: View {
                                     Button(action: transactionViewModel.showPaymentMethodOptions) {
                                         Text(Constants.otherPaymentMethodsText)
                                             .foregroundColor(ColorsUi.APC_Pink)
-                                            .font(FontsUi.APC_Footnote_Bold)
+                                            .font(FontsUi.APC_Subheadline)
                                             .lineLimit(1)
                                             .padding(.trailing, 8)
                                     }
-                                    Button(action: transactionViewModel.showPaymentMethodOptions) {
-                                        Image(systemName: "chevron.forward")
-                                            .resizable()
-                                            .edgesIgnoringSafeArea(.all)
-                                            .foregroundColor(ColorsUi.APC_Pink)
-                                            .frame(width: 4, height: 8)
-                                    }
                                 }.frame(maxWidth: .infinity, alignment: .trailing)
-                            }.frame(width: UIScreen.main.bounds.width - 64, height: 18)
+                            }.frame(width: UIScreen.main.bounds.width - 48, height: 18)
                         } else {
                             RadioButtonGroupView(viewModel: viewModel)
                         }
@@ -185,7 +183,8 @@ internal struct PaymentChoiceBottomSheet: View {
                 }
             }
             
-            HStack(spacing: 0){}.frame(height: 26)
+            HStack(spacing: 0){Text(" ")}.frame(height: !transactionViewModel.showOtherPaymentMethods ? 42 : 26) // 26 quando não tem um método de pagamento já selectionado caso contrário é 44
+                .background(Color.red)
             
             // Buying button
             Button(action: {
@@ -193,20 +192,20 @@ internal struct PaymentChoiceBottomSheet: View {
                 viewModel.buy()
             }) {
                 ZStack {
-                    if transactionViewModel.transaction != nil {
-                        ColorsUi.APC_Pink
-                    } else {
-                        ColorsUi.APC_Gray
-                    }
+                    
+                    RoundedRectangle(cornerRadius: 12)
+                        .foregroundColor(transactionViewModel.transaction != nil ? ColorsUi.APC_Pink : ColorsUi.APC_Gray)
                     Text(Constants.buyText)
                 }
             }
             .disabled(transactionViewModel.transaction == nil)
             .frame(width: UIScreen.main.bounds.width - 48, height: 50)
+            .frame(maxHeight: .infinity, alignment: .bottom)
             .foregroundColor(ColorsUi.APC_White)
-            .cornerRadius(12)
+            
+            VStack {Text(" ")}.frame(height: 26)
+                .background(Color.red)
         }
-        .background(Color.red.opacity(0.5))
     }
 }
 

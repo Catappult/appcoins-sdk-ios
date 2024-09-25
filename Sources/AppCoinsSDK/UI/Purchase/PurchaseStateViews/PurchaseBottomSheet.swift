@@ -18,31 +18,35 @@ internal struct PurchaseBottomSheet: View {
     
     @State private var isPresented = false
     
-    internal var blueStripeHeight : CGFloat {
+    internal var blueStripeHeight: CGFloat {
         if transactionViewModel.paymentMethodSelected != nil && transactionViewModel.paymentMethodSelected?.name != "appcoins_credits" {
             // If bonus is shown
-            return 67 // 166
+            return 64 // 166
         } else {
             // If bonus is not shown
             return 34 // 102
         }
     }
     
-    @State private var transitionEdge : Edge = .bottom
-    @State private var previousBackgroundHeight : CGFloat = 0
+    @State private var transitionEdge: Edge = .bottom
+    @State private var previousBackgroundHeight: CGFloat = 0
     
-    internal var baseHeight : CGFloat = 256
-    internal var paymentMethodListHeight : CGFloat { return CGFloat(44*(transactionViewModel.transaction?.paymentMethods.count ?? 0)) }
-    internal var quickPaymentHeight : CGFloat = 115
+    internal var baseHeight: CGFloat = 207 // 180
+    internal var paymentMethodListHeight: CGFloat { return CGFloat(50*(transactionViewModel.transaction?.paymentMethods.count ?? 0)) }
+    internal var quickPaymentHeight: CGFloat = 150
     
     internal var frontTransactionHeight : CGFloat {
         if viewModel.purchaseState == .paying {
             if transactionViewModel.showOtherPaymentMethods {
                 // Payment Method List is shown
+                print("base + paymentMethodLisHeight: baseHeight - \(baseHeight) + paymentMetholist: \(paymentMethodListHeight)")
                 return baseHeight + paymentMethodListHeight
             } else {
                 // Quick Payment Screen is shown
-                if transactionViewModel.lastPaymentMethod == nil { return 257 } else { return baseHeight + quickPaymentHeight }
+                print("quick paymentIsShown")
+                if transactionViewModel.lastPaymentMethod == nil { return 257 } else { 
+                    print("quick paymentIsShown height: \(quickPaymentHeight)")
+                    return baseHeight + quickPaymentHeight }
             }
         } else {
             if adyenController.state == .none {
@@ -78,6 +82,7 @@ internal struct PurchaseBottomSheet: View {
             VStack(spacing: 0) {
                 
                 HStack {
+                    // Purchase bonus area
                     VStack(spacing: 0) {
                         
                         if transactionViewModel.paymentMethodSelected != nil && transactionViewModel.paymentMethodSelected?.name != Method.appc.rawValue {
@@ -121,7 +126,6 @@ internal struct PurchaseBottomSheet: View {
                             VStack {}.frame(height: 12)
                         }
                     }
-                    
                 }.frame(width: UIScreen.main.bounds.size.width, height: blueStripeHeight)
                 
                 ZStack() {
@@ -137,10 +141,16 @@ internal struct PurchaseBottomSheet: View {
                     if viewModel.purchaseState == .adyen {
                         if adyenController.state == .none {
                             AdyenLoadingBottomSheet(viewModel: viewModel)
+                                .onAppear(perform: {
+                                    print("AdyenLoadingBottomSheet")
+                                })
                         }
                         
                         if adyenController.state == .choosingCreditCard {
                             CreditCardChoiceBottomSheet(viewModel: viewModel)
+                                .onAppear(perform: {
+                                    print("CreditCardChoiceBottomSheet")
+                                })
                         }
                         
                         if adyenController.state == .newCreditCard {
@@ -148,6 +158,9 @@ internal struct PurchaseBottomSheet: View {
                                 .onAppear{ startObservingDynamicHeight() }
                                 .onDisappear{ stopObservingDynamicHeight() }
                                 .frame(width: UIScreen.main.bounds.size.width, height: dynamicHeight)
+                                .onAppear(perform: {
+                                    print("CreditCardBottomSheet")
+                                })
                         }
                         
                         if adyenController.state == .paypal {
@@ -162,7 +175,7 @@ internal struct PurchaseBottomSheet: View {
         }
         .cornerRadius(13, corners: [.topLeft, .topRight])
         .frame(width: UIScreen.main.bounds.size.width, height: backgroundHeight)
-        .padding(.bottom, keyboardObserver.isKeyboardVisible ? keyboardObserver.keyboardHeight - dynamicPadding : 0)
+//        .padding(.bottom, keyboardObserver.isKeyboardVisible ? keyboardObserver.keyboardHeight - dynamicPadding : 0)
         .modifier(MeasureBottomPositionModifier(onChange: { newValue in
             let difference = UIScreen.main.bounds.height - newValue
             dynamicPadding = difference
