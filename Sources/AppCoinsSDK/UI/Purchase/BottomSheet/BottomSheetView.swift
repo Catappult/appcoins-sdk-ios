@@ -39,21 +39,21 @@ internal struct BottomSheetView: View {
                         SuccessAskForInstallBottomSheet(viewModel: viewModel)
                     }.ignoresSafeArea()
                     
-                
+                    
                 case .successAskForSync:
                     VStack(spacing: 0) {
                         Color.clear.frame(maxHeight: .infinity)
                         
                         SuccessAskForSyncBottomSheet(viewModel: viewModel)
                     }.ignoresSafeArea()
-                
+                    
                 case .syncProcessing:
                     VStack(spacing: 0) {
                         Color.clear.frame(maxHeight: .infinity)
                         
                         SyncProcessingBottomSheet()
                     }.ignoresSafeArea()
-                
+                    
                 case .syncSuccess:
                     VStack(spacing: 0) {
                         Color.clear.frame(maxHeight: .infinity)
@@ -82,7 +82,7 @@ internal struct BottomSheetView: View {
                     if viewModel.purchaseState == .processing {
                         ProcessingBottomSheet(viewModel: viewModel)
                     }
-                
+                    
                     if viewModel.purchaseState == .success {
                         SuccessBottomSheet(viewModel: viewModel)
                     }
@@ -112,25 +112,6 @@ internal struct BottomSheetView: View {
                             AdyenViewControllerWrapper(viewController: viewController)
                         }
                     }
-                
-                // Safe Area color
-//                VStack(spacing: 0) {
-//                    Color.clear
-//                        .frame(maxHeight: .infinity)
-//                    
-//                    if [.paying, .adyen].contains(viewModel.purchaseState) {
-//                        if adyenController.state != .storedCreditCard {
-//                            ColorsUi.APC_LightGray
-//                                .frame(height: Utils.bottomSafeAreaHeight)
-//                                .offset(y: isSafeAreaPresented ? 0 : UIScreen.main.bounds.height)
-//                                .transition(.move(edge: isSafeAreaPresented ? .bottom : .top))
-//                                .onAppear { withAnimation { isSafeAreaPresented = true } }
-//                        }
-//                    } else if ![.initialAskForSync, .successAskForInstall, .successAskForSync].contains(viewModel.purchaseState) {
-//                        ColorsUi.APC_DarkBlue
-//                            .frame(height: Utils.bottomSafeAreaHeight)
-//                    }
-//                }.ignoresSafeArea()
             }
             .ignoresSafeArea(.all)
             .offset(y: viewModel.isBottomSheetPresented ? 0 : UIScreen.main.bounds.height)
