@@ -16,33 +16,48 @@ internal struct ErrorBottomSheet: View {
     @State var address: String?
     
     internal var body: some View {
-
         ZStack {
             ColorsUi.APC_DarkBlue
-                
             VStack(spacing: 0) {
+                VStack {}.frame(height: 16)
                 
-                Image("logo-wallet-white", bundle: Bundle.module)
-                    .resizable()
-                    .edgesIgnoringSafeArea(.all)
-                    .frame(width: 83, height: 24)
-                    .padding(.top, 24)
+                HStack(spacing: 0) {
+                    Button {
+                        viewModel.dismiss()
+                    } label: {
+                        ZStack {
+                            Circle()
+                                .fill(ColorsUi.APC_BackgroundDarkGray_Button)
+                                .frame(width: 30, height: 30)
+                            
+                            Image(systemName: "xmark")
+                                .foregroundColor(ColorsUi.APC_LightGray_Xmark)
+                            
+                        }
+                    }.frame(maxWidth: .infinity, alignment: .trailing)
+                    
+                    VStack {}.frame(width: 24)
+                    
+                }.frame(alignment: .topTrailing)
                 
-                Image("exclamation", bundle: Bundle.module)
-                    .resizable()
-                    .edgesIgnoringSafeArea(.all)
-                    .frame(width: 80, height: 80)
-                    .padding(.top, 40)
+                VStack {}.frame(height: 68)
                 
-                Text(Constants.errorText)
-                    .font(FontsUi.APC_Title3_Bold)
-                    .foregroundColor(ColorsUi.APC_White)
-                    .padding(.top, 16)
-                
-                Text(viewModel.purchaseFailedMessage)
-                    .font(FontsUi.APC_Footnote)
-                    .foregroundColor(ColorsUi.APC_White)
-                    .padding(.top, 15)
+                    Image("exclamation-red", bundle: Bundle.module)
+                        .resizable()
+                        .edgesIgnoringSafeArea(.all)
+                        .frame(width: 80, height: 80)
+                    
+                    VStack {}.frame(height: 16)
+                    
+                    Text(Constants.errorText)
+                        .font(FontsUi.APC_Title3_Bold)
+                        .foregroundColor(ColorsUi.APC_White)
+                    
+                    VStack {}.frame(height: 16)
+                    
+                    Text(viewModel.purchaseFailedMessage)
+                        .font(FontsUi.APC_Footnote)
+                        .foregroundColor(ColorsUi.APC_White)
                 
                 Button(action: {
                     var subject: String
@@ -51,53 +66,38 @@ internal struct ErrorBottomSheet: View {
                     else { subject = "[iOS] Payment Support" }
                     
                     if let subject = subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-                        let emailURL = URL(string: "mailto:info@appcoins.io?subject=\(subject)") {
+                       let emailURL = URL(string: "mailto:info@appcoins.io?subject=\(subject)") {
                         UIApplication.shared.open(emailURL)
                     } else {
                         toast = FancyToast(type: .info, title: Constants.supportAvailableSoonTitle, message: Constants.supportAvailableSoonMessage)
                     }
                 }) {
-                    HStack {
-                        Image(systemName: "paperplane.fill")
-                            .resizable()
-                            .edgesIgnoringSafeArea(.all)
-                            .foregroundColor(ColorsUi.APC_White)
-                            .frame(width: 20, height: 20)
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 12)
+                            .foregroundColor(ColorsUi.APC_AppCoinsSupport_background_button)
                         
                         Text(Constants.appcSupport)
                             .font(FontsUi.APC_Body_Bold)
+                            .foregroundColor(ColorsUi.APC_Pink)
                     }
                 }
-                .frame(width: UIScreen.main.bounds.width - 64, height: 48)
-                .background(ColorsUi.APC_OpaqueBlack)
-                .foregroundColor(ColorsUi.APC_White)
-                .cornerRadius(10)
-                .padding(.top, 36)
-                
-                Button(action: { viewModel.dismiss() }) {
-                    Text(Constants.cancelText)
-                        .foregroundColor(ColorsUi.APC_DarkGray)
-                        .font(FontsUi.APC_Footnote_Bold)
-                        .lineLimit(1)
-                }
-                .padding(.top, 12)
-                .padding(.bottom, 20)
+                .frame(width: UIScreen.main.bounds.width - 48, height: 50)
+                .frame(maxHeight: .infinity, alignment: .bottom)
 
-            }.frame(height: 396, alignment: .top)
-            
-        }.frame(width: UIScreen.main.bounds.size.width, height: 396)
-            .cornerRadius(13, corners: [.topLeft, .topRight])
-            .toastView(toast: $toast)
-            .onAppear {
-                WalletUseCases.shared.getWallet() { result in
-                    switch result {
-                    case .success(let wallet):
-                        self.address = wallet.getWalletAddress()
-                    case .failure(let failure):
-                        break
-                    }
+                VStack {}.frame(height: 47)
+            }
+        }
+        .cornerRadius(13, corners: [.topLeft, .topRight])
+        .toastView(toast: $toast)
+        .onAppear {
+            WalletUseCases.shared.getWallet() { result in
+                switch result {
+                case .success(let wallet):
+                    self.address = wallet.getWalletAddress()
+                case .failure: break
                 }
             }
-        
+        }
+        .ignoresSafeArea(.all)
     }
 }

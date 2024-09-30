@@ -1,6 +1,6 @@
 //
 //  PaymentChoiceBottomSheet.swift
-//  
+//
 //
 //  Created by aptoide on 07/03/2023.
 //
@@ -20,19 +20,17 @@ internal struct PaymentChoiceBottomSheet: View {
         
         VStack(spacing: 0) {
             
-            VStack {Text("abc")}.frame(height: 15)
-                .background(Color.red)
+            VStack {}.frame(height: 15)
             
             // Avatar and purchase
             HStack(spacing: 0) {
-                    Image(uiImage: Utils.getAppIcon())
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 74, height: 74)
-                        .clipShape(Circle())
+                Image(uiImage: Utils.getAppIcon())
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 74, height: 74)
+                    .clipShape(Circle())
                 
-                VStack {Text("abc")}.frame(height: 15)
-                    .background(Color.red)
+                VStack {}.frame(width: 15, height: 15)
                 
                 VStack(spacing: 0) {
                     if let title = transactionViewModel.transaction?.getTitle() {
@@ -66,11 +64,12 @@ internal struct PaymentChoiceBottomSheet: View {
                                 Text("")
                                     .skeleton(with: true)
                                     .frame(width: 60, height: 14, alignment: .leading)
+                                VStack {}.frame(maxWidth: .infinity)
                             }.frame(maxWidth: .infinity)
                         }
                     }
                     .frame(width: UIScreen.main.bounds.width - 154, alignment: .bottomLeading)
-                        
+                    
                     
                     VStack {}.frame(height: 4)
                     
@@ -85,6 +84,7 @@ internal struct PaymentChoiceBottomSheet: View {
                                 .skeleton(with: true)
                                 .frame(width: 55, height: 10, alignment: .leading)
                                 .padding(.top, 2)
+                            VStack {}.frame(maxWidth: .infinity)
                         }.frame(maxWidth: .infinity)
                     }
                 }
@@ -105,9 +105,8 @@ internal struct PaymentChoiceBottomSheet: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
                 
             }.frame(width: UIScreen.main.bounds.width - 32, height: 74, alignment: .top)
-
-            HStack(spacing: 0) {Text("abc")}.frame(height: 15)
-                .background(Color.red)
+            
+            HStack {}.frame(height: 15)
             
             if transactionViewModel.lastPaymentMethod != nil || transactionViewModel.showOtherPaymentMethods {
                 // Payment methods
@@ -152,8 +151,7 @@ internal struct PaymentChoiceBottomSheet: View {
                             .frame(width: UIScreen.main.bounds.width - 48, height: 88)
                             .cornerRadius(13)
                             
-                            HStack(spacing: 0){Text("abc")}.frame(height: 16)
-                                .background(Color.red)
+                            HStack {}.frame(height: 16)
                             
                             HStack(spacing: 0) {
                                 HStack(spacing: 0) {
@@ -183,8 +181,7 @@ internal struct PaymentChoiceBottomSheet: View {
                 }
             }
             
-            HStack(spacing: 0){Text(" ")}.frame(height: !transactionViewModel.showOtherPaymentMethods ? 42 : 26) // 26 quando não tem um método de pagamento já selectionado caso contrário é 44
-                .background(Color.red)
+            HStack {}.frame(height: !transactionViewModel.showOtherPaymentMethods ? 42 : 26)
             
             // Buying button
             Button(action: {
@@ -203,9 +200,9 @@ internal struct PaymentChoiceBottomSheet: View {
             .frame(maxHeight: .infinity, alignment: .bottom)
             .foregroundColor(ColorsUi.APC_White)
             
-            VStack {Text(" ")}.frame(height: 26)
-                .background(Color.red)
+            VStack {}.frame(height: 47)
         }
+        .ignoresSafeArea(.all)
     }
 }
 

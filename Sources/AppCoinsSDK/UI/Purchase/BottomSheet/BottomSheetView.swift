@@ -114,24 +114,25 @@ internal struct BottomSheetView: View {
                     }
                 
                 // Safe Area color
-                VStack(spacing: 0) {
-                    Color.clear
-                        .frame(maxHeight: .infinity)
-                    
-                    if [.paying, .adyen].contains(viewModel.purchaseState) {
-                        if adyenController.state != .storedCreditCard {
-                            ColorsUi.APC_LightGray
-                                .frame(height: Utils.bottomSafeAreaHeight)
-                                .offset(y: isSafeAreaPresented ? 0 : UIScreen.main.bounds.height)
-                                .transition(.move(edge: isSafeAreaPresented ? .bottom : .top))
-                                .onAppear { withAnimation { isSafeAreaPresented = true } }
-                        }
-                    } else if ![.initialAskForSync, .successAskForInstall, .successAskForSync].contains(viewModel.purchaseState) {
-                        ColorsUi.APC_DarkBlue
-                            .frame(height: Utils.bottomSafeAreaHeight)
-                    }
-                }.ignoresSafeArea()
+//                VStack(spacing: 0) {
+//                    Color.clear
+//                        .frame(maxHeight: .infinity)
+//                    
+//                    if [.paying, .adyen].contains(viewModel.purchaseState) {
+//                        if adyenController.state != .storedCreditCard {
+//                            ColorsUi.APC_LightGray
+//                                .frame(height: Utils.bottomSafeAreaHeight)
+//                                .offset(y: isSafeAreaPresented ? 0 : UIScreen.main.bounds.height)
+//                                .transition(.move(edge: isSafeAreaPresented ? .bottom : .top))
+//                                .onAppear { withAnimation { isSafeAreaPresented = true } }
+//                        }
+//                    } else if ![.initialAskForSync, .successAskForInstall, .successAskForSync].contains(viewModel.purchaseState) {
+//                        ColorsUi.APC_DarkBlue
+//                            .frame(height: Utils.bottomSafeAreaHeight)
+//                    }
+//                }.ignoresSafeArea()
             }
+            .ignoresSafeArea(.all)
             .offset(y: viewModel.isBottomSheetPresented ? 0 : UIScreen.main.bounds.height)
             .transition(.move(edge: viewModel.isBottomSheetPresented ? .bottom : .top))
             .onAppear { withAnimation { viewModel.isBottomSheetPresented = true } }

@@ -19,21 +19,23 @@ internal struct CreditCardBottomSheet: View {
     internal var body: some View {
        
         VStack(spacing: 0) {
+            Button {
+                viewModel.dismiss()
+            } label: {
+                ZStack {
+                    Circle()
+                        .fill(Color(UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 0.5)))
+                        .frame(width: 30, height: 30)
+                    Image(systemName: "xmark")
+                        .foregroundColor(Color(UIColor(red: 0.24, green: 0.24, blue: 0.24, alpha: 1)))
+                }
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+            
+            
             if let viewController = adyenController.presentableComponent?.viewController {
-                
                 AdyenViewControllerWrapper(viewController: viewController)
-                    .padding(.top, 16)
                     .frame(height: dynamicHeight)
-                    
-                Button(action: {
-                    adyenController.cancel()
-                }) {
-                    Text(Constants.cancelText)
-                        .foregroundColor(ColorsUi.APC_DarkGray)
-                        .font(FontsUi.APC_Footnote_Bold)
-                        .lineLimit(1)
-                }.padding(.top, 4)
-                
             } else {
                 ZStack {
                     ActivityIndicatorView(

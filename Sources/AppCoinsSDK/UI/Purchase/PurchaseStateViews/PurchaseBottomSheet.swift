@@ -31,7 +31,7 @@ internal struct PurchaseBottomSheet: View {
     @State private var transitionEdge: Edge = .bottom
     @State private var previousBackgroundHeight: CGFloat = 0
     
-    internal var baseHeight: CGFloat = 207 // 180
+    internal var baseHeight: CGFloat = 228 // 180
     internal var paymentMethodListHeight: CGFloat { return CGFloat(50*(transactionViewModel.transaction?.paymentMethods.count ?? 0)) }
     internal var quickPaymentHeight: CGFloat = 150
     
@@ -175,12 +175,11 @@ internal struct PurchaseBottomSheet: View {
         }
         .cornerRadius(13, corners: [.topLeft, .topRight])
         .frame(width: UIScreen.main.bounds.size.width, height: backgroundHeight)
-//        .padding(.bottom, keyboardObserver.isKeyboardVisible ? keyboardObserver.keyboardHeight - dynamicPadding : 0)
+        .padding(.bottom, keyboardObserver.isKeyboardVisible ? keyboardObserver.keyboardHeight - dynamicPadding : 0)
         .modifier(MeasureBottomPositionModifier(onChange: { newValue in
             let difference = UIScreen.main.bounds.height - newValue
             dynamicPadding = difference
-        }))
-        // Otherwise (with a regular general animation) the skeletons animation does not work
+        }))        // Otherwise (with a regular general animation) the skeletons animation does not work
         .animation(.easeInOut(duration: 0.3), value: transactionViewModel.paymentMethodSelected != nil)
         .animation(.easeInOut(duration: 0.3), value: transactionViewModel.paymentMethodSelected?.name)
         .animation(.easeInOut(duration: 0.3), value: transactionViewModel.showOtherPaymentMethods)
