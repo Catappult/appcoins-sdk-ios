@@ -126,7 +126,7 @@ internal struct PurchaseBottomSheet: View {
                             VStack {}.frame(height: 12)
                         }
                     }
-                }.frame(width: UIScreen.main.bounds.size.width, height: blueStripeHeight)
+                }.frame(width: viewModel.isLandscape ? 664 : UIScreen.main.bounds.size.width, height: blueStripeHeight)
                 
                 ZStack() {
                     ColorsUi.APC_LightGray
@@ -168,13 +168,13 @@ internal struct PurchaseBottomSheet: View {
                         }
                     }
                     
-                }.frame(width: UIScreen.main.bounds.size.width, height: frontTransactionHeight )
+                }.frame(width: viewModel.isLandscape ? 664 : UIScreen.main.bounds.size.width, height: frontTransactionHeight )
                     .cornerRadius(13, corners: [.topLeft, .topRight])
                 }
             
         }
         .cornerRadius(13, corners: [.topLeft, .topRight])
-        .frame(width: UIScreen.main.bounds.size.width, height: backgroundHeight)
+        .frame(width: viewModel.isLandscape ? 664 : UIScreen.main.bounds.size.width, height: backgroundHeight)
         .padding(.bottom, keyboardObserver.isKeyboardVisible ? keyboardObserver.keyboardHeight - dynamicPadding : 0)
         .modifier(MeasureBottomPositionModifier(onChange: { newValue in
             let difference = UIScreen.main.bounds.height - newValue
