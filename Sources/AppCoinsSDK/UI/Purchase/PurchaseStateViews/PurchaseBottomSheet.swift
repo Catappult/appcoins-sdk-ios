@@ -31,7 +31,9 @@ internal struct PurchaseBottomSheet: View {
     @State private var transitionEdge: Edge = .bottom
     @State private var previousBackgroundHeight: CGFloat = 0
     
-    internal var baseHeight: CGFloat = 228 // 180
+    internal var baseHeight: CGFloat {
+        viewModel.isLandscape ? UIScreen.main.bounds.height * 0.4 : 228 // 180
+    }
     internal var paymentMethodListHeight: CGFloat { return CGFloat(50*(transactionViewModel.transaction?.paymentMethods.count ?? 0)) }
     internal var quickPaymentHeight: CGFloat = 150
     
@@ -126,7 +128,7 @@ internal struct PurchaseBottomSheet: View {
                             VStack {}.frame(height: 12)
                         }
                     }
-                }.frame(width: viewModel.isLandscape ? 664 : UIScreen.main.bounds.size.width, height: blueStripeHeight)
+                }.frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: blueStripeHeight)
                 
                 ZStack() {
                     ColorsUi.APC_LightGray
@@ -168,13 +170,13 @@ internal struct PurchaseBottomSheet: View {
                         }
                     }
                     
-                }.frame(width: viewModel.isLandscape ? 664 : UIScreen.main.bounds.size.width, height: frontTransactionHeight )
+                }.frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: frontTransactionHeight )
                     .cornerRadius(13, corners: [.topLeft, .topRight])
                 }
             
         }
         .cornerRadius(13, corners: [.topLeft, .topRight])
-        .frame(width: viewModel.isLandscape ? 664 : UIScreen.main.bounds.size.width, height: backgroundHeight)
+        .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: backgroundHeight)
         .padding(.bottom, keyboardObserver.isKeyboardVisible ? keyboardObserver.keyboardHeight - dynamicPadding : 0)
         .modifier(MeasureBottomPositionModifier(onChange: { newValue in
             let difference = UIScreen.main.bounds.height - newValue

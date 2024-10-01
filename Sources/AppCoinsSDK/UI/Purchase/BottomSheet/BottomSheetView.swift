@@ -11,9 +11,9 @@ import UIKit
 
 internal struct BottomSheetView: View {
     
-    @ObservedObject var viewModel : BottomSheetViewModel = BottomSheetViewModel.shared
+    @ObservedObject var viewModel: BottomSheetViewModel = BottomSheetViewModel.shared
     @ObservedObject var adyenController: AdyenController = AdyenController.shared
-    @ObservedObject var paypalViewModel : PayPalDirectViewModel = PayPalDirectViewModel.shared
+    @ObservedObject var paypalViewModel: PayPalDirectViewModel = PayPalDirectViewModel.shared
     
     @State private var isSafeAreaPresented = false
     

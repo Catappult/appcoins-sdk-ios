@@ -38,7 +38,7 @@ internal struct PaymentChoiceBottomSheet: View {
                             .foregroundColor(ColorsUi.APC_Black)
                             .font(FontsUi.APC_Body_Bold)
                             .lineLimit(2)
-                            .frame(width: UIScreen.main.bounds.width - 154, alignment: .leading)
+                            .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 154 : UIScreen.main.bounds.width - 154, alignment: .leading)
                     } else {
                         HStack(spacing: 0) {
                             Text("")
@@ -68,8 +68,7 @@ internal struct PaymentChoiceBottomSheet: View {
                             }.frame(maxWidth: .infinity)
                         }
                     }
-                    .frame(width: UIScreen.main.bounds.width - 154, alignment: .bottomLeading)
-                    
+                    .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 154 : UIScreen.main.bounds.width - 154, alignment: .bottomLeading)
                     
                     VStack {}.frame(height: 4)
                     
@@ -77,7 +76,7 @@ internal struct PaymentChoiceBottomSheet: View {
                         Text(verbatim: String(format: "%.3f", appcAmount) + " APPC")
                             .foregroundColor(ColorsUi.APC_Gray)
                             .font(FontsUi.APC_Caption2)
-                            .frame(width: UIScreen.main.bounds.width - 154, alignment: .leading)
+                            .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 154 : UIScreen.main.bounds.width - 154, alignment: .leading)
                     } else {
                         HStack(spacing: 0) {
                             Text("")
@@ -104,7 +103,7 @@ internal struct PaymentChoiceBottomSheet: View {
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
                 
-            }.frame(width: UIScreen.main.bounds.width - 32, height: 74, alignment: .top)
+            }.frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 32, height: 74, alignment: .top)
             
             HStack {}.frame(height: 15)
             
@@ -129,26 +128,26 @@ internal struct PaymentChoiceBottomSheet: View {
                                                 .foregroundColor(ColorsUi.APC_Black)
                                                 .font(FontsUi.APC_Callout)
                                                 .lineLimit(1)
-                                                .frame(width: UIScreen.main.bounds.width - 168, alignment: .leading)
+                                                .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 168 : UIScreen.main.bounds.width - 168, alignment: .leading)
                                                 .padding(.bottom, 4)
                                             
                                             Text(Constants.earnedEnoughAppcText)
                                                 .foregroundColor(ColorsUi.APC_Gray)
                                                 .font(FontsUi.APC_Caption1)
                                                 .lineLimit(2)
-                                                .frame(width: UIScreen.main.bounds.width - 168, alignment: .leading)
+                                                .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 168 : UIScreen.main.bounds.width - 168, alignment: .leading)
                                         } else {
                                             Text(transactionViewModel.lastPaymentMethod?.label)
                                                 .foregroundColor(ColorsUi.APC_Black)
                                                 .font(FontsUi.APC_Callout)
                                                 .lineLimit(1)
-                                                .frame(width: UIScreen.main.bounds.width - 168, alignment: .leading)
+                                                .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 168 : UIScreen.main.bounds.width - 168, alignment: .leading)
                                         }
-                                    }.frame(width: UIScreen.main.bounds.width - 168, alignment: .leading)
+                                    }.frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 168 : UIScreen.main.bounds.width - 168, alignment: .leading)
                                         .padding(.leading, 16)
                                 }
                             }
-                            .frame(width: UIScreen.main.bounds.width - 48, height: 88)
+                            .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 88)
                             .cornerRadius(13)
                             
                             HStack {}.frame(height: 16)
@@ -173,7 +172,7 @@ internal struct PaymentChoiceBottomSheet: View {
                                             .padding(.trailing, 8)
                                     }
                                 }.frame(maxWidth: .infinity, alignment: .trailing)
-                            }.frame(width: UIScreen.main.bounds.width - 48, height: 18)
+                            }.frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 18)
                         } else {
                             RadioButtonGroupView(viewModel: viewModel)
                         }
@@ -196,7 +195,7 @@ internal struct PaymentChoiceBottomSheet: View {
                 }
             }
             .disabled(transactionViewModel.transaction == nil)
-            .frame(width: UIScreen.main.bounds.width - 48, height: 50)
+            .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 320 : UIScreen.main.bounds.width - 48, height: 50)
             .frame(maxHeight: .infinity, alignment: .bottom)
             .foregroundColor(ColorsUi.APC_White)
             
