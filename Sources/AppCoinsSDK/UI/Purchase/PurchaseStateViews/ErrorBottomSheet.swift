@@ -34,13 +34,13 @@ internal struct ErrorBottomSheet: View {
                                 .foregroundColor(ColorsUi.APC_LightGray_Xmark)
                             
                         }
-                    }.frame(maxWidth: .infinity, alignment: .trailing)
+                    }.frame(maxWidth: .infinity, alignment: .topTrailing)
                     
                     VStack {}.frame(width: 24)
                     
-                }.frame(alignment: .topTrailing)
+                }
                 
-                VStack {}.frame(height: 68)
+                VStack {}.frame(height: viewModel.isLandscape ? 21 : 68)
                 
                     Image("exclamation-red", bundle: Bundle.module)
                         .resizable()
@@ -58,6 +58,8 @@ internal struct ErrorBottomSheet: View {
                     Text(viewModel.purchaseFailedMessage)
                         .font(FontsUi.APC_Footnote)
                         .foregroundColor(ColorsUi.APC_White)
+                
+                VStack {}.frame(height: viewModel.isLandscape ? 21 : 61)
                 
                 Button(action: {
                     var subject: String
@@ -81,12 +83,13 @@ internal struct ErrorBottomSheet: View {
                             .foregroundColor(ColorsUi.APC_Pink)
                     }
                 }
-                .frame(width: UIScreen.main.bounds.width - 48, height: 50)
+                .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 320 : UIScreen.main.bounds.width - 48, height: 50)
                 .frame(maxHeight: .infinity, alignment: .bottom)
 
                 VStack {}.frame(height: 47)
             }
         }
+        .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: viewModel.isLandscape ? UIScreen.main.bounds.height * 0.9 : 436)
         .cornerRadius(13, corners: [.topLeft, .topRight])
         .toastView(toast: $toast)
         .onAppear {
@@ -97,7 +100,5 @@ internal struct ErrorBottomSheet: View {
                 case .failure: break
                 }
             }
-        }
-        .ignoresSafeArea(.all)
-    }
+        }    }
 }

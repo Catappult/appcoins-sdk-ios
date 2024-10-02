@@ -1,6 +1,6 @@
 //
 //  PurchaseBottomSheet.swift
-//  
+//
 //
 //  Created by aptoide on 31/08/2023.
 //
@@ -32,7 +32,7 @@ internal struct PurchaseBottomSheet: View {
     @State private var previousBackgroundHeight: CGFloat = 0
     
     internal var baseHeight: CGFloat {
-        viewModel.isLandscape ? UIScreen.main.bounds.height * 0.4 : 228 // 180
+        viewModel.isLandscape ? UIScreen.main.bounds.height * 0.35 : 228 // 180
     }
     internal var paymentMethodListHeight: CGFloat { return CGFloat(50*(transactionViewModel.transaction?.paymentMethods.count ?? 0)) }
     internal var quickPaymentHeight: CGFloat = 150
@@ -46,7 +46,7 @@ internal struct PurchaseBottomSheet: View {
             } else {
                 // Quick Payment Screen is shown
                 print("quick paymentIsShown")
-                if transactionViewModel.lastPaymentMethod == nil { return 257 } else { 
+                if transactionViewModel.lastPaymentMethod == nil { return 257 } else {
                     print("quick paymentIsShown height: \(quickPaymentHeight)")
                     return baseHeight + quickPaymentHeight }
             }
@@ -78,106 +78,175 @@ internal struct PurchaseBottomSheet: View {
     
     internal var body: some View {
         
-        ZStack {
-            ColorsUi.APC_DarkBlue
+        VStack(spacing: 0) {
             
-            VStack(spacing: 0) {
+            VStack {}.frame(height: 16)
+            
+            HStack(spacing: 0) {
                 
-                HStack {
-                    // Purchase bonus area
-                    VStack(spacing: 0) {
+                Image(uiImage: Utils.getAppIcon())
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 40, height: 40)
+                    .clipShape(Circle())
+                    .frame(maxWidth: 40, alignment: .leading)
+                
+                VStack {}.frame(width: 15)
+                
+                VStack(alignment: .leading, spacing: 0) {
+                    if let title = transactionViewModel.transaction?.getTitle() {
+                        Text(title)
+                            .foregroundColor(ColorsUi.APC_Black)
+                            .font(FontsUi.APC_Body_Bold)
+                            .lineLimit(1)
+                    } else {
+                        HStack(spacing: 0) {
+                            Text("")
+                                .skeleton(with: true)
+                                .frame(width: 125, height: 22, alignment: .leading)
+                            VStack {}.frame(maxWidth: .infinity)
+                        }.frame(maxWidth: .infinity)
+                    }
+                    
+                    HStack(spacing: 0) {
+                        if let amount = transactionViewModel.transaction?.moneyAmount {
+                            Text((transactionViewModel.transaction?.moneyCurrency.sign ?? "") + String(amount))
+                                .foregroundColor(ColorsUi.APC_Black)
+                                .font(FontsUi.APC_Subheadline_Bold)
+                                .lineLimit(1)
+                                
+                            VStack {}.frame(width: 4)
                         
-                        if transactionViewModel.paymentMethodSelected != nil && transactionViewModel.paymentMethodSelected?.name != Method.appc.rawValue {
-                            
-                            VStack {}.frame(height: 16)
-                            
-                            HStack {
-                                Image("gift-pink", bundle: Bundle.module)
-                                    .resizable()
-                                    .edgesIgnoringSafeArea(.all)
-                                    .frame(width: 16, height: 16)
-                                
-                                if let bonusCurrency = transactionViewModel.transaction?.bonusCurrency.sign, let bonusAmount = transactionViewModel.transaction?.bonusAmount {
-                                    Text(String(format: Constants.purchaseBonus, "\(bonusCurrency)\(String(format: "%.3f", bonusAmount))"))
-                                        .font(FontsUi.APC_Caption1_Bold)
-                                        .foregroundColor(ColorsUi.APC_White)
-                                        .frame(height: 16)
-                                } else {
-                                    HStack(spacing: 0) {
-                                        Text("")
-                                            .skeleton(with: true)
-                                            .font(FontsUi.APC_Caption1_Bold)
-                                            .opacity(0.1)
-                                            .frame(width: 40, height: 17)
-                                    }
-                                }
-                                
-                                Image("appc-payment-method-pink", bundle: Bundle.module)
-                                    .resizable()
-                                    .edgesIgnoringSafeArea(.all)
-                                    .frame(width: 16, height: 16)
-                            }
-                            
-                            VStack {}.frame(height: 4)
-                            
-                            Text(Constants.canSeeBonusText)
-                                .font(FontsUi.APC_Caption2)
+                            Text(transactionViewModel.transaction?.moneyCurrency.currency ?? "-")
+                                .foregroundColor(ColorsUi.APC_Black)
+                                .font(FontsUi.APC_Caption1_Bold)
+                                .lineLimit(1)
+                        } else {
+                            HStack(spacing: 0) {
+                                Text("")
+                                    .skeleton(with: true)
+                                    .frame(width: 60, height: 14, alignment: .leading)
+                                VStack {}.frame(maxWidth: .infinity)
+                            }.frame(maxWidth: .infinity)
+                        }
+                        
+                        VStack {}.frame(width: 16)
+
+                        if let appcAmount = transactionViewModel.transaction?.appcAmount {
+                            Text(verbatim: String(format: "%.3f", appcAmount) + " APPC")
                                 .foregroundColor(ColorsUi.APC_Gray)
-                                .frame(height: 13)
-                            
-                            VStack {}.frame(height: 12)
+                                .font(FontsUi.APC_Caption2)
+                        } else {
+                            HStack(spacing: 0) {
+                                Text("")
+                                    .skeleton(with: true)
+                                    .frame(width: 55, height: 10, alignment: .leading)
+                                    .padding(.top, 2)
+                                VStack {}.frame(maxWidth: .infinity)
+                            }.frame(maxWidth: .infinity)
                         }
                     }
-                }.frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: blueStripeHeight)
-                
-                ZStack() {
-                    ColorsUi.APC_LightGray
+                    .frame(width: viewModel.isLandscape ? 256 : UIScreen.main.bounds.width - 154, alignment: .bottomLeading)
                     
-                    if viewModel.purchaseState == .paying {
-                        PaymentChoiceBottomSheet(viewModel: viewModel)
-                            .onAppear(perform: {
-                                print("paymentchoicebottomsheet")
-                            })
-                    }
-                
-                    if viewModel.purchaseState == .adyen {
-                        if adyenController.state == .none {
-                            AdyenLoadingBottomSheet(viewModel: viewModel)
-                                .onAppear(perform: {
-                                    print("AdyenLoadingBottomSheet")
-                                })
-                        }
-                        
-                        if adyenController.state == .choosingCreditCard {
-                            CreditCardChoiceBottomSheet(viewModel: viewModel)
-                                .onAppear(perform: {
-                                    print("CreditCardChoiceBottomSheet")
-                                })
-                        }
-                        
-                        if adyenController.state == .newCreditCard {
-                            CreditCardBottomSheet(viewModel: viewModel, dynamicHeight: $dynamicHeight)
-                                .onAppear{ startObservingDynamicHeight() }
-                                .onDisappear{ stopObservingDynamicHeight() }
-                                .frame(width: UIScreen.main.bounds.size.width, height: dynamicHeight)
-                                .onAppear(perform: {
-                                    print("CreditCardBottomSheet")
-                                })
-                        }
-                        
-                        if adyenController.state == .paypal {
-                            EmptyView()
-                        }
-                    }
+                    VStack {}.frame(height: 4)
                     
-                }.frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: frontTransactionHeight )
-                    .cornerRadius(13, corners: [.topLeft, .topRight])
+                    
+                }.frame(maxWidth: .infinity, maxHeight: 40, alignment: .leading)
+                
+                Button {
+                    viewModel.dismiss()
+                } label: {
+                    ZStack {
+                        Circle()
+                            .fill(ColorsUi.APC_BackgroundLightGray_Button)
+                            .frame(width: 30, height: 30)
+                        
+                        Image(systemName: "xmark")
+                            .foregroundColor(ColorsUi.APC_DarkGray_Xmark)
+                        
+                    }
                 }
+                
+            }.frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 40)
+            
+            VStack {}.frame(height: 20)
+            
+            if viewModel.purchaseState == .paying {
+                if viewModel.isLandscape {
+                    VStack(spacing: 0) {
+                        ScrollView(.vertical, showsIndicators: true) {
+                            PaymentChoiceBottomSheet(viewModel: viewModel)
+                                .onAppear(perform: {
+                                    print("paymentchoicebottomsheet")
+                                })
+                        }.frame(maxHeight: 254)
+                        
+                        VStack {}.frame(height: 8)
+                        
+                        // Buying button
+                        Button(action: {
+                            DispatchQueue.main.async { viewModel.purchaseState = .processing }
+                            viewModel.buy()
+                        }) {
+                            ZStack {
+                                
+                                RoundedRectangle(cornerRadius: 12)
+                                    .foregroundColor(transactionViewModel.transaction != nil ? ColorsUi.APC_Pink : ColorsUi.APC_Gray)
+                                Text(Constants.buyText)
+                            }
+                        }
+                        .disabled(transactionViewModel.transaction == nil)
+                        .frame(maxHeight: .infinity, alignment: .bottom)
+                        .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 320 : UIScreen.main.bounds.width - 48, height: 50)
+                        .foregroundColor(ColorsUi.APC_White)
+                        
+                        VStack {}.frame(height: Utils.bottomSafeAreaHeight == 0 ? 5 : Utils.bottomSafeAreaHeight)
+                        
+                        
+                    }
+                } else {
+                    PaymentChoiceBottomSheet(viewModel: viewModel)
+                        .onAppear(perform: {
+                            print("paymentchoicebottomsheet")
+                        })
+                }
+            }
+            
+            if viewModel.purchaseState == .adyen {
+                if adyenController.state == .none {
+                    AdyenLoadingBottomSheet(viewModel: viewModel)
+                        .onAppear(perform: {
+                            print("AdyenLoadingBottomSheet")
+                        })
+                }
+                
+                if adyenController.state == .choosingCreditCard {
+                    CreditCardChoiceBottomSheet(viewModel: viewModel)
+                        .onAppear(perform: {
+                            print("CreditCardChoiceBottomSheet")
+                        })
+                }
+                
+                if adyenController.state == .newCreditCard {
+                    CreditCardBottomSheet(viewModel: viewModel, dynamicHeight: $dynamicHeight)
+                        .onAppear{ startObservingDynamicHeight() }
+                        .onDisappear{ stopObservingDynamicHeight() }
+                        .frame(width: UIScreen.main.bounds.size.width, height: dynamicHeight)
+                        .onAppear(perform: {
+                            print("CreditCardBottomSheet")
+                        })
+                }
+                
+                if adyenController.state == .paypal {
+                    EmptyView()
+                }
+            }
             
         }
-        .cornerRadius(13, corners: [.topLeft, .topRight])
         .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: backgroundHeight)
         .padding(.bottom, keyboardObserver.isKeyboardVisible ? keyboardObserver.keyboardHeight - dynamicPadding : 0)
+        .background(Color(red: 0.95, green: 0.95, blue: 0.97))
+        .cornerRadius(13, corners: [.topLeft, .topRight])
         .modifier(MeasureBottomPositionModifier(onChange: { newValue in
             let difference = UIScreen.main.bounds.height - newValue
             dynamicPadding = difference
@@ -196,6 +265,10 @@ internal struct PurchaseBottomSheet: View {
         .offset(y: isPresented ? 0 : UIScreen.main.bounds.height)
         .transition(.move(edge: isPresented ? .bottom : .top))
         .onAppear { withAnimation { isPresented = true } }
+        //                .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: frontTransactionHeight )
+        //                    .cornerRadius(13, corners: [.topLeft, .topRight])
+        
+        
         
     }
     
@@ -251,12 +324,12 @@ internal struct PurchaseBottomSheet: View {
                 }
         }
     }
-
+    
     internal struct BottomPositionPreferenceKey: PreferenceKey {
         typealias Value = CGFloat
-
+        
         static internal var defaultValue: CGFloat = 0
-
+        
         static internal func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
             value = max(value, nextValue())
         }

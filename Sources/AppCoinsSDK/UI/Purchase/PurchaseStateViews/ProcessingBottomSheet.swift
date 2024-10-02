@@ -36,7 +36,7 @@ internal struct ProcessingBottomSheet: View {
             }.frame(height: 314 + Utils.bottomSafeAreaHeight, alignment: .center)
             
             
-        }.frame(width: UIScreen.main.bounds.size.width, height: 436)
+        }.frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: viewModel.isLandscape ? UIScreen.main.bounds.height * 0.9 : 436)
             .cornerRadius(13, corners: [.topLeft, .topRight])
             .offset(y: isPresented ? 0 : UIScreen.main.bounds.height)
             .transition(.move(edge: isPresented ? .bottom : .top))

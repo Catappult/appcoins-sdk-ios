@@ -19,93 +19,53 @@ internal struct PaymentChoiceBottomSheet: View {
     internal var body: some View {
         
         VStack(spacing: 0) {
-            
-            VStack {}.frame(height: 15)
-            
-            // Avatar and purchase
-            HStack(spacing: 0) {
-                Image(uiImage: Utils.getAppIcon())
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 74, height: 74)
-                    .clipShape(Circle())
-                
-                VStack {}.frame(width: 15, height: 15)
-                
-                VStack(spacing: 0) {
-                    if let title = transactionViewModel.transaction?.getTitle() {
-                        Text(title)
-                            .foregroundColor(ColorsUi.APC_Black)
-                            .font(FontsUi.APC_Body_Bold)
-                            .lineLimit(2)
-                            .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 154 : UIScreen.main.bounds.width - 154, alignment: .leading)
-                    } else {
-                        HStack(spacing: 0) {
-                            Text("")
-                                .skeleton(with: true)
-                                .frame(width: 125, height: 22, alignment: .leading)
-                            VStack {}.frame(maxWidth: .infinity)
-                        }.frame(maxWidth: .infinity)
-                    }
-                    
-                    HStack(spacing: 0) {
-                        if let amount = transactionViewModel.transaction?.moneyAmount {
-                            Text((transactionViewModel.transaction?.moneyCurrency.sign ?? "") + String(amount))
-                                .foregroundColor(ColorsUi.APC_Black)
-                                .font(FontsUi.APC_Subheadline_Bold)
-                                .lineLimit(1)
-                                .padding(.trailing, 3)
-                            Text(transactionViewModel.transaction?.moneyCurrency.currency ?? "-")
-                                .foregroundColor(ColorsUi.APC_Black)
+            VStack(spacing: 0) {
+                if transactionViewModel.paymentMethodSelected != nil && transactionViewModel.paymentMethodSelected?.name != Method.appc.rawValue {
+
+                    VStack {}.frame(height: 10)
+
+                    HStack {
+                        Image("gift-pink", bundle: Bundle.module)
+                            .resizable()
+                            .edgesIgnoringSafeArea(.all)
+                            .frame(width: 16, height: 16)
+
+                        if let bonusCurrency = transactionViewModel.transaction?.bonusCurrency.sign, let bonusAmount = transactionViewModel.transaction?.bonusAmount {
+                            Text(String(format: Constants.purchaseBonus, "\(bonusCurrency)\(String(format: "%.3f", bonusAmount))"))
                                 .font(FontsUi.APC_Caption1_Bold)
-                                .lineLimit(1)
+                                .foregroundColor(ColorsUi.APC_White)
+                                .frame(height: 16)
                         } else {
                             HStack(spacing: 0) {
                                 Text("")
                                     .skeleton(with: true)
-                                    .frame(width: 60, height: 14, alignment: .leading)
-                                VStack {}.frame(maxWidth: .infinity)
-                            }.frame(maxWidth: .infinity)
+                                    .font(FontsUi.APC_Caption1_Bold)
+                                    .opacity(0.1)
+                                    .frame(width: 40, height: 17)
+                            }
                         }
+
+                        Image("appc-payment-method-pink", bundle: Bundle.module)
+                            .resizable()
+                            .edgesIgnoringSafeArea(.all)
+                            .frame(width: 16, height: 16)
                     }
-                    .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 154 : UIScreen.main.bounds.width - 154, alignment: .bottomLeading)
-                    
+
                     VStack {}.frame(height: 4)
-                    
-                    if let appcAmount = transactionViewModel.transaction?.appcAmount {
-                        Text(verbatim: String(format: "%.3f", appcAmount) + " APPC")
-                            .foregroundColor(ColorsUi.APC_Gray)
-                            .font(FontsUi.APC_Caption2)
-                            .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 154 : UIScreen.main.bounds.width - 154, alignment: .leading)
-                    } else {
-                        HStack(spacing: 0) {
-                            Text("")
-                                .skeleton(with: true)
-                                .frame(width: 55, height: 10, alignment: .leading)
-                                .padding(.top, 2)
-                            VStack {}.frame(maxWidth: .infinity)
-                        }.frame(maxWidth: .infinity)
-                    }
+
+                    Text(Constants.canSeeBonusText)
+                        .font(FontsUi.APC_Caption2)
+                        .foregroundColor(ColorsUi.APC_Gray)
+                        .frame(height: 13)
+
+                    VStack {}.frame(height: 10)
                 }
-                
-                Button {
-                    viewModel.dismiss()
-                } label: {
-                    ZStack {
-                        Circle()
-                            .fill(Color(UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 0.5)))
-                            .frame(width: 30, height: 30)
-                        
-                        Image(systemName: "xmark")
-                            .foregroundColor(Color(UIColor(red: 0.24, green: 0.24, blue: 0.24, alpha: 1)))
-                        
-                    }
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
-                
-            }.frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 32, height: 74, alignment: .top)
+            }
+            .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 56)
+            .background(ColorsUi.APC_DarkBlue)
+            .cornerRadius(12)
             
-            HStack {}.frame(height: 15)
+            VStack {}.frame(height: 16)
             
             if transactionViewModel.lastPaymentMethod != nil || transactionViewModel.showOtherPaymentMethods {
                 // Payment methods
@@ -180,26 +140,28 @@ internal struct PaymentChoiceBottomSheet: View {
                 }
             }
             
-            HStack {}.frame(height: !transactionViewModel.showOtherPaymentMethods ? 42 : 26)
+            HStack {}.frame(height: !transactionViewModel.showOtherPaymentMethods ? 40 : 26)
             
-            // Buying button
-            Button(action: {
-                DispatchQueue.main.async { viewModel.purchaseState = .processing }
-                viewModel.buy()
-            }) {
-                ZStack {
-                    
-                    RoundedRectangle(cornerRadius: 12)
-                        .foregroundColor(transactionViewModel.transaction != nil ? ColorsUi.APC_Pink : ColorsUi.APC_Gray)
-                    Text(Constants.buyText)
+            if !viewModel.isLandscape {
+                // Buying button
+                Button(action: {
+                    DispatchQueue.main.async { viewModel.purchaseState = .processing }
+                    viewModel.buy()
+                }) {
+                    ZStack {
+                        
+                        RoundedRectangle(cornerRadius: 12)
+                            .foregroundColor(transactionViewModel.transaction != nil ? ColorsUi.APC_Pink : ColorsUi.APC_Gray)
+                        Text(Constants.buyText)
+                    }
                 }
+                .disabled(transactionViewModel.transaction == nil)
+                .frame(width: UIScreen.main.bounds.width - 48, height: 50)
+                .frame(maxHeight: .infinity, alignment: .bottom)
+                .foregroundColor(ColorsUi.APC_White)
+                
+                VStack {}.frame(height: Utils.bottomSafeAreaHeight)
             }
-            .disabled(transactionViewModel.transaction == nil)
-            .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 320 : UIScreen.main.bounds.width - 48, height: 50)
-            .frame(maxHeight: .infinity, alignment: .bottom)
-            .foregroundColor(ColorsUi.APC_White)
-            
-            VStack {}.frame(height: 47)
         }
         .ignoresSafeArea(.all)
     }

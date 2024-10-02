@@ -22,7 +22,7 @@ internal struct ColorsUi {
     static internal var APC_OpaqueBlack: Color = Color(red: 1, green: 1, blue: 1, opacity: 0.15)
     
     // Button
-    static internal var APC_BackgroundLightGray_Button: Color = Color(UIColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 0.5))
+    static internal var APC_BackgroundLightGray_Button: Color = Color(red: 0.898, green: 0.898, blue: 0.918)
     static internal var APC_BackgroundDarkGray_Button: Color = Color(UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.2))
     static internal var APC_DarkGray_Xmark: Color = Color(UIColor(red: 0.24, green: 0.24, blue: 0.24, alpha: 1))
     static internal var APC_LightGray_Xmark: Color = Color(UIColor(red: 0.76, green: 0.76, blue: 0.76, alpha: 1))

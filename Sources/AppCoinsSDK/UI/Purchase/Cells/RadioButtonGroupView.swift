@@ -19,7 +19,7 @@ internal struct RadioButtonGroupView: View {
             
             if viewModel.isLandscape {
                 VStack(spacing: 0) {
-                    ScrollView(.vertical, showsIndicators: false) {
+//                    ScrollView(.vertical, showsIndicators: false) {
                         ForEach(options, id: \.self) { option in
                             Button(action: {
                                 if (!option.disabled) {
@@ -64,10 +64,10 @@ internal struct RadioButtonGroupView: View {
                             }
                                 
                         }
-                    }
+//                    }
                 }
                 .background(ColorsUi.APC_White)
-                .frame(width: UIScreen.main.bounds.width - 176 - 48, height: 88)
+                .frame(width: UIScreen.main.bounds.width - 176 - 48, height: 150) // 88
                 .cornerRadius(10)
             } else {
                 VStack(spacing: 0) {
@@ -117,12 +117,9 @@ internal struct RadioButtonGroupView: View {
                     }
                 }
                 .background(ColorsUi.APC_White)
-                .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 32 : UIScreen.main.bounds.width - 32)
+                .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48)
                 .cornerRadius(10)
             }
-            
-            
-            
         }
     }
 }
