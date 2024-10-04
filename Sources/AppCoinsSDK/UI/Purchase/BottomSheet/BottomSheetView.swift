@@ -30,6 +30,9 @@ internal struct BottomSheetView: View {
                         Color.clear.frame(maxHeight: .infinity)
                         
                         InitialSyncBottomSheet(viewModel: viewModel)
+                            .onDisappear {
+                                print("Desapareceu!!!!!!!!!")
+                            }
                     }.ignoresSafeArea()
                     
                 case .successAskForInstall:
@@ -76,12 +79,7 @@ internal struct BottomSheetView: View {
                     VStack{ }.frame(maxWidth: .infinity, maxHeight: .infinity)
                     
                     if [.paying, .adyen].contains(viewModel.purchaseState) && !(viewModel.purchaseState == .adyen && adyenController.state == .storedCreditCard) {
-                        
                         PurchaseBottomSheet(viewModel: viewModel)
-//                        ProcessingBottomSheet(viewModel: viewModel)
-//                        SuccessBottomSheet(viewModel: viewModel)
-//                        ErrorBottomSheet(viewModel: viewModel)
-//                        NoInternetBottomSheet(viewModel: viewModel)
                     }
                     
                     if viewModel.purchaseState == .processing {
