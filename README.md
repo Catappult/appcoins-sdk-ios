@@ -91,6 +91,8 @@ Now that you have the SDK and necessary permissions set-up you can start making 
       let products = try await Product.products(for: ["gas"])
       ```
 
+   > ⚠️ **Warning:** You will only be able to query your In-App Products once your application is reviewed and approved on Catappult.
+
 4. **Purchase In-App Product**  
    To purchase an In-App Product you must call the function `purchase()` on a Product object. The SDK will handle all of the purchase logic for you and it will return you on completion the result of the purchase. This result can be either `.success(let verificationResult)`, `.pending`, `.userCancelled` or `.failed(let error)`.
 
