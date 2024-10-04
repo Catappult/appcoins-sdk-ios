@@ -164,6 +164,28 @@ Follow these steps:
 
 For more information, please refer to Apple's official documentation: <https://developer.apple.com/documentation/appdistribution/distributing-your-app-on-an-alternative-marketplace#Test-your-app-during-development>
 
+### Sandbox Testing
+
+You can test the in-app purchase (IAP) functionality using Catappult’s **Sandbox environment**. Follow these steps to set it up:
+
+1. Retrieve your testing wallet address by calling `Sandbox.getTestingWalletAddress()`.
+2. Add your testing wallet address to the **Sandbox menu** in the Developer Console, and use this wallet to make test purchases in your app.
+
+> ⚠️ **Warning:** You must have proven ownership of the app to access the Sandbox environment and test IAPs.
+
+> ⚠️ **Warning:** Do not delete the app from the testing device, as this will remove the testing wallet. If the app is deleted, you’ll need to obtain a new wallet address and add it again to the Sandbox.
+
+#### Testing In-App Purchases
+
+1. Select the item you wish to purchase in the app.
+2. Choose the **Sandbox** option for the transaction.
+3. Once the purchase is completed, verify the transaction in the Wallet by checking the **Sandbox transactions**.
+4. Ensure the purchased item is correctly received in the app.
+
+If all steps are successful, your billing solution is fully integrated!
+
+For more detailed instructions, refer to [Catappult's documentation](https://docs.catappult.io/docs/ios-sandbox-environment).
+
 ## Extra Steps
 
 ### Add Localization
