@@ -55,10 +55,14 @@ internal class BottomSheetViewModel: ObservableObject {
     }
     
     private func updateOrientation() {
-        if UIDevice.current.orientation.isLandscape {
-            isLandscape = true
-        } else if UIDevice.current.orientation.isPortrait {
-            isLandscape = false
+        DispatchQueue.main.async {
+            if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                if scene.interfaceOrientation == .landscapeLeft || scene.interfaceOrientation == .landscapeRight {
+                    self.isLandscape = true
+                }
+            } else {
+                self.isLandscape = false
+            }
         }
     }
     

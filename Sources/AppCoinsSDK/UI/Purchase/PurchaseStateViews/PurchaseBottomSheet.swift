@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 import URLImage
 import SkeletonUI
+import ActivityIndicatorView
 
 internal struct PurchaseBottomSheet: View {
     
@@ -87,10 +88,8 @@ internal struct PurchaseBottomSheet: View {
                             
                             if transactionViewModel.lastPaymentMethod != nil || transactionViewModel.showOtherPaymentMethods {
                                 if (!transactionViewModel.showOtherPaymentMethods) {
-                                    // landscape lastMethod
                                     LandscapeLastPaymentMethod(viewModel: viewModel)
                                 } else {
-                                    // landscape multiMethods
                                     LandscapePaymentMethodChoice(viewModel: viewModel)
                                 }
                             }
@@ -130,27 +129,14 @@ internal struct PurchaseBottomSheet: View {
             if viewModel.purchaseState == .adyen {
                 if adyenController.state == .none {
                     AdyenLoadingBottomSheet(viewModel: viewModel)
-                        .onAppear(perform: {
-                            print("AdyenLoadingBottomSheet")
-                            print("FrontTransation height: \(frontTransactionHeight)")
-                        })
                 }
                 
                 if adyenController.state == .choosingCreditCard {
                     CreditCardChoiceBottomSheet(viewModel: viewModel)
-                        .onAppear(perform: {
-                            print("CreditCardChoiceBottomSheet")
-                        })
                 }
                 
                 if adyenController.state == .newCreditCard {
-                    CreditCardBottomSheet(viewModel: viewModel, transactionViewModel: transactionViewModel, dynamicHeight: $dynamicHeight, isLandscape: $viewModel.isLandscape)
-                        .onAppear{ startObservingDynamicHeight() }
-                        .onDisappear{ stopObservingDynamicHeight() }
-                        .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: dynamicHeight)
-                        .onAppear(perform: {
-                            print("CreditCardBottomSheet")
-                        })
+                    CreditCardBottomSheet(viewModel: viewModel, transactionViewModel: transactionViewModel, dynamicHeight: $dynamicHeight)
                 }
                 
                 if adyenController.state == .paypal {
