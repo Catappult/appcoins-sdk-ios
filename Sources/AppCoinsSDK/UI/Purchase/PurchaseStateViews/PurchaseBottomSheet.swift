@@ -144,7 +144,7 @@ internal struct PurchaseBottomSheet: View {
                 }
                 
                 if adyenController.state == .newCreditCard {
-                    CreditCardBottomSheet(viewModel: viewModel, transactionViewModel: transactionViewModel, dynamicHeight: $dynamicHeight)
+                    CreditCardBottomSheet(viewModel: viewModel, transactionViewModel: transactionViewModel, dynamicHeight: $dynamicHeight, isLandscape: $viewModel.isLandscape)
                         .onAppear{ startObservingDynamicHeight() }
                         .onDisappear{ stopObservingDynamicHeight() }
                         .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: dynamicHeight)
@@ -159,8 +159,8 @@ internal struct PurchaseBottomSheet: View {
             }
             
         }
-        .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: viewModel.isLandscape ? UIScreen.main.bounds.height * 0.9 : 420/*420*/ /*frontTransactionHeight*/)
-        .padding(.bottom, keyboardObserver.isKeyboardVisible ? keyboardObserver.keyboardHeight - dynamicPadding : 0)
+        .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: viewModel.isLandscape ? UIScreen.main.bounds.height * 0.9 : 420) // frontTransactionHeight
+        .padding(.bottom, keyboardObserver.isKeyboardVisible && !viewModel.isLandscape ? keyboardObserver.keyboardHeight - dynamicPadding : 0)
         .background(Color(red: 0.95, green: 0.95, blue: 0.97))
         .cornerRadius(13, corners: [.topLeft, .topRight])
         .modifier(MeasureBottomPositionModifier(onChange: { newValue in

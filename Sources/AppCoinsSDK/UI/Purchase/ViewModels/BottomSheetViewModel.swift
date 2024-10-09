@@ -47,25 +47,15 @@ internal class BottomSheetViewModel: ObservableObject {
     
     // Device Orientation
     @Published var isLandscape: Bool = false
-    private var cancellables = Set<AnyCancellable>()
     
     private init() {
         // Prevents Layout Warning Prints
         UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
-    
-        
         updateOrientation()
-        
-        NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)
-            .sink { _ in
-                self.updateOrientation()
-            }
-            .store(in: &cancellables)
-        
     }
     
     private func updateOrientation() {
-        if UIDevice.current.orientation.isLandscape || UIDevice.current.orientation == .portraitUpsideDown {
+        if UIDevice.current.orientation.isLandscape {
             isLandscape = true
         } else if UIDevice.current.orientation.isPortrait {
             isLandscape = false

@@ -10,7 +10,7 @@ import SwiftUI
 
 internal class PurchaseViewController: UIViewController {
 //    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-//        return .portrait
+//        return .landscapeLeft
 //    }
     
     @ObservedObject private var keyboardObserver = KeyboardObserver.shared

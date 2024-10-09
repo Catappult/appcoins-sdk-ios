@@ -10,15 +10,21 @@ import SwiftUI
 import UIKit
 
 internal struct AdyenViewControllerWrapper<ViewControllerType: UIViewController>: UIViewControllerRepresentable {
+    
+    @ObservedObject var viewModel: BottomSheetViewModel
     internal let viewController: ViewControllerType
     
-    internal init(viewController: ViewControllerType) {
+    internal init(viewController: ViewControllerType, viewModel: BottomSheetViewModel) {
         self.viewController = viewController
+        self.viewModel = viewModel
     }
 
     internal func makeUIViewController(context: Context) -> UIViewController {
         // Disable scrolling for any UIScrollView within the viewController
-        disableScrollingInView(viewController.view)
+        
+        if !viewModel.isLandscape {
+            disableScrollingInView(viewController.view)
+        }
         
         return viewController
     }

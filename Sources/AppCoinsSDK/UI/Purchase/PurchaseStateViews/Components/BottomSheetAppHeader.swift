@@ -105,7 +105,7 @@ struct BottomSheetAppHeader: View {
         .background(viewModel.isLandscape ? BlurView(style: .systemMaterial) : BlurView(style: nil))
         
         if viewModel.isLandscape {
-            VStack {}.frame(height: 8)
+//            VStack {}.frame(height: 8)
         }
     }
 }
