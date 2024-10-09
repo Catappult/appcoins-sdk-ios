@@ -171,7 +171,7 @@ internal class BottomSheetViewModel : ObservableObject {
                 DispatchQueue.main.async { self.purchaseState = .processing }
                 self.buyWithSandbox()
             default:
-                self.transactionFailedWith(error: .systemError)
+                self.transactionFailedWith(error: .systemError(message: "Payment Method not available.", description: "Tried to purchase with a Payment Method that is not available."))
             }
         }
     }
@@ -396,11 +396,12 @@ internal class BottomSheetViewModel : ObservableObject {
     
     internal func transactionFailedWith(error: AppCoinsSDKError, description: String? = nil) {
         if let description = description { DispatchQueue.main.async { self.purchaseFailedMessage = description } }
-        if error == .networkError {
-            let result : TransactionResult = .failed(error: .networkError)
+        switch error {
+        case .networkError(let debugInfo):
+            let result : TransactionResult = .failed(error: error)
             Utils.transactionResult(result: result)
             DispatchQueue.main.async { self.purchaseState = .nointernet }
-        } else {
+        default:
             let result : TransactionResult = .failed(error: error)
             Utils.transactionResult(result: result)
             DispatchQueue.main.async { self.purchaseState = .failed }

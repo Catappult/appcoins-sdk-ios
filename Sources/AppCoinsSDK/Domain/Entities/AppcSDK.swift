@@ -12,6 +12,25 @@ import MarketplaceKit
 
 public struct AppcSDK {
     
+    /// Checks if the AppcSDK is available in the current environment.
+    ///
+    /// - For development mode (`BuildConfiguration.isDev == true`), the SDK is always available.
+    /// - For iOS 17.4 or later, it checks the current storefront using the `AppDistributor` API.
+    ///   - If the storefront is the Aptoide marketplace (`"com.aptoide.ios.store"`), the SDK is considered available.
+    ///   - For any other storefront or in case of an error, the SDK is considered unavailable.
+    /// - For iOS versions below 17.4, the SDK is unavailable.
+    ///
+    /// - Returns: `true` if the SDK is available, `false` otherwise.
+    ///
+    /// Example usage:
+    /// ```swift
+    /// let isAvailable = await AppcSDK.isAvailable()
+    /// if isAvailable {
+    ///     // Proceed with SDK functionality
+    /// } else {
+    ///     // Handle SDK unavailability
+    /// }
+    /// ```
     static public func isAvailable() async -> Bool {
         if BuildConfiguration.isDev { return true } // Available for Dev
         
@@ -30,6 +49,21 @@ public struct AppcSDK {
         } else { return false }
     }
 
+    /// Handles the redirect URL and routes it to the appropriate handler. Should be called at all entrypoints of the application.
+    ///
+    /// - It initializes internal processes of the AppCoins SDK: `AppcSDKInternal.initialize()`.
+    /// - Deals with two types of redirectURL's:
+    ///   - DeepLinks coming from the Appcoins wallet
+    ///   - DeepLinks coming from Adyen payment redirects
+    ///
+    /// - Parameters:
+    ///   - redirectURL: The URL received for redirection, which is from a DeepLink into the application.
+    /// - Returns: `true` if the URL was handled successfully, `false` otherwise.
+    ///
+    /// Example usage:
+    /// ```swift
+    /// if AppcSDK.handle(redirectURL: URLContexts.first?.url) { return }
+    /// ```
     static public func handle(redirectURL: URL?) -> Bool {
         
         AppcSDKInternal.initialize()

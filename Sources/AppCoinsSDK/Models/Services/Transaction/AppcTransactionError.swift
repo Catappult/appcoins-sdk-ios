@@ -8,6 +8,6 @@
 import Foundation
 
 internal enum AppcTransactionError: Error {
-    case failed
-    case noInternet
+    case failed(message: String, description: String)
+    case noInternet(message: String, description: String)
 }

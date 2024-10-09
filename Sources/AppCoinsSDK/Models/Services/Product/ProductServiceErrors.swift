@@ -8,7 +8,7 @@
 import Foundation
 
 internal enum ProductServiceError: Error {
-    case failed
-    case noInternet
-    case purchaseVerificationFailed
+    case failed(message: String, description: String)
+    case noInternet(message: String, description: String)
+    case purchaseVerificationFailed(message: String, description: String)
 }
