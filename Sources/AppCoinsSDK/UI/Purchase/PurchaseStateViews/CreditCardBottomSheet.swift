@@ -70,7 +70,6 @@ internal struct CreditCardBottomSheet: View {
                     }
                 }.frame(width: UIScreen.main.bounds.width - 32)
             }
-            
         }
     }
 }

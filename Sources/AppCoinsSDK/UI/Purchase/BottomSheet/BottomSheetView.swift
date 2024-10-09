@@ -39,7 +39,6 @@ internal struct BottomSheetView: View {
                         SuccessAskForInstallBottomSheet(viewModel: viewModel)
                     }.ignoresSafeArea()
                     
-                    
                 case .successAskForSync:
                     VStack(spacing: 0) {
                         Color.clear.frame(maxHeight: .infinity)
@@ -94,7 +93,6 @@ internal struct BottomSheetView: View {
                     if viewModel.purchaseState == .nointernet {
                         NoInternetBottomSheet(viewModel: viewModel)
                     }
-                    
                 }
                 
                 // Workaround to place multiple sheets on the same view on older iOS versions
@@ -109,7 +107,7 @@ internal struct BottomSheetView: View {
                 HStack(spacing: 0) {}
                     .sheet(isPresented: $adyenController.presentAdyenRedirect) {
                         if let viewController = adyenController.presentableComponent?.viewController {
-//                            AdyenViewControllerWrapper(viewController: viewController, viewModel: viewModel)
+                            AdyenViewControllerWrapper(viewController: viewController, viewModel: viewModel)
                         }
                     }
             }
