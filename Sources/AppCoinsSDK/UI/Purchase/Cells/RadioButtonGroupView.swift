@@ -1,6 +1,6 @@
 //
 //  RadioButtonGroupView.swift
-//  
+//
 //
 //  Created by aptoide on 09/03/2023.
 //
@@ -19,55 +19,53 @@ internal struct RadioButtonGroupView: View {
             
             if viewModel.isLandscape {
                 VStack(spacing: 0) {
-//                    ScrollView(.vertical, showsIndicators: false) {
-                        ForEach(options, id: \.self) { option in
-                            Button(action: {
-                                if (!option.disabled) {
-                                    transactionViewModel.selectPaymentMethod(paymentMethod: option)
-                                }
-                            }) {
-                                ZStack {
-                                    ColorsUi.APC_White
-                                    HStack(spacing: 0) {
-                                        PaymentMethodIcon(icon: option.icon, disabled: option.disabled)
-                                            .frame(width: 24, height: 24)
-                                            .padding(.horizontal, 16)
-                                        
-                                        Text(option.label)
-                                            .foregroundColor(option.disabled ? ColorsUi.APC_Gray : ColorsUi.APC_Black)
-                                            .font(FontsUi.APC_Subheadline)
-                                            .lineLimit(1)
-                                            .frame(maxWidth: .infinity, alignment: .leading)
-                                            
-                                        if (transactionViewModel.paymentMethodSelected?.name == option.name) {
-                                            Image(systemName: "checkmark.circle.fill")
-                                                .resizable()
-                                                .edgesIgnoringSafeArea(.all)
-                                                .foregroundColor(ColorsUi.APC_Pink)
-                                                .frame(width: 22, height: 22, alignment: .trailing)
-                                                .padding(.trailing, 16)
-                                        } else {
-                                            Circle()
-                                                .strokeBorder(ColorsUi.APC_LightGray, lineWidth: 2)
-                                                .frame(width: 22, height: 22, alignment: .trailing)
-                                                .padding(.trailing, 16)
-                                        }
-                                                                    
-                                        
-                                    }.frame(width: UIScreen.main.bounds.width - 176 - 64)
-                                }.frame(height: 50)
-                            }.buttonStyle(flatButtonStyle())
-                        
-                            if (option.name != options.last?.name) {
-                                Divider()
-                                    .background(ColorsUi.APC_LightGray)
+                    ForEach(options, id: \.self) { option in
+                        Button(action: {
+                            if (!option.disabled) {
+                                transactionViewModel.selectPaymentMethod(paymentMethod: option)
                             }
-                                
+                        }) {
+                            ZStack {
+                                ColorsUi.APC_White
+                                HStack(spacing: 0) {
+                                    PaymentMethodIcon(icon: option.icon, disabled: option.disabled)
+                                        .frame(width: 24, height: 24)
+                                        .padding(.horizontal, 16)
+                                    
+                                    Text(option.label)
+                                        .foregroundColor(option.disabled ? ColorsUi.APC_Gray : ColorsUi.APC_Black)
+                                        .font(FontsUi.APC_Subheadline)
+                                        .lineLimit(1)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                    
+                                    if (transactionViewModel.paymentMethodSelected?.name == option.name) {
+                                        Image(systemName: "checkmark.circle.fill")
+                                            .resizable()
+                                            .edgesIgnoringSafeArea(.all)
+                                            .foregroundColor(ColorsUi.APC_Pink)
+                                            .frame(width: 22, height: 22, alignment: .trailing)
+                                            .padding(.trailing, 16)
+                                    } else {
+                                        Circle()
+                                            .strokeBorder(ColorsUi.APC_LightGray, lineWidth: 2)
+                                            .frame(width: 22, height: 22, alignment: .trailing)
+                                            .padding(.trailing, 16)
+                                    }
+                                    
+                                    
+                                }.frame(width: UIScreen.main.bounds.width - 176 - 64)
+                            }.frame(height: 50)
+                        }.buttonStyle(flatButtonStyle())
+                        
+                        if (option.name != options.last?.name) {
+                            Divider()
+                                .background(ColorsUi.APC_LightGray)
                         }
-//                    }
+                        
+                    }
                 }
                 .background(ColorsUi.APC_White)
-                .frame(width: UIScreen.main.bounds.width - 176 - 48, height: 150) // 88
+                .frame(width: UIScreen.main.bounds.width - 176 - 48, height: 150)
                 .cornerRadius(10)
             } else {
                 VStack(spacing: 0) {
@@ -89,7 +87,7 @@ internal struct RadioButtonGroupView: View {
                                         .font(FontsUi.APC_Subheadline)
                                         .lineLimit(1)
                                         .frame(maxWidth: .infinity, alignment: .leading)
-                                        
+                                    
                                     if (transactionViewModel.paymentMethodSelected?.name == option.name) {
                                         Image(systemName: "checkmark.circle.fill")
                                             .resizable()
@@ -103,17 +101,17 @@ internal struct RadioButtonGroupView: View {
                                             .frame(width: 22, height: 22, alignment: .trailing)
                                             .padding(.trailing, 16)
                                     }
-                                                                
+                                    
                                     
                                 }.frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 64)
                             }.frame(height: 50)
                         }.buttonStyle(flatButtonStyle())
-                    
+                        
                         if (option.name != options.last?.name) {
                             Divider()
                                 .background(ColorsUi.APC_LightGray)
                         }
-                            
+                        
                     }
                 }
                 .background(ColorsUi.APC_White)

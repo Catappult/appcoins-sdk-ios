@@ -17,7 +17,7 @@ internal struct ErrorBottomSheet: View {
     
     internal var body: some View {
         ZStack {
-            ColorsUi.APC_DarkBlue
+            ColorsUi.APC_BottomSheet_LightGray_Background
             VStack(spacing: 0) {
                 VStack {}.frame(height: 16)
                 
@@ -27,11 +27,11 @@ internal struct ErrorBottomSheet: View {
                     } label: {
                         ZStack {
                             Circle()
-                                .fill(ColorsUi.APC_BackgroundDarkGray_Button)
+                                .fill(ColorsUi.APC_BackgroundLightGray_Button)
                                 .frame(width: 30, height: 30)
                             
                             Image(systemName: "xmark")
-                                .foregroundColor(ColorsUi.APC_LightGray_Xmark)
+                                .foregroundColor(ColorsUi.APC_DarkGray_Xmark)
                             
                         }
                     }.frame(maxWidth: .infinity, alignment: .topTrailing)
@@ -51,13 +51,13 @@ internal struct ErrorBottomSheet: View {
                     
                     Text(Constants.errorText)
                         .font(FontsUi.APC_Title3_Bold)
-                        .foregroundColor(ColorsUi.APC_White)
+                        .foregroundColor(ColorsUi.APC_Black)
                     
                     VStack {}.frame(height: 16)
                     
                     Text(viewModel.purchaseFailedMessage)
                         .font(FontsUi.APC_Footnote)
-                        .foregroundColor(ColorsUi.APC_White)
+                        .foregroundColor(ColorsUi.APC_Black)
                 
                 VStack {}.frame(height: viewModel.isLandscape ? 21 : 61)
                 
@@ -76,7 +76,7 @@ internal struct ErrorBottomSheet: View {
                 }) {
                     ZStack {
                         RoundedRectangle(cornerRadius: 12)
-                            .foregroundColor(ColorsUi.APC_AppCoinsSupport_background_button)
+                            .foregroundColor(ColorsUi.APC_BackgroundLightGray_Button)
                         
                         Text(Constants.appcSupport)
                             .font(FontsUi.APC_Body_Bold)
@@ -89,7 +89,7 @@ internal struct ErrorBottomSheet: View {
                 VStack {}.frame(height: 47)
             }
         }
-        .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: viewModel.isLandscape ? UIScreen.main.bounds.height * 0.9 : 436)
+        .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: viewModel.isLandscape ? UIScreen.main.bounds.height * 0.9 : 420)
         .cornerRadius(13, corners: [.topLeft, .topRight])
         .toastView(toast: $toast)
         .onAppear {

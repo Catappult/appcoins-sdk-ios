@@ -18,11 +18,11 @@ internal struct SuccessBottomSheet: View {
 
         Button(action: { viewModel.dismiss() }) {
             ZStack {
-                ColorsUi.APC_DarkBlue
+                ColorsUi.APC_BottomSheet_LightGray_Background
                 
                 VStack(spacing: 0) {
                     
-                    VStack {}.frame(height: 40)
+                    VStack {}.frame(height: viewModel.isLandscape ? 80 : 40)
                     
                     Image("checkmark", bundle: Bundle.module)
                         .resizable()
@@ -33,21 +33,21 @@ internal struct SuccessBottomSheet: View {
                     
                     Text(Constants.successText)
                         .font(FontsUi.APC_Title3_Bold)
-                        .foregroundColor(ColorsUi.APC_White)
+                        .foregroundColor(ColorsUi.APC_Black)
                     
                     if transactionViewModel.paymentMethodSelected?.name != Method.appc.rawValue {
                         
                         VStack {}.frame(height: 23)
                         
                         HStack {
-                            Image("gift-1", bundle: Bundle.module)
+                            Image("gift-black", bundle: Bundle.module)
                                 .resizable()
                                 .edgesIgnoringSafeArea(.all)
                                 .frame(width: 17, height: 17)
-                            
+                                
                             Text(String(format: Constants.bonusReceived, "\(transactionViewModel.transaction?.bonusCurrency.sign ?? "")\(String(format: "%.2f", transactionViewModel.transaction?.bonusAmount ?? 0.0))"))
                                 .font(FontsUi.APC_Subheadline_Bold)
-                                .foregroundColor(ColorsUi.APC_White)
+                                .foregroundColor(ColorsUi.APC_Black)
                                 .frame(alignment: .bottom)
                                 
                         }
@@ -76,7 +76,7 @@ internal struct SuccessBottomSheet: View {
                                 textStyle: FontsUi.APC_Caption1_Bold,
                                 boldStyle: FontsUi.APC_Caption1_Bold,
                                 textColorRegular: ColorsUi.APC_Pink,
-                                textColorBold: ColorsUi.APC_White)
+                                textColorBold: ColorsUi.APC_Pink)
                         } else {
                             
                             VStack {}.frame(width: 6.22)
@@ -98,11 +98,12 @@ internal struct SuccessBottomSheet: View {
                 }.frame(height: 348, alignment: .top)
                 
                 
-            }.frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: viewModel.isLandscape ? UIScreen.main.bounds.height * 0.9 : 348 + Utils.bottomSafeAreaHeight)
+            }
+            .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: viewModel.isLandscape ? UIScreen.main.bounds.height * 0.9 : 420 /*+ Utils.bottomSafeAreaHeight*/)
                 .cornerRadius(13, corners: [.topLeft, .topRight])
-        }.offset(y: viewModel.successAnimation ? 0 : 348 + Utils.bottomSafeAreaHeight)
-            .transition(viewModel.successAnimation ? .identity : .move(edge: .top))
-            .animation(.easeOut(duration: 0.5))
-                
+        }
+        .offset(y: viewModel.successAnimation ? 0 : 420 /*+ Utils.bottomSafeAreaHeight*/)
+        .transition(viewModel.successAnimation ? .identity : .move(edge: .top))
+        .animation(.easeOut(duration: 0.5))
     }
 }

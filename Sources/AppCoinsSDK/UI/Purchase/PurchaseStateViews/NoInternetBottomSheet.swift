@@ -16,8 +16,9 @@ internal struct NoInternetBottomSheet: View {
     internal var body: some View {
         
         ZStack {
-            ColorsUi.APC_DarkBlue
+            ColorsUi.APC_BottomSheet_LightGray_Background
             VStack(spacing: 0) {
+                
                 VStack {}.frame(height: 16)
                 
                 HStack(spacing: 0) {
@@ -26,11 +27,11 @@ internal struct NoInternetBottomSheet: View {
                     } label: {
                         ZStack {
                             Circle()
-                                .fill(ColorsUi.APC_BackgroundDarkGray_Button)
+                                .fill(ColorsUi.APC_BackgroundLightGray_Button)
                                 .frame(width: 30, height: 30)
                             
                             Image(systemName: "xmark")
-                                .foregroundColor(ColorsUi.APC_LightGray_Xmark)
+                                .foregroundColor(ColorsUi.APC_DarkGray_Xmark)
                             
                         }
                     }
@@ -42,26 +43,28 @@ internal struct NoInternetBottomSheet: View {
                 
                 VStack {}.frame(height: viewModel.isLandscape ? 21 : 61)
                 
-                Image("no-internet-white", bundle: Bundle.module)
+                Image("no-internet-black", bundle: Bundle.module)
                     .resizable()
                     .scaledToFit()
+                    .foregroundColor(ColorsUi.APC_Black)
                     .frame(width: 80, height: 80)
                 
                 VStack {}.frame(height: 16)
                 
                 Text(Constants.noInternetTitle)
                     .font(FontsUi.APC_Title3_Bold)
-                    .foregroundColor(ColorsUi.APC_White)
+                    .foregroundColor(ColorsUi.APC_Black)
                 
                 VStack {}.frame(height: 15)
                 
                 Text(Constants.noInternetText)
+                    .lineLimit(2)
                     .font(FontsUi.APC_Footnote)
-                    .foregroundColor(ColorsUi.APC_White)
-                    .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 376 : UIScreen.main.bounds.width - 48)
+                    .foregroundColor(ColorsUi.APC_Black)
                     .multilineTextAlignment(.center)
+                    .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 376 : UIScreen.main.bounds.width - 48, height: 40)
                 
-                VStack {}.frame(height: viewModel.isLandscape ? 21 : 61)
+                VStack {}.frame(height: viewModel.isLandscape ? 21 : 40)
                 
                 Button(action: {viewModel.reload()}) {
                     ZStack {
@@ -77,7 +80,7 @@ internal struct NoInternetBottomSheet: View {
                 VStack {}.frame(height: 47)
                 
             }
-        }.frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: viewModel.isLandscape ? UIScreen.main.bounds.height * 0.9 : 436)
+        }.frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: viewModel.isLandscape ? UIScreen.main.bounds.height * 0.9 : 420)
             .cornerRadius(13, corners: [.topLeft, .topRight])
     }
 }

@@ -17,7 +17,7 @@ internal struct ProcessingBottomSheet: View {
     internal var body: some View {
 
         ZStack {
-            ColorsUi.APC_DarkBlue
+            ColorsUi.APC_BottomSheet_LightGray_Background
             
             VStack(spacing: 0) {
                 
@@ -31,12 +31,13 @@ internal struct ProcessingBottomSheet: View {
                 
                 ProgressView()
                     .scaleEffect(1.75, anchor: .center)
-                    .progressViewStyle(CircularProgressViewStyle(tint: ColorsUi.APC_White))
+                    .progressViewStyle(CircularProgressViewStyle(tint: ColorsUi.APC_DarkGray))
                 
-            }.frame(height: 314 + Utils.bottomSafeAreaHeight, alignment: .center)
+            }
+            .frame(height: 314 + Utils.bottomSafeAreaHeight, alignment: .center)
             
             
-        }.frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: viewModel.isLandscape ? UIScreen.main.bounds.height * 0.9 : 436)
+        }.frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: viewModel.isLandscape ? UIScreen.main.bounds.height * 0.9 : 420)
             .cornerRadius(13, corners: [.topLeft, .topRight])
             .offset(y: isPresented ? 0 : UIScreen.main.bounds.height)
             .transition(.move(edge: isPresented ? .bottom : .top))
