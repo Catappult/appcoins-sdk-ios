@@ -33,7 +33,7 @@ Package.resolved
 
 ## CocoaPods
 Pods/
-*.podspec
+# *.podspec
 GeneratedPluginRegistrant.*
 
 ## Carthage
