@@ -99,10 +99,10 @@ internal struct SuccessBottomSheet: View {
                 
                 
             }
-            .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: viewModel.isLandscape ? UIScreen.main.bounds.height * 0.9 : 420 /*+ Utils.bottomSafeAreaHeight*/)
+            .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: viewModel.isLandscape ? UIScreen.main.bounds.height * 0.9 : 420)
                 .cornerRadius(13, corners: [.topLeft, .topRight])
         }
-        .offset(y: viewModel.successAnimation ? 0 : 420 /*+ Utils.bottomSafeAreaHeight*/)
+        .offset(y: viewModel.successAnimation ? 0 : 420)
         .transition(viewModel.successAnimation ? .identity : .move(edge: .top))
         .animation(.easeOut(duration: 0.5))
     }

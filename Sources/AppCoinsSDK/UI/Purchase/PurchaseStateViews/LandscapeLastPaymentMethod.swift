@@ -9,7 +9,6 @@ import SwiftUI
 
 struct LandscapeLastPaymentMethod: View {
     
-    @ObservedObject internal var viewModel: BottomSheetViewModel
     @ObservedObject internal var paypalViewModel: PayPalDirectViewModel = PayPalDirectViewModel.shared
     @ObservedObject internal var transactionViewModel: TransactionViewModel = TransactionViewModel.shared
     
@@ -158,5 +157,3 @@ struct LandscapeLastPaymentMethod: View {
         }
     }
 }
-
-

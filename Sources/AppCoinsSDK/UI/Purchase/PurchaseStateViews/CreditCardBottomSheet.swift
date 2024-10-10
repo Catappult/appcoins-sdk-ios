@@ -15,8 +15,6 @@ internal struct CreditCardBottomSheet: View {
     @ObservedObject internal var transactionViewModel: TransactionViewModel
     @ObservedObject internal var adyenController: AdyenController = AdyenController.shared
     
-    @Binding internal var dynamicHeight: CGFloat
-    
     internal var body: some View {
         
         VStack(spacing: 0) {
@@ -55,7 +53,7 @@ internal struct CreditCardBottomSheet: View {
                     if let viewController = adyenController.presentableComponent?.viewController {
                         
                         AdyenViewControllerWrapper(viewController: viewController, viewModel: viewModel)
-                            .frame(height: dynamicHeight)
+                            .frame(height: 420)
                     } else {
                         ZStack {
                             ActivityIndicatorView(

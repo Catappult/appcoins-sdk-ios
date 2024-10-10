@@ -43,6 +43,5 @@ internal struct ProcessingBottomSheet: View {
             .transition(.move(edge: isPresented ? .bottom : .top))
             .onAppear { withAnimation { isPresented = true } }
             .onDisappear { withAnimation { isPresented = false } }
-        
     }
 }

@@ -19,7 +19,7 @@ internal struct AdyenLoadingBottomSheet: View {
                 ActivityIndicatorView(
                     isVisible: .constant(true), type: .growingArc(ColorsUi.APC_Gray, lineWidth: 1.5))
                 .frame(width: 41, height: 41)
-//                
+
                 Image("loading-appc-icon", bundle: Bundle.module)
                     .resizable()
                     .scaledToFit()

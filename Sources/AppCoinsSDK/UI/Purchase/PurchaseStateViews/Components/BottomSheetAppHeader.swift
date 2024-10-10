@@ -67,7 +67,7 @@ struct BottomSheetAppHeader: View {
                     
                     if let appcAmount = transactionViewModel.transaction?.appcAmount {
                         Text(verbatim: String(format: "%.3f", appcAmount) + " APPC")
-                            .foregroundColor(ColorsUi.APC_Gray)
+                            .foregroundColor(ColorsUi.APC_BottomSheet_APPC)
                             .font(FontsUi.APC_Caption2)
                     } else {
                         HStack(spacing: 0) {
@@ -79,7 +79,7 @@ struct BottomSheetAppHeader: View {
                         }.frame(maxWidth: .infinity)
                     }
                 }
-                .frame(width: viewModel.isLandscape ? 256 : UIScreen.main.bounds.width - 154, alignment: .bottomLeading) // UIScreen.main.bounds.width - 154
+                .frame(width: viewModel.isLandscape ? 256 : UIScreen.main.bounds.width - 154, alignment: .bottomLeading)
                 
                 VStack {}.frame(height: 4)
                 
@@ -103,9 +103,5 @@ struct BottomSheetAppHeader: View {
         }
         .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.width, height: 72)
         .background(viewModel.isLandscape ? BlurView(style: .systemMaterial) : BlurView(style: nil))
-        
-        if viewModel.isLandscape {
-//            VStack {}.frame(height: 8)
-        }
     }
 }

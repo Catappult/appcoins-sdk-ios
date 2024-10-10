@@ -48,6 +48,9 @@ internal class BottomSheetViewModel: ObservableObject {
     // Device Orientation
     @Published var isLandscape: Bool = false
     
+    // Keyboard Dismiss
+    @Published var isPaymentView: Bool = false
+    
     private init() {
         // Prevents Layout Warning Prints
         UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")

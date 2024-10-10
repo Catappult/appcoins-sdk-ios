@@ -71,7 +71,6 @@ struct PortraitPaymentChoice: View {
                     .skeleton(with: true, shape: .rectangle)
                     .cornerRadius(12)
                     .frame(width: UIScreen.main.bounds.width - 48, height: 56)
-                    
             }
             
             VStack {}.frame(height: 16)
@@ -150,6 +149,7 @@ struct PortraitPaymentChoice: View {
                 }
                 
                 HStack {}.frame(height: !transactionViewModel.showOtherPaymentMethods ? 40 : 26)
+                
             } else {
                 VStack(spacing: 0) {
                     VStack {}

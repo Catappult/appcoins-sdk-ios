@@ -20,7 +20,14 @@ internal struct BottomSheetView: View {
     internal var body: some View {
         ZStack {
             
-            Color.black.opacity(0.3).onTapGesture { viewModel.dismiss() }
+            Color.black.opacity(0.3)
+                .onTapGesture {
+                    if !viewModel.isPaymentView {
+                        viewModel.dismiss()
+                    } else {
+                        AdyenController.shared.presentableComponent?.viewController.view.findAndResignFirstResponder()
+                    }
+                }
                 .ignoresSafeArea()
             
             ZStack {

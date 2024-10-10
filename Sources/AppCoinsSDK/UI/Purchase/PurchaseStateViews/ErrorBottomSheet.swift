@@ -1,6 +1,6 @@
 //
 //  ErrorBottomSheet.swift
-//  
+//
 //
 //  Created by aptoide on 08/03/2023.
 //
@@ -42,22 +42,22 @@ internal struct ErrorBottomSheet: View {
                 
                 VStack {}.frame(height: viewModel.isLandscape ? 21 : 68)
                 
-                    Image("exclamation-red", bundle: Bundle.module)
-                        .resizable()
-                        .edgesIgnoringSafeArea(.all)
-                        .frame(width: 80, height: 80)
-                    
-                    VStack {}.frame(height: 16)
-                    
-                    Text(Constants.errorText)
-                        .font(FontsUi.APC_Title3_Bold)
-                        .foregroundColor(ColorsUi.APC_Black)
-                    
-                    VStack {}.frame(height: 16)
-                    
-                    Text(viewModel.purchaseFailedMessage)
-                        .font(FontsUi.APC_Footnote)
-                        .foregroundColor(ColorsUi.APC_Black)
+                Image("exclamation-red", bundle: Bundle.module)
+                    .resizable()
+                    .edgesIgnoringSafeArea(.all)
+                    .frame(width: 80, height: 80)
+                
+                VStack {}.frame(height: 16)
+                
+                Text(Constants.errorText)
+                    .font(FontsUi.APC_Title3_Bold)
+                    .foregroundColor(ColorsUi.APC_Black)
+                
+                VStack {}.frame(height: 16)
+                
+                Text(viewModel.purchaseFailedMessage)
+                    .font(FontsUi.APC_Footnote)
+                    .foregroundColor(ColorsUi.APC_Black)
                 
                 VStack {}.frame(height: viewModel.isLandscape ? 21 : 61)
                 
@@ -85,7 +85,7 @@ internal struct ErrorBottomSheet: View {
                 }
                 .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 320 : UIScreen.main.bounds.width - 48, height: 50)
                 .frame(maxHeight: .infinity, alignment: .bottom)
-
+                
                 VStack {}.frame(height: 47)
             }
         }
@@ -100,5 +100,6 @@ internal struct ErrorBottomSheet: View {
                 case .failure: break
                 }
             }
-        }    }
+        }
+    }
 }

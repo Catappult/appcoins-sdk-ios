@@ -16,15 +16,8 @@ internal struct PurchaseBottomSheet: View {
     @ObservedObject internal var viewModel: BottomSheetViewModel
     @ObservedObject internal var transactionViewModel: TransactionViewModel = TransactionViewModel.shared
     @ObservedObject internal var adyenController: AdyenController = AdyenController.shared
-    @ObservedObject internal var paypalViewModel: PayPalDirectViewModel = PayPalDirectViewModel.shared
     
     @State private var isPresented = false
-    
-    @State private var transitionEdge: Edge = .bottom
-    @State private var previousBackgroundHeight: CGFloat = 0
-    @State private var timer: Timer? = nil
-    @State private var dynamicHeight: CGFloat = 420
-    @State private var dynamicPadding: CGFloat = 0
     @ObservedObject private var keyboardObserver = KeyboardObserver.shared
     
     internal var body: some View {
@@ -37,9 +30,30 @@ internal struct PurchaseBottomSheet: View {
                             
                             if transactionViewModel.lastPaymentMethod != nil || transactionViewModel.showOtherPaymentMethods {
                                 if (!transactionViewModel.showOtherPaymentMethods) {
-                                    LandscapeLastPaymentMethod(viewModel: viewModel)
+                                    LandscapeLastPaymentMethod()
                                 } else {
                                     LandscapePaymentMethodChoice(viewModel: viewModel)
+                                }
+                            } else {
+                                if #available(iOS 17, *) {
+                                    ScrollView(.vertical, showsIndicators: false) {
+                                        VStack(spacing: 0) {
+                                            
+                                            VStack {}.frame(height: 60)
+                                            
+                                            VStack {}
+                                                .skeleton(with: true, shape: .rectangle)
+                                                .cornerRadius(13)
+                                                .frame(width: UIScreen.main.bounds.width - 176 - 48, height: 56)
+                                            
+                                            VStack {}.frame(height: 16)
+                                            
+                                            VStack {}
+                                                .skeleton(with: true, shape: .rectangle)
+                                                .cornerRadius(12)
+                                                .frame(width: UIScreen.main.bounds.width - 176 - 48, height: 150)
+                                        }
+                                    }.defaultScrollAnchor(.bottom)
                                 }
                             }
                             
@@ -63,7 +77,6 @@ internal struct PurchaseBottomSheet: View {
                             .foregroundColor(ColorsUi.APC_White)
                             
                             VStack {}.frame(height: Utils.bottomSafeAreaHeight == 0 ? 5 : Utils.bottomSafeAreaHeight)
-                                .background(Color.red)
                             
                         }.frame(maxHeight: .infinity, alignment: .bottom)
                         
@@ -85,7 +98,13 @@ internal struct PurchaseBottomSheet: View {
                 }
                 
                 if adyenController.state == .newCreditCard {
-                    CreditCardBottomSheet(viewModel: viewModel, transactionViewModel: transactionViewModel, dynamicHeight: $dynamicHeight)
+                    CreditCardBottomSheet(viewModel: viewModel, transactionViewModel: transactionViewModel)
+                        .onAppear(perform: {
+                            viewModel.isPaymentView = true
+                        })
+                        .onDisappear(perform: {
+                            viewModel.isPaymentView = false
+                        })
                 }
                 
                 if adyenController.state == .paypal {
@@ -95,52 +114,11 @@ internal struct PurchaseBottomSheet: View {
             
         }
         .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: viewModel.isLandscape ? UIScreen.main.bounds.height * 0.9 : 420)
-        .padding(.bottom, keyboardObserver.isKeyboardVisible && !viewModel.isLandscape ? keyboardObserver.keyboardHeight /*- dynamicPadding */: 0)
-        .background(Color(red: 0.95, green: 0.95, blue: 0.97))
+        .padding(.bottom, keyboardObserver.isKeyboardVisible && !viewModel.isLandscape ? keyboardObserver.keyboardHeight: 0)
+        .background(ColorsUi.APC_BottomSheet_LightGray_Background)
         .cornerRadius(13, corners: [.topLeft, .topRight])
-        .modifier(MeasureBottomPositionModifier(onChange: { newValue in
-            let difference = UIScreen.main.bounds.height - newValue
-//            dynamicPadding = difference
-        }))        // Otherwise (with a regular general animation) the skeletons animation does not work
         .offset(y: isPresented ? 0 : UIScreen.main.bounds.height)
         .transition(.move(edge: isPresented ? .bottom : .top))
         .onAppear { withAnimation { isPresented = true } }
-    }
-    
-    internal struct MeasureBottomPositionModifier: ViewModifier {
-        internal var onChange: (CGFloat) -> Void
-        
-        // Use a State variable to store the latest preference value
-        @State private var debouncedValue: CGFloat = 0
-        
-        // Use a Timer to trigger updates at a fixed interval
-        // This timer will prevent the UI from updating more than once per frame which causes some unexpected problems
-        private let timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
-        
-        internal func body(content: Content) -> some View {
-            content
-                .background(GeometryReader { proxy in
-                    Color.clear
-                        .preference(key: BottomPositionPreferenceKey.self, value: proxy.frame(in: .global).maxY)
-                })
-                .onReceive(timer) { _ in
-                    // Use the latest value stored in the @State variable
-                    self.onChange(self.debouncedValue)
-                }
-                .onPreferenceChange(BottomPositionPreferenceKey.self) { newValue in
-                    // Store the new preference value in the @State variable
-                    self.debouncedValue = newValue
-                }
-        }
-    }
-    
-    internal struct BottomPositionPreferenceKey: PreferenceKey {
-        typealias Value = CGFloat
-        
-        static internal var defaultValue: CGFloat = 0
-        
-        static internal func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
-            value = max(value, nextValue())
-        }
     }
 }
