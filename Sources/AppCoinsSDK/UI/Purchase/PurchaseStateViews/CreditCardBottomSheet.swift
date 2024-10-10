@@ -1,6 +1,6 @@
 //
 //  CreditCardBottomSheet.swift
-//  
+//
 //
 //  Created by aptoide on 29/08/2023.
 //
@@ -12,40 +12,62 @@ import ActivityIndicatorView
 internal struct CreditCardBottomSheet: View {
     
     @ObservedObject internal var viewModel: BottomSheetViewModel
+    @ObservedObject internal var transactionViewModel: TransactionViewModel
     @ObservedObject internal var adyenController: AdyenController = AdyenController.shared
     
-    @Binding internal var dynamicHeight: CGFloat
-    
     internal var body: some View {
-       
+        
         VStack(spacing: 0) {
-            if let viewController = adyenController.presentableComponent?.viewController {
-                
-                AdyenViewControllerWrapper(viewController: viewController)
-                    .padding(.top, 16)
-                    .frame(height: dynamicHeight)
+            
+            if viewModel.isLandscape {
+                VStack(spacing: 0) {
+                    BottomSheetAppHeader(viewModel: viewModel, transactionViewModel: transactionViewModel)
+                        .frame(maxHeight: .infinity, alignment: .top)
                     
-                Button(action: {
-                    adyenController.cancel()
-                }) {
-                    Text(Constants.cancelText)
-                        .foregroundColor(ColorsUi.APC_DarkGray)
-                        .font(FontsUi.APC_Footnote_Bold)
-                        .lineLimit(1)
-                }.padding(.top, 4)
-                
+                    if let viewController = adyenController.presentableComponent?.viewController {
+                        ScrollView {
+                            AdyenViewControllerWrapper(viewController: viewController, viewModel: viewModel)
+                                .frame(height: UIScreen.main.bounds.height * 0.9 - 72)
+                        }.frame(width: UIScreen.main.bounds.width - 176 - 32, height: UIScreen.main.bounds.height * 0.9 - 72)
+                    } else {
+                        ZStack {
+                            ActivityIndicatorView(
+                                isVisible: .constant(true), type: .growingArc(ColorsUi.APC_Gray, lineWidth: 1.5))
+                            .frame(width: 41, height: 41)
+                            
+                            Image("loading-appc-icon", bundle: Bundle.module)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 23)
+                        }.animation(.linear(duration: 1.5).repeatForever(autoreverses: false))
+                    }
+                }
             } else {
-                ZStack {
-                    ActivityIndicatorView(
-                        isVisible: .constant(true), type: .growingArc(ColorsUi.APC_Gray, lineWidth: 1.5))
-                        .frame(width: 41, height: 41)
+                VStack(spacing: 0) {
                     
-                    Image("loading-appc-icon", bundle: Bundle.module)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 23)
-                }.animation(.linear(duration: 1.5).repeatForever(autoreverses: false))
+                    VStack {}.frame(height: 76)
+                    
+                    BottomSheetAppHeader(viewModel: viewModel, transactionViewModel: transactionViewModel)
+                        .frame(maxHeight: .infinity, alignment: .top)
+                    
+                    if let viewController = adyenController.presentableComponent?.viewController {
+                        
+                        AdyenViewControllerWrapper(viewController: viewController, viewModel: viewModel)
+                            .frame(height: 420)
+                    } else {
+                        ZStack {
+                            ActivityIndicatorView(
+                                isVisible: .constant(true), type: .growingArc(ColorsUi.APC_Gray, lineWidth: 1.5))
+                            .frame(width: 41, height: 41)
+                            
+                            Image("loading-appc-icon", bundle: Bundle.module)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height: 23)
+                        }.animation(.linear(duration: 1.5).repeatForever(autoreverses: false))
+                    }
+                }.frame(width: UIScreen.main.bounds.width - 32)
             }
-        }.padding(.horizontal, 16)
+        }
     }
 }

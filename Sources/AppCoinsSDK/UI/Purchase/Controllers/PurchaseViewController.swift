@@ -9,9 +9,6 @@ import Foundation
 import SwiftUI
 
 internal class PurchaseViewController: UIViewController {
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .portrait
-    }
     
     @ObservedObject private var keyboardObserver = KeyboardObserver.shared
     

@@ -7,10 +7,11 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
-internal class BottomSheetViewModel : ObservableObject {
+internal class BottomSheetViewModel: ObservableObject {
     
-    internal static var shared : BottomSheetViewModel = BottomSheetViewModel()
+    internal static var shared: BottomSheetViewModel = BottomSheetViewModel()
     
     // Purchase attributes
     internal var product: Product? = nil
@@ -44,7 +45,29 @@ internal class BottomSheetViewModel : ObservableObject {
     internal var walletApplicationUseCases: WalletApplicationUseCases = WalletApplicationUseCases.shared
     internal var currencyUseCases: CurrencyUseCases = CurrencyUseCases.shared
     
-    private init() { UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable") } // Prevents Layout Warning Prints
+    // Device Orientation
+    @Published var isLandscape: Bool = false
+    
+    // Keyboard Dismiss
+    @Published var isPaymentView: Bool = false
+    
+    private init() {
+        // Prevents Layout Warning Prints
+        UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
+        updateOrientation()
+    }
+    
+    private func updateOrientation() {
+        DispatchQueue.main.async {
+            if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+                if scene.interfaceOrientation == .landscapeLeft || scene.interfaceOrientation == .landscapeRight {
+                    self.isLandscape = true
+                }
+            } else {
+                self.isLandscape = false
+            }
+        }
+    }
     
     // Resets the BottomSheet
     private func reset() {
