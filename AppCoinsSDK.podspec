@@ -81,7 +81,7 @@ Pod::Spec.new do |spec|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  spec.source       = { :git => "https://github.com/Catappult/appcoins-sdk-ios.git", :tag => "#{spec.version}" }
+  spec.source       = { :git => "https://github.com/Catappult/appcoins-sdk-ios.git", :tag => "v#{spec.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -93,23 +93,23 @@ Pod::Spec.new do |spec|
   #
 
   # Define source files
-  s.source_files = 'Sources/**/*.{swift,h,m}'
+  spec.source_files = 'Sources/**/*.{swift,h,m}'
 
   # Define resource bundles
-  s.resources = 'Sources/AppCoinsSDK/Localization/**/*'
+  spec.resources = 'Sources/AppCoinsSDK/Localization/**/*'
 
   # Add vendored frameworks (PPRiskMagnes is a binary target)
-  s.vendored_frameworks = 'Sources/AppCoinsSDK/Frameworks/PPRiskMagnes.xcframework'
+  spec.vendored_frameworks = 'Sources/AppCoinsSDK/Frameworks/PPRiskMagnes.xcframework'
 
   # Dependencies (Swift libraries you are using in the package)
-  s.dependency 'URLImage', '~> 3.0'
-  s.dependency 'CryptoSwift', '~> 1.5.1'
-  s.dependency 'web3swift', '~> 3.2'
-  s.dependency 'SkeletonUI', '~> 2.0.1'
-  s.dependency 'SwiftyRSA', '~> 1.8'
-  s.dependency 'Adyen', '5.1.0'
-  s.dependency 'ActivityIndicatorView', '~> 1.1'
-  s.dependency 'DeviceKit', '~> 4.0.0'
+  spec.dependency 'URLImage', '~> 2.2.5'
+  spec.dependency 'CryptoSwift', '~> 1.5.1'
+  spec.dependency 'web3swift', '~> 3.1.2'
+  spec.dependency 'SkeletonUI', '~> 2.0.1'
+  spec.dependency 'SwiftyRSA', '~> 1.7.0'
+  spec.dependency 'Adyen', '5.1.0'
+  spec.dependency 'ActivityIndicatorView', '~> 1.1'
+  spec.dependency 'DeviceKit', '~> 4.0.0'
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
