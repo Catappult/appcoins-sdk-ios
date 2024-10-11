@@ -11,7 +11,7 @@ import Combine
 
 internal class BottomSheetViewModel: ObservableObject {
     
-    internal static var shared: BottomSheetViewModel = BottomSheetViewModel()
+    internal static var shared: BottomSheetViewModel = BottomSheetViewModel(isLandscape: false)
     
     // Purchase attributes
     internal var product: Product? = nil
@@ -51,22 +51,9 @@ internal class BottomSheetViewModel: ObservableObject {
     // Keyboard Dismiss
     @Published var isPaymentView: Bool = false
     
-    private init() {
+    private init(isLandscape: Bool) {
         // Prevents Layout Warning Prints
         UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
-        updateOrientation()
-    }
-    
-    private func updateOrientation() {
-        DispatchQueue.main.async {
-            if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-                if scene.interfaceOrientation == .landscapeLeft || scene.interfaceOrientation == .landscapeRight {
-                    self.isLandscape = true
-                }
-            } else {
-                self.isLandscape = false
-            }
-        }
     }
     
     // Resets the BottomSheet
