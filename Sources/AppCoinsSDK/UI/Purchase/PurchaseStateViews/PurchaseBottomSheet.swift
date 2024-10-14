@@ -65,7 +65,6 @@ internal struct PurchaseBottomSheet: View {
                                 viewModel.buy()
                             }) {
                                 ZStack {
-                                    
                                     RoundedRectangle(cornerRadius: 12)
                                         .foregroundColor(transactionViewModel.transaction != nil ? ColorsUi.APC_Pink : ColorsUi.APC_Gray)
                                     Text(Constants.buyText)
@@ -100,10 +99,10 @@ internal struct PurchaseBottomSheet: View {
                 if adyenController.state == .newCreditCard {
                     CreditCardBottomSheet(viewModel: viewModel, transactionViewModel: transactionViewModel)
                         .onAppear(perform: {
-                            viewModel.isPaymentView = true
+                            viewModel.setPaymentView(isPaymentView: true)
                         })
                         .onDisappear(perform: {
-                            viewModel.isPaymentView = false
+                            viewModel.setPaymentView(isPaymentView: false)
                         })
                 }
                 
