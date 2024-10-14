@@ -75,8 +75,8 @@ internal struct CreditCardChoiceBottomSheet: View {
                                                 .frame(width: 22, height: 22, alignment: .trailing)
                                                 .padding(.trailing, 16)
                                         }
-                                    }.frame(width: UIScreen.main.bounds.width - 64, height: 44)
-                                }
+                                    }.frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 64 : UIScreen.main.bounds.width - 64, height: 44)
+                                }.frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 64 : UIScreen.main.bounds.width - 64, height: 44)
                             }.buttonStyle(flatButtonStyle())
                     
                         }

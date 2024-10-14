@@ -72,6 +72,10 @@ internal class BottomSheetViewModel: ObservableObject {
         }
     }
     
+    internal func setOrientation(isLandscape: Bool) {
+        self.isLandscape = isLandscape
+    }
+    
     // Reloads the purchase on failure screens
     internal func reload() {
         DispatchQueue.main.async { self.purchaseState = .paying }
