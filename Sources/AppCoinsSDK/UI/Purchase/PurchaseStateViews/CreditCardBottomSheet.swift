@@ -23,6 +23,11 @@ internal struct CreditCardBottomSheet: View {
                 VStack(spacing: 0) {
                     BottomSheetAppHeader(viewModel: viewModel, transactionViewModel: transactionViewModel)
                         .frame(maxHeight: .infinity, alignment: .top)
+                        .onTapGesture {
+                            if viewModel.isKeyboardVisible {
+                                AdyenController.shared.presentableComponent?.viewController.view.findAndResignFirstResponder()
+                            }
+                        }
                     
                     if let viewController = adyenController.presentableComponent?.viewController {
                         ScrollView {
@@ -49,6 +54,11 @@ internal struct CreditCardBottomSheet: View {
                     
                     BottomSheetAppHeader(viewModel: viewModel, transactionViewModel: transactionViewModel)
                         .frame(maxHeight: .infinity, alignment: .top)
+                        .onTapGesture {
+                            if viewModel.isKeyboardVisible {
+                                AdyenController.shared.presentableComponent?.viewController.view.findAndResignFirstResponder()
+                            }
+                        }
                     
                     if let viewController = adyenController.presentableComponent?.viewController {
                         
@@ -66,8 +76,7 @@ internal struct CreditCardBottomSheet: View {
                                 .frame(height: 23)
                         }.animation(.linear(duration: 1.5).repeatForever(autoreverses: false))
                     }
-                }
-                .frame(width: UIScreen.main.bounds.width - 32)
+                }.frame(width: UIScreen.main.bounds.width - 32)
             }
         }
     }
