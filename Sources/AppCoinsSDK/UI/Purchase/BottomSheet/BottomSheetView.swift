@@ -107,7 +107,7 @@ internal struct BottomSheetView: View {
                 HStack(spacing: 0) {}
                     .sheet(isPresented: $paypalViewModel.presentPayPalSheet, onDismiss: paypalViewModel.dismissPayPalView) {
                         if let presentURL = paypalViewModel.presentPayPalSheetURL {
-                            PayPalWebView(url: presentURL, method: paypalViewModel.presentPayPalSheetMethod ?? "POST", successHandler: paypalViewModel.createBillingAgreementAndFinishTransaction, cancelHandler: paypalViewModel.cancelBillingAgreementTokenPayPal)
+                                PayPalWebView(url: presentURL, method: paypalViewModel.presentPayPalSheetMethod ?? "POST", successHandler: paypalViewModel.createBillingAgreementAndFinishTransaction, cancelHandler: paypalViewModel.cancelBillingAgreementTokenPayPal)
                         }
                     }
                 
@@ -115,6 +115,7 @@ internal struct BottomSheetView: View {
                     .sheet(isPresented: $adyenController.presentAdyenRedirect) {
                         if let viewController = adyenController.presentableComponent?.viewController {
                             AdyenViewControllerWrapper(viewController: viewController, viewModel: viewModel)
+                                .ignoresSafeArea(.all)
                         }
                     }
             }
