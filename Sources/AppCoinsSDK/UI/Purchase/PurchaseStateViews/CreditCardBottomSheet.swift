@@ -66,7 +66,8 @@ internal struct CreditCardBottomSheet: View {
                                 .frame(height: 23)
                         }.animation(.linear(duration: 1.5).repeatForever(autoreverses: false))
                     }
-                }.frame(width: UIScreen.main.bounds.width - 32)
+                }
+                .frame(width: UIScreen.main.bounds.width - 32)
             }
         }
     }

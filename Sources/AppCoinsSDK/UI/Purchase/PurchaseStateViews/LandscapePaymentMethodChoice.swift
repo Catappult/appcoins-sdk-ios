@@ -1,13 +1,13 @@
 //
-//  LandscapePaymentMethodChoice.swift
-//  
+//  PaymentMethodChoiceView.swift
+//
 //
 //  Created by Graciano Caldeira on 04/10/2024.
 //
 
 import SwiftUI
 
-struct LandscapePaymentMethodChoice: View {
+struct PaymentMethodChoiceView: View {
     
     @ObservedObject internal var viewModel: BottomSheetViewModel
     @ObservedObject internal var transactionViewModel: TransactionViewModel = TransactionViewModel.shared
@@ -68,7 +68,7 @@ struct LandscapePaymentMethodChoice: View {
                                 VStack {}.frame(height: 10)
                             }
                         }
-                        .frame(width: UIScreen.main.bounds.width - 176 - 48, height: 56)
+                        .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 56)
                         .background(ColorsUi.APC_DarkBlue)
                         .cornerRadius(12)
                         

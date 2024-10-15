@@ -24,66 +24,63 @@ internal struct PurchaseBottomSheet: View {
         
         VStack(spacing: 0) {
             if viewModel.purchaseState == .paying {
-                if viewModel.isLandscape {
-                    ZStack(alignment: .top) {
-                        VStack(spacing: 0) {
-                            
-                            if transactionViewModel.lastPaymentMethod != nil || transactionViewModel.showOtherPaymentMethods {
-                                if (!transactionViewModel.showOtherPaymentMethods) {
-                                    LandscapeLastPaymentMethod()
-                                } else {
-                                    LandscapePaymentMethodChoice(viewModel: viewModel)
-                                }
-                            } else {
-                                if #available(iOS 17, *) {
-                                    ScrollView(.vertical, showsIndicators: false) {
-                                        VStack(spacing: 0) {
-                                            
-                                            VStack {}.frame(height: 60)
-                                            
-                                            VStack {}
-                                                .skeleton(with: true, shape: .rectangle)
-                                                .cornerRadius(13)
-                                                .frame(width: UIScreen.main.bounds.width - 176 - 48, height: 56)
-                                            
-                                            VStack {}.frame(height: 16)
-                                            
-                                            VStack {}
-                                                .skeleton(with: true, shape: .rectangle)
-                                                .cornerRadius(12)
-                                                .frame(width: UIScreen.main.bounds.width - 176 - 48, height: 150)
-                                        }
-                                    }.defaultScrollAnchor(.bottom)
-                                }
-                            }
-                            
-                            VStack {}.frame(height: 8)
-                            
-                            // Buying button
-                            Button(action: {
-                                DispatchQueue.main.async { viewModel.purchaseState = .processing }
-                                viewModel.buy()
-                            }) {
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 12)
-                                        .foregroundColor(transactionViewModel.transaction != nil ? ColorsUi.APC_Pink : ColorsUi.APC_Gray)
-                                    Text(Constants.buyText)
-                                }
-                            }
-                            .disabled(transactionViewModel.transaction == nil)
-                            .frame(maxHeight: .infinity, alignment: .bottom)
-                            .frame(width: UIScreen.main.bounds.width - 176 - 320, height: 50)
-                            .foregroundColor(ColorsUi.APC_White)
-                            
-                            VStack {}.frame(height: Utils.bottomSafeAreaHeight == 0 ? 5 : Utils.bottomSafeAreaHeight)
-                            
-                        }.frame(maxHeight: .infinity, alignment: .bottom)
+                ZStack(alignment: .top) {
+                    VStack(spacing: 0) {
                         
-                        BottomSheetAppHeader(viewModel: viewModel, transactionViewModel: transactionViewModel)
+                        if transactionViewModel.lastPaymentMethod != nil || transactionViewModel.showOtherPaymentMethods {
+                            if (!transactionViewModel.showOtherPaymentMethods) {
+                                LastPaymentMethodView(viewModel: viewModel)
+                            } else {
+                                PaymentMethodChoiceView(viewModel: viewModel)
+                            }
+                        } else {
+                            if #available(iOS 17, *) {
+                                ScrollView(.vertical, showsIndicators: false) {
+                                    VStack(spacing: 0) {
+                                        
+                                        VStack {}.frame(height: viewModel.isLandscape ? 60 : 80)
+                                        
+                                        VStack {}
+                                            .skeleton(with: true, shape: .rectangle)
+                                            .cornerRadius(13)
+                                            .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 56)
+                                        
+                                        VStack {}.frame(height: 16)
+                                        
+                                        VStack {}
+                                            .skeleton(with: true, shape: .rectangle)
+                                            .cornerRadius(12)
+                                            .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 150)
+                                    }
+                                }.defaultScrollAnchor(.bottom)
+                            }
+                        }
+                        
+                        VStack {}.frame(height: 8)
+                        
+                        // Buying button
+                        Button(action: {
+                            DispatchQueue.main.async { viewModel.purchaseState = .processing }
+                            viewModel.buy()
+                        }) {
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 12)
+                                    .foregroundColor(transactionViewModel.transaction != nil ? ColorsUi.APC_Pink : ColorsUi.APC_Gray)
+                                Text(Constants.buyText)
+                            }
+                        }
+                        .disabled(transactionViewModel.transaction == nil)
+                        .frame(maxHeight: .infinity, alignment: .bottom)
+                        .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
+                        .foregroundColor(ColorsUi.APC_White)
+                        
+                        VStack {}.frame(height: Utils.bottomSafeAreaHeight == 0 ? 5 : 28)
                         
                     }
-                } else {
-                    PortraitPaymentChoice(viewModel: viewModel)
+                    .frame(maxHeight: .infinity, alignment: .bottom)
+                    
+                    BottomSheetAppHeader(viewModel: viewModel, transactionViewModel: transactionViewModel)
+                    
                 }
             }
             
