@@ -287,7 +287,6 @@ internal struct CreditCardChoiceBottomSheet: View {
                             }
                         }
                     
-                    
                     Button(action: { if let storedPaymentMethod = self.chosenStoredCard { adyenViewModel.payWithStoredCreditCard(creditCard: storedPaymentMethod) }}) {
                         ZStack {
                             RoundedRectangle(cornerRadius: 12)

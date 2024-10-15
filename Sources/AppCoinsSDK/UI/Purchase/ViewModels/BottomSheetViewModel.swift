@@ -49,11 +49,28 @@ internal class BottomSheetViewModel: ObservableObject {
     @Published var isLandscape: Bool = false
     
     // Keyboard Dismiss
-    @Published var isPaymentView: Bool = false
+    @Published var isKeyboardVisible: Bool = false
+    private var cancellables = Set<AnyCancellable>()
     
     private init(isLandscape: Bool) {
         // Prevents Layout Warning Prints
         UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
+        
+        NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)
+            .sink { [weak self] _ in
+                self?.isKeyboardVisible = true
+            }
+            .store(in: &cancellables)
+        
+        NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)
+            .sink { [weak self] _ in
+                self?.isKeyboardVisible = false
+            }
+            .store(in: &cancellables)
+    }
+    
+    deinit {
+        cancellables.removeAll()
     }
     
     // Resets the BottomSheet
@@ -74,10 +91,6 @@ internal class BottomSheetViewModel: ObservableObject {
     
     internal func setOrientation(isLandscape: Bool) {
         self.isLandscape = isLandscape
-    }
-    
-    internal func setPaymentView(isPaymentView: Bool) {
-        self.isPaymentView = isPaymentView
     }
     
     // Reloads the purchase on failure screens

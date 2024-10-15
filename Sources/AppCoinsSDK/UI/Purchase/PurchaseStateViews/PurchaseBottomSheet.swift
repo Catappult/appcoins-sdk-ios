@@ -98,12 +98,6 @@ internal struct PurchaseBottomSheet: View {
                 
                 if adyenController.state == .newCreditCard {
                     CreditCardBottomSheet(viewModel: viewModel, transactionViewModel: transactionViewModel)
-                        .onAppear(perform: {
-                            viewModel.setPaymentView(isPaymentView: true)
-                        })
-                        .onDisappear(perform: {
-                            viewModel.setPaymentView(isPaymentView: false)
-                        })
                 }
                 
                 if adyenController.state == .paypal {

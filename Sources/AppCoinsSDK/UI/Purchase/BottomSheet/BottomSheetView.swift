@@ -22,10 +22,10 @@ internal struct BottomSheetView: View {
             
             Color.black.opacity(0.3)
                 .onTapGesture {
-                    if !viewModel.isPaymentView {
-                        viewModel.dismiss()
-                    } else {
+                    if viewModel.isKeyboardVisible {
                         AdyenController.shared.presentableComponent?.viewController.view.findAndResignFirstResponder()
+                    } else {
+                        viewModel.dismiss()
                     }
                 }
                 .ignoresSafeArea()
