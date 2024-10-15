@@ -20,6 +20,9 @@ internal struct PurchaseBottomSheet: View {
     @State private var isPresented = false
     @ObservedObject private var keyboardObserver = KeyboardObserver.shared
     
+    @State private var timer: Timer? = nil
+    @State private var dynamicHeight: CGFloat = 420
+    
     internal var body: some View {
         
         VStack(spacing: 0) {
@@ -94,7 +97,11 @@ internal struct PurchaseBottomSheet: View {
                 }
                 
                 if adyenController.state == .newCreditCard {
-                    CreditCardBottomSheet(viewModel: viewModel, transactionViewModel: transactionViewModel)
+                    CreditCardBottomSheet(viewModel: viewModel, transactionViewModel: transactionViewModel, dynamicHeight: $dynamicHeight)
+                        .onAppear{ 
+                            viewModel.setCreditCardView(isCreditCardView: true)
+                            startObservingDynamicHeight() }
+                        .onDisappear{ stopObservingDynamicHeight() }
                 }
                 
                 if adyenController.state == .paypal {
@@ -103,12 +110,35 @@ internal struct PurchaseBottomSheet: View {
             }
             
         }
-        .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: viewModel.isLandscape ? UIScreen.main.bounds.height * 0.9 : 420)
+        .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: viewModel.isLandscape ? UIScreen.main.bounds.height * 0.9 : viewModel.isCreditCardView ? dynamicHeight + 72 : 420)
         .padding(.bottom, keyboardObserver.isKeyboardVisible && !viewModel.isLandscape ? keyboardObserver.keyboardHeight: 0)
         .background(ColorsUi.APC_BottomSheet_LightGray_Background)
         .cornerRadius(13, corners: [.topLeft, .topRight])
         .offset(y: isPresented ? 0 : UIScreen.main.bounds.height)
         .transition(.move(edge: isPresented ? .bottom : .top))
         .onAppear { withAnimation { isPresented = true } }
+    }
+    
+    private func startObservingDynamicHeight() {
+        timer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { timer in
+            if let viewController = adyenController.presentableComponent?.viewController {
+                for view in viewController.view.subviews {
+                    for subview in view.subviews {
+                        if let content = subview.subviews.first {
+                            if content.bounds.height != dynamicHeight && content.bounds.height != 0 {
+                                DispatchQueue.main.async {
+                                    dynamicHeight = content.bounds.height
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    private func stopObservingDynamicHeight() {
+        timer?.invalidate()
+        timer = nil
     }
 }

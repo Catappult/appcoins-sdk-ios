@@ -52,6 +52,8 @@ internal class BottomSheetViewModel: ObservableObject {
     @Published var isKeyboardVisible: Bool = false
     private var cancellables = Set<AnyCancellable>()
     
+    @Published var isCreditCardView: Bool = false
+    
     private init(isLandscape: Bool) {
         // Prevents Layout Warning Prints
         UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
@@ -91,6 +93,10 @@ internal class BottomSheetViewModel: ObservableObject {
     
     internal func setOrientation(isLandscape: Bool) {
         self.isLandscape = isLandscape
+    }
+    
+    internal func setCreditCardView(isCreditCardView: Bool) {
+        self.isCreditCardView = isCreditCardView
     }
     
     // Reloads the purchase on failure screens
