@@ -123,6 +123,10 @@ internal struct BottomSheetView: View {
             .offset(y: viewModel.isBottomSheetPresented ? 0 : UIScreen.main.bounds.height)
             .transition(.move(edge: viewModel.isBottomSheetPresented ? .bottom : .top))
             .onAppear { withAnimation { viewModel.isBottomSheetPresented = true } }
+        }.onTapGesture {
+            if viewModel.isKeyboardVisible {
+                AdyenController.shared.presentableComponent?.viewController.view.findAndResignFirstResponder()
+            }
         }
     }
 }
