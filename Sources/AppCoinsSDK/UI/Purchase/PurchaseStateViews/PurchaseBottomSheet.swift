@@ -98,10 +98,15 @@ internal struct PurchaseBottomSheet: View {
                 
                 if adyenController.state == .newCreditCard {
                     CreditCardBottomSheet(viewModel: viewModel, transactionViewModel: transactionViewModel, dynamicHeight: $dynamicHeight)
-                        .onAppear{ 
+                        .onAppear{
                             viewModel.setCreditCardView(isCreditCardView: true)
-                            startObservingDynamicHeight() }
-                        .onDisappear{ stopObservingDynamicHeight() }
+                            startObservingDynamicHeight()
+                        }
+                        .onDisappear{
+                            if viewModel.isCreditCardView {
+                                viewModel.setCreditCardView(isCreditCardView: false)
+                            }
+                            stopObservingDynamicHeight() }
                 }
                 
                 if adyenController.state == .paypal {

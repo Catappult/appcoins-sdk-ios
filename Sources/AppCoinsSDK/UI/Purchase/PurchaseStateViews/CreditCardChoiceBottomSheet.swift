@@ -126,6 +126,9 @@ internal struct CreditCardChoiceBottomSheet: View {
                                                     }
                                                 }
                                             })
+                                            
+                                            VStack {}.frame(height: 10)
+                                            
                                         }
                                     }.ignoresSafeArea(.all)
                                 }.defaultScrollAnchor(.bottom)
@@ -144,12 +147,12 @@ internal struct CreditCardChoiceBottomSheet: View {
                             .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
                             .foregroundColor(ColorsUi.APC_White)
                             
-                            VStack {}.frame(height: Utils.bottomSafeAreaHeight == 0 ? 5 : 21)
+                            VStack {}.frame(height: Utils.bottomSafeAreaHeight == 0 ? 5 : 28)
                             
                         }.frame(maxHeight: .infinity, alignment: .bottom)
                         
                         BottomSheetAppHeader(viewModel: viewModel, transactionViewModel: transactionViewModel)
-                            
+                        
                     }
                 }
             } else {
@@ -164,128 +167,128 @@ internal struct CreditCardChoiceBottomSheet: View {
                         VStack {}.frame(height: 16)
                     }.frame(alignment: .top)
                     
-                        if storedPaymentMethods.count == 1 {
-                            VStack(spacing: 0) {
-                                Text(Constants.yourCard)
-                                    .font(FontsUi.APC_Body_Bold)
-                                    .foregroundColor(ColorsUi.APC_Black)
-                                    .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 20, alignment: .leading)
-                                
-                                VStack {}.frame(height: 10)
-                                
-                                HStack(spacing: 0) {
-                                    if let paymentMethod = storedPaymentMethods.first as? StoredCardPaymentMethod {
-                                        
-                                        VStack {}.frame(width: 16)
-                                        
-                                        if let image = adyenController.getCardLogo(for: paymentMethod) {
-                                            CreditCardAdyenIcon(image: image)
-                                                .animation(.easeIn(duration: 0.3))
-                                        }
-                                        
-                                        VStack {}.frame(width: 16)
-                                        
-                                        Text(verbatim: "···· " + paymentMethod.lastFour)
-                                            .foregroundColor(ColorsUi.APC_Black)
-                                            .font(FontsUi.APC_Subheadline)
-                                            .lineLimit(1)
-                                            .frame(maxWidth: .infinity, alignment: .leading)
-                                    }
-                                }
-                                .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
-                                .background(ColorsUi.APC_White)
-                                .cornerRadius(10)
-                                
-                                VStack {}.frame(height: 8)
-                                
-                                HStack(spacing: 0) {
-                                    
-                                    Button(action: adyenViewModel.payWithNewCreditCard) {
-                                        Text(Constants.addCard)
-                                            .foregroundColor(ColorsUi.APC_Pink)
-                                            .font(FontsUi.APC_Footnote_Bold)
-                                            .lineLimit(1)
-                                    }
-                                    .frame(maxWidth: .infinity, alignment: .trailing)
-                                }
-                                .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 18, alignment: .trailing)
-                            }.frame(alignment: .top)
+                    if storedPaymentMethods.count == 1 {
+                        VStack(spacing: 0) {
+                            Text(Constants.yourCard)
+                                .font(FontsUi.APC_Body_Bold)
+                                .foregroundColor(ColorsUi.APC_Black)
+                                .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 20, alignment: .leading)
                             
-                        } else {
-                            VStack(spacing: 0) {
-                                Text(Constants.chooseCard)
-                                    .font(FontsUi.APC_Body_Bold)
-                                    .foregroundColor(ColorsUi.APC_Black)
-                                    .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 20, alignment: .leading)
-                                
-                                VStack {}.frame(height: 10)
-                                
-                                VStack(spacing: 0) {
-                                    ForEach(0 ..< storedPaymentMethods.count, id: \.self) { paymentMethodNumber in
-                                        
-                                        if let paymentMethod = storedPaymentMethods[paymentMethodNumber] as? StoredCardPaymentMethod {
-                                            Button(action: { self.chosenStoredCard = paymentMethod }) {
-                                                ZStack {
-                                                    ColorsUi.APC_White
-                                                    HStack(spacing: 0) {
-                                                        
-                                                        if let image = adyenController.getCardLogo(for: paymentMethod) {
-                                                            CreditCardAdyenIcon(image: image)
-                                                                .padding(.trailing, 16)
-                                                                .padding(.leading, 16)
-                                                                .animation(.easeIn(duration: 0.3))
-                                                        }
-                                                        
-                                                        Text(verbatim: "···· " + paymentMethod.lastFour)
-                                                            .foregroundColor(ColorsUi.APC_Black)
-                                                            .font(FontsUi.APC_Subheadline)
-                                                            .lineLimit(1)
-                                                            .frame(maxWidth: .infinity, alignment: .leading)
-                                                        
-                                                        if paymentMethod.identifier == chosenStoredCard?.identifier {
-                                                            Image(systemName: "checkmark.circle.fill")
-                                                                .resizable()
-                                                                .edgesIgnoringSafeArea(.all)
-                                                                .foregroundColor(ColorsUi.APC_Pink)
-                                                                .frame(width: 22, height: 22, alignment: .trailing)
-                                                            
-                                                            VStack {}.frame(width: 16)
-                                                        } else {
-                                                            Circle()
-                                                                .strokeBorder(ColorsUi.APC_LightGray, lineWidth: 2)
-                                                                .frame(width: 22, height: 22, alignment: .trailing)
-                                                            
-                                                            VStack {}.frame(width: 16)
-                                                        }
-                                                    }.frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
-                                                }.frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
-                                            }
-                                            .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
-                                            .buttonStyle(flatButtonStyle())
-                                            
-                                        }
-                                        
-                                        if paymentMethodNumber < storedPaymentMethods.count - 1 {
-                                            Divider()
-                                                .background(ColorsUi.APC_Gray)
-                                        }
+                            VStack {}.frame(height: 10)
+                            
+                            HStack(spacing: 0) {
+                                if let paymentMethod = storedPaymentMethods.first as? StoredCardPaymentMethod {
+                                    
+                                    VStack {}.frame(width: 16)
+                                    
+                                    if let image = adyenController.getCardLogo(for: paymentMethod) {
+                                        CreditCardAdyenIcon(image: image)
+                                            .animation(.easeIn(duration: 0.3))
                                     }
-                                }.frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48)
-                                    .cornerRadius(13)
-                                
-                                VStack {}.frame(height: 9)
+                                    
+                                    VStack {}.frame(width: 16)
+                                    
+                                    Text(verbatim: "···· " + paymentMethod.lastFour)
+                                        .foregroundColor(ColorsUi.APC_Black)
+                                        .font(FontsUi.APC_Subheadline)
+                                        .lineLimit(1)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                }
+                            }
+                            .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
+                            .background(ColorsUi.APC_White)
+                            .cornerRadius(10)
+                            
+                            VStack {}.frame(height: 8)
+                            
+                            HStack(spacing: 0) {
                                 
                                 Button(action: adyenViewModel.payWithNewCreditCard) {
                                     Text(Constants.addCard)
                                         .foregroundColor(ColorsUi.APC_Pink)
                                         .font(FontsUi.APC_Footnote_Bold)
                                         .lineLimit(1)
-                                    
-                                }.frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 18, alignment: .trailing)
-                                
-                                VStack {}.frame(height: 18)
+                                }
+                                .frame(maxWidth: .infinity, alignment: .trailing)
                             }
+                            .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 18, alignment: .trailing)
+                        }.frame(alignment: .top)
+                        
+                    } else {
+                        VStack(spacing: 0) {
+                            Text(Constants.chooseCard)
+                                .font(FontsUi.APC_Body_Bold)
+                                .foregroundColor(ColorsUi.APC_Black)
+                                .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 20, alignment: .leading)
+                            
+                            VStack {}.frame(height: 10)
+                            
+                            VStack(spacing: 0) {
+                                ForEach(0 ..< storedPaymentMethods.count, id: \.self) { paymentMethodNumber in
+                                    
+                                    if let paymentMethod = storedPaymentMethods[paymentMethodNumber] as? StoredCardPaymentMethod {
+                                        Button(action: { self.chosenStoredCard = paymentMethod }) {
+                                            ZStack {
+                                                ColorsUi.APC_White
+                                                HStack(spacing: 0) {
+                                                    
+                                                    if let image = adyenController.getCardLogo(for: paymentMethod) {
+                                                        CreditCardAdyenIcon(image: image)
+                                                            .padding(.trailing, 16)
+                                                            .padding(.leading, 16)
+                                                            .animation(.easeIn(duration: 0.3))
+                                                    }
+                                                    
+                                                    Text(verbatim: "···· " + paymentMethod.lastFour)
+                                                        .foregroundColor(ColorsUi.APC_Black)
+                                                        .font(FontsUi.APC_Subheadline)
+                                                        .lineLimit(1)
+                                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                                    
+                                                    if paymentMethod.identifier == chosenStoredCard?.identifier {
+                                                        Image(systemName: "checkmark.circle.fill")
+                                                            .resizable()
+                                                            .edgesIgnoringSafeArea(.all)
+                                                            .foregroundColor(ColorsUi.APC_Pink)
+                                                            .frame(width: 22, height: 22, alignment: .trailing)
+                                                        
+                                                        VStack {}.frame(width: 16)
+                                                    } else {
+                                                        Circle()
+                                                            .strokeBorder(ColorsUi.APC_LightGray, lineWidth: 2)
+                                                            .frame(width: 22, height: 22, alignment: .trailing)
+                                                        
+                                                        VStack {}.frame(width: 16)
+                                                    }
+                                                }.frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
+                                            }.frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
+                                        }
+                                        .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
+                                        .buttonStyle(flatButtonStyle())
+                                        
+                                    }
+                                    
+                                    if paymentMethodNumber < storedPaymentMethods.count - 1 {
+                                        Divider()
+                                            .background(ColorsUi.APC_Gray)
+                                    }
+                                }
+                            }.frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48)
+                                .cornerRadius(13)
+                            
+                            VStack {}.frame(height: 9)
+                            
+                            Button(action: adyenViewModel.payWithNewCreditCard) {
+                                Text(Constants.addCard)
+                                    .foregroundColor(ColorsUi.APC_Pink)
+                                    .font(FontsUi.APC_Footnote_Bold)
+                                    .lineLimit(1)
+                                
+                            }.frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 18, alignment: .trailing)
+                            
+                            VStack {}.frame(height: 18)
                         }
+                    }
                     
                     Button(action: { if let storedPaymentMethod = self.chosenStoredCard { adyenViewModel.payWithStoredCreditCard(creditCard: storedPaymentMethod) }}) {
                         ZStack {
@@ -298,7 +301,7 @@ internal struct CreditCardChoiceBottomSheet: View {
                     .frame(maxHeight: .infinity, alignment: .bottom)
                     .foregroundColor(ColorsUi.APC_White)
                     
-                    VStack {}.frame(height: 21)
+                    VStack {}.frame(height: Utils.bottomSafeAreaHeight == 0 ? 5 : 28)
                 }
             }
         }
