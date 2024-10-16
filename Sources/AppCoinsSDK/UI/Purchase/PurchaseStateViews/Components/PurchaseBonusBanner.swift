@@ -13,7 +13,7 @@ struct PurchaseBonusBanner: View {
     @ObservedObject var transactionViewModel: TransactionViewModel
     
     var body: some View {
-        if transactionViewModel.paymentMethodSelected != nil && transactionViewModel.paymentMethodSelected?.name != Method.appc.rawValue {
+        if transactionViewModel.paymentMethodSelected != nil && transactionViewModel.paymentMethodSelected?.name != Method.appc.rawValue && transactionViewModel.paymentMethodSelected?.name != Method.sandbox.rawValue {
             VStack(spacing: 0) {
                 
                 VStack {}.frame(height: 10)
@@ -59,11 +59,6 @@ struct PurchaseBonusBanner: View {
             .background(ColorsUi.APC_DarkBlue)
             .cornerRadius(12)
             
-        } else {
-            VStack {}
-                .skeleton(with: true, shape: .rectangle)
-                .cornerRadius(12)
-                .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 56)
         }
     }
 }
