@@ -7,10 +7,11 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
-internal class BottomSheetViewModel : ObservableObject {
+internal class BottomSheetViewModel: ObservableObject {
     
-    internal static var shared : BottomSheetViewModel = BottomSheetViewModel()
+    internal static var shared: BottomSheetViewModel = BottomSheetViewModel(isLandscape: false)
     
     // Purchase attributes
     internal var product: Product? = nil
@@ -44,7 +45,35 @@ internal class BottomSheetViewModel : ObservableObject {
     internal var walletApplicationUseCases: WalletApplicationUseCases = WalletApplicationUseCases.shared
     internal var currencyUseCases: CurrencyUseCases = CurrencyUseCases.shared
     
-    private init() { UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable") } // Prevents Layout Warning Prints
+    // Device Orientation
+    @Published var isLandscape: Bool = false
+    
+    // Keyboard Dismiss
+    @Published var isKeyboardVisible: Bool = false
+    private var cancellables = Set<AnyCancellable>()
+    
+    @Published var isCreditCardView: Bool = false
+    
+    private init(isLandscape: Bool) {
+        // Prevents Layout Warning Prints
+        UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
+        
+        NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)
+            .sink { [weak self] _ in
+                self?.isKeyboardVisible = true
+            }
+            .store(in: &cancellables)
+        
+        NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)
+            .sink { [weak self] _ in
+                self?.isKeyboardVisible = false
+            }
+            .store(in: &cancellables)
+    }
+    
+    deinit {
+        cancellables.removeAll()
+    }
     
     // Resets the BottomSheet
     private func reset() {
@@ -60,6 +89,14 @@ internal class BottomSheetViewModel : ObservableObject {
             PayPalDirectViewModel.shared.reset()
             AdyenController.shared.reset()
         }
+    }
+    
+    internal func setOrientation(isLandscape: Bool) {
+        self.isLandscape = isLandscape
+    }
+    
+    internal func setCreditCardView(isCreditCardView: Bool) {
+        self.isCreditCardView = isCreditCardView
     }
     
     // Reloads the purchase on failure screens

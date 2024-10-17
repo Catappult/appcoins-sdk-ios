@@ -38,7 +38,6 @@ internal struct PaymentMethodIcon: View {
                         .opacity(disabled ? 0.2 : 1)
             }).padding(.trailing, 16)
                 .padding(.leading, 16)
-                .animation(.easeIn(duration: 0.3))
         }
     }
 }

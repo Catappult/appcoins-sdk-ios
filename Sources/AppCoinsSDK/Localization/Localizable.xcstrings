@@ -5955,6 +5955,17 @@
           }
         }
       }
+    },
+    "your_card_title" : {
+      "comment" : "Your card",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your card"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

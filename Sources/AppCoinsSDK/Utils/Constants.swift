@@ -20,6 +20,7 @@ internal struct Constants {
     static internal let logOut = NSLocalizedString("log_out_button", bundle: .module, comment: "Log out")
     static internal let chooseCard = NSLocalizedString("choose_card_title", bundle: .module, comment: "Choose a Card")
     static internal let addCard = NSLocalizedString("add_card_button", bundle: .module, comment: "Add new card")
+    static internal let yourCard = NSLocalizedString("your_card_title", bundle: .module, comment: "Your card")
     
     // Success
     static internal let successText = NSLocalizedString("success_title", bundle: .module, comment: "Success")
