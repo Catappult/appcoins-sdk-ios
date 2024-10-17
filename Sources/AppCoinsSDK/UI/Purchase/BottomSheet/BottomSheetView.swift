@@ -114,7 +114,7 @@ internal struct BottomSheetView: View {
                 HStack(spacing: 0) {}
                     .sheet(isPresented: $adyenController.presentAdyenRedirect) {
                         if let viewController = adyenController.presentableComponent?.viewController {
-                            AdyenViewControllerWrapper(viewController: viewController, viewModel: viewModel)
+                            AdyenViewControllerWrapper(viewController: viewController, orientation: viewModel.isLandscape ? .landscape : .portrait)
                                 .ignoresSafeArea(.all)
                         }
                     }

@@ -11,18 +11,18 @@ import UIKit
 
 internal struct AdyenViewControllerWrapper<ViewControllerType: UIViewController>: UIViewControllerRepresentable {
     
-    @ObservedObject var viewModel: BottomSheetViewModel
     internal let viewController: ViewControllerType
+    internal let orientation: OrientationEnum
     
-    internal init(viewController: ViewControllerType, viewModel: BottomSheetViewModel) {
+    internal init(viewController: ViewControllerType, orientation: OrientationEnum) {
         self.viewController = viewController
-        self.viewModel = viewModel
+        self.orientation = orientation
     }
 
     internal func makeUIViewController(context: Context) -> UIViewController {
         // Disable scrolling for any UIScrollView within the viewController
         
-        if !viewModel.isLandscape {
+        if orientation == .portrait {
             disableScrollingInView(viewController.view)
         }
         
