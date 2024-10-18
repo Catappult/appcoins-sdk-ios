@@ -21,7 +21,7 @@ internal struct PurchaseBottomSheet: View {
     @ObservedObject private var keyboardObserver = KeyboardObserver.shared
     
     @State private var timer: Timer? = nil
-    @State private var dynamicHeight: CGFloat = 420
+    @State private var dynamicHeight: CGFloat = 291
     
     internal var body: some View {
         
@@ -132,7 +132,9 @@ internal struct PurchaseBottomSheet: View {
                         if let content = subview.subviews.first {
                             if content.bounds.height != dynamicHeight && content.bounds.height != 0 {
                                 DispatchQueue.main.async {
-                                    dynamicHeight = content.bounds.height
+                                    withAnimation(.easeInOut(duration: 0.3)) {
+                                        dynamicHeight = content.bounds.height
+                                    }
                                 }
                             }
                         }
