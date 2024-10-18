@@ -50,27 +50,27 @@ struct LastPaymentMethodView: View {
                                                     .foregroundColor(ColorsUi.APC_Black)
                                                     .font(FontsUi.APC_Callout)
                                                     .lineLimit(1)
-                                                    .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 168 : UIScreen.main.bounds.width - 48 - 168, alignment: .leading)
+                                                    .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 168 : UIScreen.main.bounds.width - 48 - 168, alignment: .leading)
                                                     .padding(.bottom, 4)
                                                 
                                                 Text(Constants.earnedEnoughAppcText)
                                                     .foregroundColor(ColorsUi.APC_Gray)
                                                     .font(FontsUi.APC_Caption1)
                                                     .lineLimit(2)
-                                                    .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 168 : UIScreen.main.bounds.width - 48 - 168, alignment: .leading)
+                                                    .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 168 : UIScreen.main.bounds.width - 48 - 168, alignment: .leading)
                                                 
                                             } else {
                                                 Text(transactionViewModel.lastPaymentMethod?.label)
                                                     .foregroundColor(ColorsUi.APC_Black)
                                                     .font(FontsUi.APC_Callout)
                                                     .lineLimit(1)
-                                                    .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 168 : UIScreen.main.bounds.width - 48 - 168, alignment: .leading)
+                                                    .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 168 : UIScreen.main.bounds.width - 48 - 168, alignment: .leading)
                                             }
-                                        }.frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 168 : UIScreen.main.bounds.width - 48 - 96, alignment: .leading)
+                                        }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 168 : UIScreen.main.bounds.width - 48 - 96, alignment: .leading)
                                             .padding(.leading, 16)
                                     }
                                 }
-                                .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 88)
+                                .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 88)
                                 .cornerRadius(13)
                                 
                                 HStack {}.frame(height: 16)
@@ -102,7 +102,7 @@ struct LastPaymentMethodView: View {
                                                 })
                                         }
                                     }.frame(maxWidth: .infinity, alignment: .trailing)
-                                }.frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 18)
+                                }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 18)
                             }
                         }
                         

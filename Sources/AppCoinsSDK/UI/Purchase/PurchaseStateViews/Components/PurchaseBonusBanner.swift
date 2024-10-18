@@ -55,7 +55,7 @@ struct PurchaseBonusBanner: View {
                 VStack {}.frame(height: 10)
                 
             }
-            .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 56)
+            .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 56)
             .background(ColorsUi.APC_DarkBlue)
             .cornerRadius(12)
             

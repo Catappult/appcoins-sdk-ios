@@ -37,10 +37,10 @@ internal class PurchaseViewController: UIViewController {
     private func updateOrientation() {
         if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
             if scene.interfaceOrientation == .landscapeLeft || scene.interfaceOrientation == .landscapeRight {
-                BottomSheetViewModel.shared.setOrientation(isLandscape: true)
+                BottomSheetViewModel.shared.setOrientation(orientation: .landscape)
                 orientation = .landscape
             } else {
-                BottomSheetViewModel.shared.setOrientation(isLandscape: false)
+                BottomSheetViewModel.shared.setOrientation(orientation: .portrait)
                 orientation = .portrait
             }
         }

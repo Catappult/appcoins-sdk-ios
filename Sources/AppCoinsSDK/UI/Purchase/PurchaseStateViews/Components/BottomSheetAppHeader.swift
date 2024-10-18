@@ -79,7 +79,7 @@ struct BottomSheetAppHeader: View {
                         }.frame(maxWidth: .infinity)
                     }
                 }
-                .frame(width: viewModel.isLandscape ? 256 : UIScreen.main.bounds.width - 154, alignment: .bottomLeading)
+                .frame(width: viewModel.orientation == .landscape ? 256 : UIScreen.main.bounds.width - 154, alignment: .bottomLeading)
                 
                 VStack {}.frame(height: 4)
                 
@@ -101,7 +101,7 @@ struct BottomSheetAppHeader: View {
             VStack {}.frame(width: 24)
             
         }
-        .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.width, height: 72)
-        .background(viewModel.isLandscape ? BlurView(style: .systemMaterial) : BlurView(style: .systemMaterial))
+        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.width, height: 72)
+        .background(viewModel.orientation == .landscape ? BlurView(style: .systemMaterial) : BlurView(style: .systemMaterial))
     }
 }

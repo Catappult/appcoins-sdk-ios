@@ -20,7 +20,7 @@ internal struct CreditCardBottomSheet: View {
         
         VStack(spacing: 0) {
             
-            if viewModel.isLandscape {
+            if viewModel.orientation == .landscape {
                 VStack(spacing: 0) {
                     BottomSheetAppHeader(viewModel: viewModel, transactionViewModel: transactionViewModel)
                         .frame(maxHeight: .infinity, alignment: .top)
@@ -32,7 +32,7 @@ internal struct CreditCardBottomSheet: View {
                     
                     if let viewController = adyenController.presentableComponent?.viewController {
                         ScrollView {
-                            AdyenViewControllerWrapper(viewController: viewController, orientation: viewModel.isLandscape ? .landscape : .portrait)
+                            AdyenViewControllerWrapper(viewController: viewController, orientation: viewModel.orientation == .landscape ? .landscape : .portrait)
                                 .frame(height: UIScreen.main.bounds.height * 0.9 - 72)
                         }.frame(width: UIScreen.main.bounds.width - 176 - 32, height: UIScreen.main.bounds.height * 0.9 - 72)
                     } else {
@@ -60,7 +60,7 @@ internal struct CreditCardBottomSheet: View {
                     
                     if let viewController = adyenController.presentableComponent?.viewController {
                         
-                        AdyenViewControllerWrapper(viewController: viewController, orientation: viewModel.isLandscape ? .landscape : .portrait)
+                        AdyenViewControllerWrapper(viewController: viewController, orientation: viewModel.orientation)
                             .frame(height: dynamicHeight)
                     } else {
                         ZStack {

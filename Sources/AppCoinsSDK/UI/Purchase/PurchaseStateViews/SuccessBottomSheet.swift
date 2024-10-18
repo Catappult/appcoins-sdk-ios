@@ -22,7 +22,7 @@ internal struct SuccessBottomSheet: View {
                 
                 VStack(spacing: 0) {
                     
-                    VStack {}.frame(height: viewModel.isLandscape ? 80 : 40)
+                    VStack {}.frame(height: viewModel.orientation == .landscape ? 80 : 40)
                     
                     Image("checkmark", bundle: Bundle.module)
                         .resizable()
@@ -99,7 +99,7 @@ internal struct SuccessBottomSheet: View {
                 
                 
             }
-            .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: viewModel.isLandscape ? UIScreen.main.bounds.height * 0.9 : 420)
+            .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: viewModel.orientation == .landscape ? UIScreen.main.bounds.height * 0.9 : 420)
                 .cornerRadius(13, corners: [.topLeft, .topRight])
         }
         .offset(y: viewModel.successAnimation ? 0 : 420)

@@ -51,7 +51,7 @@ internal struct RadioButtonGroupView: View {
                                 }
                                 
                                 
-                            }.frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 64)
+                            }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 64)
                         }.frame(height: 50)
                     }.buttonStyle(flatButtonStyle())
                     
@@ -62,7 +62,7 @@ internal struct RadioButtonGroupView: View {
                 }
             }
             .background(ColorsUi.APC_White)
-            .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48)
+            .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48)
             .cornerRadius(10)
         }
     }

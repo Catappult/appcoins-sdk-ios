@@ -40,7 +40,7 @@ internal struct ErrorBottomSheet: View {
                     
                 }
                 
-                VStack {}.frame(height: viewModel.isLandscape ? 21 : 68)
+                VStack {}.frame(height: viewModel.orientation == .landscape ? 21 : 68)
                 
                 Image("exclamation-red", bundle: Bundle.module)
                     .resizable()
@@ -59,7 +59,7 @@ internal struct ErrorBottomSheet: View {
                     .font(FontsUi.APC_Footnote)
                     .foregroundColor(ColorsUi.APC_Black)
                 
-                VStack {}.frame(height: viewModel.isLandscape ? 21 : 61)
+                VStack {}.frame(height: viewModel.orientation == .landscape ? 21 : 61)
                 
                 Button(action: {
                     var subject: String
@@ -83,13 +83,13 @@ internal struct ErrorBottomSheet: View {
                             .foregroundColor(ColorsUi.APC_Pink)
                     }
                 }
-                .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 320 : UIScreen.main.bounds.width - 48, height: 50)
+                .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 320 : UIScreen.main.bounds.width - 48, height: 50)
                 .frame(maxHeight: .infinity, alignment: .bottom)
                 
                 VStack {}.frame(height: 47)
             }
         }
-        .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: viewModel.isLandscape ? UIScreen.main.bounds.height * 0.9 : 420)
+        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: viewModel.orientation == .landscape ? UIScreen.main.bounds.height * 0.9 : 420)
         .cornerRadius(13, corners: [.topLeft, .topRight])
         .toastView(toast: $toast)
         .onAppear {

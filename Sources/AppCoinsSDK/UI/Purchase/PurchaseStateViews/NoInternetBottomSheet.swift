@@ -41,7 +41,7 @@ internal struct NoInternetBottomSheet: View {
                     
                 }
                 
-                VStack {}.frame(height: viewModel.isLandscape ? 21 : 61)
+                VStack {}.frame(height:viewModel.orientation == .landscape ? 21 : 61)
                 
                 Image("no-internet-black", bundle: Bundle.module)
                     .resizable()
@@ -62,9 +62,9 @@ internal struct NoInternetBottomSheet: View {
                     .font(FontsUi.APC_Footnote)
                     .foregroundColor(ColorsUi.APC_Black)
                     .multilineTextAlignment(.center)
-                    .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 376 : UIScreen.main.bounds.width - 48, height: 40)
+                    .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 376 : UIScreen.main.bounds.width - 48, height: 40)
                 
-                VStack {}.frame(height: viewModel.isLandscape ? 21 : 40)
+                VStack {}.frame(height: viewModel.orientation == .landscape ? 21 : 40)
                 
                 Button(action: {viewModel.reload()}) {
                     ZStack {
@@ -75,12 +75,12 @@ internal struct NoInternetBottomSheet: View {
                             .foregroundColor(ColorsUi.APC_White)
                     }
                     .cornerRadius(10)
-                }.frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 320 : UIScreen.main.bounds.width - 48, height: 50, alignment: .bottom)
+                }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 320 : UIScreen.main.bounds.width - 48, height: 50, alignment: .bottom)
                 
                 VStack {}.frame(height: 47)
                 
             }
-        }.frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: viewModel.isLandscape ? UIScreen.main.bounds.height * 0.9 : 420)
+        }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: viewModel.orientation == .landscape ? UIScreen.main.bounds.height * 0.9 : 420)
             .cornerRadius(13, corners: [.topLeft, .topRight])
     }
 }

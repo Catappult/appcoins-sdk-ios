@@ -11,7 +11,7 @@ import Combine
 
 internal class BottomSheetViewModel: ObservableObject {
     
-    internal static var shared: BottomSheetViewModel = BottomSheetViewModel(isLandscape: false)
+    internal static var shared: BottomSheetViewModel = BottomSheetViewModel()
     
     // Purchase attributes
     internal var product: Product? = nil
@@ -46,7 +46,7 @@ internal class BottomSheetViewModel: ObservableObject {
     internal var currencyUseCases: CurrencyUseCases = CurrencyUseCases.shared
     
     // Device Orientation
-    @Published var isLandscape: Bool = false
+    @Published var orientation: OrientationEnum = .portrait
     
     // Keyboard Dismiss
     @Published var isKeyboardVisible: Bool = false
@@ -54,7 +54,7 @@ internal class BottomSheetViewModel: ObservableObject {
     
     @Published var isCreditCardView: Bool = false
     
-    private init(isLandscape: Bool) {
+    private init() {
         // Prevents Layout Warning Prints
         UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
         
@@ -91,8 +91,8 @@ internal class BottomSheetViewModel: ObservableObject {
         }
     }
     
-    internal func setOrientation(isLandscape: Bool) {
-        self.isLandscape = isLandscape
+    internal func setOrientation(orientation: OrientationEnum) {
+        self.orientation = orientation
     }
     
     internal func setCreditCardView(isCreditCardView: Bool) {

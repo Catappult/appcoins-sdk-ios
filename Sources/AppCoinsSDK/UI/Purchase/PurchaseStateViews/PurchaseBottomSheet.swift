@@ -41,19 +41,19 @@ internal struct PurchaseBottomSheet: View {
                                 ScrollView(.vertical, showsIndicators: false) {
                                     VStack(spacing: 0) {
                                         
-                                        VStack {}.frame(height: viewModel.isLandscape ? 60 : 80)
+                                        VStack {}.frame(height: viewModel.orientation == .landscape ? 60 : 80)
                                         
                                         VStack {}
                                             .skeleton(with: true, shape: .rectangle)
                                             .cornerRadius(13)
-                                            .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 56)
+                                            .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 56)
                                         
                                         VStack {}.frame(height: 16)
                                         
                                         VStack {}
                                             .skeleton(with: true, shape: .rectangle)
                                             .cornerRadius(12)
-                                            .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 150)
+                                            .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 150)
                                     }
                                 }.defaultScrollAnchor(.bottom)
                             }
@@ -74,7 +74,7 @@ internal struct PurchaseBottomSheet: View {
                         }
                         .disabled(transactionViewModel.transaction == nil)
                         .frame(maxHeight: .infinity, alignment: .bottom)
-                        .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
+                        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
                         .foregroundColor(ColorsUi.APC_White)
                         
                         VStack {}.frame(height: Utils.bottomSafeAreaHeight == 0 ? 5 : 28)
@@ -115,8 +115,8 @@ internal struct PurchaseBottomSheet: View {
             }
             
         }
-        .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: viewModel.isLandscape ? UIScreen.main.bounds.height * 0.9 : viewModel.isCreditCardView ? dynamicHeight + 72 : 420)
-        .padding(.bottom, keyboardObserver.isKeyboardVisible && !viewModel.isLandscape ? keyboardObserver.keyboardHeight: 0)
+        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: viewModel.orientation == .landscape ? UIScreen.main.bounds.height * 0.9 : viewModel.isCreditCardView ? dynamicHeight + 72 : 420)
+        .padding(.bottom, keyboardObserver.isKeyboardVisible && viewModel.orientation != .landscape ? keyboardObserver.keyboardHeight: 0)
         .background(ColorsUi.APC_BottomSheet_LightGray_Background)
         .cornerRadius(13, corners: [.topLeft, .topRight])
         .offset(y: isPresented ? 0 : UIScreen.main.bounds.height)

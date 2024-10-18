@@ -52,7 +52,7 @@ internal struct CreditCardChoiceBottomSheet: View {
                                             Text(Constants.chooseCard)
                                                 .font(FontsUi.APC_Body_Bold)
                                                 .foregroundColor(ColorsUi.APC_Black)
-                                                .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 20, alignment: .leading)
+                                                .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 20, alignment: .leading)
                                             
                                             VStack {}.frame(height: 10)
                                             
@@ -93,10 +93,10 @@ internal struct CreditCardChoiceBottomSheet: View {
                                                                         
                                                                         VStack {}.frame(width: 16)
                                                                     }
-                                                                }.frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
-                                                            }.frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
+                                                                }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
+                                                            }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
                                                         }
-                                                        .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
+                                                        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
                                                         .buttonStyle(flatButtonStyle())
                                                         
                                                     }
@@ -106,7 +106,7 @@ internal struct CreditCardChoiceBottomSheet: View {
                                                             .background(ColorsUi.APC_Gray)
                                                     }
                                                 }
-                                            }.frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48)
+                                            }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48)
                                                 .cornerRadius(13)
                                             
                                             VStack {}.frame(height: 9)
@@ -118,7 +118,7 @@ internal struct CreditCardChoiceBottomSheet: View {
                                                     .lineLimit(1)
                                                 
                                             }
-                                            .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 18, alignment: .trailing)
+                                            .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 18, alignment: .trailing)
                                             .onAppear(perform: {
                                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
                                                     withAnimation(.easeInOut(duration: 30)) {
@@ -144,7 +144,7 @@ internal struct CreditCardChoiceBottomSheet: View {
                                 }
                             }
                             .frame(maxHeight: .infinity, alignment: .bottom)
-                            .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
+                            .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
                             .foregroundColor(ColorsUi.APC_White)
                             
                             VStack {}.frame(height: Utils.bottomSafeAreaHeight == 0 ? 5 : 28)
@@ -172,7 +172,7 @@ internal struct CreditCardChoiceBottomSheet: View {
                             Text(Constants.yourCard)
                                 .font(FontsUi.APC_Body_Bold)
                                 .foregroundColor(ColorsUi.APC_Black)
-                                .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 20, alignment: .leading)
+                                .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 20, alignment: .leading)
                             
                             VStack {}.frame(height: 10)
                             
@@ -195,7 +195,7 @@ internal struct CreditCardChoiceBottomSheet: View {
                                         .frame(maxWidth: .infinity, alignment: .leading)
                                 }
                             }
-                            .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
+                            .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
                             .background(ColorsUi.APC_White)
                             .cornerRadius(10)
                             
@@ -211,7 +211,7 @@ internal struct CreditCardChoiceBottomSheet: View {
                                 }
                                 .frame(maxWidth: .infinity, alignment: .trailing)
                             }
-                            .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 18, alignment: .trailing)
+                            .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 18, alignment: .trailing)
                         }.frame(alignment: .top)
                         
                     } else {
@@ -219,7 +219,7 @@ internal struct CreditCardChoiceBottomSheet: View {
                             Text(Constants.chooseCard)
                                 .font(FontsUi.APC_Body_Bold)
                                 .foregroundColor(ColorsUi.APC_Black)
-                                .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 20, alignment: .leading)
+                                .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 20, alignment: .leading)
                             
                             VStack {}.frame(height: 10)
                             
@@ -260,10 +260,10 @@ internal struct CreditCardChoiceBottomSheet: View {
                                                         
                                                         VStack {}.frame(width: 16)
                                                     }
-                                                }.frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
-                                            }.frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
+                                                }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
+                                            }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
                                         }
-                                        .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
+                                        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
                                         .buttonStyle(flatButtonStyle())
                                         
                                     }
@@ -273,7 +273,7 @@ internal struct CreditCardChoiceBottomSheet: View {
                                             .background(ColorsUi.APC_Gray)
                                     }
                                 }
-                            }.frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48)
+                            }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48)
                                 .cornerRadius(13)
                             
                             VStack {}.frame(height: 9)
@@ -284,7 +284,7 @@ internal struct CreditCardChoiceBottomSheet: View {
                                     .font(FontsUi.APC_Footnote_Bold)
                                     .lineLimit(1)
                                 
-                            }.frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 18, alignment: .trailing)
+                            }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 18, alignment: .trailing)
                             
                             VStack {}.frame(height: 18)
                         }
@@ -297,7 +297,7 @@ internal struct CreditCardChoiceBottomSheet: View {
                             Text(Constants.buyText)
                         }
                     }
-                    .frame(width: viewModel.isLandscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
+                    .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
                     .frame(maxHeight: .infinity, alignment: .bottom)
                     .foregroundColor(ColorsUi.APC_White)
                     
