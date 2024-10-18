@@ -49,8 +49,6 @@ internal struct RadioButtonGroupView: View {
                                         .frame(width: 22, height: 22, alignment: .trailing)
                                         .padding(.trailing, 16)
                                 }
-                                
-                                
                             }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 64)
                         }.frame(height: 50)
                     }.buttonStyle(flatButtonStyle())

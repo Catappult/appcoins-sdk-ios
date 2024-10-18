@@ -33,6 +33,7 @@ struct PaymentMethodChoiceView: View {
                         HStack(spacing: 0) {
                             VStack(spacing: 0) {
                                 RadioButtonGroupView(viewModel: viewModel)
+                                    .animation(.easeInOut(duration: 0.3))
                                     .onAppear(perform: {
                                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
                                             withAnimation(.easeInOut(duration: 30)) {
