@@ -772,6 +772,17 @@
         }
       }
     },
+    "bonus_not_available" : {
+      "comment" : "Bonus not available with this payment method",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bonus not available with this payment method"
+          }
+        }
+      }
+    },
     "bonus_received_body" : {
       "comment" : "%@ Bonus Received",
       "extractionState" : "manual",

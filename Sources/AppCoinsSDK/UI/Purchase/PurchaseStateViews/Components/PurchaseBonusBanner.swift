@@ -13,9 +13,8 @@ struct PurchaseBonusBanner: View {
     @ObservedObject var transactionViewModel: TransactionViewModel
     
     var body: some View {
-        if transactionViewModel.paymentMethodSelected != nil && transactionViewModel.paymentMethodSelected?.name != Method.appc.rawValue && transactionViewModel.paymentMethodSelected?.name != Method.sandbox.rawValue {
-            VStack(spacing: 0) {
-                
+        VStack(spacing: 0) {
+            if transactionViewModel.hasBonus {
                 VStack {}.frame(height: 10)
                 
                 HStack {
@@ -53,12 +52,22 @@ struct PurchaseBonusBanner: View {
                     .frame(height: 13)
                 
                 VStack {}.frame(height: 10)
-                
+            } else {
+                HStack {
+                    Image("gift-gray", bundle: Bundle.module)
+                        .resizable()
+                        .edgesIgnoringSafeArea(.all)
+                        .frame(width: 16, height: 16)
+                    
+                    Text(Constants.bonusNotAvailableText)
+                        .font(FontsUi.APC_Caption1_Bold)
+                        .foregroundColor(ColorsUi.APC_BottomSheet_APPC)
+                }
             }
-            .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 56)
-            .background(ColorsUi.APC_DarkBlue)
-            .cornerRadius(12)
-            
         }
+        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 56)
+        .background(transactionViewModel.hasBonus ? ColorsUi.APC_DarkBlue : ColorsUi.APC_BonusBannerBackground)
+        .animation(.easeInOut(duration: 0.2))
+        .cornerRadius(12)
     }
 }
