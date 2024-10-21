@@ -12,9 +12,9 @@ import UIKit
 internal struct AdyenViewControllerWrapper<ViewControllerType: UIViewController>: UIViewControllerRepresentable {
     
     internal let viewController: ViewControllerType
-    internal let orientation: OrientationEnum
+    internal let orientation: Orientation
     
-    internal init(viewController: ViewControllerType, orientation: OrientationEnum) {
+    internal init(viewController: ViewControllerType, orientation: Orientation) {
         self.viewController = viewController
         self.orientation = orientation
     }

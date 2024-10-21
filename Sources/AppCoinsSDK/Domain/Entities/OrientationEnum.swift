@@ -7,7 +7,7 @@
 
 import Foundation
 
-internal enum OrientationEnum {
+internal enum Orientation {
     case landscape
     case portrait
 }

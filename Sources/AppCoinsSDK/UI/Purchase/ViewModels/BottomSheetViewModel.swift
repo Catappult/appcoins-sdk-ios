@@ -46,7 +46,7 @@ internal class BottomSheetViewModel: ObservableObject {
     internal var currencyUseCases: CurrencyUseCases = CurrencyUseCases.shared
     
     // Device Orientation
-    @Published var orientation: OrientationEnum = .portrait
+    @Published var orientation: Orientation = .portrait
     
     // Keyboard Dismiss
     @Published var isKeyboardVisible: Bool = false
@@ -91,7 +91,7 @@ internal class BottomSheetViewModel: ObservableObject {
         }
     }
     
-    internal func setOrientation(orientation: OrientationEnum) {
+    internal func setOrientation(orientation: Orientation) {
         self.orientation = orientation
     }
     
