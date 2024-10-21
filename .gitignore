@@ -71,3 +71,9 @@ mono_crash.*
 
 ## macOS
 .DS_Store
+
+# Env File
+.env
+
+# CI/CD 
+dependencies/
