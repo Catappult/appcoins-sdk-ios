@@ -1,5 +1,5 @@
 //
-//  OneStoredCard.swift
+//  SingleStoredCard.swift
 //
 //
 //  Created by Graciano Caldeira on 18/10/2024.
@@ -8,7 +8,7 @@
 import SwiftUI
 import Adyen
 
-struct OneStoredCard: View {
+struct SingleStoredCard: View {
     
     @ObservedObject var viewModel: BottomSheetViewModel
     @ObservedObject var adyenController: AdyenController

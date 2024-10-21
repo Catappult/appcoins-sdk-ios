@@ -86,7 +86,7 @@ internal struct CreditCardChoiceBottomSheet: View {
                                             
                                             if storedPaymentMethods.count == 1 {
                                                 if let paymentMethod = storedPaymentMethods.first as? StoredCardPaymentMethod {
-                                                    OneStoredCard(viewModel: viewModel, adyenController: adyenController, paymentMethod: paymentMethod)
+                                                    SingleStoredCard(viewModel: viewModel, adyenController: adyenController, paymentMethod: paymentMethod)
                                                 }
                                             } else {
                                                 MultipleStoredCards(viewModel: viewModel, adyenController: adyenController, chosenStoredCard: $chosenStoredCard, storedPaymentMethods: storedPaymentMethods)
@@ -152,7 +152,7 @@ internal struct CreditCardChoiceBottomSheet: View {
                     
                     if storedPaymentMethods.count == 1 {
                         if let paymentMethod = storedPaymentMethods.first as? StoredCardPaymentMethod {
-                            OneStoredCard(viewModel: viewModel, adyenController: adyenController, paymentMethod: paymentMethod)
+                            SingleStoredCard(viewModel: viewModel, adyenController: adyenController, paymentMethod: paymentMethod)
                         }
                     } else {
                         VStack(spacing: 0) {
