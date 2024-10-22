@@ -17,28 +17,28 @@ public enum AppCoinsSDKError: Error {
     case unknown(debugInfo: DebugInfo)
     
     // Convenience initializers for common error types
-    public static func networkError(message: String, description: String) -> AppCoinsSDKError {
-        return .networkError(debugInfo: DebugInfo(message: message, description: description))
+    public static func networkError(message: String, description: String, request: DebugRequestInfo? = nil) -> AppCoinsSDKError {
+        return .networkError(debugInfo: DebugInfo(message: message, description: description, request: request))
     }
     
-    public static func systemError(message: String, description: String) -> AppCoinsSDKError {
-        return .systemError(debugInfo: DebugInfo(message: message, description: description))
+    public static func systemError(message: String, description: String, request: DebugRequestInfo? = nil) -> AppCoinsSDKError {
+        return .systemError(debugInfo: DebugInfo(message: message, description: description, request: request))
     }
     
-    public static func notEntitled(message: String, description: String) -> AppCoinsSDKError {
-        return .notEntitled(debugInfo: DebugInfo(message: message, description: description))
+    public static func notEntitled(message: String, description: String, request: DebugRequestInfo? = nil) -> AppCoinsSDKError {
+        return .notEntitled(debugInfo: DebugInfo(message: message, description: description, request: request))
     }
     
-    public static func productUnavailable(message: String, description: String) -> AppCoinsSDKError {
-        return .productUnavailable(debugInfo: DebugInfo(message: message, description: description))
+    public static func productUnavailable(message: String, description: String, request: DebugRequestInfo? = nil) -> AppCoinsSDKError {
+        return .productUnavailable(debugInfo: DebugInfo(message: message, description: description, request: request))
     }
     
-    public static func purchaseNotAllowed(message: String, description: String) -> AppCoinsSDKError {
-        return .purchaseNotAllowed(debugInfo: DebugInfo(message: message, description: description))
+    public static func purchaseNotAllowed(message: String, description: String, request: DebugRequestInfo? = nil) -> AppCoinsSDKError {
+        return .purchaseNotAllowed(debugInfo: DebugInfo(message: message, description: description, request: request))
     }
     
-    public static func unknown(message: String, description: String) -> AppCoinsSDKError {
-        return .unknown(debugInfo: DebugInfo(message: message, description: description))
+    public static func unknown(message: String, description: String, request: DebugRequestInfo? = nil) -> AppCoinsSDKError {
+        return .unknown(debugInfo: DebugInfo(message: message, description: description, request: request))
     }
 }
 
@@ -54,14 +54,16 @@ internal class DebugInfo {
     }
 }
 
+import Foundation
+
 internal class DebugRequestInfo {
     internal let url: String
     internal let method: RequestMethod
     internal let body: String
     internal let responseData: String
     internal let statusCode: Int
-    
-    internal init(request: URLRequest, responseData: Data?, statusCode: Int) {
+
+    internal init(request: URLRequest, responseData: Data?, response: URLResponse?) {
         // Extract URL as string, fallback to empty string if unavailable
         self.url = request.url?.absoluteString ?? "Unknown URL"
         
@@ -86,7 +88,11 @@ internal class DebugRequestInfo {
             self.responseData = "No response data"
         }
         
-        // Set the status code (passed as a parameter)
-        self.statusCode = statusCode
+        // Set the status code from the response, defaulting to 0 if the response is nil or not an HTTPURLResponse
+        if let httpResponse = response as? HTTPURLResponse {
+            self.statusCode = httpResponse.statusCode
+        } else {
+            self.statusCode = 0 // or handle it differently if desired
+        }
     }
 }

@@ -27,14 +27,21 @@ internal class APPCServiceClient : APPCService {
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
                 if let error = error {
                     if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
-                        result(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url)")))
+                        result(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                     } else {
-                        result(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url)")))
+                        result(.failure(.noInternet(message: "Service Failed", description: "Could not get internet connection to \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                     }
                 } else {
-                    if let data = data, let findResult = try? JSONDecoder().decode(GuestWalletRaw.self, from: data) {
-                        result(.success(findResult))
-                    } else { result(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url) with response: \(String(data: data ?? Data(), encoding: .utf8))"))) }
+                    do {
+                        if let data = data {
+                            let findResult = try JSONDecoder().decode(GuestWalletRaw.self, from: data)
+                            result(.success(findResult))
+                        } else {
+                            result(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url)")))
+                        }
+                    } catch {
+                        result(.failure(.failed(message: "Service Failed", description: "Failed to decode response from endpoint: \(url). Error: \(error.localizedDescription)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                    }
                 }
                 
             }

@@ -8,6 +8,6 @@
 import Foundation
 
 internal enum APPCServiceError: Error {
-    case failed(message: String, description: String)
-    case noInternet(message: String, description: String)
+    case failed(message: String, description: String, request: DebugRequestInfo? = nil)
+    case noInternet(message: String, description: String, request: DebugRequestInfo? = nil)
 }
