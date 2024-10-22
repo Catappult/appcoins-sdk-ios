@@ -667,8 +667,8 @@
         },
         "mr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Tap to go back to the game"
+            "state" : "translated",
+            "value" : "खेळात परत जाण्यासाठी टॅप करा"
           }
         },
         "ms" : {
@@ -774,8 +774,8 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Bonus not available with this payment method"
+            "state" : "translated",
+            "value" : "المكافأة غير متوفرة مع وسيلة الدفع هذه"
           }
         },
         "bn" : {
@@ -786,8 +786,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Bonus not available with this payment method"
+            "state" : "translated",
+            "value" : "Bonus nicht verfügbar bei dieser Zahlungsmethode"
           }
         },
         "el" : {
@@ -804,8 +804,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Bonus not available with this payment method"
+            "state" : "translated",
+            "value" : "Bonus no disponible con este método de pago."
           }
         },
         "fa" : {
@@ -816,8 +816,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Bonus not available with this payment method"
+            "state" : "translated",
+            "value" : "Bonus non disponible avec ce mode de paiement"
           }
         },
         "hi" : {
@@ -828,8 +828,8 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Bonus not available with this payment method"
+            "state" : "translated",
+            "value" : "A bónusz nem használható ezzel a fizetési móddal"
           }
         },
         "id" : {
@@ -846,20 +846,20 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Bonus not available with this payment method"
+            "state" : "translated",
+            "value" : "このお支払い方法ではボーナスはご利用いただけません。"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Bonus not available with this payment method"
+            "state" : "translated",
+            "value" : "이 결제 수단에서는 보너스를 사용할 수 없습니다"
           }
         },
         "mr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Bonus not available with this payment method"
+            "state" : "translated",
+            "value" : "ह्या पेमेंट पद्धतीसह बोनस उपलब्ध नाही"
           }
         },
         "ms" : {
@@ -888,8 +888,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Bonus not available with this payment method"
+            "state" : "translated",
+            "value" : "Bonus niedostępny z tą metodą płatności"
           }
         },
         "pt-BR" : {
@@ -906,20 +906,20 @@
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Bonus not available with this payment method"
+            "state" : "translated",
+            "value" : "Bonus nedisponibil cu această metodă de plată"
           }
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Bonus not available with this payment method"
+            "state" : "translated",
+            "value" : "Бонус недоступен при данном способе оплаты"
           }
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Bonus not available with this payment method"
+            "state" : "translated",
+            "value" : "Bonus nije dostupan uz ovaj način plaćanja"
           }
         },
         "th" : {
@@ -930,14 +930,14 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Bonus not available with this payment method"
+            "state" : "translated",
+            "value" : "Bonus bu ödeme yöntemiyle kullanılamıyor"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Bonus not available with this payment method"
+            "state" : "translated",
+            "value" : "Бонус не доступний при даному способі оплати"
           }
         },
         "vi" : {
@@ -948,8 +948,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Bonus not available with this payment method"
+            "state" : "translated",
+            "value" : "此支付方式不提供奖金"
           }
         },
         "zh-Hant" : {
@@ -3738,8 +3738,8 @@
         },
         "mr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Retry Connection"
+            "state" : "translated",
+            "value" : "कनेक्शनचा पुन्हा प्रयत्न करा"
           }
         },
         "ms" : {
@@ -6150,8 +6150,8 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your card"
+            "state" : "translated",
+            "value" : "بطاقتك"
           }
         },
         "bn" : {
@@ -6192,8 +6192,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your card"
+            "state" : "translated",
+            "value" : "Votre carte"
           }
         },
         "hi" : {
@@ -6204,8 +6204,8 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your card"
+            "state" : "translated",
+            "value" : "A kártyád"
           }
         },
         "id" : {
@@ -6222,20 +6222,20 @@
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your card"
+            "state" : "translated",
+            "value" : " ご利用カード"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your card"
+            "state" : "translated",
+            "value" : "귀하의 카드"
           }
         },
         "mr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your card"
+            "state" : "translated",
+            "value" : "आपले कार्ड"
           }
         },
         "ms" : {
@@ -6282,20 +6282,20 @@
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your card"
+            "state" : "translated",
+            "value" : "Cardul tău"
           }
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your card"
+            "state" : "translated",
+            "value" : "Ваша карта"
           }
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your card"
+            "state" : "translated",
+            "value" : "Vaša kartica"
           }
         },
         "th" : {
@@ -6306,8 +6306,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your card"
+            "state" : "translated",
+            "value" : "Kartın"
           }
         },
         "uk" : {
@@ -6324,8 +6324,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your card"
+            "state" : "translated",
+            "value" : "您所使用的卡"
           }
         },
         "zh-Hant" : {
