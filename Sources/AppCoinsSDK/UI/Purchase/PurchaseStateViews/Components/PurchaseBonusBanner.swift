@@ -47,7 +47,7 @@ struct PurchaseBonusBanner: View {
                 VStack {}.frame(height: 4)
                 
                 HStack(spacing: 0) {
-                    Image("pink-wallet", bundle: Bundle.module)
+                    Image("white-wallet", bundle: Bundle.module)
                         .resizable()
                         .edgesIgnoringSafeArea(.all)
                         .frame(width: 16, height: 14)
