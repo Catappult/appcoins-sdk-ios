@@ -46,10 +46,43 @@ struct PurchaseBonusBanner: View {
                 
                 VStack {}.frame(height: 4)
                 
-                Text(Constants.canSeeBonusText)
-                    .font(FontsUi.APC_Caption2)
-                    .foregroundColor(ColorsUi.APC_Gray)
-                    .frame(height: 13)
+//                Text(Constants.canSeeBonusText)
+//                    .font(FontsUi.APC_Caption2)
+//                    .foregroundColor(ColorsUi.APC_Gray)
+//                    .frame(height: 13)
+                
+                HStack(spacing: 0) {
+                    Image("pink-wallet", bundle: Bundle.module)
+                        .resizable()
+                        .edgesIgnoringSafeArea(.all)
+                        .frame(width: 16, height: 14)
+                    
+                    if let balanceCurrency = transactionViewModel.transaction?.balanceCurrency.sign, let balanceValue = transactionViewModel.transaction?.balanceAmount {
+                        
+                        VStack {}.frame(width: 6.22)
+                        
+                        StyledText(
+                            String(format: Constants.walletBalance, "*\(balanceCurrency)\(String(format: "%.2f", balanceValue))*"),
+                            textStyle: FontsUi.APC_Caption1_Bold,
+                            boldStyle: FontsUi.APC_Caption1_Bold,
+                            textColorRegular: ColorsUi.APC_White,
+                            textColorBold: ColorsUi.APC_White)
+                        
+                    } else {
+                        
+                        VStack {}.frame(width: 6.22)
+                        
+                        Text(String(format: Constants.walletBalance, ""))
+                            .font(FontsUi.APC_Caption1_Bold)
+                            .foregroundColor(ColorsUi.APC_Pink)
+                        
+                        Text("")
+                            .skeleton(with: true)
+                            .font(FontsUi.APC_Caption1_Bold)
+                            .opacity(0.1)
+                            .frame(width: 35, height: 15)
+                    }
+                }
                 
                 VStack {}.frame(height: 10)
             } else {
