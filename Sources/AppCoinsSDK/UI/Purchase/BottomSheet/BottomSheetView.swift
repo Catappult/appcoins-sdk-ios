@@ -11,16 +11,23 @@ import UIKit
 
 internal struct BottomSheetView: View {
     
-    @ObservedObject var viewModel : BottomSheetViewModel = BottomSheetViewModel.shared
+    @ObservedObject var viewModel: BottomSheetViewModel = BottomSheetViewModel.shared
     @ObservedObject var adyenController: AdyenController = AdyenController.shared
-    @ObservedObject var paypalViewModel : PayPalDirectViewModel = PayPalDirectViewModel.shared
+    @ObservedObject var paypalViewModel: PayPalDirectViewModel = PayPalDirectViewModel.shared
     
     @State private var isSafeAreaPresented = false
     
     internal var body: some View {
         ZStack {
             
-            Color.black.opacity(0.3).onTapGesture { viewModel.dismiss() }
+            Color.black.opacity(0.3)
+                .onTapGesture {
+                    if viewModel.isKeyboardVisible {
+                        AdyenController.shared.presentableComponent?.viewController.view.findAndResignFirstResponder()
+                    } else {
+                        viewModel.dismiss()
+                    }
+                }
                 .ignoresSafeArea()
             
             ZStack {
@@ -39,21 +46,20 @@ internal struct BottomSheetView: View {
                         SuccessAskForInstallBottomSheet(viewModel: viewModel)
                     }.ignoresSafeArea()
                     
-                
                 case .successAskForSync:
                     VStack(spacing: 0) {
                         Color.clear.frame(maxHeight: .infinity)
                         
                         SuccessAskForSyncBottomSheet(viewModel: viewModel)
                     }.ignoresSafeArea()
-                
+                    
                 case .syncProcessing:
                     VStack(spacing: 0) {
                         Color.clear.frame(maxHeight: .infinity)
                         
                         SyncProcessingBottomSheet()
                     }.ignoresSafeArea()
-                
+                    
                 case .syncSuccess:
                     VStack(spacing: 0) {
                         Color.clear.frame(maxHeight: .infinity)
@@ -82,7 +88,7 @@ internal struct BottomSheetView: View {
                     if viewModel.purchaseState == .processing {
                         ProcessingBottomSheet(viewModel: viewModel)
                     }
-                
+                    
                     if viewModel.purchaseState == .success {
                         SuccessBottomSheet(viewModel: viewModel)
                     }
@@ -94,7 +100,6 @@ internal struct BottomSheetView: View {
                     if viewModel.purchaseState == .nointernet {
                         NoInternetBottomSheet(viewModel: viewModel)
                     }
-                    
                 }
                 
                 // Workaround to place multiple sheets on the same view on older iOS versions
@@ -102,36 +107,19 @@ internal struct BottomSheetView: View {
                 HStack(spacing: 0) {}
                     .sheet(isPresented: $paypalViewModel.presentPayPalSheet, onDismiss: paypalViewModel.dismissPayPalView) {
                         if let presentURL = paypalViewModel.presentPayPalSheetURL {
-                            PayPalWebView(url: presentURL, method: paypalViewModel.presentPayPalSheetMethod ?? "POST", successHandler: paypalViewModel.createBillingAgreementAndFinishTransaction, cancelHandler: paypalViewModel.cancelBillingAgreementTokenPayPal)
+                                PayPalWebView(url: presentURL, method: paypalViewModel.presentPayPalSheetMethod ?? "POST", successHandler: paypalViewModel.createBillingAgreementAndFinishTransaction, cancelHandler: paypalViewModel.cancelBillingAgreementTokenPayPal)
                         }
                     }
                 
                 HStack(spacing: 0) {}
                     .sheet(isPresented: $adyenController.presentAdyenRedirect) {
                         if let viewController = adyenController.presentableComponent?.viewController {
-                            AdyenViewControllerWrapper(viewController: viewController)
+                            AdyenViewControllerWrapper(viewController: viewController, orientation: viewModel.orientation)
+                                .ignoresSafeArea(.all)
                         }
                     }
-                
-                // Safe Area color
-                VStack(spacing: 0) {
-                    Color.clear
-                        .frame(maxHeight: .infinity)
-                    
-                    if [.paying, .adyen].contains(viewModel.purchaseState) {
-                        if adyenController.state != .storedCreditCard {
-                            ColorsUi.APC_LightGray
-                                .frame(height: Utils.bottomSafeAreaHeight)
-                                .offset(y: isSafeAreaPresented ? 0 : UIScreen.main.bounds.height)
-                                .transition(.move(edge: isSafeAreaPresented ? .bottom : .top))
-                                .onAppear { withAnimation { isSafeAreaPresented = true } }
-                        }
-                    } else if ![.initialAskForSync, .successAskForInstall, .successAskForSync].contains(viewModel.purchaseState) {
-                        ColorsUi.APC_DarkBlue
-                            .frame(height: Utils.bottomSafeAreaHeight)
-                    }
-                }.ignoresSafeArea()
             }
+            .ignoresSafeArea(.all)
             .offset(y: viewModel.isBottomSheetPresented ? 0 : UIScreen.main.bounds.height)
             .transition(.move(edge: viewModel.isBottomSheetPresented ? .bottom : .top))
             .onAppear { withAnimation { viewModel.isBottomSheetPresented = true } }

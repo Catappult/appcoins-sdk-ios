@@ -770,6 +770,7 @@
       }
     },
     "bonus_not_available" : {
+      "comment" : "Bonus not available with this payment method",
       "extractionState" : "manual",
       "localizations" : {
         "ar" : {
@@ -6146,9 +6147,7 @@
     },
     "your_card_title" : {
       "comment" : "Your card",
-      "extractionState" : "manual",
       "localizations" : {
-<<<<<<< HEAD
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6173,14 +6172,11 @@
             "value" : "Your card"
           }
         },
-=======
->>>>>>> dev
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Your card"
           }
-<<<<<<< HEAD
         },
         "es" : {
           "stringUnit" : {
@@ -6337,8 +6333,6 @@
             "state" : "new",
             "value" : "Your card"
           }
-=======
->>>>>>> dev
         }
       }
     }
