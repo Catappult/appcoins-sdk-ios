@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "IndicativeEvent.h"
+#import <IndicativeLibrary/IndicativeEvent.h>
 
 @interface Indicative : NSObject
 

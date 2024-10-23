@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import ActivityIndicatorView
+@_implementationOnly import ActivityIndicatorView
 
 internal struct AdyenLoadingBottomSheet: View {
     

@@ -7,7 +7,7 @@
 
 import Foundation
 import SwiftUI
-import ActivityIndicatorView
+@_implementationOnly import ActivityIndicatorView
 
 internal struct CreditCardBottomSheet: View {
     

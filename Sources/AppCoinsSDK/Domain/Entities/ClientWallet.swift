@@ -8,8 +8,8 @@
 import Foundation
 import CryptoKit
 import CryptoSwift
-import web3swift
-import Web3Core
+@_implementationOnly import web3swift
+@_implementationOnly import Web3Core
 
 internal class ClientWallet: Wallet, Codable {
     

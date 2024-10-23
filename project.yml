@@ -22,7 +22,7 @@ targets:
     options:
       transitivelyLinkDependencies: False
     dependencies:
-      - target: IndicativeLibrary
+      - framework: Sources/AppCoinsSDK/Frameworks/IndicativeLibrary.xcframework
       - framework: Sources/AppCoinsSDK/Frameworks/PPRiskMagnes.xcframework
       - package: web3swift
       - package: CryptoSwift
@@ -41,15 +41,15 @@ targets:
       - package: ActivityIndicatorView
       - package: DeviceKit
 
-  IndicativeLibrary:
-    type: framework
-    platform: iOS
-    sources: [Sources/Indicative]
-    publicHeadersPath: Sources/Indicative/Headers
-    settings:
-      base:
-        HEADER_SEARCH_PATHS: Sources/Indicative/Headers
-        DEFINES_MODULE: YES
+#  IndicativeLibrary:
+#    type: framework
+#    platform: iOS
+#    sources: [Sources/Indicative]
+#    publicHeadersPath: Sources/Indicative/Headers
+#    settings:
+#      base:
+#        HEADER_SEARCH_PATHS: Sources/Indicative/Headers
+#        DEFINES_MODULE: YES
 
   # PPRiskMagnes:
   #   type: framework
@@ -80,7 +80,7 @@ packages:
     minorVersion: 1.8.0
   adyen-ios:
     url: https://github.com/Adyen/adyen-ios.git
-    exactVersion: 5.1.0
+    exactVersion: 5.12.0
   ActivityIndicatorView:
     url: https://github.com/exyte/ActivityIndicatorView.git
     minorVersion: 1.1.0

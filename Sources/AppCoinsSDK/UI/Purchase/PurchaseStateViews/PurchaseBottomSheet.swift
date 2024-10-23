@@ -7,7 +7,6 @@
 
 import Foundation
 import SwiftUI
-import URLImage
 import SkeletonUI
 
 internal struct PurchaseBottomSheet: View {

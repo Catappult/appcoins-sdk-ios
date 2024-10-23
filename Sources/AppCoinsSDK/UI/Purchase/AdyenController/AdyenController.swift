@@ -110,11 +110,11 @@ internal class AdyenController : AdyenSessionDelegate, PresentationDelegate, Obs
         DispatchQueue.main.async { self.presentableComponent = component }
     }
     
-    internal func didComplete(with resultCode: SessionPaymentResultCode, component: Adyen.Component, session: AdyenSession) {
+    func didComplete(with result: AdyenSessionResult, component: any Adyen.Component, session: AdyenSession) {
         
         if component is RedirectComponent { self.presentAdyenRedirect = false }
         
-        switch resultCode {
+        switch result.resultCode {
             
         // The payment was successfully authorised.
         case .authorised:

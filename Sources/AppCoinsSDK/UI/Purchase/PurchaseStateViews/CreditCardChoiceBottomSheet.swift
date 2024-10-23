@@ -8,7 +8,6 @@
 import SwiftUI
 import Adyen
 import AdyenCard
-import URLImage
 
 internal struct CreditCardChoiceBottomSheet: View {
     
