@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "add_card_button" : {
       "comment" : "Add new card",
       "extractionState" : "manual",
