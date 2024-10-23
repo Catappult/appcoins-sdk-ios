@@ -792,8 +792,8 @@
         },
         "el" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Bonus not available with this payment method"
+            "state" : "translated",
+            "value" : "Το μπόνους δεν είναι διαθέσιμο με αυτόν τον τρόπο πληρωμής"
           }
         },
         "en" : {
@@ -834,14 +834,14 @@
         },
         "id" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Bonus not available with this payment method"
+            "state" : "translated",
+            "value" : "Bonus tidak tersedia dengan metode pembayaran ini"
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Bonus not available with this payment method"
+            "state" : "translated",
+            "value" : "Bonus non disponibile con questo metodo di pagamento"
           }
         },
         "ja" : {
@@ -870,14 +870,14 @@
         },
         "my" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Bonus not available with this payment method"
+            "state" : "translated",
+            "value" : "ဤငွေပေးချေမှုနည်းလမ်းဖြင့် အပိုဆုမရနိုင်ပါ။"
           }
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Bonus not available with this payment method"
+            "state" : "translated",
+            "value" : "Bonus is niet beschikbaar met deze betaalmethode"
           }
         },
         "pa" : {
@@ -894,14 +894,14 @@
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Bonus not available with this payment method"
+            "state" : "translated",
+            "value" : "Esse método de pagamento não oferece bônus."
           }
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Bonus not available with this payment method"
+            "state" : "translated",
+            "value" : "Bónus não disponível com este método de pagamento"
           }
         },
         "ro" : {
@@ -924,8 +924,8 @@
         },
         "th" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Bonus not available with this payment method"
+            "state" : "translated",
+            "value" : "โบนัสไม่สามารถใช้ได้กับวิธีการชำระเงินนี้"
           }
         },
         "tr" : {
@@ -6210,14 +6210,14 @@
         },
         "id" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your card"
+            "state" : "translated",
+            "value" : "Kartu Anda"
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your card"
+            "state" : "translated",
+            "value" : "La tua carta"
           }
         },
         "ja" : {
@@ -6252,8 +6252,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your card"
+            "state" : "translated",
+            "value" : "Jouw kaart"
           }
         },
         "pa" : {
@@ -6276,8 +6276,8 @@
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your card"
+            "state" : "translated",
+            "value" : "O teu cartão"
           }
         },
         "ro" : {
@@ -6300,8 +6300,8 @@
         },
         "th" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your card"
+            "state" : "translated",
+            "value" : "บัตรของคุณ"
           }
         },
         "tr" : {
