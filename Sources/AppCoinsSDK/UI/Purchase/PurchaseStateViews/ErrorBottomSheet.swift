@@ -83,10 +83,10 @@ internal struct ErrorBottomSheet: View {
                             .foregroundColor(ColorsUi.APC_Pink)
                     }
                 }
-                .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 320 : UIScreen.main.bounds.width - 48, height: 50)
+                .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
                 .frame(maxHeight: .infinity, alignment: .bottom)
                 
-                VStack {}.frame(height: 47)
+                VStack {}.frame(height: Utils.bottomSafeAreaHeight == 0 ? 5 : 28)
             }
         }
         .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: viewModel.orientation == .landscape ? UIScreen.main.bounds.height * 0.9 : 420)
