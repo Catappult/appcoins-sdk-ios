@@ -6147,12 +6147,7 @@
     },
     "your_card_title" : {
       "comment" : "Your card",
-<<<<<<< HEAD
-=======
-      "extractionState" : "manual",
->>>>>>> dev
       "localizations" : {
-<<<<<<< HEAD
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6177,14 +6172,11 @@
             "value" : "Your card"
           }
         },
-=======
->>>>>>> dev
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Your card"
           }
-<<<<<<< HEAD
         },
         "es" : {
           "stringUnit" : {
@@ -6341,8 +6333,6 @@
             "state" : "new",
             "value" : "Your card"
           }
-=======
->>>>>>> dev
         }
       }
     }
