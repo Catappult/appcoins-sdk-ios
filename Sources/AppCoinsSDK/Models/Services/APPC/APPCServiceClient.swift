@@ -29,7 +29,7 @@ internal class APPCServiceClient : APPCService {
                     if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
                         result(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                     } else {
-                        result(.failure(.noInternet(message: "Service Failed", description: "Could not get internet connection to \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                        result(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                     }
                 } else {
                     do {
