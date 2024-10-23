@@ -14,8 +14,6 @@ internal struct CreateBAPayPalTransactionRaw: Codable {
     internal let priceCurrency: String
     internal let product: String?
     internal let type: String
-    internal let developerWa: String
-    internal let userWa: String
     internal let channel: String
     internal let platform: String
     internal let guestUID: String?
@@ -29,8 +27,6 @@ internal struct CreateBAPayPalTransactionRaw: Codable {
         case priceCurrency = "price.currency"
         case product = "product"
         case type = "type"
-        case developerWa = "wallets.developer"
-        case userWa = "wallets.user"
         case channel = "channel"
         case platform = "platform"
         case guestUID = "entity.guest_id"
@@ -44,7 +40,7 @@ internal struct CreateBAPayPalTransactionRaw: Codable {
         let normalizedPrice = parameters.value.replacingOccurrences(of: ",", with: ".")
         
         return CreateBAPayPalTransactionRaw(
-            domain: parameters.domain, price: normalizedPrice, priceCurrency: parameters.currency, product: parameters.product, type: "INAPP", developerWa: parameters.developerWa, userWa: parameters.userWa, channel: "IOS", platform: "IOS", guestUID: parameters.guestUID, oemID: parameters.oemID, metadata: parameters.metadata, reference: parameters.reference
+            domain: parameters.domain, price: normalizedPrice, priceCurrency: parameters.currency, product: parameters.product, type: "INAPP", channel: "IOS", platform: "IOS", guestUID: parameters.guestUID, oemID: parameters.oemID, metadata: parameters.metadata, reference: parameters.reference
         )
     }
     

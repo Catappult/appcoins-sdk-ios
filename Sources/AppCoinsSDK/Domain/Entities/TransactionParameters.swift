@@ -11,8 +11,6 @@ internal struct TransactionParameters {
     
     internal let value: String
     internal let currency: String
-    internal let developerWa: String
-    internal let userWa: String
     internal let domain: String
     internal let product: String
     internal let appcAmount: String
@@ -22,11 +20,9 @@ internal struct TransactionParameters {
     internal let metadata: String?
     internal let reference: String?
 
-    init(value: String, currency: String, developerWa: String, userWa: String, domain: String, product: String, appcAmount: String, method: String? = nil, guestUID: String?, oemID: String?, metadata: String?, reference: String?) {
+    init(value: String, currency: String, domain: String, product: String, appcAmount: String, method: String? = nil, guestUID: String?, oemID: String?, metadata: String?, reference: String?) {
         self.value = value
         self.currency = currency
-        self.developerWa = developerWa
-        self.userWa = userWa
         self.domain = domain
         self.product = product
         self.appcAmount = appcAmount

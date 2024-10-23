@@ -774,6 +774,7 @@
     },
     "bonus_not_available" : {
       "comment" : "Bonus not available with this payment method",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -5969,6 +5970,10 @@
     },
     "your_card_title" : {
       "comment" : "Your card",
+<<<<<<< HEAD
+=======
+      "extractionState" : "manual",
+>>>>>>> dev
       "localizations" : {
         "en" : {
           "stringUnit" : {
