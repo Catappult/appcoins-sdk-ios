@@ -4,6 +4,7 @@ from urllib.parse import urlparse
 import os
 from dotenv import load_dotenv
 import subprocess
+import yaml
 
 load_dotenv()
 
@@ -206,12 +207,80 @@ def download_github_repo(repo_url, target_dir, branch_or_tag):
     except subprocess.CalledProcessError as e:
         print(f"Error during cloning or checking out: {e}")
 
+def modify_library_products(content: str, product_type: str) -> str:
+    # Regex pattern to find .library products and insert type as an argument
+    product_pattern = r'(\.library\(\s*name:\s*"[^"]+",\s*targets:\s*\[\s*"[^"]+"\s*\])'
+    modified_content = re.sub(product_pattern, r'\1,\n            type: .dynamic', content)
+    return modified_content
+
+def create_yml_project_file(dependencies):
+    # Data structure representing the .yml file content
+    data = {
+        'name': 'AppCoinsSDK',
+        'options': {
+            'bundleIdPrefix': 'com.aptoide',
+            'deploymentTarget': {
+                'iOS': '14.0'
+            }
+        },
+        'settings': {
+            'base': {
+                'SWIFT_VERSION': '5.5',
+                'CODE_SIGN_IDENTITY': "iPhone Developer",
+                'CODE_SIGN_STYLE': "Automatic",
+            }
+        },
+        'targets': {
+            'AppCoinsSDK': {
+                'type': 'framework',
+                'platform': 'iOS',
+                'sources': ['Sources/AppCoinsSDK'],
+                'resources': ['Sources/AppCoinsSDK/Localization'],
+                'settings': {
+                    'base': {
+                        'INFOPLIST_FILE': 'Sources/AppCoinsSDK/Info.plist'
+                    }
+                },
+                'options': {
+                    'transitivelyLinkDependencies': True
+                },
+                'dependencies': [
+                    {'target': 'IndicativeLibrary'},
+                    {'framework': 'Sources/AppCoinsSDK/Frameworks/PPRiskMagnes.xcframework'}
+                ]
+            },
+            'IndicativeLibrary': {
+                'type': 'framework',
+                'platform': 'iOS',
+                'sources': ['Sources/Indicative'],
+                'publicHeadersPath': 'Sources/Indicative/Headers',
+                'settings': {
+                    'base': {
+                        'HEADER_SEARCH_PATHS': 'Sources/Indicative/Headers',
+                        'DEFINES_MODULE': 'YES'
+                    }
+                }
+            }
+        },
+        'packages': {}
+    }
+
+    for dependency in dependencies:
+        data['targets']['AppCoinsSDK']['dependencies'].append({'package': dependency['name']})
+        data['packages'][dependency['name']] = {'path': dependency['path']}
+
+    # Write the data to a .yml file
+    yml_file_path = './project.yml'
+    with open(yml_file_path, 'w') as yml_file:
+        yaml.dump(data, yml_file, sort_keys=False)
+
+    yml_file_path
+
 if __name__ == "__main__":
     file_path = "Package.swift"
     package_swift_content = read_package_swift_file(file_path)
     dependencies = extract_dependencies(package_swift_content)
 
-    # Print the extracted dependencies
     for dependency in dependencies:
         repo_url = dependency['url']
         repo_name = dependency['name']
@@ -232,4 +301,15 @@ if __name__ == "__main__":
         repo_dir = f'dependencies/{repo_name}'
         os.makedirs(repo_dir, exist_ok=True)
 
+        dependency['path'] = repo_dir
+
         download_github_repo(repo_url, repo_dir, target)
+
+        # package_path = f'{repo_dir}/Package.swift'
+        # package_swift_content = read_package_swift_file(package_path)
+        # modified_swift_content = modify_library_products(package_swift_content, product_type='.dynamic')
+
+
+    # create_yml_project_file(dependencies)
+
+

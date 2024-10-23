@@ -1,0 +1,61 @@
+name: AppCoinsSDK
+options:
+  bundleIdPrefix: com.aptoide
+  deploymentTarget:
+    iOS: '14.0'
+settings:
+  base:
+    SWIFT_VERSION: '5.5'
+    CODE_SIGN_IDENTITY: iPhone Developer
+    CODE_SIGN_STYLE: Automatic
+targets:
+  AppCoinsSDK:
+    type: framework
+    platform: iOS
+    sources:
+    - Sources/AppCoinsSDK
+    resources:
+    - Sources/AppCoinsSDK/Localization
+    settings:
+      base:
+        INFOPLIST_FILE: Sources/AppCoinsSDK/Info.plist
+    options:
+      transitivelyLinkDependencies: true
+    dependencies:
+    - target: IndicativeLibrary
+    - framework: Sources/AppCoinsSDK/Frameworks/PPRiskMagnes.xcframework
+    - package: web3swift
+    - package: CryptoSwift
+    - package: url-image
+    - package: SkeletonUI
+    - package: SwiftyRSA
+    - package: adyen-ios
+    - package: ActivityIndicatorView
+    - package: DeviceKit
+  IndicativeLibrary:
+    type: framework
+    platform: iOS
+    sources:
+    - Sources/Indicative
+    publicHeadersPath: Sources/Indicative/Headers
+    settings:
+      base:
+        HEADER_SEARCH_PATHS: Sources/Indicative/Headers
+        DEFINES_MODULE: 'YES'
+packages:
+  web3swift:
+    path: dependencies/web3swift
+  CryptoSwift:
+    path: dependencies/CryptoSwift
+  url-image:
+    path: dependencies/url-image
+  SkeletonUI:
+    path: dependencies/SkeletonUI
+  SwiftyRSA:
+    path: dependencies/SwiftyRSA
+  adyen-ios:
+    path: dependencies/adyen-ios
+  ActivityIndicatorView:
+    path: dependencies/ActivityIndicatorView
+  DeviceKit:
+    path: dependencies/DeviceKit
