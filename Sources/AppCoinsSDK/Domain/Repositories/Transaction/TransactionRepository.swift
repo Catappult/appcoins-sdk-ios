@@ -12,7 +12,6 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
     
     private let gamificationService: AppCoinGamificationService = AppCoinGamificationServiceClient()
     private let billingService: AppCoinBillingService = AppCoinBillingClient()
-    private let aptoideService: AptoideService = AptoideServiceClient()
     private let productService: AppCoinProductService = AppCoinProductServiceClient()
     private let walletService: WalletLocalService = WalletLocalClient()
     private let userPreferencesService: UserPreferencesLocalService = UserPreferencesLocalClient()
@@ -45,19 +44,6 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
                 } else {
                     completion(.failure(.failed))
                 }
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
-    
-    internal func getDeveloperAddress(package: String, completion: @escaping (Result<String, AptoideServiceError>) -> Void) {
-        aptoideService.getDeveloperWalletAddressByPackageName(package: package) {
-            result in
-            
-            switch result {
-            case .success(let addressRaw):
-                completion(.success(addressRaw.data.address))
             case .failure(let error):
                 completion(.failure(error))
             }
