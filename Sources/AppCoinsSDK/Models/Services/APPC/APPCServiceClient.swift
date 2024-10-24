@@ -8,7 +8,7 @@
 import Foundation
 
 internal class APPCServiceClient : APPCService {
-
+    
     private let endpoint: String
     
     internal init(endpoint: String = BuildConfiguration.APPCServiceURL) {
@@ -43,10 +43,8 @@ internal class APPCServiceClient : APPCService {
                         result(.failure(.failed(message: "Service Failed", description: "Failed to decode response from endpoint: \(url). Error: \(error.localizedDescription)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                     }
                 }
-                
             }
             task.resume()
         }
     }
-    
 }
