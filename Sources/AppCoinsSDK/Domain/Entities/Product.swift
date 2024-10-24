@@ -1,6 +1,6 @@
 //
 //  Product.swift
-//  
+//
 //
 //  Created by aptoide on 15/05/2023.
 //
@@ -57,12 +57,12 @@ public struct Product {
                         continuation.resume(returning: finalProducts)
                     case .failure(let failure):
                         switch failure {
-                        case .failed:
-                            continuation.resume(throwing: AppCoinsSDKError.systemError)
-                        case .noInternet:
-                            continuation.resume(throwing: AppCoinsSDKError.networkError)
-                        default:
-                            continuation.resume(throwing: AppCoinsSDKError.systemError)
+                        case .failed(let message, let description, let request):
+                            continuation.resume(throwing: AppCoinsSDKError.systemError(message: message, description: description, request: request))
+                        case .noInternet(let message, let description, let request):
+                            continuation.resume(throwing: AppCoinsSDKError.networkError(message: message, description: description, request: request))
+                        case .purchaseVerificationFailed(let message, let description, let request):
+                            continuation.resume(throwing: AppCoinsSDKError.systemError(message: message, description: description, request: request))
                         }
                     }
                 }
@@ -75,12 +75,12 @@ public struct Product {
                         continuation.resume(returning: products)
                     case .failure(let failure):
                         switch failure {
-                        case .failed:
-                            continuation.resume(throwing: AppCoinsSDKError.systemError)
-                        case .noInternet:
-                            continuation.resume(throwing: AppCoinsSDKError.networkError)
-                        default:
-                            continuation.resume(throwing: AppCoinsSDKError.systemError)
+                        case .failed(let message, let description, let request):
+                            continuation.resume(throwing: AppCoinsSDKError.systemError(message: message, description: description, request: request))
+                        case .noInternet(let message, let description, let request):
+                            continuation.resume(throwing: AppCoinsSDKError.networkError(message: message, description: description, request: request))
+                        case .purchaseVerificationFailed(let message, let description, let request):
+                            continuation.resume(throwing: AppCoinsSDKError.systemError(message: message, description: description, request: request))
                         }
                     }
                 }
@@ -88,10 +88,10 @@ public struct Product {
         }
     }
     
-    public func purchase(domain: String = (Bundle.main.bundleIdentifier ?? ""), payload: String? = nil, orderID: String = String(Date.timeIntervalSinceReferenceDate)) async -> TransactionResult {
+    internal func purchase(domain: String = (Bundle.main.bundleIdentifier ?? ""), payload: String? = nil, orderID: String = String(Date.timeIntervalSinceReferenceDate)) async -> TransactionResult {
         
         if await !AppcSDK.isAvailable() || BottomSheetViewModel.shared.hasActiveTransaction {
-            return .failed(error: .purchaseNotAllowed)
+            return .failed(error: .purchaseNotAllowed(message: "Purchase Failed", description: "AppcSDK not available or has active transaction", request: nil))
         } else {
             
             AnalyticsUseCases.shared.recordStartConnection()
@@ -121,7 +121,7 @@ public struct Product {
                 }
             }
             
-            if let result = result { return result } else { return .failed(error: .unknown) }
+            if let result = result { return result } else { return .failed(error: .unknown(message: "Unknown", description: "Unknown", request: nil)) }
         }
     }
     

@@ -63,8 +63,13 @@ internal class ClientWallet: Wallet, Codable {
                         }
                     }
                 }
-            case .failure:
-                completion(.failure(.failed))
+            case .failure(let error):
+                switch error {
+                case .failed(let message, let description, let request):
+                    completion(.failure(AppcTransactionError.failed(message: message, description: description, request: request)))
+                case .noInternet(let message, let description, let request):
+                    completion(.failure(AppcTransactionError.noInternet(message: message, description: description, request: request)))
+                }
             }
         }
     }
