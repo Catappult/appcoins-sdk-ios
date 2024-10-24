@@ -42,7 +42,7 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
                     }
                     completion(.success(paymentMethods))
                 } else {
-                    completion(.failure(.failed))
+                    completion(.failure(.failed(message: "Get Payment Methods Failed", description: "Payment method list is missing or unavailable", request: nil)))
                 }
             case .failure(let error):
                 completion(.failure(error))
@@ -66,7 +66,7 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
                     
                     AnalyticsUseCases.shared.recordPaymentStatus(status: transactionRaw.status)
                     // Deal with different types of errors
-                    completion(.failure(.failed()))
+                    completion(.failure(.failed(message: "Get Transaction Info Failed", description: "Transaction failed during the processing phase. Status: \(transactionRaw.status)", request: nil)))
                 } else if transactionRaw.status == "COMPLETED" {
                     
                     AnalyticsUseCases.shared.recordPaymentStatus(status: transactionRaw.status)
@@ -164,7 +164,7 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
                         if verified {
                             completion(.success(Purchase(raw: purchaseRaw)))
                         } else {
-                            completion(.failure(.purchaseVerificationFailed))
+                            completion(.failure(.purchaseVerificationFailed(message: "Verify Purchase Failed", description: "Purchase is not verified", request: nil)))
                         }
                     case .failure(let failure):
                         completion(.failure(failure))
@@ -234,14 +234,14 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
         if let wallet = walletService.getActiveWallet() {
             billingService.createBillingAgreementToken(wa: wallet, raw: raw) { result in
                 completion(result) }
-        } else { completion(.failure(.failed())) }
+        } else { completion(.failure(.failed(message: "Create Billing Agreement Token Failed", description: "There is no active wallet", request: nil))) }
     }
     
     internal func cancelBillingAgreementToken(token: String, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
         if let wallet = walletService.getActiveWallet() {
             billingService.cancelBillingAgreementToken(token: token, wa: wallet) { result in
                 completion(result) }
-        } else { completion(.failure(.failed())) }
+        } else { completion(.failure(.failed(message: "Cancel Billing Agreement Token Failed", description: "There is no active wallet", request: nil))) }
     }
     
     internal func cancelBillingAgreement(completion: @escaping (Result<Bool, TransactionError>) -> Void) {
@@ -250,7 +250,7 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
                 self.removeBillingAgreementLocally(wa: wallet.getWalletAddress())
                 completion(result)
             }
-        } else { completion(.failure(.failed())) }
+        } else { completion(.failure(.failed(message: "Cancel Billing Agreement Failed", description: "There is no active wallet", request: nil))) }
     }
     
     internal func createBillingAgreement(token: String, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
@@ -264,7 +264,7 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
                     completion(.failure(error))
                 }
             }
-        } else { completion(.failure(.failed())) }
+        } else { completion(.failure(.failed(message: "Create Billing Agreement Failed", description: "There is no active wallet", request: nil))) }
     }
     
     private func storeBillingAgreementLocally(wa: String) {
@@ -278,7 +278,7 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
     internal func getBillingAgreement(completion: @escaping (Result<Bool, TransactionError>) -> Void) {
         if let wallet = walletService.getActiveWallet() {
             billingService.getBillingAgreement(wa: wallet) { result in completion(result) }
-        } else { completion(.failure(.failed())) }
+        } else { completion(.failure(.failed(message: "Get Billing Agreement Failed", description: "There is no active wallet", request: nil))) }
     }
     
     internal func hasBillingAgreement() -> Bool {

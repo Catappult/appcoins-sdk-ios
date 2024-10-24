@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum AppCoinsSDKError: Error {
+internal enum AppCoinsSDKError: Error {
     
     case networkError(debugInfo: DebugInfo)
     case systemError(debugInfo: DebugInfo)
@@ -69,9 +69,9 @@ internal class DebugRequestInfo {
         
         // Map HTTP method to your RequestMethod enum or use a default
         if let httpMethod = request.httpMethod {
-            self.method = RequestMethod(rawValue: httpMethod.uppercased()) ?? .unknown
+            self.method = RequestMethod(rawValue: httpMethod.uppercased()) ?? .UNKNOWN
         } else {
-            self.method = .unknown
+            self.method = .UNKNOWN
         }
         
         // Convert HTTP body to a string if available, fallback to empty string if not
