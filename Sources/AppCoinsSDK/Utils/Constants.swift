@@ -12,6 +12,7 @@ internal struct Constants {
     // Purchase
     static internal let purchaseBonus = NSLocalizedString("purchase_bonus_title", bundle: .APPCModule, comment: "Purchase Bonus: %@ in AppCoins Credits")
     static internal let canSeeBonusText = NSLocalizedString("purchase_bonus_body", bundle: .APPCModule, comment: "You can use this bonus in your next purchase.")
+    static internal let bonusNotAvailableText = NSLocalizedString("bonus_not_available", bundle: .APPCModule, comment: "Bonus not available with this payment method")
     static internal let earnedEnoughAppcText = NSLocalizedString("earned_enough_appc_body", bundle: .APPCModule, comment: "You earned enough AppCoins Credits for this purchase. Enjoy!")
     static internal let otherPaymentMethodsText = NSLocalizedString("other_payment_methods_body", bundle: .APPCModule, comment: "Other payment methods")
     static internal let buyText = NSLocalizedString("buy_button", bundle: .APPCModule, comment: "Buy")
@@ -20,6 +21,7 @@ internal struct Constants {
     static internal let logOut = NSLocalizedString("log_out_button", bundle: .APPCModule, comment: "Log out")
     static internal let chooseCard = NSLocalizedString("choose_card_title", bundle: .APPCModule, comment: "Choose a Card")
     static internal let addCard = NSLocalizedString("add_card_button", bundle: .APPCModule, comment: "Add new card")
+    static internal let yourCard = NSLocalizedString("your_card_title", bundle: .APPCModule, comment: "Your card")
     
     // Success
     static internal let successText = NSLocalizedString("success_title", bundle: .APPCModule, comment: "Success")

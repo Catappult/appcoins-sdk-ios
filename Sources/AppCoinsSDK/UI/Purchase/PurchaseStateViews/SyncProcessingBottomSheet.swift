@@ -17,25 +17,14 @@ internal struct SyncProcessingBottomSheet: View {
         ZStack {
             ColorsUi.APC_DarkBlue
             
-            VStack(spacing: 0) {
-                
-                Image("logo-wallet-white", bundle: Bundle.APPCModule)
-                    .resizable()
-                    .edgesIgnoringSafeArea(.all)
-                    .frame(width: 83, height: 24)
-                    .padding(.top, 24)
-                
-            }.frame(height: 314 + Utils.bottomSafeAreaHeight, alignment: .top)
-            
             ProgressView()
                 .scaleEffect(1.75, anchor: .center)
                 .progressViewStyle(CircularProgressViewStyle(tint: ColorsUi.APC_White))
             
-        }.frame(width: UIScreen.main.bounds.size.width, height: 314 + Utils.bottomSafeAreaHeight)
+        }.frame(width: UIScreen.main.bounds.size.width, height: 436)
             .cornerRadius(13, corners: [.topLeft, .topRight])
             .offset(y: isPresented ? 0 : UIScreen.main.bounds.height)
             .transition(.move(edge: isPresented ? .bottom : .top))
             .onAppear { withAnimation { isPresented = true } }
-                
     }
 }

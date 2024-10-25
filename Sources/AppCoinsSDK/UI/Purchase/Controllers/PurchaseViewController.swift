@@ -9,14 +9,16 @@ import Foundation
 import SwiftUI
 
 internal class PurchaseViewController: UIViewController {
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .portrait
-    }
     
     @ObservedObject private var keyboardObserver = KeyboardObserver.shared
+    internal var orientation: UIInterfaceOrientationMask = .landscape
     
     override internal func viewDidLoad() {
         super.viewDidLoad()
+        
+        updateOrientation()
+        
+        overrideUserInterfaceStyle = .light
         
         // Add the bottom sheet view
         let bottomSheetView = BottomSheetView()
@@ -34,6 +36,22 @@ internal class PurchaseViewController: UIViewController {
             wrapperView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)
         ])
     }
+    
+    private func updateOrientation() {
+        if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
+            if scene.interfaceOrientation == .landscapeLeft || scene.interfaceOrientation == .landscapeRight {
+                BottomSheetViewModel.shared.setOrientation(orientation: .landscape)
+                orientation = .landscape
+            } else {
+                BottomSheetViewModel.shared.setOrientation(orientation: .portrait)
+                orientation = .portrait
+            }
+        }
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+            return orientation
+        }
     
     @objc internal func dismissPurchase() {
         self.dismiss(animated: false, completion: nil)
