@@ -77,3 +77,5 @@ mono_crash.*
 
 # CI/CD 
 dependencies/
+backup/
+xcframework/

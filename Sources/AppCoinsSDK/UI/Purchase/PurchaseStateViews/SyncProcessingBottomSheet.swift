@@ -19,7 +19,7 @@ internal struct SyncProcessingBottomSheet: View {
             
             VStack(spacing: 0) {
                 
-                Image("logo-wallet-white", bundle: Bundle.module)
+                Image("logo-wallet-white", bundle: Bundle.APPCModule)
                     .resizable()
                     .edgesIgnoringSafeArea(.all)
                     .frame(width: 83, height: 24)

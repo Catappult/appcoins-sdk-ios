@@ -7,7 +7,7 @@
 
 import Foundation
 import SwiftUI
-import SkeletonUI
+@_implementationOnly import SkeletonUI
 
 internal struct PurchaseBottomSheet: View {
     
@@ -78,7 +78,7 @@ internal struct PurchaseBottomSheet: View {
                 
                 HStack {
                     VStack(spacing: 0) {
-                        Image("logo-wallet-white", bundle: Bundle.module)
+                        Image("logo-wallet-white", bundle: Bundle.APPCModule)
                             .resizable()
                             .edgesIgnoringSafeArea(.all)
                             .frame(width: 83, height: 24)
@@ -86,7 +86,7 @@ internal struct PurchaseBottomSheet: View {
                         
                         if transactionViewModel.paymentMethodSelected != nil && transactionViewModel.paymentMethodSelected?.name != Method.appc.rawValue {
                             HStack {
-                                Image("gift-1", bundle: Bundle.module)
+                                Image("gift-1", bundle: Bundle.APPCModule)
                                     .resizable()
                                     .edgesIgnoringSafeArea(.all)
                                     .frame(width: 15, height: 15)
@@ -115,7 +115,7 @@ internal struct PurchaseBottomSheet: View {
                         }
                         
                         HStack(spacing: 0) {
-                            Image("pink-wallet", bundle: Bundle.module)
+                            Image("pink-wallet", bundle: Bundle.APPCModule)
                                 .resizable()
                                 .edgesIgnoringSafeArea(.all)
                                 .frame(width: 19, height: 16)

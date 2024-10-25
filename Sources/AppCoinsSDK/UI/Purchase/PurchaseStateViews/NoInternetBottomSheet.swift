@@ -22,7 +22,7 @@ internal struct NoInternetBottomSheet: View {
                     VStack(spacing: 0) {
                         HStack {}.frame(maxHeight: .infinity)
                         
-                        Image("no-internet-white", bundle: Bundle.module)
+                        Image("no-internet-white", bundle: Bundle.APPCModule)
                             .resizable()
                             .scaledToFit()
                             .frame(height: 80)

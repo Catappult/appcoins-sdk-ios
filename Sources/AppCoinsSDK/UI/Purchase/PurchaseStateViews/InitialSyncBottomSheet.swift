@@ -17,14 +17,14 @@ internal struct InitialSyncBottomSheet: View {
         ZStack {
             ColorsUi.APC_DarkBlue
 
-            Image("wallet-sync-shades", bundle: Bundle.module)
+            Image("wallet-sync-shades", bundle: Bundle.APPCModule)
                 .resizable()
                 .edgesIgnoringSafeArea(.all)
                 .frame(width: UIScreen.main.bounds.size.width)
             
             VStack(spacing: 0) {
                 
-                Image("wallet-sync-graphic", bundle: Bundle.module)
+                Image("wallet-sync-graphic", bundle: Bundle.APPCModule)
                     .resizable()
                     .edgesIgnoringSafeArea(.all)
                     .frame(width: 200, height: 144)
@@ -37,7 +37,7 @@ internal struct InitialSyncBottomSheet: View {
                     .frame(width: 296, height: 56)
                     .padding(.top, 14)
 
-                Image("wallet-not-synced-icon", bundle: Bundle.module)
+                Image("wallet-not-synced-icon", bundle: Bundle.APPCModule)
                     .resizable()
                     .edgesIgnoringSafeArea(.all)
                     .frame(width: 32, height: 32)

@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import CryptoKit
-import CryptoSwift
+@_implementationOnly import CryptoKit
+@_implementationOnly import CryptoSwift
 @_implementationOnly import web3swift
 @_implementationOnly import Web3Core
 

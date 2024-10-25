@@ -6,11 +6,11 @@
 //
 
 import SwiftUI
-import Adyen
-import AdyenSession
-import AdyenCard
-import AdyenComponents
-import AdyenActions
+@_implementationOnly import Adyen
+@_implementationOnly import AdyenSession
+@_implementationOnly import AdyenCard
+@_implementationOnly import AdyenComponents
+@_implementationOnly import AdyenActions
 
 internal class AdyenController : AdyenSessionDelegate, PresentationDelegate, ObservableObject {
     

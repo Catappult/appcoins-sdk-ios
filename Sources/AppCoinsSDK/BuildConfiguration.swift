@@ -7,7 +7,7 @@
 
 import Foundation
 import SwiftUI
-import Adyen
+@_implementationOnly import Adyen
 
 internal class BuildConfiguration {
     static internal let shared = BuildConfiguration()

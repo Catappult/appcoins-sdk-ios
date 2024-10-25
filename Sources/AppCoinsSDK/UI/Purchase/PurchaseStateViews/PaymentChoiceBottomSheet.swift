@@ -7,7 +7,7 @@
 
 import Foundation
 import SwiftUI
-import SkeletonUI
+@_implementationOnly import SkeletonUI
 
 internal struct PaymentChoiceBottomSheet: View {
     

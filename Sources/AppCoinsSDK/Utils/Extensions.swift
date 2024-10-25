@@ -20,8 +20,8 @@ internal extension UIView {
 }
 
 // For some reason this solves the issue 'module' is inaccessible due to 'internal' protection level
-public extension Bundle {
-    static let module: Bundle = {
+internal extension Bundle {
+    static internal let APPCModule: Bundle = {
         let bundleName = "AppCoinsSDK"
 
         let candidates = [

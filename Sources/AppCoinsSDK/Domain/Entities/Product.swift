@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import StoreKit
+@_implementationOnly import StoreKit
 
 public struct Product {
     

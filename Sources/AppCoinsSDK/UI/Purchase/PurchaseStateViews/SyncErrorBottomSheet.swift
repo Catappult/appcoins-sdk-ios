@@ -19,13 +19,13 @@ internal struct SyncErrorBottomSheet: View {
             
             VStack(spacing: 0) {
                 
-                Image("logo-wallet-white", bundle: Bundle.module)
+                Image("logo-wallet-white", bundle: Bundle.APPCModule)
                     .resizable()
                     .edgesIgnoringSafeArea(.all)
                     .frame(width: 83, height: 24)
                     .padding(.top, 24)
                 
-                Image("exclamation", bundle: Bundle.module)
+                Image("exclamation", bundle: Bundle.APPCModule)
                     .resizable()
                     .frame(width: 80, height: 80)
                     .padding(.top, 66)

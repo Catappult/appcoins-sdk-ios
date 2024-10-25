@@ -6,8 +6,8 @@
 //
 
 import SwiftUI
-import Adyen
-import AdyenCard
+@_implementationOnly import Adyen
+@_implementationOnly import AdyenCard
 
 internal struct CreditCardChoiceBottomSheet: View {
     
@@ -48,12 +48,13 @@ internal struct CreditCardChoiceBottomSheet: View {
                                     ColorsUi.APC_White
                                     HStack(spacing: 0) {
                                         
-                                        if let image = adyenController.getCardLogo(for: paymentMethod) {
-                                            CreditCardAdyenIcon(image: image)
+//                                        if let image = adyenController.getCardLogo(for: paymentMethod) {
+//                                            CreditCardAdyenIcon(image: image)
+                                            HStack{}
                                                 .padding(.trailing, 16)
                                                 .padding(.leading, 16)
                                                 .animation(.easeIn(duration: 0.3))
-                                        }
+//                                        }
                                         
                                         Text(verbatim: "···· " + paymentMethod.lastFour)
                                             .foregroundColor(ColorsUi.APC_Black)

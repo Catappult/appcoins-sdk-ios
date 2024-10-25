@@ -21,13 +21,13 @@ internal struct SuccessBottomSheet: View {
                 
                 VStack(spacing: 0) {
                     
-                    Image("logo-wallet-white", bundle: Bundle.module)
+                    Image("logo-wallet-white", bundle: Bundle.APPCModule)
                         .resizable()
                         .edgesIgnoringSafeArea(.all)
                         .frame(width: 83, height: 24)
                         .padding(.top, 24)
                     
-                    Image("checkmark", bundle: Bundle.module)
+                    Image("checkmark", bundle: Bundle.APPCModule)
                         .resizable()
                         .edgesIgnoringSafeArea(.all)
                         .frame(width: 80, height: 80)
@@ -40,7 +40,7 @@ internal struct SuccessBottomSheet: View {
                     
                     if transactionViewModel.paymentMethodSelected?.name != Method.appc.rawValue {
                         HStack {
-                            Image("gift-1", bundle: Bundle.module)
+                            Image("gift-1", bundle: Bundle.APPCModule)
                                 .resizable()
                                 .edgesIgnoringSafeArea(.all)
                                 .frame(width: 17, height: 17)
@@ -58,7 +58,7 @@ internal struct SuccessBottomSheet: View {
                     }
                     
                     HStack(spacing: 0) {
-                        Image("pink-wallet", bundle: Bundle.module)
+                        Image("pink-wallet", bundle: Bundle.APPCModule)
                             .resizable()
                             .edgesIgnoringSafeArea(.all)
                             .frame(width: 19, height: 16)
