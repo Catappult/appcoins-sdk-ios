@@ -21,7 +21,7 @@ internal struct SyncErrorBottomSheet: View {
                 
                 VStack {}.frame(height: 66)
                 
-                Image("exclamation-red", bundle: Bundle.module)
+                Image("exclamation-red", bundle: Bundle.APPCModule)
                     .resizable()
                     .frame(width: 80, height: 80)
                 

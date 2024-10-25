@@ -39,7 +39,7 @@ internal struct SuccessBottomSheet: View {
                         VStack {}.frame(height: 23)
                         
                         HStack {
-                            Image("gift-black", bundle: Bundle.module)
+                            Image("gift-black", bundle: Bundle.APPCModule)
                                 .resizable()
                                 .edgesIgnoringSafeArea(.all)
                                 .frame(width: 17, height: 17)
