@@ -1,25 +1,21 @@
-import re
-import requests
 from urllib.parse import urlparse
 import os
-from dotenv import load_dotenv
-import subprocess
-import yaml
 import shutil
+import re
+import yaml
+import subprocess
 
-load_dotenv()
-
-def extract_dependencies(package_swift_content):
+def extract_dependencies_from_package():
     """
-    Extracts dependencies from the content of a Package.swift file by capturing the full dependency line
+    Extracts dependencies from a Package.swift file by capturing the full dependency line
     and then parsing it for the rule and version.
-    
-    Args:
-    - package_swift_content (str): The content of the Package.swift file as a string.
     
     Returns:
     - List of dictionaries containing the URL, version rule, and version constraint for each dependency.
     """
+    with open('Package.swift', 'r') as file:
+        package_swift_content = file.read()
+    
     dependencies = []
     for line in package_swift_content.split('\n'):
         line = line.strip()
@@ -55,166 +51,65 @@ def extract_dependencies(package_swift_content):
 
     return dependencies
 
-
-def read_package_swift_file(file_path):
+def extract_products_from_package():
     """
-    Reads the content of a Package.swift file.
-    
-    Args:
-    - file_path (str): The path to the Package.swift file.
+    Extracts product dependencies from a Package.swift file by capturing the name and package 
+    for each `.product` entry.
+
+    This function reads the Package.swift file, searches for any `.product` entries using a 
+    regular expression, and extracts the name and package of each product dependency. 
+    Each product is stored as a dictionary with the keys `name` and `package`.
     
     Returns:
-    - The content of the file as a string.
+    - List of dictionaries containing the name and package for each product dependency.
     """
-    with open(file_path, 'r') as file:
-        return file.read()
-
-
-def get_github_tags(repo):
-    """
-    Fetches the tags (versions) of a GitHub repository.
+    with open('Package.swift', 'r') as file:
+        package_swift_content = file.read()
     
-    Args:
-    - repo_url (str): The GitHub repository URL in the format "owner/repo".
+    products = []
+    
+    # Regular expression to match .product entries
+    product_pattern = re.compile(r'\.product\(name:\s*"([^"]+)",\s*package:\s*"([^"]+)"\)')
+        
+    # Find all matches in the file content
+    matches = product_pattern.findall(package_swift_content)
+    
+    # Store each match as a dictionary
+    for match in matches:
+        name, package = match
+        products.append({"name": name, "package": package})
+    
+    return products
+
+def extract_binary_targets_from_package():
+    """
+    Extracts binary targets from a Package.swift file by capturing the name and path for each `.binaryTarget` entry.
+
+    This function reads the Package.swift file, searches for any `.binaryTarget` entries using a regular expression,
+    and extracts the name and path of each binary target. Each target is stored as a dictionary with the keys `name` and `path`.
     
     Returns:
-    - A list of version tags.
+    - List of dictionaries containing the name and path for each binary target.
     """
-    api_url = f"https://api.github.com/repos/{repo}/tags"
-    token = os.environ.get("GITHUB_TOKEN")
-    headers = {'Authorization': f'token {token}'}
-    response = requests.get(api_url, headers=headers)
-
-    if response.status_code == 200:
-        tags = response.json()
-        return [tag['name'] for tag in tags]  # Extracting the tag names
-    else:
-        print(f"Error fetching tags: {response.status_code} {response.reason}")
-        return []
+    with open('Package.swift', 'r') as file:
+        package_swift_content = file.read()
     
-def find_up_to_next_major_version(tags, current_tag):
-    """
-    Finds the upToNextMajorVersion for a given tag from a list of tag names.
+    binary_targets = []
     
-    Args:
-    - tags (list of str): A list of tag names (versions).
-    - current_tag (str): The current tag for which to find the next major version.
+    # Regular expression to match .binaryTarget entries
+    binary_target_pattern = re.compile(r'\.binaryTarget\(name:\s*"([^"]+)",\s*path:\s*"([^"]+)"\)')
+        
+    # Find all matches in the file content
+    matches = binary_target_pattern.findall(package_swift_content)
     
-    Returns:
-    - str: The next major version or a message if the current tag is invalid.
-    """
-    # Define a function to parse a version string into its components
-    def parse_version(version):
-        strip_version = version.lstrip('v').replace("-beta", "").replace("-alpha", "")
-        parts = re.split(r'\.|-RC', strip_version)
-        
-        parts_list = list(map(int, parts))  # Convert parts to integers
-        
-        padding = 4 - len(parts_list)
-        for pad in range(padding):
-            parts_list.append(0)
-        
-        return parts_list
-
-    # Check if the current tag is in the list
-    if current_tag not in tags:
-        return "Current tag not found in the list."
-
-    # Parse the current tag
-    current_major, current_minor, current_patch, current_minor_patch = parse_version(current_tag)
-
-    next_major_version = current_tag
-    parsed_next_major_version = [current_major, current_minor, current_patch, current_minor_patch]
-    for tag in tags:
-        major, minor, patch, minor_patch = parse_version(tag)
-        if major == parsed_next_major_version[0]:
-            if minor > parsed_next_major_version[1] or \
-                (minor == parsed_next_major_version[1] and patch > parsed_next_major_version[2]) or \
-                (minor == parsed_next_major_version[1] and patch == parsed_next_major_version[2] and minor_patch > parsed_next_major_version[3]):
-                next_major_version = tag
-                parsed_next_major_version = [major, minor, patch, minor_patch]
+    # Store each match as a dictionary
+    for match in matches:
+        name, path = match
+        binary_targets.append({"name": name, "path": path})
     
-    return next_major_version
+    return binary_targets
 
-def find_up_to_next_minor_version(tags, current_tag):
-    """
-    Finds the upToNextMinorVersion for a given tag from a list of tag names, 
-    excluding the next minor version if it exists in the list.
-    
-    Args:
-    - tags (list of str): A list of tag names (versions).
-    - current_tag (str): The current tag for which to find the next minor version.
-    
-    Returns:
-    - str: The upToNextMinorVersion or a message if the current tag is invalid.
-    """
-    # Define a function to parse a version string into its components
-    def parse_version(version):
-        strip_version = version.lstrip('v').replace("-beta", "").replace("-alpha", "")
-        parts = re.split(r'\.|-RC', strip_version)
-        
-        parts_list = list(map(int, parts))  # Convert parts to integers
-        
-        padding = 4 - len(parts_list)
-        for pad in range(padding):
-            parts_list.append(0)
-        
-        return parts_list
-
-    # Check if the current tag is in the list
-    if current_tag not in tags:
-        return "Current tag not found in the list."
-
-    # Parse the current tag
-    current_major, current_minor, current_patch, current_minor_patch = parse_version(current_tag)
-
-    next_minor_version = current_tag
-    parsed_next_minor_version = [current_major, current_minor, current_patch, current_minor_patch]
-    for tag in tags:
-        major, minor, patch, minor_patch = parse_version(tag)
-        if major == parsed_next_minor_version[0] and minor == parsed_next_minor_version[1]:
-            if patch > parsed_next_minor_version[2] or (patch == parsed_next_minor_version[2] and minor_patch > parsed_next_minor_version[3]):
-                next_minor_version = tag
-                parsed_next_minor_version = [major, minor, patch, minor_patch]
-    
-    return next_minor_version
-
-def download_github_repo(repo_url, target_dir, branch_or_tag):
-    """
-    Clones a GitHub repository by branch or version tag.
-    
-    Args:
-    - repo_url (str): The GitHub repository URL (e.g., "https://github.com/owner/repo.git").
-    - target_dir (str): The local directory to clone the repository into.
-    - branch_or_tag (str): The branch name or version tag to checkout after cloning.
-    
-    Returns:
-    - None
-    """
-    try:
-        # Clone the repository
-        subprocess.check_call(['git', 'clone', repo_url, target_dir])
-        
-        # Change to the target directory
-        os.chdir(target_dir)
-        
-        # Checkout the specified branch or tag
-        subprocess.check_call(['git', 'checkout', branch_or_tag])
-
-        os.chdir('..')
-        os.chdir('..')
-        
-        print(f"Successfully cloned and checked out {branch_or_tag} from {repo_url} into {target_dir}.")
-    except subprocess.CalledProcessError as e:
-        print(f"Error during cloning or checking out: {e}")
-
-def modify_library_products(content: str, product_type: str) -> str:
-    # Regex pattern to find .library products and insert type as an argument
-    product_pattern = r'(\.library\(\s*name:\s*"[^"]+",\s*targets:\s*\[\s*"[^"]+"\s*\])'
-    modified_content = re.sub(product_pattern, r'\1,\n            type: .dynamic', content)
-    return modified_content
-
-def create_yml_project_file(dependencies):
+def create_yml_project_file(dependencies, products, binary_targets, bundle_resources, copy_frameworks):
     # Data structure representing the .yml file content
     data = {
         'name': 'AppCoinsSDK',
@@ -229,6 +124,11 @@ def create_yml_project_file(dependencies):
                 'SWIFT_VERSION': '5.5',
                 'CODE_SIGN_IDENTITY': "iPhone Developer",
                 'CODE_SIGN_STYLE': "Automatic",
+                'BUILD_LIBRARY_FOR_DISTRIBUTION': True,
+                'SKIP_INSTALL': False,
+                'SUPPORTED_PLATFORMS': "iphonesimulator iphoneos",
+                'TARGETED_DEVICE_FAMILY': "1,2",
+                'LD_RUNPATH_SEARCH_PATHS': "$(inherited) @executable_path/Frameworks @loader_path/Frameworks"
             }
         },
         'targets': {
@@ -236,48 +136,128 @@ def create_yml_project_file(dependencies):
                 'type': 'framework',
                 'platform': 'iOS',
                 'sources': ['Sources/AppCoinsSDK'],
-                'resources': ['Sources/AppCoinsSDK/Localization'],
                 'settings': {
                     'base': {
-                        'INFOPLIST_FILE': 'Sources/AppCoinsSDK/Info.plist'
+                        'INFOPLIST_FILE': 'Sources/AppCoinsSDK/Info.plist',
+                        'BUILD_LIBRARY_FOR_DISTRIBUTION': True,
+                        'SKIP_INSTALL': False,
+                        'SUPPORTED_PLATFORMS': "iphonesimulator iphoneos",
+                        'TARGETED_DEVICE_FAMILY': "1,2",
+                        'LD_RUNPATH_SEARCH_PATHS': "$(inherited) @executable_path/Frameworks @loader_path/Frameworks"
                     }
                 },
                 'options': {
-                    'transitivelyLinkDependencies': True
+                    'transitivelyLinkDependencies': False
                 },
-                'dependencies': [
-                    {'target': 'IndicativeLibrary'},
-                    {'framework': 'Sources/AppCoinsSDK/Frameworks/PPRiskMagnes.xcframework'}
-                ]
+                'dependencies': [],
+                'resources': [
+                    {'path': 'Sources/AppCoinsSDK/Localization', 'explicit': True}
+                ],
+                'frameworks': [],
+                'postBuildScripts': []
             },
-            'IndicativeLibrary': {
-                'type': 'framework',
-                'platform': 'iOS',
-                'sources': ['Sources/Indicative'],
-                'publicHeadersPath': 'Sources/Indicative/Headers',
-                'settings': {
-                    'base': {
-                        'HEADER_SEARCH_PATHS': 'Sources/Indicative/Headers',
-                        'DEFINES_MODULE': 'YES'
-                    }
-                }
-            }
         },
         'packages': {}
     }
 
-    for dependency in dependencies:
-        data['targets']['AppCoinsSDK']['dependencies'].append({'package': dependency['name']})
-        data['packages'][dependency['name']] = {'path': dependency['path']}
+    if dependencies is not None:
+        for dependency in dependencies:
+            data['packages'][dependency['name']] = {'url': dependency['url']}
 
-    # Write the data to a .yml file
+            if dependency['rule'] == 'upToNextMinor':
+                data['packages'][dependency['name']]['minorVersion'] = dependency['target']
+            if dependency['rule'] == 'upToNextMajor':
+                data['packages'][dependency['name']]['majorVersion'] = dependency['target']
+            if dependency['rule'] == 'exact':
+                data['packages'][dependency['name']]['exactVersion'] = dependency['target']
+            if dependency['rule'] == 'branch':
+                data['packages'][dependency['name']]['branch'] = dependency['target']
+
+    if products is not None:
+        for product in products:
+            data['targets']['AppCoinsSDK']['dependencies'].append({'package': product['package'], 'product': product['name']})
+
+    if binary_targets is not None:
+        for binary_target in binary_targets:
+            data['targets']['AppCoinsSDK']['dependencies'].append({'framework': binary_target['path'], 'embed': True})
+
+    if bundle_resources is not None:
+        for bundle_resource in bundle_resources:
+            data['targets']['AppCoinsSDK']['resources'].append({'path': f"$(BUILT_PRODUCTS_DIR)/{bundle_resource['name']}", 'explicit': True})
+
+    if copy_frameworks is not None:
+        embed_frameworks_script_list = '('
+        index = 0
+        for copy_framework in copy_frameworks:
+            index += 1
+            data['targets']['AppCoinsSDK']['frameworks'].append({'path': f"$(BUILT_PRODUCTS_DIR)/{copy_framework['subpath']}", 'explicit': True, 'embed': True})
+            embed_frameworks_script_list += '"${BUILT_PRODUCTS_DIR}/'
+            embed_frameworks_script_list += f'{copy_framework["subpath"]}"'
+            if index != len(copy_frameworks):
+                embed_frameworks_script_list += ', '
+        embed_frameworks_script_list += ')'
+
+        post_build_script = """
+            FRAMEWORKS_DIR="${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}"
+            EMBED_FRAMEWORKS=
+        """
+        post_build_script += embed_frameworks_script_list
+        post_build_script += """
+            for FRAMEWORK in "${EMBED_FRAMEWORKS[@]}"; do
+            if [ -d "${FRAMEWORK}" ]; then
+              echo "Embedding ${FRAMEWORK}"
+              cp -R "${FRAMEWORK}" "${FRAMEWORKS_DIR}"
+              # Modify rpath for each embedded framework to ensure it's loadable at runtime
+              install_name_tool -add_rpath "@loader_path/Frameworks" "${FRAMEWORK}/$(basename ${FRAMEWORK%.framework})"
+            fi
+          done
+        """
+        print(post_build_script)
+
+        data['targets']['AppCoinsSDK']['postBuildScripts'].append({
+            'name': "Embed Frameworks",
+            'script': post_build_script
+        })
+
     yml_file_path = './project.yml'
     with open(yml_file_path, 'w') as yml_file:
         yaml.dump(data, yml_file, sort_keys=False)
 
     yml_file_path
 
-def find_frameworks(release_directory):
+def generate_xcodeproj():
+    subprocess.check_call(['xcodegen', 'generate'])
+
+def resolve_package_dependencies():
+    subprocess.check_call(['xcodebuild', '-resolvePackageDependencies', '-project', 'AppCoinsSDK.xcodeproj'])
+
+def build_for_device(device_build_path):
+    subprocess.check_call([
+        'xcodebuild', 'build',
+        '-project', 'AppCoinsSDK.xcodeproj',
+        '-scheme', 'AppCoinsSDK',
+        '-configuration', 'Release',
+        '-destination', 'generic/platform=iOS',
+        '-derivedDataPath', device_build_path,
+        'SKIP_INSTALL=NO',
+        'BUILD_LIBRARY_FOR_DISTRIBUTION=YES',
+        'OTHER_SWIFT_FLAGS="-no-verify-emitted-module-interface"'
+    ])
+
+def build_for_simulator(simulator_build_path):
+    subprocess.check_call([
+        'xcodebuild', 'build',
+        '-project', 'AppCoinsSDK.xcodeproj',
+        '-scheme', 'AppCoinsSDK',
+        '-configuration', 'Release',
+        '-destination', 'generic/platform=iOS Simulator',
+        '-derivedDataPath', simulator_build_path,
+        'SKIP_INSTALL=NO',
+        'BUILD_LIBRARY_FOR_DISTRIBUTION=YES',
+        'OTHER_SWIFT_FLAGS="-no-verify-emitted-module-interface"'
+    ])
+
+def find_frameworks(release_directory, exclude_appc=False):
     frameworks = []
 
     items_in_directory = os.listdir(release_directory)
@@ -285,7 +265,8 @@ def find_frameworks(release_directory):
         item_path = os.path.join(release_directory, item)
         framework_name, file_extension = os.path.splitext(item)
         if file_extension == '.framework':
-            frameworks.append(item_path)
+            if not (exclude_appc and framework_name == 'AppCoinsSDK'):
+                frameworks.append(item_path)
 
     package_frameworks_directory = os.path.join(release_directory, 'PackageFrameworks')
     package_frameworks = os.listdir(package_frameworks_directory)
@@ -299,146 +280,121 @@ def find_frameworks(release_directory):
 
 def find_bundles(release_directory):
     bundles = []
-    items_in_directory = os.listdir(release_directory)
-    for item in items_in_directory:
-        item_path = os.path.join(release_directory, item)
-        bundle_name, file_extension = os.path.splitext(item)
-        if file_extension == '.bundle':
-            bundles.append(item_path)
-
+    for root, dirs, _ in os.walk(release_directory):
+        for dir_name in dirs:
+            if dir_name.endswith('.bundle'):
+                bundles.append(os.path.join(root, dir_name))
     return bundles
 
-if __name__ == "__main__":
+def create_output_directories():
+    framework_directory = './Framework'
+    os.makedirs(framework_directory, exist_ok=True)
 
-    # subprocess.check_call(['xcodegen', 'generate'])
-
-    # subprocess.check_call(['xcodebuild', '-resolvePackageDependencies', '-project', 'AppCoinsSDK.xcodeproj'])
-
-    # # Build the framework for both platforms (iOS and iOS Simulator)
-    # device_build_path = './build/DerivedData/Device'
-    # simulator_build_path = './build/DerivedData/Simulator'
-
-    # # Build for iOS Device
-    # subprocess.check_call([
-    #     'xcodebuild', 'build',
-    #     '-project', 'AppCoinsSDK.xcodeproj',
-    #     '-scheme', 'AppCoinsSDK',
-    #     '-configuration', 'Release',
-    #     '-destination', 'generic/platform=iOS',
-    #     '-derivedDataPath', device_build_path,
-    #     'SKIP_INSTALL=NO',
-    #     'BUILD_LIBRARY_FOR_DISTRIBUTION=YES',
-    #     'OTHER_SWIFT_FLAGS="-no-verify-emitted-module-interface"'
-    # ])
-
-    # # Build for iOS Simulator
-    # subprocess.check_call([
-    #     'xcodebuild', 'build',
-    #     '-project', 'AppCoinsSDK.xcodeproj',
-    #     '-scheme', 'AppCoinsSDK',
-    #     '-configuration', 'Release',
-    #     '-destination', 'generic/platform=iOS Simulator',
-    #     '-derivedDataPath', simulator_build_path,
-    #     'SKIP_INSTALL=NO',
-    #     'BUILD_LIBRARY_FOR_DISTRIBUTION=YES',
-    #     'OTHER_SWIFT_FLAGS="-no-verify-emitted-module-interface"'
-    # ])
-
-    # Find xcframeworks in the DerivedData build directory
-    device_frameworks = find_frameworks('./build/DerivedData/Device/Build/Products/Release-iphoneos/')
-    print(f'Device Frameworks: {device_frameworks}')
-
-    # Find bundle resources in the DerivedData build directory
-    device_bundles = find_bundles('./build/DerivedData/Device/Build/Products/Release-iphoneos/')
-    print(f'Device Bundles: {device_bundles}')
-
-    # Find xcframeworks in the DerivedData build directory
-    simulator_frameworks = find_frameworks('./build/DerivedData/Simulator/Build/Products/Release-iphonesimulator/')
-    print(f'Simulator Frameworks: {simulator_frameworks}')
-
-    # Find bundle resources in the DerivedData build directory
-    simulator_bundles = find_bundles('./build/DerivedData/Simulator/Build/Products/Release-iphonesimulator/')
-    print(f'Simulator Bundles: {simulator_bundles}')
-
-    xcframework_directory = './xcframework'
-    os.makedirs(xcframework_directory, exist_ok=True)
-
-    device_directory = os.path.join(xcframework_directory, 'device')
+    device_directory = os.path.join(framework_directory, 'device')
     os.makedirs(device_directory, exist_ok=True)
 
-    simulator_directory = os.path.join(xcframework_directory, 'simulator')
+    simulator_directory = os.path.join(framework_directory, 'simulator')
     os.makedirs(simulator_directory, exist_ok=True)
 
-    # for device_framework in device_frameworks:
-    #     shutil.copytree(device_framework, f'{device_directory}/{os.path.basename(device_framework)}')
+    return framework_directory, device_directory, simulator_directory
 
-    #     if os.path.basename(device_framework) == 'AppCoinsSDK.framework':
-    #         for device_bundle in device_bundles:
-    #             shutil.copytree(f'{device_directory}/{os.path.basename(device_framework)}', f'{device_directory}/{os.path.basename(device_framework)}/{os.path.basename(device_bundle)}')
+if __name__ == "__main__":
+    # 1. Load package dependencies
+    dependencies = extract_dependencies_from_package()
 
-    # for simulator_framework in simulator_frameworks:
-    #     shutil.copytree(simulator_framework, f'{simulator_directory}/{os.path.basename(simulator_framework)}')
+    # 2. Find packages products
+    products = extract_products_from_package()
 
-    #     if os.path.basename(simulator_framework) == 'AppCoinsSDK.framework':
-    #         for simulator_bundle in simulator_bundles:
-    #             shutil.copytree(f'{simulator_directory}/{os.path.basename(simulator_framework)}', f'{simulator_directory}/{os.path.basename(simulator_framework)}/{os.path.basename(simulator_bundle)}')
+    # 3. Find binary targets
+    binary_targets = extract_binary_targets_from_package()
 
+    # 4. Find .bundle resources
+    # 4.1. Build a first project.yml configuration file without .bundle resources
+    create_yml_project_file(dependencies, products, binary_targets, None, None)
+
+    # 4.2 Generate xcodeproj with project.yml
+    generate_xcodeproj()
+
+    # 4.3 Resolve the dependencies for the newly created package
+    resolve_package_dependencies()
+
+    # 4.4 Build the project for iOS device in order to find in the Derived Data what
+    device_build_path = './build/DerivedData/Device'
+    build_for_device(device_build_path)
+
+    # 4.5 Find bundle resources in the DerivedData build directory
+    release_device_path = './build/DerivedData/Device/Build/Products/Release-iphoneos/'
+    device_bundles = find_bundles(release_device_path)
+    bundle_resources = [{'name': os.path.basename(device_bundle)} for device_bundle in device_bundles]
+
+    device_frameworks = find_frameworks(release_device_path, exclude_appc=True)
+    copy_frameworks = [{'subpath': device_framework.replace(release_device_path, "")} for device_framework in device_frameworks]
+
+    # 4.6 Clean up
+    os.remove('project.yml')
+    shutil.rmtree(device_build_path)
+
+    # 5. Construct a new xcodeproj with the bundle resources
+    # 5.1. Build a new project.yml configuration file now with .bundle resources
+    create_yml_project_file(dependencies, products, binary_targets, bundle_resources, copy_frameworks)
+
+    # 5.2 Generate xcodeproj with project.yml
+    generate_xcodeproj()
+
+    # 6. Build the frameworks
+    # 6.1 Resolve the dependencies for the package
+    subprocess.check_call(['xcodebuild', '-resolvePackageDependencies', '-project', 'AppCoinsSDK.xcodeproj'])
+
+    # 6.2 Build the framework for device
+    device_build_path = './build/DerivedData/Device'
+    build_for_device(device_build_path)
+
+    # 6.3 Build the framework for simulator
+    simulator_build_path = './build/DerivedData/Simulator'
+    build_for_simulator(simulator_build_path)
+
+    # 6.4 Find bundle resources that need to be included manually in the final package
+    # Find bundle resources in the device build directory
+    device_bundles = find_bundles(f'{device_build_path}/Build/Products/Release-iphoneos/')
+
+    # Find frameworks in the device build directory
+    device_frameworks = find_frameworks(f'{device_build_path}/Build/Products/Release-iphoneos/', exclude_appc = True)
+
+    # Find bundle resources in the simulator build directory
+    simulator_bundles = find_bundles(f'{simulator_build_path}/Build/Products/Release-iphonesimulator/')
+
+    # Find frameworks in the simulator build directory
+    simulator_frameworks = find_frameworks(f'{simulator_build_path}/Build/Products/Release-iphonesimulator/', exclude_appc = True)
+
+    # 6.5 Create output directories, where we'll gather frameworks and produce all .xcframeworks necessary
+    framework_directory, device_directory, simulator_directory = create_output_directories()
+    
+    # 6.6 Copy frameworks bundle resources into the output directories
+    shutil.copytree(f'{device_build_path}/Build/Products/Release-iphoneos/AppCoinsSDK.framework', f'{device_directory}/AppCoinsSDK.framework')
     for device_framework in device_frameworks:
-        framework = os.path.basename(device_framework)
-        framework_name, file_extension = os.path.splitext(framework)
+        if os.path.basename(device_framework) not in os.listdir(f'{device_directory}/AppCoinsSDK.framework/Frameworks'):
+            shutil.copytree(device_framework, f'{device_directory}/AppCoinsSDK.framework/Frameworks/{os.path.basename(device_framework)}')
+            
+    for device_bundle in device_bundles:
+        shutil.copytree(device_bundle, f'{device_directory}/AppCoinsSDK.framework/{os.path.basename(device_bundle)}')
 
-        subprocess.check_call(['xcodebuild', '-create-xcframework', \
-                    '-framework', f'{device_directory}/{framework}', \
-                    '-framework', f'{simulator_directory}/{framework}', \
-                    '-output', f'{xcframework_directory}/{framework_name}.xcframework'])
+    shutil.copytree(f'{simulator_build_path}/Build/Products/Release-iphonesimulator/AppCoinsSDK.framework', f'{simulator_directory}/AppCoinsSDK.framework')
+    for simulator_framework in simulator_frameworks:
+        if os.path.basename(simulator_framework) not in os.listdir(f'{simulator_directory}/AppCoinsSDK.framework/Frameworks'):
+            shutil.copytree(simulator_framework, f'{simulator_directory}/AppCoinsSDK.framework/Frameworks/{os.path.basename(simulator_framework)}')
 
-    # subprocess.check_call(['xcodebuild', 'archive', \
-    #                         '-project', 'AppCoinsSDK.xcodeproj', \
-    #                         '-scheme', 'AppCoinsSDK', \
-    #                         '-configuration', 'Release', \
-    #                         '-destination', 'generic/platform=iOS', \
-    #                         '-archivePath', './build/AppCoinsSDK.xcarchive', \
-    #                         'SKIP_INSTALL=NO', \
-    #                         'BUILD_LIBRARY_FOR_DISTRIBUTION=YES', \
-    #                         'OTHER_SWIFT_FLAGS="-no-verify-emitted-module-interface"'
-    #                         ])
+    for simulator_bundle in simulator_bundles:
+        shutil.copytree(simulator_bundle, f'{simulator_directory}/AppCoinsSDK.framework/{os.path.basename(simulator_bundle)}')
+
+    # 6.7 Produce the output .xcframework
+    framework = 'AppCoinsSDK.framework'
+    framework_name, file_extension = os.path.splitext(framework)
+
+    subprocess.check_call(['xcodebuild', '-create-xcframework', \
+                '-framework', f'{device_directory}/{framework}', \
+                '-framework', f'{simulator_directory}/{framework}', \
+                '-output', f'{framework_directory}/{framework_name}.xcframework'])
     
-    
-    
-
-
-    #     # package_path = f'{repo_dir}/Package.swift'
-    #     # package_swift_content = read_package_swift_file(package_path)
-    #     # modified_swift_content = modify_library_products(package_swift_content, product_type='.dynamic')
-
-    # file_path = "Package.swift"
-    # package_swift_content = read_package_swift_file(file_path)
-    # dependencies = extract_dependencies(package_swift_content)
-
-    # for dependency in dependencies:
-    #     repo_url = dependency['url']
-    #     repo_name = dependency['name']
-    #     repo = urlparse(repo_url).path[1:-4]
-    #     tags = get_github_tags(repo)
-
-    #     rule = dependency['rule']
-    #     target = dependency['target']
-    #     if rule == 'upToNextMinor':
-    #         target = find_up_to_next_minor_version(tags, target)
-    #     if rule == 'upToNextMajor':
-    #         target = find_up_to_next_major_version(tags, target)
-    #     if rule == 'branch':
-    #         target = target
-    #     if rule == 'exact':
-    #         target = target
-
-    #     repo_dir = f'dependencies/{repo_name}'
-    #     os.makedirs(repo_dir, exist_ok=True)
-
-    #     dependency['path'] = repo_dir
-
-        # download_github_repo(repo_url, repo_dir, target)
-
-    # # create_yml_project_file(dependencies)
-
-
+    shutil.rmtree('./build')
+    shutil.rmtree(device_directory)
+    shutil.rmtree(simulator_directory)

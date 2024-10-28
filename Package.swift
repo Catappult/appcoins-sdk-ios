@@ -36,6 +36,7 @@ let package = Package(
                 .product(name: "CryptoSwift", package: "CryptoSwift"),
                 .product(name: "web3swift", package: "web3swift"),
                 .product(name: "SkeletonUI", package: "SkeletonUI"),
+                .product(name: "SwiftyRSA", package: "SwiftyRSA"),
                 .product(name: "Adyen", package: "adyen-ios"),
                 .product(name: "AdyenCard", package: "adyen-ios"),
                 .product(name: "AdyenComponents", package: "adyen-ios"),
