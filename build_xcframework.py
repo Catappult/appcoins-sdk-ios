@@ -390,6 +390,8 @@ if __name__ == "__main__":
     framework = 'AppCoinsSDK.framework'
     framework_name, file_extension = os.path.splitext(framework)
 
+    shutil.rmtree(f'{framework_directory}/{framework_name}.xcframework')
+
     subprocess.check_call(['xcodebuild', '-create-xcframework', \
                 '-framework', f'{device_directory}/{framework}', \
                 '-framework', f'{simulator_directory}/{framework}', \
