@@ -110,7 +110,24 @@ def extract_binary_targets_from_package():
     return binary_targets
 
 def create_yml_project_file(dependencies, products, binary_targets, bundle_resources, copy_frameworks):
-    # Data structure representing the .yml file content
+    """
+    Generates a YAML project configuration file for the AppCoinsSDK based on input dependencies, products, binary targets, 
+    bundle resources, and frameworks to copy.
+
+    This function creates a YAML structure representing project configurations and dependencies required for AppCoinsSDK. 
+    It includes specific settings for the SDK framework, such as platform, source paths, frameworks, resources, and post-build 
+    scripts to embed frameworks.
+
+    Parameters:
+    - dependencies: List of dictionaries containing dependency information (e.g., URL and version rule).
+    - products: List of dictionaries containing product dependencies (e.g., name and package).
+    - binary_targets: List of dictionaries with binary target details (e.g., name and path).
+    - bundle_resources: List of dictionaries containing bundle resources to include in the configuration.
+    - copy_frameworks: List of dictionaries containing paths for frameworks to copy and embed.
+
+    Returns:
+    - Path to the generated YAML file as a string.
+    """
     data = {
         'name': 'AppCoinsSDK',
         'options': {
@@ -226,12 +243,33 @@ def create_yml_project_file(dependencies, products, binary_targets, bundle_resou
     yml_file_path
 
 def generate_xcodeproj():
+    """
+    Runs the xcodegen command to generate an Xcode project based on the current project.yml configuration file.
+
+    This method triggers the command line call to `xcodegen`, which reads the `project.yml` file to create 
+    an Xcode project (`.xcodeproj`) that includes all specified dependencies, targets, and resources.
+    """
     subprocess.check_call(['xcodegen', 'generate'])
 
 def resolve_package_dependencies():
+    """
+    Resolves package dependencies for the AppCoinsSDK Xcode project.
+
+    This method calls `xcodebuild` with the `-resolvePackageDependencies` flag, which retrieves and caches 
+    any required Swift Package Manager dependencies specified in the project.
+    """
     subprocess.check_call(['xcodebuild', '-resolvePackageDependencies', '-project', 'AppCoinsSDK.xcodeproj'])
 
 def build_for_device(device_build_path):
+    """
+    Builds the AppCoinsSDK framework for a physical iOS device.
+
+    This method uses `xcodebuild` to compile the framework in Release configuration for a device, storing
+    the build output in a specified path.
+
+    Parameters:
+    - device_build_path: Path where the derived data for the device build is saved.
+    """
     subprocess.check_call([
         'xcodebuild', 'build',
         '-project', 'AppCoinsSDK.xcodeproj',
@@ -245,6 +283,15 @@ def build_for_device(device_build_path):
     ])
 
 def build_for_simulator(simulator_build_path):
+    """
+    Builds the AppCoinsSDK framework for the iOS Simulator.
+
+    This method compiles the framework for a simulator in Release configuration, storing the build output 
+    in the specified path.
+
+    Parameters:
+    - simulator_build_path: Path where the derived data for the simulator build is saved.
+    """
     subprocess.check_call([
         'xcodebuild', 'build',
         '-project', 'AppCoinsSDK.xcodeproj',
@@ -258,6 +305,19 @@ def build_for_simulator(simulator_build_path):
     ])
 
 def find_frameworks(release_directory, exclude_appc=False):
+    """
+    Identifies and retrieves paths to framework files in a given directory.
+
+    This function scans the specified directory for `.framework` files, optionally excluding the AppCoinsSDK 
+    framework. It also checks for any `.framework` files within a nested `PackageFrameworks` directory.
+
+    Parameters:
+    - release_directory: The directory where framework files are located.
+    - exclude_appc: Boolean flag to exclude the AppCoinsSDK framework.
+
+    Returns:
+    - List of paths to detected framework files.
+    """
     frameworks = []
 
     items_in_directory = os.listdir(release_directory)
@@ -279,6 +339,17 @@ def find_frameworks(release_directory, exclude_appc=False):
     return frameworks
 
 def find_bundles(release_directory):
+    """
+    Finds `.bundle` resources within a specified directory.
+
+    This method searches through the directory structure to locate bundle resources, returning their paths.
+
+    Parameters:
+    - release_directory: The root directory to search for bundles.
+
+    Returns:
+    - List of paths to each bundle resource.
+    """
     bundles = []
     for root, dirs, _ in os.walk(release_directory):
         for dir_name in dirs:
@@ -287,6 +358,15 @@ def find_bundles(release_directory):
     return bundles
 
 def create_output_directories():
+    """
+    Creates directories to store device and simulator frameworks for final packaging.
+
+    This method generates a base `Framework` directory along with `device` and `simulator` subdirectories. 
+    These directories will store framework files compiled for devices and simulators, used to create the final `.xcframework`.
+
+    Returns:
+    - Tuple containing paths to the base framework, device, and simulator directories.
+    """
     framework_directory = './Framework'
     os.makedirs(framework_directory, exist_ok=True)
 

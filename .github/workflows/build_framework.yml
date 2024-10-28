@@ -32,7 +32,7 @@ jobs:
         run: brew install xcodegen
 
       - name: Run the build script
-        run: python build_xcframework.py
+        run: python Scripts/build_xcframework.py
 
       - name: Configure Git
         run: |
@@ -46,6 +46,6 @@ jobs:
 
       - name: Push Changes
         run: |
-          git push
+          git push origin HEAD:$(echo $GITHUB_REF | sed 's/refs\/heads\///')
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
