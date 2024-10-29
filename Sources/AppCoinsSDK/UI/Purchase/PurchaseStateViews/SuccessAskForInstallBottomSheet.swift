@@ -7,7 +7,6 @@
 
 import Foundation
 import SwiftUI
-import URLImage
 
 internal struct SuccessAskForInstallBottomSheet: View {
     
@@ -19,13 +18,13 @@ internal struct SuccessAskForInstallBottomSheet: View {
         ZStack {
             ColorsUi.APC_DarkBlue
             
-            Image("wallet-sync-shades-2", bundle: Bundle.module)
+            Image("wallet-sync-shades-2", bundle: Bundle.APPCModule)
                 .resizable()
                 .edgesIgnoringSafeArea(.all)
         
             VStack(spacing: 0) {
                     
-                Image("checkmark", bundle: Bundle.module)
+                Image("checkmark", bundle: Bundle.APPCModule)
                     .resizable()
                     .edgesIgnoringSafeArea(.all)
                     .frame(width: 48, height: 48)
@@ -39,7 +38,7 @@ internal struct SuccessAskForInstallBottomSheet: View {
                 
                 if transactionViewModel.paymentMethodSelected?.name != Method.appc.rawValue {
                     HStack {
-                        Image("gift-1", bundle: Bundle.module)
+                        Image("gift-1", bundle: Bundle.APPCModule)
                             .resizable()
                             .edgesIgnoringSafeArea(.all)
                             .frame(width: 17, height: 17)
@@ -58,7 +57,7 @@ internal struct SuccessAskForInstallBottomSheet: View {
                         .padding(.top, 8)
                 }
                 
-                Image("wallet-sync-graphic", bundle: Bundle.module)
+                Image("wallet-sync-graphic", bundle: Bundle.APPCModule)
                     .resizable()
                     .frame(width: 200, height: 144)
                     .padding(.top, 38)
