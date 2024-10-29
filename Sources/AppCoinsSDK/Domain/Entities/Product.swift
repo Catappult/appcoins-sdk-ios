@@ -6,8 +6,7 @@
 //
 
 import Foundation
-import SwiftyRSA
-import StoreKit
+@_implementationOnly import StoreKit
 
 public struct Product {
     

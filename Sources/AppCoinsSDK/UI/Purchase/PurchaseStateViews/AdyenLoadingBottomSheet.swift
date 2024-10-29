@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import ActivityIndicatorView
+@_implementationOnly import ActivityIndicatorView
 
 internal struct AdyenLoadingBottomSheet: View {
     
@@ -19,8 +19,8 @@ internal struct AdyenLoadingBottomSheet: View {
                 ActivityIndicatorView(
                     isVisible: .constant(true), type: .growingArc(ColorsUi.APC_Gray, lineWidth: 1.5))
                 .frame(width: 41, height: 41)
-
-                Image("loading-appc-icon", bundle: Bundle.module)
+                
+                Image("loading-appc-icon", bundle: Bundle.APPCModule)
                     .resizable()
                     .scaledToFit()
                     .frame(height: 23)

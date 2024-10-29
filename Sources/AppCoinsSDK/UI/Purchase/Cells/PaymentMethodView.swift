@@ -7,7 +7,7 @@
 
 import Foundation
 import SwiftUI
-import URLImage
+@_implementationOnly import URLImage
 
 internal struct PaymentMethodView: View, Identifiable, Equatable {
     

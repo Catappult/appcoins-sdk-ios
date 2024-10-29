@@ -6,9 +6,9 @@
 //
 
 import Foundation
-import StoreKit
-import IndicativeLibrary
-import MarketplaceKit
+@_implementationOnly import StoreKit
+@_implementationOnly import IndicativeLibrary
+@_implementationOnly import MarketplaceKit
 
 public struct AppcSDK {
     
