@@ -17,6 +17,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          # Fetch all history for all branches and tags to handle pushes to the correct branch
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -44,8 +47,17 @@ jobs:
           git add .
           git commit -m "Built .xcframework" || echo "No changes to commit"
 
-      - name: Push Changes
+      - name: Push Changes (Push and PR only)
+        if: ${{ github.event_name != 'workflow_dispatch' }}
         run: |
-          git push origin HEAD:$(echo $GITHUB_REF | sed 's/refs\/heads\///')
+          # Determine the target branch based on the event type
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            TARGET_BRANCH="${{ github.event.pull_request.head.ref }}"
+            REMOTE="https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
+            git push "$REMOTE" HEAD:"$TARGET_BRANCH"
+          else
+            TARGET_BRANCH=$(echo $GITHUB_REF | sed 's/refs\/heads\///')
+            git push origin HEAD:"$TARGET_BRANCH"
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
