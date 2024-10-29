@@ -110,17 +110,27 @@ internal class TransactionViewModel : ObservableObject {
                                             }
                                         }
                                     }
-                                } else { self.bottomSheetViewModel.transactionFailedWith(error: .unknown) }
+                                } else { self.bottomSheetViewModel.transactionFailedWith(error: .unknown(message: "Unknown", description: "Unknown")) }
                             }
-                        case .failure(_):
-                            self.bottomSheetViewModel.transactionFailedWith(error: .systemError)
+                        case .failure(let error):
+                            switch error {
+                            case .failed(let message, let description, let request):
+                                self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
+                            case .noInternet(let message, let description, let request):
+                                self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
+                            }
                         }
                     }
-                case .failure(_):
-                    self.bottomSheetViewModel.transactionFailedWith(error: .systemError)
+                case .failure(let error):
+                    switch error {
+                    case .failed(let message, let description, let request):
+                        self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
+                    case .noInternet(let message, let description, let request):
+                        self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
+                    }
                 }
             }
-        } else { bottomSheetViewModel.transactionFailedWith(error: .systemError) }
+        } else { bottomSheetViewModel.transactionFailedWith(error: .systemError(message: "buildTransaction method Failed", description: "Missing required parameters: product is nil or domain is nil")) }
     }
     
     private func getProductAppcValue(product: Product, completion: @escaping (Double) -> Void) {
@@ -130,10 +140,14 @@ internal class TransactionViewModel : ObservableObject {
             switch result {
             case .success(let appcAmount):
                 if let appcAmount = Double(appcAmount) { completion(appcAmount) }
-                else { self.bottomSheetViewModel.transactionFailedWith(error: .systemError) }
-            case .failure(let failure):
-                if failure == .noInternet { self.bottomSheetViewModel.transactionFailedWith(error: .networkError) }
-                else { self.bottomSheetViewModel.transactionFailedWith(error: .systemError) }
+                else { self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: "getProductAppcValue method Failed", description: "Missing required parameters: AppCoins amount is nil")) }
+            case .failure(let error):
+                switch error {
+                case .failed(let message, let description, let request):
+                    self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
+                case .noInternet(let message, let description, let request):
+                    self.bottomSheetViewModel.transactionFailedWith(error: .networkError(message: message, description: description, request: request))
+                }
             }
         }
     }
@@ -144,11 +158,18 @@ internal class TransactionViewModel : ObservableObject {
             switch result {
             case .success(let transactionBonus):
                 completion(transactionBonus)
-            case .failure(let failure):
-                switch failure {
-                case .failed(_): self.bottomSheetViewModel.transactionFailedWith(error: .systemError)
-                case .noInternet: self.bottomSheetViewModel.transactionFailedWith(error: .networkError)
-                default: self.bottomSheetViewModel.transactionFailedWith(error: .systemError)
+            case .failure(let error):
+                switch error {
+                case .failed(let message, let description, let request):
+                    self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
+                case .general(let message, let description, let request):
+                    self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
+                case .noBillingAgreement(let message, let description, let request):
+                    self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
+                case .noInternet(let message, let description, let request):
+                    self.bottomSheetViewModel.transactionFailedWith(error: .networkError(message: message, description: description, request: request))
+                case .timeOut(let message, let description, let request):
+                    self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
                 }
             }
         }
@@ -165,9 +186,13 @@ internal class TransactionViewModel : ObservableObject {
                     if BuildConfiguration.integratedMethods.map({$0.rawValue}).contains(method.name) { availablePaymentMethods.append(method) }
                 }
                 completion(availablePaymentMethods)
-            case .failure(let failure):
-                if failure == .noInternet { self.bottomSheetViewModel.transactionFailedWith(error: .networkError) }
-                else { self.bottomSheetViewModel.transactionFailedWith(error: .systemError) }
+            case .failure(let error):
+                switch error {
+                case .failed(let message, let description, let request):
+                    self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
+                case .noInternet(let message, let description, let request):
+                    self.bottomSheetViewModel.transactionFailedWith(error: .networkError(message: message, description: description, request: request))
+                }
             }
         }
     }
@@ -179,9 +204,13 @@ internal class TransactionViewModel : ObservableObject {
             switch result {
             case .success(let balance):
                 completion(balance)
-            case .failure(let failure):
-                if failure == .noInternet { self.bottomSheetViewModel.transactionFailedWith(error: .networkError) }
-                else { self.bottomSheetViewModel.transactionFailedWith(error: .systemError) }
+            case .failure(let error):
+                switch error {
+                case .failed(let message, let description, let request):
+                    self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
+                case .noInternet(let message, let description, let request):
+                    self.bottomSheetViewModel.transactionFailedWith(error: .networkError(message: message, description: description, request: request))
+                }
             }
         }
     }

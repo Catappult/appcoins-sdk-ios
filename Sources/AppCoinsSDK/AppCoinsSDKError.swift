@@ -7,7 +7,7 @@
 
 import Foundation
 
-internal enum AppCoinsSDKError: Error {
+public enum AppCoinsSDKError: Error {
     
     case networkError(debugInfo: DebugInfo)
     case systemError(debugInfo: DebugInfo)
@@ -42,7 +42,7 @@ internal enum AppCoinsSDKError: Error {
     }
 }
 
-internal class DebugInfo {
+public class DebugInfo {
     internal let message: String
     internal let description: String
     internal let request: DebugRequestInfo?
@@ -56,7 +56,7 @@ internal class DebugInfo {
 
 import Foundation
 
-internal class DebugRequestInfo {
+public class DebugRequestInfo {
     internal let url: String
     internal let method: RequestMethod
     internal let body: String

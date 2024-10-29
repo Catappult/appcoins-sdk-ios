@@ -66,7 +66,7 @@ internal class PayPalDirectViewModel : ObservableObject {
                                     self.presentPayPalSheet = true
                                     self.userDismissPayPalSheet = true
                                 }
-                            } else { completion(.failure(.failed())) }
+                            } else { completion(.failure(.failed(message: "buyWithPayPalDirect method Failed", description: "Invalid url redirect response"))) }
                         case .failure(let error): completion(.failure(error))
                         }
                     }
@@ -140,24 +140,43 @@ internal class PayPalDirectViewModel : ObservableObject {
                                 result in
                                 switch result {
                                 case .success(let uuid): self.bottomSheetViewModel.finishPurchase(transactionUuid: uuid, method: .paypalDirect)
-                                    case .failure(let error):
-                                        switch error {
-                                        case .failed(let description): self.bottomSheetViewModel.transactionFailedWith(error: .systemError, description: description)
-                                        case .noInternet: self.bottomSheetViewModel.transactionFailedWith(error: .networkError)
-                                        default: self.bottomSheetViewModel.transactionFailedWith(error: .systemError)
+                                case .failure(let error):
+                                    switch error {
+                                    case .failed(let message, let description, let request):
+                                        self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
+                                    case .general(let message, let description, let request):
+                                        self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
+                                    case .noBillingAgreement(let message, let description, let request):
+                                        self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
+                                    case .noInternet(let message, let description, let request):
+                                        self.bottomSheetViewModel.transactionFailedWith(error: .networkError(message: message, description: description, request: request))
+                                    case .timeOut(let message, let description, let request):
+                                        self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
                                     }
                                 }
                             }
-                        case .failure(_):
-                            self.bottomSheetViewModel.transactionFailedWith(error: .notEntitled)
+                        case .failure(let error):
+                            switch error {
+                            case .failed(let message, let description, let request):
+                                self.bottomSheetViewModel.transactionFailedWith(error: .notEntitled(message: message, description: description, request: request))
+                            case .noInternet(let message, let description, let request):
+                                self.bottomSheetViewModel.transactionFailedWith(error: .notEntitled(message: message, description: description, request: request))
+                            }
                         }
                     }
-                } else { self.bottomSheetViewModel.transactionFailedWith(error: .notEntitled) }
+                } else { self.bottomSheetViewModel.transactionFailedWith(error: .notEntitled(message: "createBillingAgreementAndFinishTransaction method Failed", description: "Missing required parameters: raw: CreateBAPayPalTransactionRaw is nil")) }
             case .failure(let error):
                 switch error {
-                case .failed(_): self.bottomSheetViewModel.transactionFailedWith(error: .systemError)
-                case .noInternet: self.bottomSheetViewModel.transactionFailedWith(error: .networkError)
-                default: self.bottomSheetViewModel.transactionFailedWith(error: .systemError)
+                case .failed(let message, let description, let request):
+                    self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
+                case .general(let message, let description, let request):
+                    self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
+                case .noBillingAgreement(let message, let description, let request):
+                    self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
+                case .noInternet(let message, let description, let request):
+                    self.bottomSheetViewModel.transactionFailedWith(error: .networkError(message: message, description: description, request: request))
+                case .timeOut(let message, let description, let request):
+                    self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
                 }
             }
         }

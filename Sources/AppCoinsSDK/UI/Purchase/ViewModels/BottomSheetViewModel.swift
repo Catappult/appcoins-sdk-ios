@@ -193,17 +193,29 @@ internal class BottomSheetViewModel : ObservableObject {
                             self.finishPurchase(transactionUuid: transactionResponse.uuid, method: .appc)
                         case .failure(let error):
                             switch error {
-                            case .failed(let description): self.transactionFailedWith(error: .systemError, description: description)
-                            case .noInternet: self.transactionFailedWith(error: .networkError)
-                            default: self.transactionFailedWith(error: .systemError)
+                            case .failed(let message, let description, let request):
+                                self.transactionFailedWith(error: .systemError(debugInfo: DebugInfo(message: message, description: description, request: request)), description: description)
+                            case .general(let message, let description, let request):
+                                self.transactionFailedWith(error: .systemError(debugInfo: DebugInfo(message: message, description: description, request: request)))
+                            case .noBillingAgreement(let message, let description, let request):
+                                self.transactionFailedWith(error: .systemError(debugInfo: DebugInfo(message: message, description: description, request: request)))
+                            case .noInternet(let message, let description, let request):
+                                self.transactionFailedWith(error: .networkError(debugInfo: DebugInfo(message: message, description: description, request: request)))
+                            case .timeOut(let message, let description, let request):
+                                self.transactionFailedWith(error: .systemError(debugInfo: DebugInfo(message: message, description: description, request: request)))
                             }
                         }
                     }
-                case .failure(_):
-                    self.transactionFailedWith(error: .notEntitled)
+                case .failure(let error):
+                    switch error {
+                    case .failed(let message, let description, let request):
+                        self.transactionFailedWith(error: .notEntitled(message: message, description: description, request: request))
+                    case .noInternet(let message, let description, let request):
+                        self.transactionFailedWith(error: .notEntitled(message: message, description: description, request: request))
+                    }
                 }
             }
-        } else { self.transactionFailedWith(error: .systemError) }
+        } else { self.transactionFailedWith(error: .systemError(message: "buyWithAppc method Failed", description: "Missing required transaction parameters")) }
     }
     
     internal func buyWithSandbox() {
@@ -223,17 +235,29 @@ internal class BottomSheetViewModel : ObservableObject {
                             self.finishPurchase(transactionUuid: transactionResponse.uuid, method: .sandbox)
                         case .failure(let error):
                             switch error {
-                            case .failed(let description): self.transactionFailedWith(error: .systemError, description: description)
-                            case .noInternet: self.transactionFailedWith(error: .networkError)
-                            default: self.transactionFailedWith(error: .systemError)
+                            case .failed(let message, let description, let request):
+                                self.transactionFailedWith(error: .systemError(debugInfo: DebugInfo(message: message, description: description, request: request)), description: description)
+                            case .general(let message, let description, let request):
+                                self.transactionFailedWith(error: .systemError(debugInfo: DebugInfo(message: message, description: description, request: request)))
+                            case .noBillingAgreement(let message, let description, let request):
+                                self.transactionFailedWith(error: .systemError(debugInfo: DebugInfo(message: message, description: description, request: request)))
+                            case .noInternet(let message, let description, let request):
+                                self.transactionFailedWith(error: .networkError(debugInfo: DebugInfo(message: message, description: description, request: request)))
+                            case .timeOut(let message, let description, let request):
+                                self.transactionFailedWith(error: .systemError(debugInfo: DebugInfo(message: message, description: description, request: request)))
                             }
                         }
                     }
-                case .failure(_):
-                    self.transactionFailedWith(error: .notEntitled)
+                case .failure(let error):
+                    switch error {
+                    case .failed(let message, let description, let request):
+                        self.transactionFailedWith(error: .notEntitled(message: message, description: description, request: request))
+                    case .noInternet(let message, let description, let request):
+                        self.transactionFailedWith(error: .notEntitled(message: message, description: description, request: request))
+                    }
                 }
             }
-        } else { self.transactionFailedWith(error: .systemError) }
+        } else { self.transactionFailedWith(error: .systemError(message: "buyWithSandbox method Failed", description: "Missing required transaction parameters")) }
     }
     
     internal func buyWithCreditCard() {
@@ -249,14 +273,19 @@ internal class BottomSheetViewModel : ObservableObject {
                     case .success(let wallet):
                         if let moneyAmount = TransactionViewModel.shared.transaction?.moneyAmount, let moneyCurrrency = TransactionViewModel.shared.transaction?.moneyCurrency {
                             AdyenViewModel.shared.buyWithCreditCard(raw: raw, wallet: wallet, moneyAmount: moneyAmount, moneyCurrency: moneyCurrrency)
-                        } else { self.transactionFailedWith(error: .systemError) }
-                    case .failure(_):
-                        self.transactionFailedWith(error: .notEntitled)
+                        } else { self.transactionFailedWith(error: .systemError(message: "Buy With Credit Card Failed", description: "Unable to unwrap transaction")) }
+                    case .failure(let error):
+                        switch error {
+                        case .failed(let message, let description, let request):
+                            self.transactionFailedWith(error: .notEntitled(message: message, description: description, request: request))
+                        case .noInternet(let message, let description, let request):
+                            self.transactionFailedWith(error: .notEntitled(message: message, description: description, request: request))
+                        }
                     }
                 }
-            case .failure(_): self.transactionFailedWith(error: .unknown)
+            case .failure(_): self.transactionFailedWith(error: .unknown(message: "Unknown", description: "Unknown"))
             }
-        } else { self.transactionFailedWith(error: .systemError) }
+        } else { self.transactionFailedWith(error: .systemError(message: "buyWithCreditCard method Failed", description: "Missing required transaction parameters")) }
     }
     
     internal func buyWithPayPalAdyen() {
@@ -272,14 +301,19 @@ internal class BottomSheetViewModel : ObservableObject {
                     case .success(let wallet):
                         if let moneyAmount = TransactionViewModel.shared.transaction?.moneyAmount, let moneyCurrrency = TransactionViewModel.shared.transaction?.moneyCurrency {
                             AdyenViewModel.shared.buyWithPayPalAdyen(raw: raw, wallet: wallet, moneyAmount: moneyAmount, moneyCurrency: moneyCurrrency)
-                        } else { self.transactionFailedWith(error: .systemError) }
-                    case .failure(_):
-                        self.transactionFailedWith(error: .notEntitled)
+                        } else { self.transactionFailedWith(error: .systemError(message: "Buy With Paypal Adyen Failed", description: "Unable to unwrap transaction")) }
+                    case .failure(let error):
+                        switch error {
+                        case .failed(let message, let description, let request):
+                            self.transactionFailedWith(error: .notEntitled(message: message, description: description, request: request))
+                        case .noInternet(let message, let description, let request):
+                            self.transactionFailedWith(error: .notEntitled(message: message, description: description, request: request))
+                        }
                     }
                 }
-            case .failure(_): self.transactionFailedWith(error: .unknown)
+            case .failure(_): self.transactionFailedWith(error: .unknown(message: "Unknown", description: "Unknown"))
             }
-        } else { self.transactionFailedWith(error: .systemError) }
+        } else { self.transactionFailedWith(error: .systemError(message: "buyWithPaypalAdyen method Failed", description: "Missing required transaction parameters")) }
     }
     
     internal func buyWithPayPalDirect() {
@@ -298,15 +332,27 @@ internal class BottomSheetViewModel : ObservableObject {
                             self.finishPurchase(transactionUuid: uuid, method: .paypalDirect)
                         case .failure(let error):
                             switch error {
-                            case .failed(let description): self.transactionFailedWith(error: .systemError, description: description)
-                            case .noInternet: self.transactionFailedWith(error: .networkError)
-                            default: self.transactionFailedWith(error: .systemError)
+                            case .failed(let message, let description, let request):
+                                self.transactionFailedWith(error: .systemError(debugInfo: DebugInfo(message: message, description: description, request: request)), description: description)
+                            case .general(let message, let description, let request):
+                                self.transactionFailedWith(error: .systemError(debugInfo: DebugInfo(message: message, description: description, request: request)))
+                            case .noBillingAgreement(let message, let description, let request):
+                                self.transactionFailedWith(error: .systemError(debugInfo: DebugInfo(message: message, description: description, request: request)))
+                            case .noInternet(let message, let description, let request):
+                                self.transactionFailedWith(error: .networkError(debugInfo: DebugInfo(message: message, description: description, request: request)))
+                            case .timeOut(let message, let description, let request):
+                                self.transactionFailedWith(error: .systemError(debugInfo: DebugInfo(message: message, description: description, request: request)))
                             }
                         }
                     }
-                } else { self.transactionFailedWith(error: .systemError) }
-            case .failure(_):
-                self.transactionFailedWith(error: .notEntitled)
+                } else { self.transactionFailedWith(error: .systemError(message: "buyWithPaypalDirect method Failed", description: "Missing required transaction parameters")) }
+            case .failure(let error):
+                switch error {
+                case .failed(let message, let description, let request):
+                    self.transactionFailedWith(error: .notEntitled(message: message, description: description, request: request))
+                case .noInternet(let message, let description, let request):
+                    self.transactionFailedWith(error: .notEntitled(message: message, description: description, request: request))
+                }
             }
         }
     }
@@ -341,22 +387,38 @@ internal class BottomSheetViewModel : ObservableObject {
                                         case .failure(let error): self.transactionFailedWith(error: error)
                                         }
                                     }
-                                case .failure(let failure):
-                                    if failure == .noInternet { self.transactionFailedWith(error: .networkError) }
-                                    else { self.transactionFailedWith(error: .systemError) }
+                                case .failure(let error):
+                                    switch error {
+                                    case .failed(let message, let description, let request):
+                                        self.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
+                                    case .noInternet(let message, let description, let request):
+                                        self.transactionFailedWith(error: .networkError(message: message, description: description, request: request))
+                                    }
                                 }
                             }
-                        } else { self.transactionFailedWith(error: .systemError) }
-                    case .failure(let failure):
-                        switch failure {
-                        case .failed(_): self.transactionFailedWith(error: .systemError)
-                        case .noInternet: self.transactionFailedWith(error: .networkError)
-                        default: self.transactionFailedWith(error: .systemError)
+                        } else { self.transactionFailedWith(error: .systemError(message: "finishPurchase method Failed", description: "Missing required transaction purchase uid")) }
+                    case .failure(let error):
+                        switch error {
+                        case .failed(let message, let description, let request):
+                            self.transactionFailedWith(error: .systemError(debugInfo: DebugInfo(message: message, description: description, request: request)), description: description)
+                        case .general(let message, let description, let request):
+                            self.transactionFailedWith(error: .systemError(debugInfo: DebugInfo(message: message, description: description, request: request)))
+                        case .noBillingAgreement(let message, let description, let request):
+                            self.transactionFailedWith(error: .systemError(debugInfo: DebugInfo(message: message, description: description, request: request)))
+                        case .noInternet(let message, let description, let request):
+                            self.transactionFailedWith(error: .networkError(debugInfo: DebugInfo(message: message, description: description, request: request)))
+                        case .timeOut(let message, let description, let request):
+                            self.transactionFailedWith(error: .systemError(debugInfo: DebugInfo(message: message, description: description, request: request)))
                         }
                     }
                 }
-            case .failure(_):
-                self.transactionFailedWith(error: .notEntitled)
+            case .failure(let error):
+                switch error {
+                case .failed(let message, let description, let request):
+                    self.transactionFailedWith(error: .notEntitled(message: message, description: description, request: request))
+                case .noInternet(let message, let description, let request):
+                    self.transactionFailedWith(error: .notEntitled(message: message, description: description, request: request))
+                }
             }
         }
     }
@@ -430,7 +492,7 @@ internal class BottomSheetViewModel : ObservableObject {
             Utils.transactionResult(result: transactionResult)
             dismissSuccessWithAnimation()
         } else {
-            self.transactionFailedWith(error: .systemError)
+            self.transactionFailedWith(error: .systemError(message: "skipWalletInstall method Failed", description: "Missing required parameters: purchase is nil or hasCompletedPurhcase is false"))
         }
     }
     
