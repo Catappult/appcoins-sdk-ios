@@ -8236,21 +8236,21 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Extensions.swift",
       "kind": "StringLiteral",
-      "offset": 576,
+      "offset": 713,
       "length": 13,
       "value": "\"AppCoinsSDK\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Extensions.swift",
       "kind": "StringLiteral",
-      "offset": 863,
+      "offset": 1007,
       "length": 22,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Extensions.swift",
       "kind": "StringLiteral",
-      "offset": 877,
+      "offset": 1021,
       "length": 1,
       "value": "\".bundle\""
     },
