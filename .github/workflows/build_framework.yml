@@ -40,6 +40,19 @@ jobs:
         run: |
           security set-key-partition-list -S apple-tool:,apple: -s -k "" build.keychain
 
+      - name: Add keychain to search path
+        run: |
+          security list-keychains -s build.keychain login.keychain
+          security default-keychain -s build.keychain
+
+      - name: Configure keychain settings
+        run: |
+          security set-keychain-settings -t 3600 -u build.keychain
+
+      - name: List certificates for debugging
+        run: |
+          security find-identity -v -p codesigning
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
