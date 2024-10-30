@@ -7,7 +7,6 @@
 
 import Foundation
 import SwiftUI
-import URLImage
 
 internal struct SyncSuccessBottomSheet: View {
     
@@ -22,7 +21,7 @@ internal struct SyncSuccessBottomSheet: View {
                 
                 VStack {}.frame(height: 66)
                 
-                Image("checkmark", bundle: Bundle.module)
+                Image("checkmark", bundle: Bundle.APPCModule)
                     .resizable()
                     .frame(width: 80, height: 80)
                 

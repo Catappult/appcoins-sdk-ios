@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import URLImage
+@_implementationOnly import URLImage
 
 internal struct CreditCardAdyenIcon: View {
     
@@ -16,7 +16,7 @@ internal struct CreditCardAdyenIcon: View {
  
         URLImage(image,
                  inProgress: { progress in
-                    Image("card-placeholder", bundle: Bundle.module)
+                    Image("card-placeholder", bundle: Bundle.APPCModule)
                         .resizable()
                         .scaledToFit()
                         .edgesIgnoringSafeArea(.all)
@@ -24,7 +24,7 @@ internal struct CreditCardAdyenIcon: View {
                         .padding(.horizontal, 5)
                  },
                  failure: { error, retry in
-                    Image("card-placeholder", bundle: Bundle.module)
+                    Image("card-placeholder", bundle: Bundle.APPCModule)
                         .resizable()
                         .scaledToFit()
                         .edgesIgnoringSafeArea(.all)

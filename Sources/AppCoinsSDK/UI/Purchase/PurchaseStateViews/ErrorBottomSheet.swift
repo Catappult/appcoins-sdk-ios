@@ -7,7 +7,6 @@
 
 import Foundation
 import SwiftUI
-import URLImage
 
 internal struct ErrorBottomSheet: View {
     
@@ -42,7 +41,7 @@ internal struct ErrorBottomSheet: View {
                 
                 VStack {}.frame(height: viewModel.orientation == .landscape ? 21 : 68)
                 
-                Image("exclamation-red", bundle: Bundle.module)
+                Image("exclamation-red", bundle: Bundle.APPCModule)
                     .resizable()
                     .edgesIgnoringSafeArea(.all)
                     .frame(width: 80, height: 80)
