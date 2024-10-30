@@ -21,6 +21,24 @@ jobs:
           # Fetch all history for all branches and tags to handle pushes to the correct branch
           fetch-depth: 0
 
+      - name: Set up code signing certificate
+        env:
+          CERTIFICATE_BASE64: ${{ secrets.CERTIFICATE_BASE64 }}
+        run: |
+          # Decode and save the certificate to a file
+          echo "$CERTIFICATE_BASE64" | base64 --decode > signing_certificate.p12
+
+          # Create and unlock a custom keychain
+          security create-keychain -p "" build.keychain
+          security default-keychain -s build.keychain
+          security unlock-keychain -p "" build.keychain
+
+          # Import the certificate into the keychain
+          security import signing_certificate.p12 -k build.keychain -T /usr/bin/codesign
+
+          # Allow codesign to access the key
+          security set-key-partition-list -S apple-tool:,apple: -s -k "" build.keychain
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
