@@ -23,10 +23,10 @@ jobs:
 
       - name: Set up code signing certificate
         env:
-          CERTIFICATE_BASE64: ${{ secrets.CERTIFICATE_BASE64 }}
+          DEVELOPMENT_CERTIFICATE: ${{ secrets.DEVELOPMENT_CERTIFICATE }}
         run: |
           # Decode and save the certificate to a file
-          echo "$CERTIFICATE_BASE64" | base64 --decode > signing_certificate.p12
+          echo "$DEVELOPMENT_CERTIFICATE" | base64 --decode > signing_certificate.p12
 
           # Create and unlock a custom keychain
           security create-keychain -p "" build.keychain
