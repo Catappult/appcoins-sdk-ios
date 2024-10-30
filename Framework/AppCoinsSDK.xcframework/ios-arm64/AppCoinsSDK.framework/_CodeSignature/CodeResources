@@ -6,11 +6,11 @@
 	<dict>
 		<key>Adyen_Adyen.bundle/Assets.car</key>
 		<data>
-		A7J8QWF+04T/mDWb1+YVYBfTYAs=
+		aVMM9SMbn6+3yJu7A+HcqP75nOE=
 		</data>
 		<key>Adyen_Adyen.bundle/Info.plist</key>
 		<data>
-		5M1ye81j3wK/kUxZpguo63669zA=
+		3Cns486N0DU1Frf7LADoKxmIuOM=
 		</data>
 		<key>Adyen_Adyen.bundle/PrivacyInfo.xcprivacy</key>
 		<data>
@@ -306,11 +306,11 @@
 		</dict>
 		<key>Adyen_AdyenActions.bundle/Assets.car</key>
 		<data>
-		A6MbfnSt0K4DP2jGkuZa7U4QGck=
+		gou3DyBvSTZ7anycolC2vwnfWsA=
 		</data>
 		<key>Adyen_AdyenActions.bundle/Info.plist</key>
 		<data>
-		gj6QiFT9LxwJaEoNJRGYLn1r8gM=
+		ggh4yC2fEjKqSBJB1QZL4R0Zvsw=
 		</data>
 		<key>Adyen_AdyenCard.bundle/Assets.car</key>
 		<data>
@@ -318,323 +318,39 @@
 		</data>
 		<key>Adyen_AdyenCard.bundle/Info.plist</key>
 		<data>
-		2PozoVlOrno67ztI5moEzv/YxUM=
+		CvufygOkAxzrwlrIBvCpCimZyxA=
 		</data>
 		<key>Assets.car</key>
 		<data>
 		d4cGL0nV+ADAdt7PnQ8Pkkeq0rY=
 		</data>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2</key>
-		<data>
-		YUKsYl8pfDUaTj5EVpB5nb9wOwI=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/AccordionItemIcon.png</key>
-		<data>
-		zncaeazV3jiRFdllIpWIg7V7CPk=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/AccordionItemIcon@2x.png</key>
-		<data>
-		Jdt2qurmhTc5/vxYu5oG3n7qGOk=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/AccordionItemIcon@3x.png</key>
-		<data>
-		51WaE/IKRMfiy9tbq5DfWSEa5fg=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/AccordionItemIconExpanded.png</key>
-		<data>
-		Gp8k9WBgyBVyVzKwkb9h+yeERew=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/AccordionItemIconExpanded@2x.png</key>
-		<data>
-		UqZoYpRwTNxGKAOxJOuNRybIA2Q=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/AccordionItemIconExpanded@3x.png</key>
-		<data>
-		Wsq2dgTYDA41wlxYtUA3h67iqUE=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/ErrorIndicator.png</key>
-		<data>
-		939QYSrggYYQFlIuyJBEhtCdd40=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/ErrorIndicator@2x.png</key>
-		<data>
-		I748doP0zxdYXR+48wz8cBOXG1s=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/ErrorIndicator@3x.png</key>
-		<data>
-		VwA0d0pb75LYYGYeJHNOtsIo4us=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/Info.plist</key>
-		<data>
-		olPA4F0Pt6AifdTe/kT/6YwU1kE=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/MultiSelectionIndicator.png</key>
-		<data>
-		MSkc0JBAHKceD5tFSaV+R2lp6tY=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/MultiSelectionIndicator@2x.png</key>
-		<data>
-		D6YN3/odvVM+b6D1jr7JZew6ne0=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/MultiSelectionIndicator@3x.png</key>
-		<data>
-		8okG8cr6wsaiFTtmFJDEg1M1Ao0=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/MultiSelectionIndicatorSelected.png</key>
-		<data>
-		I/+ShJbYFPdhJOdsgaRPI0eALPs=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/MultiSelectionIndicatorSelected@2x.png</key>
-		<data>
-		txkpK/bPl+WrQsFAv1xhbc3oc0k=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/MultiSelectionIndicatorSelected@3x.png</key>
-		<data>
-		KWJsKN4gcVyoVzZ/Zv39r9Su+0w=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/SingleSelectionIndicatorSelected.png</key>
-		<data>
-		zaU95+KpdvP+qCgydmxJ0JUS/gU=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/SingleSelectionIndicatorSelected@2x.png</key>
-		<data>
-		T6MarU5j1QRXYnO2gotnvBhl36s=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/SingleSelectionIndicatorSelected@3x.png</key>
-		<data>
-		DWhITd/cNoUzJB7SOYysBo8CqD0=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/macho.hash</key>
-		<data>
-		8YikpDCfZS50lP5lyEToaXySI3M=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/macho.hash.sha256</key>
-		<data>
-		ujQbBRxoGQTwF0pUoAVLICm23LE=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYAppearance.h</key>
-		<data>
-		QjBCs4h7W4Qyq4fHWw05N8GxXj0=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYAppearanceConfiguration.h</key>
-		<data>
-		2ELkhlgJYPUieGMPJDNAaSoN3uo=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYAuthenticationRequestParameters.h</key>
-		<data>
-		mkYwtltb3cZBUPEEXNKE08bmMz4=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYButtonAppearance.h</key>
-		<data>
-		Vm/pteUZeKwecGtkNe/OEFeP/xs=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYChallengeDelegate.h</key>
-		<data>
-		4Q4kSRD3fjXvHFOsu80h9ok/0s0=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYChallengeParameters.h</key>
-		<data>
-		wp0myebQKMBlLBJbmTfHZLcnD8k=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYChallengeResult.h</key>
-		<data>
-		Q7ZvdGXO8xCQhKJIoJbStLtpcMU=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYInfoAppearance.h</key>
-		<data>
-		OoP1jOEsjLn+bqjtZSrB8QE3zRU=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYLabelAppearance.h</key>
-		<data>
-		RFArIXB2rokAA1cVIu/DrOup/NI=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYNavigationBarAppearance.h</key>
-		<data>
-		MNsKVAwzid+re2lYTnEQNOHuYKw=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYProgressView.h</key>
-		<data>
-		bhILrMEGl2yGmlgqxy8l66Yzbo8=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYProtocolError.h</key>
-		<data>
-		BHhUhDApRQkLuoKd9//GCpyejI0=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYRuntimeError.h</key>
-		<data>
-		3jr7U3km7dNaq004gE0MXypyjwg=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYSecurityWarningsDelegate.h</key>
-		<data>
-		0JxTDJ7dT6wBhWMRIyXs/+mfh9k=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYSelectAppearance.h</key>
-		<data>
-		APZ994uK4o3xzr+JKiKCxSp5NqQ=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYService.h</key>
-		<data>
-		tqlj74haLcB05ZRxpLHjRDfONqs=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYServiceParameters.h</key>
-		<data>
-		kd8QJ/7WxA5NnGVOoN4AFwgAMuM=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYSwitchAppearance.h</key>
-		<data>
-		N9//5Eb634+xbLMaNzY4L39QJaE=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYTextFieldAppearance.h</key>
-		<data>
-		XVFsalnCPiu9YyYH5PRCAz562kk=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYTransaction.h</key>
-		<data>
-		IjoRvgDRAslFgh5m+64XZ1HZhOg=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYWarning.h</key>
-		<data>
-		9XGdDJAuG/7JVFeMLQT/SbNHVaU=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Headers/Adyen3DS2.h</key>
-		<data>
-		sGok99f6EN25s8y1ab9LD/XOyMs=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Headers/NSError+Public.h</key>
-		<data>
-		iQfT0nW2HNAxUvogFxBuxYNBM+Q=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Info.plist</key>
-		<data>
-		q6tiSHDPCCLqcDHiRIdR0jrouU8=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/Modules/module.modulemap</key>
-		<data>
-		FjAxa1szb9MbQu0vjEMeHG5QAjE=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/PrivacyInfo.xcprivacy</key>
-		<data>
-		rP+s4o3svz2aEPBAVk2EzZl4IMs=
-		</data>
-		<key>Frameworks/Adyen3DS2.framework/_CodeSignature/CodeResources</key>
-		<data>
-		n9ptTWUQxKk7FdoXdNiyBjhg8eA=
-		</data>
-		<key>Frameworks/IndicativeLibrary.framework/.DS_Store</key>
-		<data>
-		Y/zzZVahlzqsXsKRy9ythZX/tmM=
-		</data>
-		<key>Frameworks/IndicativeLibrary.framework/Headers/Indicative.h</key>
-		<data>
-		Sqok4tCt16MGZF/3tCvoCHhhZpM=
-		</data>
-		<key>Frameworks/IndicativeLibrary.framework/Headers/IndicativeEvent.h</key>
-		<data>
-		i9neBlmDF1PNHZuUVSZhlTz1rmE=
-		</data>
-		<key>Frameworks/IndicativeLibrary.framework/Headers/IndicativeLibrary.h</key>
-		<data>
-		kscbnRsIbiVhWOSHEXfo2I0w2JQ=
-		</data>
 		<key>Frameworks/IndicativeLibrary.framework/IndicativeLibrary</key>
 		<data>
-		+o5P8H1T+B+Tm+pOkGVoIUml2AE=
+		xsBggsrsq0555DC9y1uwGVf12YQ=
 		</data>
 		<key>Frameworks/IndicativeLibrary.framework/Info.plist</key>
 		<data>
 		fWrk6lpyflDdmjc3s0L1PE1uPSU=
 		</data>
-		<key>Frameworks/IndicativeLibrary.framework/Modules/module.modulemap</key>
-		<data>
-		5vpa4vDmF0EfnLSEp1GG0Mu2eZg=
-		</data>
 		<key>Frameworks/IndicativeLibrary.framework/_CodeSignature/CodeResources</key>
 		<data>
-		rywsSpOBJAjmxsBBI9/W7jR0/e4=
-		</data>
-		<key>Frameworks/PPRiskMagnes.framework/.DS_Store</key>
-		<data>
-		6PbahegYdD+RTbqIU7cgaGNByCE=
-		</data>
-		<key>Frameworks/PPRiskMagnes.framework/Headers/MagnesCryptoUtil.h</key>
-		<data>
-		FuRYW3f3QOOok0nSkDa5BFiJFMA=
-		</data>
-		<key>Frameworks/PPRiskMagnes.framework/Headers/MagnesSystemConfigUtils.h</key>
-		<data>
-		m0fVlR0LRNAUF3lQpMK64IgK//M=
-		</data>
-		<key>Frameworks/PPRiskMagnes.framework/Headers/PPRiskMagnes-Swift.h</key>
-		<data>
-		xaEFyfHNcDisbXYw5ek8tVCsa5Q=
-		</data>
-		<key>Frameworks/PPRiskMagnes.framework/Headers/PPRiskMagnes.h</key>
-		<data>
-		h2lpeQe0Lq/gHz716wpYRvPwUcA=
+		Ki7qkVt9cHEqmoff8LXVoGaDoFg=
 		</data>
 		<key>Frameworks/PPRiskMagnes.framework/Info.plist</key>
 		<data>
 		dSRCXpFDu1qU1Oif8KCHNNcKRYg=
 		</data>
-		<key>Frameworks/PPRiskMagnes.framework/Modules/PPRiskMagnes.swiftmodule/arm64-apple-ios.swiftdoc</key>
-		<data>
-		EVh8IyLAQWvM0bBByh/2HAQ7KW0=
-		</data>
-		<key>Frameworks/PPRiskMagnes.framework/Modules/PPRiskMagnes.swiftmodule/arm64-apple-ios.swiftinterface</key>
-		<data>
-		zajdOuWiYtHQRaOblCQF2IMzvHo=
-		</data>
-		<key>Frameworks/PPRiskMagnes.framework/Modules/PPRiskMagnes.swiftmodule/arm64.swiftdoc</key>
-		<data>
-		EVh8IyLAQWvM0bBByh/2HAQ7KW0=
-		</data>
-		<key>Frameworks/PPRiskMagnes.framework/Modules/PPRiskMagnes.swiftmodule/arm64.swiftinterface</key>
-		<data>
-		zajdOuWiYtHQRaOblCQF2IMzvHo=
-		</data>
-		<key>Frameworks/PPRiskMagnes.framework/Modules/module.modulemap</key>
-		<data>
-		zG2HaZ52YRJVtlwpUULn49EDHFQ=
-		</data>
 		<key>Frameworks/PPRiskMagnes.framework/PPRiskMagnes</key>
 		<data>
-		IC0Gjv2QU/j3MzTOpHb9rvg2yMY=
-		</data>
-		<key>Frameworks/PPRiskMagnes.framework/_CodeSignature/CodeDirectory</key>
-		<data>
-		RPjq3j9qvfppAicGvtinVRWFlN8=
-		</data>
-		<key>Frameworks/PPRiskMagnes.framework/_CodeSignature/CodeRequirements</key>
-		<data>
-		ZEykj96kJC4cGqXO+Dof7btVIwI=
-		</data>
-		<key>Frameworks/PPRiskMagnes.framework/_CodeSignature/CodeRequirements-1</key>
-		<data>
-		EkdlJpOuiZidQBR7AYFnuhXbyMU=
+		o2aBD3zqOwHkDh4YKe/RT5rIjpM=
 		</data>
 		<key>Frameworks/PPRiskMagnes.framework/_CodeSignature/CodeResources</key>
 		<data>
-		A8AJanV9zaKrQCqjcP0Lo9fkLkY=
-		</data>
-		<key>Frameworks/PPRiskMagnes.framework/_CodeSignature/CodeSignature</key>
-		<data>
-		fZtW5FaJiixRKwGUoWSCfNBcDFs=
-		</data>
-		<key>Frameworks/SwiftyRSA.framework/Info.plist</key>
-		<data>
-		ys+4vMVoht3Dta3PMDX5Q6ryvL0=
-		</data>
-		<key>Frameworks/SwiftyRSA.framework/SwiftyRSA</key>
-		<data>
-		xTWhzEeOl3oj0u0gWsauWe4xheU=
-		</data>
-		<key>Frameworks/SwiftyRSA.framework/_CodeSignature/CodeResources</key>
-		<data>
-		1ObzeNab3kcv/PeotHGbRytAsVU=
+		kPE7lhvMYRaLF8+RnEpl0gvPjkk=
 		</data>
 		<key>Frameworks/libswift_Concurrency.dylib</key>
 		<data>
-		9CgHq4NvcKKZXw07RgPhSzQROBI=
+		ZLe1i3nyy9xucnQvBj+AVEk8YTY=
 		</data>
 		<key>Headers/AppCoinsSDK-Swift.h</key>
 		<data>
@@ -670,15 +386,15 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		9BlgT8PZ5FRYs48WH2P4P2aK4Ck=
+		MRftQUu20qSumG+2bE/QwCzjoss=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/Project/arm64-apple-ios.swiftsourceinfo</key>
 		<data>
-		IqIZ+wAuR6U77gejzXUfEPgMEiI=
+		U/a4FzjqvsyO/dswIsP33pWJH4A=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.abi.json</key>
 		<data>
-		OlaFR8ED0wKmcPC1y9H/20ln/fg=
+		wgjssAOaOwscjejsNsIR21Sf9bU=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<data>
@@ -691,6 +407,10 @@
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<data>
 		qyuK5slZTZli4vqb6MUo88bD3io=
+		</data>
+		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.swiftmodule</key>
+		<data>
+		E1L5/WtDW2wloeLvIzx79LKZskw=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -742,7 +462,7 @@
 		</data>
 		<key>Web3swift_web3swift.bundle/Info.plist</key>
 		<data>
-		eOIeieJHHKLNA4K+rE6+BJzbR78=
+		IhdBW8dm/0TYZezewGh5oqd2xxs=
 		</data>
 		<key>Web3swift_web3swift.bundle/browser.js</key>
 		<data>
@@ -1042,14 +762,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			I9duFY5V288vl3sz5VlcoMA75lXSWzSHTd3fGh8drD0=
+			y/h6rjRT6R8mpYBNBxjGcS/I++Y9+zeRTazIJYIazWI=
 			</data>
 		</dict>
 		<key>Adyen_Adyen.bundle/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			WYPAD7631kbaV8cCwWZslS2hPPoPnZLLgnZpdjSpk+s=
+			xLLVCCNfyH0wYht3XgSvf0t5fr5HIGuwfy9b5i4XLFU=
 			</data>
 		</dict>
 		<key>Adyen_Adyen.bundle/PrivacyInfo.xcprivacy</key>
@@ -1351,14 +1071,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			lte8O/9pEq2pOngnlGa3xsQlbCZjg3C2ys4coQKlVTs=
+			AlOtMqmMMXp90S+vQm3oYH7PVoI3y/q0PKxtndQ2w0Y=
 			</data>
 		</dict>
 		<key>Adyen_AdyenActions.bundle/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			WCv6m3YaBywzDMepL1ig6LRKk98Bu9tN7Pi5LAp58h8=
+			A6/bL6UkDyJBO1ryzVRjQR/nGcX5S8V1L6b+2SB3f8Q=
 			</data>
 		</dict>
 		<key>Adyen_AdyenCard.bundle/Assets.car</key>
@@ -1372,7 +1092,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			br7LhkhnVrC00tClYoHtqbBSAlvh22Ioxc3DRahhdW8=
+			m5CAAwyuJNeLnPHIEfs+FClqFal6yLM4cYv7y7/DOrc=
 			</data>
 		</dict>
 		<key>Assets.car</key>
@@ -1382,375 +1102,11 @@
 			qfoCBqX0DORHwMu8U0tSbnMaPXhOETJoWBrRzrRyKZ4=
 			</data>
 		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			IvNvbQoSF86Z72ooOrlFdxUYfIv1U1aXTTdjyEhO1s4=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/AccordionItemIcon.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			dx3CcG97zY03ZuoFUPrh7ki6rUR6Gr2BAgkYTt4//c0=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/AccordionItemIcon@2x.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			VbhtDHBaK5VeBaI0ScDB0PFJXyNrdxEbHO6qWhOpvPQ=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/AccordionItemIcon@3x.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			ewEHLmHeCdLi84dAFcuqHMShkMrBMS4jBRe5LWxmfdo=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/AccordionItemIconExpanded.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			RrRw9jc5pAK1ADcII4KZV5F+ioxqf3oUk8AeY3CjOIM=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/AccordionItemIconExpanded@2x.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			9izaoyAxsbGfveLWIFGomwsqCfwFYufadp1vuBwMzK8=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/AccordionItemIconExpanded@3x.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			qgK0tgSXO1lGbsrWIO4EolZjTaPgd9t2RTDmqE2I1OA=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/ErrorIndicator.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			UKlt/chNelSv0UFiJeJcBiFvWke8ANuHUyrSciEMV14=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/ErrorIndicator@2x.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			EjuCjQOKHebdt4uIIcPlPSGFrnLFMlAzwQLRO1UHYHg=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/ErrorIndicator@3x.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			T5HgsZPrUN7KtwyXQHG8pZ09mitC+mZ7D6iuwb1j2HU=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/Info.plist</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			WzKXS6qZQjJcPi1L+zmU/vbbj0tpHbEAATIlMoRoXJg=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/MultiSelectionIndicator.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			y3HIgEOowqS2AftFRN1iPVSFqsetx9PHquSj/LUjszw=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/MultiSelectionIndicator@2x.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			3L6UQ4Sr2pfTc7rLzDZBRQ+okgzlWVFMd0W40DLrpyE=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/MultiSelectionIndicator@3x.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			lTjSyMgquA4bo8aF5BDoV54ciLJ3IgZoVEFxE8+D7qI=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/MultiSelectionIndicatorSelected.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			r4sweNDAwNDcebQAqOYPkfPkGoQlrZ3H6YZ+tmTtIg8=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/MultiSelectionIndicatorSelected@2x.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			FAYCna/osudi10xgNJmevKRgFkITEGYRkh/vliXGTQQ=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/MultiSelectionIndicatorSelected@3x.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			AeMwm53X5qz7RKOLKJfCMVXBX68n32voHmw7al+prHI=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/SingleSelectionIndicatorSelected.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			Q9zQrt7gU/WrfpSQer+YGQnuUq0FzTI6rMMxv1Do7t4=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/SingleSelectionIndicatorSelected@2x.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			CGO9UA7uUTydT/+mmCKxxikvpqnuiMFgzzypI+5XPU0=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/SingleSelectionIndicatorSelected@3x.png</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			u/AYnX/N89U2tkmsxlfVqxXzpGwfCVi2NCo7CBI7fz0=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/macho.hash</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			o8qtwc1OOtmKqIGhUbPlVcwYllS5evO+qJASUHk3UU8=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Adyen3DS2.bundle/macho.hash.sha256</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			r1jq62SzMmBEQn8lewqSYNCD3LLVCPI1qyQnLBNWxDo=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYAppearance.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			yvYoxAEiEIDyydffrVCe/uBAjwGg+eqhrCEK7unLuGs=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYAppearanceConfiguration.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			Zl5gKTP3b0/ei7lGZzh3l+GWVfXicp12XzQk5I0q5Zw=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYAuthenticationRequestParameters.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			nCimp0BPAF27mGVtIqGvIyIcHgLQZroXr34c1vLdaTQ=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYButtonAppearance.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			32jhV9b9SQyEgW8/UcKoJ2X8EKtmy8LkDDCK3mxiNmA=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYChallengeDelegate.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			bDTgCQA8OBtwA/sftzXtqkJiVUD2Ki3ET+HU1cGZ+f8=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYChallengeParameters.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			1E17/KGArkVZdtf9+iJhrt7u+lIb2pJAWyfjpRxyRN4=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYChallengeResult.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			3Qk026dAEEqjRYg+Z61zEIXHvFyftJiULbK7zW5eaPM=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYInfoAppearance.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			KibY6oP4J41KQMCS3KbmGrt8Mo0aX2AuV+KSZIV+gPI=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYLabelAppearance.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			8XBng87xkrqtoyCxFyrCJQM0esJLEwms7TLNWgYkHuA=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYNavigationBarAppearance.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			XPh2YoksCFoqZe6iSmHEOWWZTdWbHRdnvChmGx45LOQ=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYProgressView.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			6HQZv+V7/MaqvVFW/6YAmb9sv4QIdWZPF0NRsK3WUQw=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYProtocolError.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			dd5tbRbJG7kAECSweg6Td8CFky0Nd/k2zFUN35/CSKg=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYRuntimeError.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			moiDUecxRWJWLg6HIIBRsR+inne8/cbAAAPwx78mGeQ=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYSecurityWarningsDelegate.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			ZAhJ8skFe8/SUw1L+KOhqaMyrIDK0/f8+Z/yFbo+2yk=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYSelectAppearance.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			STJpuKnB0sTdiAAj9+5a2m+/zf1oVUhgYQoEzxMtvE0=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYService.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			c5cbw7QIQSCFiANmnuY6i2xHkD1FI2XwlZgI5bwimTU=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYServiceParameters.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			eAHqPN3RUbn6eVJBf3n4kGFOxPqVm4xJW/CTAPKpCK8=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYSwitchAppearance.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			zmRQ67XCJC42ggkXe7QCDJW3eJRMkH9EIPv6opahHqU=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYTextFieldAppearance.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			nneK0JtMLYj60c0ApBBOp7o8rB3jPuT4dFu1BBvWSdU=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYTransaction.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			6AjMyq3HQyM1WDf15UsXTscDHIffML+tv0c9lZt+WMw=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Headers/ADYWarning.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			OMQyvBM4wuKIZdEmhRWm26D/je2elD1SnjaMrQVKzcI=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Headers/Adyen3DS2.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			jbxeX/VfQfPS207uqzAb012aeBfZ/huSaiXD2RjNwpw=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Headers/NSError+Public.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			KMzlJscJsC2zTy5HAFakuueiJZ1sACSISGviNlBEdCI=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Info.plist</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			XdfQgViQM1oCz0M0uth8WAtaVhBBYYSF8JkrEJN6Srs=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/Modules/module.modulemap</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			sU5xPAVmj6D0HQSj1LswZ+B5mkaYPh9qsKXIyJhwZ40=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/PrivacyInfo.xcprivacy</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			qPaHzf61OOta3dsNAozH83MsGmruQxPfOJgZMKtY5HE=
-			</data>
-		</dict>
-		<key>Frameworks/Adyen3DS2.framework/_CodeSignature/CodeResources</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			DxptjPOmiJhUm+kOiktLWO5c27tMy0WQuuFpeq/hxeU=
-			</data>
-		</dict>
-		<key>Frameworks/IndicativeLibrary.framework/Headers/Indicative.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			2h7CgfoNX6F2L6Xv1xWlmyso5GEGsOmFc1rKs327tvc=
-			</data>
-		</dict>
-		<key>Frameworks/IndicativeLibrary.framework/Headers/IndicativeEvent.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			vg6yv/cCF8o5EJdVCy1lahaaG4p5CWN5yzWRktk+ue8=
-			</data>
-		</dict>
-		<key>Frameworks/IndicativeLibrary.framework/Headers/IndicativeLibrary.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			CAU7sCKK8tMvSs34U3Om3mcrFCo9JPqPrZGNajYBitE=
-			</data>
-		</dict>
 		<key>Frameworks/IndicativeLibrary.framework/IndicativeLibrary</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			UxUnweaRDEysLYhur3TyMw4iqg9MqHkeV/UKf4cRQAU=
+			pInWupi8LRDrjdL3Rl8diPbZXq/VFN6bCpTh+HqMcLE=
 			</data>
 		</dict>
 		<key>Frameworks/IndicativeLibrary.framework/Info.plist</key>
@@ -1760,46 +1116,11 @@
 			h2FlpT975bgPxupTS3c6qniF+hOZ2iQCBLpE90OWUWU=
 			</data>
 		</dict>
-		<key>Frameworks/IndicativeLibrary.framework/Modules/module.modulemap</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			hpW5TapbkBORzy1F2q+cb01D/DA4104q6Zd81p7d1K8=
-			</data>
-		</dict>
 		<key>Frameworks/IndicativeLibrary.framework/_CodeSignature/CodeResources</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			uOPWKk2KZNg+CaFNv98VV9heP4G8OdixdcyfofoUGiw=
-			</data>
-		</dict>
-		<key>Frameworks/PPRiskMagnes.framework/Headers/MagnesCryptoUtil.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			3761py70ro9Ro6WObsKCsvluzLT6XfeK95g463bTUYo=
-			</data>
-		</dict>
-		<key>Frameworks/PPRiskMagnes.framework/Headers/MagnesSystemConfigUtils.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			VsDRn4DcTN3BlU/aALw1Bf5Ys0cAl3y2fpLakIyg0k8=
-			</data>
-		</dict>
-		<key>Frameworks/PPRiskMagnes.framework/Headers/PPRiskMagnes-Swift.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			WM44nLOVWlxCLrPUN/CjgN/bIBmPnQ5ieJkUXZZjg7U=
-			</data>
-		</dict>
-		<key>Frameworks/PPRiskMagnes.framework/Headers/PPRiskMagnes.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			vhMly4uO6RmzlDtGoz0aUCKQHXGKVN52CnjC6s87et0=
+			a+jrpeVd5fk8WJ5JF53a+WaiPBq72P2DT20Dej+6LLU=
 			</data>
 		</dict>
 		<key>Frameworks/PPRiskMagnes.framework/Info.plist</key>
@@ -1809,109 +1130,25 @@
 			QOA1F84SVwLQZAUiaz+zCbNnvalfd4Cc9TmH6Z+ILXE=
 			</data>
 		</dict>
-		<key>Frameworks/PPRiskMagnes.framework/Modules/PPRiskMagnes.swiftmodule/arm64-apple-ios.swiftdoc</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			WiNjrTdD9ihhd2MkEcKQfsmFc6wgOd3wzhgbQe22QGM=
-			</data>
-		</dict>
-		<key>Frameworks/PPRiskMagnes.framework/Modules/PPRiskMagnes.swiftmodule/arm64-apple-ios.swiftinterface</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			lavFzClxN4OMBmETYAOeo6V3J+8XWknVggezC4CkU80=
-			</data>
-		</dict>
-		<key>Frameworks/PPRiskMagnes.framework/Modules/PPRiskMagnes.swiftmodule/arm64.swiftdoc</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			WiNjrTdD9ihhd2MkEcKQfsmFc6wgOd3wzhgbQe22QGM=
-			</data>
-		</dict>
-		<key>Frameworks/PPRiskMagnes.framework/Modules/PPRiskMagnes.swiftmodule/arm64.swiftinterface</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			lavFzClxN4OMBmETYAOeo6V3J+8XWknVggezC4CkU80=
-			</data>
-		</dict>
-		<key>Frameworks/PPRiskMagnes.framework/Modules/module.modulemap</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			5GvSEZlUrg4GELohSYR+X99i2WmXcpodL/JXQozOFYk=
-			</data>
-		</dict>
 		<key>Frameworks/PPRiskMagnes.framework/PPRiskMagnes</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			RFKxlFPRxo2C7pEvWFTSweRPB0WOAbYkein2aiMdIAY=
-			</data>
-		</dict>
-		<key>Frameworks/PPRiskMagnes.framework/_CodeSignature/CodeDirectory</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			Mw1lBVVTbC5wGJRzvYJ2AdqgTiAxU2RT36zYm8xHu3E=
-			</data>
-		</dict>
-		<key>Frameworks/PPRiskMagnes.framework/_CodeSignature/CodeRequirements</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			x+PwSrc2++vFL7fd0+NgH3Ss0e3Zu5mJ/ESCjU0fnag=
-			</data>
-		</dict>
-		<key>Frameworks/PPRiskMagnes.framework/_CodeSignature/CodeRequirements-1</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			SAPvz7mTEsWKbE2n+ZMG/ZhT7Z+jBcWo2fqtsaGtHL0=
+			PyK7gAk0LQ9Q/dg2L7FXHE83qKo+W/p0l1qm+l4rpOw=
 			</data>
 		</dict>
 		<key>Frameworks/PPRiskMagnes.framework/_CodeSignature/CodeResources</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			6KWKofecJlWGnUraOw3rwVO9uaMWERoepiyGMWSmuaE=
-			</data>
-		</dict>
-		<key>Frameworks/PPRiskMagnes.framework/_CodeSignature/CodeSignature</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			NCa+kdr9a9OMNR04ipWLYKOcS3nnztqLhk73N3VPIKg=
-			</data>
-		</dict>
-		<key>Frameworks/SwiftyRSA.framework/Info.plist</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			KvUli1x40De7Z4Ul+G7RKXLoD/GoMwOcAHiFxN6+JJY=
-			</data>
-		</dict>
-		<key>Frameworks/SwiftyRSA.framework/SwiftyRSA</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			azzxL3dkL0WchqzKlxeHvusAJhBpAfPWL3ivQyhjF88=
-			</data>
-		</dict>
-		<key>Frameworks/SwiftyRSA.framework/_CodeSignature/CodeResources</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			SsHAwMtXhjmq1by59k1lctFwj/CHO+H+VbTLmPCF/l4=
+			q+F3n6MMxAUNBelOQo7v1GXduz/gSj30pY5YMFTOA7s=
 			</data>
 		</dict>
 		<key>Frameworks/libswift_Concurrency.dylib</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			9wEKtL7QzhiQj+dnxtD2mmM4OQ4SXY0/jlOazNrEMsg=
+			ClYnViZ7THt3VC7VpEsNhcruqEWB/JWCfsjXs4UTKro=
 			</data>
 		</dict>
 		<key>Headers/AppCoinsSDK-Swift.h</key>
@@ -1974,14 +1211,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			CCc/K4PkPRoU48EPGTvTMYxViSp5dsuJtAhBDW5oCrI=
+			SxKgcgG8F+ds3hn7ylrq8rvPLRtbZleSTbZkT/ce/hs=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			gtLiEdXI4YZhMVvza59ws14cRWsel8keiDWManWga4M=
+			xAMRetWJ6C8ogU57qJR9b1rsUyBq8Rpoo0iaaS7RkFY=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
@@ -2003,6 +1240,13 @@
 			<key>hash2</key>
 			<data>
 			dEK9m+EVxeEqw044bNnta6liVrD7SJ8ed0CEyBnyQuk=
+			</data>
+		</dict>
+		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.swiftmodule</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			iqYyCfNAWuRT8i/8U57atVlcS6zEXniGAlcXCgW38Fs=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -2093,7 +1337,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			1G0JJARVojufQccWpnR4M/LZORLMVvL97jXxgirZSsk=
+			zi8zh/lTIoWwZUOAW7L4/G6l0nbx49Rx7rMM6GWE4Fs=
 			</data>
 		</dict>
 		<key>Web3swift_web3swift.bundle/browser.js</key>

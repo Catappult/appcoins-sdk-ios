@@ -189,61 +189,6 @@ def create_yml_project_file(dependencies, products, binary_targets, bundle_resou
                             for BUNDLE in $BUNDLE_FILES; do
                                 rsync -av --delete "${BUNDLE}" "${BUILT_PRODUCTS_DIR}/AppCoinsSDK.framework"
                             done
-
-                            EMBED_FRAMEWORKS=()
-
-                            # Find top-level frameworks
-                            FRAMEWORKS=$(find "${BUILT_PRODUCTS_DIR}" -maxdepth 1 -type d -name "*.framework")
-                            for FRAMEWORK in $FRAMEWORKS; do
-                                # Extract the framework name from the full path
-                                FRAMEWORK_NAME=$(basename "$FRAMEWORK")
-
-                                # Check if the framework is AppCoinsSDK.framework
-                                if [ "$FRAMEWORK_NAME" = "AppCoinsSDK.framework" ]; then
-                                    APPCOINS_SDK_FRAMEWORK="${FRAMEWORK}"
-                                else
-                                    # For other frameworks, add to the EMBED_FRAMEWORKS array
-                                    EMBED_FRAMEWORKS+=("$FRAMEWORK")
-                                    echo "Top-Level Framework: ${FRAMEWORK}"
-                                fi
-                            done
-
-                            # Find package frameworks
-                            PACKAGE_FRAMEWORKS=$(find "${BUILT_PRODUCTS_DIR}/PackageFrameworks" -maxdepth 1 -type d -name "*.framework")
-                            for PACKAGE_FRAMEWORK in $PACKAGE_FRAMEWORKS; do
-                                EMBED_FRAMEWORKS+=("$PACKAGE_FRAMEWORK")
-                                echo "Package Framework: ${PACKAGE_FRAMEWORK}"
-                            done
-
-                            FRAMEWORKS_DIR="${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}"
-                            echo "Frameworks directory: ${FRAMEWORKS_DIR}"
-                            echo "Embed Frameworks: ${EMBED_FRAMEWORKS}"
-                            echo "Build products dir: ${BUILT_PRODUCTS_DIR}"
-                            # Ensure the frameworks directory exists
-                            mkdir -p "${FRAMEWORKS_DIR}"
-                            
-                            for FRAMEWORK in "${EMBED_FRAMEWORKS[@]}"; do
-                                # Remove the BUILT_PRODUCTS_DIR prefix to get only the framework name and subpath
-                                FRAMEWORK_NAME=$(basename "${FRAMEWORK}")
-                                echo "Framework Name: ${FRAMEWORK_NAME}"
-                                
-                                if [ -d "${FRAMEWORK}" ]; then
-                                echo "Embedding ${FRAMEWORK}"
-                                rsync -av --delete "${FRAMEWORK}" "${FRAMEWORKS_DIR}"
-
-                                # Set permissions to edit framework
-                                chmod -R u+w "${FRAMEWORKS_DIR}/${FRAMEWORK_NAME}"
-
-                                # Code-sign the framework for device compatibility
-                                echo "Code-signing ${FRAMEWORK}"
-                                echo "Code signing identity: ${EXPANDED_CODE_SIGN_IDENTITY}"
-                                /usr/bin/codesign --force --deep --sign "${EXPANDED_CODE_SIGN_IDENTITY}" --preserve-metadata=identifier,entitlements "${FRAMEWORKS_DIR}/${FRAMEWORK_NAME}"
-                                fi
-                            done
-
-                            echo "Finally sign AppCoinsSDK.framework"
-                            chmod -R u+w ${APPCOINS_SDK_FRAMEWORK}
-                            /usr/bin/codesign --force --deep --sign "${EXPANDED_CODE_SIGN_IDENTITY}" --preserve-metadata=identifier,entitlements "${APPCOINS_SDK_FRAMEWORK}"
                         """
                     }
                 ]
@@ -443,22 +388,42 @@ if __name__ == "__main__":
     # 4.3 Resolve the dependencies for the newly created package
     resolve_package_dependencies()
 
-    # 6.2 Build the framework for device
+    # 5.1 Build the framework for device
     device_build_path = './build/DerivedData/Device'
     build_for_device(device_build_path)
 
-    # 6.3 Build the framework for simulator
+    # 5.2 Build the framework for simulator
     simulator_build_path = './build/DerivedData/Simulator'
     build_for_simulator(simulator_build_path)
 
-    # 6.5 Create output directories, where we'll gather frameworks and produce all .xcframeworks necessary
+    # 5.3 Create output directories, where we'll gather frameworks and produce all .xcframeworks necessary
     framework_directory, device_directory, simulator_directory = create_output_directories()
-    
-    # 6.6 Copy frameworks bundle resources into the output directories
+
+    # 5.4 Copy all dependency frameworks to output directories and generate .xcframeworks
+    device_frameworks = find_frameworks(f'{device_build_path}/Build/Products/Release-iphoneos', exclude_appc = True)
+    for device_framework in device_frameworks:
+        shutil.copytree(device_framework, f'{device_directory}/{os.path.basename(device_framework)}')
+
+    simulator_frameworks = find_frameworks(f'{simulator_build_path}/Build/Products/Release-iphonesimulator', exclude_appc = True)
+    for simulator_framework in simulator_frameworks:
+        shutil.copytree(simulator_framework, f'{simulator_directory}/{os.path.basename(simulator_framework)}')
+
+        framework = os.path.basename(simulator_framework)
+        framework_name, framework_extension = os.path.splitext(framework)
+
+        if os.path.exists(f'{framework_directory}/{framework_name}.xcframework'):
+            shutil.rmtree(f'{framework_directory}/{framework_name}.xcframework')
+
+        subprocess.check_call(['xcodebuild', '-create-xcframework', \
+                '-framework', f'{device_directory}/{framework}', \
+                '-framework', f'{simulator_directory}/{framework}', \
+                '-output', f'{framework_directory}/{framework_name}.xcframework'])
+
+    # 5.5 Copy AppCoins SDK framework into the output directories
     shutil.copytree(f'{device_build_path}/Build/Products/Release-iphoneos/AppCoinsSDK.framework', f'{device_directory}/AppCoinsSDK.framework')
     shutil.copytree(f'{simulator_build_path}/Build/Products/Release-iphonesimulator/AppCoinsSDK.framework', f'{simulator_directory}/AppCoinsSDK.framework')
   
-    # 6.7 Produce the output .xcframework
+    # 5.6 Produce the output .xcframework
     framework = 'AppCoinsSDK.framework'
     framework_name, file_extension = os.path.splitext(framework)
 

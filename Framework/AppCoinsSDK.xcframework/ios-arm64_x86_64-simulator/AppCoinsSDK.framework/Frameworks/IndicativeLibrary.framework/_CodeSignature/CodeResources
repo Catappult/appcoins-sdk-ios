@@ -4,58 +4,13 @@
 <dict>
 	<key>files</key>
 	<dict>
-		<key>Headers/Indicative.h</key>
-		<data>
-		Sqok4tCt16MGZF/3tCvoCHhhZpM=
-		</data>
-		<key>Headers/IndicativeEvent.h</key>
-		<data>
-		i9neBlmDF1PNHZuUVSZhlTz1rmE=
-		</data>
-		<key>Headers/IndicativeLibrary.h</key>
-		<data>
-		kscbnRsIbiVhWOSHEXfo2I0w2JQ=
-		</data>
 		<key>Info.plist</key>
 		<data>
 		kem44mLcIzBvqGOwfUaE8DBaHKc=
 		</data>
-		<key>Modules/module.modulemap</key>
-		<data>
-		5vpa4vDmF0EfnLSEp1GG0Mu2eZg=
-		</data>
 	</dict>
 	<key>files2</key>
-	<dict>
-		<key>Headers/Indicative.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			2h7CgfoNX6F2L6Xv1xWlmyso5GEGsOmFc1rKs327tvc=
-			</data>
-		</dict>
-		<key>Headers/IndicativeEvent.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			vg6yv/cCF8o5EJdVCy1lahaaG4p5CWN5yzWRktk+ue8=
-			</data>
-		</dict>
-		<key>Headers/IndicativeLibrary.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			CAU7sCKK8tMvSs34U3Om3mcrFCo9JPqPrZGNajYBitE=
-			</data>
-		</dict>
-		<key>Modules/module.modulemap</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			hpW5TapbkBORzy1F2q+cb01D/DA4104q6Zd81p7d1K8=
-			</data>
-		</dict>
-	</dict>
+	<dict/>
 	<key>rules</key>
 	<dict>
 		<key>^.*</key>

@@ -76,47 +76,55 @@ targets:
         \ to inside the generated framework\n                            for BUNDLE\
         \ in $BUNDLE_FILES; do\n                                rsync -av --delete\
         \ \"${BUNDLE}\" \"${BUILT_PRODUCTS_DIR}/AppCoinsSDK.framework\"\n        \
-        \                    done\n\n                            EMBED_FRAMEWORKS=()\n\
-        \n                            # Find top-level frameworks\n              \
-        \              FRAMEWORKS=$(find \"${BUILT_PRODUCTS_DIR}\" -maxdepth 1 -type\
-        \ d -name \"*.framework\")\n                            for FRAMEWORK in $FRAMEWORKS;\
-        \ do\n                                # Extract the framework name from the\
-        \ full path\n                                FRAMEWORK_NAME=$(basename \"\
-        $FRAMEWORK\")\n\n                                # Skip the AppCoinsSDK.framework\n\
-        \                                if [ \"$FRAMEWORK_NAME\" = \"AppCoinsSDK.framework\"\
-        \ ]; then\n                                    continue\n                \
-        \                fi\n\n                                EMBED_FRAMEWORKS+=(\"\
-        $FRAMEWORK\")\n                                echo \"Top-Level Framework:\
-        \ ${FRAMEWORK}\"\n                            done\n\n                   \
-        \         # Find package frameworks\n                            PACKAGE_FRAMEWORKS=$(find\
+        \                    done\n\n                            # EMBED_FRAMEWORKS=()\n\
+        \n                            # # Find top-level frameworks\n            \
+        \                # FRAMEWORKS=$(find \"${BUILT_PRODUCTS_DIR}\" -maxdepth 1\
+        \ -type d -name \"*.framework\")\n                            # for FRAMEWORK\
+        \ in $FRAMEWORKS; do\n                            #     # Extract the framework\
+        \ name from the full path\n                            #     FRAMEWORK_NAME=$(basename\
+        \ \"$FRAMEWORK\")\n\n                            #     # Check if the framework\
+        \ is AppCoinsSDK.framework\n                            #     if [ \"$FRAMEWORK_NAME\"\
+        \ = \"AppCoinsSDK.framework\" ]; then\n                            #     \
+        \    APPCOINS_SDK_FRAMEWORK=\"${FRAMEWORK}\"\n                           \
+        \ #     else\n                            #         # For other frameworks,\
+        \ add to the EMBED_FRAMEWORKS array\n                            #       \
+        \  EMBED_FRAMEWORKS+=(\"$FRAMEWORK\")\n                            #     \
+        \    echo \"Top-Level Framework: ${FRAMEWORK}\"\n                        \
+        \    #     fi\n                            # done\n\n                    \
+        \        # # Find package frameworks\n                            # PACKAGE_FRAMEWORKS=$(find\
         \ \"${BUILT_PRODUCTS_DIR}/PackageFrameworks\" -maxdepth 1 -type d -name \"\
-        *.framework\")\n                            for PACKAGE_FRAMEWORK in $PACKAGE_FRAMEWORKS;\
-        \ do\n                                EMBED_FRAMEWORKS+=(\"$PACKAGE_FRAMEWORK\"\
-        )\n                                echo \"Package Framework: ${PACKAGE_FRAMEWORK}\"\
-        \n                            done\n\n                            FRAMEWORKS_DIR=\"\
+        *.framework\")\n                            # for PACKAGE_FRAMEWORK in $PACKAGE_FRAMEWORKS;\
+        \ do\n                            #     EMBED_FRAMEWORKS+=(\"$PACKAGE_FRAMEWORK\"\
+        )\n                            #     echo \"Package Framework: ${PACKAGE_FRAMEWORK}\"\
+        \n                            # done\n\n                            # FRAMEWORKS_DIR=\"\
         ${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\n                      \
-        \      echo \"Frameworks directory: ${FRAMEWORKS_DIR}\"\n                \
-        \            echo \"Embed Frameworks: ${EMBED_FRAMEWORKS}\"\n            \
-        \                echo \"Build products dir: ${BUILT_PRODUCTS_DIR}\"\n    \
-        \                        # Ensure the frameworks directory exists\n      \
-        \                      mkdir -p \"${FRAMEWORKS_DIR}\"\n                  \
-        \          \n                            for FRAMEWORK in \"${EMBED_FRAMEWORKS[@]}\"\
-        ; do\n                                # Remove the BUILT_PRODUCTS_DIR prefix\
+        \      # echo \"Frameworks directory: ${FRAMEWORKS_DIR}\"\n              \
+        \              # echo \"Embed Frameworks: ${EMBED_FRAMEWORKS}\"\n        \
+        \                    # echo \"Build products dir: ${BUILT_PRODUCTS_DIR}\"\n\
+        \                            # # Ensure the frameworks directory exists\n\
+        \                            # mkdir -p \"${FRAMEWORKS_DIR}\"\n          \
+        \                  \n                            # for FRAMEWORK in \"${EMBED_FRAMEWORKS[@]}\"\
+        ; do\n                            #     # Remove the BUILT_PRODUCTS_DIR prefix\
         \ to get only the framework name and subpath\n                           \
-        \     FRAMEWORK_NAME=$(basename \"${FRAMEWORK}\")\n                      \
-        \          echo \"Framework Name: ${FRAMEWORK_NAME}\"\n                  \
-        \              \n                                if [ -d \"${FRAMEWORK}\"\
-        \ ]; then\n                                echo \"Embedding ${FRAMEWORK}\"\
-        \n                                rsync -av --delete \"${FRAMEWORK}\" \"${FRAMEWORKS_DIR}\"\
-        \n\n                                # Set permissions to edit framework\n\
-        \                                chmod -R u+w \"${FRAMEWORKS_DIR}/${FRAMEWORK_NAME}\"\
-        \n\n                                # Code-sign the framework for device compatibility\n\
-        \                                echo \"Code-signing ${FRAMEWORK}\"\n    \
-        \                            echo \"Code signing identity: ${EXPANDED_CODE_SIGN_IDENTITY}\"\
-        \n                                /usr/bin/codesign --force --deep --sign\
+        \ #     FRAMEWORK_NAME=$(basename \"${FRAMEWORK}\")\n                    \
+        \        #     echo \"Framework Name: ${FRAMEWORK_NAME}\"\n              \
+        \                  \n                            #     if [ -d \"${FRAMEWORK}\"\
+        \ ]; then\n                            #     echo \"Embedding ${FRAMEWORK}\"\
+        \n                            #     rsync -av --delete \"${FRAMEWORK}\" \"\
+        ${FRAMEWORKS_DIR}\"\n\n                            #     # Set permissions\
+        \ to edit framework\n                            #     chmod -R u+w \"${FRAMEWORKS_DIR}/${FRAMEWORK_NAME}\"\
+        \n\n                            #     # Code-sign the framework for device\
+        \ compatibility\n                            #     echo \"Code-signing ${FRAMEWORK}\"\
+        \n                            #     echo \"Code signing identity: ${EXPANDED_CODE_SIGN_IDENTITY}\"\
+        \n                            #     /usr/bin/codesign --force --deep --sign\
         \ \"${EXPANDED_CODE_SIGN_IDENTITY}\" --preserve-metadata=identifier,entitlements\
-        \ \"${FRAMEWORKS_DIR}/${FRAMEWORK_NAME}\"\n                              \
-        \  fi\n                            done\n                        "
+        \ --timestamp=none \"${FRAMEWORKS_DIR}/${FRAMEWORK_NAME}\"\n             \
+        \               #     fi\n                            # done\n\n         \
+        \                   # echo \"Finally sign AppCoinsSDK.framework\"\n      \
+        \                      # chmod -R u+w ${APPCOINS_SDK_FRAMEWORK}\n        \
+        \                    # /usr/bin/codesign --force --deep --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\"\
+        \ --preserve-metadata=identifier,entitlements --timestamp=none \"${APPCOINS_SDK_FRAMEWORK}\"\
+        \n                        "
 packages:
   web3swift:
     url: https://github.com/web3swift-team/web3swift.git
