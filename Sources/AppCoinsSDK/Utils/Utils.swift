@@ -6,10 +6,10 @@
 //
 
 import SwiftUI
-import os
-import Security
-import PPRiskMagnes
-import CommonCrypto
+@_implementationOnly import os
+@_implementationOnly import Security
+@_implementationOnly import PPRiskMagnes
+@_implementationOnly import CommonCrypto
 
 internal struct Utils {
     

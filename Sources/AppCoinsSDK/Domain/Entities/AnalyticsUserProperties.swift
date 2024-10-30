@@ -7,15 +7,15 @@
 
 import Foundation
 
-public struct AnalyticsUserProperties: Codable {
+internal struct AnalyticsUserProperties: Codable {
     
-    let package: String
-    let environment: String
-    let theme: String
-    let iosVersion: String
-    let iphoneModel: String
+    internal let package: String
+    internal let environment: String
+    internal let theme: String
+    internal let iosVersion: String
+    internal let iphoneModel: String
     
-    init(package: String, environment: String, theme: String, iosVersion: String, iphoneModel: String) {
+    internal init(package: String, environment: String, theme: String, iosVersion: String, iphoneModel: String) {
         self.package = package
         self.environment = environment
         self.theme = theme
@@ -23,7 +23,7 @@ public struct AnalyticsUserProperties: Codable {
         self.iphoneModel = iphoneModel
     }
     
-    func toDict() -> [AnyHashable : Any] {
+    internal func toDict() -> [AnyHashable : Any] {
         return [
             "application_package": package,
             "environment": environment,

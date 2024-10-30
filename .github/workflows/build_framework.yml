@@ -1,0 +1,98 @@
+name: Build AppCoins SDK XCFramework
+
+on:
+  push:
+    branches:
+      - 'release_*'
+  pull_request:
+    branches:
+      - main
+      - dev
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          # Fetch all history for all branches and tags to handle pushes to the correct branch
+          fetch-depth: 0
+        
+      - name: Decode and save the certificate
+        env:
+            DEVELOPMENT_CERTIFICATE: ${{ secrets.DEVELOPMENT_CERTIFICATE }}
+        run: |
+          echo "$DEVELOPMENT_CERTIFICATE" | base64 --decode > signing_certificate.p12
+
+      - name: Create and unlock keychain
+        run: |
+          security create-keychain -p "" build.keychain
+          security unlock-keychain -p "" build.keychain
+
+      - name: Import certificate into keychain
+        run: |
+          security import signing_certificate.p12 -k build.keychain -P "" -T /usr/bin/codesign
+
+      - name: Set key partition list
+        run: |
+          security set-key-partition-list -S apple-tool:,apple: -s -k "" build.keychain
+
+      - name: Add keychain to search path
+        run: |
+          security list-keychains -s build.keychain login.keychain
+          security default-keychain -s build.keychain
+
+      - name: Configure keychain settings
+        run: |
+          security set-keychain-settings -t 3600 -u build.keychain
+
+      - name: List certificates for debugging
+        run: |
+          security find-identity -v -p codesigning
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pyyaml
+
+      - name: Set up Xcodegen
+        run: brew install xcodegen
+
+      - name: Run the build script
+        run: python Scripts/build_xcframework.py
+
+      - name: Remove the signing certificate file
+        run: rm -f signing_certificate.p12
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Add and Commit Changes
+        run: |
+          git add .
+          git commit -m "Built .xcframework" || echo "No changes to commit"
+
+      - name: Push Changes (Push and PR only)
+        if: ${{ github.event_name != 'workflow_dispatch' }}
+        run: |
+          # Determine the target branch based on the event type
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            TARGET_BRANCH="${{ github.event.pull_request.head.ref }}"
+            REMOTE="https://${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}"
+            git push "$REMOTE" HEAD:"$TARGET_BRANCH"
+          else
+            TARGET_BRANCH=$(echo $GITHUB_REF | sed 's/refs\/heads\///')
+            git push origin HEAD:"$TARGET_BRANCH"
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

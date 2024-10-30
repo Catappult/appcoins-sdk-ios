@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Adyen
+@_implementationOnly import Adyen
 
 struct MultipleStoredCards: View {
     
