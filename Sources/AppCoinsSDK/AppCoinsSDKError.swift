@@ -54,8 +54,6 @@ public class DebugInfo {
     }
 }
 
-import Foundation
-
 public class DebugRequestInfo {
     internal let url: String
     internal let method: RequestMethod
