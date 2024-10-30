@@ -198,13 +198,14 @@ def create_yml_project_file(dependencies, products, binary_targets, bundle_resou
                                 # Extract the framework name from the full path
                                 FRAMEWORK_NAME=$(basename "$FRAMEWORK")
 
-                                # Skip the AppCoinsSDK.framework
+                                # Check if the framework is AppCoinsSDK.framework
                                 if [ "$FRAMEWORK_NAME" = "AppCoinsSDK.framework" ]; then
-                                    continue
+                                    APPCOINS_SDK_FRAMEWORK="${FRAMEWORK}"
+                                else
+                                    # For other frameworks, add to the EMBED_FRAMEWORKS array
+                                    EMBED_FRAMEWORKS+=("$FRAMEWORK")
+                                    echo "Top-Level Framework: ${FRAMEWORK}"
                                 fi
-
-                                EMBED_FRAMEWORKS+=("$FRAMEWORK")
-                                echo "Top-Level Framework: ${FRAMEWORK}"
                             done
 
                             # Find package frameworks
@@ -239,6 +240,10 @@ def create_yml_project_file(dependencies, products, binary_targets, bundle_resou
                                 /usr/bin/codesign --force --deep --sign "${EXPANDED_CODE_SIGN_IDENTITY}" --preserve-metadata=identifier,entitlements "${FRAMEWORKS_DIR}/${FRAMEWORK_NAME}"
                                 fi
                             done
+
+                            echo "Finally sign AppCoinsSDK.framework"
+                            chmod -R u+w ${APPCOINS_SDK_FRAMEWORK}
+                            /usr/bin/codesign --force --deep --sign "${EXPANDED_CODE_SIGN_IDENTITY}" --preserve-metadata=identifier,entitlements "${APPCOINS_SDK_FRAMEWORK}"
                         """
                     }
                 ]

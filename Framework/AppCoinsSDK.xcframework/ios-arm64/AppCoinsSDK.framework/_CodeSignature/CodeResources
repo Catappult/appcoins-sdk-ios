@@ -520,6 +520,10 @@
 		<data>
 		n9ptTWUQxKk7FdoXdNiyBjhg8eA=
 		</data>
+		<key>Frameworks/IndicativeLibrary.framework/.DS_Store</key>
+		<data>
+		Y/zzZVahlzqsXsKRy9ythZX/tmM=
+		</data>
 		<key>Frameworks/IndicativeLibrary.framework/Headers/Indicative.h</key>
 		<data>
 		Sqok4tCt16MGZF/3tCvoCHhhZpM=
@@ -547,6 +551,10 @@
 		<key>Frameworks/IndicativeLibrary.framework/_CodeSignature/CodeResources</key>
 		<data>
 		rywsSpOBJAjmxsBBI9/W7jR0/e4=
+		</data>
+		<key>Frameworks/PPRiskMagnes.framework/.DS_Store</key>
+		<data>
+		6PbahegYdD+RTbqIU7cgaGNByCE=
 		</data>
 		<key>Frameworks/PPRiskMagnes.framework/Headers/MagnesCryptoUtil.h</key>
 		<data>
@@ -683,10 +691,6 @@
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<data>
 		qyuK5slZTZli4vqb6MUo88bD3io=
-		</data>
-		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.swiftmodule</key>
-		<data>
-		M+7x2k4+9nrQiTe8uRC+BGBQc50=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -1999,13 +2003,6 @@
 			<key>hash2</key>
 			<data>
 			dEK9m+EVxeEqw044bNnta6liVrD7SJ8ed0CEyBnyQuk=
-			</data>
-		</dict>
-		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.swiftmodule</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			hAYv4xB9WZAlf7gCkEVrl3zC4g9a8skKWaDCQf7zhNI=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
