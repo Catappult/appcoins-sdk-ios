@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import IndicativeLibrary
+@_implementationOnly import IndicativeLibrary
 
 internal class IndicativeAnalyticsClient: AnalyticsService {
     
