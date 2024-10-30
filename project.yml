@@ -82,18 +82,21 @@ targets:
         \ d -name \"*.framework\")\n                            for FRAMEWORK in $FRAMEWORKS;\
         \ do\n                                # Extract the framework name from the\
         \ full path\n                                FRAMEWORK_NAME=$(basename \"\
-        $FRAMEWORK\")\n\n                                # Skip the AppCoinsSDK.framework\n\
-        \                                if [ \"$FRAMEWORK_NAME\" = \"AppCoinsSDK.framework\"\
-        \ ]; then\n                                    continue\n                \
-        \                fi\n\n                                EMBED_FRAMEWORKS+=(\"\
-        $FRAMEWORK\")\n                                echo \"Top-Level Framework:\
-        \ ${FRAMEWORK}\"\n                            done\n\n                   \
-        \         # Find package frameworks\n                            PACKAGE_FRAMEWORKS=$(find\
-        \ \"${BUILT_PRODUCTS_DIR}/PackageFrameworks\" -maxdepth 1 -type d -name \"\
-        *.framework\")\n                            for PACKAGE_FRAMEWORK in $PACKAGE_FRAMEWORKS;\
-        \ do\n                                EMBED_FRAMEWORKS+=(\"$PACKAGE_FRAMEWORK\"\
-        )\n                                echo \"Package Framework: ${PACKAGE_FRAMEWORK}\"\
-        \n                            done\n\n                            FRAMEWORKS_DIR=\"\
+        $FRAMEWORK\")\n\n                                # Check if the framework\
+        \ is AppCoinsSDK.framework\n                                if [ \"$FRAMEWORK_NAME\"\
+        \ = \"AppCoinsSDK.framework\" ]; then\n                                  \
+        \  APPCOINS_SDK_FRAMEWORK=\"${FRAMEWORK}\"\n                             \
+        \   else\n                                    # For other frameworks, add\
+        \ to the EMBED_FRAMEWORKS array\n                                    EMBED_FRAMEWORKS+=(\"\
+        $FRAMEWORK\")\n                                    echo \"Top-Level Framework:\
+        \ ${FRAMEWORK}\"\n                                fi\n                   \
+        \         done\n\n                            # Find package frameworks\n\
+        \                            PACKAGE_FRAMEWORKS=$(find \"${BUILT_PRODUCTS_DIR}/PackageFrameworks\"\
+        \ -maxdepth 1 -type d -name \"*.framework\")\n                           \
+        \ for PACKAGE_FRAMEWORK in $PACKAGE_FRAMEWORKS; do\n                     \
+        \           EMBED_FRAMEWORKS+=(\"$PACKAGE_FRAMEWORK\")\n                 \
+        \               echo \"Package Framework: ${PACKAGE_FRAMEWORK}\"\n       \
+        \                     done\n\n                            FRAMEWORKS_DIR=\"\
         ${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}\"\n                      \
         \      echo \"Frameworks directory: ${FRAMEWORKS_DIR}\"\n                \
         \            echo \"Embed Frameworks: ${EMBED_FRAMEWORKS}\"\n            \
@@ -116,7 +119,11 @@ targets:
         \n                                /usr/bin/codesign --force --deep --sign\
         \ \"${EXPANDED_CODE_SIGN_IDENTITY}\" --preserve-metadata=identifier,entitlements\
         \ \"${FRAMEWORKS_DIR}/${FRAMEWORK_NAME}\"\n                              \
-        \  fi\n                            done\n                        "
+        \  fi\n                            done\n\n                            echo\
+        \ \"Finally sign AppCoinsSDK.framework\"\n                            chmod\
+        \ -R u+w ${APPCOINS_SDK_FRAMEWORK}\n                            /usr/bin/codesign\
+        \ --force --deep --sign \"${EXPANDED_CODE_SIGN_IDENTITY}\" --preserve-metadata=identifier,entitlements\
+        \ \"${APPCOINS_SDK_FRAMEWORK}\"\n                        "
 packages:
   web3swift:
     url: https://github.com/web3swift-team/web3swift.git
