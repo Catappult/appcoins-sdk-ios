@@ -69,6 +69,9 @@ jobs:
       - name: Run the build script
         run: python Scripts/build_xcframework.py
 
+      - name: Remove the signing certificate file
+        run: rm -f signing_certificate.p12
+
       - name: Configure Git
         run: |
           git config user.name "github-actions[bot]"
