@@ -7,9 +7,9 @@
 
 import Foundation
 import SwiftUI
-import URLImage
-import SkeletonUI
-import ActivityIndicatorView
+@_implementationOnly import URLImage
+@_implementationOnly import SkeletonUI
+@_implementationOnly import ActivityIndicatorView
 
 internal struct PurchaseBottomSheet: View {
     

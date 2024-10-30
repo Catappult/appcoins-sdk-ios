@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import os
+@_implementationOnly import os
 
 final internal class KeychainHelper {
     

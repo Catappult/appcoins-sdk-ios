@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-internal struct flatButtonStyle: ButtonStyle {
-    internal func makeBody(configuration: Configuration) -> some View {
+internal struct flatButtonStyle: SwiftUI.ButtonStyle {
+    internal func makeBody(configuration: SwiftUI.ButtonStyle.Configuration) -> some View {
         configuration.label
     }
 }

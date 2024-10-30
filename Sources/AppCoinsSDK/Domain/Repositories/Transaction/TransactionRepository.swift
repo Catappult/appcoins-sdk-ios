@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import SwiftyRSA
+@_implementationOnly import SwiftyRSA
 
 internal class TransactionRepository: TransactionRepositoryProtocol {
     

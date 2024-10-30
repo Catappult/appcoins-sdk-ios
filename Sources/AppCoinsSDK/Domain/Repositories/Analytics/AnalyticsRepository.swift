@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import DeviceKit
+@_implementationOnly import DeviceKit
 
 internal class AnalyticsRepository: AnalyticsRepositoryProtocol {
     

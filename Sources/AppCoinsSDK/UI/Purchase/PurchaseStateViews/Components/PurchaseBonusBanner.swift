@@ -18,7 +18,7 @@ struct PurchaseBonusBanner: View {
                 VStack {}.frame(height: 10)
                 
                 HStack {
-                    Image("gift-pink", bundle: Bundle.module)
+                    Image("gift-pink", bundle: Bundle.APPCModule)
                         .resizable()
                         .edgesIgnoringSafeArea(.all)
                         .frame(width: 16, height: 16)
@@ -38,7 +38,7 @@ struct PurchaseBonusBanner: View {
                         }
                     }
                     
-                    Image("appc-payment-method-pink", bundle: Bundle.module)
+                    Image("appc-payment-method-pink", bundle: Bundle.APPCModule)
                         .resizable()
                         .edgesIgnoringSafeArea(.all)
                         .frame(width: 16, height: 16)
@@ -47,7 +47,7 @@ struct PurchaseBonusBanner: View {
                 VStack {}.frame(height: 4)
                 
                 HStack(spacing: 0) {
-                    Image("white-wallet", bundle: Bundle.module)
+                    Image("white-wallet", bundle: Bundle.APPCModule)
                         .resizable()
                         .edgesIgnoringSafeArea(.all)
                         .frame(width: 16, height: 14)
@@ -82,7 +82,7 @@ struct PurchaseBonusBanner: View {
                 VStack {}.frame(height: 10)
             } else {
                 HStack {
-                    Image("gift-gray", bundle: Bundle.module)
+                    Image("gift-gray", bundle: Bundle.APPCModule)
                         .resizable()
                         .edgesIgnoringSafeArea(.all)
                         .frame(width: 16, height: 16)
