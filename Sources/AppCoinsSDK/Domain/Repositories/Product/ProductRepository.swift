@@ -21,7 +21,7 @@ internal class ProductRepository: ProductRepositoryProtocol {
                 if let productRaw = productItemsRaw.items?.first {
                     completion(.success(Product(raw: productRaw)))
                 } else {
-                    completion(.failure(.failed(message: "Get Product Failed", description: "There is no product", request: nil)))
+                    completion(.failure(.failed(message: "getProduct method Failed", description: "There is no product", request: nil)))
                 }
             case .failure(let error):
                 completion(.failure(error))
@@ -42,7 +42,7 @@ internal class ProductRepository: ProductRepositoryProtocol {
                     }
                     completion(.success(products))
                 } else {
-                    completion(.failure(.failed(message: "Get All Products Failed", description: "Product list is missing or unavailable", request: nil)))
+                    completion(.failure(.failed(message: "getAllProducts method Failed", description: "Product list is missing or unavailable", request: nil)))
                 }
             case .failure(let error):
                 completion(.failure(error))
