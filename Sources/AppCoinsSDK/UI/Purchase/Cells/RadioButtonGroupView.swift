@@ -1,6 +1,6 @@
 //
 //  RadioButtonGroupView.swift
-//  
+//
 //
 //  Created by aptoide on 09/03/2023.
 //
@@ -35,7 +35,7 @@ internal struct RadioButtonGroupView: View {
                                     .font(FontsUi.APC_Subheadline)
                                     .lineLimit(1)
                                     .frame(maxWidth: .infinity, alignment: .leading)
-                                    
+                                
                                 if (transactionViewModel.paymentMethodSelected?.name == option.name) {
                                     Image(systemName: "checkmark.circle.fill")
                                         .resizable()
@@ -49,23 +49,19 @@ internal struct RadioButtonGroupView: View {
                                         .frame(width: 22, height: 22, alignment: .trailing)
                                         .padding(.trailing, 16)
                                 }
-                                                            
-                                
-                            }.frame(width: UIScreen.main.bounds.width - 64)
-                        }.frame(height: 44)
+                            }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 64)
+                        }.frame(height: 50)
                     }.buttonStyle(flatButtonStyle())
-                
+                    
                     if (option.name != options.last?.name) {
                         Divider()
                             .background(ColorsUi.APC_LightGray)
                     }
-                        
                 }
-            }.background(ColorsUi.APC_White)
-                .frame(width: UIScreen.main.bounds.width - 64)
-                .cornerRadius(13)
+            }
+            .background(ColorsUi.APC_White)
+            .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48)
+            .cornerRadius(10)
         }
-        
     }
-    
 }

@@ -10,15 +10,21 @@ import SwiftUI
 import UIKit
 
 internal struct AdyenViewControllerWrapper<ViewControllerType: UIViewController>: UIViewControllerRepresentable {
-    internal let viewController: ViewControllerType
     
-    internal init(viewController: ViewControllerType) {
+    internal let viewController: ViewControllerType
+    internal let orientation: Orientation
+    
+    internal init(viewController: ViewControllerType, orientation: Orientation) {
         self.viewController = viewController
+        self.orientation = orientation
     }
 
     internal func makeUIViewController(context: Context) -> UIViewController {
         // Disable scrolling for any UIScrollView within the viewController
-        disableScrollingInView(viewController.view)
+        
+        if orientation == .portrait {
+            disableScrollingInView(viewController.view)
+        }
         
         return viewController
     }

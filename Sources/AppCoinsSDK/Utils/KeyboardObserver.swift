@@ -23,16 +23,20 @@ internal class KeyboardObserver: ObservableObject {
     }
     
     @objc internal func keyboardWillShow(_ notification: Notification) {
-        isKeyboardVisible = true
-        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            keyboardHeight = keyboardSize.height
+        withAnimation(.easeInOut(duration: 0.2)) {
+            isKeyboardVisible = true
+            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                keyboardHeight = keyboardSize.height
+            }
         }
     }
     
     @objc internal func keyboardWillHide(_ notification: Notification) {
         DispatchQueue.main.async {
-            self.isKeyboardVisible = false
-            self.keyboardHeight = 0
+            withAnimation(.easeInOut(duration: 0.2)) {
+                self.isKeyboardVisible = false
+                self.keyboardHeight = 0
+            }
         }
     }
     

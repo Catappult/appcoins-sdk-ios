@@ -32,6 +32,15 @@ internal class TransactionViewModel : ObservableObject {
     @Published internal var showOtherPaymentMethods = false
     @Published internal var lastPaymentMethod: PaymentMethod? = nil
     @Published internal var paypalLogOut = false // Show Log Out from PayPal option on Quick Screen
+    internal var hasBonus: Bool {
+        if paymentMethodSelected?.name == Method.appc.rawValue {
+            return false
+        } else if paymentMethodSelected?.name == Method.sandbox.rawValue {
+            return false
+        } else {
+            return true
+        }
+    }
     
     private init() {}
     
@@ -183,7 +192,13 @@ internal class TransactionViewModel : ObservableObject {
             case .success(let paymentMethods):
                 var availablePaymentMethods: [PaymentMethod] = []
                 for method in paymentMethods {
-                    if BuildConfiguration.integratedMethods.map({$0.rawValue}).contains(method.name) { availablePaymentMethods.append(method) }
+                    if BuildConfiguration.integratedMethods.map({$0.rawValue}).contains(method.name) {
+                        if !availablePaymentMethods.contains(where: { $0.name == Method.appc.rawValue }) {
+                            availablePaymentMethods.insert(method, at: 0)
+                        } else {
+                            availablePaymentMethods.append(method)
+                        }
+                    }
                 }
                 completion(availablePaymentMethods)
             case .failure(let error):
@@ -276,5 +291,7 @@ internal class TransactionViewModel : ObservableObject {
     
     internal func showPaymentMethodOptions() { DispatchQueue.main.async { self.showOtherPaymentMethods = true } }
     
-    internal func selectPaymentMethod(paymentMethod: PaymentMethod) { DispatchQueue.main.async { self.paymentMethodSelected = paymentMethod } }
+    internal func selectPaymentMethod(paymentMethod: PaymentMethod) {
+        DispatchQueue.main.async { self.paymentMethodSelected = paymentMethod }
+    }
 }
