@@ -394,56 +394,56 @@ if __name__ == "__main__":
     # 4.2 Generate xcodeproj with project.yml
     generate_xcodeproj()
 
-    # # 4.3 Resolve the dependencies for the newly created package
-    # resolve_package_dependencies()
+    # 4.3 Resolve the dependencies for the newly created package
+    resolve_package_dependencies()
 
-    # # 5.1 Build the framework for device
-    # device_build_path = './build/DerivedData/Device'
-    # build_for_device(device_build_path)
+    # 5.1 Build the framework for device
+    device_build_path = './build/DerivedData/Device'
+    build_for_device(device_build_path)
 
-    # # 5.2 Build the framework for simulator
-    # simulator_build_path = './build/DerivedData/Simulator'
-    # build_for_simulator(simulator_build_path)
+    # 5.2 Build the framework for simulator
+    simulator_build_path = './build/DerivedData/Simulator'
+    build_for_simulator(simulator_build_path)
 
-    # # 5.3 Create output directories, where we'll gather frameworks and produce all .xcframeworks necessary
-    # framework_directory, device_directory, simulator_directory = create_output_directories()
+    # 5.3 Create output directories, where we'll gather frameworks and produce all .xcframeworks necessary
+    framework_directory, device_directory, simulator_directory = create_output_directories()
 
-    # # 5.4 Copy all dependency frameworks to output directories and generate .xcframeworks
-    # device_frameworks = find_frameworks(f'{device_build_path}/Build/Products/Release-iphoneos', exclude_appc = True)
-    # for device_framework in device_frameworks:
-    #     shutil.copytree(device_framework, f'{device_directory}/{os.path.basename(device_framework)}')
+    # 5.4 Copy all dependency frameworks to output directories and generate .xcframeworks
+    device_frameworks = find_frameworks(f'{device_build_path}/Build/Products/Release-iphoneos', exclude_appc = True)
+    for device_framework in device_frameworks:
+        shutil.copytree(device_framework, f'{device_directory}/{os.path.basename(device_framework)}')
 
-    # simulator_frameworks = find_frameworks(f'{simulator_build_path}/Build/Products/Release-iphonesimulator', exclude_appc = True)
-    # for simulator_framework in simulator_frameworks:
-    #     shutil.copytree(simulator_framework, f'{simulator_directory}/{os.path.basename(simulator_framework)}')
+    simulator_frameworks = find_frameworks(f'{simulator_build_path}/Build/Products/Release-iphonesimulator', exclude_appc = True)
+    for simulator_framework in simulator_frameworks:
+        shutil.copytree(simulator_framework, f'{simulator_directory}/{os.path.basename(simulator_framework)}')
 
-    #     framework = os.path.basename(simulator_framework)
-    #     framework_name, framework_extension = os.path.splitext(framework)
+        framework = os.path.basename(simulator_framework)
+        framework_name, framework_extension = os.path.splitext(framework)
 
-    #     if os.path.exists(f'{framework_directory}/{framework_name}.xcframework'):
-    #         shutil.rmtree(f'{framework_directory}/{framework_name}.xcframework')
+        if os.path.exists(f'{framework_directory}/{framework_name}.xcframework'):
+            shutil.rmtree(f'{framework_directory}/{framework_name}.xcframework')
 
-    #     subprocess.check_call(['xcodebuild', '-create-xcframework', \
-    #             '-framework', f'{device_directory}/{framework}', \
-    #             '-framework', f'{simulator_directory}/{framework}', \
-    #             '-output', f'{framework_directory}/{framework_name}.xcframework'])
+        subprocess.check_call(['xcodebuild', '-create-xcframework', \
+                '-framework', f'{device_directory}/{framework}', \
+                '-framework', f'{simulator_directory}/{framework}', \
+                '-output', f'{framework_directory}/{framework_name}.xcframework'])
 
-    # # 5.5 Copy AppCoins SDK framework into the output directories
-    # shutil.copytree(f'{device_build_path}/Build/Products/Release-iphoneos/AppCoinsSDK.framework', f'{device_directory}/AppCoinsSDK.framework')
-    # shutil.copytree(f'{simulator_build_path}/Build/Products/Release-iphonesimulator/AppCoinsSDK.framework', f'{simulator_directory}/AppCoinsSDK.framework')
+    # 5.5 Copy AppCoins SDK framework into the output directories
+    shutil.copytree(f'{device_build_path}/Build/Products/Release-iphoneos/AppCoinsSDK.framework', f'{device_directory}/AppCoinsSDK.framework')
+    shutil.copytree(f'{simulator_build_path}/Build/Products/Release-iphonesimulator/AppCoinsSDK.framework', f'{simulator_directory}/AppCoinsSDK.framework')
   
-    # # 5.6 Produce the output .xcframework
-    # framework = 'AppCoinsSDK.framework'
-    # framework_name, file_extension = os.path.splitext(framework)
+    # 5.6 Produce the output .xcframework
+    framework = 'AppCoinsSDK.framework'
+    framework_name, file_extension = os.path.splitext(framework)
 
-    # if os.path.exists(f'{framework_directory}/{framework_name}.xcframework'):
-    #     shutil.rmtree(f'{framework_directory}/{framework_name}.xcframework')
+    if os.path.exists(f'{framework_directory}/{framework_name}.xcframework'):
+        shutil.rmtree(f'{framework_directory}/{framework_name}.xcframework')
 
-    # subprocess.check_call(['xcodebuild', '-create-xcframework', \
-    #             '-framework', f'{device_directory}/{framework}', \
-    #             '-framework', f'{simulator_directory}/{framework}', \
-    #             '-output', f'{framework_directory}/{framework_name}.xcframework'])
+    subprocess.check_call(['xcodebuild', '-create-xcframework', \
+                '-framework', f'{device_directory}/{framework}', \
+                '-framework', f'{simulator_directory}/{framework}', \
+                '-output', f'{framework_directory}/{framework_name}.xcframework'])
     
-    # shutil.rmtree('./build')
-    # shutil.rmtree(device_directory)
-    # shutil.rmtree(simulator_directory)
+    shutil.rmtree('./build')
+    shutil.rmtree(device_directory)
+    shutil.rmtree(simulator_directory)
