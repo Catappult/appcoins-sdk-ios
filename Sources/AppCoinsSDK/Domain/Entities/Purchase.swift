@@ -174,7 +174,7 @@ public class Purchase: Codable {
                 group.notify(queue: .main) {
                     if isConsumed { continuation.resume() }
                     else if isNetworkError, let error = error { continuation.resume(throwing: error) }
-                    else { continuation.resume(throwing: AppCoinsSDKError.unknown(message: "Unknown", description: "Unknown")) }
+                    else { continuation.resume(throwing: AppCoinsSDKError.unknown(message: "Failed to complete the purchase process", description: "The purchase was not consumed and the item was not attributed to the user")) }
                 }
             }
         }
