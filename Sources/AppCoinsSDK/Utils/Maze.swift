@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import CommonCrypto
+@_implementationOnly import CommonCrypto
 
 internal class Maze {
     

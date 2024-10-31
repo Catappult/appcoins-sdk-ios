@@ -7,7 +7,7 @@
 
 import Foundation
 import SwiftUI
-import Combine
+@_implementationOnly import Combine
 
 internal class BottomSheetViewModel: ObservableObject {
     

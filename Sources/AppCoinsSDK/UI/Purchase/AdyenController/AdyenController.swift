@@ -6,11 +6,11 @@
 //
 
 import SwiftUI
-import Adyen
-import AdyenSession
-import AdyenCard
-import AdyenComponents
-import AdyenActions
+@_implementationOnly import Adyen
+@_implementationOnly import AdyenSession
+@_implementationOnly import AdyenCard
+@_implementationOnly import AdyenComponents
+@_implementationOnly import AdyenActions
 
 internal class AdyenController : AdyenSessionDelegate, PresentationDelegate, ObservableObject {
     
@@ -110,11 +110,11 @@ internal class AdyenController : AdyenSessionDelegate, PresentationDelegate, Obs
         DispatchQueue.main.async { self.presentableComponent = component }
     }
     
-    internal func didComplete(with resultCode: SessionPaymentResultCode, component: Adyen.Component, session: AdyenSession) {
+    func didComplete(with result: AdyenSessionResult, component: any Adyen.Component, session: AdyenSession) {
         
         if component is RedirectComponent { self.presentAdyenRedirect = false }
         
-        switch resultCode {
+        switch result.resultCode {
             
         // The payment was successfully authorised.
         case .authorised:

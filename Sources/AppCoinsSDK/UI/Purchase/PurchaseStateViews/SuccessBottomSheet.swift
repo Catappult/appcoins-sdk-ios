@@ -7,7 +7,6 @@
 
 import Foundation
 import SwiftUI
-import URLImage
 
 internal struct SuccessBottomSheet: View {
     
@@ -24,7 +23,7 @@ internal struct SuccessBottomSheet: View {
                     
                     VStack {}.frame(height: viewModel.orientation == .landscape ? 80 : 40)
                     
-                    Image("checkmark", bundle: Bundle.module)
+                    Image("checkmark", bundle: Bundle.APPCModule)
                         .resizable()
                         .edgesIgnoringSafeArea(.all)
                         .frame(width: 80, height: 80)
@@ -40,7 +39,7 @@ internal struct SuccessBottomSheet: View {
                         VStack {}.frame(height: 23)
                         
                         HStack {
-                            Image("gift-black", bundle: Bundle.module)
+                            Image("gift-black", bundle: Bundle.APPCModule)
                                 .resizable()
                                 .edgesIgnoringSafeArea(.all)
                                 .frame(width: 17, height: 17)
@@ -62,7 +61,7 @@ internal struct SuccessBottomSheet: View {
                     VStack {}.frame(height: 24)
                     
                     HStack(spacing: 0) {
-                        Image("pink-wallet", bundle: Bundle.module)
+                        Image("pink-wallet", bundle: Bundle.APPCModule)
                             .resizable()
                             .edgesIgnoringSafeArea(.all)
                             .frame(width: 19, height: 16)

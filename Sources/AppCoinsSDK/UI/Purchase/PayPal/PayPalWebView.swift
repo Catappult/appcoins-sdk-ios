@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import WebKit
+@_implementationOnly import WebKit
 
 internal struct PayPalWebView: UIViewRepresentable {
     internal var url: URL
