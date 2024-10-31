@@ -54,7 +54,7 @@ internal class CurrencyRepository: CurrencyRepositoryProtocol {
             case .success(let supportedCurrencies):
                 if let supportedCurrency = supportedCurrencies.first(where: { $0.currency == currency }) {
                     completion(.success(supportedCurrency))
-                } else { completion(.failure(.failed(message: "getSupportedCurrency method Failed", description: "Unsupported currency: \(currency)", request: nil))) }
+                } else { completion(.failure(.failed(message: "Failed to get supported currency", description: "Received unsupported currency: \(currency) at CurrencyRepository.swift:getSupportedCurrency", request: nil))) }
             case .failure(let failure):
                 completion(.failure(failure))
             }

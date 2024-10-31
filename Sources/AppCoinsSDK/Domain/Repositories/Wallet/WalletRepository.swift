@@ -44,7 +44,7 @@ internal class WalletRepository: WalletRepositoryProtocol {
                 if let ewt = guestWalletRaw.ewt, let signature = guestWalletRaw.signature {
                     completion(.success(GuestWallet(address: guestWalletRaw.address, ewt: ewt, signature: signature)))
                 } else {
-                    completion(.failure(.failed(message: "Get Guest Wallet Failed", description: "Guest ewt or signature is miss", request: nil)))
+                    completion(.failure(.failed(message: "Failed to get guest wallet", description: "Guest wallet ewt is nil or guest wallet signature is nil at WalletRepository.swift:getGuestWallet", request: nil)))
                 }
             case .failure(let error):
                 completion(.failure(error))

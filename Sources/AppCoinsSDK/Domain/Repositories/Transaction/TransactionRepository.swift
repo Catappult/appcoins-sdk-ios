@@ -42,7 +42,7 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
                     }
                     completion(.success(paymentMethods))
                 } else {
-                    completion(.failure(.failed(message: "getPaymentMethods method Failed", description: "Payment method list is missing or unavailable", request: nil)))
+                    completion(.failure(.failed(message: "Failed to get payment methods", description: "Payment method list is empty or nil at TransactionRepository.swift:getPaymentMethods", request: nil)))
                 }
             case .failure(let error):
                 completion(.failure(error))
@@ -66,7 +66,7 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
                     
                     AnalyticsUseCases.shared.recordPaymentStatus(status: transactionRaw.status)
                     // Deal with different types of errors
-                    completion(.failure(.failed(message: "getTransactionInfo method Failed", description: "Transaction failed during the processing phase. Status: \(transactionRaw.status)", request: nil)))
+                    completion(.failure(.failed(message: "Failed to get transaction info", description: "Transaction failed during the processing phase. Status: \(transactionRaw.status) at TransactionRepository.swift:getTransactionInfo", request: nil)))
                 } else if transactionRaw.status == "COMPLETED" {
                     
                     AnalyticsUseCases.shared.recordPaymentStatus(status: transactionRaw.status)
@@ -164,7 +164,7 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
                         if verified {
                             completion(.success(Purchase(raw: purchaseRaw)))
                         } else {
-                            completion(.failure(.purchaseVerificationFailed(message: "verifyPurchase method Failed", description: "Purchase is not verified", request: nil)))
+                            completion(.failure(.purchaseVerificationFailed(message: "Failed to verify purchase", description: "Purchase is not verified at TransactionRepository.swift:verifyPurchase", request: nil)))
                         }
                     case .failure(let failure):
                         completion(.failure(failure))
@@ -234,14 +234,14 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
         if let wallet = walletService.getActiveWallet() {
             billingService.createBillingAgreementToken(wa: wallet, raw: raw) { result in
                 completion(result) }
-        } else { completion(.failure(.failed(message: "createBillingAgreementToken method Failed", description: "There is no active wallet", request: nil))) }
+        } else { completion(.failure(.failed(message: "Failed to create a billing agreement token", description: "There is no active wallet at TransactionRepository.swift:createBillingAgreementToken", request: nil))) }
     }
     
     internal func cancelBillingAgreementToken(token: String, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
         if let wallet = walletService.getActiveWallet() {
             billingService.cancelBillingAgreementToken(token: token, wa: wallet) { result in
                 completion(result) }
-        } else { completion(.failure(.failed(message: "cancelBillingAgreementToken method Failed", description: "There is no active wallet", request: nil))) }
+        } else { completion(.failure(.failed(message: "Failed to cancel billing agreement token", description: "There is no active wallet at TransactionRepository.swift:cancelBillingAgreementToken", request: nil))) }
     }
     
     internal func cancelBillingAgreement(completion: @escaping (Result<Bool, TransactionError>) -> Void) {
@@ -250,7 +250,7 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
                 self.removeBillingAgreementLocally(wa: wallet.getWalletAddress())
                 completion(result)
             }
-        } else { completion(.failure(.failed(message: "cancelBillingAgreement method Failed", description: "There is no active wallet", request: nil))) }
+        } else { completion(.failure(.failed(message: "Failed to cancel billing agreement", description: "There is no active wallet at TransactionRepository.swift:cancelBillingAgreement", request: nil))) }
     }
     
     internal func createBillingAgreement(token: String, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
@@ -264,7 +264,7 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
                     completion(.failure(error))
                 }
             }
-        } else { completion(.failure(.failed(message: "createBillingAgreement method Failed", description: "There is no active wallet", request: nil))) }
+        } else { completion(.failure(.failed(message: "Failed to create billing agreement", description: "There is no active wallet at TransactionRepository.swift:createBillingAgreement", request: nil))) }
     }
     
     private func storeBillingAgreementLocally(wa: String) {
@@ -278,7 +278,7 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
     internal func getBillingAgreement(completion: @escaping (Result<Bool, TransactionError>) -> Void) {
         if let wallet = walletService.getActiveWallet() {
             billingService.getBillingAgreement(wa: wallet) { result in completion(result) }
-        } else { completion(.failure(.failed(message: "getBillingAgreement method Failed", description: "There is no active wallet", request: nil))) }
+        } else { completion(.failure(.failed(message: "Failed to get billing agreement", description: "There is no active wallet at TransactionRepository.swift:getBillingAgreement", request: nil))) }
     }
     
     internal func hasBillingAgreement() -> Bool {
