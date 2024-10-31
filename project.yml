@@ -13,15 +13,12 @@ settings:
     SKIP_INSTALL: false
     SUPPORTED_PLATFORMS: iphonesimulator iphoneos
     TARGETED_DEVICE_FAMILY: 1,2
-    LD_RUNPATH_SEARCH_PATHS: $(inherited) @executable_path/Frameworks @loader_path/Frameworks
-    EMBEDDED_CONTENT_CONTAINS_SWIFT: true
-    ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES: true
 targets:
   AppCoinsSDK:
     type: framework
     platform: iOS
     sources:
-    - Sources/AppCoinsSDK
+    - path: Sources/AppCoinsSDK
     settings:
       base:
         INFOPLIST_FILE: Sources/AppCoinsSDK/Info.plist
@@ -29,9 +26,6 @@ targets:
         SKIP_INSTALL: false
         SUPPORTED_PLATFORMS: iphonesimulator iphoneos
         TARGETED_DEVICE_FAMILY: 1,2
-        LD_RUNPATH_SEARCH_PATHS: $(inherited) @executable_path/Frameworks @loader_path/Frameworks
-        EMBEDDED_CONTENT_CONTAINS_SWIFT: true
-        ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES: true
         CODE_SIGN_IDENTITY: Apple Distribution
         DEVELOPMENT_TEAM: 26RRGP4GNA
         CODE_SIGN_STYLE: Manual
@@ -60,16 +54,12 @@ targets:
       product: ActivityIndicatorView
     - package: DeviceKit
       product: DeviceKit
-    - framework: ./Sources/AppCoinsSDK/Frameworks/IndicativeLibrary.xcframework
-      embed: true
-    - framework: ./Sources/AppCoinsSDK/Frameworks/PPRiskMagnes.xcframework
-      embed: true
     resources:
     - path: Sources/AppCoinsSDK/Localization
       explicit: true
     frameworks: []
     postBuildScripts:
-    - name: Embed Frameworks
+    - name: Embed Dependency Asset Bundles
       script: "\n                            # Find .bundle files\n              \
         \              BUNDLE_FILES=$(find \"${BUILT_PRODUCTS_DIR}\" -maxdepth 1 -type\
         \ d -name \"*.bundle\")\n                            # Copy .bundle files\
@@ -77,6 +67,16 @@ targets:
         \ in $BUNDLE_FILES; do\n                                rsync -av --delete\
         \ \"${BUNDLE}\" \"${BUILT_PRODUCTS_DIR}/AppCoinsSDK.framework\"\n        \
         \                    done\n                        "
+    - name: Remove .framework Files From Build Folder
+      script: "\n                        # Find .xcframework files\n             \
+        \           XCFRAMEWORK_FILES=$(find \"${BUILT_PRODUCTS_DIR}/AppCoinsSDK.framework\"\
+        \ -maxdepth 1 -type d -name \"*.framework\")\n                        # Remove\
+        \ .framework files from inside AppCoinsSDK.framework\n                   \
+        \     for XCFRAMEWORK in $XCFRAMEWORK_FILES; do\n                        \
+        \    if [ \"$XCFRAMEWORK\" != \"${BUILT_PRODUCTS_DIR}/AppCoinsSDK.framework\"\
+        \ ]; then\n                                rm -rf \"$XCFRAMEWORK\"\n     \
+        \                       fi\n                        done\n               \
+        \         "
 packages:
   web3swift:
     url: https://github.com/web3swift-team/web3swift.git
