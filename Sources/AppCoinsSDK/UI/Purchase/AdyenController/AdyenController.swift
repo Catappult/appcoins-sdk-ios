@@ -22,8 +22,8 @@ internal class AdyenController : AdyenSessionDelegate, PresentationDelegate, Obs
     internal var method: Method? = nil
     
     internal var successHandler: ((_ method: Method, _ transactionUID: String) -> Void)?
-    internal var awaitHandler: (() -> Void)?
-    internal var failedHandler: (() -> Void)?
+    internal var awaitHandler: ((_ message: String, _ description: String) -> Void)?
+    internal var failedHandler: ((_ message: String, _ description: String) -> Void)?
     internal var cancelHandler: (() -> Void)?
     
     @Published internal var presentableComponent: PresentableComponent? = nil
@@ -32,7 +32,7 @@ internal class AdyenController : AdyenSessionDelegate, PresentationDelegate, Obs
     
     @Published internal var state: AdyenState = .none
     
-    internal func startSession(method: Method, value: Decimal, currency: String, session: AdyenTransactionSession, successHandler: @escaping (_ method: Method, _ transactionUID: String) -> Void, awaitHandler: @escaping () -> Void, failedHandler: @escaping () -> Void, cancelHandler: @escaping () -> Void) {
+    internal func startSession(method: Method, value: Decimal, currency: String, session: AdyenTransactionSession, successHandler: @escaping (_ method: Method, _ transactionUID: String) -> Void, awaitHandler: @escaping (_ message: String, _ description: String) -> Void, failedHandler: @escaping (_ message: String, _ description: String) -> Void, cancelHandler: @escaping () -> Void) {
         
         // successHandler and awaitHandler can be the same if the verification is always done with APPC service
         self.successHandler = successHandler
@@ -77,23 +77,23 @@ internal class AdyenController : AdyenSessionDelegate, PresentationDelegate, Obs
                                 if paymentMethods.stored.isEmpty {
                                     if let paymentMethod = paymentMethods.paymentMethod(ofType: CardPaymentMethod.self) {
                                         self?.setUpNewCreditCardComponent(paymentMethod: paymentMethod, adyenContext: adyenContext)
-                                    } else { failedHandler() }
+                                    } else { failedHandler("Failed to initialize an Adyen session", "There is no payment method at AdyenController.swift:startSession") }
                                 } else {
                                     DispatchQueue.main.async { self?.state = .choosingCreditCard }
                                 }
                             } else if method == .paypalAdyen {
                                 if let paymentMethod = paymentMethods.regular.first(where: {$0.name == "PayPal"}) {
                                     self?.setUpPayPalRedirectComponent(paymentMethod: paymentMethod, adyenContext: adyenContext)
-                                } else { failedHandler() }
-                            } else { failedHandler() }
-                        } else { failedHandler() }
-
-                        case .failure(_):
-                            failedHandler()
-                        }
+                                } else { failedHandler("Failed to initialize an Adyen session", "There is no Paypal method available at AdyenController.swift:startSession") }
+                            } else { failedHandler("Failed to initialize an Adyen session", "There is no payment method at AdyenController.swift:startSession") }
+                        } else { failedHandler("Failed to initialize an Adyen session", "There are no payment methods at AdyenController.swift:startSession") }
+                        
+                    case .failure(let error):
+                        failedHandler("Failed to initialize an Adyen session", "Error: \(error.localizedDescription)")
                     }
+                }
             } else {
-                failedHandler()
+                failedHandler("Failed to initialize an Adyen session", "There is no client API context at AdyenController.swift:startSession")
             }
         }
     }
@@ -116,42 +116,43 @@ internal class AdyenController : AdyenSessionDelegate, PresentationDelegate, Obs
         
         switch result.resultCode {
             
-        // The payment was successfully authorised.
+            // The payment was successfully authorised.
         case .authorised:
             if let successHandler = successHandler {
                 if let transactionUID = transactionUID, let method = method {
                     successHandler(method, transactionUID)
                 } else {
-                    if let failedHandler = failedHandler { failedHandler() }
+                    if let failedHandler = failedHandler { failedHandler("Failed Adyen Payment", "Missing required parameters: transaction uid is nil or payment method is nil at AdyenController.swift:didComplete with the resultCode: \(result.resultCode.rawValue)") }
                 }
             }
-            
-        // The payment was refused. The response also contains a refusal reason that indicates why it was refused.
+            // The payment was refused. The response also contains a refusal reason that indicates why it was refused.
         case .refused:
-            if let failedHandler = failedHandler { failedHandler() }
+            if let failedHandler = failedHandler { failedHandler("Failed Adyen Payment", "Payment was refused for the method: \(self.method?.rawValue ?? "") at AdyenController.swift:didComplete with the resultCode: \(result.resultCode.rawValue)") }
             
-        // The final status of the payment isn't available yet. This is common for payments with an asynchronous flow, such as Boleto or iDEAL.
+            // The final status of the payment isn't available yet. This is common for payments with an asynchronous flow, such as Boleto or iDEAL.
         case .pending:
-            if let awaitHandler = awaitHandler { awaitHandler() }
+            if let awaitHandler = awaitHandler { awaitHandler("Failed Adyen Payment", "Payment is pending for the method: \(self.method?.rawValue ?? "") at AdyenController.swift:didComplete with the resultCode: \(result.resultCode.rawValue)") }
             
-        // The payment was cancelled (by either the shopper or your system) before processing was completed.
+            // The payment was cancelled (by either the shopper or your system) before processing was completed.
         case .cancelled:
             if let cancelHandler = cancelHandler { cancelHandler() }
             
-        // An error occurred during payment processing. The response also contains an error code that gives more details about the error.
+            // An error occurred during payment processing. The response also contains an error code that gives more details about the error.
         case .error:
-            if let failedHandler = failedHandler { failedHandler() }
+            if let failedHandler = failedHandler { failedHandler("Failed Adyen Payment", "An error occurred regarding the payment with method: \(self.method?.rawValue ?? "") at AdyenController.swift:didComplete with the resultCode: \(result.resultCode.rawValue)") }
             
-        // The payment request was received, but the final status of the payment isn't available yet. Some payments, like SEPA Direct Debit, take time to process.
+            // The payment request was received, but the final status of the payment isn't available yet. Some payments, like SEPA Direct Debit, take time to process.
         case .received:
-            if let awaitHandler = awaitHandler { awaitHandler() }
+            if let awaitHandler = awaitHandler { awaitHandler("Failed Adyen Payment", "The payment status isn't available for method: \(self.method?.rawValue ?? "") at AdyenController.swift:didComplete with the resultCode: \(result.resultCode.rawValue)") }
             
-        // Show the voucher or QR code to the shopper. Won't be used for Credit Card Payments.
+            // Show the voucher or QR code to the shopper. Won't be used for Credit Card Payments.
         case .presentToShopper:
             // Replace later if payment method that uses vouchers or QR codes is integrated.
-            if let failedHandler = failedHandler { failedHandler() }
+            if let failedHandler = failedHandler { failedHandler("Failed Adyen Payment", "A Voucher or QR code were presented to the shopper at AdyenController.swift:didComplete with the resultCode: \(result.resultCode.rawValue)") }
         }
     }
+
+    
     
     internal func didFail(with error: Error, from component: Adyen.Component, session: AdyenSession) {
         if let componentError = error as? Adyen.ComponentError {
@@ -159,9 +160,9 @@ internal class AdyenController : AdyenSessionDelegate, PresentationDelegate, Obs
             case .cancelled:
                 if let cancelHandler = self.cancelHandler { cancelHandler() }
             case .paymentMethodNotSupported:
-                if let failedHandler = self.failedHandler { failedHandler() }
+                if let failedHandler = self.failedHandler { failedHandler("Failed Adyen Payment", "Payment method not supported at AdyenController.swift:didFail") }
             }
-        } else if let failedHandler = self.failedHandler { failedHandler() }
+        } else if let failedHandler = self.failedHandler { failedHandler("Failed Adyen Payment", "Component error is nil at AdyenController.swift:didFail") }
     }
     
     internal func cancel() {
