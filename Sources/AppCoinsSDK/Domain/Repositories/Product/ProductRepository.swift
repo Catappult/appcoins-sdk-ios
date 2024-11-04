@@ -21,7 +21,7 @@ internal class ProductRepository: ProductRepositoryProtocol {
                 if let productRaw = productItemsRaw.items?.first {
                     completion(.success(Product(raw: productRaw)))
                 } else {
-                    completion(.failure(.failed))
+                    completion(.failure(.failed(message: "Failed to get product", description: "Product list is empty or nil at ProductRepository.swift:getProduct", request: nil)))
                 }
             case .failure(let error):
                 completion(.failure(error))
@@ -42,7 +42,7 @@ internal class ProductRepository: ProductRepositoryProtocol {
                     }
                     completion(.success(products))
                 } else {
-                    completion(.failure(.failed))
+                    completion(.failure(.failed(message: "Failed to get all products", description: "Product list is empty or nil at ProductRepository.swift:getProduct", request: nil)))
                 }
             case .failure(let error):
                 completion(.failure(error))
