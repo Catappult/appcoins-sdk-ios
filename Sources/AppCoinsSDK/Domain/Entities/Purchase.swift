@@ -74,19 +74,23 @@ public class Purchase: Codable {
                     switch result {
                     case .success(let purchase):
                         completion(.success(purchase))
-                    case .failure(let failure):
-                        if failure == .noInternet {
-                            completion(.failure(.networkError))
-                        } else {
-                            completion(.failure(.systemError))
+                    case .failure(let error):
+                        switch error {
+                        case .failed(let message, let description, let request):
+                            completion(.failure(AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request))))
+                        case .noInternet(let message, let description, let request):
+                            completion(.failure(AppCoinsSDKError.networkError(debugInfo: DebugInfo(message: message, description: description, request: request))))
+                        case .purchaseVerificationFailed(let message, let description, let request):
+                            completion(.failure(AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request))))
                         }
                     }
                 }
-            case .failure(let failure):
-                if failure == .noInternet {
-                    completion(.failure(.networkError))
-                } else {
-                    completion(.failure(.systemError))
+            case .failure(let error):
+                switch error {
+                case .failed(let message, let description, let request):
+                    completion(.failure(AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request))))
+                case .noInternet(let message, let description, let request):
+                    completion(.failure(AppCoinsSDKError.networkError(debugInfo: DebugInfo(message: message, description: description, request: request))))
                 }
             }
         }
@@ -109,14 +113,18 @@ public class Purchase: Codable {
                     case .success(_):
                         self.state = "ACKNOWLEDGED"
                         completion(nil)
-                    case .failure(let failure):
-                        switch failure {
-                        case .failed(_):
-                            completion(.systemError)
-                        case .noInternet:
-                            completion(.networkError)
-                        default:
-                            completion(.systemError)
+                    case .failure(let error):
+                        switch error {
+                        case .failed(let message, let description, let request):
+                            completion(AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request)))
+                        case .noInternet(let message, let description, let request):
+                            completion(AppCoinsSDKError.networkError(debugInfo: DebugInfo(message: message, description: description, request: request)))
+                        case .general(let message, let description, let request):
+                            completion(AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request)))
+                        case .noBillingAgreement(let message, let description, let request):
+                            completion(AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request)))
+                        case .timeOut(let message, let description, let request):
+                            completion(AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request)))
                         }
                     }
                 }
@@ -139,6 +147,7 @@ public class Purchase: Codable {
                 
                 var isConsumed = false
                 var isNetworkError = false
+                var error: AppCoinsSDKError? = nil
                 
                 for wallet in walletList {
                     group.enter()
@@ -151,7 +160,9 @@ public class Purchase: Codable {
                                 isConsumed = true
                             case .failure(let failure):
                                 switch failure {
-                                case .noInternet: isNetworkError = true
+                                case .noInternet(let message, let description, let request):
+                                    error = AppCoinsSDKError.networkError(debugInfo: DebugInfo(message: message, description: description, request: request))
+                                    isNetworkError = true
                                 default: break
                                 }
                             }
@@ -162,8 +173,8 @@ public class Purchase: Codable {
                 
                 group.notify(queue: .main) {
                     if isConsumed { continuation.resume() }
-                    else if isNetworkError { continuation.resume(throwing: AppCoinsSDKError.networkError) }
-                    else { continuation.resume(throwing: AppCoinsSDKError.unknown) }
+                    else if isNetworkError, let error = error { continuation.resume(throwing: error) }
+                    else { continuation.resume(throwing: AppCoinsSDKError.unknown(message: "Failed to complete the purchase process", description: "The purchase was not consumed and the item was not attributed to the user")) }
                 }
             }
         }
@@ -192,10 +203,15 @@ public class Purchase: Codable {
                             switch result {
                             case .success(let purchases):
                                 purchaseList += purchases
-                            case .failure(let failure):
-                                if failure == .failed { error = .systemError }
-                                else if failure == .noInternet { error = .networkError }
-                                else { error = .unknown }
+                            case .failure(let productServiceError):
+                                switch productServiceError {
+                                case .failed(let message, let description, let request):
+                                    error = AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request))
+                                case .noInternet(let message, let description, let request):
+                                    error = AppCoinsSDKError.networkError(debugInfo: DebugInfo(message: message, description: description, request: request))
+                                case .purchaseVerificationFailed(let message, let description, let request):
+                                    error = AppCoinsSDKError.unknown(debugInfo: DebugInfo(message: message, description: description, request: request))
+                                }
                             }
                             group.leave()
                         }
@@ -235,10 +251,15 @@ public class Purchase: Codable {
                             switch result {
                             case .success(let purchase):
                                 if let purchase = purchase { purchaseList.append(purchase) }
-                            case .failure(let failure):
-                                if failure == .failed { error = .systemError }
-                                else if failure == .noInternet { error = .networkError }
-                                else { error = .unknown }
+                            case .failure(let productServiceError):
+                                switch productServiceError {
+                                case .failed(let message, let description, let request):
+                                    error = AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request))
+                                case .noInternet(let message, let description, let request):
+                                    error = AppCoinsSDKError.networkError(debugInfo: DebugInfo(message: message, description: description, request: request))
+                                case .purchaseVerificationFailed(let message, let description, let request):
+                                    error = AppCoinsSDKError.unknown(debugInfo: DebugInfo(message: message, description: description, request: request))
+                                }
                             }
                             group.leave()
                         }
@@ -279,10 +300,15 @@ public class Purchase: Codable {
                             switch result {
                             case .success(let purchases):
                                 purchaseList += purchases
-                            case .failure(let failure):
-                                if failure == .failed { error = .systemError }
-                                else if failure == .noInternet { error = .networkError }
-                                else { error = .unknown }
+                            case .failure(let productServiceError):
+                                switch productServiceError {
+                                case .failed(let message, let description, let request):
+                                    error = AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request))
+                                case .noInternet(let message, let description, let request):
+                                    error = AppCoinsSDKError.networkError(debugInfo: DebugInfo(message: message, description: description, request: request))
+                                case .purchaseVerificationFailed(let message, let description, let request):
+                                    error = AppCoinsSDKError.unknown(debugInfo: DebugInfo(message: message, description: description, request: request))
+                                }
                             }
                             group.leave()
                         }

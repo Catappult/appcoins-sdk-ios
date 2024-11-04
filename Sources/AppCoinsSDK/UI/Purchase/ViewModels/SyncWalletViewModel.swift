@@ -164,17 +164,33 @@ internal class SyncWalletViewModel : ObservableObject {
                                 switch result {
                                 case .success(_):
                                     completion(nil)
-                                case .failure(_):
-                                    completion(.failed())
+                                case .failure(let error):
+                                    switch error {
+                                    case .failed(let message, let description, let request):
+                                        completion(.failed(message: message, description: description, request: request))
+                                    case .general(let message, let description, let request):
+                                        completion(.general(message: message, description: description, request: request))
+                                    case .noBillingAgreement(let message, let description, let request):
+                                        completion(.noBillingAgreement(message: message, description: description, request: request))
+                                    case .noInternet(let message, let description, let request):
+                                        completion(.noInternet(message: message, description: description, request: request))
+                                    case .timeOut(let message, let description, let request):
+                                        completion(.timeOut(message: message, description: description, request: request))
+                                    }
                                 }
                             }
                         }
-                    case .failure(_):
-                        completion(.failed())
+                    case .failure(let error):
+                        switch error {
+                        case .failed(let message, let description, let request):
+                            completion(.failed(message: message, description: description, request: request))
+                        case .noInternet(let message, let description, let request):
+                            completion(.noInternet(message: message, description: description, request: request))
+                        }
                     }
                 }
-            } else { completion(.failed()) }
-        } else { completion(.failed()) }
+            } else { completion(.failed(message: "transferAPPCToImportedWallet method Failed", description: "Missing required parameters: currentWallet is nil")) }
+        } else { completion(.failed(message: "transferAPPCToImportedWallet method Failed", description: "Missing required parameters: address of user's wallet is nil")) }
     }
     
     // Install the AppCoins Wallet App

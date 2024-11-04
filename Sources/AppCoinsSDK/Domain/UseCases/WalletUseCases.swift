@@ -21,7 +21,7 @@ internal class WalletUseCases {
     
     internal func getWallet(completion: @escaping (Result<Wallet, APPCServiceError>) -> Void)  {
         if let clientWallet = self.repository.getClientWallet() { completion(.success(clientWallet)) }
-        else { completion(.failure(.failed)) }
+        else { completion(.failure(.failed(message: "Get Wallet Failed", description: "There is no active wallet, and it was impossible to create a new wallet", request: nil))) }
         
         // We will not be using guestWallets yet
 //        if let guestUID = mmpRepository.getGuestUID() {
