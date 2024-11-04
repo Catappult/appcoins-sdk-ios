@@ -7,7 +7,6 @@
 
 import Foundation
 import SwiftUI
-import URLImage
 
 internal struct NoInternetBottomSheet: View {
     
@@ -43,7 +42,7 @@ internal struct NoInternetBottomSheet: View {
                 
                 VStack {}.frame(height:viewModel.orientation == .landscape ? 21 : 61)
                 
-                Image("no-internet-black", bundle: Bundle.module)
+                Image("no-internet-black", bundle: Bundle.APPCModule)
                     .resizable()
                     .scaledToFit()
                     .foregroundColor(ColorsUi.APC_Black)

@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import CryptoKit
-import Security
+@_implementationOnly import CryptoKit
+@_implementationOnly import Security
 
 internal class SecureEnvelopeClient {
     internal var publicKey: SecKey?

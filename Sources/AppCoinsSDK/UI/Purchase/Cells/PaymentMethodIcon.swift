@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import URLImage
+@_implementationOnly import URLImage
 
 internal struct PaymentMethodIcon: View {
     

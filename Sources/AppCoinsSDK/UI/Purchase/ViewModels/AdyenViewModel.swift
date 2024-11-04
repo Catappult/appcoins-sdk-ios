@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Adyen
+@_implementationOnly import Adyen
 
 // Helper to the BottomSheetViewModel
 internal class AdyenViewModel : ObservableObject {

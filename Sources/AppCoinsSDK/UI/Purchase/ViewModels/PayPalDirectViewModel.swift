@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import PPRiskMagnes
+@_implementationOnly import PPRiskMagnes
 
 // Helper to the BottomSheetViewModel
 internal class PayPalDirectViewModel : ObservableObject {
