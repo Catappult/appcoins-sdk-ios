@@ -73,8 +73,8 @@ internal class AdyenViewModel : ObservableObject {
         }
     }
 
-    internal func adyenFailedHandler(description: String) {
-        self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: "adyenFailedHandler", description: description))
+    internal func adyenFailedHandler(message: String, description: String) {
+        self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description)) // "Failed to start a buy session"
     }
     
     internal func adyenCancelHandler() {
