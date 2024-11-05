@@ -119,7 +119,7 @@ internal class TransactionViewModel : ObservableObject {
                                             }
                                         }
                                     }
-                                } else { self.bottomSheetViewModel.transactionFailedWith(error: .unknown(message: "Unknown", description: "Unknown")) }
+                                } else { self.bottomSheetViewModel.transactionFailedWith(error: .unknown(message: "Failed to build transaction", description: "Missig required parameters: moneyAmount is nil at TransactionViewModel.swift:buildTransaction")) }
                             }
                         case .failure(let error):
                             switch error {
@@ -139,7 +139,7 @@ internal class TransactionViewModel : ObservableObject {
                     }
                 }
             }
-        } else { bottomSheetViewModel.transactionFailedWith(error: .systemError(message: "buildTransaction method Failed", description: "Missing required parameters: product is nil or domain is nil")) }
+        } else { bottomSheetViewModel.transactionFailedWith(error: .systemError(message: "Failed to build transaction", description: "Missing required parameters: product is nil or domain is nil at TransactionViewModel.swift:buildTransaction")) }
     }
     
     private func getProductAppcValue(product: Product, completion: @escaping (Double) -> Void) {
@@ -149,7 +149,7 @@ internal class TransactionViewModel : ObservableObject {
             switch result {
             case .success(let appcAmount):
                 if let appcAmount = Double(appcAmount) { completion(appcAmount) }
-                else { self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: "getProductAppcValue method Failed", description: "Missing required parameters: AppCoins amount is nil")) }
+                else { self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: "Failed to get product appc value", description: "Missing required parameters: AppCoins amount is nil at TransactionViewModel.swift:getProductAppcValue")) }
             case .failure(let error):
                 switch error {
                 case .failed(let message, let description, let request):

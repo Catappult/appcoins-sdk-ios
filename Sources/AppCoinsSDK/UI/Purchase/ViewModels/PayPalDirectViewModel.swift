@@ -66,7 +66,7 @@ internal class PayPalDirectViewModel : ObservableObject {
                                     self.presentPayPalSheet = true
                                     self.userDismissPayPalSheet = true
                                 }
-                            } else { completion(.failure(.failed(message: "buyWithPayPalDirect method Failed", description: "Invalid url redirect response"))) }
+                            } else { completion(.failure(.failed(message: "Failed to buy with Paypal Direct", description: "Invalid url redirect response at PaypalDirectViewModel.swift:buyWithPayPalDirect"))) }
                         case .failure(let error): completion(.failure(error))
                         }
                     }
@@ -164,7 +164,7 @@ internal class PayPalDirectViewModel : ObservableObject {
                             }
                         }
                     }
-                } else { self.bottomSheetViewModel.transactionFailedWith(error: .notEntitled(message: "createBillingAgreementAndFinishTransaction method Failed", description: "Missing required parameters: raw: CreateBAPayPalTransactionRaw is nil")) }
+                } else { self.bottomSheetViewModel.transactionFailedWith(error: .notEntitled(message: "Failed to create billing agreement and finish transaction", description: "Missing required parameters: raw: CreateBAPayPalTransactionRaw is nil at PaypalDirectViewModel.swift:createBillingAgreementAndFinishTransaction")) }
             case .failure(let error):
                 switch error {
                 case .failed(let message, let description, let request):

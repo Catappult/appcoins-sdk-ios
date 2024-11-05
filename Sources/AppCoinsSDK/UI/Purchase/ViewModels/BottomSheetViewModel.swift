@@ -252,7 +252,7 @@ internal class BottomSheetViewModel: ObservableObject {
                     }
                 }
             }
-        } else { self.transactionFailedWith(error: .systemError(message: "buyWithAppc method Failed", description: "Missing required transaction parameters")) }
+        } else { self.transactionFailedWith(error: .systemError(message: "Failed to buy with Appc", description: "Missing required transaction parameters at BottomSheetViewModel.swift:buyWithAppc")) }
     }
     
     internal func buyWithSandbox() {
@@ -294,7 +294,7 @@ internal class BottomSheetViewModel: ObservableObject {
                     }
                 }
             }
-        } else { self.transactionFailedWith(error: .systemError(message: "buyWithSandbox method Failed", description: "Missing required transaction parameters")) }
+        } else { self.transactionFailedWith(error: .systemError(message: "Failed to buy with Sandbox", description: "Missing required transaction parameters at BottomSheetViewModel.swift:buyWithSandbox")) }
     }
     
     internal func buyWithCreditCard() {
@@ -310,7 +310,7 @@ internal class BottomSheetViewModel: ObservableObject {
                     case .success(let wallet):
                         if let moneyAmount = TransactionViewModel.shared.transaction?.moneyAmount, let moneyCurrrency = TransactionViewModel.shared.transaction?.moneyCurrency {
                             AdyenViewModel.shared.buyWithCreditCard(raw: raw, wallet: wallet, moneyAmount: moneyAmount, moneyCurrency: moneyCurrrency)
-                        } else { self.transactionFailedWith(error: .systemError(message: "Buy With Credit Card Failed", description: "Unable to unwrap transaction")) }
+                        } else { self.transactionFailedWith(error: .systemError(message: "Failed to buy with Credit Card", description: "Unable to unwrap transaction at BottomSheetViewModel.swift:buyWithCreditCard")) }
                     case .failure(let error):
                         switch error {
                         case .failed(let message, let description, let request):
@@ -320,9 +320,21 @@ internal class BottomSheetViewModel: ObservableObject {
                         }
                     }
                 }
-            case .failure(_): self.transactionFailedWith(error: .unknown(message: "Unknown", description: "Unknown"))
+            case .failure(let error):
+                switch error {
+                case .failed(let message, let description, let request):
+                    self.transactionFailedWith(error: .unknown(message: message, description: description))
+                case .general(let message, let description, let request):
+                    self.transactionFailedWith(error: .unknown(message: message, description: description))
+                case .noBillingAgreement(let message, let description, let request):
+                    self.transactionFailedWith(error: .unknown(message: message, description: description))
+                case .noInternet(let message, let description, let request):
+                    self.transactionFailedWith(error: .unknown(message: message, description: description))
+                case .timeOut(let message, let description, let request):
+                    self.transactionFailedWith(error: .unknown(message: message, description: description))
+                }
             }
-        } else { self.transactionFailedWith(error: .systemError(message: "buyWithCreditCard method Failed", description: "Missing required transaction parameters")) }
+        } else { self.transactionFailedWith(error: .systemError(message: "Failed to buy with Credit Card", description: "Missing required transaction parameters at BottomSheetViewModel.swift:buyWithCreditCard")) }
     }
     
     internal func buyWithPayPalAdyen() {
@@ -338,7 +350,7 @@ internal class BottomSheetViewModel: ObservableObject {
                     case .success(let wallet):
                         if let moneyAmount = TransactionViewModel.shared.transaction?.moneyAmount, let moneyCurrrency = TransactionViewModel.shared.transaction?.moneyCurrency {
                             AdyenViewModel.shared.buyWithPayPalAdyen(raw: raw, wallet: wallet, moneyAmount: moneyAmount, moneyCurrency: moneyCurrrency)
-                        } else { self.transactionFailedWith(error: .systemError(message: "Buy With Paypal Adyen Failed", description: "Unable to unwrap transaction")) }
+                        } else { self.transactionFailedWith(error: .systemError(message: "Failed to buy with Paypal Adyen", description: "Unable to unwrap transaction at BottomSheetViewModel.swift:buyWithPayPalAdyen")) }
                     case .failure(let error):
                         switch error {
                         case .failed(let message, let description, let request):
@@ -348,9 +360,20 @@ internal class BottomSheetViewModel: ObservableObject {
                         }
                     }
                 }
-            case .failure(_): self.transactionFailedWith(error: .unknown(message: "Unknown", description: "Unknown"))
-            }
-        } else { self.transactionFailedWith(error: .systemError(message: "buyWithPaypalAdyen method Failed", description: "Missing required transaction parameters")) }
+            case .failure(let error):
+                switch error {
+                case .failed(let message, let description, let request):
+                    self.transactionFailedWith(error: .unknown(message: message, description: description))
+                case .general(let message, let description, let request):
+                    self.transactionFailedWith(error: .unknown(message: message, description: description))
+                case .noBillingAgreement(let message, let description, let request):
+                    self.transactionFailedWith(error: .unknown(message: message, description: description))
+                case .noInternet(let message, let description, let request):
+                    self.transactionFailedWith(error: .unknown(message: message, description: description))
+                case .timeOut(let message, let description, let request):
+                    self.transactionFailedWith(error: .unknown(message: message, description: description))
+                }            }
+        } else { self.transactionFailedWith(error: .systemError(message: "Failed to buy with Paypal Adyen", description: "Missing required transaction parameters at BottomSheetViewModel.swift:buyWithPayPalAdyen")) }
     }
     
     internal func buyWithPayPalDirect() {
@@ -382,7 +405,7 @@ internal class BottomSheetViewModel: ObservableObject {
                             }
                         }
                     }
-                } else { self.transactionFailedWith(error: .systemError(message: "buyWithPaypalDirect method Failed", description: "Missing required transaction parameters")) }
+                } else { self.transactionFailedWith(error: .systemError(message: "Failed to buy with Paypal Direct", description: "Missing required transaction parameters at BottomSheetViewModel.swift:buyWithPayPalDirect")) }
             case .failure(let error):
                 switch error {
                 case .failed(let message, let description, let request):
@@ -433,7 +456,7 @@ internal class BottomSheetViewModel: ObservableObject {
                                     }
                                 }
                             }
-                        } else { self.transactionFailedWith(error: .systemError(message: "finishPurchase method Failed", description: "Missing required transaction purchase uid")) }
+                        } else { self.transactionFailedWith(error: .systemError(message: "Failed to finish the purchase", description: "Missing required transaction purchase uid at BottomSheetViewModel.swift:finishPurchase")) }
                     case .failure(let error):
                         switch error {
                         case .failed(let message, let description, let request):
@@ -529,7 +552,7 @@ internal class BottomSheetViewModel: ObservableObject {
             Utils.transactionResult(result: transactionResult)
             dismissSuccessWithAnimation()
         } else {
-            self.transactionFailedWith(error: .systemError(message: "skipWalletInstall method Failed", description: "Missing required parameters: purchase is nil or hasCompletedPurhcase is false"))
+            self.transactionFailedWith(error: .systemError(message: "Failed to skip wallet installation", description: "Missing required parameters: purchase is nil or hasCompletedPurhcase is false at BottomSheetViewModel.swift:skipWalletInstall"))
         }
     }
     

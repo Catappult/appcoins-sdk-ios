@@ -189,8 +189,8 @@ internal class SyncWalletViewModel : ObservableObject {
                         }
                     }
                 }
-            } else { completion(.failed(message: "transferAPPCToImportedWallet method Failed", description: "Missing required parameters: currentWallet is nil")) }
-        } else { completion(.failed(message: "transferAPPCToImportedWallet method Failed", description: "Missing required parameters: address of user's wallet is nil")) }
+            } else { completion(.failed(message: "Failed to transfer appc to imported wallet", description: "Missing required parameters: currentWallet is nil at SyncWalletViewModel.swift:transferAPPCToImportedWallet")) }
+        } else { completion(.failed(message: "Failed to transfer appc to imported wallet", description: "Missing required parameters: address of user's wallet is nil at SyncWalletViewModel.swift:transferAPPCToImportedWallet")) }
     }
     
     // Install the AppCoins Wallet App
