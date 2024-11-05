@@ -53,7 +53,7 @@ internal struct CreateAdyenTransactionRaw: Codable {
                     product: parameters.product, type: "INAPP", method: method, channel: "IOS", platform: "IOS", paymentChannel: "IOS", paymentReturnUrl: "\(bundleID).iap://api.blockchainds.com/broker", guestUID: parameters.guestUID, oemID: parameters.oemID, metadata: parameters.metadata, reference: parameters.reference
                 )
             )
-        } else { return .failure(.failed()) }
+        } else { return .failure(.failed(message: "Transaction Creation Failed", description: "Adyen transaction creation failed. Unknown method or unknown bundleID.")) }
     }
     
     internal func toJSON() -> Data? {
