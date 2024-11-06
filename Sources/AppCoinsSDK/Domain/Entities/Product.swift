@@ -90,7 +90,7 @@ public struct Product {
     public func purchase(domain: String = (Bundle.main.bundleIdentifier ?? ""), payload: String? = nil, orderID: String = String(Date.timeIntervalSinceReferenceDate)) async -> TransactionResult {
         
         if await !AppcSDK.isAvailable() || BottomSheetViewModel.shared.hasActiveTransaction {
-            return .failed(error: .purchaseNotAllowed(message: "Purchase Failed", description: "AppcSDK not available or has active transaction", request: nil))
+            return .failed(error: .purchaseNotAllowed(message: "Purchase Failed", description: "AppcSDK not available or has active transaction at Product.swift:purchase", request: nil))
         } else {
             
             AnalyticsUseCases.shared.recordStartConnection()
@@ -120,7 +120,7 @@ public struct Product {
                 }
             }
             
-            if let result = result { return result } else { return .failed(error: .unknown(message: "Purchase failed", description: "Failed to retrive required value: result is nil", request: nil)) }
+            if let result = result { return result } else { return .failed(error: .unknown(message: "Purchase failed", description: "Failed to retrive required value: result is nil at Product.swift:purchase", request: nil)) }
         }
     }
     
