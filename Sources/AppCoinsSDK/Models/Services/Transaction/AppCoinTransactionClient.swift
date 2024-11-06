@@ -31,9 +31,9 @@ internal class AppCoinTransactionClient : AppCoinTransactionService {
                 let task = URLSession.shared.dataTask(with: request) { data, response, error in
                     if let error = error {
                         if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
-                            result(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                            result(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url) at AppCoinTransactionClient.swift:getBalance", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                         } else {
-                            result(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                            result(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url) at AppCoinTransactionClient.swift:getBalance", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                         }
                     } else {
                         do {
@@ -41,10 +41,10 @@ internal class AppCoinTransactionClient : AppCoinTransactionService {
                                 let findResult = try JSONDecoder().decode(AppCoinBalanceRaw.self, from: data)
                                 result(.success(findResult))
                             } else {
-                                result(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url)")))
+                                result(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url) at AppCoinTransactionClient.swift:getBalance")))
                             }
                         } catch {
-                            result(.failure(.failed(message: "Service Failed", description: "Failed to decode response from endpoint: \(url). Error: \(error.localizedDescription)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                            result(.failure(.failed(message: "Service Failed", description: "Failed to decode response from endpoint: \(url). Error: \(error.localizedDescription) at AppCoinTransactionClient.swift:getBalance", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                         }
                     }
                 }

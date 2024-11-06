@@ -34,9 +34,9 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                 let task = URLSession.shared.dataTask(with: request) { data, response, error in
                     if let error = error {
                         if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
-                            result(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                            result(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url) at AppCoinBillingClient.swift:convertCurrency", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                         } else {
-                            result(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                            result(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url) at AppCoinBillingClient.swift:convertCurrency", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                         }
                     } else {
                         do {
@@ -44,10 +44,10 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                                 let findResult = try JSONDecoder().decode(ConvertCurrencyRaw.self, from: data)
                                 result(.success(findResult))
                             } else {
-                                result(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url)")))
+                                result(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url) at AppCoinBillingClient.swift:convertCurrency")))
                             }
                         } catch {
-                            result(.failure(.failed(message: "Service Failed", description: "Failed to decode response from endpoint: \(url). Error: \(error.localizedDescription)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                            result(.failure(.failed(message: "Service Failed", description: "Failed to decode response from endpoint: \(url). Error: \(error.localizedDescription) at AppCoinBillingClient.swift:convertCurrency", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                         }
                     }
                 }
@@ -77,9 +77,9 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                 let task = URLSession.shared.dataTask(with: request) { data, response, error in
                     if let error = error {
                         if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
-                            result(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                            result(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url) at AppCoinBillingClient.swift:getPaymentMethods", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                         } else {
-                            result(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                            result(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url) at AppCoinBillingClient.swift:getPaymentMethods", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                         }
                     } else {
                         do {
@@ -87,10 +87,10 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                                 let findResult = try JSONDecoder().decode(GetPaymentMethodsRaw.self, from: data)
                                 result(.success(findResult))
                             } else {
-                                result(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url)")))
+                                result(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url) at AppCoinBillingClient.swift:getPaymentMethods")))
                             }
                         } catch {
-                            result(.failure(.failed(message: "Service Failed", description: "Failed to decode response from endpoint: \(url). Error: \(error.localizedDescription)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                            result(.failure(.failed(message: "Service Failed", description: "Failed to decode response from endpoint: \(url). Error: \(error.localizedDescription) at AppCoinBillingClient.swift:getPaymentMethods", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                         }
                     }
                 }
@@ -127,9 +127,9 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                         
                         if let error = error {
                             if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
-                                completion(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                                completion(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url) at AppCoinBillingClient.swift:transferAPPC", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                             } else {
-                                completion(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                                completion(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url) at AppCoinBillingClient.swift:transferAPPC", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                             }
                         } else {
                             do {
@@ -140,16 +140,16 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                                     } catch let error as DecodingError {
                                         do {
                                             let errorResponse = try JSONDecoder().decode(TransferAPPCTransactionErrorRaw.self, from: data)
-                                            completion(.failure(.failed(message: "Service Failed", description: "Failed to comunicate with service on endpoint: \(url). Error description: \(errorResponse.data.enduser)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                                            completion(.failure(.failed(message: "Service Failed", description: "Failed to comunicate with service on endpoint: \(url). Error description: \(errorResponse.data.enduser) at AppCoinBillingClient.swift:transferAPPC", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                                         } catch {
-                                            completion(.failure(.general(message: "Service Failed", description: "Failed to decode error from endpoint: \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                                            completion(.failure(.general(message: "Service Failed", description: "Failed to decode error from endpoint: \(url) at AppCoinBillingClient.swift:transferAPPC", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                                         }
                                     }
                                 } else {
-                                    completion(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url)")))
+                                    completion(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url) at AppCoinBillingClient.swift:transferAPPC")))
                                 }
                             } catch {
-                                completion(.failure(.failed(message: "Service Failed", description: "Failed to decode response from endpoint: \(url). Error: \(error.localizedDescription)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                                completion(.failure(.failed(message: "Service Failed", description: "Failed to decode response from endpoint: \(url). Error: \(error.localizedDescription) at AppCoinBillingClient.swift:transferAPPC", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                             }
                         }
                     })
@@ -181,14 +181,14 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                     if let error = error {
                         if let nsError = error as NSError? {
                             if nsError.code == NSURLErrorNotConnectedToInternet {
-                                completion(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                                completion(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url) at AppCoinBillingClient.swift:getTransactionInfo", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                             } else if nsError.code == NSURLErrorTimedOut {
-                                completion(.failure(.timeOut(message: "Service Failed", description: "The request timed out on endpoint: \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                                completion(.failure(.timeOut(message: "Service Failed", description: "The request timed out on endpoint: \(url) at AppCoinBillingClient.swift:getTransactionInfo", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                             } else {
-                                completion(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                                completion(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url) at AppCoinBillingClient.swift:getTransactionInfo", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                             }
                         } else {
-                            completion(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                            completion(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url) at AppCoinBillingClient.swift:getTransactionInfo", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                         }
                     } else {
                         do {
@@ -196,10 +196,10 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                                 let txResponse = try JSONDecoder().decode(GetTransactionInfoRaw.self, from: data)
                                 completion(.success(txResponse))
                             } else {
-                                completion(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url)")))
+                                completion(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url) at AppCoinBillingClient.swift:getTransactionInfo")))
                             }
                         } catch {
-                            completion(.failure(.failed(message: "Service Failed", description: "Failed to decode response from endpoint: \(url). Error: \(error.localizedDescription)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                            completion(.failure(.failed(message: "Service Failed", description: "Failed to decode response from endpoint: \(url). Error: \(error.localizedDescription) at AppCoinBillingClient.swift:getTransactionInfo", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                         }
                     }
                 }
@@ -232,9 +232,9 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                         
                         if let error = error {
                             if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
-                                completion(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                                completion(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url) at AppCoinBillingClient.swift:createAPPCTransaction", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                             } else {
-                                completion(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                                completion(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url) at AppCoinBillingClient.swift:createAPPCTransaction", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                             }
                         } else {
                             do {
@@ -245,16 +245,16 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                                     } catch let error as DecodingError {
                                         do {
                                             let errorResponse = try JSONDecoder().decode(CreateAPPCTransactionErrorRaw.self, from: data)
-                                            completion(.failure(.failed(message: "Service Failed", description: "Failed to comunicate with service on endpoint: \(url). Error description: \(errorResponse.data.enduser)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                                            completion(.failure(.failed(message: "Service Failed", description: "Failed to comunicate with service on endpoint: \(url). Error description: \(errorResponse.data.enduser) at AppCoinBillingClient.swift:createAPPCTransaction", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                                         } catch {
-                                            completion(.failure(.general(message: "Service Failed", description: "Failed to decode error from endpoint: \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                                            completion(.failure(.general(message: "Service Failed", description: "Failed to decode error from endpoint: \(url) at AppCoinBillingClient.swift:createAPPCTransaction", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                                         }
                                     }
                                 } else {
-                                    completion(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url)")))
+                                    completion(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url) at AppCoinBillingClient.swift:createAPPCTransaction")))
                                 }
                             } catch {
-                                completion(.failure(.failed(message: "Service Failed", description: "Failed to decode response from endpoint: \(url). Error: \(error.localizedDescription)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                                completion(.failure(.failed(message: "Service Failed", description: "Failed to decode response from endpoint: \(url). Error: \(error.localizedDescription) at AppCoinBillingClient.swift:createAPPCTransaction", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                             }
                         }
                     })
@@ -288,9 +288,9 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                         
                         if let error = error {
                             if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
-                                completion(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                                completion(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url) at AppCoinBillingClient.swift:createSandboxTransaction", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                             } else {
-                                completion(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                                completion(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url) at AppCoinBillingClient.swift:createSandboxTransaction", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                             }
                         } else {
                             do {
@@ -301,16 +301,16 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                                     } catch let error as DecodingError {
                                         do {
                                             let errorResponse = try JSONDecoder().decode(CreateSandboxTransactionErrorRaw.self, from: data)
-                                            completion(.failure(.failed(message: "Service Failed", description: "Failed to comunicate with service on endpoint: \(url). Error description: \(errorResponse.data.enduser)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                                            completion(.failure(.failed(message: "Service Failed", description: "Failed to comunicate with service on endpoint: \(url). Error description: \(errorResponse.data.enduser) at AppCoinBillingClient.swift:createSandboxTransaction", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                                         } catch {
-                                            completion(.failure(.general(message: "Service Failed", description: "Failed to decode error from endpoint: \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                                            completion(.failure(.general(message: "Service Failed", description: "Failed to decode error from endpoint: \(url) at AppCoinBillingClient.swift:createSandboxTransaction", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                                         }
                                     }
                                 } else {
-                                    completion(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url)")))
+                                    completion(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url) at AppCoinBillingClient.swift:createSandboxTransaction")))
                                 }
                             } catch {
-                                completion(.failure(.failed(message: "Service Failed", description: "Failed to decode response from endpoint: \(url). Error: \(error.localizedDescription)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                                completion(.failure(.failed(message: "Service Failed", description: "Failed to decode response from endpoint: \(url). Error: \(error.localizedDescription) at AppCoinBillingClient.swift:createSandboxTransaction", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                             }
                         }
                     })
@@ -343,9 +343,9 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                     let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
                         if let error = error {
                             if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
-                                completion(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                                completion(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url) at AppCoinBillingClient.swift:createAdyenTransaction", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                             } else {
-                                completion(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                                completion(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url) at AppCoinBillingClient.swift:createAdyenTransaction", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                             }
                         } else {
                             do {
@@ -353,10 +353,10 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                                     let successResponse = try JSONDecoder().decode(CreateAdyenTransactionResponseRaw.self, from: data)
                                     completion(.success(successResponse))
                                 } else {
-                                    completion(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url)")))
+                                    completion(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url) at AppCoinBillingClient.swift:createAdyenTransaction")))
                                 }
                             } catch {
-                                completion(.failure(.failed(message: "Service Failed", description: "Failed to decode response from endpoint: \(url). Error: \(error.localizedDescription)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                                completion(.failure(.failed(message: "Service Failed", description: "Failed to decode response from endpoint: \(url). Error: \(error.localizedDescription) at AppCoinBillingClient.swift:createAdyenTransaction", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                             }
                         }
                     })
@@ -396,9 +396,9 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                         
                         if let error = error {
                             if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
-                                completion(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                                completion(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url) at AppCoinBillingClient.swift:createBAPayPalTransaction", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                             } else {
-                                completion(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                                completion(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url) at AppCoinBillingClient.swift:createBAPayPalTransaction", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                             }
                         } else {
                             do {
@@ -410,19 +410,19 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                                         do {
                                             let BANotFounResponse = try JSONDecoder().decode(CreateBAPayPalBillingAgreementNotFoundResponseRaw.self, from: data)
                                             if BANotFounResponse.code == "Paypal.BillingAgreement.NotFound" {
-                                                completion(.failure(.noBillingAgreement(message: "Service Failed", description: "Paypal billing agreement Not Found on endpoint: \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                                                completion(.failure(.noBillingAgreement(message: "Service Failed", description: "Paypal billing agreement Not Found on endpoint: \(url) at AppCoinBillingClient.swift:createBAPayPalTransaction", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                                             } else {
-                                                completion(.failure(.failed(message: "Service Failed", description: "Billing agreement Not Found from endpoint: \(url). BANotFounResponse code: \(BANotFounResponse.code)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                                                completion(.failure(.failed(message: "Service Failed", description: "Billing agreement Not Found from endpoint: \(url). BANotFounResponse code: \(BANotFounResponse.code) at AppCoinBillingClient.swift:createBAPayPalTransaction", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                                             }
                                         } catch {
-                                            completion(.failure(.general(message: "Service Failed", description: "Failed to decode error from endpoint: \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                                            completion(.failure(.general(message: "Service Failed", description: "Failed to decode error from endpoint: \(url) at AppCoinBillingClient.swift:createBAPayPalTransaction", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                                         }
                                     }
                                 } else {
-                                    completion(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url)")))
+                                    completion(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url) at AppCoinBillingClient.swift:createBAPayPalTransaction")))
                                 }
                             } catch {
-                                completion(.failure(.failed(message: "Service Failed", description: "Failed to decode response from endpoint: \(url). Error: \(error.localizedDescription)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                                completion(.failure(.failed(message: "Service Failed", description: "Failed to decode response from endpoint: \(url). Error: \(error.localizedDescription) at AppCoinBillingClient.swift:createBAPayPalTransaction", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                             }
                         }
                     })
@@ -460,9 +460,9 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                 let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
                     if let error = error {
                         if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
-                            completion(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                            completion(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url) at AppCoinBillingClient.swift:createBillingAgreementToken", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                         } else {
-                            completion(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                            completion(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url) at AppCoinBillingClient.swift:createBillingAgreementToken", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                         }
                     } else {
                         do {
@@ -470,10 +470,10 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                                 let successResponse = try JSONDecoder().decode(CreateBillingAgreementTokenResponseRaw.self, from: data)
                                 completion(.success(successResponse))
                             } else {
-                                completion(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url)")))
+                                completion(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url) at AppCoinBillingClient.swift:createBillingAgreementToken")))
                             }
                         } catch {
-                            completion(.failure(.failed(message: "Service Failed", description: "Failed to decode response from endpoint: \(url). Error: \(error.localizedDescription)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                            completion(.failure(.failed(message: "Service Failed", description: "Failed to decode response from endpoint: \(url). Error: \(error.localizedDescription) at AppCoinBillingClient.swift:createBillingAgreementToken", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                         }
                     }
                 })
@@ -507,9 +507,9 @@ internal class AppCoinBillingClient : AppCoinBillingService {
             let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
                 if let error = error {
                     if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
-                        completion(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                        completion(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url) at AppCoinBillingClient.swift:cancelBillingAgreementToken", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                     } else {
-                        completion(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                        completion(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url) at AppCoinBillingClient.swift:cancelBillingAgreementToken", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                     }
                 } else {
                     if let httpResponse = response as? HTTPURLResponse {
@@ -517,7 +517,7 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                         if statusCode == 204 {
                             completion(.success(true))
                         } else {
-                            completion(.failure(.failed(message: "Service Failed", description: "Unable to cancel the billing agreement token on endpoint: \(url), with status code: \(httpResponse.statusCode)", request: nil)))
+                            completion(.failure(.failed(message: "Service Failed", description: "Unable to cancel the billing agreement token on endpoint: \(url), with status code: \(httpResponse.statusCode) at AppCoinBillingClient.swift:cancelBillingAgreementToken", request: nil)))
                         }
                     }
                 }
@@ -549,9 +549,9 @@ internal class AppCoinBillingClient : AppCoinBillingService {
             let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
                 if let error = error {
                     if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
-                        completion(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                        completion(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url) at AppCoinBillingClient.swift:cancelBillingAgreement", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                     } else {
-                        completion(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                        completion(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url) at AppCoinBillingClient.swift:cancelBillingAgreement", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                     }
                 } else {
                     if let httpResponse = response as? HTTPURLResponse {
@@ -559,7 +559,7 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                         if statusCode == 204 {
                             completion(.success(true))
                         } else {
-                            completion(.failure(.failed(message: "Service Failed", description: "Unable to cancel the billing agreement on endpoint: \(url), with status code: \(httpResponse.statusCode)", request: nil)))
+                            completion(.failure(.failed(message: "Service Failed", description: "Unable to cancel the billing agreement on endpoint: \(url), with status code: \(httpResponse.statusCode) at AppCoinBillingClient.swift:cancelBillingAgreement", request: nil)))
                         }
                     }
                 }
@@ -593,9 +593,9 @@ internal class AppCoinBillingClient : AppCoinBillingService {
             let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
                 if let error = error {
                     if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
-                        completion(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                        completion(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url) at AppCoinBillingClient.swift:createBillingAgreement", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                     } else {
-                        completion(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                        completion(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url) at AppCoinBillingClient.swift:createBillingAgreement", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                     }
                 } else {
                     do {
@@ -603,10 +603,10 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                             let successResponse = try JSONDecoder().decode(CreateBillingAgreementResponseRaw.self, from: data)
                             completion(.success(successResponse))
                         } else {
-                            completion(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url)")))
+                            completion(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url) at AppCoinBillingClient.swift:createBillingAgreement")))
                         }
                     } catch {
-                        completion(.failure(.failed(message: "Service Failed", description: "Failed to decode response from endpoint: \(url). Error: \(error.localizedDescription)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                        completion(.failure(.failed(message: "Service Failed", description: "Failed to decode response from endpoint: \(url). Error: \(error.localizedDescription) at AppCoinBillingClient.swift:createBillingAgreement", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                     }
                 }
             })
@@ -637,9 +637,9 @@ internal class AppCoinBillingClient : AppCoinBillingService {
             let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
                 if let error = error {
                     if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
-                        completion(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                        completion(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url) at AppCoinBillingClient.swift:getBillingAgreement", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                     } else {
-                        completion(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                        completion(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url) at AppCoinBillingClient.swift:getBillingAgreement", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                     }
                 } else {
                     do {
@@ -652,14 +652,14 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                                     let _ = try JSONDecoder().decode(GetBillingAgreementNotFoundResponseRaw.self, from: data)
                                     completion(.success(false))
                                 } catch {
-                                    completion(.failure(.general(message: "Service Failed", description: "Failed to decode error from endpoint: \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                                    completion(.failure(.general(message: "Service Failed", description: "Failed to decode error from endpoint: \(url) at AppCoinBillingClient.swift:getBillingAgreement", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                                 }
                             }
                         } else {
-                            completion(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url)")))
+                            completion(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url) at AppCoinBillingClient.swift:getBillingAgreement")))
                         }
                     } catch {
-                        completion(.failure(.failed(message: "Service Failed", description: "Failed to decode response from endpoint: \(url). Error: \(error.localizedDescription)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                        completion(.failure(.failed(message: "Service Failed", description: "Failed to decode response from endpoint: \(url). Error: \(error.localizedDescription) at AppCoinBillingClient.swift:getBillingAgreement", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                     }
                 }
             })
@@ -693,9 +693,9 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                         
                         if let error = error {
                             if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
-                                result(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                                result(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url) at AppCoinBillingClient.swift:getSupportedCurrencies", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                             } else {
-                                result(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                                result(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url) at AppCoinBillingClient.swift:getSupportedCurrencies", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                             }
                         } else {
                             do {
@@ -711,10 +711,10 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                                     }
                                     
                                 } else {
-                                    result(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url)")))
+                                    result(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url) at AppCoinBillingClient.swift:getSupportedCurrencies")))
                                 }
                             } catch {
-                                result(.failure(.failed(message: "Service Failed", description: "Failed to decode response from endpoint: \(url). Error: \(error.localizedDescription)", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                                result(.failure(.failed(message: "Service Failed", description: "Failed to decode response from endpoint: \(url). Error: \(error.localizedDescription) at AppCoinBillingClient.swift:getSupportedCurrencies", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                             }
                         }
                     }
