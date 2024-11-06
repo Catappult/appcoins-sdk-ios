@@ -1009,63 +1009,14 @@
         "kind": "TypeDecl",
         "name": "DebugInfo",
         "printedName": "DebugInfo",
-        "children": [
-          {
-            "kind": "Constructor",
-            "name": "init",
-            "printedName": "init(message:description:request:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "DebugInfo",
-                "printedName": "AppCoinsSDK.DebugInfo",
-                "usr": "s:11AppCoinsSDK9DebugInfoC"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "String",
-                "printedName": "Swift.String",
-                "usr": "s:SS"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "String",
-                "printedName": "Swift.String",
-                "usr": "s:SS"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Optional",
-                "printedName": "AppCoinsSDK.DebugRequestInfo?",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "DebugRequestInfo",
-                    "printedName": "AppCoinsSDK.DebugRequestInfo",
-                    "usr": "s:11AppCoinsSDK16DebugRequestInfoC"
-                  }
-                ],
-                "hasDefaultArg": true,
-                "usr": "s:Sq"
-              }
-            ],
-            "declKind": "Constructor",
-            "usr": "s:11AppCoinsSDK9DebugInfoC7message11description7requestACSS_SSAA0d7RequestE0CSgtcfc",
-            "mangledName": "$s11AppCoinsSDK9DebugInfoC7message11description7requestACSS_SSAA0d7RequestE0CSgtcfc",
-            "moduleName": "AppCoinsSDK",
-            "declAttributes": [
-              "AccessControl"
-            ],
-            "init_kind": "Designated"
-          }
-        ],
         "declKind": "Class",
         "usr": "s:11AppCoinsSDK9DebugInfoC",
         "mangledName": "$s11AppCoinsSDK9DebugInfoC",
         "moduleName": "AppCoinsSDK",
         "declAttributes": [
           "AccessControl"
-        ]
+        ],
+        "hasMissingDesignatedInitializers": true
       },
       {
         "kind": "TypeDecl",
@@ -7311,98 +7262,98 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/CreateAdyenTransactionRaw.swift",
       "kind": "StringLiteral",
-      "offset": 2848,
+      "offset": 2898,
       "length": 5,
       "value": "\"uid\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/CreateAdyenTransactionRaw.swift",
       "kind": "StringLiteral",
-      "offset": 2876,
+      "offset": 2926,
       "length": 8,
       "value": "\"status\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/CreateAdyenTransactionRaw.swift",
       "kind": "StringLiteral",
-      "offset": 2910,
+      "offset": 2960,
       "length": 11,
       "value": "\"reference\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/CreateAdyenTransactionRaw.swift",
       "kind": "StringLiteral",
-      "offset": 2942,
+      "offset": 2992,
       "length": 6,
       "value": "\"hash\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/CreateAdyenTransactionRaw.swift",
       "kind": "StringLiteral",
-      "offset": 2972,
+      "offset": 3022,
       "length": 9,
       "value": "\"session\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/CreateAdyenTransactionRaw.swift",
       "kind": "StringLiteral",
-      "offset": 2848,
+      "offset": 2898,
       "length": 5,
       "value": "\"uid\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/CreateAdyenTransactionRaw.swift",
       "kind": "StringLiteral",
-      "offset": 2876,
+      "offset": 2926,
       "length": 8,
       "value": "\"status\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/CreateAdyenTransactionRaw.swift",
       "kind": "StringLiteral",
-      "offset": 2910,
+      "offset": 2960,
       "length": 11,
       "value": "\"reference\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/CreateAdyenTransactionRaw.swift",
       "kind": "StringLiteral",
-      "offset": 2942,
+      "offset": 2992,
       "length": 6,
       "value": "\"hash\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/CreateAdyenTransactionRaw.swift",
       "kind": "StringLiteral",
-      "offset": 2972,
+      "offset": 3022,
       "length": 9,
       "value": "\"session\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/CreateAdyenTransactionRaw.swift",
       "kind": "StringLiteral",
-      "offset": 3216,
+      "offset": 3266,
       "length": 4,
       "value": "\"id\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/CreateAdyenTransactionRaw.swift",
       "kind": "StringLiteral",
-      "offset": 3248,
+      "offset": 3298,
       "length": 13,
       "value": "\"sessionData\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/CreateAdyenTransactionRaw.swift",
       "kind": "StringLiteral",
-      "offset": 3216,
+      "offset": 3266,
       "length": 4,
       "value": "\"id\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/CreateAdyenTransactionRaw.swift",
       "kind": "StringLiteral",
-      "offset": 3248,
+      "offset": 3298,
       "length": 13,
       "value": "\"sessionData\""
     },
@@ -10195,21 +10146,21 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Entities\/Purchase.swift",
       "kind": "StringLiteral",
-      "offset": 8743,
+      "offset": 8768,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Entities\/Purchase.swift",
       "kind": "StringLiteral",
-      "offset": 11346,
+      "offset": 11371,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Entities\/Purchase.swift",
       "kind": "StringLiteral",
-      "offset": 14090,
+      "offset": 14115,
       "length": 2,
       "value": "\"\""
     },
