@@ -43,11 +43,11 @@ public enum AppCoinsSDKError: Error {
 }
 
 public class DebugInfo {
-    internal let message: String
-    internal let description: String
-    internal let request: DebugRequestInfo?
+    let message: String
+    let description: String
+    let request: DebugRequestInfo?
     
-    public init(message: String, description: String, request: DebugRequestInfo? = nil) {
+    internal init(message: String, description: String, request: DebugRequestInfo? = nil) {
         self.message = message
         self.description = description
         self.request = request
@@ -55,11 +55,11 @@ public class DebugInfo {
 }
 
 public class DebugRequestInfo {
-    internal let url: String
-    internal let method: RequestMethod
-    internal let body: String
-    internal let responseData: String
-    internal let statusCode: Int
+    let url: String
+    let method: RequestMethod
+    let body: String
+    let responseData: String
+    let statusCode: Int
 
     internal init(request: URLRequest, responseData: Data?, response: URLResponse?) {
         // Extract URL as string, fallback to empty string if unavailable
