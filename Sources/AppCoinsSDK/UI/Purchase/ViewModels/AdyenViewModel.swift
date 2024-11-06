@@ -27,12 +27,16 @@ internal class AdyenViewModel : ObservableObject {
                 AdyenController.shared.startSession(method: Method.creditCard, value: Decimal(moneyAmount), currency: moneyCurrency.currency, session: session, successHandler: self.adyenSuccessHandler, awaitHandler: self.adyenFailedHandler, failedHandler: self.adyenFailedHandler, cancelHandler: self.adyenCancelHandler)
             case .failure(let error):
                 switch error {
-                case .failed(let description):
-                    self.bottomSheetViewModel.transactionFailedWith(error: .systemError, description: description)
-                case .noInternet:
-                    self.bottomSheetViewModel.transactionFailedWith(error: .networkError)
-                default:
-                    self.bottomSheetViewModel.transactionFailedWith(error: .systemError)
+                case .failed(let message, let description, let request):
+                    self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request), description: description)
+                case .general(let message, let description, let request):
+                    self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
+                case .noBillingAgreement(let message, let description, let request):
+                    self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
+                case .noInternet(let message, let description, let request):
+                    self.bottomSheetViewModel.transactionFailedWith(error: .networkError(message: message, description: description, request: request))
+                case .timeOut(let message, let description, let request):
+                    self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
                 }
             }
         }
@@ -47,12 +51,16 @@ internal class AdyenViewModel : ObservableObject {
                 AdyenController.shared.startSession(method: Method.paypalAdyen, value: Decimal(moneyAmount), currency: moneyCurrency.currency, session: session, successHandler: self.adyenSuccessHandler, awaitHandler: self.adyenFailedHandler, failedHandler: self.adyenFailedHandler, cancelHandler: self.adyenCancelHandler)
             case .failure(let error):
                 switch error {
-                case .failed(let description):
-                    self.bottomSheetViewModel.transactionFailedWith(error: .systemError, description: description)
-                case .noInternet:
-                    self.bottomSheetViewModel.transactionFailedWith(error: .networkError)
-                default:
-                    self.bottomSheetViewModel.transactionFailedWith(error: .systemError)
+                case .failed(let message, let description, let request):
+                    self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request), description: description)
+                case .general(let message, let description, let request):
+                    self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
+                case .noBillingAgreement(let message, let description, let request):
+                    self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
+                case .noInternet(let message, let description, let request):
+                    self.bottomSheetViewModel.transactionFailedWith(error: .networkError(message: message, description: description, request: request))
+                case .timeOut(let message, let description, let request):
+                    self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
                 }
             }
         }
@@ -65,8 +73,8 @@ internal class AdyenViewModel : ObservableObject {
         }
     }
 
-    internal func adyenFailedHandler() {
-        bottomSheetViewModel.transactionFailedWith(error: .systemError)
+    internal func adyenFailedHandler(message: String, description: String) {
+        self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description)) // "Failed to start a buy session"
     }
     
     internal func adyenCancelHandler() {
