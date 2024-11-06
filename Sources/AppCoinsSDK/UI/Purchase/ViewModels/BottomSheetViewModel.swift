@@ -208,7 +208,7 @@ internal class BottomSheetViewModel: ObservableObject {
                 DispatchQueue.main.async { self.purchaseState = .processing }
                 self.buyWithSandbox()
             default:
-                self.transactionFailedWith(error: .systemError(message: "Payment Method not available.", description: "Tried to purchase with a Payment Method that is not available."))
+                self.transactionFailedWith(error: .systemError(message: "Payment Method not available", description: "Tried to purchase with a Payment Method that is not available at BottomSheetViewModel.swift:buy"))
             }
         }
     }
