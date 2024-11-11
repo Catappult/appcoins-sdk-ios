@@ -1,12 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "" : {
-
-    },
-    "-" : {
-
-    },
     "add_card_button" : {
       "comment" : "Add new card",
       "extractionState" : "manual",
@@ -817,8 +811,8 @@
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Bonus not available with this payment method"
+            "state" : "translated",
+            "value" : "با این روش پرداخت بونوسی موجود نیست"
           }
         },
         "fr" : {
@@ -871,8 +865,8 @@
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Bonus not available with this payment method"
+            "state" : "translated",
+            "value" : "Bonus tidak tersedia dengan kaedah bayaran ini"
           }
         },
         "my" : {
@@ -949,8 +943,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Bonus not available with this payment method"
+            "state" : "translated",
+            "value" : "Tiền thưởng không khả dụng với phương thức thanh toán này"
           }
         },
         "zh-Hans" : {
@@ -6174,8 +6168,8 @@
         },
         "el" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your card"
+            "state" : "translated",
+            "value" : "Η κάρτα σας"
           }
         },
         "en" : {
@@ -6192,8 +6186,8 @@
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your card"
+            "state" : "translated",
+            "value" : "کارت شما"
           }
         },
         "fr" : {
@@ -6246,8 +6240,8 @@
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your card"
+            "state" : "translated",
+            "value" : "Kad anda"
           }
         },
         "my" : {
@@ -6276,8 +6270,8 @@
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your card"
+            "state" : "translated",
+            "value" : "Seu cartão"
           }
         },
         "pt-PT" : {
@@ -6324,8 +6318,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your card"
+            "state" : "translated",
+            "value" : "Thẻ của bạn"
           }
         },
         "zh-Hans" : {
