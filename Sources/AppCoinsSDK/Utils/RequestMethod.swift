@@ -7,12 +7,12 @@
 
 import Foundation
 
-internal enum RequestMethod: String {
+public enum RequestMethod: String {
     case GET = "GET"
     case POST = "POST"
     case UNKNOWN = "UNKNOWN"
     
-    init(method: String) {
+    internal init(method: String) {
         switch method {
         case "GET":
             self = .GET
