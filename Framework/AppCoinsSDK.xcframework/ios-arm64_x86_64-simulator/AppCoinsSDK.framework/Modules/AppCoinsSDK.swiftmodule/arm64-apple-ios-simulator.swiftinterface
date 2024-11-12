@@ -10,17 +10,24 @@ import _Concurrency
 import _StringProcessing
 import _SwiftConcurrencyShims
 public enum AppCoinsSDKError : Swift.Error {
-  case networkError
-  case systemError
-  case notEntitled
-  case productUnavailable
-  case purchaseNotAllowed
-  case unknown
-  public static func == (a: AppCoinsSDK.AppCoinsSDKError, b: AppCoinsSDK.AppCoinsSDKError) -> Swift.Bool
-  public func hash(into hasher: inout Swift.Hasher)
-  public var hashValue: Swift.Int {
-    get
-  }
+  case networkError(debugInfo: AppCoinsSDK.DebugInfo)
+  case systemError(debugInfo: AppCoinsSDK.DebugInfo)
+  case notEntitled(debugInfo: AppCoinsSDK.DebugInfo)
+  case productUnavailable(debugInfo: AppCoinsSDK.DebugInfo)
+  case purchaseNotAllowed(debugInfo: AppCoinsSDK.DebugInfo)
+  case unknown(debugInfo: AppCoinsSDK.DebugInfo)
+  public static func networkError(message: Swift.String, description: Swift.String, request: AppCoinsSDK.DebugRequestInfo? = nil) -> AppCoinsSDK.AppCoinsSDKError
+  public static func systemError(message: Swift.String, description: Swift.String, request: AppCoinsSDK.DebugRequestInfo? = nil) -> AppCoinsSDK.AppCoinsSDKError
+  public static func notEntitled(message: Swift.String, description: Swift.String, request: AppCoinsSDK.DebugRequestInfo? = nil) -> AppCoinsSDK.AppCoinsSDKError
+  public static func productUnavailable(message: Swift.String, description: Swift.String, request: AppCoinsSDK.DebugRequestInfo? = nil) -> AppCoinsSDK.AppCoinsSDKError
+  public static func purchaseNotAllowed(message: Swift.String, description: Swift.String, request: AppCoinsSDK.DebugRequestInfo? = nil) -> AppCoinsSDK.AppCoinsSDKError
+  public static func unknown(message: Swift.String, description: Swift.String, request: AppCoinsSDK.DebugRequestInfo? = nil) -> AppCoinsSDK.AppCoinsSDKError
+}
+@_hasMissingDesignatedInitializers public class DebugInfo {
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class DebugRequestInfo {
+  @objc deinit
 }
 public struct AppcSDK {
   #if compiler(>=5.3) && $AsyncAwait
@@ -100,5 +107,3 @@ public enum VerificationResult {
   case verified(purchase: AppCoinsSDK.Purchase)
   case unverified(purchase: AppCoinsSDK.Purchase, verificationError: AppCoinsSDK.AppCoinsSDKError)
 }
-extension AppCoinsSDK.AppCoinsSDKError : Swift.Equatable {}
-extension AppCoinsSDK.AppCoinsSDKError : Swift.Hashable {}

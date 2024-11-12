@@ -26,8 +26,10 @@ internal class ProductUseCases {
                 self.repository.getProduct(domain: domain, product: product, currency: userCurrency) { result in completion(result) }
             case .failure(let error):
                 switch error {
-                case .failed: completion(.failure(.failed))
-                    case .noInternet: completion(.failure(.noInternet))
+                case .failed(let message, let description, let request):
+                    completion(.failure(.failed(message: message, description: description, request: request)))
+                case .noInternet(let message, let description, let request):
+                    completion(.failure(.noInternet(message: message, description: description,  request: request)))
                 }
             }
         }
@@ -40,8 +42,10 @@ internal class ProductUseCases {
                 self.repository.getAllProducts(domain: domain, currency: userCurrency) { result in completion(result) }
             case .failure(let error):
                 switch error {
-                case .failed: completion(.failure(.failed))
-                    case .noInternet: completion(.failure(.noInternet))
+                case .failed(let message, let description, let request):
+                    completion(.failure(.failed(message: message, description: description, request: request)))
+                case .noInternet(let message, let description, let request):
+                    completion(.failure(.noInternet(message: message, description: description,  request: request)))
                 }
             }
         }

@@ -351,13 +351,33 @@
               {
                 "kind": "TypeFunc",
                 "name": "Function",
-                "printedName": "(AppCoinsSDK.AppCoinsSDKError.Type) -> AppCoinsSDK.AppCoinsSDKError",
+                "printedName": "(AppCoinsSDK.AppCoinsSDKError.Type) -> (AppCoinsSDK.DebugInfo) -> AppCoinsSDK.AppCoinsSDKError",
                 "children": [
                   {
-                    "kind": "TypeNominal",
-                    "name": "AppCoinsSDKError",
-                    "printedName": "AppCoinsSDK.AppCoinsSDKError",
-                    "usr": "s:11AppCoinsSDK0aB8SDKErrorO"
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(AppCoinsSDK.DebugInfo) -> AppCoinsSDK.AppCoinsSDKError",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "AppCoinsSDKError",
+                        "printedName": "AppCoinsSDK.AppCoinsSDKError",
+                        "usr": "s:11AppCoinsSDK0aB8SDKErrorO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(debugInfo: AppCoinsSDK.DebugInfo)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "DebugInfo",
+                            "printedName": "AppCoinsSDK.DebugInfo",
+                            "usr": "s:11AppCoinsSDK9DebugInfoC"
+                          }
+                        ]
+                      }
+                    ]
                   },
                   {
                     "kind": "TypeNominal",
@@ -376,8 +396,8 @@
               }
             ],
             "declKind": "EnumElement",
-            "usr": "s:11AppCoinsSDK0aB8SDKErrorO12networkErroryA2CmF",
-            "mangledName": "$s11AppCoinsSDK0aB8SDKErrorO12networkErroryA2CmF",
+            "usr": "s:11AppCoinsSDK0aB8SDKErrorO12networkErroryAcA9DebugInfoC_tcACmF",
+            "mangledName": "$s11AppCoinsSDK0aB8SDKErrorO12networkErroryAcA9DebugInfoC_tcACmF",
             "moduleName": "AppCoinsSDK"
           },
           {
@@ -388,13 +408,33 @@
               {
                 "kind": "TypeFunc",
                 "name": "Function",
-                "printedName": "(AppCoinsSDK.AppCoinsSDKError.Type) -> AppCoinsSDK.AppCoinsSDKError",
+                "printedName": "(AppCoinsSDK.AppCoinsSDKError.Type) -> (AppCoinsSDK.DebugInfo) -> AppCoinsSDK.AppCoinsSDKError",
                 "children": [
                   {
-                    "kind": "TypeNominal",
-                    "name": "AppCoinsSDKError",
-                    "printedName": "AppCoinsSDK.AppCoinsSDKError",
-                    "usr": "s:11AppCoinsSDK0aB8SDKErrorO"
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(AppCoinsSDK.DebugInfo) -> AppCoinsSDK.AppCoinsSDKError",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "AppCoinsSDKError",
+                        "printedName": "AppCoinsSDK.AppCoinsSDKError",
+                        "usr": "s:11AppCoinsSDK0aB8SDKErrorO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(debugInfo: AppCoinsSDK.DebugInfo)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "DebugInfo",
+                            "printedName": "AppCoinsSDK.DebugInfo",
+                            "usr": "s:11AppCoinsSDK9DebugInfoC"
+                          }
+                        ]
+                      }
+                    ]
                   },
                   {
                     "kind": "TypeNominal",
@@ -413,12 +453,9 @@
               }
             ],
             "declKind": "EnumElement",
-            "usr": "s:11AppCoinsSDK0aB8SDKErrorO11systemErroryA2CmF",
-            "mangledName": "$s11AppCoinsSDK0aB8SDKErrorO11systemErroryA2CmF",
-            "moduleName": "AppCoinsSDK",
-            "declAttributes": [
-              "RawDocComment"
-            ]
+            "usr": "s:11AppCoinsSDK0aB8SDKErrorO11systemErroryAcA9DebugInfoC_tcACmF",
+            "mangledName": "$s11AppCoinsSDK0aB8SDKErrorO11systemErroryAcA9DebugInfoC_tcACmF",
+            "moduleName": "AppCoinsSDK"
           },
           {
             "kind": "Var",
@@ -428,13 +465,33 @@
               {
                 "kind": "TypeFunc",
                 "name": "Function",
-                "printedName": "(AppCoinsSDK.AppCoinsSDKError.Type) -> AppCoinsSDK.AppCoinsSDKError",
+                "printedName": "(AppCoinsSDK.AppCoinsSDKError.Type) -> (AppCoinsSDK.DebugInfo) -> AppCoinsSDK.AppCoinsSDKError",
                 "children": [
                   {
-                    "kind": "TypeNominal",
-                    "name": "AppCoinsSDKError",
-                    "printedName": "AppCoinsSDK.AppCoinsSDKError",
-                    "usr": "s:11AppCoinsSDK0aB8SDKErrorO"
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(AppCoinsSDK.DebugInfo) -> AppCoinsSDK.AppCoinsSDKError",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "AppCoinsSDKError",
+                        "printedName": "AppCoinsSDK.AppCoinsSDKError",
+                        "usr": "s:11AppCoinsSDK0aB8SDKErrorO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(debugInfo: AppCoinsSDK.DebugInfo)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "DebugInfo",
+                            "printedName": "AppCoinsSDK.DebugInfo",
+                            "usr": "s:11AppCoinsSDK9DebugInfoC"
+                          }
+                        ]
+                      }
+                    ]
                   },
                   {
                     "kind": "TypeNominal",
@@ -453,12 +510,9 @@
               }
             ],
             "declKind": "EnumElement",
-            "usr": "s:11AppCoinsSDK0aB8SDKErrorO11notEntitledyA2CmF",
-            "mangledName": "$s11AppCoinsSDK0aB8SDKErrorO11notEntitledyA2CmF",
-            "moduleName": "AppCoinsSDK",
-            "declAttributes": [
-              "RawDocComment"
-            ]
+            "usr": "s:11AppCoinsSDK0aB8SDKErrorO11notEntitledyAcA9DebugInfoC_tcACmF",
+            "mangledName": "$s11AppCoinsSDK0aB8SDKErrorO11notEntitledyAcA9DebugInfoC_tcACmF",
+            "moduleName": "AppCoinsSDK"
           },
           {
             "kind": "Var",
@@ -468,13 +522,33 @@
               {
                 "kind": "TypeFunc",
                 "name": "Function",
-                "printedName": "(AppCoinsSDK.AppCoinsSDKError.Type) -> AppCoinsSDK.AppCoinsSDKError",
+                "printedName": "(AppCoinsSDK.AppCoinsSDKError.Type) -> (AppCoinsSDK.DebugInfo) -> AppCoinsSDK.AppCoinsSDKError",
                 "children": [
                   {
-                    "kind": "TypeNominal",
-                    "name": "AppCoinsSDKError",
-                    "printedName": "AppCoinsSDK.AppCoinsSDKError",
-                    "usr": "s:11AppCoinsSDK0aB8SDKErrorO"
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(AppCoinsSDK.DebugInfo) -> AppCoinsSDK.AppCoinsSDKError",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "AppCoinsSDKError",
+                        "printedName": "AppCoinsSDK.AppCoinsSDKError",
+                        "usr": "s:11AppCoinsSDK0aB8SDKErrorO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(debugInfo: AppCoinsSDK.DebugInfo)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "DebugInfo",
+                            "printedName": "AppCoinsSDK.DebugInfo",
+                            "usr": "s:11AppCoinsSDK9DebugInfoC"
+                          }
+                        ]
+                      }
+                    ]
                   },
                   {
                     "kind": "TypeNominal",
@@ -493,12 +567,9 @@
               }
             ],
             "declKind": "EnumElement",
-            "usr": "s:11AppCoinsSDK0aB8SDKErrorO18productUnavailableyA2CmF",
-            "mangledName": "$s11AppCoinsSDK0aB8SDKErrorO18productUnavailableyA2CmF",
-            "moduleName": "AppCoinsSDK",
-            "declAttributes": [
-              "RawDocComment"
-            ]
+            "usr": "s:11AppCoinsSDK0aB8SDKErrorO18productUnavailableyAcA9DebugInfoC_tcACmF",
+            "mangledName": "$s11AppCoinsSDK0aB8SDKErrorO18productUnavailableyAcA9DebugInfoC_tcACmF",
+            "moduleName": "AppCoinsSDK"
           },
           {
             "kind": "Var",
@@ -508,13 +579,33 @@
               {
                 "kind": "TypeFunc",
                 "name": "Function",
-                "printedName": "(AppCoinsSDK.AppCoinsSDKError.Type) -> AppCoinsSDK.AppCoinsSDKError",
+                "printedName": "(AppCoinsSDK.AppCoinsSDKError.Type) -> (AppCoinsSDK.DebugInfo) -> AppCoinsSDK.AppCoinsSDKError",
                 "children": [
                   {
-                    "kind": "TypeNominal",
-                    "name": "AppCoinsSDKError",
-                    "printedName": "AppCoinsSDK.AppCoinsSDKError",
-                    "usr": "s:11AppCoinsSDK0aB8SDKErrorO"
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(AppCoinsSDK.DebugInfo) -> AppCoinsSDK.AppCoinsSDKError",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "AppCoinsSDKError",
+                        "printedName": "AppCoinsSDK.AppCoinsSDKError",
+                        "usr": "s:11AppCoinsSDK0aB8SDKErrorO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(debugInfo: AppCoinsSDK.DebugInfo)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "DebugInfo",
+                            "printedName": "AppCoinsSDK.DebugInfo",
+                            "usr": "s:11AppCoinsSDK9DebugInfoC"
+                          }
+                        ]
+                      }
+                    ]
                   },
                   {
                     "kind": "TypeNominal",
@@ -533,12 +624,9 @@
               }
             ],
             "declKind": "EnumElement",
-            "usr": "s:11AppCoinsSDK0aB8SDKErrorO18purchaseNotAllowedyA2CmF",
-            "mangledName": "$s11AppCoinsSDK0aB8SDKErrorO18purchaseNotAllowedyA2CmF",
-            "moduleName": "AppCoinsSDK",
-            "declAttributes": [
-              "RawDocComment"
-            ]
+            "usr": "s:11AppCoinsSDK0aB8SDKErrorO18purchaseNotAllowedyAcA9DebugInfoC_tcACmF",
+            "mangledName": "$s11AppCoinsSDK0aB8SDKErrorO18purchaseNotAllowedyAcA9DebugInfoC_tcACmF",
+            "moduleName": "AppCoinsSDK"
           },
           {
             "kind": "Var",
@@ -548,13 +636,33 @@
               {
                 "kind": "TypeFunc",
                 "name": "Function",
-                "printedName": "(AppCoinsSDK.AppCoinsSDKError.Type) -> AppCoinsSDK.AppCoinsSDKError",
+                "printedName": "(AppCoinsSDK.AppCoinsSDKError.Type) -> (AppCoinsSDK.DebugInfo) -> AppCoinsSDK.AppCoinsSDKError",
                 "children": [
                   {
-                    "kind": "TypeNominal",
-                    "name": "AppCoinsSDKError",
-                    "printedName": "AppCoinsSDK.AppCoinsSDKError",
-                    "usr": "s:11AppCoinsSDK0aB8SDKErrorO"
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(AppCoinsSDK.DebugInfo) -> AppCoinsSDK.AppCoinsSDKError",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "AppCoinsSDKError",
+                        "printedName": "AppCoinsSDK.AppCoinsSDKError",
+                        "usr": "s:11AppCoinsSDK0aB8SDKErrorO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(debugInfo: AppCoinsSDK.DebugInfo)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "DebugInfo",
+                            "printedName": "AppCoinsSDK.DebugInfo",
+                            "usr": "s:11AppCoinsSDK9DebugInfoC"
+                          }
+                        ]
+                      }
+                    ]
                   },
                   {
                     "kind": "TypeNominal",
@@ -573,24 +681,15 @@
               }
             ],
             "declKind": "EnumElement",
-            "usr": "s:11AppCoinsSDK0aB8SDKErrorO7unknownyA2CmF",
-            "mangledName": "$s11AppCoinsSDK0aB8SDKErrorO7unknownyA2CmF",
-            "moduleName": "AppCoinsSDK",
-            "declAttributes": [
-              "RawDocComment"
-            ]
+            "usr": "s:11AppCoinsSDK0aB8SDKErrorO7unknownyAcA9DebugInfoC_tcACmF",
+            "mangledName": "$s11AppCoinsSDK0aB8SDKErrorO7unknownyAcA9DebugInfoC_tcACmF",
+            "moduleName": "AppCoinsSDK"
           },
           {
             "kind": "Function",
-            "name": "==",
-            "printedName": "==(_:_:)",
+            "name": "networkError",
+            "printedName": "networkError(message:description:request:)",
             "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Bool",
-                "printedName": "Swift.Bool",
-                "usr": "s:Sb"
-              },
               {
                 "kind": "TypeNominal",
                 "name": "AppCoinsSDKError",
@@ -599,81 +698,286 @@
               },
               {
                 "kind": "TypeNominal",
-                "name": "AppCoinsSDKError",
-                "printedName": "AppCoinsSDK.AppCoinsSDKError",
-                "usr": "s:11AppCoinsSDK0aB8SDKErrorO"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "s:11AppCoinsSDK0aB8SDKErrorO2eeoiySbAC_ACtFZ",
-            "mangledName": "$s11AppCoinsSDK0aB8SDKErrorO2eeoiySbAC_ACtFZ",
-            "moduleName": "AppCoinsSDK",
-            "static": true,
-            "implicit": true,
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Var",
-            "name": "hashValue",
-            "printedName": "hashValue",
-            "children": [
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
               {
                 "kind": "TypeNominal",
-                "name": "Int",
-                "printedName": "Swift.Int",
-                "usr": "s:Si"
-              }
-            ],
-            "declKind": "Var",
-            "usr": "s:11AppCoinsSDK0aB8SDKErrorO9hashValueSivp",
-            "mangledName": "$s11AppCoinsSDK0aB8SDKErrorO9hashValueSivp",
-            "moduleName": "AppCoinsSDK",
-            "implicit": true,
-            "accessors": [
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
               {
-                "kind": "Accessor",
-                "name": "Get",
-                "printedName": "Get()",
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "AppCoinsSDK.DebugRequestInfo?",
                 "children": [
                   {
                     "kind": "TypeNominal",
-                    "name": "Int",
-                    "printedName": "Swift.Int",
-                    "usr": "s:Si"
+                    "name": "DebugRequestInfo",
+                    "printedName": "AppCoinsSDK.DebugRequestInfo",
+                    "usr": "s:11AppCoinsSDK16DebugRequestInfoC"
                   }
                 ],
-                "declKind": "Accessor",
-                "usr": "s:11AppCoinsSDK0aB8SDKErrorO9hashValueSivg",
-                "mangledName": "$s11AppCoinsSDK0aB8SDKErrorO9hashValueSivg",
-                "moduleName": "AppCoinsSDK",
-                "implicit": true,
-                "accessorKind": "get"
-              }
-            ]
-          },
-          {
-            "kind": "Function",
-            "name": "hash",
-            "printedName": "hash(into:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Void",
-                "printedName": "()"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Hasher",
-                "printedName": "Swift.Hasher",
-                "paramValueOwnership": "InOut",
-                "usr": "s:s6HasherV"
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
               }
             ],
             "declKind": "Func",
-            "usr": "s:11AppCoinsSDK0aB8SDKErrorO4hash4intoys6HasherVz_tF",
-            "mangledName": "$s11AppCoinsSDK0aB8SDKErrorO4hash4intoys6HasherVz_tF",
+            "usr": "s:11AppCoinsSDK0aB8SDKErrorO12networkError7message11description7requestACSS_SSAA16DebugRequestInfoCSgtFZ",
+            "mangledName": "$s11AppCoinsSDK0aB8SDKErrorO12networkError7message11description7requestACSS_SSAA16DebugRequestInfoCSgtFZ",
             "moduleName": "AppCoinsSDK",
-            "implicit": true,
+            "static": true,
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "systemError",
+            "printedName": "systemError(message:description:request:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "AppCoinsSDKError",
+                "printedName": "AppCoinsSDK.AppCoinsSDKError",
+                "usr": "s:11AppCoinsSDK0aB8SDKErrorO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "AppCoinsSDK.DebugRequestInfo?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "DebugRequestInfo",
+                    "printedName": "AppCoinsSDK.DebugRequestInfo",
+                    "usr": "s:11AppCoinsSDK16DebugRequestInfoC"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11AppCoinsSDK0aB8SDKErrorO11systemError7message11description7requestACSS_SSAA16DebugRequestInfoCSgtFZ",
+            "mangledName": "$s11AppCoinsSDK0aB8SDKErrorO11systemError7message11description7requestACSS_SSAA16DebugRequestInfoCSgtFZ",
+            "moduleName": "AppCoinsSDK",
+            "static": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "notEntitled",
+            "printedName": "notEntitled(message:description:request:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "AppCoinsSDKError",
+                "printedName": "AppCoinsSDK.AppCoinsSDKError",
+                "usr": "s:11AppCoinsSDK0aB8SDKErrorO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "AppCoinsSDK.DebugRequestInfo?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "DebugRequestInfo",
+                    "printedName": "AppCoinsSDK.DebugRequestInfo",
+                    "usr": "s:11AppCoinsSDK16DebugRequestInfoC"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11AppCoinsSDK0aB8SDKErrorO11notEntitled7message11description7requestACSS_SSAA16DebugRequestInfoCSgtFZ",
+            "mangledName": "$s11AppCoinsSDK0aB8SDKErrorO11notEntitled7message11description7requestACSS_SSAA16DebugRequestInfoCSgtFZ",
+            "moduleName": "AppCoinsSDK",
+            "static": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "productUnavailable",
+            "printedName": "productUnavailable(message:description:request:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "AppCoinsSDKError",
+                "printedName": "AppCoinsSDK.AppCoinsSDKError",
+                "usr": "s:11AppCoinsSDK0aB8SDKErrorO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "AppCoinsSDK.DebugRequestInfo?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "DebugRequestInfo",
+                    "printedName": "AppCoinsSDK.DebugRequestInfo",
+                    "usr": "s:11AppCoinsSDK16DebugRequestInfoC"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11AppCoinsSDK0aB8SDKErrorO18productUnavailable7message11description7requestACSS_SSAA16DebugRequestInfoCSgtFZ",
+            "mangledName": "$s11AppCoinsSDK0aB8SDKErrorO18productUnavailable7message11description7requestACSS_SSAA16DebugRequestInfoCSgtFZ",
+            "moduleName": "AppCoinsSDK",
+            "static": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "purchaseNotAllowed",
+            "printedName": "purchaseNotAllowed(message:description:request:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "AppCoinsSDKError",
+                "printedName": "AppCoinsSDK.AppCoinsSDKError",
+                "usr": "s:11AppCoinsSDK0aB8SDKErrorO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "AppCoinsSDK.DebugRequestInfo?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "DebugRequestInfo",
+                    "printedName": "AppCoinsSDK.DebugRequestInfo",
+                    "usr": "s:11AppCoinsSDK16DebugRequestInfoC"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11AppCoinsSDK0aB8SDKErrorO18purchaseNotAllowed7message11description7requestACSS_SSAA16DebugRequestInfoCSgtFZ",
+            "mangledName": "$s11AppCoinsSDK0aB8SDKErrorO18purchaseNotAllowed7message11description7requestACSS_SSAA16DebugRequestInfoCSgtFZ",
+            "moduleName": "AppCoinsSDK",
+            "static": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "unknown",
+            "printedName": "unknown(message:description:request:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "AppCoinsSDKError",
+                "printedName": "AppCoinsSDK.AppCoinsSDKError",
+                "usr": "s:11AppCoinsSDK0aB8SDKErrorO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "AppCoinsSDK.DebugRequestInfo?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "DebugRequestInfo",
+                    "printedName": "AppCoinsSDK.DebugRequestInfo",
+                    "usr": "s:11AppCoinsSDK16DebugRequestInfoC"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11AppCoinsSDK0aB8SDKErrorO7unknown7message11description7requestACSS_SSAA16DebugRequestInfoCSgtFZ",
+            "mangledName": "$s11AppCoinsSDK0aB8SDKErrorO7unknown7message11description7requestACSS_SSAA16DebugRequestInfoCSgtFZ",
+            "moduleName": "AppCoinsSDK",
+            "static": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
             "funcSelfKind": "NonMutating"
           }
         ],
@@ -685,20 +989,6 @@
           "AccessControl"
         ],
         "conformances": [
-          {
-            "kind": "Conformance",
-            "name": "Equatable",
-            "printedName": "Equatable",
-            "usr": "s:SQ",
-            "mangledName": "$sSQ"
-          },
-          {
-            "kind": "Conformance",
-            "name": "Hashable",
-            "printedName": "Hashable",
-            "usr": "s:SH",
-            "mangledName": "$sSH"
-          },
           {
             "kind": "Conformance",
             "name": "Error",
@@ -714,6 +1004,32 @@
             "mangledName": "$ss8SendableP"
           }
         ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "DebugInfo",
+        "printedName": "DebugInfo",
+        "declKind": "Class",
+        "usr": "s:11AppCoinsSDK9DebugInfoC",
+        "mangledName": "$s11AppCoinsSDK9DebugInfoC",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "hasMissingDesignatedInitializers": true
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "DebugRequestInfo",
+        "printedName": "DebugRequestInfo",
+        "declKind": "Class",
+        "usr": "s:11AppCoinsSDK16DebugRequestInfoC",
+        "mangledName": "$s11AppCoinsSDK16DebugRequestInfoC",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "hasMissingDesignatedInitializers": true
       },
       {
         "kind": "Import",
@@ -778,7 +1094,8 @@
             "moduleName": "AppCoinsSDK",
             "static": true,
             "declAttributes": [
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "funcSelfKind": "NonMutating"
           },
@@ -814,7 +1131,8 @@
             "moduleName": "AppCoinsSDK",
             "static": true,
             "declAttributes": [
-              "AccessControl"
+              "AccessControl",
+              "RawDocComment"
             ],
             "funcSelfKind": "NonMutating"
           }
@@ -3806,6 +4124,16 @@
       },
       {
         "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
         "name": "SwiftUI",
         "printedName": "SwiftUI",
         "declKind": "Import",
@@ -4813,7 +5141,7 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Purchase\/AdyenController\/AdyenController.swift",
       "kind": "BooleanLiteral",
-      "offset": 1088,
+      "offset": 1168,
       "length": 5,
       "value": "false"
     },
@@ -6934,98 +7262,98 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/CreateAdyenTransactionRaw.swift",
       "kind": "StringLiteral",
-      "offset": 2723,
+      "offset": 2898,
       "length": 5,
       "value": "\"uid\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/CreateAdyenTransactionRaw.swift",
       "kind": "StringLiteral",
-      "offset": 2751,
+      "offset": 2926,
       "length": 8,
       "value": "\"status\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/CreateAdyenTransactionRaw.swift",
       "kind": "StringLiteral",
-      "offset": 2785,
+      "offset": 2960,
       "length": 11,
       "value": "\"reference\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/CreateAdyenTransactionRaw.swift",
       "kind": "StringLiteral",
-      "offset": 2817,
+      "offset": 2992,
       "length": 6,
       "value": "\"hash\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/CreateAdyenTransactionRaw.swift",
       "kind": "StringLiteral",
-      "offset": 2847,
+      "offset": 3022,
       "length": 9,
       "value": "\"session\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/CreateAdyenTransactionRaw.swift",
       "kind": "StringLiteral",
-      "offset": 2723,
+      "offset": 2898,
       "length": 5,
       "value": "\"uid\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/CreateAdyenTransactionRaw.swift",
       "kind": "StringLiteral",
-      "offset": 2751,
+      "offset": 2926,
       "length": 8,
       "value": "\"status\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/CreateAdyenTransactionRaw.swift",
       "kind": "StringLiteral",
-      "offset": 2785,
+      "offset": 2960,
       "length": 11,
       "value": "\"reference\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/CreateAdyenTransactionRaw.swift",
       "kind": "StringLiteral",
-      "offset": 2817,
+      "offset": 2992,
       "length": 6,
       "value": "\"hash\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/CreateAdyenTransactionRaw.swift",
       "kind": "StringLiteral",
-      "offset": 2847,
+      "offset": 3022,
       "length": 9,
       "value": "\"session\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/CreateAdyenTransactionRaw.swift",
       "kind": "StringLiteral",
-      "offset": 3091,
+      "offset": 3266,
       "length": 4,
       "value": "\"id\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/CreateAdyenTransactionRaw.swift",
       "kind": "StringLiteral",
-      "offset": 3123,
+      "offset": 3298,
       "length": 13,
       "value": "\"sessionData\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/CreateAdyenTransactionRaw.swift",
       "kind": "StringLiteral",
-      "offset": 3091,
+      "offset": 3266,
       "length": 4,
       "value": "\"id\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/CreateAdyenTransactionRaw.swift",
       "kind": "StringLiteral",
-      "offset": 3123,
+      "offset": 3298,
       "length": 13,
       "value": "\"sessionData\""
     },
@@ -9783,14 +10111,14 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Entities\/Product.swift",
       "kind": "StringLiteral",
-      "offset": 1220,
+      "offset": 1218,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Entities\/Product.swift",
       "kind": "StringLiteral",
-      "offset": 3524,
+      "offset": 4202,
       "length": 2,
       "value": "\"\""
     },
@@ -9804,35 +10132,35 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Entities\/Purchase.swift",
       "kind": "StringLiteral",
-      "offset": 3304,
+      "offset": 4196,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Entities\/Purchase.swift",
       "kind": "StringLiteral",
-      "offset": 4636,
+      "offset": 6437,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Entities\/Purchase.swift",
       "kind": "StringLiteral",
-      "offset": 6517,
+      "offset": 8768,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Entities\/Purchase.swift",
       "kind": "StringLiteral",
-      "offset": 8480,
+      "offset": 11371,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Entities\/Purchase.swift",
       "kind": "StringLiteral",
-      "offset": 10584,
+      "offset": 14115,
       "length": 2,
       "value": "\"\""
     },
@@ -9849,6 +10177,48 @@
       "offset": 771,
       "length": 3,
       "value": "291"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/RequestMethod.swift",
+      "kind": "StringLiteral",
+      "offset": 140,
+      "length": 5,
+      "value": "\"GET\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/RequestMethod.swift",
+      "kind": "StringLiteral",
+      "offset": 162,
+      "length": 6,
+      "value": "\"POST\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/RequestMethod.swift",
+      "kind": "StringLiteral",
+      "offset": 188,
+      "length": 9,
+      "value": "\"UNKNOWN\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/RequestMethod.swift",
+      "kind": "StringLiteral",
+      "offset": 140,
+      "length": 5,
+      "value": "\"GET\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/RequestMethod.swift",
+      "kind": "StringLiteral",
+      "offset": 162,
+      "length": 6,
+      "value": "\"POST\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/RequestMethod.swift",
+      "kind": "StringLiteral",
+      "offset": 188,
+      "length": 9,
+      "value": "\"UNKNOWN\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Purchase\/PurchaseStateViews\/SyncProcessingBottomSheet.swift",

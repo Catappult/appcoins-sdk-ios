@@ -8,6 +8,6 @@
 import Foundation
 
 internal enum BillingError: Error {
-    case failed
-    case noInternet
+    case failed(message: String, description: String, request: DebugRequestInfo? = nil)
+    case noInternet(message: String, description: String, request: DebugRequestInfo? = nil)
 }
