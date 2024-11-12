@@ -120,7 +120,7 @@ public struct Product {
                 }
             }
             
-            if let result = result { return result } else { return .failed(error: .unknown(message: "Purchase failed", description: "Failed to retrive required value: result is nil at Product.swift:purchase", request: nil)) }
+            if let result = result { return result } else { return .failed(error: .unknown(message: "Purchase failed", description: "Failed to retrieve required value: result is nil at Product.swift:purchase", request: nil)) }
         }
     }
     
