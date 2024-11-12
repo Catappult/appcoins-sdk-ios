@@ -9,24 +9,29 @@ import UIKit
 import _Concurrency
 import _StringProcessing
 import _SwiftConcurrencyShims
-public enum AppCoinsSDKError : Swift.Error {
+public enum AppCoinsSDKError : Swift.Error, Swift.CustomStringConvertible {
   case networkError(debugInfo: AppCoinsSDK.DebugInfo)
   case systemError(debugInfo: AppCoinsSDK.DebugInfo)
   case notEntitled(debugInfo: AppCoinsSDK.DebugInfo)
   case productUnavailable(debugInfo: AppCoinsSDK.DebugInfo)
   case purchaseNotAllowed(debugInfo: AppCoinsSDK.DebugInfo)
   case unknown(debugInfo: AppCoinsSDK.DebugInfo)
-  public static func networkError(message: Swift.String, description: Swift.String, request: AppCoinsSDK.DebugRequestInfo? = nil) -> AppCoinsSDK.AppCoinsSDKError
-  public static func systemError(message: Swift.String, description: Swift.String, request: AppCoinsSDK.DebugRequestInfo? = nil) -> AppCoinsSDK.AppCoinsSDKError
-  public static func notEntitled(message: Swift.String, description: Swift.String, request: AppCoinsSDK.DebugRequestInfo? = nil) -> AppCoinsSDK.AppCoinsSDKError
-  public static func productUnavailable(message: Swift.String, description: Swift.String, request: AppCoinsSDK.DebugRequestInfo? = nil) -> AppCoinsSDK.AppCoinsSDKError
-  public static func purchaseNotAllowed(message: Swift.String, description: Swift.String, request: AppCoinsSDK.DebugRequestInfo? = nil) -> AppCoinsSDK.AppCoinsSDKError
-  public static func unknown(message: Swift.String, description: Swift.String, request: AppCoinsSDK.DebugRequestInfo? = nil) -> AppCoinsSDK.AppCoinsSDKError
+  public var description: Swift.String {
+    get
+  }
 }
 @_hasMissingDesignatedInitializers public class DebugInfo {
+  final public let message: Swift.String
+  final public let description: Swift.String
+  final public let request: AppCoinsSDK.DebugRequestInfo?
   @objc deinit
 }
 @_hasMissingDesignatedInitializers public class DebugRequestInfo {
+  final public let url: Swift.String
+  final public let method: AppCoinsSDK.RequestMethod
+  final public let body: Swift.String
+  final public let responseData: Swift.String
+  final public let statusCode: Swift.Int
   @objc deinit
 }
 public struct AppcSDK {
@@ -94,6 +99,16 @@ public struct Product {
   public func encode(to encoder: any Swift.Encoder) throws
   required public init(from decoder: any Swift.Decoder) throws
 }
+public enum RequestMethod : Swift.String {
+  case GET
+  case POST
+  case UNKNOWN
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
 public struct Sandbox {
   public static func getTestingWalletAddress() -> Swift.String?
 }
@@ -107,3 +122,6 @@ public enum VerificationResult {
   case verified(purchase: AppCoinsSDK.Purchase)
   case unverified(purchase: AppCoinsSDK.Purchase, verificationError: AppCoinsSDK.AppCoinsSDKError)
 }
+extension AppCoinsSDK.RequestMethod : Swift.Equatable {}
+extension AppCoinsSDK.RequestMethod : Swift.Hashable {}
+extension AppCoinsSDK.RequestMethod : Swift.RawRepresentable {}
