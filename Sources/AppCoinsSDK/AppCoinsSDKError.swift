@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum AppCoinsSDKError: Error {
+public enum AppCoinsSDKError: Error, CustomStringConvertible {
     
     case networkError(debugInfo: DebugInfo)
     case systemError(debugInfo: DebugInfo)
@@ -39,6 +39,47 @@ public enum AppCoinsSDKError: Error {
     
     internal static func unknown(message: String, description: String, request: DebugRequestInfo? = nil) -> AppCoinsSDKError {
         return .unknown(debugInfo: DebugInfo(message: message, description: description, request: request))
+    }
+    
+    public var description: String {
+        switch self {
+        case .networkError(let debugInfo):
+            if let debugRequestInfo = debugInfo.request {
+                return "Error name: networkError\nError message: \(debugInfo.message)\nError description: \(debugInfo.description)\nRequest method: \(debugRequestInfo.method)\nRequest body: \(debugRequestInfo.body)\nRequest status code: \(debugRequestInfo.statusCode)"
+            } else {
+                return "Error name: networkError\nError message: \(debugInfo.message)\nError description: \(debugInfo.description)"
+            }
+        case .systemError(let debugInfo):
+            if let debugRequestInfo = debugInfo.request {
+                return "Error name: networkError\nError message: \(debugInfo.message)\nError description: \(debugInfo.description)\nRequest method: \(debugRequestInfo.method)\nRequest body: \(debugRequestInfo.body)\nRequest status code: \(debugRequestInfo.statusCode)"
+            } else {
+                return "Error name: networkError\nError message: \(debugInfo.message)\nError description: \(debugInfo.description)"
+            }
+        case .notEntitled(let debugInfo):
+            if let debugRequestInfo = debugInfo.request {
+                return "Error name: networkError\nError message: \(debugInfo.message)\nError description: \(debugInfo.description)\nRequest method: \(debugRequestInfo.method)\nRequest body: \(debugRequestInfo.body)\nRequest status code: \(debugRequestInfo.statusCode)"
+            } else {
+                return "Error name: networkError\nError message: \(debugInfo.message)\nError description: \(debugInfo.description)"
+            }
+        case .productUnavailable(let debugInfo):
+            if let debugRequestInfo = debugInfo.request {
+                return "Error name: networkError\nError message: \(debugInfo.message)\nError description: \(debugInfo.description)\nRequest method: \(debugRequestInfo.method)\nRequest body: \(debugRequestInfo.body)\nRequest status code: \(debugRequestInfo.statusCode)"
+            } else {
+                return "Error name: networkError\nError message: \(debugInfo.message)\nError description: \(debugInfo.description)"
+            }
+        case .purchaseNotAllowed(let debugInfo):
+            if let debugRequestInfo = debugInfo.request {
+                return "Error name: networkError\nError message: \(debugInfo.message)\nError description: \(debugInfo.description)\nRequest method: \(debugRequestInfo.method)\nRequest body: \(debugRequestInfo.body)\nRequest status code: \(debugRequestInfo.statusCode)"
+            } else {
+                return "Error name: networkError\nError message: \(debugInfo.message)\nError description: \(debugInfo.description)"
+            }
+        case .unknown(let debugInfo):
+            if let debugRequestInfo = debugInfo.request {
+                return "Error name: networkError\nError message: \(debugInfo.message)\nError description: \(debugInfo.description)\nRequest method: \(debugRequestInfo.method)\nRequest body: \(debugRequestInfo.body)\nRequest status code: \(debugRequestInfo.statusCode)"
+            } else {
+                return "Error name: networkError\nError message: \(debugInfo.message)\nError description: \(debugInfo.description)"
+            }
+        }
     }
 }
 
