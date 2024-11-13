@@ -54,7 +54,7 @@ public enum AppCoinsSDKError: Error, CustomStringConvertible {
                             "url": "\(debugRequestInfo.url)",
                             "method": "\(debugRequestInfo.method)",
                             "body": "\(debugRequestInfo.body)",
-                            "responseData": \(StringUtils.cleanAndFormatJSON(in: debugRequestInfo.responseData)),
+                            "responseData": \(debugRequestInfo.responseData),
                             "statusCode": \(debugRequestInfo.statusCode)
                         }
                     }
@@ -80,7 +80,7 @@ public enum AppCoinsSDKError: Error, CustomStringConvertible {
                             "url": "\(debugRequestInfo.url)",
                             "method": "\(debugRequestInfo.method)",
                             "body": "\(debugRequestInfo.body)",
-                            "responseData": \(StringUtils.cleanAndFormatJSON(in: debugRequestInfo.responseData)),
+                            "responseData": \(debugRequestInfo.responseData),
                             "statusCode": \(debugRequestInfo.statusCode)
                         }
                     }
@@ -106,7 +106,7 @@ public enum AppCoinsSDKError: Error, CustomStringConvertible {
                             "url": "\(debugRequestInfo.url)",
                             "method": "\(debugRequestInfo.method)",
                             "body": "\(debugRequestInfo.body)",
-                            "responseData": \(StringUtils.cleanAndFormatJSON(in: debugRequestInfo.responseData)),
+                            "responseData": \(debugRequestInfo.responseData),
                             "statusCode": \(debugRequestInfo.statusCode)
                         }
                     }
@@ -132,7 +132,7 @@ public enum AppCoinsSDKError: Error, CustomStringConvertible {
                             "url": "\(debugRequestInfo.url)",
                             "method": "\(debugRequestInfo.method)",
                             "body": "\(debugRequestInfo.body)",
-                            "responseData": \(StringUtils.cleanAndFormatJSON(in: debugRequestInfo.responseData)),
+                            "responseData": \(debugRequestInfo.responseData),
                             "statusCode": \(debugRequestInfo.statusCode)
                         }
                     }
@@ -158,7 +158,7 @@ public enum AppCoinsSDKError: Error, CustomStringConvertible {
                             "url": "\(debugRequestInfo.url)",
                             "method": "\(debugRequestInfo.method)",
                             "body": "\(debugRequestInfo.body)",
-                            "responseData": \(StringUtils.cleanAndFormatJSON(in: debugRequestInfo.responseData)),
+                            "responseData": \(debugRequestInfo.responseData),
                             "statusCode": \(debugRequestInfo.statusCode)
                         }
                     }
@@ -184,7 +184,7 @@ public enum AppCoinsSDKError: Error, CustomStringConvertible {
                             "url": "\(debugRequestInfo.url)",
                             "method": "\(debugRequestInfo.method)",
                             "body": "\(debugRequestInfo.body)",
-                            "responseData": \(StringUtils.cleanAndFormatJSON(in: debugRequestInfo.responseData)),
+                            "responseData": \(debugRequestInfo.responseData),
                             "statusCode": \(debugRequestInfo.statusCode)
                         }
                     }
