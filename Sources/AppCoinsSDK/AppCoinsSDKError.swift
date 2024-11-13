@@ -45,39 +45,159 @@ public enum AppCoinsSDKError: Error, CustomStringConvertible {
         switch self {
         case .networkError(let debugInfo):
             if let debugRequestInfo = debugInfo.request {
-                return "Error name: networkError\nError message: \(debugInfo.message)\nError description: \(debugInfo.description)\nRequest method: \(debugRequestInfo.method)\nRequest body: \(debugRequestInfo.body)\nRequest status code: \(debugRequestInfo.statusCode)"
+                return """
+                    {
+                        "type": "networkError",
+                        "message": "\(debugInfo.message)",
+                        "description": "\(debugInfo.description)",
+                        "request": {
+                            "url": "\(debugRequestInfo.url)",
+                            "method": "\(debugRequestInfo.method)",
+                            "body": "\(debugRequestInfo.body)",
+                            "responseData": \(StringUtils.cleanAndFormatJSON(in: debugRequestInfo.responseData)),
+                            "statusCode": \(debugRequestInfo.statusCode)
+                        }
+                    }
+                    """
             } else {
-                return "Error name: networkError\nError message: \(debugInfo.message)\nError description: \(debugInfo.description)"
+                return """
+                    {
+                        "type": "networkError",
+                        "message": "\(debugInfo.message)",
+                        "description": "\(debugInfo.description)",
+                        "request": null
+                    }
+                    """
             }
         case .systemError(let debugInfo):
             if let debugRequestInfo = debugInfo.request {
-                return "Error name: networkError\nError message: \(debugInfo.message)\nError description: \(debugInfo.description)\nRequest method: \(debugRequestInfo.method)\nRequest body: \(debugRequestInfo.body)\nRequest status code: \(debugRequestInfo.statusCode)"
+                return """
+                    {
+                        "type": "systemError",
+                        "message": "\(debugInfo.message)",
+                        "description": "\(debugInfo.description)",
+                        "request": {
+                            "url": "\(debugRequestInfo.url)",
+                            "method": "\(debugRequestInfo.method)",
+                            "body": "\(debugRequestInfo.body)",
+                            "responseData": \(StringUtils.cleanAndFormatJSON(in: debugRequestInfo.responseData)),
+                            "statusCode": \(debugRequestInfo.statusCode)
+                        }
+                    }
+                    """
             } else {
-                return "Error name: networkError\nError message: \(debugInfo.message)\nError description: \(debugInfo.description)"
+                return """
+                    {
+                        "type": "systemError",
+                        "message": "\(debugInfo.message)",
+                        "description": "\(debugInfo.description)",
+                        "request": null
+                    }
+                    """
             }
         case .notEntitled(let debugInfo):
             if let debugRequestInfo = debugInfo.request {
-                return "Error name: networkError\nError message: \(debugInfo.message)\nError description: \(debugInfo.description)\nRequest method: \(debugRequestInfo.method)\nRequest body: \(debugRequestInfo.body)\nRequest status code: \(debugRequestInfo.statusCode)"
+                return """
+                    {
+                        "type": "notEntitled",
+                        "message": "\(debugInfo.message)",
+                        "description": "\(debugInfo.description)",
+                        "request": {
+                            "url": "\(debugRequestInfo.url)",
+                            "method": "\(debugRequestInfo.method)",
+                            "body": "\(debugRequestInfo.body)",
+                            "responseData": \(StringUtils.cleanAndFormatJSON(in: debugRequestInfo.responseData)),
+                            "statusCode": \(debugRequestInfo.statusCode)
+                        }
+                    }
+                    """
             } else {
-                return "Error name: networkError\nError message: \(debugInfo.message)\nError description: \(debugInfo.description)"
+                return """
+                    {
+                        "type": "notEntitled",
+                        "message": "\(debugInfo.message)",
+                        "description": "\(debugInfo.description)",
+                        "request": null
+                    }
+                    """
             }
         case .productUnavailable(let debugInfo):
             if let debugRequestInfo = debugInfo.request {
-                return "Error name: networkError\nError message: \(debugInfo.message)\nError description: \(debugInfo.description)\nRequest method: \(debugRequestInfo.method)\nRequest body: \(debugRequestInfo.body)\nRequest status code: \(debugRequestInfo.statusCode)"
+                return """
+                    {
+                        "type": "productUnavailable",
+                        "message": "\(debugInfo.message)",
+                        "description": "\(debugInfo.description)",
+                        "request": {
+                            "url": "\(debugRequestInfo.url)",
+                            "method": "\(debugRequestInfo.method)",
+                            "body": "\(debugRequestInfo.body)",
+                            "responseData": \(StringUtils.cleanAndFormatJSON(in: debugRequestInfo.responseData)),
+                            "statusCode": \(debugRequestInfo.statusCode)
+                        }
+                    }
+                    """
             } else {
-                return "Error name: networkError\nError message: \(debugInfo.message)\nError description: \(debugInfo.description)"
+                return """
+                    {
+                        "type": "productUnavailable",
+                        "message": "\(debugInfo.message)",
+                        "description": "\(debugInfo.description)",
+                        "request": null
+                    }
+                    """
             }
         case .purchaseNotAllowed(let debugInfo):
             if let debugRequestInfo = debugInfo.request {
-                return "Error name: networkError\nError message: \(debugInfo.message)\nError description: \(debugInfo.description)\nRequest method: \(debugRequestInfo.method)\nRequest body: \(debugRequestInfo.body)\nRequest status code: \(debugRequestInfo.statusCode)"
+                return """
+                    {
+                        "type": "purchaseNotAllowed",
+                        "message": "\(debugInfo.message)",
+                        "description": "\(debugInfo.description)",
+                        "request": {
+                            "url": "\(debugRequestInfo.url)",
+                            "method": "\(debugRequestInfo.method)",
+                            "body": "\(debugRequestInfo.body)",
+                            "responseData": \(StringUtils.cleanAndFormatJSON(in: debugRequestInfo.responseData)),
+                            "statusCode": \(debugRequestInfo.statusCode)
+                        }
+                    }
+                    """
             } else {
-                return "Error name: networkError\nError message: \(debugInfo.message)\nError description: \(debugInfo.description)"
+                return """
+                    {
+                        "type": "purchaseNotAllowed",
+                        "message": "\(debugInfo.message)",
+                        "description": "\(debugInfo.description)",
+                        "request": null
+                    }
+                    """
             }
         case .unknown(let debugInfo):
             if let debugRequestInfo = debugInfo.request {
-                return "Error name: networkError\nError message: \(debugInfo.message)\nError description: \(debugInfo.description)\nRequest method: \(debugRequestInfo.method)\nRequest body: \(debugRequestInfo.body)\nRequest status code: \(debugRequestInfo.statusCode)"
+                return """
+                    {
+                        "type": "unknown",
+                        "message": "\(debugInfo.message)",
+                        "description": "\(debugInfo.description)",
+                        "request": {
+                            "url": "\(debugRequestInfo.url)",
+                            "method": "\(debugRequestInfo.method)",
+                            "body": "\(debugRequestInfo.body)",
+                            "responseData": \(StringUtils.cleanAndFormatJSON(in: debugRequestInfo.responseData)),
+                            "statusCode": \(debugRequestInfo.statusCode)
+                        }
+                    }
+                    """
             } else {
-                return "Error name: networkError\nError message: \(debugInfo.message)\nError description: \(debugInfo.description)"
+                return """
+                    {
+                        "type": "unknown",
+                        "message": "\(debugInfo.message)",
+                        "description": "\(debugInfo.description)",
+                        "request": null
+                    }
+                    """
             }
         }
     }
