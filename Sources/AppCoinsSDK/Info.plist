@@ -6,6 +6,10 @@
 	<string>AppCoinsSDK</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.aptoide.AppCoinsSDK</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.5.0</string>
+	<key>CFBundleVersion</key>
+	<string>16</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>com.aptoide.appcoins-wallet</string>
