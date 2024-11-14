@@ -6,11 +6,11 @@
 	<dict>
 		<key>Adyen_Adyen.bundle/Assets.car</key>
 		<data>
-		KVKTY84UPT9HtOM5wjkG9HJPh9E=
+		aVMM9SMbn6+3yJu7A+HcqP75nOE=
 		</data>
 		<key>Adyen_Adyen.bundle/Info.plist</key>
 		<data>
-		5M1ye81j3wK/kUxZpguo63669zA=
+		QzPNECQMIfh9bI7BNGPLNGy2EKc=
 		</data>
 		<key>Adyen_Adyen.bundle/PrivacyInfo.xcprivacy</key>
 		<data>
@@ -306,11 +306,11 @@
 		</dict>
 		<key>Adyen_AdyenActions.bundle/Assets.car</key>
 		<data>
-		YLTphTrRCwd/nEmpoAVmA2tA9eo=
+		A6MbfnSt0K4DP2jGkuZa7U4QGck=
 		</data>
 		<key>Adyen_AdyenActions.bundle/Info.plist</key>
 		<data>
-		gj6QiFT9LxwJaEoNJRGYLn1r8gM=
+		agzCMCtmGMzts28Q/dHKM9v9tss=
 		</data>
 		<key>Adyen_AdyenCard.bundle/Assets.car</key>
 		<data>
@@ -318,151 +318,51 @@
 		</data>
 		<key>Adyen_AdyenCard.bundle/Info.plist</key>
 		<data>
-		2PozoVlOrno67ztI5moEzv/YxUM=
+		BX2u+f2kPUoXn+f+JP05yukxPW0=
 		</data>
 		<key>Assets.car</key>
 		<data>
 		d4cGL0nV+ADAdt7PnQ8Pkkeq0rY=
 		</data>
-		<key>Frameworks/IndicativeLibrary.framework/IndicativeLibrary</key>
-		<data>
-		/1lcjY8Pe3bCGsv5IT9/hNbkoYM=
-		</data>
-		<key>Frameworks/IndicativeLibrary.framework/Info.plist</key>
-		<data>
-		fWrk6lpyflDdmjc3s0L1PE1uPSU=
-		</data>
-		<key>Frameworks/IndicativeLibrary.framework/_CodeSignature/CodeResources</key>
-		<data>
-		Ki7qkVt9cHEqmoff8LXVoGaDoFg=
-		</data>
-		<key>Frameworks/PPRiskMagnes.framework/Info.plist</key>
-		<data>
-		dSRCXpFDu1qU1Oif8KCHNNcKRYg=
-		</data>
-		<key>Frameworks/PPRiskMagnes.framework/PPRiskMagnes</key>
-		<data>
-		Of4CerDIAvbCCZIRz+u1iTiP7KQ=
-		</data>
-		<key>Frameworks/PPRiskMagnes.framework/_CodeSignature/CodeResources</key>
-		<data>
-		kPE7lhvMYRaLF8+RnEpl0gvPjkk=
-		</data>
-		<key>Frameworks/libswift_Concurrency.dylib</key>
-		<data>
-		/e+az3Lm/TG8CPsbPeCP75EGgT4=
-		</data>
 		<key>Headers/AppCoinsSDK-Swift.h</key>
 		<data>
 		HqzcHmV3yT1IAYqd8V/zOxSy8/Q=
 		</data>
-		<key>IndicativeLibrary.framework/Headers/Indicative.h</key>
-		<data>
-		Sqok4tCt16MGZF/3tCvoCHhhZpM=
-		</data>
-		<key>IndicativeLibrary.framework/Headers/IndicativeEvent.h</key>
-		<data>
-		i9neBlmDF1PNHZuUVSZhlTz1rmE=
-		</data>
-		<key>IndicativeLibrary.framework/Headers/IndicativeLibrary.h</key>
-		<data>
-		kscbnRsIbiVhWOSHEXfo2I0w2JQ=
-		</data>
-		<key>IndicativeLibrary.framework/IndicativeLibrary</key>
-		<data>
-		BhBT+TL1Y5tPTiQ9h0cNRXGCk2A=
-		</data>
-		<key>IndicativeLibrary.framework/Info.plist</key>
-		<data>
-		fWrk6lpyflDdmjc3s0L1PE1uPSU=
-		</data>
-		<key>IndicativeLibrary.framework/Modules/module.modulemap</key>
-		<data>
-		5vpa4vDmF0EfnLSEp1GG0Mu2eZg=
-		</data>
-		<key>IndicativeLibrary.framework/_CodeSignature/CodeResources</key>
-		<data>
-		rywsSpOBJAjmxsBBI9/W7jR0/e4=
-		</data>
 		<key>Info.plist</key>
 		<data>
-		9BlgT8PZ5FRYs48WH2P4P2aK4Ck=
+		20SIl+VDNSjruJbVotjKdcecX2A=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/Project/arm64-apple-ios.swiftsourceinfo</key>
 		<data>
-		glvP7Ndshv7VI3+jBC9ZYbOBkTM=
+		3yGhQCFuLVQMMRMKMrPZYwuhsHI=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.abi.json</key>
 		<data>
-		OlaFR8ED0wKmcPC1y9H/20ln/fg=
+		BWdr+6VVRiIrU0GtSll34woIPGg=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<data>
-		qyuK5slZTZli4vqb6MUo88bD3io=
+		/8SkyU39zItBAXyzzb9F1uvVK3Q=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<data>
-		acfxem7lNIiwbNbr4aQjMMTLJzE=
+		1nty55JdymP5Hp0ORHXVP/R0jWE=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<data>
-		qyuK5slZTZli4vqb6MUo88bD3io=
+		/8SkyU39zItBAXyzzb9F1uvVK3Q=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		M+7x2k4+9nrQiTe8uRC+BGBQc50=
+		fHzI73wjb5OPyNUOZ88/sAQxurc=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
 		O9wLxtwaS081q9cboH4Ea4IJWPg=
 		</data>
-		<key>PPRiskMagnes.framework/Headers/MagnesCryptoUtil.h</key>
-		<data>
-		FuRYW3f3QOOok0nSkDa5BFiJFMA=
-		</data>
-		<key>PPRiskMagnes.framework/Headers/MagnesSystemConfigUtils.h</key>
-		<data>
-		m0fVlR0LRNAUF3lQpMK64IgK//M=
-		</data>
-		<key>PPRiskMagnes.framework/Headers/PPRiskMagnes-Swift.h</key>
-		<data>
-		xaEFyfHNcDisbXYw5ek8tVCsa5Q=
-		</data>
-		<key>PPRiskMagnes.framework/Headers/PPRiskMagnes.h</key>
-		<data>
-		h2lpeQe0Lq/gHz716wpYRvPwUcA=
-		</data>
-		<key>PPRiskMagnes.framework/Info.plist</key>
-		<data>
-		dSRCXpFDu1qU1Oif8KCHNNcKRYg=
-		</data>
-		<key>PPRiskMagnes.framework/Modules/PPRiskMagnes.swiftmodule/arm64-apple-ios.swiftdoc</key>
-		<data>
-		EVh8IyLAQWvM0bBByh/2HAQ7KW0=
-		</data>
-		<key>PPRiskMagnes.framework/Modules/PPRiskMagnes.swiftmodule/arm64-apple-ios.swiftinterface</key>
-		<data>
-		zajdOuWiYtHQRaOblCQF2IMzvHo=
-		</data>
-		<key>PPRiskMagnes.framework/Modules/PPRiskMagnes.swiftmodule/arm64.swiftdoc</key>
-		<data>
-		EVh8IyLAQWvM0bBByh/2HAQ7KW0=
-		</data>
-		<key>PPRiskMagnes.framework/Modules/PPRiskMagnes.swiftmodule/arm64.swiftinterface</key>
-		<data>
-		zajdOuWiYtHQRaOblCQF2IMzvHo=
-		</data>
-		<key>PPRiskMagnes.framework/Modules/module.modulemap</key>
-		<data>
-		zG2HaZ52YRJVtlwpUULn49EDHFQ=
-		</data>
-		<key>PPRiskMagnes.framework/PPRiskMagnes</key>
-		<data>
-		IC0Gjv2QU/j3MzTOpHb9rvg2yMY=
-		</data>
 		<key>Web3swift_web3swift.bundle/Info.plist</key>
 		<data>
-		eOIeieJHHKLNA4K+rE6+BJzbR78=
+		PNyp9Fby9c0NaSPiNwnM+y9GuHI=
 		</data>
 		<key>Web3swift_web3swift.bundle/browser.js</key>
 		<data>
@@ -762,14 +662,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			E/+fpzMqn03qV7juhUODISoT6xoBtJwY+N5pCsaE16M=
+			y/h6rjRT6R8mpYBNBxjGcS/I++Y9+zeRTazIJYIazWI=
 			</data>
 		</dict>
 		<key>Adyen_Adyen.bundle/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			WYPAD7631kbaV8cCwWZslS2hPPoPnZLLgnZpdjSpk+s=
+			9VbC3y6517mCoQdSCVPqaRrR5mqnhspLxU0SG1THLcs=
 			</data>
 		</dict>
 		<key>Adyen_Adyen.bundle/PrivacyInfo.xcprivacy</key>
@@ -1071,14 +971,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			A/I5G8KIIRjCq3+DA6iEEyHVIkPnUgqs6TxkZyypjcs=
+			lte8O/9pEq2pOngnlGa3xsQlbCZjg3C2ys4coQKlVTs=
 			</data>
 		</dict>
 		<key>Adyen_AdyenActions.bundle/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			WCv6m3YaBywzDMepL1ig6LRKk98Bu9tN7Pi5LAp58h8=
+			FgFD5YN77qXJm5Hoh3E4MEo2Q+5mQuWHJS3U+LBHcFA=
 			</data>
 		</dict>
 		<key>Adyen_AdyenCard.bundle/Assets.car</key>
@@ -1092,7 +992,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			br7LhkhnVrC00tClYoHtqbBSAlvh22Ioxc3DRahhdW8=
+			nr0ti+AC58cFM05o+HnhyqgJZ/AKs0mxnhMGCOwV87Q=
 			</data>
 		</dict>
 		<key>Assets.car</key>
@@ -1102,55 +1002,6 @@
 			qfoCBqX0DORHwMu8U0tSbnMaPXhOETJoWBrRzrRyKZ4=
 			</data>
 		</dict>
-		<key>Frameworks/IndicativeLibrary.framework/IndicativeLibrary</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			/ht2Witn/PxHdN9P1jrYpfmOD5i7N3/6wFXxL9/1PAM=
-			</data>
-		</dict>
-		<key>Frameworks/IndicativeLibrary.framework/Info.plist</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			h2FlpT975bgPxupTS3c6qniF+hOZ2iQCBLpE90OWUWU=
-			</data>
-		</dict>
-		<key>Frameworks/IndicativeLibrary.framework/_CodeSignature/CodeResources</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			a+jrpeVd5fk8WJ5JF53a+WaiPBq72P2DT20Dej+6LLU=
-			</data>
-		</dict>
-		<key>Frameworks/PPRiskMagnes.framework/Info.plist</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			QOA1F84SVwLQZAUiaz+zCbNnvalfd4Cc9TmH6Z+ILXE=
-			</data>
-		</dict>
-		<key>Frameworks/PPRiskMagnes.framework/PPRiskMagnes</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			VhmkvYCEiWc40cbDiywj6O8HBR/C+gvZ8D6OrEoMZ9E=
-			</data>
-		</dict>
-		<key>Frameworks/PPRiskMagnes.framework/_CodeSignature/CodeResources</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			q+F3n6MMxAUNBelOQo7v1GXduz/gSj30pY5YMFTOA7s=
-			</data>
-		</dict>
-		<key>Frameworks/libswift_Concurrency.dylib</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			e8MDe2LPITBzPHHQihkNLtxdb1kl+lchOOSZvmBhjYQ=
-			</data>
-		</dict>
 		<key>Headers/AppCoinsSDK-Swift.h</key>
 		<dict>
 			<key>hash2</key>
@@ -1158,95 +1009,46 @@
 			IFuh0SyZR4gSDXKGSrsqs84bnf/FbyICdPyTwm8lEz0=
 			</data>
 		</dict>
-		<key>IndicativeLibrary.framework/Headers/Indicative.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			2h7CgfoNX6F2L6Xv1xWlmyso5GEGsOmFc1rKs327tvc=
-			</data>
-		</dict>
-		<key>IndicativeLibrary.framework/Headers/IndicativeEvent.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			vg6yv/cCF8o5EJdVCy1lahaaG4p5CWN5yzWRktk+ue8=
-			</data>
-		</dict>
-		<key>IndicativeLibrary.framework/Headers/IndicativeLibrary.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			CAU7sCKK8tMvSs34U3Om3mcrFCo9JPqPrZGNajYBitE=
-			</data>
-		</dict>
-		<key>IndicativeLibrary.framework/IndicativeLibrary</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			DmfPvuUf1sqXmxrglVvNO2DN9tZsrsT2bMkEdDbY2ms=
-			</data>
-		</dict>
-		<key>IndicativeLibrary.framework/Info.plist</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			h2FlpT975bgPxupTS3c6qniF+hOZ2iQCBLpE90OWUWU=
-			</data>
-		</dict>
-		<key>IndicativeLibrary.framework/Modules/module.modulemap</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			hpW5TapbkBORzy1F2q+cb01D/DA4104q6Zd81p7d1K8=
-			</data>
-		</dict>
-		<key>IndicativeLibrary.framework/_CodeSignature/CodeResources</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			uOPWKk2KZNg+CaFNv98VV9heP4G8OdixdcyfofoUGiw=
-			</data>
-		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/Project/arm64-apple-ios.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			jUoUt3VRgOSY1b+BmxMJynErkGR6ThpAr+38sGKY6Os=
+			1Zoz7dysrVQ68wL1+hvHEYLxYc/H9iHySuyjSracoic=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			gtLiEdXI4YZhMVvza59ws14cRWsel8keiDWManWga4M=
+			z62sYBcI4Wubc1MPdxBv/K4tYeOsrnL/Wxm9K3yNjo8=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			dEK9m+EVxeEqw044bNnta6liVrD7SJ8ed0CEyBnyQuk=
+			P8h2vrIG0+Ii3SRKXsRGlWnxOF2h18XWUCbSsW038G8=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			MS6/ES0P2WQBPc95p0kUSBEx7QehJyqHlc/5gHrbnHg=
+			sxg3By4Y1at4l96oUnnPn3jzeuoo5i1VqJ4xj+YX8Lk=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			dEK9m+EVxeEqw044bNnta6liVrD7SJ8ed0CEyBnyQuk=
+			P8h2vrIG0+Ii3SRKXsRGlWnxOF2h18XWUCbSsW038G8=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			hAYv4xB9WZAlf7gCkEVrl3zC4g9a8skKWaDCQf7zhNI=
+			iBOhg8m3BMIPBARMMpaIbDUrBIIQzmW39CpaVkYA1ok=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -1256,88 +1058,11 @@
 			5x9RDi2GrXZNUu/TBJMIcjYnNFjF4DZ4TW+k0ZCIEr8=
 			</data>
 		</dict>
-		<key>PPRiskMagnes.framework/Headers/MagnesCryptoUtil.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			3761py70ro9Ro6WObsKCsvluzLT6XfeK95g463bTUYo=
-			</data>
-		</dict>
-		<key>PPRiskMagnes.framework/Headers/MagnesSystemConfigUtils.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			VsDRn4DcTN3BlU/aALw1Bf5Ys0cAl3y2fpLakIyg0k8=
-			</data>
-		</dict>
-		<key>PPRiskMagnes.framework/Headers/PPRiskMagnes-Swift.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			WM44nLOVWlxCLrPUN/CjgN/bIBmPnQ5ieJkUXZZjg7U=
-			</data>
-		</dict>
-		<key>PPRiskMagnes.framework/Headers/PPRiskMagnes.h</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			vhMly4uO6RmzlDtGoz0aUCKQHXGKVN52CnjC6s87et0=
-			</data>
-		</dict>
-		<key>PPRiskMagnes.framework/Info.plist</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			QOA1F84SVwLQZAUiaz+zCbNnvalfd4Cc9TmH6Z+ILXE=
-			</data>
-		</dict>
-		<key>PPRiskMagnes.framework/Modules/PPRiskMagnes.swiftmodule/arm64-apple-ios.swiftdoc</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			WiNjrTdD9ihhd2MkEcKQfsmFc6wgOd3wzhgbQe22QGM=
-			</data>
-		</dict>
-		<key>PPRiskMagnes.framework/Modules/PPRiskMagnes.swiftmodule/arm64-apple-ios.swiftinterface</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			lavFzClxN4OMBmETYAOeo6V3J+8XWknVggezC4CkU80=
-			</data>
-		</dict>
-		<key>PPRiskMagnes.framework/Modules/PPRiskMagnes.swiftmodule/arm64.swiftdoc</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			WiNjrTdD9ihhd2MkEcKQfsmFc6wgOd3wzhgbQe22QGM=
-			</data>
-		</dict>
-		<key>PPRiskMagnes.framework/Modules/PPRiskMagnes.swiftmodule/arm64.swiftinterface</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			lavFzClxN4OMBmETYAOeo6V3J+8XWknVggezC4CkU80=
-			</data>
-		</dict>
-		<key>PPRiskMagnes.framework/Modules/module.modulemap</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			5GvSEZlUrg4GELohSYR+X99i2WmXcpodL/JXQozOFYk=
-			</data>
-		</dict>
-		<key>PPRiskMagnes.framework/PPRiskMagnes</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			RFKxlFPRxo2C7pEvWFTSweRPB0WOAbYkein2aiMdIAY=
-			</data>
-		</dict>
 		<key>Web3swift_web3swift.bundle/Info.plist</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			1G0JJARVojufQccWpnR4M/LZORLMVvL97jXxgirZSsk=
+			CtuFAePoiMsESqIwS6kRhdZl0HueH6ZW4JyM4ht+LMM=
 			</data>
 		</dict>
 		<key>Web3swift_web3swift.bundle/browser.js</key>

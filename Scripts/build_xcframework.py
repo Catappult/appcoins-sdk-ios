@@ -145,17 +145,16 @@ def create_yml_project_file(dependencies, products, binary_targets, bundle_resou
                 'BUILD_LIBRARY_FOR_DISTRIBUTION': True,
                 'SKIP_INSTALL': False,
                 'SUPPORTED_PLATFORMS': "iphonesimulator iphoneos",
-                'TARGETED_DEVICE_FAMILY': "1,2",
-                'LD_RUNPATH_SEARCH_PATHS': "$(inherited) @executable_path/Frameworks @loader_path/Frameworks",
-                'EMBEDDED_CONTENT_CONTAINS_SWIFT': True,
-                'ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES': True
+                'TARGETED_DEVICE_FAMILY': "1,2"
             }
         },
         'targets': {
             'AppCoinsSDK': {
                 'type': 'framework',
                 'platform': 'iOS',
-                'sources': ['Sources/AppCoinsSDK'],
+                'sources': [
+                    {'path': 'Sources/AppCoinsSDK'}
+                ],
                 'settings': {
                     'base': {
                         'INFOPLIST_FILE': 'Sources/AppCoinsSDK/Info.plist',
@@ -163,9 +162,6 @@ def create_yml_project_file(dependencies, products, binary_targets, bundle_resou
                         'SKIP_INSTALL': False,
                         'SUPPORTED_PLATFORMS': "iphonesimulator iphoneos",
                         'TARGETED_DEVICE_FAMILY': "1,2",
-                        'LD_RUNPATH_SEARCH_PATHS': "$(inherited) @executable_path/Frameworks @loader_path/Frameworks",
-                        'EMBEDDED_CONTENT_CONTAINS_SWIFT': True,
-                        'ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES': True,
                         'CODE_SIGN_IDENTITY': "Apple Distribution",
                         'DEVELOPMENT_TEAM': "26RRGP4GNA",
                         'CODE_SIGN_STYLE': "Manual",
@@ -181,7 +177,7 @@ def create_yml_project_file(dependencies, products, binary_targets, bundle_resou
                 'frameworks': [],
                 'postBuildScripts': [
                     {
-                        'name': "Embed Frameworks",
+                        'name': "Embed Dependency Asset Bundles",
                         'script': """
                             # Find .bundle files
                             BUNDLE_FILES=$(find "${BUILT_PRODUCTS_DIR}" -maxdepth 1 -type d -name "*.bundle")
@@ -189,6 +185,19 @@ def create_yml_project_file(dependencies, products, binary_targets, bundle_resou
                             for BUNDLE in $BUNDLE_FILES; do
                                 rsync -av --delete "${BUNDLE}" "${BUILT_PRODUCTS_DIR}/AppCoinsSDK.framework"
                             done
+                        """
+                    },
+                    {
+                        'name': "Remove .framework Files From Build Folder",
+                        'script': """
+                        # Find .xcframework files
+                        XCFRAMEWORK_FILES=$(find "${BUILT_PRODUCTS_DIR}/AppCoinsSDK.framework" -maxdepth 1 -type d -name "*.framework")
+                        # Remove .framework files from inside AppCoinsSDK.framework
+                        for XCFRAMEWORK in $XCFRAMEWORK_FILES; do
+                            if [ "$XCFRAMEWORK" != "${BUILT_PRODUCTS_DIR}/AppCoinsSDK.framework" ]; then
+                                rm -rf "$XCFRAMEWORK"
+                            fi
+                        done
                         """
                     }
                 ]
@@ -380,7 +389,7 @@ if __name__ == "__main__":
 
     # 4. Find .bundle resources
     # 4.1. Build a first project.yml configuration file without .bundle resources
-    create_yml_project_file(dependencies, products, binary_targets, None, None)
+    create_yml_project_file(dependencies, products, None, None, None)
 
     # 4.2 Generate xcodeproj with project.yml
     generate_xcodeproj()
