@@ -93,7 +93,7 @@ internal class TransactionViewModel : ObservableObject {
                                         transactionBonus in
                                         
                                         // 5. Get payment methods available
-                                        self.getPaymentMethods(value: product.priceValue, currency: productCurrency, wallet: wallet, domain: "domain") {
+                                        self.getPaymentMethods(value: product.priceValue, currency: productCurrency, wallet: wallet, domain: domain) {
                                             availablePaymentMethods in
                                             
                                             // 6. Get user's balance
