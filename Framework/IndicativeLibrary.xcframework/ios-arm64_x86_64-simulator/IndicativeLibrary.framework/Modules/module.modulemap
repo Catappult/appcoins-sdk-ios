@@ -1,0 +1,5 @@
+framework module IndicativeLibrary {
+    header "Indicative.h"
+    header "IndicativeEvent.h"
+    export *
+}
