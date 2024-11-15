@@ -43,6 +43,7 @@ public struct Product {
         let productUseCases: ProductUseCases = ProductUseCases.shared
         
         if let identifiers = identifiers {
+            print("ProductSDK products - if let identifiers")
             return try await withCheckedThrowingContinuation { continuation in
                 productUseCases.getAllProducts(domain: "domain") { result in
                     switch result {
@@ -68,6 +69,7 @@ public struct Product {
                 }
             }
         } else {
+            print("ProductSDK products - else")
             return try await withCheckedThrowingContinuation { continuation in
                 productUseCases.getAllProducts(domain: "domain") { result in
                     switch result {
