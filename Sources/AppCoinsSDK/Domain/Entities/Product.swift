@@ -69,7 +69,7 @@ public struct Product {
             }
         } else {
             return try await withCheckedThrowingContinuation { continuation in
-                productUseCases.getAllProducts(domain: domain) { result in
+                productUseCases.getAllProducts(domain: "domain") { result in
                     switch result {
                     case .success(let products):
                         continuation.resume(returning: products)
