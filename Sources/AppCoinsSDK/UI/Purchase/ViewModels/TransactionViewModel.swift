@@ -89,7 +89,7 @@ internal class TransactionViewModel : ObservableObject {
                                 
                                 if let moneyAmount = Double(product.priceValue) {
                                     // 4. Get user bonus
-                                    self.getTransactionBonus(wallet: wallet, domain: "domain", amount: product.priceValue, currency: productCurrency) {
+                                    self.getTransactionBonus(wallet: wallet, domain: domain, amount: product.priceValue, currency: productCurrency) {
                                         transactionBonus in
                                         
                                         // 5. Get payment methods available
