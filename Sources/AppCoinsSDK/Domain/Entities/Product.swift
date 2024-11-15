@@ -44,7 +44,7 @@ public struct Product {
         
         if let identifiers = identifiers {
             return try await withCheckedThrowingContinuation { continuation in
-                productUseCases.getAllProducts(domain: domain) { result in
+                productUseCases.getAllProducts(domain: "domain") { result in
                     switch result {
                     case .success(let products):
                         var finalProducts : [Product] = []
@@ -58,6 +58,7 @@ public struct Product {
                         switch failure {
                         case .failed(let message, let description, let request):
                             continuation.resume(throwing: AppCoinsSDKError.systemError(message: message, description: description, request: request))
+                            print("ProductSDK products method error:\n \(AppCoinsSDKError.systemError(message: message, description: description, request: request))")
                         case .noInternet(let message, let description, let request):
                             continuation.resume(throwing: AppCoinsSDKError.networkError(message: message, description: description, request: request))
                         case .purchaseVerificationFailed(let message, let description, let request):
