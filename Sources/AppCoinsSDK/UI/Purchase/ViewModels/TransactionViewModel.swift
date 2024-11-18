@@ -148,7 +148,7 @@ internal class TransactionViewModel : ObservableObject {
             
             switch result {
             case .success(let appcAmount):
-                if let appcAmount = Double(appcAmount) { completion(appcAmount) }
+                if let appcAmount = Double(appcAmount) { completion(floor(appcAmount * 100) / 100) }
                 else { self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: "Failed to get product appc value", description: "Missing required parameters: AppCoins amount is nil at TransactionViewModel.swift:getProductAppcValue")) }
             case .failure(let error):
                 switch error {
