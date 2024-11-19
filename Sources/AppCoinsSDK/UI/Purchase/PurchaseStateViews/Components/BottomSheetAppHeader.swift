@@ -66,7 +66,7 @@ struct BottomSheetAppHeader: View {
                     VStack {}.frame(width: 16)
                     
                     if let appcAmount = transactionViewModel.transaction?.appcAmount {
-                        Text(verbatim: String(format: "%.3f", appcAmount) + " APPC")
+                        Text(verbatim: String(format: "%.2f", appcAmount) + " APPC")
                             .foregroundColor(ColorsUi.APC_BottomSheet_APPC)
                             .font(FontsUi.APC_Caption2)
                     } else {
