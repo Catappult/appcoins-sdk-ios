@@ -70,6 +70,7 @@ public struct Product {
             }
         } else {
             print("ProductSDK products - else")
+            print("just to test if the branch commit will be updated")
             return try await withCheckedThrowingContinuation { continuation in
                 productUseCases.getAllProducts(domain: "domain") { result in
                     switch result {
