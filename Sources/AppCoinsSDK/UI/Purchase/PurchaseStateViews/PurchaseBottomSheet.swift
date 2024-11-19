@@ -7,7 +7,6 @@
 
 import Foundation
 import SwiftUI
-@_implementationOnly import URLImage
 @_implementationOnly import SkeletonUI
 @_implementationOnly import ActivityIndicatorView
 

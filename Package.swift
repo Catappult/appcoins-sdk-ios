@@ -19,7 +19,6 @@ let package = Package(
         // Dependencies declare other packages that this package depends on.
         .package(url: "https://github.com/web3swift-team/web3swift.git", .upToNextMinor(from: "3.2.0")),
         .package(url: "https://github.com/krzyzanowskim/CryptoSwift.git", .upToNextMinor(from: "1.5.1")),
-        .package(url: "https://github.com/dmytro-anokhin/url-image.git", .upToNextMinor(from: "3.0.0")),
         .package(url: "https://github.com/CSolanaM/SkeletonUI.git", .upToNextMinor(from: "2.0.1")),
         .package(url: "https://github.com/TakeScoop/SwiftyRSA.git", .upToNextMinor(from: "1.8.0")),
         .package(url: "https://github.com/Adyen/adyen-ios.git", exact: "5.12.0"),
@@ -32,7 +31,6 @@ let package = Package(
         .target(
             name: "AppCoinsSDK",
             dependencies: [
-                .product(name: "URLImage", package: "url-image"),
                 .product(name: "CryptoSwift", package: "CryptoSwift"),
                 .product(name: "web3swift", package: "web3swift"),
                 .product(name: "SkeletonUI", package: "SkeletonUI"),

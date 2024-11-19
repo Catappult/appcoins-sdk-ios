@@ -6,33 +6,39 @@
 //
 
 import SwiftUI
-@_implementationOnly import URLImage
 
 internal struct PaymentMethodQuickIcon: View {
     
     internal var icon: URL
     
     internal var body: some View {
-        URLImage(icon,
-                 inProgress: { progress in
+        if #available(iOS 15.0, *) {
+            AsyncImage(url: icon) { phase in
+                switch phase {
+                case .empty:
                     RoundedRectangle(cornerRadius: 0)
                         .foregroundColor(ColorsUi.APC_LightGray)
                         .frame(width: 48, height: 48)
                         .clipShape(Circle())
-                    },
-                 failure: {error,retry in
-                    RoundedRectangle(cornerRadius: 0)
-                        .foregroundColor(ColorsUi.APC_LightGray)
-                        .frame(width: 48, height: 48)
-                        .clipShape(Circle())
-                        .onAppear{ retry() }},
-                 content: {
-                    image in
+                    
+                case .success(let image):
                     image
                         .resizable()
                         .edgesIgnoringSafeArea(.all)
                         .frame(width: 48, height: 48)
+                    
+                case .failure:
+                    RoundedRectangle(cornerRadius: 0)
+                        .foregroundColor(ColorsUi.APC_LightGray)
+                        .frame(width: 48, height: 48)
+                        .clipShape(Circle())
                 }
-        )
+            }
+        } else {
+            RoundedRectangle(cornerRadius: 0)
+                .foregroundColor(ColorsUi.APC_LightGray)
+                .frame(width: 48, height: 48)
+                .clipShape(Circle())
+        }
     }
 }
