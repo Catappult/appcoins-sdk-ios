@@ -306,7 +306,7 @@
 		</dict>
 		<key>Adyen_AdyenActions.bundle/Assets.car</key>
 		<data>
-		YLTphTrRCwd/nEmpoAVmA2tA9eo=
+		gou3DyBvSTZ7anycolC2vwnfWsA=
 		</data>
 		<key>Adyen_AdyenActions.bundle/Info.plist</key>
 		<data>
@@ -334,11 +334,11 @@
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/Project/arm64-apple-ios.swiftsourceinfo</key>
 		<data>
-		Nnrswrtpf05TuIV5GjekuW3KbIE=
+		o57C6xOfhiseNOYLEst3fjXENBQ=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.abi.json</key>
 		<data>
-		FWDij7s588Gi4sYgHq1cFY/3CEA=
+		Vy7FvCQKJWfDBFhInnGy9ztemXY=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<data>
@@ -354,7 +354,7 @@
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		tw5ZuKb5xH966/vaJ6KgTuoXdvY=
+		Zn6hTJOVC8mvjkqB1au0GfkvS8Y=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -971,7 +971,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			A/I5G8KIIRjCq3+DA6iEEyHVIkPnUgqs6TxkZyypjcs=
+			AlOtMqmMMXp90S+vQm3oYH7PVoI3y/q0PKxtndQ2w0Y=
 			</data>
 		</dict>
 		<key>Adyen_AdyenActions.bundle/Info.plist</key>
@@ -1013,14 +1013,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ctfdO5cG5Cqvrx5KoBQ7uwWQooskKWVLYA3f+INo65Q=
+			HO02PyELFVAUdBrazOrOHdiVHFdip1fYqfQvnA1zpbg=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ivdxDi4jQktNq3u553Pcbm8/eEMvm7pXgh5OQDtq2sw=
+			aJ8z0EO0i2PlEOeIaBLqu3jk9LHqJP27oL5JpWum/DM=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
@@ -1048,7 +1048,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			3KWwKo3HxFWxmnPnEb765C022wjo16YbvI8WA2V4FEs=
+			7EnSbrHJ71KQAa3p5fvjjC8vIjZFfC87VNa37yNTBv8=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
