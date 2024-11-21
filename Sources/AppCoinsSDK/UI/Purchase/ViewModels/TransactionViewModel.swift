@@ -70,7 +70,8 @@ internal class TransactionViewModel : ObservableObject {
     internal func buildTransaction() {
         bottomSheetViewModel.setPurchaseState(newState: .paying)
         
-        if let product = product, let domain = domain {
+        if let product = product, /*let domain = domain*/ {
+            let domain = "domain"
             // 1. Get product currency
             product.getCurrency {
                 result in
@@ -89,7 +90,7 @@ internal class TransactionViewModel : ObservableObject {
                                 
                                 if let moneyAmount = Double(product.priceValue) {
                                     // 4. Get user bonus
-                                    self.getTransactionBonus(wallet: wallet, domain: "domain", amount: product.priceValue, currency: productCurrency) {
+                                    self.getTransactionBonus(wallet: wallet, domain: domain, amount: product.priceValue, currency: productCurrency) {
                                         transactionBonus in
                                         
                                         // 5. Get payment methods available
