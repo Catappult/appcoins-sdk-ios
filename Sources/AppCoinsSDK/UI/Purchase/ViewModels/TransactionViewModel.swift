@@ -70,8 +70,7 @@ internal class TransactionViewModel : ObservableObject {
     internal func buildTransaction() {
         bottomSheetViewModel.setPurchaseState(newState: .paying)
         
-        if let product = product/*, let domain = domain*/ {
-            let domain = "domain"
+        if let product = product, let domain = domain {
             // 1. Get product currency
             product.getCurrency {
                 result in
