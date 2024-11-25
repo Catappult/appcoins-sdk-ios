@@ -83,6 +83,9 @@ internal struct BottomSheetView: View {
                     
                     if [.paying, .adyen].contains(viewModel.purchaseState) && !(viewModel.purchaseState == .adyen && adyenController.state == .storedCreditCard) {
                         PurchaseBottomSheet(viewModel: viewModel)
+                            .sheet(isPresented: $viewModel.canChooseMethod) {
+                                ChoosePaymentMethodView(viewModel: viewModel)
+                            }
                     }
                     
                     if viewModel.purchaseState == .processing {

@@ -21,6 +21,9 @@ internal struct RadioButtonGroupView: View {
                         if (!option.disabled) {
                             transactionViewModel.selectPaymentMethod(paymentMethod: option)
                         }
+                        if viewModel.canChooseMethod == true {
+                            viewModel.setCanChooseMethod(canChooseMethod: false)
+                        }
                     }) {
                         ZStack {
                             ColorsUi.APC_White

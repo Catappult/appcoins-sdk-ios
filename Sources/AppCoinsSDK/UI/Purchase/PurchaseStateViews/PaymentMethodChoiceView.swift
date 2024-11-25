@@ -16,6 +16,7 @@ struct PaymentMethodChoiceView: View {
         if #available(iOS 17, *) {
             ScrollViewReader { scrollViewProxy in
                 ScrollView(.vertical, showsIndicators: false) {
+                    
                     VStack(spacing: 0) {
                         VStack {}.frame(height: 72)
                             .id("top")
@@ -28,24 +29,28 @@ struct PaymentMethodChoiceView: View {
                         PurchaseBonusBanner(viewModel: viewModel, transactionViewModel: transactionViewModel)
                         
                         VStack {}.frame(height: 16)
-                        
-                        VStack(alignment: .leading, spacing: 0) {
-                            HStack(spacing: 0) {
-                                Text(Constants.selectPaymentMethodTitle)
-                                    .font(FontsUi.APC_Body)
-                                    .frame(width: 183, alignment: .leading)
-                                
-                                Image(systemName: "chevron.right")
-                                    .frame(maxWidth: .infinity, alignment: .trailing)
-                                    .frame(height: 40)
-                                    .foregroundColor(ColorsUi.APC_ArrowBanner)
+                        Button {
+                            viewModel.canChooseMethod = true
+                        } label: {
+                            VStack(alignment: .leading, spacing: 0) {
+                                HStack(spacing: 0) {
+                                    Text(Constants.selectPaymentMethodTitle)
+                                        .font(FontsUi.APC_Body)
+                                        .frame(width: 183, alignment: .leading)
+                                    
+                                    Image(systemName: "chevron.right")
+                                        .frame(maxWidth: .infinity, alignment: .trailing)
+                                        .frame(height: 40)
+                                        .foregroundColor(ColorsUi.APC_ArrowBanner)
+                                }
+                                .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 32 - 48 : UIScreen.main.bounds.width - 32 - 48, height: 40)
                             }
-                            .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 32 - 48 : UIScreen.main.bounds.width - 32 - 48, height: 40)
+                            .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 40)
+                            .background(ColorsUi.APC_White)
+                            .cornerRadius(10)
                         }
-                        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 40)
-                        .background(ColorsUi.APC_White)
-                        .cornerRadius(10)
-                        
+                        .buttonStyle(flatButtonStyle())
+
                         VStack {}.frame(height: 8)
                         
                         VStack(alignment: .leading, spacing: 0) {
@@ -82,6 +87,7 @@ struct PaymentMethodChoiceView: View {
                                 }
                             })
                     }.ignoresSafeArea(.all)
+                    
                 }.defaultScrollAnchor(.bottom)
             }
         }

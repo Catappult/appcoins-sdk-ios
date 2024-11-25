@@ -1735,6 +1735,17 @@
         }
       }
     },
+    "choose_your_payment_method_title" : {
+      "comment" : "Choose your payment method",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose your payment method"
+          }
+        }
+      }
+    },
     "earned_enough_appc_body" : {
       "comment" : "You earned enough AppCoins Credits for this purchase. Enjoy!",
       "extractionState" : "manual",
