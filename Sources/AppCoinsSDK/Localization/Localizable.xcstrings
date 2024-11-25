@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "add_card_button" : {
       "comment" : "Add new card",
       "extractionState" : "manual",
@@ -1536,6 +1539,9 @@
           }
         }
       }
+    },
+    "chevron.right" : {
+
     },
     "choose_card_title" : {
       "comment" : "Choose a Card",
@@ -3837,6 +3843,28 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Retry Connection"
+          }
+        }
+      }
+    },
+    "select_payment_method_title" : {
+      "comment" : "Select payment method",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select payment method"
+          }
+        }
+      }
+    },
+    "sign_to_get_bonus_title" : {
+      "comment" : "Sign in to get your bonus",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign in to get your bonus"
           }
         }
       }
