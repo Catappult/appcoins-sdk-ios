@@ -67,8 +67,8 @@ struct PaymentMethodChoiceView: View {
                                     .frame(width: 200, alignment: .leading)
                                 
                                 Image(systemName: "chevron.right")
+                                    .font(FontsUi.APC_Footnote)
                                     .frame(maxWidth: .infinity, alignment: .trailing)
-                                    .frame(height: 40)
                                     .foregroundColor(ColorsUi.APC_ArrowBanner)
                                 
                             }
