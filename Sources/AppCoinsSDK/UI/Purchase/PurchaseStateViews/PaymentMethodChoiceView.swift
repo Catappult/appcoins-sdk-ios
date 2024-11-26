@@ -30,7 +30,7 @@ struct PaymentMethodChoiceView: View {
                         
                         VStack {}.frame(height: 16)
                         Button {
-                            viewModel.canChooseMethod = true
+                            viewModel.setCanChooseMethod(canChooseMethod: true)
                         } label: {
                             VStack(alignment: .leading, spacing: 0) {
                                 HStack(spacing: 0) {
