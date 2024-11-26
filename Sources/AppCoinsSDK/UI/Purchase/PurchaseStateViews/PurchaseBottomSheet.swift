@@ -31,8 +31,8 @@ internal struct PurchaseBottomSheet: View {
                     VStack(spacing: 0) {
                         
                         if transactionViewModel.lastPaymentMethod != nil || transactionViewModel.showOtherPaymentMethods {
-                            if (!transactionViewModel.showOtherPaymentMethods) {
-                                LastPaymentMethodView(viewModel: viewModel)
+                            if (!transactionViewModel.showOtherPaymentMethods) || viewModel.hasNewPaymentMethodSelected {
+                                SelectedPaymentMethodView(viewModel: viewModel)
                             } else {
                                 PaymentMethodChoiceView(viewModel: viewModel)
                             }

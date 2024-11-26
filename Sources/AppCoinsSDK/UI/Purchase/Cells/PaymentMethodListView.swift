@@ -1,5 +1,5 @@
 //
-//  RadioButtonGroupView.swift
+//  PaymentMethodList.swift
 //
 //
 //  Created by aptoide on 09/03/2023.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-internal struct RadioButtonGroupView: View {
+internal struct PaymentMethodList: View {
     
     @ObservedObject internal var viewModel: BottomSheetViewModel
     @ObservedObject internal var transactionViewModel: TransactionViewModel = TransactionViewModel.shared

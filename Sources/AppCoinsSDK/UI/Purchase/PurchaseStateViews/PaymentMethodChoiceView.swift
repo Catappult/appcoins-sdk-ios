@@ -30,37 +30,12 @@ struct PaymentMethodChoiceView: View {
                         
                         VStack {}.frame(height: 16)
                         
-                        if viewModel.hasNewPaymentMethodSelected {
-                            if let paymentMethodSelected = transactionViewModel.paymentMethodSelected {
-                                VStack(spacing:0) {
-                                    HStack(spacing: 0) {
-                                        PaymentMethodIcon(icon: paymentMethodSelected.icon, disabled: false)
-                                            .frame(maxWidth: .infinity, alignment: .leading)
-                                            .frame(width: 24, height: 24)
-                                        
-                                        VStack {}.frame(width: 16)
-                                        
-                                        Text(paymentMethodSelected.label)
-                                            .font(FontsUi.APC_Body)
-                                            .frame(maxWidth: .infinity, alignment: .leading)
-                                    }
-                                    .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 - 32 : UIScreen.main.bounds.width - 48 - 32, height: 64)
-                                }
-                                .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 64)
-                                .background(ColorsUi.APC_White)
-                                .cornerRadius(10)
-                                .onDisappear { if viewModel.hasNewPaymentMethodSelected { viewModel.setHasNewPaymentMethodSelected(hasNewPaymentMethodSelected: false) } }
-                                
-                                VStack {}.frame(height: 8)
-                            }
-                        }
-                        
                         Button {
                             viewModel.setCanChooseMethod(canChooseMethod: true)
                         } label: {
                             VStack(alignment: .leading, spacing: 0) {
                                 HStack(spacing: 0) {
-                                    Text(viewModel.hasNewPaymentMethodSelected ? Constants.otherPaymentMethodsText : Constants.selectPaymentMethodTitle)
+                                    Text(Constants.selectPaymentMethodTitle)
                                         .font(FontsUi.APC_Body)
                                         .frame(width: 183, alignment: .leading)
                                     

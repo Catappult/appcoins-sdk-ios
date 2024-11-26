@@ -17,13 +17,13 @@ internal struct PaymentMethodQuickIcon: View {
                  inProgress: { progress in
                     RoundedRectangle(cornerRadius: 0)
                         .foregroundColor(ColorsUi.APC_LightGray)
-                        .frame(width: 48, height: 48)
+                        .frame(width: 24, height: 24)
                         .clipShape(Circle())
                     },
                  failure: {error,retry in
                     RoundedRectangle(cornerRadius: 0)
                         .foregroundColor(ColorsUi.APC_LightGray)
-                        .frame(width: 48, height: 48)
+                        .frame(width: 24, height: 24)
                         .clipShape(Circle())
                         .onAppear{ retry() }},
                  content: {
@@ -31,7 +31,7 @@ internal struct PaymentMethodQuickIcon: View {
                     image
                         .resizable()
                         .edgesIgnoringSafeArea(.all)
-                        .frame(width: 48, height: 48)
+                        .frame(width: 24, height: 24)
                 }
         )
     }
