@@ -87,8 +87,11 @@ internal struct BottomSheetView: View {
                                 .sheet(isPresented: $viewModel.canChooseMethod) {
                                     if viewModel.orientation == .landscape {
                                         PaymentChoiceBottomSheet(viewModel: viewModel)
-                                            .presentationDetents([.fraction(0.92), .height(UIScreen.main.bounds.height)])
                                             .presentationCompactAdaptation(.none)
+                                            .edgesIgnoringSafeArea(.all)
+                                            .frame(width: UIScreen.main.bounds.width - 176)
+                                            .presentationDetents([.fraction(0.92), .height(UIScreen.main.bounds.height)])
+                                            .presentationBackground(.clear)
                                             .presentationDragIndicator(.hidden)
                                     } else {
                                         PaymentChoiceBottomSheet(viewModel: viewModel)

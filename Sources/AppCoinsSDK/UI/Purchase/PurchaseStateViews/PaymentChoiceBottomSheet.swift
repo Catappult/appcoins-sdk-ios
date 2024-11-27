@@ -18,6 +18,7 @@ struct PaymentChoiceBottomSheet: View {
                 
                 Text(Constants.chooseYourPaymentMethod)
                     .font(FontsUi.APC_Callout_Bold)
+                    .foregroundColor(ColorsUi.APC_Black)
                     .frame(width: 230, height: 21)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
