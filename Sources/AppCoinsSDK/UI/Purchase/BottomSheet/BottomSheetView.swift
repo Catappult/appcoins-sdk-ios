@@ -87,12 +87,18 @@ internal struct BottomSheetView: View {
                                 .sheet(isPresented: $viewModel.canChooseMethod) {
                                     if viewModel.orientation == .landscape {
                                         PaymentChoiceBottomSheet(viewModel: viewModel)
-                                            .presentationCompactAdaptation(.none)
-                                            .edgesIgnoringSafeArea(.all)
-                                            .frame(width: UIScreen.main.bounds.width - 176)
-                                            .presentationDetents([.fraction(0.92), .height(UIScreen.main.bounds.height)])
-                                            .presentationBackground(.clear)
-                                            .presentationDragIndicator(.hidden)
+                                            .presentationCompactAdaptation(.fullScreenCover)
+                                            .clipShape(RoundedCorner(radius: 13, corners: [.topLeft, .topRight]))
+                                            .presentationBackground {
+                                                Rectangle()
+                                                    .foregroundColor(Color.white.opacity(0.001))
+                                                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+                                                    .onTapGesture {
+                                                        viewModel.setCanChooseMethod(canChooseMethod: false)
+                                                    }
+                                            }
+                                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+                                            .ignoresSafeArea(.all)
                                     } else {
                                         PaymentChoiceBottomSheet(viewModel: viewModel)
                                             .presentationDragIndicator(.hidden)
@@ -123,7 +129,7 @@ internal struct BottomSheetView: View {
                 HStack(spacing: 0) {}
                     .sheet(isPresented: $paypalViewModel.presentPayPalSheet, onDismiss: paypalViewModel.dismissPayPalView) {
                         if let presentURL = paypalViewModel.presentPayPalSheetURL {
-                                PayPalWebView(url: presentURL, method: paypalViewModel.presentPayPalSheetMethod ?? "POST", successHandler: paypalViewModel.createBillingAgreementAndFinishTransaction, cancelHandler: paypalViewModel.cancelBillingAgreementTokenPayPal)
+                            PayPalWebView(url: presentURL, method: paypalViewModel.presentPayPalSheetMethod ?? "POST", successHandler: paypalViewModel.createBillingAgreementAndFinishTransaction, cancelHandler: paypalViewModel.cancelBillingAgreementTokenPayPal)
                         }
                     }
                 

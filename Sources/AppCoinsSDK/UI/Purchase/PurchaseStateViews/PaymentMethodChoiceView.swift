@@ -16,7 +16,6 @@ struct PaymentMethodChoiceView: View {
         if #available(iOS 17, *) {
             ScrollViewReader { scrollViewProxy in
                 ScrollView(.vertical, showsIndicators: false) {
-                    
                     VStack(spacing: 0) {
                         VStack {}.frame(height: 72)
                             .id("top")
@@ -88,7 +87,6 @@ struct PaymentMethodChoiceView: View {
                                 }
                             })
                     }.ignoresSafeArea(.all)
-                    
                 }.defaultScrollAnchor(.bottom)
             }
         }

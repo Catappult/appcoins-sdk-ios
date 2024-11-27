@@ -73,7 +73,7 @@ struct SelectedPaymentMethodView: View {
                                                         .font(FontsUi.APC_Callout)
                                                         .lineLimit(1)
                                                         .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 168 : UIScreen.main.bounds.width - 48 - 168, alignment: .leading)
-                                                        
+                                                    
                                                     VStack {}.frame(height: 4)
                                                     
                                                     Text(Constants.earnedEnoughAppcText)
@@ -95,7 +95,7 @@ struct SelectedPaymentMethodView: View {
                                                 Button(action: paypalViewModel.logoutPayPal) {
                                                     Image(systemName: "rectangle.portrait.and.arrow.right")
                                                         .foregroundColor(ColorsUi.APC_ArrowBanner)
-                                                        
+                                                    
                                                 }.frame(maxHeight: .infinity, alignment: .trailing)
                                             }
                                         }
@@ -103,7 +103,6 @@ struct SelectedPaymentMethodView: View {
                                     .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 64)
                                     .cornerRadius(13)
                                 }
-                                
                                 
                                 VStack {}.frame(height: 8)
                                 
