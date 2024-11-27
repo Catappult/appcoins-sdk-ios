@@ -79,7 +79,7 @@ struct PaymentMethodChoiceView: View {
                         .background(ColorsUi.APC_White)
                         .cornerRadius(10)
                         
-                        HStack {}.frame(height: !transactionViewModel.showOtherPaymentMethods ? 40 : 110)
+                        HStack {}.frame(height: 110)
                             .onAppear(perform: {
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
                                     withAnimation(.easeInOut(duration: 30)) {

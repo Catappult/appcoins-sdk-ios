@@ -158,7 +158,7 @@ struct SelectedPaymentMethodView: View {
                             }
                         }
                         
-                        HStack {}.frame(height: !transactionViewModel.showOtherPaymentMethods ? 40 : 26)
+                        HStack {}.frame(height: 40)
                         
                     }.ignoresSafeArea(.all)
                 }.defaultScrollAnchor(.bottom)
