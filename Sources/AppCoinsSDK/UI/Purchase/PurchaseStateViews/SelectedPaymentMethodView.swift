@@ -90,6 +90,14 @@ struct SelectedPaymentMethodView: View {
                                                         .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 168 : UIScreen.main.bounds.width - 48 - 168, alignment: .leading)
                                                 }
                                             }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 168 : UIScreen.main.bounds.width - 48 - 96, alignment: .leading)
+                                            
+                                            if transactionViewModel.paypalLogOut {
+                                                Button(action: paypalViewModel.logoutPayPal) {
+                                                    Image(systemName: "rectangle.portrait.and.arrow.right")
+                                                        .foregroundColor(ColorsUi.APC_ArrowBanner)
+                                                        
+                                                }.frame(maxHeight: .infinity, alignment: .trailing)
+                                            }
                                         }
                                     }
                                     .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 64)
@@ -147,18 +155,6 @@ struct SelectedPaymentMethodView: View {
                                         }
                                     }
                                 })
-                                
-                                HStack(spacing: 0) {
-                                    HStack(spacing: 0) {
-                                        if transactionViewModel.paypalLogOut {
-                                            Button(action: paypalViewModel.logoutPayPal) {
-                                                Text(Constants.logOut)
-                                                    .foregroundColor(ColorsUi.APC_DarkGray)
-                                                    .font(FontsUi.APC_Caption2_Bold)
-                                            }
-                                        }
-                                    }.frame(width: 50, alignment: .leading)
-                                }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 18)
                             }
                         }
                         
