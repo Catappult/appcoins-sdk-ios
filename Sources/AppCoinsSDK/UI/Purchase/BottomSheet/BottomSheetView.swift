@@ -82,10 +82,20 @@ internal struct BottomSheetView: View {
                     VStack{ }.frame(maxWidth: .infinity, maxHeight: .infinity)
                     
                     if [.paying, .adyen].contains(viewModel.purchaseState) && !(viewModel.purchaseState == .adyen && adyenController.state == .storedCreditCard) {
-                        PurchaseBottomSheet(viewModel: viewModel)
-                            .sheet(isPresented: $viewModel.canChooseMethod) {
-                                PaymentChoiceBottomSheet(viewModel: viewModel)
-                            }
+                        if #available(iOS 16.4, *) {
+                            PurchaseBottomSheet(viewModel: viewModel)
+                                .sheet(isPresented: $viewModel.canChooseMethod) {
+                                    if viewModel.orientation == .landscape {
+                                        PaymentChoiceBottomSheet(viewModel: viewModel)
+                                            .presentationDetents([.fraction(0.92), .height(UIScreen.main.bounds.height)])
+                                            .presentationCompactAdaptation(.none)
+                                            .presentationDragIndicator(.hidden)
+                                    } else {
+                                        PaymentChoiceBottomSheet(viewModel: viewModel)
+                                            .presentationDragIndicator(.hidden)
+                                    }
+                                }
+                        }
                     }
                     
                     if viewModel.purchaseState == .processing {
