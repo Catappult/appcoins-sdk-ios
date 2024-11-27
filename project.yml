@@ -32,8 +32,6 @@ targets:
     options:
       transitivelyLinkDependencies: false
     dependencies:
-    - package: url-image
-      product: URLImage
     - package: CryptoSwift
       product: CryptoSwift
     - package: web3swift
@@ -84,9 +82,6 @@ packages:
   CryptoSwift:
     url: https://github.com/krzyzanowskim/CryptoSwift.git
     minorVersion: 1.5.1
-  url-image:
-    url: https://github.com/dmytro-anokhin/url-image.git
-    minorVersion: 3.0.0
   SkeletonUI:
     url: https://github.com/CSolanaM/SkeletonUI.git
     minorVersion: 2.0.1

@@ -16,8 +16,8 @@ public struct AppcSDK {
     ///
     /// - For development mode (`BuildConfiguration.isDev == true`), the SDK is always available.
     /// - For iOS 17.4 or later, it checks the current storefront using the `AppDistributor` API.
-    ///   - If the storefront is the Aptoide marketplace (`"com.aptoide.ios.store"`), the SDK is considered available.
-    ///   - For any other storefront or in case of an error, the SDK is considered unavailable.
+    ///   - If the storefront is any marketplace but the Aptoide marketplace (`"com.aptoide.ios.store"`), the SDK is considered unavailable.
+    ///   - For any other storefront, the SDK is considered available.
     /// - For iOS versions below 17.4, the SDK is unavailable.
     ///
     /// - Returns: `true` if the SDK is available, `false` otherwise.
@@ -32,20 +32,24 @@ public struct AppcSDK {
     /// }
     /// ```
     static public func isAvailable() async -> Bool {
-        if BuildConfiguration.isDev { return true } // Available for Dev
-        
         if #available(iOS 17.4, *) {
-            do {
-                let storefront = try await AppDistributor.current
-                switch storefront {
-                case .marketplace(let marketplace):
-                    return marketplace == "com.aptoide.ios.store"
-                default:
+            #if targetEnvironment(simulator)
+                return true
+            #else
+                do {
+                    let storefront = try await AppDistributor.current
+                    switch storefront {
+                    case .appStore:
+                        return false
+                    case .marketplace(let marketplace):
+                        return marketplace == "com.aptoide.ios.store"
+                    default:
+                        return true
+                    }
+                } catch {
                     return false
                 }
-            } catch {
-                return false
-            }
+            #endif
         } else { return false }
     }
 

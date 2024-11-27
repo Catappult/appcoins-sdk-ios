@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-@_implementationOnly import URLImage
 
 internal struct PaymentMethodIcon: View {
     
@@ -14,30 +13,36 @@ internal struct PaymentMethodIcon: View {
     internal var disabled: Bool
     
     internal var body: some View {
-        if let icon = URL(string: icon) {
-            URLImage(icon,
-                     inProgress: {
-                progress in
-                   RoundedRectangle(cornerRadius: 0)
-                       .foregroundColor(ColorsUi.APC_White)
-                       .frame(width: 24, height: 24)
-                       .clipShape(Circle())
-            }, failure: {
-                error,retry in
-                   RoundedRectangle(cornerRadius: 0)
-                       .foregroundColor(ColorsUi.APC_White)
-                       .frame(width: 24, height: 24)
-                       .clipShape(Circle())
-                        .onAppear{ retry() }
-            }, content: {
-                image in
+        if let icon = URL(string: icon), #available(iOS 15.0, *) {
+            AsyncImage(url: icon) { phase in
+                switch phase {
+                case .empty:
+                    RoundedRectangle(cornerRadius: 0)
+                        .foregroundColor(ColorsUi.APC_White)
+                        .frame(width: 24, height: 24)
+                        .clipShape(Circle())
+                    
+                case .success(let image):
                     image
                         .resizable()
                         .edgesIgnoringSafeArea(.all)
                         .frame(width: 24, height: 24)
                         .opacity(disabled ? 0.2 : 1)
-            }).padding(.trailing, 16)
-                .padding(.leading, 16)
+                    
+                case .failure:
+                    RoundedRectangle(cornerRadius: 0)
+                        .foregroundColor(ColorsUi.APC_White)
+                        .frame(width: 24, height: 24)
+                        .clipShape(Circle())
+                }
+            }
+            .padding(.trailing, 16)
+            .padding(.leading, 16)
+        } else {
+            RoundedRectangle(cornerRadius: 0)
+                .foregroundColor(ColorsUi.APC_White)
+                .frame(width: 24, height: 24)
+                .clipShape(Circle())
         }
     }
 }

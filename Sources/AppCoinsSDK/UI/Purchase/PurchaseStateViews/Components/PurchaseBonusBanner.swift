@@ -24,7 +24,7 @@ struct PurchaseBonusBanner: View {
                         .frame(width: 16, height: 16)
                     
                     if let bonusCurrency = transactionViewModel.transaction?.bonusCurrency.sign, let bonusAmount = transactionViewModel.transaction?.bonusAmount {
-                        Text(String(format: Constants.purchaseBonus, "\(bonusCurrency)\(String(format: "%.3f", bonusAmount))"))
+                        Text(String(format: Constants.purchaseBonus, "\(bonusCurrency)\(String(format: "%.2f", bonusAmount))"))
                             .font(FontsUi.APC_Caption1_Bold)
                             .foregroundColor(ColorsUi.APC_White)
                             .frame(height: 16)

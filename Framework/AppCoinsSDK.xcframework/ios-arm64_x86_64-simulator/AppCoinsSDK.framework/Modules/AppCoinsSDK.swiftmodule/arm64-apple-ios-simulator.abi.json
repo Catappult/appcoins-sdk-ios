@@ -1702,16 +1702,6 @@
       },
       {
         "kind": "Import",
-        "name": "URLImage",
-        "printedName": "URLImage",
-        "declKind": "Import",
-        "moduleName": "AppCoinsSDK",
-        "declAttributes": [
-          "ImplementationOnly"
-        ]
-      },
-      {
-        "kind": "Import",
         "name": "Foundation",
         "printedName": "Foundation",
         "declKind": "Import",
@@ -2288,32 +2278,12 @@
       },
       {
         "kind": "Import",
-        "name": "URLImage",
-        "printedName": "URLImage",
-        "declKind": "Import",
-        "moduleName": "AppCoinsSDK",
-        "declAttributes": [
-          "ImplementationOnly"
-        ]
-      },
-      {
-        "kind": "Import",
         "name": "SwiftUI",
         "printedName": "SwiftUI",
         "declKind": "Import",
         "moduleName": "AppCoinsSDK",
         "declAttributes": [
           "RawDocComment"
-        ]
-      },
-      {
-        "kind": "Import",
-        "name": "URLImage",
-        "printedName": "URLImage",
-        "declKind": "Import",
-        "moduleName": "AppCoinsSDK",
-        "declAttributes": [
-          "ImplementationOnly"
         ]
       },
       {
@@ -2349,16 +2319,6 @@
         "printedName": "SwiftUI",
         "declKind": "Import",
         "moduleName": "AppCoinsSDK"
-      },
-      {
-        "kind": "Import",
-        "name": "URLImage",
-        "printedName": "URLImage",
-        "declKind": "Import",
-        "moduleName": "AppCoinsSDK",
-        "declAttributes": [
-          "ImplementationOnly"
-        ]
       },
       {
         "kind": "Import",
@@ -4203,16 +4163,6 @@
       },
       {
         "kind": "Import",
-        "name": "URLImage",
-        "printedName": "URLImage",
-        "declKind": "Import",
-        "moduleName": "AppCoinsSDK",
-        "declAttributes": [
-          "ImplementationOnly"
-        ]
-      },
-      {
-        "kind": "Import",
         "name": "SkeletonUI",
         "printedName": "SkeletonUI",
         "declKind": "Import",
@@ -5948,7 +5898,7 @@
       "kind": "StringLiteral",
       "offset": 3862,
       "length": 7,
-      "value": "\"1.5.0\""
+      "value": "\"1.6.0\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/BuildConfiguration.swift",
@@ -10559,14 +10509,14 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Purchase\/PurchaseStateViews\/PurchaseBottomSheet.swift",
       "kind": "BooleanLiteral",
-      "offset": 594,
+      "offset": 557,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Purchase\/PurchaseStateViews\/PurchaseBottomSheet.swift",
       "kind": "IntegerLiteral",
-      "offset": 771,
+      "offset": 734,
       "length": 3,
       "value": "291"
     },

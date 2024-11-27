@@ -502,7 +502,7 @@ internal class BottomSheetViewModel: ObservableObject {
             
             if !walletAvailable || self.walletUseCases.getWalletSyncingStatus() == .accepted {
                 DispatchQueue.main.async {
-                    self.finalWalletBalance = "\(balance.balanceCurrency.sign)\(String(format: "%.2f", balance.balance))"
+                    self.finalWalletBalance = "\(balance.balanceCurrency.sign)\(String(format: "%.2f", floor(balance.balance*100)/100))"
                     self.purchaseState = .success
                 }
                 

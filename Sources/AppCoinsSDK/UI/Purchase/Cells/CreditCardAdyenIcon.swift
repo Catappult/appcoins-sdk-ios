@@ -6,39 +6,47 @@
 //
 
 import SwiftUI
-@_implementationOnly import URLImage
 
 internal struct CreditCardAdyenIcon: View {
     
     internal var image: URL
     
     internal var body: some View {
- 
-        URLImage(image,
-                 inProgress: { progress in
+        
+        if #available(iOS 15.0, *) {
+            AsyncImage(url: image) { phase in
+                switch phase {
+                case .empty:
                     Image("card-placeholder", bundle: Bundle.APPCModule)
                         .resizable()
                         .scaledToFit()
                         .edgesIgnoringSafeArea(.all)
                         .frame(width: 25)
                         .padding(.horizontal, 5)
-                 },
-                 failure: { error, retry in
-                    Image("card-placeholder", bundle: Bundle.APPCModule)
-                        .resizable()
-                        .scaledToFit()
-                        .edgesIgnoringSafeArea(.all)
-                        .frame(width: 25)
-                        .padding(.horizontal, 5)
-                },
-                 content: {
-                    image in
+                    
+                case .success(let image):
                     image
                         .resizable()
                         .scaledToFit()
                         .edgesIgnoringSafeArea(.all)
                         .frame(width: 35)
-                    }
-            )
+                    
+                case .failure:
+                    Image("card-placeholder", bundle: Bundle.APPCModule)
+                        .resizable()
+                        .scaledToFit()
+                        .edgesIgnoringSafeArea(.all)
+                        .frame(width: 25)
+                        .padding(.horizontal, 5)
+                }
+            }
+        } else {
+            Image("card-placeholder", bundle: Bundle.APPCModule)
+                .resizable()
+                .scaledToFit()
+                .edgesIgnoringSafeArea(.all)
+                .frame(width: 25)
+                .padding(.horizontal, 5)
+        }
     }
 }
