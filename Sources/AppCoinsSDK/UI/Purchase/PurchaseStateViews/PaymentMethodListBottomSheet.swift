@@ -1,5 +1,5 @@
 //
-//  PaymentChoiceBottomSheet.swift
+//  PaymentMethodListBottomSheet.swift
 //  AppCoinsSDK
 //
 //  Created by Graciano Caldeira on 25/11/2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PaymentChoiceBottomSheet: View {
+struct PaymentMethodListBottomSheet: View {
     
     @ObservedObject internal var viewModel: BottomSheetViewModel
     

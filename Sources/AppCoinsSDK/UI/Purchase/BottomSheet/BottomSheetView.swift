@@ -86,12 +86,11 @@ internal struct BottomSheetView: View {
                             PurchaseBottomSheet(viewModel: viewModel)
                                 .sheet(isPresented: $viewModel.canChooseMethod) {
                                     if viewModel.orientation == .landscape {
-                                        PaymentChoiceBottomSheet(viewModel: viewModel)
+                                        PaymentMethodListBottomSheet(viewModel: viewModel)
                                             .presentationCompactAdaptation(.fullScreenCover)
                                             .clipShape(RoundedCorner(radius: 13, corners: [.topLeft, .topRight]))
                                             .presentationBackground {
-                                                Rectangle()
-                                                    .foregroundColor(Color.white.opacity(0.001))
+                                                Color.black.opacity(0.001)
                                                     .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
                                                     .onTapGesture {
                                                         viewModel.setCanChooseMethod(canChooseMethod: false)
@@ -100,7 +99,7 @@ internal struct BottomSheetView: View {
                                             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
                                             .ignoresSafeArea(.all)
                                     } else {
-                                        PaymentChoiceBottomSheet(viewModel: viewModel)
+                                        PaymentMethodListBottomSheet(viewModel: viewModel)
                                             .presentationDragIndicator(.hidden)
                                     }
                                 }
