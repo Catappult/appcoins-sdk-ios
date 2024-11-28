@@ -57,6 +57,8 @@ internal class BottomSheetViewModel: ObservableObject {
     @Published var canChooseMethod: Bool = false
     @Published var hasNewPaymentMethodSelected: Bool = false // should be false
     
+    @Published var didLogin: Bool = false
+    
     private init() {
         // Prevents Layout Warning Prints
         UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
