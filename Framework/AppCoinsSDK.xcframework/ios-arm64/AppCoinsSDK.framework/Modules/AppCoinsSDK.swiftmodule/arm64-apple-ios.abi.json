@@ -6691,9 +6691,9 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 1834,
-      "length": 29,
-      "value": "\"select_payment_method_title\""
+      "offset": 1833,
+      "length": 30,
+      "value": "\"select_payment_method_button\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
@@ -6705,9 +6705,9 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 1984,
-      "length": 25,
-      "value": "\"sign_to_get_bonus_title\""
+      "offset": 1983,
+      "length": 26,
+      "value": "\"sign_to_get_bonus_button\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
