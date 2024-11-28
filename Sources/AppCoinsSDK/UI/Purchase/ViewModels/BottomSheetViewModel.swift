@@ -54,6 +54,11 @@ internal class BottomSheetViewModel: ObservableObject {
     
     @Published var isCreditCardView: Bool = false
     
+    @Published var canChooseMethod: Bool = false
+    @Published var hasNewPaymentMethodSelected: Bool = false // should be false
+    
+    @Published var didLogin: Bool = false
+    
     private init() {
         // Prevents Layout Warning Prints
         UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
@@ -89,6 +94,14 @@ internal class BottomSheetViewModel: ObservableObject {
             PayPalDirectViewModel.shared.reset()
             AdyenController.shared.reset()
         }
+    }
+    
+    internal func setHasNewPaymentMethodSelected(hasNewPaymentMethodSelected: Bool) {
+        self.hasNewPaymentMethodSelected = hasNewPaymentMethodSelected
+    }
+    
+    internal func setCanChooseMethod(canChooseMethod: Bool) {
+        self.canChooseMethod = canChooseMethod
     }
     
     internal func setOrientation(orientation: Orientation) {
