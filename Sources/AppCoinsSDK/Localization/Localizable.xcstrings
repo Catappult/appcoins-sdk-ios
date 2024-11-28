@@ -772,6 +772,17 @@
         }
       }
     },
+    "bonus_every_purchase_body" : {
+      "comment" : "You'll get a bonus on every purchase!",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You'll get a bonus on every purchase!"
+          }
+        }
+      }
+    },
     "bonus_not_available" : {
       "comment" : "Bonus not available with this payment method",
       "extractionState" : "manual",
@@ -1540,6 +1551,17 @@
         }
       }
     },
+    "check_your_email_body" : {
+      "comment" : "Check your email",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check your email"
+          }
+        }
+      }
+    },
     "chevron.right" : {
 
     },
@@ -1746,6 +1768,20 @@
         }
       }
     },
+    "code_label" : {
+      "comment" : "Code"
+    },
+    "continue_button" : {
+      "comment" : "Continue",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue"
+          }
+        }
+      }
+    },
     "earned_enough_appc_body" : {
       "comment" : "You earned enough AppCoins Credits for this purchase. Enjoy!",
       "extractionState" : "manual",
@@ -1938,6 +1974,17 @@
         }
       }
     },
+    "email_Label" : {
+      "comment" : "Email",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Email"
+          }
+        }
+      }
+    },
     "error_title" : {
       "comment" : "Error",
       "extractionState" : "manual",
@@ -2126,6 +2173,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "錯誤"
+          }
+        }
+      }
+    },
+    "incorrect_code_body" : {
+      "comment" : "Your code is incorrect.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your code is incorrect."
+          }
+        }
+      }
+    },
+    "incorrect_email_body" : {
+      "comment" : "Your email is incorrect.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your email is incorrect."
           }
         }
       }
@@ -3090,6 +3159,17 @@
         }
       }
     },
+    "or_continue_with_body" : {
+      "comment" : "Or continue with:",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Or continue with:"
+          }
+        }
+      }
+    },
     "other_payment_methods_body" : {
       "comment" : "Other payment methods",
       "extractionState" : "manual",
@@ -3666,6 +3746,17 @@
         }
       }
     },
+    "redeem_bonus_button" : {
+      "comment" : "Redeem bonus",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Redeem bonus"
+          }
+        }
+      }
+    },
     "retry_connection_button" : {
       "comment" : "Retry Connection",
       "extractionState" : "manual",
@@ -3858,7 +3949,7 @@
         }
       }
     },
-    "select_payment_method_title" : {
+    "select_payment_method_button" : {
       "comment" : "Select payment method",
       "localizations" : {
         "en" : {
@@ -3869,7 +3960,51 @@
         }
       }
     },
-    "sign_to_get_bonus_title" : {
+    "sent_code_to_body" : {
+      "comment" : "We've sent a code to",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We've sent a code to"
+          }
+        }
+      }
+    },
+    "sign_in_and_join_us_title" : {
+      "comment" : "Sign in and join us!",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign in and join us!"
+          }
+        }
+      }
+    },
+    "sign_in_with_facebook_button" : {
+      "comment" : "Sign in with Facebook",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign in with Facebook"
+          }
+        }
+      }
+    },
+    "sign_in_with_google_button" : {
+      "comment" : "Sign in with Google",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign in with Google"
+          }
+        }
+      }
+    },
+    "sign_to_get_bonus_button" : {
       "comment" : "Sign in to get your bonus",
       "localizations" : {
         "en" : {
@@ -6371,6 +6506,17 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Your card"
+          }
+        }
+      }
+    },
+    "your_email_here_placeholder" : {
+      "comment" : "Your email here",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your email here"
           }
         }
       }

@@ -58,6 +58,7 @@ internal class BottomSheetViewModel: ObservableObject {
     @Published var hasNewPaymentMethodSelected: Bool = false // should be false
     
     @Published var didLogin: Bool = false
+    @Published var canLogin: Bool = false
     
     private init() {
         // Prevents Layout Warning Prints
@@ -94,6 +95,10 @@ internal class BottomSheetViewModel: ObservableObject {
             PayPalDirectViewModel.shared.reset()
             AdyenController.shared.reset()
         }
+    }
+    
+    internal func setCanLogin(canLogin: Bool) {
+        self.canLogin = canLogin
     }
     
     internal func setHasNewPaymentMethodSelected(hasNewPaymentMethodSelected: Bool) {

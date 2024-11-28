@@ -22,8 +22,8 @@ internal struct Constants {
     static internal let chooseCard = NSLocalizedString("choose_card_title", bundle: .APPCModule, comment: "Choose a Card")
     static internal let addCard = NSLocalizedString("add_card_button", bundle: .APPCModule, comment: "Add new card")
     static internal let yourCard = NSLocalizedString("your_card_title", bundle: .APPCModule, comment: "Your card")
-    static internal let selectPaymentMethodTitle = NSLocalizedString("select_payment_method_title", bundle: .APPCModule, comment: "Select payment method")
-    static internal let signToGetBonusTitle = NSLocalizedString("sign_to_get_bonus_title", bundle: .APPCModule, comment: "Sign in to get your bonus")
+    static internal let selectPaymentMethodText = NSLocalizedString("select_payment_method_button", bundle: .APPCModule, comment: "Select payment method")
+    static internal let signToGetBonusText = NSLocalizedString("sign_to_get_bonus_button", bundle: .APPCModule, comment: "Sign in to get your bonus")
     static internal let chooseYourPaymentMethod = NSLocalizedString("choose_your_payment_method_title", bundle: .APPCModule, comment: "Choose your payment method")
     
     // Success
@@ -52,5 +52,21 @@ internal struct Constants {
     static internal let titleWalletInstallSuccess = NSLocalizedString("install_wallet_body", bundle: .APPCModule, comment: "Install the AppCoins Wallet to receive *even more rewards*.")
     static internal let install = NSLocalizedString("install_button", bundle: .APPCModule, comment: "Install")
     static internal let skip = NSLocalizedString("skip_button", bundle: .APPCModule, comment: "Skip")
+    
+    // Login
+    static internal let continueText = NSLocalizedString("continue_button", bundle: .APPCModule, comment: "Continue")
+    static internal let signInWithGoogleText = NSLocalizedString("sign_in_with_google_button", bundle: .APPCModule, comment: "Sign in with Google")
+    static internal let signInWithFacebookText = NSLocalizedString("sign_in_with_facebook_button", bundle: .APPCModule, comment: "Sign in with Facebook")
+    static internal let emailLabel = NSLocalizedString("email_Label", bundle: .APPCModule, comment: "Email")
+    static internal let yourEmail = NSLocalizedString("your_email_here_placeholder", bundle: .APPCModule, comment: "Your email here")
+    static internal let signInAndJoinTitle = NSLocalizedString("sign_in_and_join_us_title", bundle: .APPCModule, comment: "Sign in and join us!")
+    static internal let bonusEveryPurchase = NSLocalizedString("bonus_every_purchase_body", bundle: .APPCModule, comment: "You'll get a bonus on every purchase!")
+    static internal let orContinueWith = NSLocalizedString("or_continue_with_body", bundle: .APPCModule, comment: "Or continue with:")
+    static internal let incorrectEmail = NSLocalizedString("incorrect_email_body", bundle: .APPCModule, comment: "Your email is incorrect.")
+    static internal let redeemBonusText = NSLocalizedString("redeem_bonus_button", bundle: .APPCModule, comment: "Redeem bonus")
+    static internal let incorrectCode = NSLocalizedString("incorrect_code_body", bundle: .APPCModule, comment: "Your code is incorrect.")
+    static internal let sentCodeTo = NSLocalizedString("sent_code_to_body", bundle: .APPCModule, comment: "We've sent a code to")
+    static internal let codeLabel = NSLocalizedString("code_label", bundle: .APPCModule, comment: "Code")
+    static internal let checkYourEmail = NSLocalizedString("check_your_email_body", bundle: .APPCModule, comment: "Check your email")
     
 }

@@ -30,7 +30,9 @@ internal struct PurchaseBottomSheet: View {
                     VStack(spacing: 0) {
                         
                         if transactionViewModel.lastPaymentMethod != nil || transactionViewModel.showOtherPaymentMethods {
-                            if (!transactionViewModel.showOtherPaymentMethods) || viewModel.hasNewPaymentMethodSelected {
+                            if viewModel.canLogin {
+                                UserLoginView(viewModel: viewModel)
+                            } else if (!transactionViewModel.showOtherPaymentMethods) || viewModel.hasNewPaymentMethodSelected {
                                 SelectedPaymentMethodView(viewModel: viewModel)
                             } else {
                                 PaymentMethodChoiceView(viewModel: viewModel)
@@ -62,21 +64,37 @@ internal struct PurchaseBottomSheet: View {
                         
                         VStack {}.frame(height: 8)
                         
-                        // Buying button
-                        Button(action: {
-                            DispatchQueue.main.async { viewModel.purchaseState = .processing }
-                            viewModel.buy()
-                        }) {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 12)
-                                    .foregroundColor(transactionViewModel.transaction != nil ? ColorsUi.APC_Pink : ColorsUi.APC_Gray)
-                                Text(Constants.buyText)
+                        if viewModel.canLogin {
+                            // Buying button
+                            Button(action: {
+                                DispatchQueue.main.async { viewModel.purchaseState = .processing }
+                                viewModel.buy()
+                            }) {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .foregroundColor(transactionViewModel.transaction != nil ? ColorsUi.APC_Pink : ColorsUi.APC_Gray)
+                                    Text(Constants.buyText)
+                                }
                             }
+                            .disabled(transactionViewModel.transaction == nil)
+                            .frame(maxHeight: .infinity, alignment: .bottom)
+                            .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
+                            .foregroundColor(ColorsUi.APC_White)
+                        } else {
+                            Button(action: {
+                                print("continue")
+                            }) {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .foregroundColor(transactionViewModel.transaction != nil ? ColorsUi.APC_Pink : ColorsUi.APC_Gray)
+                                    Text(Constants.buyText)
+                                }
+                            }
+                            .disabled(transactionViewModel.transaction == nil)
+                            .frame(maxHeight: .infinity, alignment: .bottom)
+                            .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
+                            .foregroundColor(ColorsUi.APC_White)
                         }
-                        .disabled(transactionViewModel.transaction == nil)
-                        .frame(maxHeight: .infinity, alignment: .bottom)
-                        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
-                        .foregroundColor(ColorsUi.APC_White)
                         
                         VStack {}.frame(height: Utils.bottomSafeAreaHeight == 0 ? 5 : 28)
                         

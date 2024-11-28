@@ -37,6 +37,7 @@ struct SelectedPaymentMethodView: View {
                                         HStack(spacing: 0) {
                                             PaymentMethodIcon(icon: paymentMethodSelected.icon, disabled: false)
                                                 .frame(maxWidth: .infinity, alignment: .leading)
+                                                .frame(width: 24, height: 24)
                                             
                                             VStack {}.frame(width: 16)
                                             
@@ -110,7 +111,7 @@ struct SelectedPaymentMethodView: View {
                                 } label: {
                                     VStack(alignment: .leading, spacing: 0) {
                                         HStack(spacing: 0) {
-                                            Text(viewModel.hasNewPaymentMethodSelected ? Constants.otherPaymentMethodsText : Constants.selectPaymentMethodTitle)
+                                            Text(viewModel.hasNewPaymentMethodSelected ? Constants.otherPaymentMethodsText : Constants.selectPaymentMethodText)
                                                 .font(FontsUi.APC_Body)
                                                 .frame(width: 200, alignment: .leading)
                                             
@@ -130,18 +131,22 @@ struct SelectedPaymentMethodView: View {
                                 VStack {}.frame(height: 8)
                                 
                                 VStack(alignment: .leading, spacing: 0) {
-                                    HStack(spacing: 0) {
-                                        Text(Constants.signToGetBonusTitle)
-                                            .font(FontsUi.APC_Body)
-                                            .frame(width: 200, alignment: .leading)
-                                        
-                                        Image(systemName: "chevron.right")
-                                            .font(FontsUi.APC_Footnote)
-                                            .frame(maxWidth: .infinity, alignment: .trailing)
-                                            .foregroundColor(ColorsUi.APC_ArrowBanner)
-                                        
-                                    }
-                                    .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 32 - 48 : UIScreen.main.bounds.width - 32 - 48, height: 40)
+                                    Button {
+                                        viewModel.setCanLogin(canLogin: true)
+                                    } label: {
+                                        HStack(spacing: 0) {
+                                            Text(Constants.signToGetBonusText)
+                                                .font(FontsUi.APC_Body)
+                                                .frame(width: 200, alignment: .leading)
+                                            
+                                            Image(systemName: "chevron.right")
+                                                .font(FontsUi.APC_Footnote)
+                                                .frame(maxWidth: .infinity, alignment: .trailing)
+                                                .foregroundColor(ColorsUi.APC_ArrowBanner)
+                                            
+                                        }
+                                        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 32 - 48 : UIScreen.main.bounds.width - 32 - 48, height: 40)
+                                    }.buttonStyle(flatButtonStyle())
                                 }
                                 .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 40)
                                 .background(ColorsUi.APC_White)
