@@ -2190,6 +2190,7 @@
     },
     "incorrect_email_body" : {
       "comment" : "Your email is incorrect.",
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -2582,6 +2583,9 @@
           }
         }
       }
+    },
+    "invalid_email_body" : {
+      "comment" : "Invalid email address."
     },
     "log_out_button" : {
       "comment" : "Log out",

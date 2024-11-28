@@ -21,6 +21,7 @@ struct UserLoginView: View {
                     RoundedRectangle(cornerRadius: 14)
                         .stroke(ColorsUi.APC_Black, lineWidth: 1)
                         .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
+                        .background(ColorsUi.APC_White)
                     
                     HStack(spacing: 0) {
                         Image("facebook-logo", bundle: Bundle.APPCModule)
@@ -45,6 +46,7 @@ struct UserLoginView: View {
                     RoundedRectangle(cornerRadius: 14)
                         .stroke(ColorsUi.APC_Black, lineWidth: 1)
                         .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
+                        .background(ColorsUi.APC_White)
                     
                     HStack(spacing: 0) {
                         Image("google-logo", bundle: Bundle.APPCModule)
@@ -67,16 +69,16 @@ struct UserLoginView: View {
                 Rectangle()
                     .frame(width: viewModel.orientation == .landscape ? 222 : 106, height: 1)
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .foregroundColor(ColorsUi.APC_Gray)
+                    .foregroundColor(ColorsUi.APC_DarkGray)
                 
                 Text(Constants.orContinueWith)
                     .font(FontsUi.APC_Caption1)
-                    .foregroundColor(ColorsUi.APC_Gray)
+                    .foregroundColor(ColorsUi.APC_DarkGray)
                 
                 Rectangle()
                     .frame(width: viewModel.orientation == .landscape ? 222 : 106, height: 1)
                     .frame(maxWidth: .infinity, alignment: .trailing)
-                    .foregroundColor(ColorsUi.APC_Gray)
+                    .foregroundColor(ColorsUi.APC_DarkGray)
             }
             .frame(height: 16)
             
