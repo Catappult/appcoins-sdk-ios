@@ -18,10 +18,12 @@ struct UserLoginView: View {
                 print("")
             } label: {
                 ZStack(alignment: .leading) {
-                    RoundedRectangle(cornerRadius: 14)
-                        .stroke(ColorsUi.APC_Black, lineWidth: 1)
-                        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
-                        .background(ColorsUi.APC_White)
+                    if #available(iOS 17, *) {
+                        RoundedRectangle(cornerRadius: 14)
+                            .fill(ColorsUi.APC_White)
+                            .stroke(ColorsUi.APC_Black, lineWidth: 1)
+                            .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
+                    }
                     
                     HStack(spacing: 0) {
                         Image("facebook-logo", bundle: Bundle.APPCModule)
@@ -43,10 +45,12 @@ struct UserLoginView: View {
                 print("")
             } label: {
                 ZStack(alignment: .leading) {
-                    RoundedRectangle(cornerRadius: 14)
-                        .stroke(ColorsUi.APC_Black, lineWidth: 1)
-                        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
-                        .background(ColorsUi.APC_White)
+                    if #available(iOS 17, *) {
+                        RoundedRectangle(cornerRadius: 14)
+                            .fill(ColorsUi.APC_White)
+                            .stroke(ColorsUi.APC_Black, lineWidth: 1)
+                            .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
+                    }
                     
                     HStack(spacing: 0) {
                         Image("google-logo", bundle: Bundle.APPCModule)
