@@ -37,7 +37,6 @@ struct SelectedPaymentMethodView: View {
                                         HStack(spacing: 0) {
                                             PaymentMethodIcon(icon: paymentMethodSelected.icon, disabled: false)
                                                 .frame(maxWidth: .infinity, alignment: .leading)
-                                                .frame(width: 24, height: 24)
                                             
                                             VStack {}.frame(width: 16)
                                             
