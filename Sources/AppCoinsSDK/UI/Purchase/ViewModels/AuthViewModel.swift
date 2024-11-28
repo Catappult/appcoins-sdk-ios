@@ -1,5 +1,5 @@
 //
-//  LoginViewModel.swift
+//  AuthViewModel.swift
 //
 //
 //  Created by aptoide on 25/11/2024.
@@ -8,9 +8,9 @@
 import Foundation
 @_implementationOnly import AuthenticationServices
 
-internal class LoginViewModel : NSObject, ObservableObject {
+internal class AuthViewModel : NSObject, ObservableObject {
     
-    internal static var shared : LoginViewModel = LoginViewModel()
+    internal static var shared : AuthViewModel = AuthViewModel()
     
     @Published internal var presentWebView : Bool = false
     @Published internal var loginMethod: LoginMethod? = nil
@@ -22,7 +22,7 @@ internal class LoginViewModel : NSObject, ObservableObject {
             self.presentWebView = true
             self.loginMethod = LoginMethod.Google
             
-            if let url = LoginMethod.Google.URL {
+            if let url = URL(string: LoginMethod.Google.baseURL) {
                 // Initialize ASWebAuthenticationSession
                 var authSession = ASWebAuthenticationSession(url: url, callbackURLScheme: "\(Bundle.main.bundleIdentifier).iap") { callbackURL, error in
                     
@@ -37,6 +37,7 @@ internal class LoginViewModel : NSObject, ObservableObject {
                     
                     if let code = queryItems.first(where: { $0.name == "code" })?.value {
                         print("Code: \(code)")
+                        AuthUseCases.shared.authenticate(token: code)
                     } else if let errorDescription = queryItems.first(where: { $0.name == "error" })?.value {
                         print("Error: \(errorDescription)")
                     } else {
@@ -53,7 +54,7 @@ internal class LoginViewModel : NSObject, ObservableObject {
 }
 
 // Conform to ASWebAuthenticationPresentationContextProviding
-extension LoginViewModel: ASWebAuthenticationPresentationContextProviding {
+extension AuthViewModel: ASWebAuthenticationPresentationContextProviding {
     func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
         return UIApplication.shared.windows.first(where: { $0.isKeyWindow }) ?? ASPresentationAnchor()
     }
@@ -61,27 +62,8 @@ extension LoginViewModel: ASWebAuthenticationPresentationContextProviding {
 
 internal struct LoginMethod {
     internal let baseURL: String
-    internal let clientID: String
-    internal let redirectURI: String
-    internal let responseType: String
-    internal let scope: [String]
     
     internal static let Google: LoginMethod = LoginMethod(
-        baseURL: "https://accounts.google.com/o/oauth2/v2/auth",
-        clientID: "71120307837-7e5c0pi0qfkmba0nlir6bf34acq1t1d9.apps.googleusercontent.com",
-        redirectURI: "com.googleusercontent.apps.71120307837-7e5c0pi0qfkmba0nlir6bf34acq1t1d9:oauth2redirect",
-        responseType: "code",
-        scope: ["email"]
+        baseURL: "http://localhost:8000/aptoide-ios/8.20240930/auth/google?domain=\(Bundle.main.bundleIdentifier ?? "")"
     )
-    
-    internal var URL: URL? {
-        var components = URLComponents(string: baseURL)
-        components?.queryItems = [
-            URLQueryItem(name: "response_type", value: responseType),
-            URLQueryItem(name: "client_id", value: clientID),
-            URLQueryItem(name: "redirect_uri", value: redirectURI),
-            URLQueryItem(name: "scope", value: scope.isEmpty ? "" : scope.joined(separator: " "))
-        ]
-        return components?.url
-    }
 }

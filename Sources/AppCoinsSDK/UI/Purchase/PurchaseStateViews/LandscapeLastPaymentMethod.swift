@@ -12,7 +12,7 @@ struct LastPaymentMethodView: View {
     @ObservedObject internal var viewModel: BottomSheetViewModel
     @ObservedObject internal var paypalViewModel: PayPalDirectViewModel = PayPalDirectViewModel.shared
     @ObservedObject internal var transactionViewModel: TransactionViewModel = TransactionViewModel.shared
-    @ObservedObject internal var loginViewModel: LoginViewModel = LoginViewModel.shared
+    @ObservedObject internal var authViewModel: AuthViewModel = AuthViewModel.shared
     
     var body: some View {
         if #available(iOS 17, *) {
@@ -89,7 +89,7 @@ struct LastPaymentMethodView: View {
                                     
                                     HStack(spacing: 0) {
                                         Button(action: 
-                                                loginViewModel.loginWithGoogle
+                                                authViewModel.loginWithGoogle
 //                                                transactionViewModel.showPaymentMethodOptions
                                         ) {
                                             Text(Constants.otherPaymentMethodsText)
