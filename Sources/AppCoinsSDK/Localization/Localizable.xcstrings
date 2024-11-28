@@ -1540,6 +1540,9 @@
         }
       }
     },
+    "chevron.right" : {
+
+    },
     "choose_card_title" : {
       "comment" : "Choose a Card",
       "extractionState" : "manual",
@@ -1728,6 +1731,17 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Choose a Card"
+          }
+        }
+      }
+    },
+    "choose_your_payment_method_title" : {
+      "comment" : "Choose your payment method",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose your payment method"
           }
         }
       }
@@ -3840,6 +3854,28 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Retry Connection"
+          }
+        }
+      }
+    },
+    "select_payment_method_title" : {
+      "comment" : "Select payment method",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Select payment method"
+          }
+        }
+      }
+    },
+    "sign_to_get_bonus_title" : {
+      "comment" : "Sign in to get your bonus",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign in to get your bonus"
           }
         }
       }
