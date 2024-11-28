@@ -10,7 +10,6 @@ import SwiftUI
 struct UserLoginView: View {
     
     @ObservedObject var viewModel: BottomSheetViewModel
-    @State internal var email = ""
     
     var body: some View {
         VStack(spacing: 0) {
@@ -96,7 +95,7 @@ struct UserLoginView: View {
                 VStack {}.frame(width: 8)
                 
                 if #available(iOS 15, *) {
-                    TextField(text: $email) {
+                    TextField(text: $viewModel.emailText) {
                         Text(Constants.yourEmail)
                     }
                 }

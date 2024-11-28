@@ -59,6 +59,7 @@ internal class BottomSheetViewModel: ObservableObject {
     
     @Published var didLogin: Bool = false
     @Published var canLogin: Bool = false
+    @Published var emailText: String = ""
     
     private init() {
         // Prevents Layout Warning Prints
