@@ -1,5 +1,5 @@
 //
-//  RadioButtonGroupView.swift
+//  PaymentMethodList.swift
 //
 //
 //  Created by aptoide on 09/03/2023.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-internal struct RadioButtonGroupView: View {
+internal struct PaymentMethodList: View {
     
     @ObservedObject internal var viewModel: BottomSheetViewModel
     @ObservedObject internal var transactionViewModel: TransactionViewModel = TransactionViewModel.shared
@@ -21,6 +21,10 @@ internal struct RadioButtonGroupView: View {
                         if (!option.disabled) {
                             transactionViewModel.selectPaymentMethod(paymentMethod: option)
                         }
+                        if viewModel.canChooseMethod == true {
+                            viewModel.setCanChooseMethod(canChooseMethod: false)
+                        }
+                        viewModel.setHasNewPaymentMethodSelected(hasNewPaymentMethodSelected: true)
                     }) {
                         ZStack {
                             ColorsUi.APC_White
@@ -35,19 +39,12 @@ internal struct RadioButtonGroupView: View {
                                     .lineLimit(1)
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                 
-                                if (transactionViewModel.paymentMethodSelected?.name == option.name) {
-                                    Image(systemName: "checkmark.circle.fill")
-                                        .resizable()
-                                        .edgesIgnoringSafeArea(.all)
-                                        .foregroundColor(ColorsUi.APC_Pink)
-                                        .frame(width: 22, height: 22, alignment: .trailing)
-                                        .padding(.trailing, 16)
-                                } else {
-                                    Circle()
-                                        .strokeBorder(ColorsUi.APC_LightGray, lineWidth: 2)
-                                        .frame(width: 22, height: 22, alignment: .trailing)
-                                        .padding(.trailing, 16)
-                                }
+                                Image(systemName: "chevron.right")
+                                    .font(FontsUi.APC_Footnote)
+                                    .foregroundColor(ColorsUi.APC_ArrowBanner)
+                                
+                                VStack {}.frame(width: 16)
+                                
                             }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 64)
                         }.frame(height: 50)
                     }.buttonStyle(flatButtonStyle())
