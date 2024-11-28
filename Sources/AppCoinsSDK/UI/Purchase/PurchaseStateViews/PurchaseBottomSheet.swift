@@ -65,15 +65,13 @@ internal struct PurchaseBottomSheet: View {
                         VStack {}.frame(height: 8)
                         
                         if viewModel.canLogin {
-                            // Buying button
                             Button(action: {
-                                DispatchQueue.main.async { viewModel.purchaseState = .processing }
-                                viewModel.buy()
+                                print("continue")
                             }) {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 12)
                                         .foregroundColor(transactionViewModel.transaction != nil ? ColorsUi.APC_Pink : ColorsUi.APC_Gray)
-                                    Text(Constants.buyText)
+                                    Text(Constants.continueText)
                                 }
                             }
                             .disabled(transactionViewModel.transaction == nil)
@@ -81,8 +79,10 @@ internal struct PurchaseBottomSheet: View {
                             .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
                             .foregroundColor(ColorsUi.APC_White)
                         } else {
+                            // Buying button
                             Button(action: {
-                                print("continue")
+                                DispatchQueue.main.async { viewModel.purchaseState = .processing }
+                                viewModel.buy()
                             }) {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 12)
