@@ -22,8 +22,8 @@ internal struct Constants {
     static internal let chooseCard = NSLocalizedString("choose_card_title", bundle: .APPCModule, comment: "Choose a Card")
     static internal let addCard = NSLocalizedString("add_card_button", bundle: .APPCModule, comment: "Add new card")
     static internal let yourCard = NSLocalizedString("your_card_title", bundle: .APPCModule, comment: "Your card")
-    static internal let selectPaymentMethodTitle = NSLocalizedString("select_payment_method_title", bundle: .APPCModule, comment: "Select payment method")
-    static internal let signToGetBonusTitle = NSLocalizedString("sign_to_get_bonus_title", bundle: .APPCModule, comment: "Sign in to get your bonus")
+    static internal let selectPaymentMethodText = NSLocalizedString("select_payment_method_button", bundle: .APPCModule, comment: "Select payment method")
+    static internal let signToGetBonusText = NSLocalizedString("sign_to_get_bonus_button", bundle: .APPCModule, comment: "Sign in to get your bonus")
     static internal let chooseYourPaymentMethod = NSLocalizedString("choose_your_payment_method_title", bundle: .APPCModule, comment: "Choose your payment method")
     
     // Success

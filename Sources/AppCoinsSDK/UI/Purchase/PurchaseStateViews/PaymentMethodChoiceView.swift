@@ -34,7 +34,7 @@ struct PaymentMethodChoiceView: View {
                         } label: {
                             VStack(alignment: .leading, spacing: 0) {
                                 HStack(spacing: 0) {
-                                    Text(Constants.selectPaymentMethodTitle)
+                                    Text(Constants.selectPaymentMethodText)
                                         .font(FontsUi.APC_Body)
                                         .frame(width: 183, alignment: .leading)
                                     
@@ -62,7 +62,7 @@ struct PaymentMethodChoiceView: View {
                                 
                                 VStack {}.frame(width: 8)
                                 
-                                Text(Constants.signToGetBonusTitle)
+                                Text(Constants.signToGetBonusText)
                                     .font(FontsUi.APC_Body)
                                     .frame(width: 200, alignment: .leading)
                                 

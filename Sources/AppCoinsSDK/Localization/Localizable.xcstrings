@@ -3858,7 +3858,7 @@
         }
       }
     },
-    "select_payment_method_title" : {
+    "select_payment_method_button" : {
       "comment" : "Select payment method",
       "localizations" : {
         "en" : {
@@ -3869,7 +3869,7 @@
         }
       }
     },
-    "sign_to_get_bonus_title" : {
+    "sign_to_get_bonus_button" : {
       "comment" : "Sign in to get your bonus",
       "localizations" : {
         "en" : {

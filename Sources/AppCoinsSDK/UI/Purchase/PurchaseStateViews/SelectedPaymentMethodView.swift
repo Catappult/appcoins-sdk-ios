@@ -111,7 +111,7 @@ struct SelectedPaymentMethodView: View {
                                 } label: {
                                     VStack(alignment: .leading, spacing: 0) {
                                         HStack(spacing: 0) {
-                                            Text(viewModel.hasNewPaymentMethodSelected ? Constants.otherPaymentMethodsText : Constants.selectPaymentMethodTitle)
+                                            Text(viewModel.hasNewPaymentMethodSelected ? Constants.otherPaymentMethodsText : Constants.selectPaymentMethodText)
                                                 .font(FontsUi.APC_Body)
                                                 .frame(width: 200, alignment: .leading)
                                             
@@ -132,7 +132,7 @@ struct SelectedPaymentMethodView: View {
                                 
                                 VStack(alignment: .leading, spacing: 0) {
                                     HStack(spacing: 0) {
-                                        Text(Constants.signToGetBonusTitle)
+                                        Text(Constants.signToGetBonusText)
                                             .font(FontsUi.APC_Body)
                                             .frame(width: 200, alignment: .leading)
                                         
