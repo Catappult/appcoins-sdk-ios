@@ -29,6 +29,28 @@ struct PaymentMethodChoiceView: View {
                         
                         VStack {}.frame(height: 16)
                         
+                        if let paymentMethodSelected = transactionViewModel.paymentMethodSelected {
+                            VStack(spacing: 0) {
+                                HStack(spacing: 0) {
+                                    PaymentMethodIcon(icon: paymentMethodSelected.icon, disabled: false)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                        .frame(width: 24, height: 24)
+                                    
+                                    VStack {}.frame(width: 16)
+                                    
+                                    Text(paymentMethodSelected.label)
+                                        .font(FontsUi.APC_Body)
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                }
+                                .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 - 32 : UIScreen.main.bounds.width - 48 - 32, height: 64)
+                            }
+                            .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 64)
+                            .background(ColorsUi.APC_White)
+                            .cornerRadius(10)
+                            
+                            VStack {}.frame(height: 8)
+                        }
+                        
                         Button {
                             viewModel.setCanChooseMethod(canChooseMethod: true)
                         } label: {
@@ -55,13 +77,6 @@ struct PaymentMethodChoiceView: View {
                         
                         VStack(alignment: .leading, spacing: 0) {
                             HStack(spacing: 0) {
-                                Image(systemName: "person.crop.circle")
-                                    .resizable()
-                                    .frame(width: 24, height: 24)
-                                    .foregroundColor(ColorsUi.APC_LoginIcon)
-                                
-                                VStack {}.frame(width: 8)
-                                
                                 Text(Constants.signToGetBonusText)
                                     .font(FontsUi.APC_Body)
                                     .frame(width: 200, alignment: .leading)
@@ -78,7 +93,8 @@ struct PaymentMethodChoiceView: View {
                         .background(ColorsUi.APC_White)
                         .cornerRadius(10)
                         
-                        HStack {}.frame(height: 110)
+                        VStack {}.frame(height: viewModel.orientation == .landscape ? 62 : 110)
+                            .id("bottom")
                             .onAppear(perform: {
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
                                     withAnimation(.easeInOut(duration: 30)) {
@@ -86,7 +102,19 @@ struct PaymentMethodChoiceView: View {
                                     }
                                 }
                             })
-                    }.ignoresSafeArea(.all)
+                        
+                    }
+                    .ignoresSafeArea(.all)
+                    .onChange(of: viewModel.canChooseMethod) { _ in
+                        if !viewModel.canChooseMethod {
+                            scrollViewProxy.scrollTo("bottom", anchor: .bottom)
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                                withAnimation(.easeInOut(duration: 30)) {
+                                    scrollViewProxy.scrollTo("top", anchor: .top)
+                                }
+                            }
+                        }
+                    }
                 }.defaultScrollAnchor(.bottom)
             }
         }
