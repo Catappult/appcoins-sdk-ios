@@ -24,7 +24,6 @@ internal struct PaymentMethodList: View {
                         if viewModel.canChooseMethod == true {
                             viewModel.setCanChooseMethod(canChooseMethod: false)
                         }
-                        viewModel.setHasNewPaymentMethodSelected(hasNewPaymentMethodSelected: true)
                     }) {
                         ZStack {
                             ColorsUi.APC_White

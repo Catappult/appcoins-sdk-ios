@@ -55,7 +55,6 @@ internal class BottomSheetViewModel: ObservableObject {
     @Published var isCreditCardView: Bool = false
     
     @Published var canChooseMethod: Bool = false
-    @Published var hasNewPaymentMethodSelected: Bool = false // should be false
     
     @Published var didLogin: Bool = false
     @Published var canLogin: Bool = false
@@ -102,11 +101,6 @@ internal class BottomSheetViewModel: ObservableObject {
     internal func setCanLogin(canLogin: Bool) {
         self.canLogin = canLogin
     }
-    
-    internal func setHasNewPaymentMethodSelected(hasNewPaymentMethodSelected: Bool) {
-        self.hasNewPaymentMethodSelected = hasNewPaymentMethodSelected
-    }
-    
     internal func setCanChooseMethod(canChooseMethod: Bool) {
         self.canChooseMethod = canChooseMethod
     }
