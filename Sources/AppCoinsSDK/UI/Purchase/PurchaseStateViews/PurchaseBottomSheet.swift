@@ -31,7 +31,11 @@ internal struct PurchaseBottomSheet: View {
                         
                         if transactionViewModel.lastPaymentMethod != nil || transactionViewModel.showOtherPaymentMethods {
                             if viewModel.canLogin {
-                                UserLoginView(viewModel: viewModel)
+                                if viewModel.usedMagicLink {
+                                    InsertCodeView(viewModel: viewModel)
+                                } else {
+                                    UserLoginView(viewModel: viewModel)
+                                }
                             } else if (!transactionViewModel.showOtherPaymentMethods) || viewModel.hasNewPaymentMethodSelected {
                                 SelectedPaymentMethodView(viewModel: viewModel)
                             } else {

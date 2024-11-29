@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UserLoginView: View {
     
-    @ObservedObject var viewModel: BottomSheetViewModel
+    @ObservedObject internal var viewModel: BottomSheetViewModel
     
     var body: some View {
         VStack(spacing: 0) {
