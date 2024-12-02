@@ -30,8 +30,8 @@ internal struct PurchaseBottomSheet: View {
                     VStack(spacing: 0) {
                         if transactionViewModel.showOtherPaymentMethods || transactionViewModel.lastPaymentMethod != nil {
                             if viewModel.canLogin {
-                                if viewModel.usedMagicLink {
-                                    InsertCodeView(viewModel: viewModel)
+                                if viewModel.hasCode {
+                                    MagicLinkCodeView(viewModel: viewModel)
                                 } else {
                                     UserLoginView(viewModel: viewModel)
                                 }
@@ -56,7 +56,7 @@ internal struct PurchaseBottomSheet: View {
                         
                         if viewModel.canLogin {
                             Button(action: {
-                                print("continue")
+                                viewModel.setHasCode(hasCode: true)
                             }) {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 12)
@@ -91,8 +91,9 @@ internal struct PurchaseBottomSheet: View {
                     }
                     .frame(maxHeight: .infinity, alignment: .bottom)
                     
-                    BottomSheetAppHeader(viewModel: viewModel, transactionViewModel: transactionViewModel)
-                    
+                    if !viewModel.hasCode {
+                        BottomSheetAppHeader(viewModel: viewModel, transactionViewModel: transactionViewModel)
+                    }
                 }
             }
             

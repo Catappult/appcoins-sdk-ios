@@ -59,7 +59,8 @@ internal class BottomSheetViewModel: ObservableObject {
     @Published var didLogin: Bool = false
     @Published var canLogin: Bool = false
     @Published var emailText: String = ""
-    @Published var usedMagicLink: Bool = true
+    @Published var magicLinkCode: String = ""
+    @Published var hasCode: Bool = false
     
     private init() {
         // Prevents Layout Warning Prints
@@ -96,6 +97,10 @@ internal class BottomSheetViewModel: ObservableObject {
             PayPalDirectViewModel.shared.reset()
             AdyenController.shared.reset()
         }
+    }
+    
+    internal func setHasCode(hasCode: Bool) {
+        self.hasCode = hasCode
     }
     
     internal func setCanLogin(canLogin: Bool) {

@@ -1769,7 +1769,15 @@
       }
     },
     "code_label" : {
-      "comment" : "Code"
+      "comment" : "Code",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Code"
+          }
+        }
+      }
     },
     "continue_button" : {
       "comment" : "Continue",
@@ -2176,9 +2184,6 @@
           }
         }
       }
-    },
-    "Hello, World!" : {
-
     },
     "incorrect_code_body" : {
       "comment" : "Your code is incorrect.",

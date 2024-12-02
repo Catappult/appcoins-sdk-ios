@@ -108,8 +108,6 @@ struct UserLoginView: View {
             
             VStack {}.frame(height: 24)
             
-        }.onDisappear(perform: {
-            viewModel.setCanLogin(canLogin: false)
-        })
+        }
     }
 }

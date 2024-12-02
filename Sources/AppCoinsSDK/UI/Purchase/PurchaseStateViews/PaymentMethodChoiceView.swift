@@ -75,10 +75,10 @@ struct PaymentMethodChoiceView: View {
                         
                         VStack {}.frame(height: 8)
                         
-                        VStack(alignment: .leading, spacing: 0) {
-                            Button {
-                                viewModel.setCanLogin(canLogin: true)
-                            } label: {
+                        Button {
+                            viewModel.setCanLogin(canLogin: true)
+                        } label: {
+                            VStack(alignment: .leading, spacing: 0) {
                                 HStack(spacing: 0) {
                                     Text(Constants.signToGetBonusText)
                                         .font(FontsUi.APC_Body)
@@ -91,11 +91,12 @@ struct PaymentMethodChoiceView: View {
                                     
                                 }
                                 .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 32 - 48 : UIScreen.main.bounds.width - 32 - 48, height: 40)
-                            }.buttonStyle(flatButtonStyle())
-                        }
-                        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 40)
-                        .background(ColorsUi.APC_White)
-                        .cornerRadius(10)
+                            }
+                            .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 40)
+                            .background(ColorsUi.APC_White)
+                            .cornerRadius(10)
+                        }.buttonStyle(flatButtonStyle())
+                        
                         
                         VStack {}.frame(height: viewModel.orientation == .landscape ? 62 : 110)
                             .id("bottom")
