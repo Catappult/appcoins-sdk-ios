@@ -203,8 +203,14 @@ internal class BottomSheetViewModel: ObservableObject {
             }
         }
         
-        if self.canLogin { self.setCanLogin(canLogin: false) }
-        if self.hasMagicLinkCode { self.setHasMagicLinkCode(hasMagicLinkCode: false) }
+        if self.canLogin {
+            self.loginEmailText = ""
+            self.canLogin = false
+        }
+        if self.hasMagicLinkCode {
+            self.magicLinkCode = ""
+            self.hasMagicLinkCode = false
+        }
         
         self.reset() // Clear data related to finished purchase
     }
