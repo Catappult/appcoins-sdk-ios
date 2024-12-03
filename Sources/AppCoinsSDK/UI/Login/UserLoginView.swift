@@ -90,22 +90,38 @@ struct UserLoginView: View {
                         
                         VStack {}.frame(height: 24)
                         
-                        HStack(spacing: 0) {
-                            VStack {}.frame(width: 16)
+                        VStack {}.frame(width: 16)
+                        
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(ColorsUi.APC_White)
+                                .stroke(viewModel.isValidEmail ? .clear : Color.red, lineWidth: 1)
+                                .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 44)
                             
-                            Text(Constants.emailLabel)
-                            
-                            VStack {}.frame(width: 8)
-                            
-                            TextField(text: $viewModel.emailText) {
-                                Text(Constants.yourEmail)
-                            }
-                            
+                            HStack(spacing: 0) {
+                                Text(Constants.emailLabel)
+                                
+                                VStack {}.frame(width: 8)
+                                
+                                TextField(text: $viewModel.emailText) {
+                                    Text(Constants.yourEmail)
+                                }
+                            }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 - 32 : UIScreen.main.bounds.width - 48 - 32)
+                        } .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 44)
+                        
+                        if !viewModel.isValidEmail {
+                            VStack(spacing: 0) {
+                                
+                                VStack{}.frame(height: 4)
+                                
+                                Text(Constants.invalidEmail)
+                                    .font(FontsUi.APC_Footnote_Bold)
+                                    .foregroundColor(Color.red)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                            }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48)
+                        } else {
                             VStack {}.frame(width: 16)
                         }
-                        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 44)
-                        .background(ColorsUi.APC_White)
-                        .cornerRadius(10)
                         
                         if viewModel.orientation == .landscape { VStack {}.frame(height: viewModel.isKeyboardVisible ? 120 : 0) }
                         

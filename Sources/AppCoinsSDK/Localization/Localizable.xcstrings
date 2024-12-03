@@ -2593,7 +2593,15 @@
       }
     },
     "invalid_email_body" : {
-      "comment" : "Invalid email address."
+      "comment" : "Invalid email address.",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invalid email address."
+          }
+        }
+      }
     },
     "log_out_button" : {
       "comment" : "Log out",

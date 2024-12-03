@@ -57,7 +57,9 @@ internal struct PurchaseBottomSheet: View {
                         
                         if viewModel.canLogin {
                             Button(action: {
-                                viewModel.setHasCode(hasCode: true)
+                                if viewModel.validateEmail() {
+                                    viewModel.setHasCode(hasCode: true)
+                                }
                             }) {
                                 ZStack {
                                     RoundedRectangle(cornerRadius: 12)

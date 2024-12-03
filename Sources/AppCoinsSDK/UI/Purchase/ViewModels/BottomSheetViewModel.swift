@@ -61,6 +61,7 @@ internal class BottomSheetViewModel: ObservableObject {
     @Published var emailText: String = ""
     @Published var magicLinkCode: String = ""
     @Published var hasCode: Bool = false
+    @Published var isValidEmail: Bool = false
     
     private init() {
         // Prevents Layout Warning Prints
@@ -594,5 +595,7 @@ internal class BottomSheetViewModel: ObservableObject {
     }
     
     internal func hasCompletedPurchase() -> Bool { return purchaseCompleted }
+    
+    internal func validateEmail() -> Bool { return self.isValidEmail } // using new library in order to validate email and set isValidEmail value
     
 }
