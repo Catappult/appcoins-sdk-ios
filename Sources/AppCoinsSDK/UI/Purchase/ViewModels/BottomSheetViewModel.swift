@@ -101,8 +101,8 @@ internal class BottomSheetViewModel: ObservableObject {
         }
     }
     
-    internal func setHasCode(hasCode: Bool) {
-        self.hasMagicLinkCode = hasCode
+    internal func setHasMagicLinkCode(hasMagicLinkCode: Bool) {
+        self.hasMagicLinkCode = hasMagicLinkCode
     }
     
     internal func setCanLogin(canLogin: Bool) {
@@ -202,6 +202,9 @@ internal class BottomSheetViewModel: ObservableObject {
                 self.hasActiveTransaction = false
             }
         }
+        
+        if self.canLogin { self.setCanLogin(canLogin: false) }
+        if self.hasMagicLinkCode { self.setHasMagicLinkCode(hasMagicLinkCode: false) }
         
         self.reset() // Clear data related to finished purchase
     }

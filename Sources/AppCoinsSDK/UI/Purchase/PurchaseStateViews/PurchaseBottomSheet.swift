@@ -61,7 +61,7 @@ internal struct PurchaseBottomSheet: View {
                                     viewModel.isMagicLinkCodeCorrect = false
                                 }
                                 if viewModel.validateEmail() {
-                                    viewModel.setHasCode(hasCode: true)
+                                    viewModel.setHasMagicLinkCode(hasMagicLinkCode: true)
                                 }
                             }) {
                                 ZStack {
