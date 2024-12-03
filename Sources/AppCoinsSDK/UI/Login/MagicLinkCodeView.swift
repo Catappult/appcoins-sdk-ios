@@ -33,7 +33,7 @@ struct MagicLinkCodeView: View {
                             
                             VStack {}.frame(height: 16)
                             
-                            Text(Constants.sentCodeTo + ": " + viewModel.emailText)
+                            Text(Constants.sentCodeTo + ": " + viewModel.loginEmailText)
                                 .font(FontsUi.APC_Subheadline)
                                 .foregroundColor(ColorsUi.APC_Black)
                                 .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 - 30 : UIScreen.main.bounds.width - 48 - 30)
@@ -47,7 +47,7 @@ struct MagicLinkCodeView: View {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 10)
                                     .fill(ColorsUi.APC_White)
-                                    .stroke(viewModel.isCorrectCode ? .clear : Color.red, lineWidth: 1)
+                                    .stroke(viewModel.isMagicLinkCodeCorrect ? .clear : Color.red, lineWidth: 1)
                                     .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 44)
                                 
                                 HStack(spacing: 0) {
@@ -62,7 +62,7 @@ struct MagicLinkCodeView: View {
                                 
                             }
                             
-                            if !viewModel.isCorrectCode {
+                            if !viewModel.isMagicLinkCodeCorrect {
                                 VStack(spacing: 0) {
                                     
                                     VStack {}.frame(height: 4)

@@ -31,7 +31,7 @@ internal struct PurchaseBottomSheet: View {
                     VStack(spacing: 0) {
                         if transactionViewModel.showOtherPaymentMethods || transactionViewModel.lastPaymentMethod != nil {
                             if viewModel.canLogin {
-                                if viewModel.hasCode {
+                                if viewModel.hasMagicLinkCode {
                                     MagicLinkCodeView(viewModel: viewModel)
                                 } else {
                                     UserLoginView(viewModel: viewModel)
@@ -57,8 +57,8 @@ internal struct PurchaseBottomSheet: View {
                         
                         if viewModel.canLogin {
                             Button(action: {
-                                if viewModel.hasCode {
-                                    viewModel.isCorrectCode = false
+                                if viewModel.hasMagicLinkCode {
+                                    viewModel.isMagicLinkCodeCorrect = false
                                 }
                                 if viewModel.validateEmail() {
                                     viewModel.setHasCode(hasCode: true)
@@ -97,7 +97,7 @@ internal struct PurchaseBottomSheet: View {
                     }
                     .frame(maxHeight: .infinity, alignment: .bottom)
                     
-                    if !viewModel.hasCode {
+                    if !viewModel.hasMagicLinkCode {
                         BottomSheetAppHeader(viewModel: viewModel, transactionViewModel: transactionViewModel)
                     }
                 }

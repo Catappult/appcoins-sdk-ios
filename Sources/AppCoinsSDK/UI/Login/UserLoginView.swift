@@ -95,7 +95,7 @@ struct UserLoginView: View {
                         ZStack {
                             RoundedRectangle(cornerRadius: 10)
                                 .fill(ColorsUi.APC_White)
-                                .stroke(viewModel.isValidEmail ? .clear : Color.red, lineWidth: 1)
+                                .stroke(viewModel.isValidLoginEmail ? .clear : Color.red, lineWidth: 1)
                                 .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 44)
                             
                             HStack(spacing: 0) {
@@ -103,13 +103,13 @@ struct UserLoginView: View {
                                 
                                 VStack {}.frame(width: 8)
                                 
-                                TextField(text: $viewModel.emailText) {
+                                TextField(text: $viewModel.loginEmailText) {
                                     Text(Constants.yourEmail)
                                 }
                             }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 - 32 : UIScreen.main.bounds.width - 48 - 32)
                         } .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 44)
                         
-                        if !viewModel.isValidEmail {
+                        if !viewModel.isValidLoginEmail {
                             VStack(spacing: 0) {
                                 
                                 VStack{}.frame(height: 4)
