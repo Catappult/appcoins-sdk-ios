@@ -24,6 +24,7 @@ internal struct BottomSheetView: View {
                 .onTapGesture {
                     if viewModel.isKeyboardVisible {
                         AdyenController.shared.presentableComponent?.viewController.view.findAndResignFirstResponder()
+                        UIApplication.shared.dismissKeyboard()
                     } else {
                         viewModel.dismiss()
                     }

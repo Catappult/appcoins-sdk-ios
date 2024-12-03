@@ -43,3 +43,9 @@ internal extension Bundle {
         #endif
     }()
 }
+
+extension UIApplication {
+    func dismissKeyboard() {
+        self.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}

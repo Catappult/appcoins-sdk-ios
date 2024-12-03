@@ -21,6 +21,7 @@ internal struct PurchaseBottomSheet: View {
     
     @State private var timer: Timer? = nil
     @State private var dynamicHeight: CGFloat = 291
+    var bottomSheetHeigh: CGFloat = 420
     
     internal var body: some View {
         
@@ -125,7 +126,7 @@ internal struct PurchaseBottomSheet: View {
             }
             
         }
-        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: viewModel.orientation == .landscape ? UIScreen.main.bounds.height * 0.9 : viewModel.isCreditCardView ? dynamicHeight + 72 : 420)
+        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: viewModel.orientation == .landscape ? UIScreen.main.bounds.height * 0.9 : viewModel.isCreditCardView ? dynamicHeight + 72 : viewModel.canLogin && keyboardObserver.isKeyboardVisible ? self.setHeighFromKeyboardToTop(keyboardObserverHeigh: keyboardObserver.heighFromKeyboardToTop) : bottomSheetHeigh)
         .padding(.bottom, keyboardObserver.isKeyboardVisible && viewModel.orientation != .landscape ? keyboardObserver.keyboardHeight: 0)
         .background(ColorsUi.APC_BottomSheet_LightGray_Background)
         .cornerRadius(13, corners: [.topLeft, .topRight])
@@ -157,5 +158,13 @@ internal struct PurchaseBottomSheet: View {
     private func stopObservingDynamicHeight() {
         timer?.invalidate()
         timer = nil
+    }
+    
+    private func setHeighFromKeyboardToTop(keyboardObserverHeigh: CGFloat) -> CGFloat {
+        if keyboardObserverHeigh > bottomSheetHeigh {
+            return bottomSheetHeigh
+        } else {
+            return keyboardObserverHeigh
+        }
     }
 }
