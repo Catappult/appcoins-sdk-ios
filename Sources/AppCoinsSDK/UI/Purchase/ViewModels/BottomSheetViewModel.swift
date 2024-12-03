@@ -61,8 +61,8 @@ internal class BottomSheetViewModel: ObservableObject {
     @Published var loginEmailText: String = ""
     @Published var magicLinkCode: String = ""
     @Published var hasMagicLinkCode: Bool = false
-    @Published var isValidLoginEmail: Bool = true // false
-    @Published var isMagicLinkCodeCorrect: Bool = true // false
+    @Published var isValidLoginEmail: Bool = true
+    @Published var isMagicLinkCodeCorrect: Bool = true
     
     private init() {
         // Prevents Layout Warning Prints
@@ -600,6 +600,13 @@ internal class BottomSheetViewModel: ObservableObject {
     
     internal func hasCompletedPurchase() -> Bool { return purchaseCompleted }
     
-    internal func validateEmail() -> Bool { return self.isValidLoginEmail } // using new library in order to validate email and set isValidEmail value
+    internal func validateEmail() -> Bool {
+        let emailRegex = "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"
+        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
+        
+        self.isValidLoginEmail = emailPredicate.evaluate(with: self.loginEmailText)
+        
+        return isValidLoginEmail
+    }
     
 }

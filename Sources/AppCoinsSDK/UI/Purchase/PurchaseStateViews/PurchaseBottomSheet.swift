@@ -57,9 +57,9 @@ internal struct PurchaseBottomSheet: View {
                         
                         if viewModel.canLogin {
                             Button(action: {
-                                if viewModel.hasMagicLinkCode {
-                                    viewModel.isMagicLinkCodeCorrect = false
-                                }
+//                                if viewModel.hasMagicLinkCode {
+//                                    viewModel.isMagicLinkCodeCorrect = false
+//                                }
                                 if viewModel.validateEmail() {
                                     viewModel.setHasMagicLinkCode(hasMagicLinkCode: true)
                                 }
