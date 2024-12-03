@@ -61,7 +61,8 @@ internal class BottomSheetViewModel: ObservableObject {
     @Published var emailText: String = ""
     @Published var magicLinkCode: String = ""
     @Published var hasCode: Bool = false
-    @Published var isValidEmail: Bool = false
+    @Published var isValidEmail: Bool = true // false
+    @Published var isCorrectCode: Bool = true // false
     
     private init() {
         // Prevents Layout Warning Prints

@@ -57,6 +57,9 @@ internal struct PurchaseBottomSheet: View {
                         
                         if viewModel.canLogin {
                             Button(action: {
+                                if viewModel.hasCode {
+                                    viewModel.isCorrectCode = false
+                                }
                                 if viewModel.validateEmail() {
                                     viewModel.setHasCode(hasCode: true)
                                 }

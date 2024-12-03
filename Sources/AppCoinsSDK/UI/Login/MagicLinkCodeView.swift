@@ -42,30 +42,48 @@ struct MagicLinkCodeView: View {
                             
                             VStack {}.frame(height: 64)
                             
-                            HStack(spacing: 0) {
-                                VStack {}.frame(width: 16)
+                            VStack {}.frame(width: 16)
+                            
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(ColorsUi.APC_White)
+                                    .stroke(viewModel.isCorrectCode ? .clear : Color.red, lineWidth: 1)
+                                    .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 44)
                                 
-                                Text(Constants.codeLabel)
-                                
-                                VStack {}.frame(width: 8)
-                                
-                                TextField(text: $viewModel.magicLinkCode) {
+                                HStack(spacing: 0) {
                                     Text(Constants.codeLabel)
-                                }
+                                    
+                                    VStack {}.frame(width: 8)
+                                    
+                                    TextField(text: $viewModel.magicLinkCode) {
+                                        Text(Constants.codeLabel)
+                                    }
+                                }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 - 32 : UIScreen.main.bounds.width - 48 - 32, height: 44)
                                 
-                                VStack {}.frame(width: 18)
-                                    .id("bottom")
-                                    .onAppear(perform: {
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-                                            withAnimation(.easeInOut(duration: 30)) {
-                                                scrollViewProxy.scrollTo("top", anchor: .top)
-                                            }
-                                        }
-                                    })
                             }
-                            .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 44)
-                            .background(ColorsUi.APC_White)
-                            .cornerRadius(10)
+                            
+                            if !viewModel.isCorrectCode {
+                                VStack(spacing: 0) {
+                                    
+                                    VStack {}.frame(height: 4)
+                                    
+                                    Text(Constants.incorrectCode)
+                                        .font(FontsUi.APC_Footnote_Bold)
+                                        .foregroundColor(Color.red)
+                                        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, alignment: .leading)
+                                }
+                            }
+                            
+                            VStack {}.frame(height: 18)
+                                .id("bottom")
+                                .onAppear(perform: {
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                                        withAnimation(.easeInOut(duration: 30)) {
+                                            scrollViewProxy.scrollTo("top", anchor: .top)
+                                        }
+                                    }
+                                })
+                            
                             
                             if viewModel.orientation == .landscape { VStack {}.frame(height: viewModel.isKeyboardVisible ? 140 : 0) }
                             
