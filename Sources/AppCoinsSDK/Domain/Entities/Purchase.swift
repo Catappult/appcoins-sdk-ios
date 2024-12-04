@@ -197,7 +197,7 @@ public class Purchase: Codable {
                 for wallet in walletList {
                     group.enter()
                     queue.sync {
-                        transactionUseCases.getAllPurchases(domain: domain, wa: wallet) {
+                        transactionUseCases.getAllPurchases(domain: "domain", wa: wallet) {
                             result in
                             
                             switch result {
