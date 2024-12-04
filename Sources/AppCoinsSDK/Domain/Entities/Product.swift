@@ -44,7 +44,7 @@ public struct Product {
         
         if let identifiers = identifiers {
             return try await withCheckedThrowingContinuation { continuation in
-                productUseCases.getAllProducts(domain: domain) { result in
+                productUseCases.getAllProducts(domain: "domain") { result in
                     switch result {
                     case .success(let products):
                         var finalProducts : [Product] = []
