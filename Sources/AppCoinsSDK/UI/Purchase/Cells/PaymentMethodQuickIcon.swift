@@ -18,26 +18,26 @@ internal struct PaymentMethodQuickIcon: View {
                 case .empty:
                     RoundedRectangle(cornerRadius: 0)
                         .foregroundColor(ColorsUi.APC_LightGray)
-                        .frame(width: 48, height: 48)
+                        .frame(width: 24, height: 24)
                         .clipShape(Circle())
                     
                 case .success(let image):
                     image
                         .resizable()
                         .edgesIgnoringSafeArea(.all)
-                        .frame(width: 48, height: 48)
+                        .frame(width: 24, height: 24)
                     
                 case .failure:
                     RoundedRectangle(cornerRadius: 0)
                         .foregroundColor(ColorsUi.APC_LightGray)
-                        .frame(width: 48, height: 48)
+                        .frame(width: 24, height: 24)
                         .clipShape(Circle())
                 }
             }
         } else {
             RoundedRectangle(cornerRadius: 0)
                 .foregroundColor(ColorsUi.APC_LightGray)
-                .frame(width: 48, height: 48)
+                .frame(width: 24, height: 24)
                 .clipShape(Circle())
         }
     }

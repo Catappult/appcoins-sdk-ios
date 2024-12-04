@@ -24,6 +24,7 @@ internal struct BottomSheetView: View {
                 .onTapGesture {
                     if viewModel.isKeyboardVisible {
                         AdyenController.shared.presentableComponent?.viewController.view.findAndResignFirstResponder()
+                        UIApplication.shared.dismissKeyboard()
                     } else {
                         viewModel.dismiss()
                     }
@@ -82,7 +83,28 @@ internal struct BottomSheetView: View {
                     VStack{ }.frame(maxWidth: .infinity, maxHeight: .infinity)
                     
                     if [.paying, .adyen].contains(viewModel.purchaseState) && !(viewModel.purchaseState == .adyen && adyenController.state == .storedCreditCard) {
-                        PurchaseBottomSheet(viewModel: viewModel)
+                        if #available(iOS 16.4, *) {
+                            PurchaseBottomSheet(viewModel: viewModel)
+                                .sheet(isPresented: $viewModel.canChooseMethod) {
+                                    if viewModel.orientation == .landscape {
+                                        PaymentMethodListBottomSheet(viewModel: viewModel)
+                                            .presentationCompactAdaptation(.fullScreenCover)
+                                            .clipShape(RoundedCorner(radius: 13, corners: [.topLeft, .topRight]))
+                                            .presentationBackground {
+                                                Color.black.opacity(0.001)
+                                                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+                                                    .onTapGesture {
+                                                        viewModel.setCanChooseMethod(canChooseMethod: false)
+                                                    }
+                                            }
+                                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+                                            .ignoresSafeArea(.all)
+                                    } else {
+                                        PaymentMethodListBottomSheet(viewModel: viewModel)
+                                            .presentationDragIndicator(.hidden)
+                                    }
+                                }
+                        }
                     }
                     
                     if viewModel.purchaseState == .processing {
@@ -107,7 +129,7 @@ internal struct BottomSheetView: View {
                 HStack(spacing: 0) {}
                     .sheet(isPresented: $paypalViewModel.presentPayPalSheet, onDismiss: paypalViewModel.dismissPayPalView) {
                         if let presentURL = paypalViewModel.presentPayPalSheetURL {
-                                PayPalWebView(url: presentURL, method: paypalViewModel.presentPayPalSheetMethod ?? "POST", successHandler: paypalViewModel.createBillingAgreementAndFinishTransaction, cancelHandler: paypalViewModel.cancelBillingAgreementTokenPayPal)
+                            PayPalWebView(url: presentURL, method: paypalViewModel.presentPayPalSheetMethod ?? "POST", successHandler: paypalViewModel.createBillingAgreementAndFinishTransaction, cancelHandler: paypalViewModel.cancelBillingAgreementTokenPayPal)
                         }
                     }
                 

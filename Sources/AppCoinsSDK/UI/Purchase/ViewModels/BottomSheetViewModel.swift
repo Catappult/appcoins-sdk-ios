@@ -54,6 +54,16 @@ internal class BottomSheetViewModel: ObservableObject {
     
     @Published var isCreditCardView: Bool = false
     
+    @Published var canChooseMethod: Bool = false
+    
+    @Published var didLogin: Bool = false
+    @Published var canLogin: Bool = false
+    @Published var loginEmailText: String = ""
+    @Published var magicLinkCode: String = ""
+    @Published var hasMagicLinkCode: Bool = false
+    @Published var isValidLoginEmail: Bool = true
+    @Published var isMagicLinkCodeCorrect: Bool = true
+    
     private init() {
         // Prevents Layout Warning Prints
         UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
@@ -89,6 +99,17 @@ internal class BottomSheetViewModel: ObservableObject {
             PayPalDirectViewModel.shared.reset()
             AdyenController.shared.reset()
         }
+    }
+    
+    internal func setHasMagicLinkCode(hasMagicLinkCode: Bool) {
+        self.hasMagicLinkCode = hasMagicLinkCode
+    }
+    
+    internal func setCanLogin(canLogin: Bool) {
+        self.canLogin = canLogin
+    }
+    internal func setCanChooseMethod(canChooseMethod: Bool) {
+        self.canChooseMethod = canChooseMethod
     }
     
     internal func setOrientation(orientation: Orientation) {
@@ -179,6 +200,22 @@ internal class BottomSheetViewModel: ObservableObject {
             DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
                 presentedPurchaseVC.dismissPurchase()
                 self.hasActiveTransaction = false
+            }
+        }
+        
+        if self.canLogin {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                self.canLogin = false
+                if !self.loginEmailText.isEmpty { self.loginEmailText = "" }
+                if !self.isValidLoginEmail { self.isValidLoginEmail = true }
+            }
+        }
+        
+        if self.hasMagicLinkCode {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                self.hasMagicLinkCode = false
+                if !self.magicLinkCode.isEmpty { self.magicLinkCode = "" }
+                if !self.isMagicLinkCodeCorrect { self.isMagicLinkCodeCorrect = true }
             }
         }
         
@@ -575,5 +612,14 @@ internal class BottomSheetViewModel: ObservableObject {
     }
     
     internal func hasCompletedPurchase() -> Bool { return purchaseCompleted }
+    
+    internal func validateEmail() -> Bool {
+        let emailRegex = "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"
+        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
+        
+        self.isValidLoginEmail = emailPredicate.evaluate(with: self.loginEmailText)
+        
+        return isValidLoginEmail
+    }
     
 }

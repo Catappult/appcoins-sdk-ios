@@ -17,73 +17,88 @@ struct BottomSheetAppHeader: View {
             
             VStack {}.frame(width: 24)
             
-            Image(uiImage: Utils.getAppIcon())
-                .resizable()
-                .scaledToFit()
-                .frame(width: 40, height: 40)
-                .clipShape(Circle())
-                .frame(maxWidth: 40, alignment: .leading)
-            
-            VStack {}.frame(width: 15)
-            
-            VStack(alignment: .leading, spacing: 0) {
-                if let title = transactionViewModel.transaction?.getTitle() {
-                    Text(title)
+            if viewModel.canLogin {
+                VStack(alignment: .leading, spacing: 0) {
+                    Text(Constants.signInAndJoinTitle)
                         .foregroundColor(ColorsUi.APC_Black)
-                        .font(FontsUi.APC_Body_Bold)
-                        .lineLimit(1)
-                } else {
+                        .font(FontsUi.APC_Callout_Bold)
+                    
+                    VStack {}.frame(height: 2)
+                    
+                    Text(Constants.getBonusEveryPurchase)
+                        .foregroundColor(ColorsUi.APC_Black)
+                        .font(FontsUi.APC_Footnote)
+                    
+                }.frame(maxWidth: .infinity, maxHeight: 40, alignment: .leading)
+            } else {
+                Image(uiImage: Utils.getAppIcon())
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 40, height: 40)
+                    .clipShape(Circle())
+                    .frame(maxWidth: 40, alignment: .leading)
+                
+                VStack {}.frame(width: 15)
+                
+                VStack(alignment: .leading, spacing: 0) {
+                    if let title = transactionViewModel.transaction?.getTitle() {
+                        Text(title)
+                            .foregroundColor(ColorsUi.APC_Black)
+                            .font(FontsUi.APC_Body_Bold)
+                            .lineLimit(1)
+                    } else {
+                        HStack(spacing: 0) {
+                            Text("")
+                                .skeleton(with: true)
+                                .frame(width: 125, height: 22, alignment: .leading)
+                            VStack {}.frame(maxWidth: .infinity)
+                        }.frame(maxWidth: .infinity)
+                    }
+                    
                     HStack(spacing: 0) {
-                        Text("")
-                            .skeleton(with: true)
-                            .frame(width: 125, height: 22, alignment: .leading)
-                        VStack {}.frame(maxWidth: .infinity)
-                    }.frame(maxWidth: .infinity)
-                }
-                
-                HStack(spacing: 0) {
-                    if let amount = transactionViewModel.transaction?.moneyAmount {
-                        Text((transactionViewModel.transaction?.moneyCurrency.sign ?? "") + String(amount))
-                            .foregroundColor(ColorsUi.APC_Black)
-                            .font(FontsUi.APC_Subheadline_Bold)
-                            .lineLimit(1)
+                        if let amount = transactionViewModel.transaction?.moneyAmount {
+                            Text((transactionViewModel.transaction?.moneyCurrency.sign ?? "") + String(amount))
+                                .foregroundColor(ColorsUi.APC_Black)
+                                .font(FontsUi.APC_Subheadline_Bold)
+                                .lineLimit(1)
+                            
+                            VStack {}.frame(width: 4)
+                            
+                            Text(transactionViewModel.transaction?.moneyCurrency.currency ?? "-")
+                                .foregroundColor(ColorsUi.APC_Black)
+                                .font(FontsUi.APC_Caption1_Bold)
+                                .lineLimit(1)
+                        } else {
+                            HStack(spacing: 0) {
+                                Text("")
+                                    .skeleton(with: true)
+                                    .frame(width: 60, height: 14, alignment: .leading)
+                                VStack {}.frame(maxWidth: .infinity)
+                            }.frame(maxWidth: .infinity)
+                        }
                         
-                        VStack {}.frame(width: 4)
+                        VStack {}.frame(width: 16)
                         
-                        Text(transactionViewModel.transaction?.moneyCurrency.currency ?? "-")
-                            .foregroundColor(ColorsUi.APC_Black)
-                            .font(FontsUi.APC_Caption1_Bold)
-                            .lineLimit(1)
-                    } else {
-                        HStack(spacing: 0) {
-                            Text("")
-                                .skeleton(with: true)
-                                .frame(width: 60, height: 14, alignment: .leading)
-                            VStack {}.frame(maxWidth: .infinity)
-                        }.frame(maxWidth: .infinity)
+                        if let appcAmount = transactionViewModel.transaction?.appcAmount {
+                            Text(verbatim: String(format: "%.2f", appcAmount) + " APPC")
+                                .foregroundColor(ColorsUi.APC_BottomSheet_APPC)
+                                .font(FontsUi.APC_Caption2)
+                        } else {
+                            HStack(spacing: 0) {
+                                Text("")
+                                    .skeleton(with: true)
+                                    .frame(width: 55, height: 10, alignment: .leading)
+                                    .padding(.top, 2)
+                                VStack {}.frame(maxWidth: .infinity)
+                            }.frame(maxWidth: .infinity)
+                        }
                     }
+                    .frame(width: viewModel.orientation == .landscape ? 256 : UIScreen.main.bounds.width - 154, alignment: .bottomLeading)
                     
-                    VStack {}.frame(width: 16)
+                    VStack {}.frame(height: 4)
                     
-                    if let appcAmount = transactionViewModel.transaction?.appcAmount {
-                        Text(verbatim: String(format: "%.2f", appcAmount) + " APPC")
-                            .foregroundColor(ColorsUi.APC_BottomSheet_APPC)
-                            .font(FontsUi.APC_Caption2)
-                    } else {
-                        HStack(spacing: 0) {
-                            Text("")
-                                .skeleton(with: true)
-                                .frame(width: 55, height: 10, alignment: .leading)
-                                .padding(.top, 2)
-                            VStack {}.frame(maxWidth: .infinity)
-                        }.frame(maxWidth: .infinity)
-                    }
-                }
-                .frame(width: viewModel.orientation == .landscape ? 256 : UIScreen.main.bounds.width - 154, alignment: .bottomLeading)
-                
-                VStack {}.frame(height: 4)
-                
-            }.frame(maxWidth: .infinity, maxHeight: 40, alignment: .leading)
+                }.frame(maxWidth: .infinity, maxHeight: 40, alignment: .leading)
+            }
             
             Button {
                 viewModel.dismiss()
