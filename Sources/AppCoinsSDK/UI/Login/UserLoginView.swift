@@ -22,9 +22,7 @@ struct UserLoginView: View {
                         
                         VStack {}.frame(height: 24)
                         
-                        Button {
-                            
-                        } label: {
+                        Button {} label: {
                             ZStack(alignment: .leading) {
                                 RoundedRectangle(cornerRadius: 14)
                                     .fill(ColorsUi.APC_White)
@@ -64,9 +62,7 @@ struct UserLoginView: View {
                         }
                         .frame(height: 16)
                         
-                        VStack {}.frame(height: 24)
-                        
-                        VStack {}.frame(width: 16)
+                        VStack {}.frame(height: 40)
                         
                         ZStack {
                             RoundedRectangle(cornerRadius: 10)
@@ -87,7 +83,6 @@ struct UserLoginView: View {
                         
                         if !viewModel.isValidLoginEmail {
                             VStack(spacing: 0) {
-                                
                                 VStack{}.frame(height: 4)
                                 
                                 Text(Constants.invalidEmail)

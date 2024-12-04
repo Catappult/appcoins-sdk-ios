@@ -205,14 +205,17 @@ internal class BottomSheetViewModel: ObservableObject {
         
         if self.canLogin {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                self.loginEmailText = ""
                 self.canLogin = false
+                if !self.loginEmailText.isEmpty { self.loginEmailText = "" }
+                if !self.isValidLoginEmail { self.isValidLoginEmail = true }
             }
         }
+        
         if self.hasMagicLinkCode {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                self.magicLinkCode = ""
                 self.hasMagicLinkCode = false
+                if !self.magicLinkCode.isEmpty { self.magicLinkCode = "" }
+                if !self.isMagicLinkCodeCorrect { self.isMagicLinkCodeCorrect = true }
             }
         }
         

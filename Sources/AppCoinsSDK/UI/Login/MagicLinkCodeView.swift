@@ -40,9 +40,7 @@ struct MagicLinkCodeView: View {
                                 .multilineTextAlignment(.center)
                                 .lineLimit(2)
                             
-                            VStack {}.frame(height: 64)
-                            
-                            VStack {}.frame(width: 16)
+                            VStack {}.frame(height: 80)
                             
                             ZStack {
                                 RoundedRectangle(cornerRadius: 10)
@@ -59,12 +57,10 @@ struct MagicLinkCodeView: View {
                                         Text(Constants.codeLabel)
                                     }
                                 }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 - 32 : UIScreen.main.bounds.width - 48 - 32, height: 44)
-                                
                             }
                             
                             if !viewModel.isMagicLinkCodeCorrect {
                                 VStack(spacing: 0) {
-                                    
                                     VStack {}.frame(height: 4)
                                     
                                     Text(Constants.incorrectCode)
@@ -84,11 +80,9 @@ struct MagicLinkCodeView: View {
                                     }
                                 })
                             
-                            
                             if viewModel.orientation == .landscape { VStack {}.frame(height: viewModel.isKeyboardVisible ? 140 : 0) }
                             
-                        }
-                        .frame(maxHeight: .infinity, alignment: .top)
+                        }.frame(maxHeight: .infinity, alignment: .top)
                     }.defaultScrollAnchor(.bottom)
                 }
                 
@@ -110,8 +104,7 @@ struct MagicLinkCodeView: View {
                             }
                         }
                     }
-                }
-                .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 56, alignment: .topTrailing)
+                }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 56, alignment: .topTrailing)
             }
         }
     }
