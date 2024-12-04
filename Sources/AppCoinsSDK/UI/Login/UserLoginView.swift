@@ -20,33 +20,10 @@ struct UserLoginView: View {
                         VStack {}.frame(height: 72 + 8)
                             .id("top")
                         
-                        Button {
-                            print("")
-                        } label: {
-                            ZStack(alignment: .leading) {
-                                RoundedRectangle(cornerRadius: 14)
-                                    .fill(ColorsUi.APC_White)
-                                    .stroke(ColorsUi.APC_Black, lineWidth: 1)
-                                    .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
-                                
-                                HStack(spacing: 0) {
-                                    Image("facebook-logo", bundle: Bundle.APPCModule)
-                                        .resizable()
-                                        .frame(width: 8, height: 15)
-                                    
-                                    VStack {}.frame(width: 8)
-                                    
-                                    Text(Constants.signInWithFacebookText)
-                                        .font(FontsUi.APC_Body)
-                                }
-                                .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
-                            }
-                        }.buttonStyle(flatButtonStyle())
-                        
-                        VStack {}.frame(height: 14)
+                        VStack {}.frame(height: 24)
                         
                         Button {
-                            print("")
+                            
                         } label: {
                             ZStack(alignment: .leading) {
                                 RoundedRectangle(cornerRadius: 14)
@@ -68,10 +45,9 @@ struct UserLoginView: View {
                             }
                         }.buttonStyle(flatButtonStyle())
                         
-                        VStack {}.frame(height: 24)
+                        VStack {}.frame(height: 38)
                         
                         HStack(spacing: 0) {
-                            
                             Rectangle()
                                 .frame(width: viewModel.orientation == .landscape ? 222 : 106, height: 1)
                                 .frame(maxWidth: .infinity, alignment: .leading)

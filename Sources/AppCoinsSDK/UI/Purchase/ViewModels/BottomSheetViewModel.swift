@@ -204,12 +204,16 @@ internal class BottomSheetViewModel: ObservableObject {
         }
         
         if self.canLogin {
-            self.loginEmailText = ""
-            self.canLogin = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                self.loginEmailText = ""
+                self.canLogin = false
+            }
         }
         if self.hasMagicLinkCode {
-            self.magicLinkCode = ""
-            self.hasMagicLinkCode = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                self.magicLinkCode = ""
+                self.hasMagicLinkCode = false
+            }
         }
         
         self.reset() // Clear data related to finished purchase
