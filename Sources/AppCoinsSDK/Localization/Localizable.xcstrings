@@ -774,6 +774,7 @@
     },
     "bonus_every_purchase_body" : {
       "comment" : "You'll get a bonus on every purchase!",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1553,6 +1554,7 @@
     },
     "check_your_email_body" : {
       "comment" : "Check your email",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1561,9 +1563,6 @@
           }
         }
       }
-    },
-    "chevron.right" : {
-
     },
     "choose_card_title" : {
       "comment" : "Choose a Card",
@@ -1759,6 +1758,7 @@
     },
     "choose_your_payment_method_title" : {
       "comment" : "Choose your payment method",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1770,6 +1770,7 @@
     },
     "code_label" : {
       "comment" : "Code",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1781,6 +1782,7 @@
     },
     "continue_button" : {
       "comment" : "Continue",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -1982,8 +1984,9 @@
         }
       }
     },
-    "email_Label" : {
+    "email_label" : {
       "comment" : "Email",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -2187,23 +2190,12 @@
     },
     "incorrect_code_body" : {
       "comment" : "Your code is incorrect.",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Your code is incorrect."
-          }
-        }
-      }
-    },
-    "incorrect_email_body" : {
-      "comment" : "Your email is incorrect.",
-      "extractionState" : "stale",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Your email is incorrect."
           }
         }
       }
@@ -2594,6 +2586,7 @@
     },
     "invalid_email_body" : {
       "comment" : "Invalid email address.",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -3181,6 +3174,7 @@
     },
     "or_continue_with_body" : {
       "comment" : "Or continue with:",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -3768,6 +3762,7 @@
     },
     "redeem_bonus_button" : {
       "comment" : "Redeem bonus",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -3971,6 +3966,7 @@
     },
     "select_payment_method_button" : {
       "comment" : "Select payment method",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -3982,6 +3978,7 @@
     },
     "sent_code_to_body" : {
       "comment" : "We've sent a code to",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -3993,6 +3990,7 @@
     },
     "sign_in_and_join_us_title" : {
       "comment" : "Sign in and join us!",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -4004,6 +4002,7 @@
     },
     "sign_in_with_facebook_button" : {
       "comment" : "Sign in with Facebook",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -4015,6 +4014,7 @@
     },
     "sign_in_with_google_button" : {
       "comment" : "Sign in with Google",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -4026,6 +4026,7 @@
     },
     "sign_to_get_bonus_button" : {
       "comment" : "Sign in to get your bonus",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -6532,6 +6533,7 @@
     },
     "your_email_here_placeholder" : {
       "comment" : "Your email here",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
