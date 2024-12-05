@@ -301,12 +301,16 @@ public class Purchase: Codable {
                             case .success(let purchases):
                                 purchaseList += purchases
                             case .failure(let productServiceError):
+                                print("Purchase unfinished error")
                                 switch productServiceError {
                                 case .failed(let message, let description, let request):
+                                    print("Purchase unfinished error: failed")
                                     error = AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request))
                                 case .noInternet(let message, let description, let request):
+                                    print("Purchase unfinished error: noInternet")
                                     error = AppCoinsSDKError.networkError(debugInfo: DebugInfo(message: message, description: description, request: request))
                                 case .purchaseVerificationFailed(let message, let description, let request):
+                                    print("Purchase unfinished error: purchaseVerificationFailed")
                                     error = AppCoinsSDKError.unknown(debugInfo: DebugInfo(message: message, description: description, request: request))
                                 }
                             }
