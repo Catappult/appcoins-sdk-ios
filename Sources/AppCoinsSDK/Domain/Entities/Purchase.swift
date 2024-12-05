@@ -299,6 +299,7 @@ public class Purchase: Codable {
                             result in
                             switch result {
                             case .success(let purchases):
+                                print("Purchase unfinished success")
                                 purchaseList += purchases
                             case .failure(let productServiceError):
                                 print("Purchase unfinished error")
