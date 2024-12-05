@@ -182,7 +182,6 @@ public class Purchase: Codable {
     
     // get all the user's purchases
     public static func all(domain: String = (Bundle.main.bundleIdentifier ?? "")) async throws -> [Purchase] {
-        print("SDK: all function was called!!!! Domain: \(domain)")
         return try await withCheckedThrowingContinuation { continuation in
             let walletUseCases = WalletUseCases.shared
             let transactionUseCases = TransactionUseCases.shared
@@ -198,7 +197,7 @@ public class Purchase: Codable {
                 for wallet in walletList {
                     group.enter()
                     queue.sync {
-                        transactionUseCases.getAllPurchases(domain: "domaintest", wa: wallet) {
+                        transactionUseCases.getAllPurchases(domain: domain, wa: wallet) {
                             result in
                             
                             switch result {
@@ -247,7 +246,7 @@ public class Purchase: Codable {
                 for wallet in walletList {
                     group.enter()
                     queue.sync {
-                        transactionUseCases.getLatestPurchase(domain: domain, sku: sku, wa: wallet) {
+                        transactionUseCases.getLatestPurchase(domain: "domain", sku: sku, wa: wallet) {
                             result in
                             switch result {
                             case .success(let purchase):
