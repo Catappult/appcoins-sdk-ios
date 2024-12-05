@@ -71,8 +71,10 @@ public struct Product {
                 productUseCases.getAllProducts(domain: domain) { result in
                     switch result {
                     case .success(let products):
+                        print("success")
                         continuation.resume(returning: products)
                     case .failure(let failure):
+                        print("failure")
                         switch failure {
                         case .failed(let message, let description, let request):
                             continuation.resume(throwing: AppCoinsSDKError.systemError(message: message, description: description, request: request))
