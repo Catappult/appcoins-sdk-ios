@@ -152,7 +152,7 @@ public class Purchase: Codable {
                 for wallet in walletList {
                     group.enter()
                     queue.sync {
-                        transactionUseCases.consumePurchase(domain: "domain", uid: self.uid, wa: wallet) {
+                        transactionUseCases.consumePurchase(domain: domain, uid: self.uid, wa: wallet) {
                             result in
                             switch result {
                             case .success(_):
@@ -295,23 +295,18 @@ public class Purchase: Codable {
                 for wallet in walletList {
                     group.enter()
                     queue.sync {
-                        transactionUseCases.getPurchasesByState(domain: "domain", state: "PENDING", wa: wallet) {
+                        transactionUseCases.getPurchasesByState(domain: domain, state: "PENDING", wa: wallet) {
                             result in
                             switch result {
                             case .success(let purchases):
-                                print("Purchase unfinished success")
                                 purchaseList += purchases
                             case .failure(let productServiceError):
-                                print("Purchase unfinished error")
                                 switch productServiceError {
                                 case .failed(let message, let description, let request):
-                                    print("Purchase unfinished error: failed")
                                     error = AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request))
                                 case .noInternet(let message, let description, let request):
-                                    print("Purchase unfinished error: noInternet")
                                     error = AppCoinsSDKError.networkError(debugInfo: DebugInfo(message: message, description: description, request: request))
                                 case .purchaseVerificationFailed(let message, let description, let request):
-                                    print("Purchase unfinished error: purchaseVerificationFailed")
                                     error = AppCoinsSDKError.unknown(debugInfo: DebugInfo(message: message, description: description, request: request))
                                 }
                             }
