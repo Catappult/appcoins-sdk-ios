@@ -32,14 +32,14 @@ public struct AppcSDK {
     /// }
     /// ```
     static public func isAvailable() async -> Bool {
-        if BuildConfiguration.isDev { return false } // Available for Dev
+        if BuildConfiguration.isDev { return true } // Available for Dev
         
         if #available(iOS 17.4, *) {
             do {
                 let storefront = try await AppDistributor.current
                 switch storefront {
                 case .marketplace(let marketplace):
-                    return marketplace == "com.aptoide.store"
+                    return marketplace == "com.aptoide.ios.store"
                 default:
                     return false
                 }
