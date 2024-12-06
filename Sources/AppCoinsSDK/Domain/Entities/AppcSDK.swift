@@ -39,7 +39,7 @@ public struct AppcSDK {
                 let storefront = try await AppDistributor.current
                 switch storefront {
                 case .marketplace(let marketplace):
-                    return marketplace == "com.aptoide.ios.store"
+                    return marketplace == "com.aptoide.store"
                 default:
                     return false
                 }
