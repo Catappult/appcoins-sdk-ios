@@ -106,7 +106,7 @@ public class Purchase: Codable {
             
             switch result {
             case .success(let wallet):
-                transactionUseCases.acknowledgePurchase(domain: "domain", uid: self.uid, wa: wallet) {
+                transactionUseCases.acknowledgePurchase(domain: domain, uid: self.uid, wa: wallet) {
                     result in
                     
                     switch result {
