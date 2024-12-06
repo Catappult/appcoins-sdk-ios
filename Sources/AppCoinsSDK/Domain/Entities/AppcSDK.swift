@@ -32,7 +32,7 @@ public struct AppcSDK {
     /// }
     /// ```
     static public func isAvailable() async -> Bool {
-        if BuildConfiguration.isDev { return true } // Available for Dev
+        if BuildConfiguration.isDev { return false } // Available for Dev
         
         if #available(iOS 17.4, *) {
             do {
