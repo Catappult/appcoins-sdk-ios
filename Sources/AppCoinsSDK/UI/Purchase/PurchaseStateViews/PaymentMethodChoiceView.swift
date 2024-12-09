@@ -77,7 +77,7 @@ struct PaymentMethodChoiceView: View {
                         
                         VStack(alignment: .leading, spacing: 0) {
                             HStack(spacing: 0) {
-                                Text(Constants.signToGetBonusText)
+                                Text(Constants.signInToGetBonusText)
                                     .font(FontsUi.APC_Body)
                                     .frame(width: 200, alignment: .leading)
                                 

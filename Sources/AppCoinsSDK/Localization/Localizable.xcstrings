@@ -3866,7 +3866,7 @@
         }
       }
     },
-    "sign_to_get_bonus_button" : {
+    "sign_in_to_get_bonus_button" : {
       "comment" : "Sign in to get your bonus",
       "localizations" : {
         "en" : {
