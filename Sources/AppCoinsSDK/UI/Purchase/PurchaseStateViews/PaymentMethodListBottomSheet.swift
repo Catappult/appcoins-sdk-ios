@@ -41,7 +41,6 @@ struct PaymentMethodListBottomSheet: View {
             HStack(spacing: 0) {
                 VStack(spacing: 0) {
                     PaymentMethodList(viewModel: viewModel)
-                        .animation(.easeInOut(duration: 0.2))
                 }
             }
         }

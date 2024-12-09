@@ -40,7 +40,7 @@ internal struct PaymentMethodList: View {
                                 
                                 Image(systemName: "chevron.right")
                                     .font(FontsUi.APC_Footnote)
-                                    .foregroundColor(ColorsUi.APC_ArrowBanner)
+                                    .foregroundColor(ColorsUi.APC_SelectionArrow)
                                 
                                 VStack {}.frame(width: 16)
                                 
