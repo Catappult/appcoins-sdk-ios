@@ -54,7 +54,7 @@ internal class BottomSheetViewModel: ObservableObject {
     
     @Published var isCreditCardView: Bool = false
     
-    @Published var canChooseMethod: Bool = false
+    @Published var isPaymentMethodChoiceSheetPresented: Bool = false
     
     @Published var didLogin: Bool = false
     
@@ -95,9 +95,9 @@ internal class BottomSheetViewModel: ObservableObject {
         }
     }
     
-    internal func setCanChooseMethod(canChooseMethod: Bool) {
-        self.canChooseMethod = canChooseMethod
-    }
+    internal func presentPaymentMethodChoiceSheet() { self.isPaymentMethodChoiceSheetPresented = true }
+    
+    internal func dismissPaymentMethodChoiceSheet() { self.isPaymentMethodChoiceSheetPresented = false }
     
     internal func setOrientation(orientation: Orientation) {
         self.orientation = orientation

@@ -52,7 +52,7 @@ struct PaymentMethodChoiceView: View {
                         }
                         
                         Button {
-                            viewModel.setCanChooseMethod(canChooseMethod: true)
+                            viewModel.presentPaymentMethodChoiceSheet()
                         } label: {
                             VStack(alignment: .leading, spacing: 0) {
                                 HStack(spacing: 0) {
@@ -105,8 +105,8 @@ struct PaymentMethodChoiceView: View {
                         
                     }
                     .ignoresSafeArea(.all)
-                    .onChange(of: viewModel.canChooseMethod) { _ in
-                        if !viewModel.canChooseMethod {
+                    .onChange(of: viewModel.isPaymentMethodChoiceSheetPresented) { _ in
+                        if !viewModel.isPaymentMethodChoiceSheetPresented {
                             scrollViewProxy.scrollTo("bottom", anchor: .bottom)
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
                                 withAnimation(.easeInOut(duration: 30)) {

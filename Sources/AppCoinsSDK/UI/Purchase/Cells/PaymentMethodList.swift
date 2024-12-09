@@ -21,8 +21,8 @@ internal struct PaymentMethodList: View {
                         if (!option.disabled) {
                             transactionViewModel.selectPaymentMethod(paymentMethod: option)
                         }
-                        if viewModel.canChooseMethod == true {
-                            viewModel.setCanChooseMethod(canChooseMethod: false)
+                        if viewModel.isPaymentMethodChoiceSheetPresented == true {
+                            viewModel.dismissPaymentMethodChoiceSheet()
                         }
                     }) {
                         ZStack {

@@ -21,7 +21,7 @@ struct PaymentMethodListBottomSheet: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Button {
-                    viewModel.setCanChooseMethod(canChooseMethod: false)
+                    viewModel.dismissPaymentMethodChoiceSheet()
                 } label: {
                     ZStack {
                         Circle()

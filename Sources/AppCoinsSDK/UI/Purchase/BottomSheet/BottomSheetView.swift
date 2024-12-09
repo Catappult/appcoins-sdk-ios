@@ -84,7 +84,7 @@ internal struct BottomSheetView: View {
                     if [.paying, .adyen].contains(viewModel.purchaseState) && !(viewModel.purchaseState == .adyen && adyenController.state == .storedCreditCard) {
                         if #available(iOS 16.4, *) {
                             PurchaseBottomSheet(viewModel: viewModel)
-                                .sheet(isPresented: $viewModel.canChooseMethod) {
+                                .sheet(isPresented: $viewModel.isPaymentMethodChoiceSheetPresented) {
                                     if viewModel.orientation == .landscape {
                                         PaymentMethodListBottomSheet(viewModel: viewModel)
                                             .presentationCompactAdaptation(.fullScreenCover)
@@ -93,7 +93,7 @@ internal struct BottomSheetView: View {
                                                 Color.black.opacity(0.001)
                                                     .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
                                                     .onTapGesture {
-                                                        viewModel.setCanChooseMethod(canChooseMethod: false)
+                                                        viewModel.dismissPaymentMethodChoiceSheet()
                                                     }
                                             }
                                             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
@@ -126,14 +126,14 @@ internal struct BottomSheetView: View {
                 // Workaround to place multiple sheets on the same view on older iOS versions
                 // https://stackoverflow.com/a/64403206/18917552
                 HStack(spacing: 0) {}
-                    .sheet(isPresented: $paypalViewModel.presentPayPalSheet, onDismiss: paypalViewModel.dismissPayPalView) {
+                    .sheet(isPresented: $paypalViewModel.isPayPalSheetPresented, onDismiss: paypalViewModel.dismissPayPalView) {
                         if let presentURL = paypalViewModel.presentPayPalSheetURL {
                             PayPalWebView(url: presentURL, method: paypalViewModel.presentPayPalSheetMethod ?? "POST", successHandler: paypalViewModel.createBillingAgreementAndFinishTransaction, cancelHandler: paypalViewModel.cancelBillingAgreementTokenPayPal)
                         }
                     }
                 
                 HStack(spacing: 0) {}
-                    .sheet(isPresented: $adyenController.presentAdyenRedirect) {
+                    .sheet(isPresented: $adyenController.isAdyenRedirectPresented) {
                         if let viewController = adyenController.presentableComponent?.viewController {
                             AdyenViewControllerWrapper(viewController: viewController, orientation: viewModel.orientation)
                                 .ignoresSafeArea(.all)
