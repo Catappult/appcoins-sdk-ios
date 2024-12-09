@@ -1540,9 +1540,6 @@
         }
       }
     },
-    "chevron.right" : {
-
-    },
     "choose_card_title" : {
       "comment" : "Choose a Card",
       "extractionState" : "manual",
