@@ -21,6 +21,7 @@ internal struct PurchaseBottomSheet: View {
     
     @State private var timer: Timer? = nil
     @State private var dynamicHeight: CGFloat = 291
+    var bottomSheetHeight: CGFloat = 420
     
     internal var body: some View {
         
@@ -28,61 +29,72 @@ internal struct PurchaseBottomSheet: View {
             if viewModel.purchaseState == .paying {
                 ZStack(alignment: .top) {
                     VStack(spacing: 0) {
-                        
-                        if transactionViewModel.lastPaymentMethod != nil || transactionViewModel.showOtherPaymentMethods {
-                            if (!transactionViewModel.showOtherPaymentMethods) {
-                                LastPaymentMethodView(viewModel: viewModel)
+                        if transactionViewModel.showOtherPaymentMethods || transactionViewModel.lastPaymentMethod != nil {
+                            if viewModel.canLogin {
+                                if viewModel.hasMagicLinkCode {
+                                    MagicLinkCodeView(viewModel: viewModel)
+                                } else {
+                                    UserLoginView(viewModel: viewModel)
+                                }
                             } else {
                                 PaymentMethodChoiceView(viewModel: viewModel)
                             }
                         } else {
                             if #available(iOS 17, *) {
                                 ScrollView(.vertical, showsIndicators: false) {
-                                    VStack(spacing: 0) {
-                                        
-                                        VStack {}.frame(height: viewModel.orientation == .landscape ? 60 : 80)
-                                        
-                                        VStack {}
-                                            .skeleton(with: true, shape: .rectangle)
-                                            .cornerRadius(13)
-                                            .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 56)
-                                        
-                                        VStack {}.frame(height: 16)
-                                        
-                                        VStack {}
-                                            .skeleton(with: true, shape: .rectangle)
-                                            .cornerRadius(12)
-                                            .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 150)
-                                    }
+                                    VStack {}
+                                        .skeleton(with: true, shape: .rectangle)
+                                        .cornerRadius(13)
+                                        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 312)
+                                    
+                                    VStack {}.frame(height: viewModel.orientation == .landscape ? 52 : 100)
+                                    
                                 }.defaultScrollAnchor(.bottom)
                             }
                         }
                         
                         VStack {}.frame(height: 8)
                         
-                        // Buying button
-                        Button(action: {
-                            DispatchQueue.main.async { viewModel.purchaseState = .processing }
-                            viewModel.buy()
-                        }) {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 12)
-                                    .foregroundColor(transactionViewModel.transaction != nil ? ColorsUi.APC_Pink : ColorsUi.APC_Gray)
-                                Text(Constants.buyText)
+                        if viewModel.canLogin {
+                            Button(action: {
+                                if viewModel.validateEmail() { viewModel.setHasMagicLinkCode(hasMagicLinkCode: true) }
+                            }) {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .foregroundColor(transactionViewModel.transaction != nil ? ColorsUi.APC_Pink : ColorsUi.APC_Gray)
+                                    Text(Constants.continueText)
+                                }
                             }
+                            .disabled(transactionViewModel.transaction == nil)
+                            .frame(maxHeight: .infinity, alignment: .bottom)
+                            .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
+                            .foregroundColor(ColorsUi.APC_White)
+                        } else {
+                            // Buying button
+                            Button(action: {
+                                DispatchQueue.main.async { viewModel.purchaseState = .processing }
+                                viewModel.buy()
+                            }) {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 12)
+                                        .foregroundColor(transactionViewModel.transaction != nil ? ColorsUi.APC_Pink : ColorsUi.APC_Gray)
+                                    Text(Constants.buyText)
+                                }
+                            }
+                            .disabled(transactionViewModel.transaction == nil)
+                            .frame(maxHeight: .infinity, alignment: .bottom)
+                            .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
+                            .foregroundColor(ColorsUi.APC_White)
                         }
-                        .disabled(transactionViewModel.transaction == nil)
-                        .frame(maxHeight: .infinity, alignment: .bottom)
-                        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
-                        .foregroundColor(ColorsUi.APC_White)
                         
                         VStack {}.frame(height: Utils.bottomSafeAreaHeight == 0 ? 5 : 28)
                         
                     }
                     .frame(maxHeight: .infinity, alignment: .bottom)
                     
-                    BottomSheetAppHeader(viewModel: viewModel, transactionViewModel: transactionViewModel)
-                    
+                    if !viewModel.hasMagicLinkCode {
+                        BottomSheetAppHeader(viewModel: viewModel, transactionViewModel: transactionViewModel)
+                    }
                 }
             }
             
@@ -114,7 +126,7 @@ internal struct PurchaseBottomSheet: View {
             }
             
         }
-        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: viewModel.orientation == .landscape ? UIScreen.main.bounds.height * 0.9 : viewModel.isCreditCardView ? dynamicHeight + 72 : 420)
+        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: viewModel.orientation == .landscape ? UIScreen.main.bounds.height * 0.9 : viewModel.isCreditCardView ? dynamicHeight + 72 : viewModel.canLogin && keyboardObserver.isKeyboardVisible ? self.setHeightFromKeyboardToTop(keyboardObserverHeight: keyboardObserver.heighFromKeyboardToTop) : bottomSheetHeight)
         .padding(.bottom, keyboardObserver.isKeyboardVisible && viewModel.orientation != .landscape ? keyboardObserver.keyboardHeight: 0)
         .background(ColorsUi.APC_BottomSheet_LightGray_Background)
         .cornerRadius(13, corners: [.topLeft, .topRight])
@@ -146,5 +158,13 @@ internal struct PurchaseBottomSheet: View {
     private func stopObservingDynamicHeight() {
         timer?.invalidate()
         timer = nil
+    }
+    
+    private func setHeightFromKeyboardToTop(keyboardObserverHeight: CGFloat) -> CGFloat {
+        if keyboardObserverHeight > bottomSheetHeight {
+            return bottomSheetHeight
+        } else {
+            return keyboardObserverHeight
+        }
     }
 }
