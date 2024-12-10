@@ -772,6 +772,18 @@
         }
       }
     },
+    "bonus_every_purchase_body" : {
+      "comment" : "You'll get a bonus on every purchase!",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You'll get a bonus on every purchase!"
+          }
+        }
+      }
+    },
     "bonus_not_available" : {
       "comment" : "Bonus not available with this payment method",
       "extractionState" : "manual",
@@ -1540,6 +1552,18 @@
         }
       }
     },
+    "check_your_email_body" : {
+      "comment" : "Check your email",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Check your email"
+          }
+        }
+      }
+    },
     "choose_card_title" : {
       "comment" : "Choose a Card",
       "extractionState" : "manual",
@@ -1734,11 +1758,36 @@
     },
     "choose_your_payment_method_title" : {
       "comment" : "Choose your payment method",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Choose your payment method"
+          }
+        }
+      }
+    },
+    "code_label" : {
+      "comment" : "Code",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Code"
+          }
+        }
+      }
+    },
+    "continue_button" : {
+      "comment" : "Continue",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Continue"
           }
         }
       }
@@ -1935,6 +1984,18 @@
         }
       }
     },
+    "email_label" : {
+      "comment" : "Email",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Email"
+          }
+        }
+      }
+    },
     "error_title" : {
       "comment" : "Error",
       "extractionState" : "manual",
@@ -2123,6 +2184,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "錯誤"
+          }
+        }
+      }
+    },
+    "incorrect_code_body" : {
+      "comment" : "Your code is incorrect.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your code is incorrect."
           }
         }
       }
@@ -2507,6 +2580,18 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Install the AppCoins Wallet to receive *even more rewards*."
+          }
+        }
+      }
+    },
+    "invalid_email_body" : {
+      "comment" : "Invalid email address.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invalid email address."
           }
         }
       }
@@ -3087,6 +3172,18 @@
         }
       }
     },
+    "or_continue_with_body" : {
+      "comment" : "Or continue with:",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Or continue with:"
+          }
+        }
+      }
+    },
     "other_payment_methods_body" : {
       "comment" : "Other payment methods",
       "extractionState" : "manual",
@@ -3663,6 +3760,18 @@
         }
       }
     },
+    "redeem_bonus_button" : {
+      "comment" : "Redeem bonus",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Redeem bonus"
+          }
+        }
+      }
+    },
     "retry_connection_button" : {
       "comment" : "Retry Connection",
       "extractionState" : "manual",
@@ -3857,6 +3966,7 @@
     },
     "select_payment_method_button" : {
       "comment" : "Select payment method",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -3866,8 +3976,57 @@
         }
       }
     },
-    "sign_in_to_get_bonus_button" : {
+    "sent_code_to_body" : {
+      "comment" : "We've sent a code to",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We've sent a code to"
+          }
+        }
+      }
+    },
+    "sign_in_and_join_us_title" : {
+      "comment" : "Sign in and join us!",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign in and join us!"
+          }
+        }
+      }
+    },
+    "sign_in_with_facebook_button" : {
+      "comment" : "Sign in with Facebook",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign in with Facebook"
+          }
+        }
+      }
+    },
+    "sign_in_with_google_button" : {
+      "comment" : "Sign in with Google",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign in with Google"
+          }
+        }
+      }
+    },
+    "sign_to_get_bonus_button" : {
       "comment" : "Sign in to get your bonus",
+      "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -6368,6 +6527,18 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Your card"
+          }
+        }
+      }
+    },
+    "your_email_here_placeholder" : {
+      "comment" : "Your email here",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your email here"
           }
         }
       }
