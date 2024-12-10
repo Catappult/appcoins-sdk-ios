@@ -1,5 +1,5 @@
 //
-//  PaymentMethodChoiceView.swift
+//  PurchaseView.swift
 //
 //
 //  Created by Graciano Caldeira on 04/10/2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PaymentMethodChoiceView: View {
+struct PurchaseView: View {
     
     @ObservedObject internal var viewModel: BottomSheetViewModel
     @ObservedObject internal var transactionViewModel: TransactionViewModel = TransactionViewModel.shared

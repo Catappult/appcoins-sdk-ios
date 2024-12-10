@@ -29,7 +29,7 @@ internal struct PurchaseBottomSheet: View {
                 ZStack(alignment: .top) {
                     VStack(spacing: 0) {
                         if transactionViewModel.showOtherPaymentMethods || transactionViewModel.lastPaymentMethod != nil {
-                            PaymentMethodChoiceView(viewModel: viewModel)
+                            PurchaseView(viewModel: viewModel)
                         } else {
                             if #available(iOS 17, *) {
                                 ScrollView(.vertical, showsIndicators: false) {
