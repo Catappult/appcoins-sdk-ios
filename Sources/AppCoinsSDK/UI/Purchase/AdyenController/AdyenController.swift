@@ -28,7 +28,7 @@ internal class AdyenController : AdyenSessionDelegate, PresentationDelegate, Obs
     
     @Published internal var presentableComponent: PresentableComponent? = nil
     @Published internal var redirectComponent: RedirectComponent? = nil
-    @Published internal var presentAdyenRedirect: Bool = false
+    @Published internal var isAdyenRedirectPresented: Bool = false
     
     @Published internal var state: AdyenState = .none
     
@@ -112,7 +112,7 @@ internal class AdyenController : AdyenSessionDelegate, PresentationDelegate, Obs
     
     func didComplete(with result: AdyenSessionResult, component: any Adyen.Component, session: AdyenSession) {
         
-        if component is RedirectComponent { self.presentAdyenRedirect = false }
+        if component is RedirectComponent { self.isAdyenRedirectPresented = false }
         
         switch result.resultCode {
             
@@ -231,7 +231,7 @@ internal class AdyenController : AdyenSessionDelegate, PresentationDelegate, Obs
                                                       order: nil)
         paypalComponent.delegate = session
         paypalComponent.initiatePayment()
-        self.presentAdyenRedirect = true
+        self.isAdyenRedirectPresented = true
         
         let component = RedirectComponent(context: adyenContext)
         component.delegate = session

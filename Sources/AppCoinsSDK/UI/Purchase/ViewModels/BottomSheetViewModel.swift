@@ -54,6 +54,10 @@ internal class BottomSheetViewModel: ObservableObject {
     
     @Published var isCreditCardView: Bool = false
     
+    @Published var isPaymentMethodChoiceSheetPresented: Bool = false
+    
+    @Published var isLoggedIn: Bool = false
+    
     private init() {
         // Prevents Layout Warning Prints
         UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
@@ -90,6 +94,10 @@ internal class BottomSheetViewModel: ObservableObject {
             AdyenController.shared.reset()
         }
     }
+    
+    internal func presentPaymentMethodChoiceSheet() { self.isPaymentMethodChoiceSheetPresented = true }
+    
+    internal func dismissPaymentMethodChoiceSheet() { self.isPaymentMethodChoiceSheetPresented = false }
     
     internal func setOrientation(orientation: Orientation) {
         self.orientation = orientation

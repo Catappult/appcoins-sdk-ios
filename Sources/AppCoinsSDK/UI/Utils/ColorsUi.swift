@@ -31,5 +31,9 @@ internal struct ColorsUi {
     static internal var APC_BottomSheet_APPC: Color = Color(red: 0.39, green: 0.39, blue: 0.4)
     static internal var APC_BonusBannerBackground: Color = Color(red: 0.9, green: 0.9, blue: 0.92)
     
+    // Login
+    static internal var APC_LoginIcon: Color = Color(red: 0.56, green: 0.56, blue: 0.58)
+    static internal var APC_SelectionArrow: Color = Color(red: 0.56, green: 0.56, blue: 0.58).opacity(0.3)
+    
 }
 

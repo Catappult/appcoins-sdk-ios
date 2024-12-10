@@ -28,32 +28,18 @@ internal struct PurchaseBottomSheet: View {
             if viewModel.purchaseState == .paying {
                 ZStack(alignment: .top) {
                     VStack(spacing: 0) {
-                        
-                        if transactionViewModel.lastPaymentMethod != nil || transactionViewModel.showOtherPaymentMethods {
-                            if (!transactionViewModel.showOtherPaymentMethods) {
-                                LastPaymentMethodView(viewModel: viewModel)
-                            } else {
-                                PaymentMethodChoiceView(viewModel: viewModel)
-                            }
+                        if transactionViewModel.showOtherPaymentMethods || transactionViewModel.lastPaymentMethod != nil {
+                            PurchaseView(viewModel: viewModel)
                         } else {
                             if #available(iOS 17, *) {
                                 ScrollView(.vertical, showsIndicators: false) {
-                                    VStack(spacing: 0) {
-                                        
-                                        VStack {}.frame(height: viewModel.orientation == .landscape ? 60 : 80)
-                                        
-                                        VStack {}
-                                            .skeleton(with: true, shape: .rectangle)
-                                            .cornerRadius(13)
-                                            .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 56)
-                                        
-                                        VStack {}.frame(height: 16)
-                                        
-                                        VStack {}
-                                            .skeleton(with: true, shape: .rectangle)
-                                            .cornerRadius(12)
-                                            .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 150)
-                                    }
+                                    VStack {}
+                                        .skeleton(with: true, shape: .rectangle)
+                                        .cornerRadius(13)
+                                        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 312)
+                                    
+                                    VStack {}.frame(height: viewModel.orientation == .landscape ? 52 : 100)
+                                    
                                 }.defaultScrollAnchor(.bottom)
                             }
                         }
