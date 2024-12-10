@@ -85,23 +85,7 @@ internal struct BottomSheetView: View {
                         if #available(iOS 16.4, *) {
                             PurchaseBottomSheet(viewModel: viewModel)
                                 .sheet(isPresented: $viewModel.isPaymentMethodChoiceSheetPresented) {
-                                    if viewModel.orientation == .landscape {
-                                        PaymentMethodListBottomSheet(viewModel: viewModel)
-                                            .presentationCompactAdaptation(.fullScreenCover)
-                                            .clipShape(RoundedCorner(radius: 13, corners: [.topLeft, .topRight]))
-                                            .presentationBackground {
-                                                Color.black.opacity(0.001)
-                                                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-                                                    .onTapGesture {
-                                                        viewModel.dismissPaymentMethodChoiceSheet()
-                                                    }
-                                            }
-                                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-                                            .ignoresSafeArea(.all)
-                                    } else {
-                                        PaymentMethodListBottomSheet(viewModel: viewModel)
-                                            .presentationDragIndicator(.hidden)
-                                    }
+                                    PaymentMethodListBottomSheet(viewModel: viewModel)
                                 }
                         }
                     }
