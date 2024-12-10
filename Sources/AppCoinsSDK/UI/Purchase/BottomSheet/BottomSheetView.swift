@@ -82,7 +82,12 @@ internal struct BottomSheetView: View {
                     VStack{ }.frame(maxWidth: .infinity, maxHeight: .infinity)
                     
                     if [.paying, .adyen].contains(viewModel.purchaseState) && !(viewModel.purchaseState == .adyen && adyenController.state == .storedCreditCard) {
-                        PurchaseBottomSheet(viewModel: viewModel)
+                        if #available(iOS 16.4, *) {
+                            PurchaseBottomSheet(viewModel: viewModel)
+                                .sheet(isPresented: $viewModel.isPaymentMethodChoiceSheetPresented) {
+                                    PaymentMethodListBottomSheet(viewModel: viewModel)
+                                }
+                        }
                     }
                     
                     if viewModel.purchaseState == .processing {
@@ -105,14 +110,14 @@ internal struct BottomSheetView: View {
                 // Workaround to place multiple sheets on the same view on older iOS versions
                 // https://stackoverflow.com/a/64403206/18917552
                 HStack(spacing: 0) {}
-                    .sheet(isPresented: $paypalViewModel.presentPayPalSheet, onDismiss: paypalViewModel.dismissPayPalView) {
+                    .sheet(isPresented: $paypalViewModel.isPayPalSheetPresented, onDismiss: paypalViewModel.dismissPayPalView) {
                         if let presentURL = paypalViewModel.presentPayPalSheetURL {
-                                PayPalWebView(url: presentURL, method: paypalViewModel.presentPayPalSheetMethod ?? "POST", successHandler: paypalViewModel.createBillingAgreementAndFinishTransaction, cancelHandler: paypalViewModel.cancelBillingAgreementTokenPayPal)
+                            PayPalWebView(url: presentURL, method: paypalViewModel.presentPayPalSheetMethod ?? "POST", successHandler: paypalViewModel.createBillingAgreementAndFinishTransaction, cancelHandler: paypalViewModel.cancelBillingAgreementTokenPayPal)
                         }
                     }
                 
                 HStack(spacing: 0) {}
-                    .sheet(isPresented: $adyenController.presentAdyenRedirect) {
+                    .sheet(isPresented: $adyenController.isAdyenRedirectPresented) {
                         if let viewController = adyenController.presentableComponent?.viewController {
                             AdyenViewControllerWrapper(viewController: viewController, orientation: viewModel.orientation)
                                 .ignoresSafeArea(.all)

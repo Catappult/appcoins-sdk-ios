@@ -99,10 +99,10 @@ internal class TransactionViewModel : ObservableObject {
                                             // 6. Get user's balance
                                             self.getWalletBalance(wallet: wallet) {
                                                 balance in
-                                                        
+                                                
                                                 let balanceValue = balance.balance
                                                 let balanceCurrency = balance.balanceCurrency
-                                                    
+                                                
                                                 DispatchQueue.main.async {
                                                     // 7. Build the Transaction UI
                                                     self.transaction = TransactionAlertUi(domain: domain, description: product.title, category: .IAP, sku: product.sku, moneyAmount: moneyAmount, moneyCurrency: productCurrency, appcAmount: appcValue, bonusAmount: floor(transactionBonus.value*100)/100, bonusCurrency: transactionBonus.currency, balanceAmount: floor(balanceValue*100)/100, balanceCurrency: balanceCurrency, paymentMethods: availablePaymentMethods)
@@ -229,7 +229,7 @@ internal class TransactionViewModel : ObservableObject {
             }
         }
     }
-        
+    
     private func showPaymentMethodsOnBuild(balance: Balance) {
         // Filter out the AppCoins payment method if balance is insufficient
         disableAppCoinsIfNeeded(balance: balance)
@@ -238,7 +238,7 @@ internal class TransactionViewModel : ObservableObject {
         if let lastPaymentMethod = self.transactionUseCases.getLastPaymentMethod() {
             showQuickPaymentMethod(lastPaymentMethod)
         } else {
-            selectDefaultPaymentMethod()
+            self.showOtherPaymentMethods = true
         }
         
         func disableAppCoinsIfNeeded(balance: Balance) {
@@ -251,16 +251,6 @@ internal class TransactionViewModel : ObservableObject {
             }
         }
         
-        func selectDefaultPaymentMethod() {
-            if let appcPaymentMethod = self.transaction?.paymentMethods.first(where: { $0.name == Method.appc.rawValue && !$0.disabled }) {
-                self.lastPaymentMethod = appcPaymentMethod
-                self.paymentMethodSelected = appcPaymentMethod
-            } else if let fallback = findFallbackPaymentMethod() {
-                self.paymentMethodSelected = fallback
-                self.showOtherPaymentMethods = true
-            }
-        }
-
         func showQuickPaymentMethod(_ lastPaymentMethod: Method) {
             if let selectedMethod = self.transaction?.paymentMethods.first(where: { $0.name == lastPaymentMethod.rawValue && !$0.disabled }) {
                 self.lastPaymentMethod = selectedMethod
