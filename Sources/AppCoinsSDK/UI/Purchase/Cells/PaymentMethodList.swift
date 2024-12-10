@@ -21,9 +21,7 @@ internal struct PaymentMethodList: View {
                         if (!option.disabled) {
                             transactionViewModel.selectPaymentMethod(paymentMethod: option)
                         }
-                        if viewModel.isPaymentMethodChoiceSheetPresented == true {
-                            viewModel.dismissPaymentMethodChoiceSheet()
-                        }
+                        viewModel.dismissPaymentMethodChoiceSheet()
                     }) {
                         ZStack {
                             ColorsUi.APC_White
