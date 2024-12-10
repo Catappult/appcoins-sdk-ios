@@ -56,7 +56,7 @@ internal class BottomSheetViewModel: ObservableObject {
     
     @Published var isPaymentMethodChoiceSheetPresented: Bool = false
     
-    @Published var didLogin: Bool = false
+    @Published var isLoggedIn: Bool = false
     
     private init() {
         // Prevents Layout Warning Prints
