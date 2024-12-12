@@ -106,6 +106,15 @@ internal class BuildConfiguration {
         }
     }
     
+    static internal var aptoideWebservicesBaseURL: String {
+        switch environment {
+        case .debugSDKDev, .releaseSDKDev:
+            return "https://webservices.aptoide.com/api/7"
+        case .debugSDKProd, .releaseSDKProd:
+            return "https://webservices-devel.aptoide.com/api/7"
+        }
+    }
+    
     static internal var aptoideOEMID = "a37f1d7a4599d0ba60f23f9ff7b9ce95"
     
     static internal var userUID =  UIDevice.current.identifierForVendor!.uuidString

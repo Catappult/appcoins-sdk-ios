@@ -173,6 +173,7 @@ internal class BottomSheetViewModel: ObservableObject {
                 AdyenController.shared.cancel()
                 self.userCancelled()
             }
+        case .login: self.userCancelled()
         case .processing: break
         case .success: self.dismissVC()
         case .successAskForInstall: self.skipWalletInstall()

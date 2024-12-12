@@ -34,6 +34,7 @@ internal class AppCoinGamificationServiceClient : AppCoinGamificationService {
                 } else {
                     do {
                         if let data = data {
+                            print(String(data: data, encoding: .utf8))
                             let successResponse = try JSONDecoder().decode(TransactionBonusRaw.self, from: data)
                             result(.success(successResponse))
                         } else {
