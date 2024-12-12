@@ -64,6 +64,6 @@ internal struct LoginMethod {
     internal let baseURL: String
     
     internal static let Google: LoginMethod = LoginMethod(
-        baseURL: "http://localhost:8000/aptoide-ios/8.20240930/auth/google?domain=\(Bundle.main.bundleIdentifier ?? "")"
+        baseURL: "https://api.dev.aptoide.com/aptoide-ios/auth/user/login/social/google?domain=\(Bundle.main.bundleIdentifier ?? "")"
     )
 }
