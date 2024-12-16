@@ -15,7 +15,7 @@ struct PurchaseBonusBanner: View {
     var body: some View {
         VStack(spacing: 0) {
             if transactionViewModel.hasBonus {
-                VStack {}.frame(height: 10)
+                VStack{}.frame(height: 10)
                 
                 HStack {
                     Image("gift-pink", bundle: Bundle.APPCModule)
@@ -44,7 +44,7 @@ struct PurchaseBonusBanner: View {
                         .frame(width: 16, height: 16)
                 }
                 
-                VStack {}.frame(height: 4)
+                VStack{}.frame(height: 4)
                 
                 if viewModel.isLoggedIn {
                     HStack(spacing: 0) {
@@ -56,7 +56,7 @@ struct PurchaseBonusBanner: View {
                         
                         if let balanceCurrency = transactionViewModel.transaction?.balanceCurrency.sign, let balanceValue = transactionViewModel.transaction?.balanceAmount {
                             
-                            VStack {}.frame(width: 6.22)
+                            VStack{}.frame(width: 6.22)
                             
                             StyledText(
                                 String(format: Constants.walletBalance, "*\(balanceCurrency)\(String(format: "%.2f", balanceValue))*"),
@@ -67,7 +67,7 @@ struct PurchaseBonusBanner: View {
                             
                         } else {
                             
-                            VStack {}.frame(width: 6.22)
+                            VStack{}.frame(width: 6.22)
                             
                             Text(String(format: Constants.walletBalance, ""))
                                 .font(FontsUi.APC_Caption1_Bold)
@@ -82,7 +82,7 @@ struct PurchaseBonusBanner: View {
                     }
                 }
                 
-                VStack {}.frame(height: 10)
+                VStack{}.frame(height: 10)
             } else {
                 HStack {
                     Image("gift-gray", bundle: Bundle.APPCModule)

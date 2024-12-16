@@ -19,13 +19,13 @@ internal struct SyncSuccessBottomSheet: View {
             
             VStack(spacing: 0) {
                 
-                VStack {}.frame(height: 66)
+                VStack{}.frame(height: 66)
                 
                 Image("checkmark", bundle: Bundle.APPCModule)
                     .resizable()
                     .frame(width: 80, height: 80)
                 
-                VStack {}.frame(height: 15)
+                VStack{}.frame(height: 15)
                 
                 Text(Constants.successText)
                     .font(FontsUi.APC_Title3_Bold)
