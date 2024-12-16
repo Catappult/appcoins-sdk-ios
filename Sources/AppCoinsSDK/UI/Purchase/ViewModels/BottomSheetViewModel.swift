@@ -109,9 +109,7 @@ internal class BottomSheetViewModel: ObservableObject {
     internal func setCanLogin(canLogin: Bool) {
         self.canLogin = canLogin
     }
-    internal func setCanChooseMethod(canChooseMethod: Bool) {
-        self.canChooseMethod = canChooseMethod
-    }
+    
     internal func presentPaymentMethodChoiceSheet() { self.isPaymentMethodChoiceSheetPresented = true }
     
     internal func dismissPaymentMethodChoiceSheet() { self.isPaymentMethodChoiceSheetPresented = false }

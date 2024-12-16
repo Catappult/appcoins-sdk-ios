@@ -48,7 +48,7 @@ struct PurchaseView: View {
                     }
                     
                     Button {
-                        viewModel.setCanChooseMethod(canChooseMethod: true)
+                        viewModel.presentPaymentMethodChoiceSheet()
                     } label: {
                         VStack(alignment: .leading, spacing: 0) {
                             HStack(spacing: 0) {
@@ -59,7 +59,7 @@ struct PurchaseView: View {
                                 Image(systemName: "chevron.right")
                                     .frame(maxWidth: .infinity, alignment: .trailing)
                                     .frame(height: 40)
-                                    .foregroundColor(ColorsUi.APC_ArrowBanner)
+                                    .foregroundColor(ColorsUi.APC_SelectionArrow)
                             }
                             .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 32 - 48 : UIScreen.main.bounds.width - 32 - 48, height: 40)
                         }
@@ -83,7 +83,7 @@ struct PurchaseView: View {
                                 Image(systemName: "chevron.right")
                                     .font(FontsUi.APC_Footnote)
                                     .frame(maxWidth: .infinity, alignment: .trailing)
-                                    .foregroundColor(ColorsUi.APC_ArrowBanner)
+                                    .foregroundColor(ColorsUi.APC_SelectionArrow)
                                 
                             }
                             .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 32 - 48 : UIScreen.main.bounds.width - 32 - 48, height: 40)
