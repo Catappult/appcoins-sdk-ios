@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PurchaseView: View {
+struct PurchaseView: View{
     
     @ObservedObject internal var viewModel: BottomSheetViewModel
     @ObservedObject internal var transactionViewModel: TransactionViewModel = TransactionViewModel.shared
