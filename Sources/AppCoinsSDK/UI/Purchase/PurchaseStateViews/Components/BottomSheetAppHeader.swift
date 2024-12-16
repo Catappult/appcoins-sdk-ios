@@ -17,7 +17,7 @@ struct BottomSheetAppHeader: View {
             
             VStack {}.frame(width: 24)
             
-            if viewModel.canLogin {
+            if viewModel.purchaseState == .login {
                 VStack(alignment: .leading, spacing: 0) {
                     Text(Constants.signInAndJoinTitle)
                         .foregroundColor(ColorsUi.APC_Black)

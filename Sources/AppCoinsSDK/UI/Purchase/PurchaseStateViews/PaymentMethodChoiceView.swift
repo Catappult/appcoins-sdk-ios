@@ -11,6 +11,7 @@ struct PaymentMethodChoiceView: View {
     
     @ObservedObject internal var viewModel: BottomSheetViewModel
     @ObservedObject internal var transactionViewModel: TransactionViewModel = TransactionViewModel.shared
+    @ObservedObject internal var authViewModel: AuthViewModel = AuthViewModel.shared
     
     var body: some View {
         if #available(iOS 17, *) {
@@ -25,7 +26,7 @@ struct PaymentMethodChoiceView: View {
                         
                         VStack {}.frame(height: 8)
                         
-                        PurchaseBonusBanner(viewModel: viewModel, transactionViewModel: transactionViewModel)
+                        PurchaseBonusBanner(viewModel: viewModel, transactionViewModel: transactionViewModel, authViewModel: authViewModel)
                         
                         VStack {}.frame(height: 16)
                         
@@ -76,7 +77,7 @@ struct PaymentMethodChoiceView: View {
                         VStack {}.frame(height: 8)
                         
                         Button {
-                            viewModel.setCanLogin(canLogin: true)
+                            viewModel.setPurchaseState(newState: .login)
                         } label: {
                             VStack(alignment: .leading, spacing: 0) {
                                 HStack(spacing: 0) {

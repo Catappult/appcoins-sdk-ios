@@ -13,6 +13,7 @@ internal struct CreditCardBottomSheet: View {
     
     @ObservedObject internal var viewModel: BottomSheetViewModel
     @ObservedObject internal var transactionViewModel: TransactionViewModel
+    @ObservedObject internal var authViewModel: AuthViewModel
     @ObservedObject internal var adyenController: AdyenController = AdyenController.shared
     @Binding var dynamicHeight: CGFloat
     

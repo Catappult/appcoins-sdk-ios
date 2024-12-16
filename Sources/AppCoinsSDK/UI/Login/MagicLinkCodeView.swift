@@ -10,6 +10,7 @@ import SwiftUI
 struct MagicLinkCodeView: View {
     
     @ObservedObject internal var viewModel: BottomSheetViewModel
+    @ObservedObject internal var authViewModel: AuthViewModel
     
     var body: some View {
         if #available(iOS 17, *) {
@@ -33,7 +34,7 @@ struct MagicLinkCodeView: View {
                             
                             VStack {}.frame(height: 16)
                             
-                            Text(Constants.sentCodeTo + ": " + viewModel.loginEmailText)
+                            Text(Constants.sentCodeTo + ": " + authViewModel.magicLinkEmail)
                                 .font(FontsUi.APC_Subheadline)
                                 .foregroundColor(ColorsUi.APC_Black)
                                 .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 - 30 : UIScreen.main.bounds.width - 48 - 30)
@@ -45,7 +46,7 @@ struct MagicLinkCodeView: View {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 10)
                                     .fill(ColorsUi.APC_White)
-                                    .stroke(viewModel.isMagicLinkCodeCorrect ? .clear : Color.red, lineWidth: 1)
+                                    .stroke(authViewModel.isMagicLinkCodeValid ? .clear : Color.red, lineWidth: 1)
                                     .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 44)
                                 
                                 HStack(spacing: 0) {
@@ -53,13 +54,13 @@ struct MagicLinkCodeView: View {
                                     
                                     VStack {}.frame(width: 8)
                                     
-                                    TextField(text: $viewModel.magicLinkCode) {
+                                    TextField(text: $authViewModel.magicLinkCode) {
                                         Text(Constants.codeLabel)
                                     }
                                 }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 - 32 : UIScreen.main.bounds.width - 48 - 32, height: 44)
                             }
                             
-                            if !viewModel.isMagicLinkCodeCorrect {
+                            if !authViewModel.isMagicLinkCodeValid {
                                 VStack(spacing: 0) {
                                     VStack {}.frame(height: 4)
                                     

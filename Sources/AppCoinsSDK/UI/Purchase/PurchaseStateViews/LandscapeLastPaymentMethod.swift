@@ -27,7 +27,7 @@ struct LastPaymentMethodView: View {
                         
                         VStack {}.frame(height: 8)
                         
-                        PurchaseBonusBanner(viewModel: viewModel, transactionViewModel: transactionViewModel)
+                        PurchaseBonusBanner(viewModel: viewModel, transactionViewModel: transactionViewModel, authViewModel: authViewModel)
                         
                         VStack {}.frame(height: 16)
                         

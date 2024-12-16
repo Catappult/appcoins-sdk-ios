@@ -82,7 +82,7 @@ internal struct BottomSheetView: View {
                 VStack(spacing: 0) {
                     VStack{ }.frame(maxWidth: .infinity, maxHeight: .infinity)
                     
-                    if [.paying, .adyen].contains(viewModel.purchaseState) && !(viewModel.purchaseState == .adyen && adyenController.state == .storedCreditCard) {
+                    if [.paying, .adyen, .login].contains(viewModel.purchaseState) && !(viewModel.purchaseState == .adyen && adyenController.state == .storedCreditCard) {
                         if #available(iOS 16.4, *) {
                             PurchaseBottomSheet(viewModel: viewModel)
                                 .sheet(isPresented: $viewModel.canChooseMethod) {

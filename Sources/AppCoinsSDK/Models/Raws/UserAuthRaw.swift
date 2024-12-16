@@ -12,17 +12,29 @@ internal struct UserAuthRaw: Codable {
     internal let credential: String
     internal let type: String
     internal let supported: String
+    internal let state: String?
     internal let agent: String?
+    internal let accepted: [String]
     
     internal enum CodingKeys: String, CodingKey {
         case credential = "credential"
         case type = "type"
         case supported = "supported"
+        case state = "state"
         case agent = "agent"
+        case accepted = "accepted"
     }
     
     internal static func fromGoogleAuth(token: String) -> UserAuthRaw {
-        return UserAuthRaw(credential: token, type: UserAuthType.Google.rawValue, supported: UserAuthSupported.OAuth2.rawValue, agent: nil)
+        return UserAuthRaw(credential: token, type: UserAuthType.Google.rawValue, supported: UserAuthSupported.OAuth2.rawValue, state: nil, agent: nil, accepted: ["TOS", "PRIVACY", "DISTRIBUTION"])
+    }
+    
+    internal static func fromMagicLinkCode(code: String, state: String) -> UserAuthRaw {
+        return UserAuthRaw(credential: code, type: UserAuthType.Code.rawValue, supported: UserAuthSupported.WalletJWT.rawValue, state: state, agent: nil, accepted: ["TOS", "PRIVACY", "DISTRIBUTION"])
+    }
+    
+    internal static func fromMagicLinkEmail(email: String) -> UserAuthRaw {
+        return UserAuthRaw(credential: email, type: UserAuthType.Email.rawValue, supported: UserAuthSupported.Code.rawValue, state: nil, agent: nil, accepted: ["TOS", "PRIVACY", "DISTRIBUTION"])
     }
     
     internal func toJSON() -> Data? {
@@ -31,11 +43,38 @@ internal struct UserAuthRaw: Codable {
 }
 
 internal enum UserAuthType: String {
+    case Code = "CODE"
+    case Email = "EMAIL"
     case Google = "GOOGLE"
 }
 
 internal enum UserAuthSupported: String {
-    case EWT = "EWT"
-    case Code = "CODE"
+    case WalletJWT = "WALLETJWT"
+    case Code = "CODE:TOKEN:EMAIL"
     case OAuth2 = "OAUTH2"
+}
+
+internal struct SendMagicLinkResponseRaw: Codable {
+    
+    internal let type: String
+    internal let state: String
+    internal let signup: Bool
+    internal let data: UserAuthResponseDataRaw
+    
+    internal enum CodingKeys: String, CodingKey {
+        case type = "type"
+        case state = "state"
+        case signup = "signup"
+        case data = "data"
+    }
+    
+    internal struct UserAuthResponseDataRaw: Codable {
+        internal let type: String
+        internal let method: String
+        
+        internal enum CodingKeys: String, CodingKey {
+            case type = "type"
+            case method = "method"
+        }
+    }
 }

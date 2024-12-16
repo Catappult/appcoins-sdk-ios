@@ -109,9 +109,9 @@ internal class BuildConfiguration {
     static internal var aptoideWebservicesBaseURL: String {
         switch environment {
         case .debugSDKDev, .releaseSDKDev:
-            return "https://webservices.aptoide.com/api/7"
-        case .debugSDKProd, .releaseSDKProd:
             return "https://webservices-devel.aptoide.com/api/7"
+        case .debugSDKProd, .releaseSDKProd:
+            return "https://webservices.aptoide.com/api/7"
         }
     }
     

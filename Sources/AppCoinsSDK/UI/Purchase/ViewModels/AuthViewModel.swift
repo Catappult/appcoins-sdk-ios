@@ -13,16 +13,47 @@ internal class AuthViewModel : NSObject, ObservableObject {
     internal static var shared : AuthViewModel = AuthViewModel()
     
     @Published internal var presentWebView : Bool = false
-    @Published internal var loginMethod: LoginMethod? = nil
+    
+    @Published internal var authState: AuthState = .choice
+    @Published internal var isLoggedIn: Bool = false
+    
+    // Validate Magic Link E-mail
+    @Published var magicLinkEmail: String = ""
+    @Published var isMagicLinkEmailValid: Bool = true
+    
+    // Validate Magic Link Code
+    @Published var magicLinkCode: String = ""
+    @Published var isMagicLinkCodeValid: Bool = true
     
     private override init() {}
+    
+    internal func reset() {
+        self.authState = .choice
+        self.magicLinkEmail = ""
+        self.isMagicLinkEmailValid = true
+        self.magicLinkCode = ""
+        self.isMagicLinkCodeValid = true
+    }
+    
+    internal func setAuthState(state: AuthState) {
+        self.authState = state
+    }
+    
+    internal func validateEmail() -> Bool {
+        let emailRegex = "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"
+        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
+        
+        self.isMagicLinkEmailValid = emailPredicate.evaluate(with: self.magicLinkEmail)
+        
+        return isMagicLinkEmailValid
+    }
     
     internal func loginWithGoogle() {
         DispatchQueue.main.async {
             self.presentWebView = true
-            self.loginMethod = LoginMethod.Google
+            let googleBaseURL = "https://api.dev.aptoide.com/aptoide-ios/auth/user/login/social/google?domain=\(Bundle.main.bundleIdentifier ?? "")"
             
-            if let url = URL(string: LoginMethod.Google.baseURL) {
+            if let url = URL(string: googleBaseURL) {
                 // Initialize ASWebAuthenticationSession
                 var authSession = ASWebAuthenticationSession(url: url, callbackURLScheme: "\(Bundle.main.bundleIdentifier).iap") { callbackURL, error in
                     
@@ -51,6 +82,29 @@ internal class AuthViewModel : NSObject, ObservableObject {
             }
         }
     }
+    
+    internal func sendMagicLink() {
+        DispatchQueue.main.async { self.authState = .magicLink }
+        AuthUseCases.shared.sendMagicLink(email: self.magicLinkEmail) { result in
+            switch result {
+            case .success(let success):
+                print(success)
+            case .failure(let failure):
+                print(failure)
+            }
+        }
+    }
+    
+    internal func loginWithMagicLink() {
+        AuthUseCases.shared.loginWithMagicLink(code: self.magicLinkCode) { result in
+            switch result {
+            case .success(let success):
+                print(success)
+            case .failure(let failure):
+                print(failure)
+            }
+        }
+    }
 }
 
 // Conform to ASWebAuthenticationPresentationContextProviding
@@ -60,10 +114,8 @@ extension AuthViewModel: ASWebAuthenticationPresentationContextProviding {
     }
 }
 
-internal struct LoginMethod {
-    internal let baseURL: String
-    
-    internal static let Google: LoginMethod = LoginMethod(
-        baseURL: "https://api.dev.aptoide.com/aptoide-ios/auth/user/login/social/google?domain=\(Bundle.main.bundleIdentifier ?? "")"
-    )
+internal enum AuthState {
+    case choice
+    case google
+    case magicLink
 }

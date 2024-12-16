@@ -15,6 +15,7 @@ internal struct CreditCardChoiceBottomSheet: View {
     @ObservedObject internal var adyenController: AdyenController = AdyenController.shared
     @ObservedObject internal var adyenViewModel: AdyenViewModel = AdyenViewModel.shared
     @ObservedObject internal var transactionViewModel: TransactionViewModel = TransactionViewModel.shared
+    @ObservedObject internal var authViewModel: AuthViewModel = AuthViewModel.shared
     
     @State internal var chosenStoredCard: StoredCardPaymentMethod?
     
@@ -79,7 +80,7 @@ internal struct CreditCardChoiceBottomSheet: View {
                                         
                                         VStack(spacing: 0) {
                                             
-                                            PurchaseBonusBanner(viewModel: viewModel, transactionViewModel: transactionViewModel)
+                                            PurchaseBonusBanner(viewModel: viewModel, transactionViewModel: transactionViewModel, authViewModel: authViewModel)
                                             
                                             VStack {}.frame(height: 16)
                                             
@@ -144,7 +145,7 @@ internal struct CreditCardChoiceBottomSheet: View {
                         
                         VStack {}.frame(height: 8)
                         
-                        PurchaseBonusBanner(viewModel: viewModel, transactionViewModel: transactionViewModel)
+                        PurchaseBonusBanner(viewModel: viewModel, transactionViewModel: transactionViewModel, authViewModel: authViewModel)
                         
                         VStack {}.frame(height: 16)
                     }.frame(alignment: .top)

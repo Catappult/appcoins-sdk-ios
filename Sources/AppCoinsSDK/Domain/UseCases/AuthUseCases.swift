@@ -20,4 +20,12 @@ internal class AuthUseCases {
     internal func authenticate(token: String) {
         self.repository.authenticate(token: token)
     }
+    
+    internal func loginWithMagicLink(code: String, completion: @escaping (Result<UserAuthResponseRaw, AuthError>) -> Void) {
+        self.repository.loginWithMagicLink(code: code) { result in completion(result) }
+    }
+    
+    internal func sendMagicLink(email: String, completion: @escaping (Result<UserAuthResponseRaw, AuthError>) -> Void) {
+        self.repository.sendMagicLink(email: email) { result in completion(result) }
+    }
 }
