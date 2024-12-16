@@ -18,7 +18,7 @@ internal class PayPalDirectViewModel : ObservableObject {
     internal var bottomSheetViewModel: BottomSheetViewModel = BottomSheetViewModel.shared
     internal var transactionViewModel: TransactionViewModel = TransactionViewModel.shared
     
-    @Published internal var presentPayPalSheet : Bool = false
+    @Published internal var isPayPalSheetPresented : Bool = false
     @Published internal var presentPayPalSheetURL : URL? = nil
     @Published internal var presentPayPalSheetMethod : String? = nil
     @Published internal var userDismissPayPalSheet : Bool = true
@@ -30,7 +30,7 @@ internal class PayPalDirectViewModel : ObservableObject {
     // Reset the PayPal handler variables
     // Usually done between different purchases
     internal func reset() {
-        self.presentPayPalSheet = false
+        self.isPayPalSheetPresented = false
         self.presentPayPalSheetURL = nil
         self.presentPayPalSheetMethod = nil
         self.userDismissPayPalSheet = true
@@ -63,7 +63,7 @@ internal class PayPalDirectViewModel : ObservableObject {
                                 DispatchQueue.main.async {
                                     self.presentPayPalSheetURL = redirectURL
                                     self.presentPayPalSheetMethod = response.redirect.method
-                                    self.presentPayPalSheet = true
+                                    self.isPayPalSheetPresented = true
                                     self.userDismissPayPalSheet = true
                                 }
                             } else { completion(.failure(.failed(message: "Failed to buy with Paypal Direct", description: "Invalid url redirect response at PaypalDirectViewModel.swift:buyWithPayPalDirect"))) }
@@ -89,7 +89,7 @@ internal class PayPalDirectViewModel : ObservableObject {
         // Only apply when it is the user dismissing the view
         if userDismissPayPalSheet {
             DispatchQueue.main.async {
-                self.presentPayPalSheet = false
+                self.isPayPalSheetPresented = false
                 self.bottomSheetViewModel.userCancelled()
             }
         }
@@ -99,20 +99,20 @@ internal class PayPalDirectViewModel : ObservableObject {
     internal func cancelBillingAgreementTokenPayPal(token: String?) {
         DispatchQueue.main.async {
             self.userDismissPayPalSheet = false
-            self.presentPayPalSheet = false
+            self.isPayPalSheetPresented = false
         }
         
         if let token = token {
             self.transactionUseCases.cancelBillingAgreementToken(token: token) {
                 result in
                 DispatchQueue.main.async {
-                    self.presentPayPalSheet = false
+                    self.isPayPalSheetPresented = false
                     self.bottomSheetViewModel.userCancelled()
                 }
             }
         } else {
             DispatchQueue.main.async {
-                self.presentPayPalSheet = false
+                self.isPayPalSheetPresented = false
                 self.bottomSheetViewModel.userCancelled()
             }
         }
@@ -122,7 +122,7 @@ internal class PayPalDirectViewModel : ObservableObject {
     internal func createBillingAgreementAndFinishTransaction(token: String) {
         DispatchQueue.main.async {
             self.userDismissPayPalSheet = false
-            self.presentPayPalSheet = false
+            self.isPayPalSheetPresented = false
         }
         
         self.transactionUseCases.createBillingAgreement(token: token) {

@@ -21,9 +21,7 @@ internal struct PaymentMethodList: View {
                         if (!option.disabled) {
                             transactionViewModel.selectPaymentMethod(paymentMethod: option)
                         }
-                        if viewModel.canChooseMethod == true {
-                            viewModel.setCanChooseMethod(canChooseMethod: false)
-                        }
+                        viewModel.dismissPaymentMethodChoiceSheet()
                     }) {
                         ZStack {
                             ColorsUi.APC_White
@@ -40,7 +38,7 @@ internal struct PaymentMethodList: View {
                                 
                                 Image(systemName: "chevron.right")
                                     .font(FontsUi.APC_Footnote)
-                                    .foregroundColor(ColorsUi.APC_ArrowBanner)
+                                    .foregroundColor(ColorsUi.APC_SelectionArrow)
                                 
                                 VStack {}.frame(width: 16)
                                 

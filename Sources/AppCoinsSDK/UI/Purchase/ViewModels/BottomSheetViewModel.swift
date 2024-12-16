@@ -54,15 +54,16 @@ internal class BottomSheetViewModel: ObservableObject {
     
     @Published var isCreditCardView: Bool = false
     
-    @Published var canChooseMethod: Bool = false
+    @Published var isPaymentMethodChoiceSheetPresented: Bool = false
     
-    @Published var didLogin: Bool = false
+    
     @Published var canLogin: Bool = false
     @Published var loginEmailText: String = ""
     @Published var magicLinkCode: String = ""
     @Published var hasMagicLinkCode: Bool = false
     @Published var isValidLoginEmail: Bool = true
     @Published var isMagicLinkCodeCorrect: Bool = true
+    @Published var isLoggedIn: Bool = false
     
     private init() {
         // Prevents Layout Warning Prints
@@ -111,6 +112,9 @@ internal class BottomSheetViewModel: ObservableObject {
     internal func setCanChooseMethod(canChooseMethod: Bool) {
         self.canChooseMethod = canChooseMethod
     }
+    internal func presentPaymentMethodChoiceSheet() { self.isPaymentMethodChoiceSheetPresented = true }
+    
+    internal func dismissPaymentMethodChoiceSheet() { self.isPaymentMethodChoiceSheetPresented = false }
     
     internal func setOrientation(orientation: Orientation) {
         self.orientation = orientation
