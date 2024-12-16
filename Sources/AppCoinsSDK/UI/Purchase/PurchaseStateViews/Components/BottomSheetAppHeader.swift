@@ -118,5 +118,10 @@ struct BottomSheetAppHeader: View {
         }
         .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.width, height: 72)
         .background(BlurView(style: .systemMaterial))
+        .onTapGesture {
+            if viewModel.canLogin {
+                UIApplication.shared.dismissKeyboard()
+            }
+        }
     }
 }
