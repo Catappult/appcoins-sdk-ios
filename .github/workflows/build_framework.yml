@@ -8,7 +8,7 @@ on:
     branches:
       - main
       - dev
-      - 'epic_*'
+      - 'epic/*'
   workflow_dispatch:
 
 jobs:
