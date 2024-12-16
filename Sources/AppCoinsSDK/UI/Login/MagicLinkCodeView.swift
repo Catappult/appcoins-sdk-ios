@@ -73,7 +73,7 @@ struct MagicLinkCodeView: View {
                         
                         VStack{}.frame(height: viewModel.orientation == .landscape ? 3 : 14)
                         
-                        if viewModel.orientation == .landscape { VStack {}.frame(height: viewModel.isKeyboardVisible ? 140 : 0) }
+                        if viewModel.orientation == .landscape { VStack{}.frame(height: viewModel.isKeyboardVisible ? 140 : 0) }
                         
                     }
                 }

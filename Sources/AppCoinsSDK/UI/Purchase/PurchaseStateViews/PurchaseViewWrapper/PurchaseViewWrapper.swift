@@ -75,13 +75,13 @@ struct PurchaseViewWrapper<Content: View>: View {
                                 
                                 VStack{}.frame(height: 0.001)
                                     .id("bottom")
-                                    .onAppear(perform: {
+                                    .onAppear {
                                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
                                             withAnimation(.easeInOut(duration: 30)) {
                                                 scrollViewProxy.scrollTo("top", anchor: .top)
                                             }
                                         }
-                                    })
+                                    }
                             }
                         }.defaultScrollAnchor(.bottom)
                     }
