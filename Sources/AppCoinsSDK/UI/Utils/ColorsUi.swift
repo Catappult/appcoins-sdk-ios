@@ -33,7 +33,7 @@ internal struct ColorsUi {
     
     // Login
     static internal var APC_LoginIcon: Color = Color(red: 0.56, green: 0.56, blue: 0.58)
-    static internal var APC_ArrowBanner: Color = Color(red: 0.56, green: 0.56, blue: 0.58).opacity(0.3)
+    static internal var APC_SelectionArrow: Color = Color(red: 0.56, green: 0.56, blue: 0.58).opacity(0.3)
     
 }
 

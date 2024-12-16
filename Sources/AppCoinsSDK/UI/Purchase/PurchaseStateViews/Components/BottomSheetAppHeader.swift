@@ -117,6 +117,6 @@ struct BottomSheetAppHeader: View {
             
         }
         .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.width, height: 72)
-        .background(viewModel.orientation == .landscape ? BlurView(style: .systemMaterial) : BlurView(style: .systemMaterial))
+        .background(BlurView(style: .systemMaterial))
     }
 }

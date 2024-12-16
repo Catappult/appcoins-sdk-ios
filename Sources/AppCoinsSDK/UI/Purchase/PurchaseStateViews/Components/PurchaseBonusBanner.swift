@@ -46,7 +46,7 @@ struct PurchaseBonusBanner: View {
                 
                 VStack {}.frame(height: 4)
                 
-                if viewModel.didLogin {
+                if viewModel.isLoggedIn {
                     HStack(spacing: 0) {
                         Image("white-wallet", bundle: Bundle.APPCModule)
                             .resizable()
