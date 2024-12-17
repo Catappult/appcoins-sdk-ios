@@ -2,21 +2,23 @@
 //  File.swift
 //  
 //
-//  Created by aptoide on 12/07/2024.
+//  Created by aptoide on 16/12/2024.
 //
 
 import Foundation
 
-internal class GuestWallet: Wallet, Codable {
+internal class UserWallet: Wallet, Codable {
     
     internal let address: String
-    internal let ewt: String
-    internal let signature: String
+    internal let authToken: String
+    internal let refreshToken: String
+    internal let added: Date
     
-    internal init(address: String, ewt: String, signature: String) {
+    internal init(address: String, authToken: String, refreshToken: String) {
         self.address = address
-        self.ewt = ewt
-        self.signature = signature
+        self.authToken = authToken
+        self.refreshToken = refreshToken
+        self.added = Date()
     }
 
     func getBalance(completion: @escaping (Result<Balance, AppcTransactionError>) -> Void) {
@@ -44,29 +46,35 @@ internal class GuestWallet: Wallet, Codable {
     
     func getWalletAddress() -> String { return self.address }
     
-    func getSignedWalletAddress() -> String { return self.signature }
+    func getAuthToken() -> String? { return "Bearer \(self.authToken)" }
     
-    func getAuthToken() -> String? { return "Bearer \(self.ewt)" }
+    func isExpired() -> Bool {
+        let minutesLived = -self.added.timeIntervalSinceNow / 60
+        return minutesLived > 10 // Is expired if it was fetched more than 10 minutes ago
+    }
     
     // Conform to Codable Protocol
     
     enum CodingKeys: String, CodingKey {
             case address
-            case ewt
-            case signature
+            case authToken
+            case refreshToken
+            case added
         }
         
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         address = try container.decode(String.self, forKey: .address)
-        ewt = try container.decode(String.self, forKey: .ewt)
-        signature = try container.decode(String.self, forKey: .signature)
+        authToken = try container.decode(String.self, forKey: .authToken)
+        refreshToken = try container.decode(String.self, forKey: .refreshToken)
+        added = try container.decode(Date.self, forKey: .added)
     }
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(address, forKey: .address)
-        try container.encode(ewt, forKey: .ewt)
-        try container.encode(signature, forKey: .signature)
+        try container.encode(authToken, forKey: .authToken)
+        try container.encode(refreshToken, forKey: .refreshToken)
+        try container.encode(added, forKey: .added)
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 internal protocol AuthService {
     
     func authenticate(token: String)
-    func loginWithMagicLink(code: String, state: String, completion: @escaping (Result<UserAuthResponseRaw, AuthError>) -> Void)
-    func sendMagicLink(email: String, completion: @escaping (Result<UserAuthResponseRaw, AuthError>) -> Void)
+    func loginWithMagicLink(code: String, state: String, completion: @escaping (Result<LoginWithMagicLinkResponseRaw, AuthError>) -> Void)
+    func sendMagicLink(email: String, completion: @escaping (Result<SendMagicLinkResponseRaw, AuthError>) -> Void)
     
 }

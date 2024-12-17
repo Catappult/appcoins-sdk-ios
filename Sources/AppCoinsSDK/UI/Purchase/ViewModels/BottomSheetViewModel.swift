@@ -441,6 +441,7 @@ internal class BottomSheetViewModel: ObservableObject {
                                 result in
                                 switch result {
                                 case .success(let balance):
+                                    print(balance)
                                     Purchase.verify(domain: transaction.domain ,purchaseUID: purchaseUID) {
                                         result in
                                         switch result {

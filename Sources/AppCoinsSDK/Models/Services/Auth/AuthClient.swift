@@ -27,8 +27,6 @@ internal class AuthClient : AuthService {
                     request.httpBody = body
                     request.httpMethod = "POST"
                     
-                    print(String(data: body, encoding: .utf8))
-                                        
                     // Right now not giving feedback on different types of errors
                     let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
                         
@@ -44,7 +42,7 @@ internal class AuthClient : AuthService {
         }
     }
     
-    internal func loginWithMagicLink(code: String, state: String, completion: @escaping (Result<UserAuthResponseRaw, AuthError>) -> Void) {
+    internal func loginWithMagicLink(code: String, state: String, completion: @escaping (Result<LoginWithMagicLinkResponseRaw, AuthError>) -> Void) {
         if var urlComponents = URLComponents(string: endpoint) {
             urlComponents.path += "/user/authorize"
             
@@ -55,8 +53,6 @@ internal class AuthClient : AuthService {
                     request.httpBody = body
                     request.httpMethod = "POST"
                     
-                    print(String(data: body, encoding: .utf8))
-                                        
                     // Right now not giving feedback on different types of errors
                     let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
                         
@@ -70,7 +66,7 @@ internal class AuthClient : AuthService {
                             do {
                                 if let data = data {
                                     print(String(data: data, encoding: .utf8))
-                                    let successResponse = try JSONDecoder().decode(UserAuthResponseRaw.self, from: data)
+                                    let successResponse = try JSONDecoder().decode(LoginWithMagicLinkResponseRaw.self, from: data)
                                     completion(.success(successResponse))
                                 } else {
                                     completion(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url) at AuthClient.swift:sendMagicLink")))
@@ -86,7 +82,7 @@ internal class AuthClient : AuthService {
         }
     }
 
-    internal func sendMagicLink(email: String, completion: @escaping (Result<UserAuthResponseRaw, AuthError>) -> Void) {
+    internal func sendMagicLink(email: String, completion: @escaping (Result<SendMagicLinkResponseRaw, AuthError>) -> Void) {
         if var urlComponents = URLComponents(string: endpoint) {
             urlComponents.path += "/user/authorize"
             
@@ -96,9 +92,7 @@ internal class AuthClient : AuthService {
                     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
                     request.httpBody = body
                     request.httpMethod = "POST"
-                    
-                    print(String(data: body, encoding: .utf8))
-                                        
+                        
                     // Right now not giving feedback on different types of errors
                     let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
                         
@@ -111,7 +105,7 @@ internal class AuthClient : AuthService {
                         } else {
                             do {
                                 if let data = data {
-                                    let successResponse = try JSONDecoder().decode(UserAuthResponseRaw.self, from: data)
+                                    let successResponse = try JSONDecoder().decode(SendMagicLinkResponseRaw.self, from: data)
                                     completion(.success(successResponse))
                                 } else {
                                     completion(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url) at AuthClient.swift:sendMagicLink")))

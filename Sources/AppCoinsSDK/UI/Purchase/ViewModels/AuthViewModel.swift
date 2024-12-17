@@ -35,6 +35,8 @@ internal class AuthViewModel : NSObject, ObservableObject {
         self.isMagicLinkCodeValid = true
     }
     
+    internal func setLogIn() { self.isLoggedIn = true }
+    
     internal func setAuthState(state: AuthState) {
         self.authState = state
     }
@@ -84,24 +86,20 @@ internal class AuthViewModel : NSObject, ObservableObject {
     }
     
     internal func sendMagicLink() {
-        DispatchQueue.main.async { self.authState = .magicLink }
         AuthUseCases.shared.sendMagicLink(email: self.magicLinkEmail) { result in
-            switch result {
-            case .success(let success):
-                print(success)
-            case .failure(let failure):
-                print(failure)
-            }
+            DispatchQueue.main.async { self.authState = .magicLink }
         }
     }
     
     internal func loginWithMagicLink() {
         AuthUseCases.shared.loginWithMagicLink(code: self.magicLinkCode) { result in
             switch result {
-            case .success(let success):
-                print(success)
+            case .success(let wallet):
+                DispatchQueue.main.async {
+                    TransactionViewModel.shared.buildTransaction() // Re-build the transaction with the new User Wallet
+                }
             case .failure(let failure):
-                print(failure)
+                break // SOLVE BEFORE MERGING
             }
         }
     }

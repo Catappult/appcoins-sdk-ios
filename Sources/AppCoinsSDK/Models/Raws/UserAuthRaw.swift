@@ -57,9 +57,9 @@ internal enum UserAuthSupported: String {
 internal struct SendMagicLinkResponseRaw: Codable {
     
     internal let type: String
-    internal let state: String
+    internal let state: String?
     internal let signup: Bool
-    internal let data: UserAuthResponseDataRaw
+    internal let data: SendMagicLinkResponseDataRaw
     
     internal enum CodingKeys: String, CodingKey {
         case type = "type"
@@ -68,13 +68,40 @@ internal struct SendMagicLinkResponseRaw: Codable {
         case data = "data"
     }
     
-    internal struct UserAuthResponseDataRaw: Codable {
+    internal struct SendMagicLinkResponseDataRaw: Codable {
         internal let type: String
         internal let method: String
         
         internal enum CodingKeys: String, CodingKey {
             case type = "type"
             case method = "method"
+        }
+    }
+}
+
+internal struct LoginWithMagicLinkResponseRaw: Codable {
+    
+    internal let type: String
+    internal let state: String?
+    internal let signup: Bool
+    internal let data: LoginWithMagicLinkResponseDataRaw
+    
+    internal enum CodingKeys: String, CodingKey {
+        case type = "type"
+        case state = "state"
+        case signup = "signup"
+        case data = "data"
+    }
+    
+    internal struct LoginWithMagicLinkResponseDataRaw: Codable {
+        internal let address: String
+        internal let authToken: String
+        internal let refreshToken: String
+        
+        internal enum CodingKeys: String, CodingKey {
+            case address = "address"
+            case authToken = "auth_token"
+            case refreshToken = "refresh_token"
         }
     }
 }

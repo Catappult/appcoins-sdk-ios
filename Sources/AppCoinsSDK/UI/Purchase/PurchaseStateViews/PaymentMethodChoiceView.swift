@@ -74,30 +74,30 @@ struct PaymentMethodChoiceView: View {
                         }
                         .buttonStyle(flatButtonStyle())
                         
-                        VStack {}.frame(height: 8)
-                        
-                        Button {
-                            viewModel.setPurchaseState(newState: .login)
-                        } label: {
-                            VStack(alignment: .leading, spacing: 0) {
-                                HStack(spacing: 0) {
-                                    Text(Constants.signToGetBonusText)
-                                        .font(FontsUi.APC_Body)
-                                        .frame(width: 200, alignment: .leading)
-                                    
-                                    Image(systemName: "chevron.right")
-                                        .font(FontsUi.APC_Footnote)
-                                        .frame(maxWidth: .infinity, alignment: .trailing)
-                                        .foregroundColor(ColorsUi.APC_ArrowBanner)
-                                    
+                        if !authViewModel.isLoggedIn {
+                            VStack {}.frame(height: 8)
+                            
+                            Button {
+                                viewModel.setPurchaseState(newState: .login)
+                            } label: {
+                                VStack(alignment: .leading, spacing: 0) {
+                                    HStack(spacing: 0) {
+                                        Text(Constants.signToGetBonusText)
+                                            .font(FontsUi.APC_Body)
+                                            .frame(width: 200, alignment: .leading)
+                                        
+                                        Image(systemName: "chevron.right")
+                                            .font(FontsUi.APC_Footnote)
+                                            .frame(maxWidth: .infinity, alignment: .trailing)
+                                            .foregroundColor(ColorsUi.APC_ArrowBanner)
+                                    }
+                                    .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 32 - 48 : UIScreen.main.bounds.width - 32 - 48, height: 40)
                                 }
-                                .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 32 - 48 : UIScreen.main.bounds.width - 32 - 48, height: 40)
-                            }
-                            .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 40)
-                            .background(ColorsUi.APC_White)
-                            .cornerRadius(10)
-                        }.buttonStyle(flatButtonStyle())
-                        
+                                .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 40)
+                                .background(ColorsUi.APC_White)
+                                .cornerRadius(10)
+                            }.buttonStyle(flatButtonStyle())
+                        }
                         
                         VStack {}.frame(height: viewModel.orientation == .landscape ? 62 : 110)
                             .id("bottom")

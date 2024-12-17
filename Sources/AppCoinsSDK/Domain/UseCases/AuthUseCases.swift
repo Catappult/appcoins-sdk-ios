@@ -17,15 +17,17 @@ internal class AuthUseCases {
         self.repository = repository
     }
     
+    internal func refreshLogin() {}
+    
     internal func authenticate(token: String) {
         self.repository.authenticate(token: token)
     }
     
-    internal func loginWithMagicLink(code: String, completion: @escaping (Result<UserAuthResponseRaw, AuthError>) -> Void) {
+    internal func loginWithMagicLink(code: String, completion: @escaping (Result<UserWallet, AuthError>) -> Void) {
         self.repository.loginWithMagicLink(code: code) { result in completion(result) }
     }
     
-    internal func sendMagicLink(email: String, completion: @escaping (Result<UserAuthResponseRaw, AuthError>) -> Void) {
+    internal func sendMagicLink(email: String, completion: @escaping (Result<Bool, AuthError>) -> Void) {
         self.repository.sendMagicLink(email: email) { result in completion(result) }
     }
 }
