@@ -15,6 +15,7 @@ internal struct CreditCardChoiceBottomSheet: View {
     @ObservedObject internal var adyenController: AdyenController = AdyenController.shared
     @ObservedObject internal var adyenViewModel: AdyenViewModel = AdyenViewModel.shared
     @ObservedObject internal var transactionViewModel: TransactionViewModel = TransactionViewModel.shared
+    @ObservedObject internal var loginViewModel: LoginViewModel
     
     @State internal var chosenStoredCard: StoredCardPaymentMethod?
     
@@ -36,8 +37,9 @@ internal struct CreditCardChoiceBottomSheet: View {
     let spaceAvailable: CGFloat
     let numberOfCards: Int
     
-    internal init(viewModel: BottomSheetViewModel) {
+    internal init(viewModel: BottomSheetViewModel, loginViewModel: LoginViewModel) {
         self.viewModel = viewModel
+        self.loginViewModel = loginViewModel
         
         if let firstStoredCard = AdyenController.shared.session?.sessionContext.paymentMethods.stored.first as? StoredCardPaymentMethod {
             // Only way to initialize a State variable on init method: https://stackoverflow.com/a/58137096/18917552
@@ -79,7 +81,7 @@ internal struct CreditCardChoiceBottomSheet: View {
                                         
                                         VStack(spacing: 0) {
                                             
-                                            PurchaseBonusBanner(viewModel: viewModel, transactionViewModel: transactionViewModel)
+                                            PurchaseBonusBanner(viewModel: viewModel, transactionViewModel: transactionViewModel, loginViewModel: loginViewModel)
                                             
                                             VStack{}.frame(height: 16)
                                             
@@ -144,7 +146,7 @@ internal struct CreditCardChoiceBottomSheet: View {
                         
                         VStack{}.frame(height: 8)
                         
-                        PurchaseBonusBanner(viewModel: viewModel, transactionViewModel: transactionViewModel)
+                        PurchaseBonusBanner(viewModel: viewModel, transactionViewModel: transactionViewModel, loginViewModel: loginViewModel)
                         
                         VStack{}.frame(height: 16)
                     }.frame(alignment: .top)

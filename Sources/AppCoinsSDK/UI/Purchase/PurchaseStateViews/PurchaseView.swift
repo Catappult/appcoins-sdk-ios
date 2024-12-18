@@ -10,7 +10,9 @@ import SwiftUI
 struct PurchaseView: View {
     
     @ObservedObject internal var viewModel: BottomSheetViewModel
+    @ObservedObject internal var loginViewModel: LoginViewModel
     @ObservedObject internal var transactionViewModel: TransactionViewModel = TransactionViewModel.shared
+    
     let portraitBottomSheetHeight: CGFloat
     let buttonHeightPlusTopSpace: CGFloat
     let bottomSheetHeaderHeight: CGFloat
@@ -21,7 +23,7 @@ struct PurchaseView: View {
             PurchaseViewWrapper(height: viewModel.orientation == .landscape ? UIScreen.main.bounds.height * 0.9 : portraitBottomSheetHeight, buttonHeightPlusTopSpace: self.buttonHeightPlusTopSpace, bottomSheetHeaderHeight: self.bottomSheetHeaderHeight,  buttonBottomSafeArea: self.buttonBottomSafeArea) {
                 VStack(spacing: 0) {
                     
-                    PurchaseBonusBanner(viewModel: viewModel, transactionViewModel: transactionViewModel)
+                    PurchaseBonusBanner(viewModel: viewModel, transactionViewModel: transactionViewModel, loginViewModel: loginViewModel)
                     
                     VStack{}.frame(height: 16)
                     
@@ -72,7 +74,8 @@ struct PurchaseView: View {
                     VStack{}.frame(height: 8)
                     
                     Button {
-                        viewModel.setCanLogin(canLogin: true)
+                        loginViewModel.login()
+                        viewModel.setPurchaseState(newState: .login)
                     } label: {
                         VStack(alignment: .leading, spacing: 0) {
                             HStack(spacing: 0) {

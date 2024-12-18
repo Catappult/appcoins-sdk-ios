@@ -56,15 +56,6 @@ internal class BottomSheetViewModel: ObservableObject {
     
     @Published var isPaymentMethodChoiceSheetPresented: Bool = false
     
-    
-    @Published var canLogin: Bool = false
-    @Published var loginEmailText: String = ""
-    @Published var magicLinkCode: String = ""
-    @Published var hasMagicLinkCode: Bool = false
-    @Published var isValidLoginEmail: Bool = true
-    @Published var isMagicLinkCodeCorrect: Bool = true
-    @Published var isLoggedIn: Bool = false
-    
     private init() {
         // Prevents Layout Warning Prints
         UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
@@ -102,25 +93,13 @@ internal class BottomSheetViewModel: ObservableObject {
         }
     }
     
-    internal func setHasMagicLinkCode(hasMagicLinkCode: Bool) {
-        self.hasMagicLinkCode = hasMagicLinkCode
-    }
-    
-    internal func setCanLogin(canLogin: Bool) {
-        self.canLogin = canLogin
-    }
-    
     internal func presentPaymentMethodChoiceSheet() { self.isPaymentMethodChoiceSheetPresented = true }
     
     internal func dismissPaymentMethodChoiceSheet() { self.isPaymentMethodChoiceSheetPresented = false }
     
-    internal func setOrientation(orientation: Orientation) {
-        self.orientation = orientation
-    }
+    internal func setOrientation(orientation: Orientation) { self.orientation = orientation }
     
-    internal func setCreditCardView(isCreditCardView: Bool) {
-        self.isCreditCardView = isCreditCardView
-    }
+    internal func setCreditCardView(isCreditCardView: Bool) { self.isCreditCardView = isCreditCardView }
     
     // Reloads the purchase on failure screens
     internal func reload() {
@@ -181,6 +160,7 @@ internal class BottomSheetViewModel: ObservableObject {
         case .successAskForSync: self.skipWalletSync()
         case .failed: self.dismissVC()
         case .nointernet: self.dismissVC()
+        case .login: self.userCancelled()
         }
     }
     
@@ -202,22 +182,6 @@ internal class BottomSheetViewModel: ObservableObject {
             DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
                 presentedPurchaseVC.dismissPurchase()
                 self.hasActiveTransaction = false
-            }
-        }
-        
-        if self.canLogin {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                self.canLogin = false
-                if !self.loginEmailText.isEmpty { self.loginEmailText = "" }
-                if !self.isValidLoginEmail { self.isValidLoginEmail = true }
-            }
-        }
-        
-        if self.hasMagicLinkCode {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                self.hasMagicLinkCode = false
-                if !self.magicLinkCode.isEmpty { self.magicLinkCode = "" }
-                if !self.isMagicLinkCodeCorrect { self.isMagicLinkCodeCorrect = true }
             }
         }
         
@@ -614,14 +578,5 @@ internal class BottomSheetViewModel: ObservableObject {
     }
     
     internal func hasCompletedPurchase() -> Bool { return purchaseCompleted }
-    
-    internal func validateEmail() -> Bool {
-        let emailRegex = "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"
-        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
-        
-        self.isValidLoginEmail = emailPredicate.evaluate(with: self.loginEmailText)
-        
-        return isValidLoginEmail
-    }
     
 }

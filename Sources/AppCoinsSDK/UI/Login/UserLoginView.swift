@@ -10,6 +10,7 @@ import SwiftUI
 struct UserLoginView: View {
     
     @ObservedObject internal var viewModel: BottomSheetViewModel
+    @ObservedObject internal var loginViewModel: LoginViewModel
     let portraitBottomSheetHeight: CGFloat
     let buttonHeightPlusTopSpace: CGFloat
     let bottomSheetHeaderHeight: CGFloat
@@ -70,7 +71,7 @@ struct UserLoginView: View {
                     ZStack {
                         RoundedRectangle(cornerRadius: 10)
                             .fill(ColorsUi.APC_White)
-                            .stroke(!viewModel.isValidLoginEmail ? Color.red : .clear, lineWidth: 1)
+                            .stroke(!loginViewModel.isValidLoginEmail ? Color.red : .clear, lineWidth: 1)
                             .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 44)
                         
                         HStack(spacing: 0) {
@@ -78,13 +79,13 @@ struct UserLoginView: View {
                             
                             VStack{}.frame(width: 8)
                             
-                            TextField(text: $viewModel.loginEmailText) {
+                            TextField(text: $loginViewModel.loginEmailText) {
                                 Text(Constants.yourEmail)
                             }
                         }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 - 32 : UIScreen.main.bounds.width - 48 - 32)
                     }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 44)
                     
-                    if !viewModel.isValidLoginEmail {
+                    if !loginViewModel.isValidLoginEmail {
                         VStack(spacing: 0) {
                             VStack{}.frame(height: 4)
                             

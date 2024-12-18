@@ -11,6 +11,7 @@ struct PurchaseBonusBanner: View {
     
     @ObservedObject var viewModel: BottomSheetViewModel
     @ObservedObject var transactionViewModel: TransactionViewModel
+    @ObservedObject var loginViewModel: LoginViewModel
     
     var body: some View {
         VStack(spacing: 0) {
@@ -46,7 +47,7 @@ struct PurchaseBonusBanner: View {
                 
                 VStack{}.frame(height: 4)
                 
-                if viewModel.isLoggedIn {
+                if loginViewModel.isLoggedIn {
                     HStack(spacing: 0) {
                         Image("white-wallet", bundle: Bundle.APPCModule)
                             .resizable()
