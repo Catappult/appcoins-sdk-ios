@@ -113,72 +113,15 @@ internal struct PurchaseBottomSheet: View {
                     VStack(spacing: 0) {
                         switch authViewModel.authState {
                         case .choice:
-                            LoginView(viewModel: viewModel, authViewModel: authViewModel, portraitBottomSheetHeight: self.portraitBottomSheetHeight, buttonHeightPlusTopSpace: self.buttonHeightPlusTopSpace, bottomSheetHeaderHeight: self.bottomSheetHeaderHeight, buttonBottomSafeArea: buttonBottomSafeArea)
+                            LoginView(viewModel: viewModel, authViewModel: authViewModel, transactionViewModel: transactionViewModel, portraitBottomSheetHeight: self.portraitBottomSheetHeight, buttonHeightPlusTopSpace: self.buttonHeightPlusTopSpace, bottomSheetHeaderHeight: self.bottomSheetHeaderHeight, buttonBottomSafeArea: buttonBottomSafeArea)
                         case .google:
                             EmptyView()
                         case .magicLink:
-                            MagicLinkCodeView(viewModel: viewModel, authViewModel: authViewModel, portraitBottomSheetHeight: self.portraitBottomSheetHeight, buttonHeightPlusTopSpace: self.buttonHeightPlusTopSpace, buttonBottomSafeArea: self.buttonBottomSafeArea)
+                            MagicLinkCodeView(viewModel: viewModel, authViewModel: authViewModel, transactionViewModel: transactionViewModel, portraitBottomSheetHeight: self.portraitBottomSheetHeight, buttonHeightPlusTopSpace: self.buttonHeightPlusTopSpace, buttonBottomSafeArea: self.buttonBottomSafeArea)
                         }
-                        
-                        // Put this inside LoginView and MagicLinkCodeView respectively
-                        Button(action: {
-                            if authViewModel.authState == .choice {
-                                if authViewModel.validateEmail() { authViewModel.sendMagicLink() }
-                            } else { authViewModel.loginWithMagicLink() }
-                            
-                        }) {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 12)
-                                    .foregroundColor(transactionViewModel.transaction != nil ? ColorsUi.APC_Pink : ColorsUi.APC_Gray)
-                                Text(Constants.continueText)
-                            }
-                        }
-                        .frame(maxHeight: .infinity, alignment: .bottom)
-                        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
-                        .foregroundColor(ColorsUi.APC_White)
-                        
-                        VStack{}.frame(height: buttonBottomSafeArea)
-                        
                     }.frame(maxHeight: .infinity, alignment: .bottom)
                     
-                    if authViewModel.authState != .magicLink {
-                        
-                        HStack(spacing: 0) {
-                            
-                            VStack{}.frame(width: 24)
-                            
-                            VStack(alignment: .leading, spacing: 0) {
-                                Text(Constants.signInAndJoinTitle)
-                                    .foregroundColor(ColorsUi.APC_Black)
-                                    .font(FontsUi.APC_Callout_Bold)
-                                
-                                VStack{}.frame(height: 2)
-                                
-                                Text(Constants.getBonusEveryPurchase)
-                                    .foregroundColor(ColorsUi.APC_Black)
-                                    .font(FontsUi.APC_Footnote)
-                                
-                            }.frame(maxWidth: .infinity, maxHeight: 40, alignment: .leading)
-                            
-                            Button {
-                                viewModel.dismiss()
-                            } label: {
-                                ZStack {
-                                    Circle()
-                                        .fill(ColorsUi.APC_BackgroundLightGray_Button)
-                                        .frame(width: 30, height: 30)
-                                    
-                                    Image(systemName: "xmark")
-                                        .foregroundColor(ColorsUi.APC_DarkGray_Xmark)
-                                }
-                            }
-                            
-                            VStack{}.frame(width: 24)
-                        }
-                        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.width, height: 72)
-                        .background(BlurView(style: .systemMaterial))
-                        .onTapGesture { UIApplication.shared.dismissKeyboard() }
-                    }
+                    if authViewModel.authState != .magicLink { AuthenticationHeader(viewModel: viewModel) }
                 }
             }
             

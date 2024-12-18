@@ -11,6 +11,7 @@ struct MagicLinkCodeView: View {
     
     @ObservedObject internal var viewModel: BottomSheetViewModel
     @ObservedObject internal var authViewModel: AuthViewModel
+    @ObservedObject internal var transactionViewModel: TransactionViewModel
     
     internal let portraitBottomSheetHeight: CGFloat
     internal let buttonHeightPlusTopSpace: CGFloat
@@ -99,6 +100,26 @@ struct MagicLinkCodeView: View {
                         }
                     }
                 }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 51, alignment: .topTrailing)
+                
+                VStack(spacing: 0) {
+                    
+                    VStack{}.frame(height: 8)
+                    
+                    Button(action: {
+                        authViewModel.loginWithMagicLink()
+                    }) {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 12)
+                                .foregroundColor(transactionViewModel.transaction != nil ? ColorsUi.APC_Pink : ColorsUi.APC_Gray)
+                            Text(Constants.continueText)
+                        }
+                    }
+                    .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
+                    .foregroundColor(ColorsUi.APC_White)
+                    
+                    VStack{}.frame(height: buttonBottomSafeArea)
+                    
+                }.frame(maxHeight: .infinity, alignment: .bottom)
             }
         }
     }
