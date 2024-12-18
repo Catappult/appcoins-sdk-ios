@@ -19,8 +19,8 @@ internal class AuthUseCases {
     
     internal func refreshLogin() {}
     
-    internal func authenticate(token: String) {
-        self.repository.authenticate(token: token)
+    internal func loginWithGoogle(code: String, completion: @escaping (Result<UserWallet, AuthError>) -> Void) {
+        self.repository.loginWithGoogle(code: code) { result in completion(result) }
     }
     
     internal func loginWithMagicLink(code: String, completion: @escaping (Result<UserWallet, AuthError>) -> Void) {

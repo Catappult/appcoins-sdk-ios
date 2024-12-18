@@ -25,8 +25,8 @@ internal struct UserAuthRaw: Codable {
         case accepted = "accepted"
     }
     
-    internal static func fromGoogleAuth(token: String) -> UserAuthRaw {
-        return UserAuthRaw(credential: token, type: UserAuthType.Google.rawValue, supported: UserAuthSupported.OAuth2.rawValue, state: nil, agent: nil, accepted: ["TOS", "PRIVACY", "DISTRIBUTION"])
+    internal static func fromGoogleAuth(code: String) -> UserAuthRaw {
+        return UserAuthRaw(credential: code, type: UserAuthType.Google.rawValue, supported: UserAuthSupported.WalletJWT.rawValue, state: nil, agent: nil, accepted: ["TOS", "PRIVACY", "DISTRIBUTION"])
     }
     
     internal static func fromMagicLinkCode(code: String, state: String) -> UserAuthRaw {

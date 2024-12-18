@@ -53,7 +53,7 @@ internal class AuthViewModel : NSObject, ObservableObject {
     internal func loginWithGoogle() {
         DispatchQueue.main.async {
             self.presentWebView = true
-            let googleBaseURL = "https://api.dev.aptoide.com/aptoide-ios/auth/user/login/social/google?domain=\(Bundle.main.bundleIdentifier ?? "")"
+            let googleBaseURL = "\(BuildConfiguration.aptoideIosServiceURL)/auth/user/login/social/google?domain=\(Bundle.main.bundleIdentifier ?? "")"
             
             if let url = URL(string: googleBaseURL) {
                 // Initialize ASWebAuthenticationSession
@@ -70,7 +70,16 @@ internal class AuthViewModel : NSObject, ObservableObject {
                     
                     if let code = queryItems.first(where: { $0.name == "code" })?.value {
                         print("Code: \(code)")
-                        AuthUseCases.shared.authenticate(token: code)
+                        AuthUseCases.shared.loginWithGoogle(code: code) { result in
+                            switch result {
+                            case .success(let wallet):
+                                DispatchQueue.main.async {
+                                    TransactionViewModel.shared.buildTransaction() // Re-build the transaction with the new User Wallet
+                                }
+                            case .failure(let failure):
+                                break // SOLVE BEFORE MERGING
+                            }
+                        }
                     } else if let errorDescription = queryItems.first(where: { $0.name == "error" })?.value {
                         print("Error: \(errorDescription)")
                     } else {

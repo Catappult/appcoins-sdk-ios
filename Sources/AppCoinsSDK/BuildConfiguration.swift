@@ -55,7 +55,7 @@ internal class BuildConfiguration {
     static internal var aptoideIosServiceURL: String {
         switch environment {
             case .debugSDKDev, .releaseSDKDev:
-                return "https://api.staging.aptoide.com/aptoide-ios"
+                return "https://api.dev.aptoide.com/aptoide-ios"
             case .debugSDKProd, .releaseSDKProd:
                 return "https://api.aptoide.com/aptoide-ios"
         }

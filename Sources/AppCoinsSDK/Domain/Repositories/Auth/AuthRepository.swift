@@ -24,8 +24,17 @@ internal class AuthRepository: AuthRepositoryProtocol {
         } else { completion(nil) }
     }
     
-    internal func authenticate(token: String) {
-        authService.authenticate(token: token)
+    internal func loginWithGoogle(code: String, completion: @escaping (Result<UserWallet, AuthError>) -> Void) {
+        authService.loginWithGoogle(code: code) { result in
+            switch result {
+            case .success(let data):
+                let userWallet = UserWallet(address: data.data.address, authToken: data.data.authToken, refreshToken: data.data.refreshToken)
+                self.UserWalletCache.setValue(userWallet, forKey: "userWallet", storageOption: .disk(ttl: 60 * 60 * 24 * 365))
+                completion(.success(userWallet))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
     
     internal func loginWithMagicLink(code: String, completion: @escaping (Result<UserWallet, AuthError>) -> Void) {
