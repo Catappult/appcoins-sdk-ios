@@ -111,8 +111,6 @@ struct MagicLinkCodeView: View {
                             
                             VStack{}.frame(height: viewModel.orientation == .landscape ? 3 : 14)
                             
-                            if viewModel.orientation == .landscape { VStack{}.frame(height: viewModel.isKeyboardVisible ? 140 : 0) }
-                            
                         }
                     }
                 }
@@ -156,7 +154,7 @@ struct MagicLinkCodeView: View {
                     VStack{}.frame(height: buttonBottomSafeArea)
                     
                 }.frame(maxHeight: .infinity, alignment: .bottom)
-            }
+            }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, alignment: .center)
         }
     }
 }

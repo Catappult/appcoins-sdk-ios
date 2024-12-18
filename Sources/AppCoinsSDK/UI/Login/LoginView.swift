@@ -135,7 +135,7 @@ struct LoginView: View {
                         } else {
                             VStack{}.frame(height: 20)
                         }
-                    }
+                    }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48)
                 }
             }
             
