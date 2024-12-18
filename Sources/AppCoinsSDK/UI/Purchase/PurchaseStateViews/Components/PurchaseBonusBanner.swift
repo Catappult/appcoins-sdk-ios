@@ -9,9 +9,9 @@ import SwiftUI
 
 struct PurchaseBonusBanner: View {
     
-    @ObservedObject var viewModel: BottomSheetViewModel
-    @ObservedObject var transactionViewModel: TransactionViewModel
-    @ObservedObject var authViewModel: AuthViewModel
+    @ObservedObject internal var viewModel: BottomSheetViewModel
+    @ObservedObject internal var transactionViewModel: TransactionViewModel
+    @ObservedObject internal var authViewModel: AuthViewModel
     
     var body: some View {
         VStack(spacing: 0) {
