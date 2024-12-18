@@ -22,7 +22,11 @@ internal struct PurchaseBottomSheet: View {
     
     @State private var timer: Timer? = nil
     @State private var dynamicHeight: CGFloat = 291
-    var bottomSheetHeight: CGFloat = 420
+    
+    internal let portraitBottomSheetHeight: CGFloat = 420
+    internal let buttonHeightPlusTopSpace: CGFloat = 58
+    internal let bottomSheetHeaderHeight: CGFloat = 72
+    internal let buttonBottomSafeArea: CGFloat = Utils.bottomSafeAreaHeight == 0 ? 5 : 28
     
     internal var body: some View {
         
@@ -31,22 +35,22 @@ internal struct PurchaseBottomSheet: View {
                 ZStack(alignment: .top) {
                     VStack(spacing: 0) {
                         if transactionViewModel.showOtherPaymentMethods || transactionViewModel.lastPaymentMethod != nil {
-                            PaymentMethodChoiceView(viewModel: viewModel)
+                            PurchaseView(viewModel: viewModel, portraitBottomSheetHeight: self.portraitBottomSheetHeight, buttonHeightPlusTopSpace: self.buttonHeightPlusTopSpace, bottomSheetHeaderHeight: self.bottomSheetHeaderHeight, buttonBottomSafeArea: buttonBottomSafeArea)
                         } else {
                             if #available(iOS 17, *) {
                                 ScrollView(.vertical, showsIndicators: false) {
-                                    VStack {}
+                                    VStack{}
                                         .skeleton(with: true, shape: .rectangle)
                                         .cornerRadius(13)
                                         .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 312)
                                     
-                                    VStack {}.frame(height: viewModel.orientation == .landscape ? 52 : 100)
+                                    VStack{}.frame(height: viewModel.orientation == .landscape ? 52 : 100)
                                     
                                 }.defaultScrollAnchor(.bottom)
                             }
                         }
                         
-                        VStack {}.frame(height: 8)
+                        VStack{}.frame(height: 8)
                         
                         // Buying button
                         Button(action: {
@@ -64,7 +68,7 @@ internal struct PurchaseBottomSheet: View {
                         .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
                         .foregroundColor(ColorsUi.APC_White)
                         
-                        VStack {}.frame(height: Utils.bottomSafeAreaHeight == 0 ? 5 : 28)
+                        VStack{}.frame(height: buttonBottomSafeArea)
                     }
                     .frame(maxHeight: .infinity, alignment: .bottom)
                     
@@ -104,9 +108,22 @@ internal struct PurchaseBottomSheet: View {
                     VStack(spacing: 0) {
                         switch authViewModel.authState {
                         case .choice:
-                            UserLoginView(viewModel: viewModel, authViewModel: authViewModel)
+                            UserLoginView(
+                                viewModel: viewModel,
+                                authViewModel: authViewModel,
+                                portraitBottomSheetHeight: portraitBottomSheetHeight,
+                                buttonHeightPlusTopSpace: buttonHeightPlusTopSpace,
+                                bottomSheetHeaderHeight: bottomSheetHeaderHeight,
+                                buttonBottomSafeArea: buttonBottomSafeArea
+                            )
                         case .magicLink:
-                            MagicLinkCodeView(viewModel: viewModel, authViewModel: authViewModel)
+                            MagicLinkCodeView(
+                                viewModel: viewModel,
+                                authViewModel: authViewModel,
+                                portraitBottomSheetHeight: portraitBottomSheetHeight,
+                                buttonHeightPlusTopSpace: buttonHeightPlusTopSpace,
+                                buttonBottomSafeArea: buttonBottomSafeArea
+                            )
                         case .google:
                             EmptyView()
                         }
@@ -142,7 +159,7 @@ internal struct PurchaseBottomSheet: View {
             }
             
         }
-        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: viewModel.orientation == .landscape ? UIScreen.main.bounds.height * 0.9 : viewModel.isCreditCardView ? dynamicHeight + 72 : viewModel.purchaseState == .login && keyboardObserver.isKeyboardVisible ? self.setHeightFromKeyboardToTop(keyboardObserverHeight: keyboardObserver.heighFromKeyboardToTop) : bottomSheetHeight)
+        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: viewModel.orientation == .landscape ? UIScreen.main.bounds.height * 0.9 : viewModel.isCreditCardView ? dynamicHeight + 72 : viewModel.purchaseState == .login && keyboardObserver.isKeyboardVisible ? self.setHeightFromKeyboardToTop(keyboardObserverHeight: keyboardObserver.heighFromKeyboardToTop) : portraitBottomSheetHeight)
         .padding(.bottom, keyboardObserver.isKeyboardVisible && viewModel.orientation != .landscape ? keyboardObserver.keyboardHeight: 0)
         .background(ColorsUi.APC_BottomSheet_LightGray_Background)
         .cornerRadius(13, corners: [.topLeft, .topRight])
@@ -177,8 +194,8 @@ internal struct PurchaseBottomSheet: View {
     }
     
     private func setHeightFromKeyboardToTop(keyboardObserverHeight: CGFloat) -> CGFloat {
-        if keyboardObserverHeight > bottomSheetHeight {
-            return bottomSheetHeight
+        if keyboardObserverHeight > portraitBottomSheetHeight {
+            return portraitBottomSheetHeight
         } else {
             return keyboardObserverHeight
         }

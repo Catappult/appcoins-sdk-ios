@@ -12,85 +12,78 @@ struct MagicLinkCodeView: View {
     @ObservedObject internal var viewModel: BottomSheetViewModel
     @ObservedObject internal var authViewModel: AuthViewModel
     
+    internal let portraitBottomSheetHeight: CGFloat
+    internal let buttonHeightPlusTopSpace: CGFloat
+    internal let buttonBottomSafeArea: CGFloat
+    
     var body: some View {
         if #available(iOS 17, *) {
             ZStack(alignment: .top) {
-                ScrollViewReader { scrollViewProxy in
-                    ScrollView(.vertical, showsIndicators: false) {
-                        VStack(spacing: 0) {
+                PurchaseViewWrapper(height: viewModel.orientation == .landscape ? UIScreen.main.bounds.height * 0.9 : portraitBottomSheetHeight, buttonHeightPlusTopSpace: buttonHeightPlusTopSpace, buttonBottomSafeArea: buttonBottomSafeArea, magicLinkCodeViewTopSpace: viewModel.orientation == .landscape ? 40 : 56) {
+                    VStack(spacing: 0) {
+                        
+                        Image("magic-link-image", bundle: Bundle.APPCModule)
+                            .resizable()
+                            .frame(width: 105, height: 72)
+                        
+                        VStack{}.frame(height: 16)
+                        
+                        Text(Constants.checkYourEmail)
+                            .font(FontsUi.APC_Title3_Bold)
+                            .foregroundColor(ColorsUi.APC_Black)
+                        
+                        VStack{}.frame(height: 16)
+                        
+                        Text(Constants.sentCodeTo + ": " + authViewModel.magicLinkEmail)
+                            .font(FontsUi.APC_Subheadline)
+                            .foregroundColor(ColorsUi.APC_Black)
+                            .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 - 30 : UIScreen.main.bounds.width - 48 - 30)
+                            .multilineTextAlignment(.center)
+                            .lineLimit(2)
+                        
+                        VStack{}.frame(height: viewModel.orientation == .landscape ? 12 : 58)
+                        
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(ColorsUi.APC_White)
+                                .stroke(!authViewModel.isMagicLinkCodeValid ? Color.red : .clear, lineWidth: 1)
+                                .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 44)
                             
-                            VStack {}.frame(height: 56)
-                                .id("top")
-                            
-                            Image("magic-link-image", bundle: Bundle.APPCModule)
-                                .resizable()
-                                .frame(width: 105, height: 72)
-                            
-                            VStack {}.frame(height: 16)
-                            
-                            Text(Constants.checkYourEmail)
-                                .font(FontsUi.APC_Title3_Bold)
-                                .foregroundColor(ColorsUi.APC_Black)
-                            
-                            VStack {}.frame(height: 16)
-                            
-                            Text(Constants.sentCodeTo + ": " + authViewModel.magicLinkEmail)
-                                .font(FontsUi.APC_Subheadline)
-                                .foregroundColor(ColorsUi.APC_Black)
-                                .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 - 30 : UIScreen.main.bounds.width - 48 - 30)
-                                .multilineTextAlignment(.center)
-                                .lineLimit(2)
-                            
-                            VStack {}.frame(height: 80)
-                            
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 10)
-                                    .fill(ColorsUi.APC_White)
-                                    .stroke(authViewModel.isMagicLinkCodeValid ? .clear : Color.red, lineWidth: 1)
-                                    .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 44)
+                            HStack(spacing: 0) {
+                                Text(Constants.codeLabel)
                                 
-                                HStack(spacing: 0) {
+                                VStack{}.frame(width: 8)
+                                
+                                TextField(text: $authViewModel.magicLinkCode) {
                                     Text(Constants.codeLabel)
-                                    
-                                    VStack {}.frame(width: 8)
-                                    
-                                    TextField(text: $authViewModel.magicLinkCode) {
-                                        Text(Constants.codeLabel)
-                                    }
-                                }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 - 32 : UIScreen.main.bounds.width - 48 - 32, height: 44)
-                            }
-                            
-                            if !authViewModel.isMagicLinkCodeValid {
-                                VStack(spacing: 0) {
-                                    VStack {}.frame(height: 4)
-                                    
-                                    Text(Constants.incorrectCode)
-                                        .font(FontsUi.APC_Footnote_Bold)
-                                        .foregroundColor(Color.red)
-                                        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, alignment: .leading)
                                 }
-                            }
-                            
-                            VStack {}.frame(height: 18)
-                                .id("bottom")
-                                .onAppear(perform: {
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-                                        withAnimation(.easeInOut(duration: 30)) {
-                                            scrollViewProxy.scrollTo("top", anchor: .top)
-                                        }
-                                    }
-                                })
-                            
-                            if viewModel.orientation == .landscape { VStack {}.frame(height: viewModel.isKeyboardVisible ? 140 : 0) }
-                            
-                        }.frame(maxHeight: .infinity, alignment: .top)
-                    }.defaultScrollAnchor(.bottom)
+                            }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 - 32 : UIScreen.main.bounds.width - 48 - 32, height: 44)
+                        }
+                        
+                        if !authViewModel.isMagicLinkCodeValid {
+                            VStack(spacing: 0) {
+                                VStack{}.frame(height: 4)
+                                
+                                Text(Constants.incorrectCode)
+                                    .font(FontsUi.APC_Footnote_Bold)
+                                    .foregroundColor(Color.red)
+                                    .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 16, alignment: .leading)
+                            }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 20)
+                        } else {
+                            VStack{}.frame(height: 20)
+                        }
+                        
+                        VStack{}.frame(height: viewModel.orientation == .landscape ? 3 : 14)
+                        
+                        if viewModel.orientation == .landscape { VStack{}.frame(height: viewModel.isKeyboardVisible ? 140 : 0) }
+                        
+                    }
                 }
                 
                 HStack(spacing: 0) {
                     VStack(spacing: 0) {
                         
-                        VStack {}.frame(height: 21)
+                        VStack{}.frame(height: 21)
                         
                         Button {
                             viewModel.dismiss()
@@ -105,7 +98,7 @@ struct MagicLinkCodeView: View {
                             }
                         }
                     }
-                }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 56, alignment: .topTrailing)
+                }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 51, alignment: .topTrailing)
             }
         }
     }
