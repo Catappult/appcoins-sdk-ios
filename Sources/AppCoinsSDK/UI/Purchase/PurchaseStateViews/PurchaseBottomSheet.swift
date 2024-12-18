@@ -39,15 +39,22 @@ internal struct PurchaseBottomSheet: View {
                             PurchaseView(viewModel: viewModel, loginViewModel: loginViewModel, portraitBottomSheetHeight: self.portraitBottomSheetHeight, buttonHeightPlusTopSpace: self.buttonHeightPlusTopSpace, bottomSheetHeaderHeight: self.bottomSheetHeaderHeight, buttonBottomSafeArea: buttonBottomSafeArea)
                         } else {
                             if #available(iOS 17, *) {
-                                ScrollView(.vertical, showsIndicators: false) {
-                                    VStack{}
-                                        .skeleton(with: true, shape: .rectangle)
-                                        .cornerRadius(13)
-                                        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 312)
-                                    
-                                    VStack{}.frame(height: viewModel.orientation == .landscape ? 52 : 100)
-                                    
-                                }.defaultScrollAnchor(.bottom)
+                                PurchaseViewWrapper(height: viewModel.orientation == .landscape ? UIScreen.main.bounds.height * 0.9 : portraitBottomSheetHeight, buttonHeightPlusTopSpace: self.buttonHeightPlusTopSpace, bottomSheetHeaderHeight: self.bottomSheetHeaderHeight, buttonBottomSafeArea: self.buttonBottomSafeArea, isSkeletonView: true) {
+                                    VStack(spacing: 0) {
+                                        VStack{}
+                                            .skeleton(with: true, shape: .rectangle)
+                                            .cornerRadius(12)
+                                            .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 56)
+                                        
+                                        VStack{}.frame(height: 16)
+                                        
+                                        VStack{}
+                                            .skeleton(with: true, shape: .rectangle)
+                                            .cornerRadius(12)
+                                            .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 160)
+                                        
+                                    }
+                                }
                             }
                         }
                         
@@ -82,7 +89,7 @@ internal struct PurchaseBottomSheet: View {
                 ZStack(alignment: .top) {
                     VStack(spacing: 0) {
                         if loginViewModel.loginState == .choice {
-                            UserLoginView(viewModel: viewModel, loginViewModel: loginViewModel, portraitBottomSheetHeight: self.portraitBottomSheetHeight, buttonHeightPlusTopSpace: self.buttonHeightPlusTopSpace, bottomSheetHeaderHeight: self.bottomSheetHeaderHeight, buttonBottomSafeArea: buttonBottomSafeArea)
+                            LoginView(viewModel: viewModel, loginViewModel: loginViewModel, portraitBottomSheetHeight: self.portraitBottomSheetHeight, buttonHeightPlusTopSpace: self.buttonHeightPlusTopSpace, bottomSheetHeaderHeight: self.bottomSheetHeaderHeight, buttonBottomSafeArea: buttonBottomSafeArea)
                         } else if loginViewModel.loginState == .magicLink {
                             MagicLinkCodeView(viewModel: viewModel, loginViewModel: loginViewModel, portraitBottomSheetHeight: self.portraitBottomSheetHeight, buttonHeightPlusTopSpace: self.buttonHeightPlusTopSpace, buttonBottomSafeArea: self.buttonBottomSafeArea)
                         }

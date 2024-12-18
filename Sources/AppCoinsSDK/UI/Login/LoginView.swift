@@ -1,5 +1,5 @@
 //
-//  UserLoginView.swift
+//  LoginView.swift
 //
 //
 //  Created by Graciano Caldeira on 28/11/2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct UserLoginView: View {
+struct LoginView: View {
     
     @ObservedObject internal var viewModel: BottomSheetViewModel
     @ObservedObject internal var loginViewModel: LoginViewModel

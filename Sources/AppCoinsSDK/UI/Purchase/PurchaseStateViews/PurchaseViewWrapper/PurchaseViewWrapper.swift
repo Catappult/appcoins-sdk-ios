@@ -13,12 +13,15 @@ struct PurchaseViewWrapper<Content: View>: View {
     var magicLinkCodeViewTopSpace: CGFloat?
     var isMagicLinkCodeView: Bool = false
     var bottomSheetHeaderHeight: CGFloat = 0
+    var isSkeletonView: Bool = false
     var availableHeigh: CGFloat
     let content: Content
     
     
-    init(height: CGFloat, buttonHeightPlusTopSpace: CGFloat? = nil, bottomSheetHeaderHeight: CGFloat? = nil, buttonBottomSafeArea: CGFloat, magicLinkCodeViewTopSpace: CGFloat? = nil, @ViewBuilder content: @escaping () -> Content) {
+    init(height: CGFloat, buttonHeightPlusTopSpace: CGFloat? = nil, bottomSheetHeaderHeight: CGFloat? = nil, buttonBottomSafeArea: CGFloat, magicLinkCodeViewTopSpace: CGFloat? = nil, isSkeletonView: Bool? = false, @ViewBuilder content: @escaping () -> Content) {
         self.content = content()
+        
+        if let isSkeletonView = isSkeletonView, isSkeletonView != false { self.isSkeletonView = isSkeletonView }
         
         if let buttonHeightPlusTopSpace = buttonHeightPlusTopSpace, let bottomSheetHeaderHeight = bottomSheetHeaderHeight {
             self.bottomSheetHeaderHeight = bottomSheetHeaderHeight
@@ -76,9 +79,11 @@ struct PurchaseViewWrapper<Content: View>: View {
                                 VStack{}.frame(height: 0.001)
                                     .id("bottom")
                                     .onAppear {
-                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-                                            withAnimation(.easeInOut(duration: 30)) {
-                                                scrollViewProxy.scrollTo("top", anchor: .top)
+                                        if !isSkeletonView {
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                                                withAnimation(.easeInOut(duration: 30)) {
+                                                    scrollViewProxy.scrollTo("top", anchor: .top)
+                                                }
                                             }
                                         }
                                     }
