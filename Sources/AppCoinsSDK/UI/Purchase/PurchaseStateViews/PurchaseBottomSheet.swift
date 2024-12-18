@@ -37,24 +37,21 @@ internal struct PurchaseBottomSheet: View {
                         if transactionViewModel.showOtherPaymentMethods || transactionViewModel.lastPaymentMethod != nil {
                             PurchaseView(viewModel: viewModel, portraitBottomSheetHeight: self.portraitBottomSheetHeight, buttonHeightPlusTopSpace: self.buttonHeightPlusTopSpace, bottomSheetHeaderHeight: self.bottomSheetHeaderHeight, buttonBottomSafeArea: buttonBottomSafeArea)
                         } else {
-                            if #available(iOS 17, *) {
-                                PurchaseViewWrapper(height: viewModel.orientation == .landscape ? UIScreen.main.bounds.height * 0.9 : portraitBottomSheetHeight, buttonHeightPlusTopSpace: self.buttonHeightPlusTopSpace, bottomSheetHeaderHeight: self.bottomSheetHeaderHeight, buttonBottomSafeArea: self.buttonBottomSafeArea, isSkeletonView: true) {
-                                    VStack(spacing: 0) {
-                                        VStack{}
-                                            .skeleton(with: true, shape: .rectangle)
-                                            .cornerRadius(12)
-                                            .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 56)
-                                        
-                                        VStack{}.frame(height: 16)
-                                        
-                                        VStack{}
-                                            .skeleton(with: true, shape: .rectangle)
-                                            .cornerRadius(12)
-                                            .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 160)
-                                        
-                                    }
+                            VStack(spacing: 0) {
+                                
+                                VStack{}.frame(height: 72)
+                                
+                                ZStack {
+                                    ActivityIndicatorView(
+                                        isVisible: .constant(true), type: .growingArc(ColorsUi.APC_Gray, lineWidth: 1.5))
+                                    .frame(width: 41, height: 41)
+                                    
+                                    Image("loading-appc-icon", bundle: Bundle.APPCModule)
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(height: 23)
                                 }
-                            }
+                            }.frame(maxHeight: .infinity, alignment: .center)
                         }
                         
                         VStack{}.frame(height: 8)
