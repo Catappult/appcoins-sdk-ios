@@ -21,4 +21,5 @@ internal enum PurchaseState {
     case successAskForSync
     case failed
     case nointernet
+    case login
 }

@@ -56,8 +56,6 @@ internal class BottomSheetViewModel: ObservableObject {
     
     @Published var isPaymentMethodChoiceSheetPresented: Bool = false
     
-    @Published var isLoggedIn: Bool = false
-    
     private init() {
         // Prevents Layout Warning Prints
         UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
@@ -99,13 +97,9 @@ internal class BottomSheetViewModel: ObservableObject {
     
     internal func dismissPaymentMethodChoiceSheet() { self.isPaymentMethodChoiceSheetPresented = false }
     
-    internal func setOrientation(orientation: Orientation) {
-        self.orientation = orientation
-    }
+    internal func setOrientation(orientation: Orientation) { self.orientation = orientation }
     
-    internal func setCreditCardView(isCreditCardView: Bool) {
-        self.isCreditCardView = isCreditCardView
-    }
+    internal func setCreditCardView(isCreditCardView: Bool) { self.isCreditCardView = isCreditCardView }
     
     // Reloads the purchase on failure screens
     internal func reload() {
@@ -166,6 +160,7 @@ internal class BottomSheetViewModel: ObservableObject {
         case .successAskForSync: self.skipWalletSync()
         case .failed: self.dismissVC()
         case .nointernet: self.dismissVC()
+        case .login: self.userCancelled()
         }
     }
     

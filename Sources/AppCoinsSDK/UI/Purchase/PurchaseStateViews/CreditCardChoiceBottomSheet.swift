@@ -15,6 +15,7 @@ internal struct CreditCardChoiceBottomSheet: View {
     @ObservedObject internal var adyenController: AdyenController = AdyenController.shared
     @ObservedObject internal var adyenViewModel: AdyenViewModel = AdyenViewModel.shared
     @ObservedObject internal var transactionViewModel: TransactionViewModel = TransactionViewModel.shared
+    @ObservedObject internal var loginViewModel: LoginViewModel
     
     @State internal var chosenStoredCard: StoredCardPaymentMethod?
     
@@ -36,8 +37,9 @@ internal struct CreditCardChoiceBottomSheet: View {
     let spaceAvailable: CGFloat
     let numberOfCards: Int
     
-    internal init(viewModel: BottomSheetViewModel) {
+    internal init(viewModel: BottomSheetViewModel, loginViewModel: LoginViewModel) {
         self.viewModel = viewModel
+        self.loginViewModel = loginViewModel
         
         if let firstStoredCard = AdyenController.shared.session?.sessionContext.paymentMethods.stored.first as? StoredCardPaymentMethod {
             // Only way to initialize a State variable on init method: https://stackoverflow.com/a/58137096/18917552
@@ -72,16 +74,16 @@ internal struct CreditCardChoiceBottomSheet: View {
                             ScrollViewReader { scrollViewProxy in
                                 ScrollView(.vertical, showsIndicators: false) {
                                     VStack(spacing: 0) {
-                                        VStack {}.frame(height: 72)
+                                        VStack{}.frame(height: 72)
                                             .id("top")
                                         
-                                        VStack {}.frame(height: 8)
+                                        VStack{}.frame(height: 8)
                                         
                                         VStack(spacing: 0) {
                                             
-                                            PurchaseBonusBanner(viewModel: viewModel, transactionViewModel: transactionViewModel)
+                                            PurchaseBonusBanner(viewModel: viewModel, transactionViewModel: transactionViewModel, loginViewModel: loginViewModel)
                                             
-                                            VStack {}.frame(height: 16)
+                                            VStack{}.frame(height: 16)
                                             
                                             if storedPaymentMethods.count == 1 {
                                                 if let paymentMethod = storedPaymentMethods.first as? StoredCardPaymentMethod {
@@ -91,7 +93,7 @@ internal struct CreditCardChoiceBottomSheet: View {
                                                 MultipleStoredCards(viewModel: viewModel, adyenController: adyenController, chosenStoredCard: $chosenStoredCard, storedPaymentMethods: storedPaymentMethods)
                                             }
                                             
-                                            VStack {}.frame(height: 8)
+                                            VStack{}.frame(height: 8)
                                             
                                             Button(action: adyenViewModel.payWithNewCreditCard) {
                                                 Text(Constants.addCard)
@@ -101,22 +103,22 @@ internal struct CreditCardChoiceBottomSheet: View {
                                                 
                                             }
                                             .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 18, alignment: .trailing)
-                                            .onAppear(perform: {
+                                            .onAppear {
                                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
                                                     withAnimation(.easeInOut(duration: 30)) {
                                                         scrollViewProxy.scrollTo("top", anchor: .top)
                                                     }
                                                 }
-                                            })
+                                            }
                                             
-                                            VStack {}.frame(height: 10)
+                                            VStack{}.frame(height: 10)
                                             
                                         }
                                     }.ignoresSafeArea(.all)
                                 }.defaultScrollAnchor(.bottom)
                             }
                             
-                            VStack {}.frame(height: 8)
+                            VStack{}.frame(height: 8)
                             
                             Button(action: { if let storedPaymentMethod = self.chosenStoredCard { adyenViewModel.payWithStoredCreditCard(creditCard: storedPaymentMethod) }}) {
                                 ZStack {
@@ -129,7 +131,7 @@ internal struct CreditCardChoiceBottomSheet: View {
                             .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
                             .foregroundColor(ColorsUi.APC_White)
                             
-                            VStack {}.frame(height: Utils.bottomSafeAreaHeight == 0 ? 5 : 28)
+                            VStack{}.frame(height: Utils.bottomSafeAreaHeight == 0 ? 5 : 28)
                             
                         }.frame(maxHeight: .infinity, alignment: .bottom)
                         
@@ -142,11 +144,11 @@ internal struct CreditCardChoiceBottomSheet: View {
                     VStack(spacing: 0) {
                         BottomSheetAppHeader(viewModel: viewModel, transactionViewModel: transactionViewModel)
                         
-                        VStack {}.frame(height: 8)
+                        VStack{}.frame(height: 8)
                         
-                        PurchaseBonusBanner(viewModel: viewModel, transactionViewModel: transactionViewModel)
+                        PurchaseBonusBanner(viewModel: viewModel, transactionViewModel: transactionViewModel, loginViewModel: loginViewModel)
                         
-                        VStack {}.frame(height: 16)
+                        VStack{}.frame(height: 16)
                     }.frame(alignment: .top)
                     
                     if storedPaymentMethods.count == 1 {
@@ -158,7 +160,7 @@ internal struct CreditCardChoiceBottomSheet: View {
                             
                             MultipleStoredCards(viewModel: viewModel, adyenController: adyenController, chosenStoredCard: $chosenStoredCard, storedPaymentMethods: storedPaymentMethods)
                             
-                            VStack {}.frame(height: 8)
+                            VStack{}.frame(height: 8)
                             
                         }
                     }
@@ -183,7 +185,7 @@ internal struct CreditCardChoiceBottomSheet: View {
                     .frame(maxHeight: .infinity, alignment: .bottom)
                     .foregroundColor(ColorsUi.APC_White)
                     
-                    VStack {}.frame(height: Utils.bottomSafeAreaHeight == 0 ? 5 : 28)
+                    VStack{}.frame(height: Utils.bottomSafeAreaHeight == 0 ? 5 : 28)
                 }
             }
         }

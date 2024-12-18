@@ -21,7 +21,7 @@ struct MultipleStoredCards: View {
             .foregroundColor(ColorsUi.APC_Black)
             .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 20, alignment: .leading)
         
-        VStack {}.frame(height: 10)
+        VStack{}.frame(height: 10)
         
         VStack(spacing: 0) {
             
@@ -53,13 +53,13 @@ struct MultipleStoredCards: View {
                                         .foregroundColor(ColorsUi.APC_Pink)
                                         .frame(width: 22, height: 22, alignment: .trailing)
                                     
-                                    VStack {}.frame(width: 16)
+                                    VStack{}.frame(width: 16)
                                 } else {
                                     Circle()
                                         .strokeBorder(ColorsUi.APC_LightGray, lineWidth: 2)
                                         .frame(width: 22, height: 22, alignment: .trailing)
                                     
-                                    VStack {}.frame(width: 16)
+                                    VStack{}.frame(width: 16)
                                 }
                             }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
                         }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
