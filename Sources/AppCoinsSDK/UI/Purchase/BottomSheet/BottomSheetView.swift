@@ -14,6 +14,7 @@ internal struct BottomSheetView: View {
     @ObservedObject var viewModel: BottomSheetViewModel = BottomSheetViewModel.shared
     @ObservedObject var adyenController: AdyenController = AdyenController.shared
     @ObservedObject var paypalViewModel: PayPalDirectViewModel = PayPalDirectViewModel.shared
+    @ObservedObject var loginViewModel: LoginViewModel = LoginViewModel.shared
     
     @State private var isSafeAreaPresented = false
     
@@ -24,7 +25,9 @@ internal struct BottomSheetView: View {
                 .onTapGesture {
                     if viewModel.isKeyboardVisible {
                         AdyenController.shared.presentableComponent?.viewController.view.findAndResignFirstResponder()
+                        UIApplication.shared.dismissKeyboard()
                     } else {
+                        if viewModel.purchaseState == .login { loginViewModel.dismiss() }
                         viewModel.dismiss()
                     }
                 }
@@ -81,7 +84,7 @@ internal struct BottomSheetView: View {
                 VStack(spacing: 0) {
                     VStack{ }.frame(maxWidth: .infinity, maxHeight: .infinity)
                     
-                    if [.paying, .adyen].contains(viewModel.purchaseState) && !(viewModel.purchaseState == .adyen && adyenController.state == .storedCreditCard) {
+                    if [.paying, .adyen, .login].contains(viewModel.purchaseState) && !(viewModel.purchaseState == .adyen && adyenController.state == .storedCreditCard) {
                         if #available(iOS 16.4, *) {
                             PurchaseBottomSheet(viewModel: viewModel)
                                 .sheet(isPresented: $viewModel.isPaymentMethodChoiceSheetPresented) {

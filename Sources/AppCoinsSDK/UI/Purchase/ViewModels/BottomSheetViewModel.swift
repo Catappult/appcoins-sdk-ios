@@ -46,18 +46,16 @@ internal class BottomSheetViewModel: ObservableObject {
     internal var currencyUseCases: CurrencyUseCases = CurrencyUseCases.shared
     
     // Device Orientation
-    @Published var orientation: Orientation = .portrait
+    @Published internal var orientation: Orientation = .portrait
     
     // Keyboard Dismiss
-    @Published var isKeyboardVisible: Bool = false
+    @Published internal var isKeyboardVisible: Bool = false
     private var cancellables = Set<AnyCancellable>()
     
-    @Published var isCreditCardView: Bool = false
+    @Published internal var isCreditCardView: Bool = false
     
-    @Published var isPaymentMethodChoiceSheetPresented: Bool = false
-    
-    @Published var isLoggedIn: Bool = false
-    
+    @Published internal var isPaymentMethodChoiceSheetPresented: Bool = false
+        
     private init() {
         // Prevents Layout Warning Prints
         UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
@@ -90,22 +88,19 @@ internal class BottomSheetViewModel: ObservableObject {
             self.purchaseFailedMessage = Constants.somethingWentWrong
             
             TransactionViewModel.shared.reset()
+            AuthViewModel.shared.reset()
             PayPalDirectViewModel.shared.reset()
             AdyenController.shared.reset()
         }
     }
     
     internal func presentPaymentMethodChoiceSheet() { self.isPaymentMethodChoiceSheetPresented = true }
-    
+        
     internal func dismissPaymentMethodChoiceSheet() { self.isPaymentMethodChoiceSheetPresented = false }
     
-    internal func setOrientation(orientation: Orientation) {
-        self.orientation = orientation
-    }
+    internal func setOrientation(orientation: Orientation) { self.orientation = orientation }
     
-    internal func setCreditCardView(isCreditCardView: Bool) {
-        self.isCreditCardView = isCreditCardView
-    }
+    internal func setCreditCardView(isCreditCardView: Bool) { self.isCreditCardView = isCreditCardView }
     
     // Reloads the purchase on failure screens
     internal func reload() {
@@ -160,12 +155,14 @@ internal class BottomSheetViewModel: ObservableObject {
                 AdyenController.shared.cancel()
                 self.userCancelled()
             }
+        case .login: self.userCancelled()
         case .processing: break
         case .success: self.dismissVC()
         case .successAskForInstall: self.skipWalletInstall()
         case .successAskForSync: self.skipWalletSync()
         case .failed: self.dismissVC()
         case .nointernet: self.dismissVC()
+        case .login: self.userCancelled()
         }
     }
     
@@ -441,6 +438,7 @@ internal class BottomSheetViewModel: ObservableObject {
                                 result in
                                 switch result {
                                 case .success(let balance):
+                                    print(balance)
                                     Purchase.verify(domain: transaction.domain ,purchaseUID: purchaseUID) {
                                         result in
                                         switch result {

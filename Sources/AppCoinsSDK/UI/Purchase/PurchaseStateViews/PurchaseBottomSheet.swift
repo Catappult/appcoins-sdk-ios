@@ -13,6 +13,7 @@ import SwiftUI
 internal struct PurchaseBottomSheet: View {
     
     @ObservedObject internal var viewModel: BottomSheetViewModel
+    @ObservedObject internal var authViewModel: AuthViewModel = AuthViewModel.shared
     @ObservedObject internal var transactionViewModel: TransactionViewModel = TransactionViewModel.shared
     @ObservedObject internal var adyenController: AdyenController = AdyenController.shared
     
@@ -22,6 +23,11 @@ internal struct PurchaseBottomSheet: View {
     @State private var timer: Timer? = nil
     @State private var dynamicHeight: CGFloat = 291
     
+    internal let portraitBottomSheetHeight: CGFloat = 420
+    internal let buttonHeightPlusTopSpace: CGFloat = 58
+    internal let bottomSheetHeaderHeight: CGFloat = 72
+    internal let buttonBottomSafeArea: CGFloat = Utils.bottomSafeAreaHeight == 0 ? 5 : 28
+    
     internal var body: some View {
         
         VStack(spacing: 0) {
@@ -29,22 +35,29 @@ internal struct PurchaseBottomSheet: View {
                 ZStack(alignment: .top) {
                     VStack(spacing: 0) {
                         if transactionViewModel.showOtherPaymentMethods || transactionViewModel.lastPaymentMethod != nil {
-                            PurchaseView(viewModel: viewModel)
+                            PurchaseView(viewModel: viewModel, portraitBottomSheetHeight: self.portraitBottomSheetHeight, buttonHeightPlusTopSpace: self.buttonHeightPlusTopSpace, bottomSheetHeaderHeight: self.bottomSheetHeaderHeight, buttonBottomSafeArea: buttonBottomSafeArea)
                         } else {
                             if #available(iOS 17, *) {
-                                ScrollView(.vertical, showsIndicators: false) {
-                                    VStack {}
-                                        .skeleton(with: true, shape: .rectangle)
-                                        .cornerRadius(13)
-                                        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 312)
-                                    
-                                    VStack {}.frame(height: viewModel.orientation == .landscape ? 52 : 100)
-                                    
-                                }.defaultScrollAnchor(.bottom)
+                                PurchaseViewWrapper(height: viewModel.orientation == .landscape ? UIScreen.main.bounds.height * 0.9 : portraitBottomSheetHeight, buttonHeightPlusTopSpace: self.buttonHeightPlusTopSpace, bottomSheetHeaderHeight: self.bottomSheetHeaderHeight, buttonBottomSafeArea: self.buttonBottomSafeArea, isSkeletonView: true) {
+                                    VStack(spacing: 0) {
+                                        VStack{}
+                                            .skeleton(with: true, shape: .rectangle)
+                                            .cornerRadius(12)
+                                            .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 56)
+                                        
+                                        VStack{}.frame(height: 16)
+                                        
+                                        VStack{}
+                                            .skeleton(with: true, shape: .rectangle)
+                                            .cornerRadius(12)
+                                            .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 160)
+                                        
+                                    }
+                                }
                             }
                         }
                         
-                        VStack {}.frame(height: 8)
+                        VStack{}.frame(height: 8)
                         
                         // Buying button
                         Button(action: {
@@ -62,13 +75,11 @@ internal struct PurchaseBottomSheet: View {
                         .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
                         .foregroundColor(ColorsUi.APC_White)
                         
-                        VStack {}.frame(height: Utils.bottomSafeAreaHeight == 0 ? 5 : 28)
-                        
+                        VStack{}.frame(height: buttonBottomSafeArea)
                     }
                     .frame(maxHeight: .infinity, alignment: .bottom)
                     
                     BottomSheetAppHeader(viewModel: viewModel, transactionViewModel: transactionViewModel)
-                    
                 }
             }
             
@@ -82,7 +93,7 @@ internal struct PurchaseBottomSheet: View {
                 }
                 
                 if adyenController.state == .newCreditCard {
-                    CreditCardBottomSheet(viewModel: viewModel, transactionViewModel: transactionViewModel, dynamicHeight: $dynamicHeight)
+                    CreditCardBottomSheet(viewModel: viewModel, transactionViewModel: transactionViewModel, authViewModel: authViewModel, dynamicHeight: $dynamicHeight)
                         .onAppear{
                             viewModel.setCreditCardView(isCreditCardView: true)
                             startObservingDynamicHeight()
@@ -91,7 +102,8 @@ internal struct PurchaseBottomSheet: View {
                             if viewModel.isCreditCardView {
                                 viewModel.setCreditCardView(isCreditCardView: false)
                             }
-                            stopObservingDynamicHeight() }
+                            stopObservingDynamicHeight()
+                        }
                 }
                 
                 if adyenController.state == .paypal {
@@ -99,8 +111,82 @@ internal struct PurchaseBottomSheet: View {
                 }
             }
             
+            if viewModel.purchaseState == .login {
+                ZStack(alignment: .top) {
+                    VStack(spacing: 0) {
+                        switch authViewModel.authState {
+                        case .choice:
+                            LoginView(viewModel: viewModel, authViewModel: authViewModel, portraitBottomSheetHeight: self.portraitBottomSheetHeight, buttonHeightPlusTopSpace: self.buttonHeightPlusTopSpace, bottomSheetHeaderHeight: self.bottomSheetHeaderHeight, buttonBottomSafeArea: buttonBottomSafeArea)
+                        case .google:
+                            EmptyView()
+                        case .magicLink:
+                            MagicLinkCodeView(viewModel: viewModel, authViewModel: authViewModel, portraitBottomSheetHeight: self.portraitBottomSheetHeight, buttonHeightPlusTopSpace: self.buttonHeightPlusTopSpace, buttonBottomSafeArea: self.buttonBottomSafeArea)
+                        }
+                        
+                        // Put this inside LoginView and MagicLinkCodeView respectively
+                        Button(action: {
+                            if authViewModel.authState == .choice {
+                                if authViewModel.validateEmail() { authViewModel.sendMagicLink() }
+                            } else { authViewModel.loginWithMagicLink() }
+                            
+                        }) {
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 12)
+                                    .foregroundColor(transactionViewModel.transaction != nil ? ColorsUi.APC_Pink : ColorsUi.APC_Gray)
+                                Text(Constants.continueText)
+                            }
+                        }
+                        .frame(maxHeight: .infinity, alignment: .bottom)
+                        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
+                        .foregroundColor(ColorsUi.APC_White)
+                        
+                        VStack{}.frame(height: buttonBottomSafeArea)
+                        
+                    }.frame(maxHeight: .infinity, alignment: .bottom)
+                    
+                    if authViewModel.authState != .magicLink {
+                        
+                        HStack(spacing: 0) {
+                            
+                            VStack{}.frame(width: 24)
+                            
+                            VStack(alignment: .leading, spacing: 0) {
+                                Text(Constants.signInAndJoinTitle)
+                                    .foregroundColor(ColorsUi.APC_Black)
+                                    .font(FontsUi.APC_Callout_Bold)
+                                
+                                VStack{}.frame(height: 2)
+                                
+                                Text(Constants.getBonusEveryPurchase)
+                                    .foregroundColor(ColorsUi.APC_Black)
+                                    .font(FontsUi.APC_Footnote)
+                                
+                            }.frame(maxWidth: .infinity, maxHeight: 40, alignment: .leading)
+                            
+                            Button {
+                                viewModel.dismiss()
+                            } label: {
+                                ZStack {
+                                    Circle()
+                                        .fill(ColorsUi.APC_BackgroundLightGray_Button)
+                                        .frame(width: 30, height: 30)
+                                    
+                                    Image(systemName: "xmark")
+                                        .foregroundColor(ColorsUi.APC_DarkGray_Xmark)
+                                }
+                            }
+                            
+                            VStack{}.frame(width: 24)
+                        }
+                        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.width, height: 72)
+                        .background(BlurView(style: .systemMaterial))
+                        .onTapGesture { UIApplication.shared.dismissKeyboard() }
+                    }
+                }
+            }
+            
         }
-        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: viewModel.orientation == .landscape ? UIScreen.main.bounds.height * 0.9 : viewModel.isCreditCardView ? dynamicHeight + 72 : 420)
+        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: viewModel.orientation == .landscape ? UIScreen.main.bounds.height * 0.9 : viewModel.isCreditCardView ? dynamicHeight + 72 : viewModel.purchaseState == .login && keyboardObserver.isKeyboardVisible ? self.setHeightFromKeyboardToTop(keyboardObserverHeight: keyboardObserver.heighFromKeyboardToTop) : portraitBottomSheetHeight)
         .padding(.bottom, keyboardObserver.isKeyboardVisible && viewModel.orientation != .landscape ? keyboardObserver.keyboardHeight: 0)
         .background(ColorsUi.APC_BottomSheet_LightGray_Background)
         .cornerRadius(13, corners: [.topLeft, .topRight])
@@ -132,5 +218,13 @@ internal struct PurchaseBottomSheet: View {
     private func stopObservingDynamicHeight() {
         timer?.invalidate()
         timer = nil
+    }
+    
+    private func setHeightFromKeyboardToTop(keyboardObserverHeight: CGFloat) -> CGFloat {
+        if keyboardObserverHeight > portraitBottomSheetHeight {
+            return portraitBottomSheetHeight
+        } else {
+            return keyboardObserverHeight
+        }
     }
 }
