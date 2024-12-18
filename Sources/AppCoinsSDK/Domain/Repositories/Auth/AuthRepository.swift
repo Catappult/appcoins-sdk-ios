@@ -10,6 +10,8 @@ import Foundation
 internal class AuthRepository: AuthRepositoryProtocol {
     
     private let authService: AuthService = AuthClient()
+    private let appcService: APPCService = APPCServiceClient()
+    
     internal let AuthStateCache: Cache<String, String> = Cache(cacheName: "AuthStateCache")
     internal let UserWalletCache: Cache<String, UserWallet> = Cache(cacheName: "UserWalletCache")
     
@@ -17,6 +19,7 @@ internal class AuthRepository: AuthRepositoryProtocol {
         if let userWallet = self.UserWalletCache.getValue(forKey: "userWallet") {
             if userWallet.isExpired() {
                 // Refresh user wallet
+                self.refreshLogin(refreshToken: userWallet.refreshToken) { result in }
                 completion(nil)
             } else {
                 completion(userWallet)
@@ -66,5 +69,9 @@ internal class AuthRepository: AuthRepositoryProtocol {
                 completion(.failure(error))
             }
         }
+    }
+    
+    internal func refreshLogin(refreshToken: String, completion: @escaping (Result<UserWallet, AuthError>) -> Void) {
+        appcService.refreshUserWallet(refreshToken: refreshToken) { result in }
     }
 }
