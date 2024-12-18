@@ -46,15 +46,15 @@ internal class BottomSheetViewModel: ObservableObject {
     internal var currencyUseCases: CurrencyUseCases = CurrencyUseCases.shared
     
     // Device Orientation
-    @Published var orientation: Orientation = .portrait
+    @Published internal var orientation: Orientation = .portrait
     
     // Keyboard Dismiss
-    @Published var isKeyboardVisible: Bool = false
+    @Published internal var isKeyboardVisible: Bool = false
     private var cancellables = Set<AnyCancellable>()
     
-    @Published var isCreditCardView: Bool = false
+    @Published internal var isCreditCardView: Bool = false
     
-    @Published var canChooseMethod: Bool = false
+    @Published internal var isPaymentMethodChoiceSheetPresented: Bool = false
         
     private init() {
         // Prevents Layout Warning Prints
@@ -94,17 +94,13 @@ internal class BottomSheetViewModel: ObservableObject {
         }
     }
     
-    internal func setCanChooseMethod(canChooseMethod: Bool) {
-        self.canChooseMethod = canChooseMethod
-    }
+    internal func presentPaymentMethodChoiceSheet() { self.isPaymentMethodChoiceSheetPresented = true }
+        
+    internal func dismissPaymentMethodChoiceSheet() { self.isPaymentMethodChoiceSheetPresented = false }
     
-    internal func setOrientation(orientation: Orientation) {
-        self.orientation = orientation
-    }
+    internal func setOrientation(orientation: Orientation) { self.orientation = orientation }
     
-    internal func setCreditCardView(isCreditCardView: Bool) {
-        self.isCreditCardView = isCreditCardView
-    }
+    internal func setCreditCardView(isCreditCardView: Bool) { self.isCreditCardView = isCreditCardView }
     
     // Reloads the purchase on failure screens
     internal func reload() {
@@ -166,6 +162,7 @@ internal class BottomSheetViewModel: ObservableObject {
         case .successAskForSync: self.skipWalletSync()
         case .failed: self.dismissVC()
         case .nointernet: self.dismissVC()
+        case .login: self.userCancelled()
         }
     }
     
