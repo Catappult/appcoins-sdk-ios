@@ -18,7 +18,7 @@ internal struct NoInternetBottomSheet: View {
             ColorsUi.APC_BottomSheet_LightGray_Background
             VStack(spacing: 0) {
                 
-                VStack {}.frame(height: 16)
+                VStack{}.frame(height: 16)
                 
                 HStack(spacing: 0) {
                     Button {
@@ -36,11 +36,11 @@ internal struct NoInternetBottomSheet: View {
                     }
                     .frame(maxWidth: .infinity, alignment: .topTrailing)
                     
-                    VStack {}.frame(width: 24)
+                    VStack{}.frame(width: 24)
                     
                 }
                 
-                VStack {}.frame(height:viewModel.orientation == .landscape ? 21 : 61)
+                VStack{}.frame(height:viewModel.orientation == .landscape ? 21 : 61)
                 
                 Image("no-internet-black", bundle: Bundle.APPCModule)
                     .resizable()
@@ -48,13 +48,13 @@ internal struct NoInternetBottomSheet: View {
                     .foregroundColor(ColorsUi.APC_Black)
                     .frame(width: 80, height: 80)
                 
-                VStack {}.frame(height: 16)
+                VStack{}.frame(height: 16)
                 
                 Text(Constants.noInternetTitle)
                     .font(FontsUi.APC_Title3_Bold)
                     .foregroundColor(ColorsUi.APC_Black)
                 
-                VStack {}.frame(height: 15)
+                VStack{}.frame(height: 15)
                 
                 Text(Constants.noInternetText)
                     .lineLimit(2)
@@ -63,7 +63,7 @@ internal struct NoInternetBottomSheet: View {
                     .multilineTextAlignment(.center)
                     .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 376 : UIScreen.main.bounds.width - 48, height: 40)
                 
-                VStack {}.frame(height: viewModel.orientation == .landscape ? 21 : 40)
+                VStack{}.frame(height: viewModel.orientation == .landscape ? 21 : 40)
                 
                 Button(action: {viewModel.reload()}) {
                     ZStack {
@@ -78,7 +78,7 @@ internal struct NoInternetBottomSheet: View {
                 .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
                 .frame(maxHeight: .infinity, alignment: .bottom)
                 
-                VStack {}.frame(height: Utils.bottomSafeAreaHeight == 0 ? 5 : 28)
+                VStack{}.frame(height: Utils.bottomSafeAreaHeight == 0 ? 5 : 28)
                 
             }
         }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: viewModel.orientation == .landscape ? UIScreen.main.bounds.height * 0.9 : 420)

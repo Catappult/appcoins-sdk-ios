@@ -35,7 +35,7 @@ struct PaymentMethodListView: View {
             }
             .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 72)
             
-            VStack {}.frame(height: 8)
+            VStack{}.frame(height: 8)
             
             // Payment methods
             HStack(spacing: 0) {
