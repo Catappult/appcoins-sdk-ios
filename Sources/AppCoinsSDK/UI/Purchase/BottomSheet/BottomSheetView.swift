@@ -26,7 +26,12 @@ internal struct BottomSheetView: View {
                     if viewModel.isKeyboardVisible {
                         AdyenController.shared.presentableComponent?.viewController.view.findAndResignFirstResponder()
                         UIApplication.shared.dismissKeyboard()
-                        if viewModel.purchaseState == .login { authViewModel.hideTextFieldView() }
+                        if viewModel.purchaseState == .login {
+                            withAnimation(.easeInOut(duration: 0.4)) {
+                                authViewModel.hideTextFieldView()
+                                authViewModel.setFocusTextField(shouldFocusTextField: false)
+                            }
+                        }
                     } else {
                         viewModel.dismiss()
                     }

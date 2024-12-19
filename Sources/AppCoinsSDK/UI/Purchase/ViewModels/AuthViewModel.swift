@@ -26,6 +26,7 @@ internal class AuthViewModel : NSObject, ObservableObject {
     @Published var isMagicLinkCodeValid: Bool = true
     
     @Published internal var showTextFieldWithKeyboard: Bool = false
+    @Published internal var shouldFocusTextField: Bool = false
     
     private override init() {}
     
@@ -40,6 +41,8 @@ internal class AuthViewModel : NSObject, ObservableObject {
     internal func showTextFieldView() { self.showTextFieldWithKeyboard = true }
     
     internal func hideTextFieldView() { self.showTextFieldWithKeyboard = false }
+    
+    internal func setFocusTextField(shouldFocusTextField: Bool) { self.shouldFocusTextField = shouldFocusTextField }
     
     internal func setLogIn() { self.isLoggedIn = true }
     

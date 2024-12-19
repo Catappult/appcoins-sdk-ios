@@ -19,7 +19,7 @@ struct LoginView: View {
     internal let bottomSheetHeaderHeight: CGFloat
     internal let buttonBottomSafeArea: CGFloat
     
-    @State private var shouldFocusTextField: Bool = false
+//    @State private var shouldFocusTextField: Bool = false
     
     var body: some View {
         if #available(iOS 17, *) {
@@ -38,14 +38,14 @@ struct LoginView: View {
                                 
                                 VStack{}.frame(width: 8)
                                 
-                                FocusableTextField(authViewModel: authViewModel, placeholder: Constants.yourEmail, text: $authViewModel.magicLinkEmail, shouldFocus: $shouldFocusTextField)
+                                FocusableTextField(authViewModel: authViewModel, placeholder: Constants.yourEmail, text: $authViewModel.magicLinkEmail)
                                 
                             }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 - 32 : UIScreen.main.bounds.width - 48 - 32)
                         }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 44)
                         
                     }
                     .onAppear {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { shouldFocusTextField = true }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { authViewModel.setFocusTextField(shouldFocusTextField: true) }
                     }
                 } else {
                     VStack(spacing: 0) {
@@ -116,7 +116,9 @@ struct LoginView: View {
                         }
                         .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 44)
                         .onTapGesture {
-                            if viewModel.orientation == .landscape { withAnimation(.easeInOut(duration: 0.15)) { authViewModel.showTextFieldView() } }
+                            if viewModel.orientation == .landscape {
+                                withAnimation(.easeInOut(duration: 0.4)) { authViewModel.showTextFieldView() }
+                            }
                         }
                         
                         if !authViewModel.isMagicLinkEmailValid {
@@ -131,9 +133,11 @@ struct LoginView: View {
                         } else {
                             VStack{}.frame(height: 20)
                         }
-                    }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48)
+                    }
+                    .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48)
                 }
-            }.onDisappear { authViewModel.hideTextFieldView() }
+            }
+            .onDisappear { authViewModel.hideTextFieldView() }
             
             VStack{}.frame(height: 8)
             
