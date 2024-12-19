@@ -50,15 +50,13 @@ struct PurchaseViewWrapper<Content: View>: View {
                                     }
                             }
                         )
-                }
-                .hidden()
+                }.hidden()
                 
                 if contentFits {
                     VStack {
                         VStack{}.frame(height: isMagicLinkCodeView ? magicLinkCodeViewTopSpace ?? 0 : self.bottomSheetHeaderHeight)
                         
-                        content
-                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                        content.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                     }
                 } else {
                     ScrollViewReader { scrollViewProxy in
@@ -69,8 +67,7 @@ struct PurchaseViewWrapper<Content: View>: View {
                                 
                                 VStack{}.frame(height: isMagicLinkCodeView ? magicLinkCodeViewTopSpace ?? 0 : self.bottomSheetHeaderHeight)
                                 
-                                content
-                                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+                                content.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
                                 
                                 VStack{}.frame(height: 0.001)
                                     .id("bottom")
