@@ -79,7 +79,7 @@ internal class BottomSheetViewModel: ObservableObject {
     
     // Resets the BottomSheet
     private func reset() {
-        DispatchQueue.main.async {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.purchase = nil
             self.purchaseCompleted = false
             

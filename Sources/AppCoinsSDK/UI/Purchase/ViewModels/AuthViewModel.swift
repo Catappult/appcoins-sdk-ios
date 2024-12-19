@@ -126,9 +126,3 @@ extension AuthViewModel: ASWebAuthenticationPresentationContextProviding {
         return UIApplication.shared.windows.first(where: { $0.isKeyWindow }) ?? ASPresentationAnchor()
     }
 }
-
-internal enum AuthState {
-    case choice
-    case google
-    case magicLink
-}
