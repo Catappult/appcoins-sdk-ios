@@ -19,10 +19,6 @@ internal class BottomSheetViewModel: ObservableObject {
     internal var metadata: String? = nil
     internal var reference: String? = nil
     
-    // The purchase resulting from the completed transaction, used for when there's a sync or an install after the purchase has been completed
-    private var purchase: Purchase? = nil
-    private var purchaseCompleted: Bool = false
-    
     // Purchase status
     @Published internal var purchaseState: PurchaseState = .none
     
@@ -76,9 +72,6 @@ internal class BottomSheetViewModel: ObservableObject {
     // Resets the BottomSheet
     private func reset() {
         DispatchQueue.main.async {
-            self.purchase = nil
-            self.purchaseCompleted = false
-            
             self.purchaseState = .paying
             self.finalWalletBalance = nil
             self.purchaseFailedMessage = Constants.somethingWentWrong
@@ -502,7 +495,5 @@ internal class BottomSheetViewModel: ObservableObject {
             self.dismissVC()
         }
     }
-    
-    internal func hasCompletedPurchase() -> Bool { return purchaseCompleted }
     
 }
