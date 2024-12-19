@@ -6040,6 +6040,13 @@
       "value": "false"
     },
     {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Purchase\/ViewModels\/AuthViewModel.swift",
+      "kind": "BooleanLiteral",
+      "offset": 861,
+      "length": 5,
+      "value": "false"
+    },
+    {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Purchase\/BottomSheet\/BottomSheetView.swift",
       "kind": "BooleanLiteral",
       "offset": 559,
@@ -9451,7 +9458,7 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Login\/FocusedTextField\/FocusedTextField.swift",
       "kind": "StringLiteral",
-      "offset": 906,
+      "offset": 821,
       "length": 11,
       "value": "\"AppCoinsSDK.Coordinator\""
     },
@@ -10861,20 +10868,6 @@
       "offset": 306,
       "length": 9,
       "value": "\"network\""
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Login\/LoginView.swift",
-      "kind": "BooleanLiteral",
-      "offset": 593,
-      "length": 5,
-      "value": "false"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Login\/MagicLinkCodeView.swift",
-      "kind": "BooleanLiteral",
-      "offset": 558,
-      "length": 5,
-      "value": "false"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Maze.swift",
