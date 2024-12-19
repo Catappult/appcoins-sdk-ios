@@ -17,7 +17,6 @@ struct MagicLinkCodeView: View {
     internal let buttonHeightPlusTopSpace: CGFloat
     internal let buttonBottomSafeArea: CGFloat
     
-    @State private var showTextFieldWithKeyboard: Bool = false
     @State private var shouldFocusTextField: Bool = false
     
     var body: some View {
@@ -25,7 +24,7 @@ struct MagicLinkCodeView: View {
             ZStack(alignment: .top) {
                 PurchaseViewWrapper(height: viewModel.orientation == .landscape ? UIScreen.main.bounds.height * 0.9 : portraitBottomSheetHeight, buttonHeightPlusTopSpace: buttonHeightPlusTopSpace, buttonBottomSafeArea: buttonBottomSafeArea, magicLinkCodeViewTopSpace: viewModel.orientation == .landscape ? 40 : 56) {
                     
-                    if viewModel.orientation == .landscape && showTextFieldWithKeyboard {
+                    if viewModel.orientation == .landscape && authViewModel.showTextFieldWithKeyboard {
                         VStack(spacing: 0) {
                             
                             VStack{}.frame(height: 16)
@@ -41,7 +40,7 @@ struct MagicLinkCodeView: View {
                                     
                                     VStack{}.frame(width: 8)
                                     
-                                    FocusableTextField(placeholder: Constants.yourEmail, text: $authViewModel.magicLinkCode, shouldFocus: $shouldFocusTextField)
+                                    FocusableTextField(authViewModel: authViewModel, placeholder: Constants.yourEmail, text: $authViewModel.magicLinkCode, shouldFocus: $shouldFocusTextField)
                                     
                                 }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 - 32 : UIScreen.main.bounds.width - 48 - 32)
                             }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 44)
@@ -80,9 +79,11 @@ struct MagicLinkCodeView: View {
                                     .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 44)
                                 
                                 HStack(spacing: 0) {
+                                    
                                     Text(Constants.codeLabel)
                                     
                                     VStack{}.frame(width: 8)
+                                    
                                     if viewModel.orientation == .landscape {
                                         Text(Constants.codeLabel)
                                             .foregroundColor(ColorsUi.APC_Gray)
@@ -93,7 +94,7 @@ struct MagicLinkCodeView: View {
                             }
                             .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 44)
                             .onTapGesture {
-                                if viewModel.orientation == .landscape { withAnimation(.easeInOut(duration: 0.15)) { showTextFieldWithKeyboard = true } }
+                                if viewModel.orientation == .landscape { withAnimation(.easeInOut(duration: 0.15)) { authViewModel.showTextFieldView() } }
                             }
                             
                             if !authViewModel.isMagicLinkCodeValid {
@@ -113,7 +114,7 @@ struct MagicLinkCodeView: View {
                             
                         }
                     }
-                }
+                }.onDisappear { authViewModel.hideTextFieldView() }
                 
                 HStack(spacing: 0) {
                     VStack(spacing: 0) {

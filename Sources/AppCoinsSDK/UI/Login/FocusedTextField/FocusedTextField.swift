@@ -9,9 +9,11 @@ import SwiftUI
 import UIKit
 
 struct FocusableTextField: UIViewRepresentable {
-    var placeholder: String
-    @Binding var text: String
-    @Binding var shouldFocus: Bool
+    
+    @ObservedObject internal var authViewModel: AuthViewModel
+    internal var placeholder: String
+    @Binding internal var text: String
+    @Binding internal var shouldFocus: Bool
 
     func makeUIView(context: Context) -> UITextField {
         let textField = UITextField()
@@ -30,14 +32,16 @@ struct FocusableTextField: UIViewRepresentable {
     }
 
     func makeCoordinator() -> Coordinator {
-        Coordinator(self)
+        Coordinator(self, authViewModel: authViewModel)
     }
     
     class Coordinator: NSObject, UITextFieldDelegate {
         var parent: FocusableTextField
+        var authViewModel: AuthViewModel
         
-        init(_ parent: FocusableTextField) {
+        init(_ parent: FocusableTextField, authViewModel: AuthViewModel) {
             self.parent = parent
+            self.authViewModel = authViewModel
         }
         
         // Atualiza o texto sempre que o valor mudar
@@ -51,6 +55,12 @@ struct FocusableTextField: UIViewRepresentable {
             if string.contains(" ") {
                 return false
             }
+            return true
+        }
+        
+        func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+            authViewModel.hideTextFieldView()
+            textField.resignFirstResponder()
             return true
         }
     }

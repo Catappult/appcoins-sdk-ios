@@ -25,6 +25,8 @@ internal class AuthViewModel : NSObject, ObservableObject {
     @Published var magicLinkCode: String = ""
     @Published var isMagicLinkCodeValid: Bool = true
     
+    @Published internal var showTextFieldWithKeyboard: Bool = false
+    
     private override init() {}
     
     internal func reset() {
@@ -34,6 +36,10 @@ internal class AuthViewModel : NSObject, ObservableObject {
         self.magicLinkCode = ""
         self.isMagicLinkCodeValid = true
     }
+    
+    internal func showTextFieldView() { self.showTextFieldWithKeyboard = true }
+    
+    internal func hideTextFieldView() { self.showTextFieldWithKeyboard = false }
     
     internal func setLogIn() { self.isLoggedIn = true }
     

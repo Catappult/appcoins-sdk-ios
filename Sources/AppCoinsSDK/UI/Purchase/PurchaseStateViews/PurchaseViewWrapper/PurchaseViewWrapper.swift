@@ -16,7 +16,6 @@ struct PurchaseViewWrapper<Content: View>: View {
     var availableHeigh: CGFloat
     let content: Content
     
-    
     init(height: CGFloat, buttonHeightPlusTopSpace: CGFloat? = nil, bottomSheetHeaderHeight: CGFloat? = nil, buttonBottomSafeArea: CGFloat, magicLinkCodeViewTopSpace: CGFloat? = nil, @ViewBuilder content: @escaping () -> Content) {
         self.content = content()
         

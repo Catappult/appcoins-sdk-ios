@@ -19,14 +19,13 @@ struct LoginView: View {
     internal let bottomSheetHeaderHeight: CGFloat
     internal let buttonBottomSafeArea: CGFloat
     
-    @State private var showTextFieldWithKeyboard: Bool = false
     @State private var shouldFocusTextField: Bool = false
     
     var body: some View {
         if #available(iOS 17, *) {
             PurchaseViewWrapper(height: viewModel.orientation == .landscape ? UIScreen.main.bounds.height * 0.9 : portraitBottomSheetHeight, buttonHeightPlusTopSpace: buttonHeightPlusTopSpace, bottomSheetHeaderHeight: bottomSheetHeaderHeight, buttonBottomSafeArea: buttonBottomSafeArea) {
                 
-                if viewModel.orientation == .landscape && showTextFieldWithKeyboard {
+                if viewModel.orientation == .landscape && authViewModel.showTextFieldWithKeyboard {
                     VStack(spacing: 0) {
                         ZStack {
                             RoundedRectangle(cornerRadius: 10)
@@ -39,7 +38,7 @@ struct LoginView: View {
                                 
                                 VStack{}.frame(width: 8)
                                 
-                                FocusableTextField(placeholder: Constants.yourEmail, text: $authViewModel.magicLinkEmail, shouldFocus: $shouldFocusTextField)
+                                FocusableTextField(authViewModel: authViewModel, placeholder: Constants.yourEmail, text: $authViewModel.magicLinkEmail, shouldFocus: $shouldFocusTextField)
                                 
                             }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 - 32 : UIScreen.main.bounds.width - 48 - 32)
                         }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 44)
@@ -104,15 +103,12 @@ struct LoginView: View {
                             
                             HStack(spacing: 0) {
                                 
-                                VStack{}.frame(width: 16)
-                                
                                 Text(Constants.emailLabel)
                                 
                                 VStack{}.frame(width: 8)
                                 
                                 if viewModel.orientation == .landscape {
-                                    Text(Constants.yourEmail)
-                                        .foregroundColor(ColorsUi.APC_Gray)
+                                    TextField(Constants.yourEmail, text: $authViewModel.magicLinkEmail)
                                 } else {
                                     TextField(Constants.yourEmail, text: $authViewModel.magicLinkEmail)
                                 }
@@ -120,7 +116,7 @@ struct LoginView: View {
                         }
                         .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 44)
                         .onTapGesture {
-                            if viewModel.orientation == .landscape { withAnimation(.easeInOut(duration: 0.15)) { showTextFieldWithKeyboard = true } }
+                            if viewModel.orientation == .landscape { withAnimation(.easeInOut(duration: 0.15)) { authViewModel.showTextFieldView() } }
                         }
                         
                         if !authViewModel.isMagicLinkEmailValid {
@@ -137,7 +133,7 @@ struct LoginView: View {
                         }
                     }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48)
                 }
-            }
+            }.onDisappear { authViewModel.hideTextFieldView() }
             
             VStack{}.frame(height: 8)
             
