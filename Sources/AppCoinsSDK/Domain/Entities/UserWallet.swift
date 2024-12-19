@@ -50,7 +50,7 @@ internal class UserWallet: Wallet, Codable {
     
     func isExpired() -> Bool {
         let minutesLived = -self.added.timeIntervalSinceNow / 60
-        return minutesLived > 0.0010 // Is expired if it was fetched more than 10 minutes ago
+        return minutesLived > 10 // Is expired if it was fetched more than 10 minutes ago
     }
     
     // Conform to Codable Protocol

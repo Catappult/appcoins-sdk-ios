@@ -25,6 +25,8 @@ internal class AuthViewModel : NSObject, ObservableObject {
     @Published var magicLinkCode: String = ""
     @Published var isMagicLinkCodeValid: Bool = true
     
+    @Published var isSendingMagicLink: Bool = false
+    
     private override init() {}
     
     internal func reset() {
@@ -95,8 +97,13 @@ internal class AuthViewModel : NSObject, ObservableObject {
     }
     
     internal func sendMagicLink() {
+        DispatchQueue.main.async { self.isSendingMagicLink = true }
+        
         AuthUseCases.shared.sendMagicLink(email: self.magicLinkEmail) { result in
-            DispatchQueue.main.async { self.authState = .magicLink }
+            DispatchQueue.main.async { 
+                self.isSendingMagicLink = false
+                self.authState = .magicLink
+            }
         }
     }
     

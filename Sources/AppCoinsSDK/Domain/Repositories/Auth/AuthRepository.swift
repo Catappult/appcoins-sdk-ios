@@ -18,9 +18,14 @@ internal class AuthRepository: AuthRepositoryProtocol {
     internal func getUserWallet(completion: @escaping (UserWallet?) -> Void) {
         if let userWallet = self.UserWalletCache.getValue(forKey: "userWallet") {
             if userWallet.isExpired() {
-                // Refresh user wallet
-                self.refreshLogin(refreshToken: userWallet.refreshToken) { result in }
-                completion(nil)
+                self.refreshLogin(refreshToken: userWallet.refreshToken) { result in
+                    switch result {
+                    case .success(let refreshedWallet):
+                        completion(refreshedWallet)
+                    case .failure(let failure):
+                        completion(nil)
+                    }
+                }
             } else {
                 completion(userWallet)
             }
@@ -72,6 +77,21 @@ internal class AuthRepository: AuthRepositoryProtocol {
     }
     
     internal func refreshLogin(refreshToken: String, completion: @escaping (Result<UserWallet, AuthError>) -> Void) {
-        appcService.refreshUserWallet(refreshToken: refreshToken) { result in }
+        appcService.refreshUserWallet(refreshToken: refreshToken) { result in
+            
+            completion(.failure(AuthError.failed(message: "Forced error", description: "Forced", request: nil)))
+            
+//            switch result {
+//            case .success(let raw):
+//                completion(.success(UserWallet(address: raw.address, authToken: raw.authToken, refreshToken: raw.refreshToken)))
+//            case .failure(let error):
+//                switch error {
+//                case .failed(let message, let description, let request):
+//                    completion(.failure(AuthError.failed(message: message, description: description, request: request)))
+//                case .noInternet(let message, let description, let request):
+//                    completion(.failure(AuthError.noInternet(message: message, description: description, request: request)))
+//                }
+//            }
+        }
     }
 }

@@ -133,7 +133,12 @@ internal struct PurchaseBottomSheet: View {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 12)
                                     .foregroundColor(transactionViewModel.transaction != nil ? ColorsUi.APC_Pink : ColorsUi.APC_Gray)
-                                Text(Constants.continueText)
+                                
+                                if authViewModel.isSendingMagicLink {
+                                    ProgressView().foregroundColor(ColorsUi.APC_White)
+                                } else {
+                                    Text(Constants.continueText)
+                                }
                             }
                         }
                         .frame(maxHeight: .infinity, alignment: .bottom)
