@@ -139,7 +139,6 @@ struct LoginView: View {
             
             Button(action: {
                 if authViewModel.validateEmail() { authViewModel.sendMagicLink() }
-                
             }) {
                 ZStack {
                     RoundedRectangle(cornerRadius: 12)

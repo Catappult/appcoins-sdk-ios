@@ -155,6 +155,7 @@ struct MagicLinkCodeView: View {
                     VStack{}.frame(height: buttonBottomSafeArea)
                     
                 }.frame(maxHeight: .infinity, alignment: .bottom)
+                
             }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, alignment: .center)
         }
     }
