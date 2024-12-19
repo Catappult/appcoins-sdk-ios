@@ -31,53 +31,6 @@ internal struct BottomSheetView: View {
                 .ignoresSafeArea()
             
             ZStack {
-                switch viewModel.purchaseState {
-                case .initialAskForSync:
-                    VStack(spacing: 0) {
-                        Color.clear.frame(maxHeight: .infinity)
-                        
-                        InitialSyncBottomSheet(viewModel: viewModel)
-                    }.ignoresSafeArea()
-                    
-                case .successAskForInstall:
-                    VStack(spacing: 0) {
-                        Color.clear.frame(maxHeight: .infinity)
-                        
-                        SuccessAskForInstallBottomSheet(viewModel: viewModel)
-                    }.ignoresSafeArea()
-                    
-                case .successAskForSync:
-                    VStack(spacing: 0) {
-                        Color.clear.frame(maxHeight: .infinity)
-                        
-                        SuccessAskForSyncBottomSheet(viewModel: viewModel)
-                    }.ignoresSafeArea()
-                    
-                case .syncProcessing:
-                    VStack(spacing: 0) {
-                        Color.clear.frame(maxHeight: .infinity)
-                        
-                        SyncProcessingBottomSheet()
-                    }.ignoresSafeArea()
-                    
-                case .syncSuccess:
-                    VStack(spacing: 0) {
-                        Color.clear.frame(maxHeight: .infinity)
-                        
-                        SyncSuccessBottomSheet()
-                    }.ignoresSafeArea()
-                    
-                case .syncError:
-                    VStack(spacing: 0) {
-                        Color.clear.frame(maxHeight: .infinity)
-                        
-                        SyncErrorBottomSheet()
-                    }.ignoresSafeArea()
-                    
-                default:
-                    EmptyView()
-                }
-                
                 VStack(spacing: 0) {
                     VStack{ }.frame(maxWidth: .infinity, maxHeight: .infinity)
                     

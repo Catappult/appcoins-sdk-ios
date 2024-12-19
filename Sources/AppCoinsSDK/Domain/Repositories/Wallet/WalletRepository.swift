@@ -81,10 +81,6 @@ internal class WalletRepository: WalletRepositoryProtocol {
         }
     }
     
-    internal func getWalletSyncingStatus() -> WalletSyncingStatus { return walletService.getWalletSyncingStatus() }
-    
-    internal func updateWalletSyncingStatus(status: WalletSyncingStatus) { walletService.updateWalletSyncingStatus(status: status) }
-    
     internal func getWalletBalance(wallet: Wallet, currency: Currency, completion: @escaping (Result<Balance, AppcTransactionError>) -> Void) {
         appcTransactionService.getBalance(wallet: wallet, currency: currency) {
             result in

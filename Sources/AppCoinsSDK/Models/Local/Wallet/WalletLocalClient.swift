@@ -165,21 +165,6 @@ internal class WalletLocalClient : WalletLocalService {
                         completion(.failure(WalletLocalErrors.failedToCreate))
                     }
                     
-                    // make new address active
-                    do {
-                        try Utils.writeToPreferences(key: "default-appcoins-wallet", value: address)
-                        self.updateWalletSyncingStatus(status: .accepted)
-                        
-                        completion(.success(ClientWallet(fileURL, password)))
-                    }
-                    catch {
-                        try? FileManager.default.removeItem(atPath: fileURL.path)
-                        Utils.deleteFromKeychain(key: "\(address)-pk")
-                        Utils.deleteFromKeychain(key: address)
-                        
-                        Utils.log(message: "4: \(error.localizedDescription)")
-                        completion(.failure(WalletLocalErrors.failedToCreate))
-                    }
                 } else { completion(.failure(WalletLocalErrors.failedToCreate)) }
             } else { completion(.failure(WalletLocalErrors.failedToCreate)) }
         } else { completion(.failure(WalletLocalErrors.failedToCreate)) }
@@ -192,17 +177,4 @@ internal class WalletLocalClient : WalletLocalService {
             return nil
         }
     }
-    
-    internal func getWalletSyncingStatus() -> WalletSyncingStatus {
-        switch Utils.readFromPreferences(key: "walletSyncingStatus") {
-            case "accepted": return .accepted
-            case "rejected": return .rejected
-            default: return .none
-        }
-    }
-    
-    internal func updateWalletSyncingStatus(status: WalletSyncingStatus) {
-        try? Utils.writeToPreferences(key: "walletSyncingStatus", value: status.rawValue)
-    }
 }
-
