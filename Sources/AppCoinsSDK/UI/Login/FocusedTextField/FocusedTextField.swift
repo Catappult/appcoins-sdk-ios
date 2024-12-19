@@ -44,20 +44,19 @@ struct FocusableTextField: UIViewRepresentable {
             self.authViewModel = authViewModel
         }
         
-        // Atualiza o texto sempre que o valor mudar
         func textFieldDidChangeSelection(_ textField: UITextField) {
             parent.text = textField.text ?? ""
         }
         
-        // Intercepta a entrada de texto para bloquear espaços
+        // Delete all spaces entered by the user
         func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-            // Bloqueia espaços
             if string.contains(" ") {
                 return false
             }
             return true
         }
         
+        // Keyboard is dismissed after pressing enter/return
         func textFieldShouldReturn(_ textField: UITextField) -> Bool {
             authViewModel.hideTextFieldView()
             textField.resignFirstResponder()
