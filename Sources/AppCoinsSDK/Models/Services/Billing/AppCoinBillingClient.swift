@@ -118,8 +118,8 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                     let userAgent = "AppCoinsWalletIOS/.."
                     request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
                     
-                    if let ewt = wa.getEWT() {
-                        request.setValue(ewt, forHTTPHeaderField: "Authorization")
+                    if let token = wa.getAuthToken() {
+                        request.setValue(token, forHTTPHeaderField: "Authorization")
                     }
                     
                     // Right now not giving feedback on different types of errors
@@ -172,8 +172,8 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                 let userAgent = "AppCoinsWalletIOS/.."
                 request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
                 
-                if let ewt = wa.getEWT() {
-                    request.setValue(ewt, forHTTPHeaderField: "Authorization")
+                if let token = wa.getAuthToken() {
+                    request.setValue(token, forHTTPHeaderField: "Authorization")
                 }
                 
                 let task = URLSession(configuration: configuration).dataTask(with: request) { data, response, error in
@@ -223,8 +223,8 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                     let userAgent = "AppCoinsWalletIOS/.."
                     request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
                     
-                    if let ewt = wa.getEWT() {
-                        request.setValue(ewt, forHTTPHeaderField: "Authorization")
+                    if let token = wa.getAuthToken() {
+                        request.setValue(token, forHTTPHeaderField: "Authorization")
                     }
                     
                     // Right now not giving feedback on different types of errors
@@ -279,8 +279,8 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                     let userAgent = "AppCoinsWalletIOS/.."
                     request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
                     
-                    if let ewt = wa.getEWT() {
-                        request.setValue(ewt, forHTTPHeaderField: "Authorization")
+                    if let token = wa.getAuthToken() {
+                        request.setValue(token, forHTTPHeaderField: "Authorization")
                     }
                     
                     // Right now not giving feedback on different types of errors
@@ -335,8 +335,8 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                     let userAgent = "AppCoinsWalletIOS/.."
                     request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
                     
-                    if let ewt = wa.getEWT() {
-                        request.setValue(ewt, forHTTPHeaderField: "Authorization")
+                    if let token = wa.getAuthToken() {
+                        request.setValue(token, forHTTPHeaderField: "Authorization")
                     }
                     
                     // Right now not giving feedback on different types of errors
@@ -384,8 +384,8 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                     let userAgent = "AppCoinsWalletIOS/.."
                     request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
                     
-                    if let ewt = wa.getEWT() {
-                        request.setValue(ewt, forHTTPHeaderField: "Authorization")
+                    if let token = wa.getAuthToken() {
+                        request.setValue(token, forHTTPHeaderField: "Authorization")
                     }
                     
                     // Magnes SDK integration
@@ -449,8 +449,8 @@ internal class AppCoinBillingClient : AppCoinBillingService {
                 let userAgent = "AppCoinsWalletIOS/.."
                 request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
                 
-                if let ewt = wa.getEWT() {
-                    request.setValue(ewt, forHTTPHeaderField: "Authorization")
+                if let token = wa.getAuthToken() {
+                    request.setValue(token, forHTTPHeaderField: "Authorization")
                 }
                 
                 // Magnes SDK integration
@@ -497,8 +497,8 @@ internal class AppCoinBillingClient : AppCoinBillingService {
             let userAgent = "AppCoinsWalletIOS/.."
             request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
             
-            if let ewt = wa.getEWT() {
-                request.setValue(ewt, forHTTPHeaderField: "Authorization")
+            if let token = wa.getAuthToken() {
+                request.setValue(token, forHTTPHeaderField: "Authorization")
             }
             
             // Magnes SDK integration
@@ -539,8 +539,8 @@ internal class AppCoinBillingClient : AppCoinBillingService {
             let userAgent = "AppCoinsWalletIOS/.."
             request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
             
-            if let ewt = wa.getEWT() {
-                request.setValue(ewt, forHTTPHeaderField: "Authorization")
+            if let token = wa.getAuthToken() {
+                request.setValue(token, forHTTPHeaderField: "Authorization")
             }
             
             // Magnes SDK integration
@@ -583,8 +583,8 @@ internal class AppCoinBillingClient : AppCoinBillingService {
             let userAgent = "AppCoinsWalletIOS/.."
             request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
             
-            if let ewt = wa.getEWT() {
-                request.setValue(ewt, forHTTPHeaderField: "Authorization")
+            if let token = wa.getAuthToken() {
+                request.setValue(token, forHTTPHeaderField: "Authorization")
             }
             
             // Magnes SDK integration
@@ -627,8 +627,8 @@ internal class AppCoinBillingClient : AppCoinBillingService {
             let userAgent = "AppCoinsWalletIOS/.."
             request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
             
-            if let ewt = wa.getEWT() {
-                request.setValue(ewt, forHTTPHeaderField: "Authorization")
+            if let token = wa.getAuthToken() {
+                request.setValue(token, forHTTPHeaderField: "Authorization")
             }
             
             // Magnes SDK integration

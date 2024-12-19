@@ -10,6 +10,7 @@ import SwiftUI
 internal class KeyboardObserver: ObservableObject {
     @Published internal var isKeyboardVisible = false
     @Published internal var keyboardHeight: CGFloat = 0
+    @Published internal var heighFromKeyboardToTop: CGFloat = 0
     
     static internal var shared : KeyboardObserver = KeyboardObserver()
     
@@ -27,6 +28,7 @@ internal class KeyboardObserver: ObservableObject {
             isKeyboardVisible = true
             if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
                 keyboardHeight = keyboardSize.height
+                heighFromKeyboardToTop = UIScreen.main.bounds.height - Utils.topSafeAreaHeight - keyboardHeight
             }
         }
     }

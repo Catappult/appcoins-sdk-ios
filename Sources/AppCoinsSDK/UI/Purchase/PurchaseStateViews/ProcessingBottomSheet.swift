@@ -26,7 +26,7 @@ internal struct ProcessingBottomSheet: View {
                     .frame(width: 83, height: 83)
                     .clipShape(Circle())
                 
-                VStack {}.frame(height: 50)
+                VStack{}.frame(height: 50)
                 
                 ProgressView()
                     .scaleEffect(1.75, anchor: .center)

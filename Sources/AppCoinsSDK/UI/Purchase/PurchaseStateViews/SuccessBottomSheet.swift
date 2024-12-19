@@ -21,14 +21,14 @@ internal struct SuccessBottomSheet: View {
                 
                 VStack(spacing: 0) {
                     
-                    VStack {}.frame(height: viewModel.orientation == .landscape ? 80 : 40)
+                    VStack{}.frame(height: viewModel.orientation == .landscape ? 80 : 40)
                     
                     Image("checkmark", bundle: Bundle.APPCModule)
                         .resizable()
                         .edgesIgnoringSafeArea(.all)
                         .frame(width: 80, height: 80)
                     
-                    VStack {}.frame(height: 15)
+                    VStack{}.frame(height: 15)
                     
                     Text(Constants.successText)
                         .font(FontsUi.APC_Title3_Bold)
@@ -36,7 +36,7 @@ internal struct SuccessBottomSheet: View {
                     
                     if transactionViewModel.paymentMethodSelected?.name != Method.appc.rawValue {
                         
-                        VStack {}.frame(height: 23)
+                        VStack{}.frame(height: 23)
                         
                         HStack {
                             Image("gift-black", bundle: Bundle.APPCModule)
@@ -52,13 +52,13 @@ internal struct SuccessBottomSheet: View {
                         }
                     } else {
                         
-                        VStack {}.frame(height: 23)
+                        VStack{}.frame(height: 23)
                         
                         HStack {}
                             .frame(height: 17)
                     }
                     
-                    VStack {}.frame(height: 24)
+                    VStack{}.frame(height: 24)
                     
                     HStack(spacing: 0) {
                         Image("pink-wallet", bundle: Bundle.APPCModule)
@@ -68,7 +68,7 @@ internal struct SuccessBottomSheet: View {
                         
                         if let balance = viewModel.finalWalletBalance {
                             
-                            VStack {}.frame(width: 6.22)
+                            VStack{}.frame(width: 6.22)
                             
                             StyledText(
                                 String(format: Constants.walletBalance, "*\(balance)*"),
@@ -78,7 +78,7 @@ internal struct SuccessBottomSheet: View {
                                 textColorBold: ColorsUi.APC_Pink)
                         } else {
                             
-                            VStack {}.frame(width: 6.22)
+                            VStack{}.frame(width: 6.22)
                             
                             Text(String(format: Constants.walletBalance, ""))
                                 .font(FontsUi.APC_Caption1_Bold)
@@ -92,7 +92,7 @@ internal struct SuccessBottomSheet: View {
                         }
                     }
                     
-                    VStack {}.frame(height: 56)
+                    VStack{}.frame(height: 56)
                     
                 }.frame(height: 348, alignment: .top)
                 

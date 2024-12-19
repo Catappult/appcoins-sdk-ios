@@ -14,6 +14,7 @@ import SwiftUI
 internal struct Utils {
     
     static internal let bottomSafeAreaHeight: CGFloat = UIApplication.shared.windows[0].safeAreaInsets.bottom
+    static internal let topSafeAreaHeight: CGFloat = UIApplication.shared.windows[0].safeAreaInsets.top
  
     static internal func writeToPreferences(key: String, value: String?) throws -> Void {
         let preferences = UserDefaults.standard
