@@ -128,7 +128,7 @@ internal class BottomSheetViewModel: ObservableObject {
                 switch newWalletSyncingStatus {
                 case .accepted: TransactionViewModel.shared.buildTransaction()
                 case .rejected: TransactionViewModel.shared.buildTransaction()
-                case .none: DispatchQueue.main.async { self.purchaseState = .initialAskForSync }
+                case .none: break
                 }
             } else {
                 if [.accepted, .rejected].contains(self.walletUseCases.getWalletSyncingStatus()) { self.walletUseCases.updateWalletSyncingStatus(status: .none) }
@@ -142,10 +142,6 @@ internal class BottomSheetViewModel: ObservableObject {
     func dismiss() {
         switch purchaseState {
         case .none: break
-        case .initialAskForSync: self.userCancelled()
-        case .syncProcessing: break
-        case .syncSuccess: if hasCompletedPurchase() { self.skipWalletSync() } else { break }
-        case .syncError: if hasCompletedPurchase() { self.skipWalletSync() } else { break }
         case .paying: self.userCancelled()
         case .adyen:
             if AdyenController.shared.state != .none {
@@ -154,8 +150,6 @@ internal class BottomSheetViewModel: ObservableObject {
             }
         case .processing: break
         case .success: self.dismissVC()
-        case .successAskForInstall: self.skipWalletInstall()
-        case .successAskForSync: self.skipWalletSync()
         case .failed: self.dismissVC()
         case .nointernet: self.dismissVC()
         }
@@ -503,12 +497,6 @@ internal class BottomSheetViewModel: ObservableObject {
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) { self.dismissSuccessWithAnimation() }
             } else {
-                if self.walletApplicationUseCases.isWalletInstalled() {
-                    DispatchQueue.main.async { self.purchaseState = .successAskForSync }
-                } else {
-                    DispatchQueue.main.async { self.purchaseState = .successAskForInstall }
-                }
-                
                 self.purchase = purchase
                 self.purchaseCompleted = true
                 self.transactionUseCases.setLastPaymentMethod(paymentMethod: method)
