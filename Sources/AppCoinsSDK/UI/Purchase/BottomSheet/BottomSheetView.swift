@@ -14,7 +14,7 @@ internal struct BottomSheetView: View {
     @ObservedObject var viewModel: BottomSheetViewModel = BottomSheetViewModel.shared
     @ObservedObject var adyenController: AdyenController = AdyenController.shared
     @ObservedObject var paypalViewModel: PayPalDirectViewModel = PayPalDirectViewModel.shared
-    @ObservedObject var loginViewModel: LoginViewModel = LoginViewModel.shared
+    @ObservedObject var authViewModel: AuthViewModel = AuthViewModel.shared
     
     @State private var isSafeAreaPresented = false
     
@@ -26,8 +26,13 @@ internal struct BottomSheetView: View {
                     if viewModel.isKeyboardVisible {
                         AdyenController.shared.presentableComponent?.viewController.view.findAndResignFirstResponder()
                         UIApplication.shared.dismissKeyboard()
+                        if viewModel.purchaseState == .login {
+                            withAnimation(.easeInOut(duration: 0.4)) {
+                                authViewModel.hideTextFieldView()
+                                authViewModel.setFocusTextField(shouldFocusTextField: false)
+                            }
+                        }
                     } else {
-                        if viewModel.purchaseState == .login { loginViewModel.dismiss() }
                         viewModel.dismiss()
                     }
                 }

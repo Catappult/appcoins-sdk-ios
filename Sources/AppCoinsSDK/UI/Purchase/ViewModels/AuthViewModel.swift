@@ -24,7 +24,10 @@ internal class AuthViewModel : NSObject, ObservableObject {
     // Validate Magic Link Code
     @Published var magicLinkCode: String = ""
     @Published var isMagicLinkCodeValid: Bool = true
-    
+
+    @Published internal var showTextFieldWithKeyboard: Bool = false
+    @Published internal var shouldFocusTextField: Bool = false
+
     @Published var isSendingMagicLink: Bool = false
     
     private override init() {}
@@ -36,6 +39,12 @@ internal class AuthViewModel : NSObject, ObservableObject {
         self.magicLinkCode = ""
         self.isMagicLinkCodeValid = true
     }
+    
+    internal func showTextFieldView() { self.showTextFieldWithKeyboard = true }
+    
+    internal func hideTextFieldView() { self.showTextFieldWithKeyboard = false }
+    
+    internal func setFocusTextField(shouldFocusTextField: Bool) { self.shouldFocusTextField = shouldFocusTextField }
     
     internal func setLogIn() { self.isLoggedIn = true }
     
@@ -126,10 +135,4 @@ extension AuthViewModel: ASWebAuthenticationPresentationContextProviding {
     func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
         return UIApplication.shared.windows.first(where: { $0.isKeyWindow }) ?? ASPresentationAnchor()
     }
-}
-
-internal enum AuthState {
-    case choice
-    case google
-    case magicLink
 }
