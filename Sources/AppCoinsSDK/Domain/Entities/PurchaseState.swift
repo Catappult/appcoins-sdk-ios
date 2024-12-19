@@ -15,6 +15,7 @@ internal enum PurchaseState {
     case syncError
     case paying
     case adyen
+    case login
     case processing
     case success
     case successAskForInstall
