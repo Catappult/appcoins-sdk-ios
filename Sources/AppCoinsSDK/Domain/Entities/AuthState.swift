@@ -11,4 +11,6 @@ internal enum AuthState {
     case choice
     case google
     case magicLink
+    case loading
+    case success
 }

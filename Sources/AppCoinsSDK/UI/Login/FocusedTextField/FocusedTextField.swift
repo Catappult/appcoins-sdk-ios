@@ -18,13 +18,12 @@ struct FocusableTextField: UIViewRepresentable {
         let textField = UITextField()
         textField.placeholder = placeholder
         textField.delegate = context.coordinator
+        textField.becomeFirstResponder()
         return textField
     }
 
     func updateUIView(_ uiView: UITextField, context: Context) {
         uiView.text = text
-
-        if authViewModel.shouldFocusTextField { uiView.becomeFirstResponder() }
     }
 
     func makeCoordinator() -> Coordinator { Coordinator(self, authViewModel: authViewModel) }
@@ -32,27 +31,45 @@ struct FocusableTextField: UIViewRepresentable {
     class Coordinator: NSObject, UITextFieldDelegate {
         var parent: FocusableTextField
         var authViewModel: AuthViewModel
+        private var keyboardWillHideObserver: NSObjectProtocol?
         
         init(_ parent: FocusableTextField, authViewModel: AuthViewModel) {
             self.parent = parent
             self.authViewModel = authViewModel
+            super.init()
+            
+            // Add observer for keyboard dismissal
+            keyboardWillHideObserver = NotificationCenter.default.addObserver(
+                forName: UIResponder.keyboardWillHideNotification,
+                object: nil,
+                queue: .main
+            ) { [weak self] _ in
+                self?.keyboardDidHide()
+            }
         }
         
-        func textFieldDidChangeSelection(_ textField: UITextField) { parent.text = textField.text ?? "" }
+        deinit {
+            if let observer = keyboardWillHideObserver { NotificationCenter.default.removeObserver(observer) } // Remove observer
+        }
         
-        // Delete all spaces entered by the user
-        func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-            if string.contains(" ") {
-                return false
+        private func keyboardDidHide() {
+            withAnimation(.easeInOut(duration: 0.4)) {
+                authViewModel.hideFocusedTextField()
             }
-            return true
+        }
+        
+        func textFieldDidChangeSelection(_ textField: UITextField) {
+            let filteredText = textField.text?.replacingOccurrences(of: " ", with: "") ?? ""
+            if parent.text != filteredText {
+                parent.text = filteredText
+                textField.text = filteredText
+            }
         }
         
         // Keyboard is dismissed after pressing enter/return
         func textFieldShouldReturn(_ textField: UITextField) -> Bool {
             withAnimation(.easeInOut(duration: 0.4)) {
-                authViewModel.hideTextFieldView()
-                authViewModel.setFocusTextField(shouldFocusTextField: false)
+                authViewModel.hideFocusedTextField()
             }
             textField.resignFirstResponder()
             return true

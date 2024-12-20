@@ -117,11 +117,15 @@ internal struct PurchaseBottomSheet: View {
                         case .google:
                             EmptyView()
                         case .magicLink:
-                            MagicLinkCodeView(viewModel: viewModel, authViewModel: authViewModel, transactionViewModel: transactionViewModel, portraitBottomSheetHeight: self.portraitBottomSheetHeight, buttonHeightPlusTopSpace: self.buttonHeightPlusTopSpace, buttonBottomSafeArea: self.buttonBottomSafeArea)
+                            MagicLinkView(viewModel: viewModel, authViewModel: authViewModel, transactionViewModel: transactionViewModel, portraitBottomSheetHeight: self.portraitBottomSheetHeight, buttonHeightPlusTopSpace: self.buttonHeightPlusTopSpace, buttonBottomSafeArea: self.buttonBottomSafeArea)
+                        case .loading:
+                            LoadingLoginView()
+                        case .success:
+                            SuccessLoginView()
                         }
                     }.frame(maxHeight: .infinity, alignment: .bottom)
                     
-                    if authViewModel.authState != .magicLink { AuthenticationHeader(viewModel: viewModel) }
+                    if authViewModel.authState == .choice { AuthenticationHeader(viewModel: viewModel) }
                 }
             }
             

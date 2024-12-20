@@ -18,17 +18,15 @@ internal class AuthViewModel : NSObject, ObservableObject {
     @Published internal var isLoggedIn: Bool = false
     
     // Validate Magic Link E-mail
-    @Published var magicLinkEmail: String = ""
-    @Published var isMagicLinkEmailValid: Bool = true
-    
-    // Validate Magic Link Code
-    @Published var magicLinkCode: String = ""
-    @Published var isMagicLinkCodeValid: Bool = true
+    @Published internal var magicLinkEmail: String = ""
+    @Published internal var isMagicLinkEmailValid: Bool = true
 
-    @Published internal var showTextFieldWithKeyboard: Bool = false
-    @Published internal var shouldFocusTextField: Bool = false
+    @Published internal var isTextFieldFocused: Bool = false
 
-    @Published var isSendingMagicLink: Bool = false
+    @Published internal var isSendingMagicLink: Bool = false
+    @Published internal var sentMagicLink: Date?
+    @Published internal var retryMagicLinkTimer: Timer?
+    @Published internal var retryMagicLinkIn: Int = 0
     
     private override init() {}
     
@@ -36,15 +34,11 @@ internal class AuthViewModel : NSObject, ObservableObject {
         self.authState = .choice
         self.magicLinkEmail = ""
         self.isMagicLinkEmailValid = true
-        self.magicLinkCode = ""
-        self.isMagicLinkCodeValid = true
     }
     
-    internal func showTextFieldView() { self.showTextFieldWithKeyboard = true }
+    internal func showFocusedTextField() { self.isTextFieldFocused = true }
     
-    internal func hideTextFieldView() { self.showTextFieldWithKeyboard = false }
-    
-    internal func setFocusTextField(shouldFocusTextField: Bool) { self.shouldFocusTextField = shouldFocusTextField }
+    internal func hideFocusedTextField() { self.isTextFieldFocused = false }
     
     internal func setLogIn() { self.isLoggedIn = true }
     
@@ -80,11 +74,14 @@ internal class AuthViewModel : NSObject, ObservableObject {
                     }
                     
                     if let code = queryItems.first(where: { $0.name == "code" })?.value {
+                        DispatchQueue.main.async { self.authState = .loading }
+                        
                         print("Code: \(code)")
                         AuthUseCases.shared.loginWithGoogle(code: code) { result in
                             switch result {
                             case .success(let wallet):
-                                DispatchQueue.main.async {
+                                DispatchQueue.main.async { self.authState = .success }
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
                                     TransactionViewModel.shared.buildTransaction() // Re-build the transaction with the new User Wallet
                                 }
                             case .failure(let failure):
@@ -110,23 +107,59 @@ internal class AuthViewModel : NSObject, ObservableObject {
         
         AuthUseCases.shared.sendMagicLink(email: self.magicLinkEmail) { result in
             DispatchQueue.main.async { 
+                self.startRetryMagicLinkTimer()
                 self.isSendingMagicLink = false
                 self.authState = .magicLink
             }
         }
     }
     
-    internal func loginWithMagicLink() {
-        AuthUseCases.shared.loginWithMagicLink(code: self.magicLinkCode) { result in
+    internal func loginWithMagicLink(code: String) {
+        self.stopRetryMagicLinkTimer()
+        DispatchQueue.main.async { self.authState = .loading }
+        
+        AuthUseCases.shared.loginWithMagicLink(code: code) { result in
             switch result {
             case .success(let wallet):
-                DispatchQueue.main.async {
+                DispatchQueue.main.async { self.authState = .success }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
                     TransactionViewModel.shared.buildTransaction() // Re-build the transaction with the new User Wallet
                 }
             case .failure(let failure):
                 break // SOLVE BEFORE MERGING
             }
         }
+    }
+    
+    internal func startRetryMagicLinkTimer() {
+        self.sentMagicLink = Date()
+        updateRetryMagicLinkIn() // Initialize the value immediately
+
+        retryMagicLinkTimer?.invalidate() // Ensure there's no existing timer
+        retryMagicLinkTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
+            self?.updateRetryMagicLinkIn()
+        }
+    }
+
+    private func updateRetryMagicLinkIn() {
+        guard let sentMagicLink = sentMagicLink else {
+            retryMagicLinkIn = 0
+            retryMagicLinkTimer?.invalidate() // Stop the timer if there's no sentMagicLink
+            return
+        }
+
+        let secondsPassed = Date().timeIntervalSince(sentMagicLink)
+        let timeLeft = 30 - secondsPassed
+        retryMagicLinkIn = max(0, Int(timeLeft))
+
+        if retryMagicLinkIn == 0 {
+            retryMagicLinkTimer?.invalidate() // Stop the timer when the countdown reaches 0
+        }
+    }
+
+    func stopRetryMagicLinkTimer() {
+        retryMagicLinkTimer?.invalidate()
+        retryMagicLinkTimer = nil
     }
 }
 

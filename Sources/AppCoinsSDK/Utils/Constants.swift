@@ -68,5 +68,9 @@ internal struct Constants {
   static internal let sentCodeTo = NSLocalizedString("sent_code_to_body", bundle: .APPCModule, comment: "We've sent a code to")
   static internal let codeLabel = NSLocalizedString("code_label", bundle: .APPCModule, comment: "Code")
   static internal let checkYourEmail = NSLocalizedString("check_your_email_body", bundle: .APPCModule, comment: "Check your email")
+    
+  // Non-final
+  static internal let resendEmail = NSLocalizedString("resend_email_button", bundle: .APPCModule, comment: "Re-send Email")
+  static internal let resendInTime = NSLocalizedString("resend_in_time_body", bundle: .APPCModule, comment: "If you have not received an email, you can retry again in %@ seconds.")
    
 }

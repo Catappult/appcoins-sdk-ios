@@ -78,6 +78,11 @@ public struct AppcSDK {
                 if pathRoot == "sync" {
                     SyncWalletViewModel.shared.importWalletReturn(redirectURL: redirectURL)
                     return true
+                } else if pathRoot == "auth" {
+                    if let code = URLComponents(url: redirectURL, resolvingAgainstBaseURL: false)?.queryItems?.first(where: { $0.name == "code" })?.value {
+                        AuthViewModel.shared.loginWithMagicLink(code: code)
+                        return true
+                    }
                 }
             } else {
                 return AdyenController.shared.handleRedirectURL(redirectURL: redirectURL)

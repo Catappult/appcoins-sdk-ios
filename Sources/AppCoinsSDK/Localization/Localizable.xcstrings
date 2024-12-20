@@ -3772,6 +3772,30 @@
         }
       }
     },
+    "resend_email_button" : {
+      "comment" : "Re-send Email",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Re-send Email"
+          }
+        }
+      }
+    },
+    "resend_in_time_body" : {
+      "comment" : "If you have not received an email, you can retry again in %@ seconds.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If you have not received an email, you can retry again in %@ seconds."
+          }
+        }
+      }
+    },
     "retry_connection_button" : {
       "comment" : "Retry Connection",
       "extractionState" : "manual",

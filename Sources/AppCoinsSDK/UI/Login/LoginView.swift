@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-
 struct LoginView: View {
     
     @ObservedObject internal var viewModel: BottomSheetViewModel
@@ -25,7 +24,7 @@ struct LoginView: View {
         if #available(iOS 17, *) {
             PurchaseViewWrapper(height: viewModel.orientation == .landscape ? UIScreen.main.bounds.height * 0.9 : portraitBottomSheetHeight, buttonHeightPlusTopSpace: buttonHeightPlusTopSpace, bottomSheetHeaderHeight: bottomSheetHeaderHeight, buttonBottomSafeArea: buttonBottomSafeArea) {
                 
-                if viewModel.orientation == .landscape && authViewModel.showTextFieldWithKeyboard {
+                if viewModel.orientation == .landscape && authViewModel.isTextFieldFocused {
                     VStack(spacing: 0) {
                         ZStack {
                             RoundedRectangle(cornerRadius: 10)
@@ -42,10 +41,6 @@ struct LoginView: View {
                                 
                             }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 - 32 : UIScreen.main.bounds.width - 48 - 32)
                         }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 44)
-                        
-                    }
-                    .onAppear {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { authViewModel.setFocusTextField(shouldFocusTextField: true) }
                     }
                 } else {
                     VStack(spacing: 0) {
@@ -117,7 +112,7 @@ struct LoginView: View {
                         .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 44)
                         .onTapGesture {
                             if viewModel.orientation == .landscape {
-                                withAnimation(.easeInOut(duration: 0.4)) { authViewModel.showTextFieldView() }
+                                withAnimation(.easeInOut(duration: 0.4)) { authViewModel.showFocusedTextField() }
                             }
                         }
                         
@@ -137,7 +132,6 @@ struct LoginView: View {
                     .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48)
                 }
             }
-            .onDisappear { authViewModel.hideTextFieldView() }
             
             VStack{}.frame(height: 8)
             
@@ -146,8 +140,13 @@ struct LoginView: View {
             }) {
                 ZStack {
                     RoundedRectangle(cornerRadius: 12)
-                        .foregroundColor(transactionViewModel.transaction != nil ? ColorsUi.APC_Pink : ColorsUi.APC_Gray)
-                    Text(Constants.continueText)
+                        .foregroundColor(ColorsUi.APC_Pink)
+                    
+                    if authViewModel.isSendingMagicLink {
+                        ProgressView().tint(ColorsUi.APC_White)
+                    } else {
+                        Text(Constants.continueText)
+                    }
                 }
             }
             .frame(maxHeight: .infinity, alignment: .bottom)
