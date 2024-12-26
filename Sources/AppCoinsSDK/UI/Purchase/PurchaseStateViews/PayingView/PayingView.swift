@@ -18,8 +18,6 @@ struct PayingView: View {
     
     internal var formLayer: some View {
         VStack(spacing: 0) {
-            HStack{}.frame(height: 72)
-            
             PurchaseViewWrapper(height: viewModel.orientation == .landscape ? (UIScreen.main.bounds.height * 0.9) - 78 - 72 : 420, offset: 72) {
                 VStack(spacing: 0) {
                     PurchaseBonusBanner(viewModel: viewModel, transactionViewModel: transactionViewModel, authViewModel: authViewModel)

@@ -2,14 +2,13 @@
 //  File.swift
 //  
 //
-//  Created by aptoide on 19/12/2024.
+//  Created by aptoide on 26/12/2024.
 //
 
 import SwiftUI
-import ActivityIndicatorView
+@_implementationOnly import ActivityIndicatorView
 
-struct LoadingLoginView: View {
-    
+struct APPCLoading: View {
     var body: some View {
         ZStack {
             ActivityIndicatorView(
@@ -20,7 +19,8 @@ struct LoadingLoginView: View {
                 .resizable()
                 .scaledToFit()
                 .frame(height: 23)
-        }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+        }
+//        .animation(.linear(duration: 1.5).repeatForever(autoreverses: false))
     }
 }
 

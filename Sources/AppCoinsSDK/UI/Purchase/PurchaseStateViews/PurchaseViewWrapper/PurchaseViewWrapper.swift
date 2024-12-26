@@ -11,10 +11,10 @@ internal struct PurchaseViewWrapper<Content: View>: View {
     
     @State private var contentFits: Bool = false
     internal var height: CGFloat
-    internal var offset: CGFloat
+    internal var offset: CGFloat?
     internal let content: () -> Content
     
-    internal init(height: CGFloat, offset: CGFloat, @ViewBuilder content: @escaping () -> Content) {
+    internal init(height: CGFloat, offset: CGFloat? = nil, @ViewBuilder content: @escaping () -> Content) {
         self.height = height
         self.offset = offset
         self.content = content
@@ -30,8 +30,6 @@ internal struct PurchaseViewWrapper<Content: View>: View {
                                 Color.clear
                                     .onAppear {
                                         let contentHeight = innerGeometry.size.height
-                                        print("Content Height: \(contentHeight)")
-                                        print("Height: \(height)")
                                         contentFits = contentHeight <= height
                                     }
                             }
@@ -40,7 +38,7 @@ internal struct PurchaseViewWrapper<Content: View>: View {
                 
                 if contentFits {
                     VStack {
-//                        VStack{}.frame(height: offset)
+                        VStack{}.frame(height: offset)
                         
                         content().frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                     }
@@ -50,9 +48,9 @@ internal struct PurchaseViewWrapper<Content: View>: View {
                             VStack {
                                 VStack{}.frame(height: 0.001)
                                     .id("top")
-
-//                                VStack{}.frame(height: offset)
-
+                                
+                                VStack{}.frame(height: offset)
+                                
                                 content().frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
 
                                 VStack{}.frame(height: 0.001)

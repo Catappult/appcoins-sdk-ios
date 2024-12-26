@@ -116,13 +116,13 @@ internal struct PurchaseBottomSheet: View {
             content: {
                 switch viewModel.purchaseState {
                 case .loading:
-                    LoadingView()
+                    APPCLoading()
                 case .paying:
                     PayingView(viewModel: viewModel)
                 case .adyen:
                     switch adyenController.state {
                     case .none:
-                        AdyenLoadingBottomSheet(viewModel: viewModel)
+                        AdyenLoadingBottomSheet()
                     case .choosingCreditCard:
                         CreditCardChoiceBottomSheet(viewModel: viewModel)
                     case .newCreditCard:
