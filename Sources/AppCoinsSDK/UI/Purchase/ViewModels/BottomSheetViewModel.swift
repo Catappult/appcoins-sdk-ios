@@ -193,29 +193,36 @@ internal class BottomSheetViewModel: ObservableObject {
     // User presses buy button
     internal func buy() {
         
-        AnalyticsUseCases.shared.recordPurchaseIntent(paymentMethod: TransactionViewModel.shared.paymentMethodSelected?.name ?? "")
-        
-        DispatchQueue(label: "buy-item", qos: .userInteractive).async {
-            switch TransactionViewModel.shared.paymentMethodSelected?.name {
-            case Method.appc.rawValue:
-                DispatchQueue.main.async { self.purchaseState = .processing }
-                self.buyWithAppc()
-            case Method.creditCard.rawValue:
-                DispatchQueue.main.async { self.purchaseState = .adyen }
-                self.buyWithCreditCard()
-            case Method.paypalAdyen.rawValue:
-                DispatchQueue.main.async { self.purchaseState = .processing }
-                self.buyWithPayPalAdyen()
-            case Method.paypalDirect.rawValue:
-                DispatchQueue.main.async { self.purchaseState = .processing }
-                self.buyWithPayPalDirect()
-            case Method.sandbox.rawValue:
-                DispatchQueue.main.async { self.purchaseState = .processing }
-                self.buyWithSandbox()
-            default:
-                self.transactionFailedWith(error: .systemError(message: "Payment Method not available", description: "Tried to purchase with a Payment Method that is not available at BottomSheetViewModel.swift:buy"))
+        if let paymentMethodSelected = TransactionViewModel.shared.paymentMethodSelected {
+            DispatchQueue.main.async { self.purchaseState = .processing }
+            
+            AnalyticsUseCases.shared.recordPurchaseIntent(paymentMethod: TransactionViewModel.shared.paymentMethodSelected?.name ?? "")
+            
+            DispatchQueue(label: "buy-item", qos: .userInteractive).async {
+                switch TransactionViewModel.shared.paymentMethodSelected?.name {
+                case Method.appc.rawValue:
+                    DispatchQueue.main.async { self.purchaseState = .processing }
+                    self.buyWithAppc()
+                case Method.creditCard.rawValue:
+                    DispatchQueue.main.async { self.purchaseState = .adyen }
+                    self.buyWithCreditCard()
+                case Method.paypalAdyen.rawValue:
+                    DispatchQueue.main.async { self.purchaseState = .processing }
+                    self.buyWithPayPalAdyen()
+                case Method.paypalDirect.rawValue:
+                    DispatchQueue.main.async { self.purchaseState = .processing }
+                    self.buyWithPayPalDirect()
+                case Method.sandbox.rawValue:
+                    DispatchQueue.main.async { self.purchaseState = .processing }
+                    self.buyWithSandbox()
+                default:
+                    self.transactionFailedWith(error: .systemError(message: "Payment Method not available", description: "Tried to purchase with a Payment Method that is not available at BottomSheetViewModel.swift:buy"))
+                }
             }
+        } else {
+            self.presentPaymentMethodChoiceSheet()
         }
+        
     }
     
     internal func buyWithAppc() {

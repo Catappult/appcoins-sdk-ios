@@ -58,7 +58,6 @@ internal struct PurchaseBottomSheet: View {
                         
                         // Buying button
                         Button(action: {
-                            DispatchQueue.main.async { viewModel.purchaseState = .processing }
                             viewModel.buy()
                         }) {
                             ZStack {
