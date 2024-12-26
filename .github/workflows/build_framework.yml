@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - 'release_*'
+      - 'feature/APP-3249_remove_wallet_sync'
   pull_request:
     branches:
       - main
