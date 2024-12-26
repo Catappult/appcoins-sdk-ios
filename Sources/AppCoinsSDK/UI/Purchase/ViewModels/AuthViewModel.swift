@@ -82,7 +82,7 @@ internal class AuthViewModel : NSObject, ObservableObject {
                             case .success(let wallet):
                                 DispatchQueue.main.async { self.authState = .success }
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
-                                    TransactionViewModel.shared.buildTransaction() // Re-build the transaction with the new User Wallet
+                                    TransactionViewModel.shared.rebuildTransactionOnWalletChanged() // Re-build the transaction with the new User Wallet
                                 }
                             case .failure(let failure):
                                 break // SOLVE BEFORE MERGING
@@ -103,15 +103,17 @@ internal class AuthViewModel : NSObject, ObservableObject {
     }
     
     internal func sendMagicLink() {
-        DispatchQueue.main.async { self.isSendingMagicLink = true }
+        self.authState = .error
         
-        AuthUseCases.shared.sendMagicLink(email: self.magicLinkEmail) { result in
-            DispatchQueue.main.async { 
-                self.startRetryMagicLinkTimer()
-                self.isSendingMagicLink = false
-                self.authState = .magicLink
-            }
-        }
+//        DispatchQueue.main.async { self.isSendingMagicLink = true }
+//
+//        AuthUseCases.shared.sendMagicLink(email: self.magicLinkEmail) { result in
+//            DispatchQueue.main.async { 
+//                self.startRetryMagicLinkTimer()
+//                self.isSendingMagicLink = false
+//                self.authState = .magicLink
+//            }
+//        }
     }
     
     internal func loginWithMagicLink(code: String) {
@@ -123,7 +125,7 @@ internal class AuthViewModel : NSObject, ObservableObject {
             case .success(let wallet):
                 DispatchQueue.main.async { self.authState = .success }
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
-                    TransactionViewModel.shared.buildTransaction() // Re-build the transaction with the new User Wallet
+                    TransactionViewModel.shared.rebuildTransactionOnWalletChanged() // Re-build the transaction with the new User Wallet
                 }
             case .failure(let failure):
                 break // SOLVE BEFORE MERGING

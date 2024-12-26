@@ -122,6 +122,8 @@ internal struct PurchaseBottomSheet: View {
                             LoadingLoginView()
                         case .success:
                             SuccessLoginView()
+                        case .error:
+                            ErrorLoginView(viewModel: viewModel)
                         }
                     }.frame(maxHeight: .infinity, alignment: .bottom)
                     

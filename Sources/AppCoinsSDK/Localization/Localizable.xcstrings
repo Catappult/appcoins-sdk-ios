@@ -5788,6 +5788,18 @@
         }
       }
     },
+    "try_again_button" : {
+      "comment" : "Try again",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Try again"
+          }
+        }
+      }
+    },
     "wallet_already_installed_title" : {
       "comment" : "You already have the AppCoins Wallet installed!",
       "extractionState" : "manual",

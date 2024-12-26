@@ -13,4 +13,5 @@ internal enum AuthState {
     case magicLink
     case loading
     case success
+    case error
 }

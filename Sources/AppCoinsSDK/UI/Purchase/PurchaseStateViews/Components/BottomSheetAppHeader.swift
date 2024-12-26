@@ -85,19 +85,7 @@ struct BottomSheetAppHeader: View {
                 
             }.frame(maxWidth: .infinity, maxHeight: 40, alignment: .leading)
             
-            
-            Button {
-                viewModel.dismiss()
-            } label: {
-                ZStack {
-                    Circle()
-                        .fill(ColorsUi.APC_BackgroundLightGray_Button)
-                        .frame(width: 30, height: 30)
-                    
-                    Image(systemName: "xmark")
-                        .foregroundColor(ColorsUi.APC_DarkGray_Xmark)
-                }
-            }
+            CloseButton(action: viewModel.dismiss)
             
             VStack{}.frame(width: 24)
             

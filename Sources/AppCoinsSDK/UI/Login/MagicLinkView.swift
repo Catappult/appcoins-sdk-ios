@@ -52,18 +52,7 @@ struct MagicLinkView: View {
                         
                         VStack{}.frame(height: 21)
                         
-                        Button {
-                            viewModel.dismiss()
-                        } label: {
-                            ZStack {
-                                Circle()
-                                    .fill(ColorsUi.APC_BackgroundLightGray_Button)
-                                    .frame(width: 30, height: 30)
-                                
-                                Image(systemName: "xmark")
-                                    .foregroundColor(ColorsUi.APC_DarkGray_Xmark)
-                            }
-                        }
+                        CloseButton(action: viewModel.dismiss)
                     }
                 }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 51, alignment: .topTrailing)
                 

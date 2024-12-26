@@ -67,6 +67,13 @@ internal class TransactionViewModel : ObservableObject {
         self.reference = reference
     }
     
+    internal func rebuildTransactionOnWalletChanged() {
+        self.transaction = nil
+        self.transactionParameters = nil
+        
+        buildTransaction()
+    }
+    
     internal func buildTransaction() {
         bottomSheetViewModel.setPurchaseState(newState: .paying)
         

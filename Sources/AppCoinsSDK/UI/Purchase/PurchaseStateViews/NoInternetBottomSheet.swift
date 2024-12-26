@@ -21,23 +21,10 @@ internal struct NoInternetBottomSheet: View {
                 VStack{}.frame(height: 16)
                 
                 HStack(spacing: 0) {
-                    Button {
-                        viewModel.dismiss()
-                    } label: {
-                        ZStack {
-                            Circle()
-                                .fill(ColorsUi.APC_BackgroundLightGray_Button)
-                                .frame(width: 30, height: 30)
-                            
-                            Image(systemName: "xmark")
-                                .foregroundColor(ColorsUi.APC_DarkGray_Xmark)
-                            
-                        }
-                    }
-                    .frame(maxWidth: .infinity, alignment: .topTrailing)
+                    CloseButton(action: viewModel.dismiss)
+                        .frame(maxWidth: .infinity, alignment: .topTrailing)
                     
                     VStack{}.frame(width: 24)
-                    
                 }
                 
                 VStack{}.frame(height:viewModel.orientation == .landscape ? 21 : 61)
