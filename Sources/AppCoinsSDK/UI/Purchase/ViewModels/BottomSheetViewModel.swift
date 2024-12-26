@@ -46,8 +46,6 @@ internal class BottomSheetViewModel: ObservableObject {
     @Published internal var isKeyboardVisible: Bool = false
     private var cancellables = Set<AnyCancellable>()
     
-    @Published internal var isCreditCardView: Bool = false
-    
     @Published internal var isPaymentMethodChoiceSheetPresented: Bool = false
         
     private init() {
@@ -90,8 +88,6 @@ internal class BottomSheetViewModel: ObservableObject {
     internal func dismissPaymentMethodChoiceSheet() { self.isPaymentMethodChoiceSheetPresented = false }
     
     internal func setOrientation(orientation: Orientation) { self.orientation = orientation }
-    
-    internal func setCreditCardView(isCreditCardView: Bool) { self.isCreditCardView = isCreditCardView }
     
     // Reloads the purchase on failure screens
     internal func reload() {

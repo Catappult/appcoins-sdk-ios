@@ -12,10 +12,33 @@ import SwiftUI
 
 internal struct PurchaseBottomSheetWrapper<Header: View, Body: View>: View {
     
+    @ObservedObject internal var viewModel: BottomSheetViewModel = BottomSheetViewModel.shared
+    @ObservedObject internal var adyenController: AdyenController = AdyenController.shared
+    
     @State private var isPresented = false
-        
+    
+    @ObservedObject private var keyboardObserver = KeyboardObserver.shared
+    
+    @State private var timer: Timer? = nil
+    @State private var dynamicHeight: CGFloat = 291
+    
     internal let header: () -> Header
     internal let content: () -> Body
+    
+    internal let portraitBottomSheetHeight: CGFloat = 420
+    internal var height: CGFloat {
+        if viewModel.orientation == .landscape {
+            return UIScreen.main.bounds.height * 0.9
+        } else {
+            if viewModel.purchaseState == .adyen && adyenController.state == .newCreditCard {
+                return dynamicHeight + 72
+            } else if viewModel.purchaseState == .login && keyboardObserver.isKeyboardVisible {
+                return self.setHeightFromKeyboardToTop(keyboardObserverHeight: keyboardObserver.heighFromKeyboardToTop)
+            } else {
+                return portraitBottomSheetHeight
+            }
+        }
+    }
     
     init(
         @ViewBuilder header: @escaping () -> Header,
@@ -27,14 +50,57 @@ internal struct PurchaseBottomSheetWrapper<Header: View, Body: View>: View {
     
     var body: some View {
         ZStack(alignment: .top) {
+            PurchaseViewWrapper(height: height - Utils.bottomSafeAreaHeight, offset: 72) {
+                self.content()
+                    .background(ColorsUi.APC_Green)
+            }.frame(height: height)
+            
             self.header()
-            self.content()
+                .frame(height: 72)
         }
+        .frame(
+            width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width,
+            height: height,
+            alignment: .center)
+        .padding(.bottom, keyboardObserver.isKeyboardVisible && viewModel.orientation != .landscape ? keyboardObserver.keyboardHeight: 0)
         .background(ColorsUi.APC_BottomSheet_LightGray_Background)
         .cornerRadius(13, corners: [.topLeft, .topRight])
         .offset(y: isPresented ? 0 : UIScreen.main.bounds.height)
         .transition(.move(edge: isPresented ? .bottom : .top))
         .onAppear { withAnimation { isPresented = true } }
+    }
+    
+    private func startObservingDynamicHeight() {
+        timer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { timer in
+            if let viewController = adyenController.presentableComponent?.viewController {
+                for view in viewController.view.subviews {
+                    for subview in view.subviews {
+                        if let content = subview.subviews.first {
+                            if content.bounds.height != dynamicHeight && content.bounds.height != 0 {
+                                DispatchQueue.main.async {
+                                    withAnimation(.easeInOut(duration: 0.3)) {
+                                        dynamicHeight = content.bounds.height
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    private func stopObservingDynamicHeight() {
+        timer?.invalidate()
+        timer = nil
+    }
+    
+    private func setHeightFromKeyboardToTop(keyboardObserverHeight: CGFloat) -> CGFloat {
+        if keyboardObserverHeight > portraitBottomSheetHeight {
+            return portraitBottomSheetHeight
+        } else {
+            return keyboardObserverHeight
+        }
     }
 }
 
@@ -43,14 +109,7 @@ internal struct PurchaseBottomSheet: View {
     @ObservedObject internal var viewModel: BottomSheetViewModel
     @ObservedObject internal var authViewModel: AuthViewModel = AuthViewModel.shared
     @ObservedObject internal var transactionViewModel: TransactionViewModel = TransactionViewModel.shared
-    @ObservedObject internal var adyenController: AdyenController = AdyenController.shared
     
-    @ObservedObject private var keyboardObserver = KeyboardObserver.shared
-    
-    @State private var timer: Timer? = nil
-    @State private var dynamicHeight: CGFloat = 291
-    
-    internal let portraitBottomSheetHeight: CGFloat = 420
     internal let buttonHeightPlusTopSpace: CGFloat = 58
     internal let bottomSheetHeaderHeight: CGFloat = 72
     internal let buttonBottomSafeArea: CGFloat = Utils.bottomSafeAreaHeight == 0 ? 5 : 28
@@ -62,17 +121,10 @@ internal struct PurchaseBottomSheet: View {
                 BottomSheetAppHeader(viewModel: viewModel, transactionViewModel: transactionViewModel)
             },
             content: {
-                PurchaseView(viewModel: viewModel, portraitBottomSheetHeight: self.portraitBottomSheetHeight, buttonHeightPlusTopSpace: self.buttonHeightPlusTopSpace, bottomSheetHeaderHeight: self.bottomSheetHeaderHeight, buttonBottomSafeArea: buttonBottomSafeArea)
+                PurchaseView(viewModel: viewModel)
             }
         )
-        .frame(
-            width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width,
-            height: viewModel.orientation == .landscape ? UIScreen.main.bounds.height * 0.9 :
-                viewModel.isCreditCardView ? dynamicHeight + 72 :
-                viewModel.purchaseState == .login && keyboardObserver.isKeyboardVisible ? self.setHeightFromKeyboardToTop(keyboardObserverHeight: keyboardObserver.heighFromKeyboardToTop) :
-                portraitBottomSheetHeight,
-            alignment: .center)
-        .padding(.bottom, keyboardObserver.isKeyboardVisible && viewModel.orientation != .landscape ? keyboardObserver.keyboardHeight: 0)
+        
         
 //        switch viewModel.purchaseState {
 //        case .paying:
@@ -117,39 +169,6 @@ internal struct PurchaseBottomSheet: View {
 //            
 //        default: EmptyView()
 //        }
-    }
-    
-    private func startObservingDynamicHeight() {
-        timer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { timer in
-            if let viewController = adyenController.presentableComponent?.viewController {
-                for view in viewController.view.subviews {
-                    for subview in view.subviews {
-                        if let content = subview.subviews.first {
-                            if content.bounds.height != dynamicHeight && content.bounds.height != 0 {
-                                DispatchQueue.main.async {
-                                    withAnimation(.easeInOut(duration: 0.3)) {
-                                        dynamicHeight = content.bounds.height
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    private func stopObservingDynamicHeight() {
-        timer?.invalidate()
-        timer = nil
-    }
-    
-    private func setHeightFromKeyboardToTop(keyboardObserverHeight: CGFloat) -> CGFloat {
-        if keyboardObserverHeight > portraitBottomSheetHeight {
-            return portraitBottomSheetHeight
-        } else {
-            return keyboardObserverHeight
-        }
     }
     
 }

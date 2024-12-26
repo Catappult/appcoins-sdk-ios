@@ -11,10 +11,12 @@ struct PurchaseViewWrapper<Content: View>: View {
     
     @State private var contentFits: Bool = false
     internal var height: CGFloat
+    internal var offset: CGFloat
     let content: () -> Content
     
-    init(height: CGFloat, @ViewBuilder content: @escaping () -> Content) {
+    init(height: CGFloat, offset: CGFloat, @ViewBuilder content: @escaping () -> Content) {
         self.height = height
+        self.offset = offset
         self.content = content
     }
     
@@ -36,6 +38,8 @@ struct PurchaseViewWrapper<Content: View>: View {
                 
                 if contentFits {
                     VStack {
+                        VStack{}.frame(height: offset)
+                        
                         content().frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                     }
                 } else {
@@ -44,9 +48,11 @@ struct PurchaseViewWrapper<Content: View>: View {
                             VStack {
                                 VStack{}.frame(height: 0.001)
                                     .id("top")
-                                
+
+                                VStack{}.frame(height: offset)
+
                                 content().frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-                                
+
                                 VStack{}.frame(height: 0.001)
                                     .id("bottom")
                                     .onAppear {

@@ -22,7 +22,7 @@ struct LoginView: View {
     
     var body: some View {
         if #available(iOS 17, *) {
-            PurchaseViewWrapper(height: viewModel.orientation == .landscape ? UIScreen.main.bounds.height * 0.9 : portraitBottomSheetHeight) {
+            PurchaseViewWrapper(height: viewModel.orientation == .landscape ? UIScreen.main.bounds.height * 0.9 : portraitBottomSheetHeight, offset: 72) {
                 
                 if viewModel.orientation == .landscape && authViewModel.isTextFieldFocused {
                     VStack(spacing: 0) {

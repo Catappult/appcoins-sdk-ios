@@ -81,15 +81,8 @@ internal struct CreditCardFormBottomSheet: View {
                     }
                 }.frame(width: UIScreen.main.bounds.width - 32)
             }
-        }.onAppear{
-            viewModel.setCreditCardView(isCreditCardView: true)
-            startObservingDynamicHeight()
         }
-        .onDisappear{
-            if viewModel.isCreditCardView {
-                viewModel.setCreditCardView(isCreditCardView: false)
-            }
-            stopObservingDynamicHeight()
-        }
+        .onAppear{ startObservingDynamicHeight() }
+        .onDisappear{ stopObservingDynamicHeight() }
     }
 }
