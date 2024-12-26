@@ -19,13 +19,8 @@ internal class BottomSheetViewModel: ObservableObject {
     internal var metadata: String? = nil
     internal var reference: String? = nil
     
-    // The purchase resulting from the completed transaction, used for when there's a sync or an install after the purchase has been completed
-    private var purchase: Purchase? = nil
-    private var purchaseCompleted: Bool = false
-    
     // Purchase status
     @Published internal var purchaseState: PurchaseState = .none
-    @Published internal var walletSyncingStatus: WalletSyncingStatus = .none
     
     // Variables used for BottomSheet animations on changing states
     @Published internal var isBottomSheetPresented = false
@@ -42,7 +37,6 @@ internal class BottomSheetViewModel: ObservableObject {
     internal var productUseCases: ProductUseCases = ProductUseCases.shared
     internal var transactionUseCases: TransactionUseCases = TransactionUseCases.shared
     internal var walletUseCases: WalletUseCases = WalletUseCases.shared
-    internal var walletApplicationUseCases: WalletApplicationUseCases = WalletApplicationUseCases.shared
     internal var currencyUseCases: CurrencyUseCases = CurrencyUseCases.shared
     
     // Device Orientation
@@ -82,9 +76,6 @@ internal class BottomSheetViewModel: ObservableObject {
     // Resets the BottomSheet
     private func reset() {
         DispatchQueue.main.async {
-            self.purchase = nil
-            self.purchaseCompleted = false
-            
             self.purchaseState = .paying
             self.finalWalletBalance = nil
             self.purchaseFailedMessage = Constants.somethingWentWrong
@@ -125,35 +116,12 @@ internal class BottomSheetViewModel: ObservableObject {
         DispatchQueue(label: "build-transaction", qos: .userInteractive).async { self.initiateTransaction() }
     }
     
-    internal func initiateTransaction() {
-        walletApplicationUseCases.isWalletAvailable() {
-            walletAvailable in
-            
-            if walletAvailable && self.walletApplicationUseCases.isWalletInstalled() {
-                let newWalletSyncingStatus = self.walletUseCases.getWalletSyncingStatus()
-                DispatchQueue.main.async { self.walletSyncingStatus = newWalletSyncingStatus }
-                
-                switch newWalletSyncingStatus {
-                case .accepted: TransactionViewModel.shared.buildTransaction()
-                case .rejected: TransactionViewModel.shared.buildTransaction()
-                case .none: DispatchQueue.main.async { self.purchaseState = .initialAskForSync }
-                }
-            } else {
-                if [.accepted, .rejected].contains(self.walletUseCases.getWalletSyncingStatus()) { self.walletUseCases.updateWalletSyncingStatus(status: .none) }
-                DispatchQueue.main.async { self.walletSyncingStatus = .none }
-                TransactionViewModel.shared.buildTransaction()
-            }
-        }
-    }
+    internal func initiateTransaction() { TransactionViewModel.shared.buildTransaction() }
     
     // Handles the dismiss (click on the zone above the bottom sheet) for the multiple states of the bottom sheet
     func dismiss() {
         switch purchaseState {
         case .none: break
-        case .initialAskForSync: self.userCancelled()
-        case .syncProcessing: break
-        case .syncSuccess: if hasCompletedPurchase() { self.skipWalletSync() } else { break }
-        case .syncError: if hasCompletedPurchase() { self.skipWalletSync() } else { break }
         case .paying: self.userCancelled()
         case .adyen:
             if AdyenController.shared.state != .none {
@@ -162,8 +130,6 @@ internal class BottomSheetViewModel: ObservableObject {
             }
         case .processing: break
         case .success: self.dismissVC()
-        case .successAskForInstall: self.skipWalletInstall()
-        case .successAskForSync: self.skipWalletSync()
         case .failed: self.dismissVC()
         case .nointernet: self.dismissVC()
         }
@@ -494,34 +460,18 @@ internal class BottomSheetViewModel: ObservableObject {
     internal func setPurchaseState(newState: PurchaseState) { DispatchQueue.main.async { self.purchaseState = newState } }
     
     internal func successfulTransaction(purchase: Purchase, balance: Balance, method: Method) {
-        walletApplicationUseCases.isWalletAvailable() {
-            walletAvailable in
-            
-            if !walletAvailable || self.walletUseCases.getWalletSyncingStatus() == .accepted {
-                DispatchQueue.main.async {
-                    self.finalWalletBalance = "\(balance.balanceCurrency.sign)\(String(format: "%.2f", floor(balance.balance*100)/100))"
-                    self.purchaseState = .success
-                }
-                
-                let verificationResult: VerificationResult = .verified(purchase: purchase)
-                let transactionResult: TransactionResult = .success(verificationResult: verificationResult)
-                Utils.transactionResult(result: transactionResult)
-                
-                self.transactionUseCases.setLastPaymentMethod(paymentMethod: method)
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) { self.dismissSuccessWithAnimation() }
-            } else {
-                if self.walletApplicationUseCases.isWalletInstalled() {
-                    DispatchQueue.main.async { self.purchaseState = .successAskForSync }
-                } else {
-                    DispatchQueue.main.async { self.purchaseState = .successAskForInstall }
-                }
-                
-                self.purchase = purchase
-                self.purchaseCompleted = true
-                self.transactionUseCases.setLastPaymentMethod(paymentMethod: method)
-            }
+        DispatchQueue.main.async {
+            self.finalWalletBalance = "\(balance.balanceCurrency.sign)\(String(format: "%.2f", floor(balance.balance*100)/100))"
+            self.purchaseState = .success
         }
+
+        let verificationResult: VerificationResult = .verified(purchase: purchase)
+        let transactionResult: TransactionResult = .success(verificationResult: verificationResult)
+        Utils.transactionResult(result: transactionResult)
+
+        self.transactionUseCases.setLastPaymentMethod(paymentMethod: method)
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) { self.dismissSuccessWithAnimation() }
     }
     
     internal func transactionFailedWith(error: AppCoinsSDKError, description: String? = nil) {
@@ -552,36 +502,4 @@ internal class BottomSheetViewModel: ObservableObject {
             self.dismissVC()
         }
     }
-    
-    internal func skipWalletInstall() {
-        if hasCompletedPurchase(), let purchase = purchase {
-            let verificationResult: VerificationResult = .verified(purchase: purchase)
-            let transactionResult: TransactionResult = .success(verificationResult: verificationResult)
-            Utils.transactionResult(result: transactionResult)
-            dismissSuccessWithAnimation()
-        } else {
-            self.transactionFailedWith(error: .systemError(message: "Failed to skip wallet installation", description: "Missing required parameters: purchase is nil or hasCompletedPurhcase is false at BottomSheetViewModel.swift:skipWalletInstall"))
-        }
-    }
-    
-    internal func skipWalletSync() {
-        DispatchQueue(label: "update-wallet-syncing-status", qos: .utility).async {
-            if self.walletUseCases.getWalletSyncingStatus() == .none {
-                self.walletUseCases.updateWalletSyncingStatus(status: .rejected)
-            }
-        }
-        
-        if hasCompletedPurchase(), let purchase = purchase {
-            let verificationResult: VerificationResult = .verified(purchase: purchase)
-            let transactionResult: TransactionResult = .success(verificationResult: verificationResult)
-            Utils.transactionResult(result: transactionResult)
-            dismissSuccessWithAnimation()
-        } else {
-            DispatchQueue.main.async { withAnimation { self.isInitialSyncSheetPresented = false } }
-            DispatchQueue(label: "build-transaction", qos: .userInteractive).asyncAfter(deadline: .now() + 0.5) { TransactionViewModel.shared.buildTransaction() }
-        }
-    }
-    
-    internal func hasCompletedPurchase() -> Bool { return purchaseCompleted }
-    
 }
