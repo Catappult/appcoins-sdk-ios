@@ -72,7 +72,7 @@ internal class BottomSheetViewModel: ObservableObject {
     // Resets the BottomSheet
     private func reset() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            self.purchaseState = .paying
+            self.purchaseState = .loading
             self.finalWalletBalance = nil
             self.purchaseFailedMessage = Constants.somethingWentWrong
             
@@ -91,7 +91,7 @@ internal class BottomSheetViewModel: ObservableObject {
     
     // Reloads the purchase on failure screens
     internal func reload() {
-        DispatchQueue.main.async { self.purchaseState = .paying }
+        DispatchQueue.main.async { self.purchaseState = .loading }
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) { TransactionViewModel.shared.buildTransaction() }
     }
     
@@ -113,6 +113,7 @@ internal class BottomSheetViewModel: ObservableObject {
     func dismiss() {
         switch purchaseState {
         case .none: break
+        case .loading: self.userCancelled()
         case .paying: self.userCancelled()
         case .adyen:
             if AdyenController.shared.state != .none {

@@ -36,7 +36,7 @@ internal struct BottomSheetView: View {
                 VStack(spacing: 0) {
                     VStack{ }.frame(maxWidth: .infinity, maxHeight: .infinity)
                     
-                    if [.paying, .adyen, .login].contains(viewModel.purchaseState) && !(viewModel.purchaseState == .adyen && adyenController.state == .storedCreditCard) {
+                    if [.loading, .paying, .adyen, .login].contains(viewModel.purchaseState) && !(viewModel.purchaseState == .adyen && adyenController.state == .storedCreditCard) {
                         PurchaseBottomSheet(viewModel: viewModel)
                     }
                     

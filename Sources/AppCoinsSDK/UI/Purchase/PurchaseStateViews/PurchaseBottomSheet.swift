@@ -19,8 +19,7 @@ internal struct PurchaseBottomSheetWrapper<Header: View, Body: View>: View {
     
     @ObservedObject private var keyboardObserver = KeyboardObserver.shared
     
-    @State private var timer: Timer? = nil
-    @State private var dynamicHeight: CGFloat = 291
+    @Binding internal var dynamicHeight: CGFloat
     
     internal let header: () -> Header
     internal let content: () -> Body
@@ -41,19 +40,19 @@ internal struct PurchaseBottomSheetWrapper<Header: View, Body: View>: View {
     }
     
     init(
+        dynamicHeight: Binding<CGFloat>,
         @ViewBuilder header: @escaping () -> Header,
         @ViewBuilder content: @escaping () -> Body
     ) {
+        self._dynamicHeight = dynamicHeight
         self.header = header
         self.content = content
     }
     
     var body: some View {
         ZStack(alignment: .top) {
-            PurchaseViewWrapper(height: height - Utils.bottomSafeAreaHeight, offset: 72) {
-                self.content()
-                    .background(ColorsUi.APC_Green)
-            }.frame(height: height)
+            self.content()
+                .frame(height: height)
             
             self.header()
                 .frame(height: 72)
@@ -70,31 +69,6 @@ internal struct PurchaseBottomSheetWrapper<Header: View, Body: View>: View {
         .onAppear { withAnimation { isPresented = true } }
     }
     
-    private func startObservingDynamicHeight() {
-        timer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { timer in
-            if let viewController = adyenController.presentableComponent?.viewController {
-                for view in viewController.view.subviews {
-                    for subview in view.subviews {
-                        if let content = subview.subviews.first {
-                            if content.bounds.height != dynamicHeight && content.bounds.height != 0 {
-                                DispatchQueue.main.async {
-                                    withAnimation(.easeInOut(duration: 0.3)) {
-                                        dynamicHeight = content.bounds.height
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    
-    private func stopObservingDynamicHeight() {
-        timer?.invalidate()
-        timer = nil
-    }
-    
     private func setHeightFromKeyboardToTop(keyboardObserverHeight: CGFloat) -> CGFloat {
         if keyboardObserverHeight > portraitBottomSheetHeight {
             return portraitBottomSheetHeight
@@ -109,6 +83,10 @@ internal struct PurchaseBottomSheet: View {
     @ObservedObject internal var viewModel: BottomSheetViewModel
     @ObservedObject internal var authViewModel: AuthViewModel = AuthViewModel.shared
     @ObservedObject internal var transactionViewModel: TransactionViewModel = TransactionViewModel.shared
+    @ObservedObject internal var adyenController: AdyenController = AdyenController.shared
+    
+    @State private var timer: Timer? = nil
+    @State internal var dynamicHeight: CGFloat = 291
     
     internal let buttonHeightPlusTopSpace: CGFloat = 58
     internal let bottomSheetHeaderHeight: CGFloat = 72
@@ -117,33 +95,47 @@ internal struct PurchaseBottomSheet: View {
     internal var body: some View {
         
         PurchaseBottomSheetWrapper(
+            dynamicHeight: self.$dynamicHeight,
             header: {
-                BottomSheetAppHeader(viewModel: viewModel, transactionViewModel: transactionViewModel)
+                switch viewModel.purchaseState {
+                case .loading:
+                    BottomSheetAppHeader(viewModel: viewModel, transactionViewModel: transactionViewModel)
+                case .paying:
+                    BottomSheetAppHeader(viewModel: viewModel, transactionViewModel: transactionViewModel)
+                case .adyen:
+                    switch adyenController.state {
+                    case .choosingCreditCard, .newCreditCard:
+                        BottomSheetAppHeader(viewModel: viewModel, transactionViewModel: transactionViewModel)
+                    default:
+                        EmptyView()
+                    }
+                default:
+                    EmptyView()
+                }
             },
             content: {
-                PurchaseView(viewModel: viewModel)
+                switch viewModel.purchaseState {
+                case .loading:
+                    LoadingView()
+                case .paying:
+                    PayingView(viewModel: viewModel)
+                case .adyen:
+                    switch adyenController.state {
+                    case .none:
+                        AdyenLoadingBottomSheet(viewModel: viewModel)
+                    case .choosingCreditCard:
+                        CreditCardChoiceBottomSheet(viewModel: viewModel)
+                    case .newCreditCard:
+                        CreditCardFormBottomSheet(viewModel: viewModel, transactionViewModel: transactionViewModel, authViewModel: authViewModel, dynamicHeight: $dynamicHeight, startObservingDynamicHeight: startObservingDynamicHeight, stopObservingDynamicHeight: stopObservingDynamicHeight)
+                    default:
+                        EmptyView()
+                    }
+                default:
+                    EmptyView()
+                }
             }
         )
         
-        
-//        switch viewModel.purchaseState {
-//        case .paying:
-//            PurchaseView(viewModel: viewModel, portraitBottomSheetHeight: self.portraitBottomSheetHeight, buttonHeightPlusTopSpace: self.buttonHeightPlusTopSpace, bottomSheetHeaderHeight: self.bottomSheetHeaderHeight, buttonBottomSafeArea: buttonBottomSafeArea)
-//            
-//        case .adyen:
-//            switch adyenController.state {
-//            case .none:
-//                AdyenLoadingBottomSheet(viewModel: viewModel)
-//            
-//            case .choosingCreditCard:
-//                CreditCardChoiceBottomSheet(viewModel: viewModel)
-//
-//            case .newCreditCard:
-//                CreditCardFormBottomSheet(viewModel: viewModel, transactionViewModel: transactionViewModel, authViewModel: authViewModel, dynamicHeight: $dynamicHeight, startObservingDynamicHeight: startObservingDynamicHeight, stopObservingDynamicHeight: stopObservingDynamicHeight)
-//            
-//            default:
-//                EmptyView()
-//            }
 //            
 //        case .login:
 //            ZStack(alignment: .top) {
@@ -169,6 +161,31 @@ internal struct PurchaseBottomSheet: View {
 //            
 //        default: EmptyView()
 //        }
+    }
+    
+    private func startObservingDynamicHeight() {
+        timer = Timer.scheduledTimer(withTimeInterval: 0.25, repeats: true) { timer in
+            if let viewController = adyenController.presentableComponent?.viewController {
+                for view in viewController.view.subviews {
+                    for subview in view.subviews {
+                        if let content = subview.subviews.first {
+                            if content.bounds.height != dynamicHeight && content.bounds.height != 0 {
+                                DispatchQueue.main.async {
+                                    withAnimation(.easeInOut(duration: 0.3)) {
+                                        dynamicHeight = content.bounds.height
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    private func stopObservingDynamicHeight() {
+        timer?.invalidate()
+        timer = nil
     }
     
 }

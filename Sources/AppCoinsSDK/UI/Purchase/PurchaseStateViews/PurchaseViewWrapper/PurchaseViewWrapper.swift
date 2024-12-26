@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct PurchaseViewWrapper<Content: View>: View {
+internal struct PurchaseViewWrapper<Content: View>: View {
     
     @State private var contentFits: Bool = false
     internal var height: CGFloat
     internal var offset: CGFloat
-    let content: () -> Content
+    internal let content: () -> Content
     
-    init(height: CGFloat, offset: CGFloat, @ViewBuilder content: @escaping () -> Content) {
+    internal init(height: CGFloat, offset: CGFloat, @ViewBuilder content: @escaping () -> Content) {
         self.height = height
         self.offset = offset
         self.content = content
@@ -30,6 +30,8 @@ struct PurchaseViewWrapper<Content: View>: View {
                                 Color.clear
                                     .onAppear {
                                         let contentHeight = innerGeometry.size.height
+                                        print("Content Height: \(contentHeight)")
+                                        print("Height: \(height)")
                                         contentFits = contentHeight <= height
                                     }
                             }
@@ -38,7 +40,7 @@ struct PurchaseViewWrapper<Content: View>: View {
                 
                 if contentFits {
                     VStack {
-                        VStack{}.frame(height: offset)
+//                        VStack{}.frame(height: offset)
                         
                         content().frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
                     }
@@ -49,7 +51,7 @@ struct PurchaseViewWrapper<Content: View>: View {
                                 VStack{}.frame(height: 0.001)
                                     .id("top")
 
-                                VStack{}.frame(height: offset)
+//                                VStack{}.frame(height: offset)
 
                                 content().frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
 

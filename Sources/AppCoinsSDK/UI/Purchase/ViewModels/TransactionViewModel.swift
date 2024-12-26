@@ -75,7 +75,7 @@ internal class TransactionViewModel : ObservableObject {
     }
     
     internal func buildTransaction() {
-        bottomSheetViewModel.setPurchaseState(newState: .paying)
+        bottomSheetViewModel.setPurchaseState(newState: .loading)
         
         if let product = product, let domain = domain {
             // 1. Get product currency
@@ -124,6 +124,9 @@ internal class TransactionViewModel : ObservableObject {
                                                     
                                                     // 9. Show payment method options
                                                     self.showPaymentMethodsOnBuild(balance: balance)
+                                                    
+                                                    // 10. Show loaded view
+                                                    self.bottomSheetViewModel.setPurchaseState(newState: .paying)
                                                 }
                                             }
                                         }

@@ -17,7 +17,6 @@ internal struct CreditCardFormBottomSheet: View {
     @ObservedObject internal var adyenController: AdyenController = AdyenController.shared
     
     @Binding internal var dynamicHeight: CGFloat
-    
     internal var startObservingDynamicHeight: () -> Void
     internal var stopObservingDynamicHeight: () -> Void
     
