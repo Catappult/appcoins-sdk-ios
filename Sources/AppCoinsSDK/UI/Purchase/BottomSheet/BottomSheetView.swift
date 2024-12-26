@@ -37,12 +37,7 @@ internal struct BottomSheetView: View {
                     VStack{ }.frame(maxWidth: .infinity, maxHeight: .infinity)
                     
                     if [.paying, .adyen, .login].contains(viewModel.purchaseState) && !(viewModel.purchaseState == .adyen && adyenController.state == .storedCreditCard) {
-                        if #available(iOS 16.4, *) {
-                            PurchaseBottomSheet(viewModel: viewModel)
-                                .sheet(isPresented: $viewModel.isPaymentMethodChoiceSheetPresented) {
-                                    PaymentMethodListBottomSheet(viewModel: viewModel)
-                                }
-                        }
+                        PurchaseBottomSheet(viewModel: viewModel)
                     }
                     
                     if viewModel.purchaseState == .processing {
@@ -77,6 +72,11 @@ internal struct BottomSheetView: View {
                             AdyenViewControllerWrapper(viewController: viewController, orientation: viewModel.orientation)
                                 .ignoresSafeArea(.all)
                         }
+                    }
+                
+                HStack(spacing: 0) {}
+                    .sheet(isPresented: $viewModel.isPaymentMethodChoiceSheetPresented) {
+                        PaymentMethodListBottomSheet(viewModel: viewModel)
                     }
             }
             .ignoresSafeArea(.all)

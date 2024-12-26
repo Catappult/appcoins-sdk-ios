@@ -10,6 +10,34 @@ import SwiftUI
 @_implementationOnly import SkeletonUI
 @_implementationOnly import ActivityIndicatorView
 
+internal struct PurchaseBottomSheetWrapper<Header: View, Body: View>: View {
+    
+    @State private var isPresented = false
+        
+    internal let header: () -> Header
+    internal let content: () -> Body
+    
+    init(
+        @ViewBuilder header: @escaping () -> Header,
+        @ViewBuilder content: @escaping () -> Body
+    ) {
+        self.header = header
+        self.content = content
+    }
+    
+    var body: some View {
+        ZStack(alignment: .top) {
+            self.header()
+            self.content()
+        }
+        .background(ColorsUi.APC_BottomSheet_LightGray_Background)
+        .cornerRadius(13, corners: [.topLeft, .topRight])
+        .offset(y: isPresented ? 0 : UIScreen.main.bounds.height)
+        .transition(.move(edge: isPresented ? .bottom : .top))
+        .onAppear { withAnimation { isPresented = true } }
+    }
+}
+
 internal struct PurchaseBottomSheet: View {
     
     @ObservedObject internal var viewModel: BottomSheetViewModel
@@ -17,7 +45,6 @@ internal struct PurchaseBottomSheet: View {
     @ObservedObject internal var transactionViewModel: TransactionViewModel = TransactionViewModel.shared
     @ObservedObject internal var adyenController: AdyenController = AdyenController.shared
     
-    @State private var isPresented = false
     @ObservedObject private var keyboardObserver = KeyboardObserver.shared
     
     @State private var timer: Timer? = nil
@@ -30,114 +57,66 @@ internal struct PurchaseBottomSheet: View {
     
     internal var body: some View {
         
-        VStack(spacing: 0) {
-            if viewModel.purchaseState == .paying {
-                ZStack(alignment: .top) {
-                    VStack(spacing: 0) {
-                        if transactionViewModel.showOtherPaymentMethods || transactionViewModel.lastPaymentMethod != nil {
-                            PurchaseView(viewModel: viewModel, portraitBottomSheetHeight: self.portraitBottomSheetHeight, buttonHeightPlusTopSpace: self.buttonHeightPlusTopSpace, bottomSheetHeaderHeight: self.bottomSheetHeaderHeight, buttonBottomSafeArea: buttonBottomSafeArea)
-                        } else {
-                            VStack(spacing: 0) {
-                                
-                                VStack{}.frame(height: 72)
-                                
-                                ZStack {
-                                    ActivityIndicatorView(
-                                        isVisible: .constant(true), type: .growingArc(ColorsUi.APC_Gray, lineWidth: 1.5))
-                                    .frame(width: 41, height: 41)
-                                    
-                                    Image("loading-appc-icon", bundle: Bundle.APPCModule)
-                                        .resizable()
-                                        .scaledToFit()
-                                        .frame(height: 23)
-                                }
-                            }.frame(maxHeight: .infinity, alignment: .center)
-                        }
-                        
-                        VStack{}.frame(height: 8)
-                        
-                        // Buying button
-                        Button(action: {
-                            viewModel.buy()
-                        }) {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 12)
-                                    .foregroundColor(transactionViewModel.transaction != nil ? ColorsUi.APC_Pink : ColorsUi.APC_Gray)
-                                Text(Constants.buyText)
-                            }
-                        }
-                        .disabled(transactionViewModel.transaction == nil)
-                        .frame(maxHeight: .infinity, alignment: .bottom)
-                        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
-                        .foregroundColor(ColorsUi.APC_White)
-                        
-                        VStack{}.frame(height: buttonBottomSafeArea)
-                    }
-                    .frame(maxHeight: .infinity, alignment: .bottom)
-                    
-                    BottomSheetAppHeader(viewModel: viewModel, transactionViewModel: transactionViewModel)
-                }
+        PurchaseBottomSheetWrapper(
+            header: {
+                BottomSheetAppHeader(viewModel: viewModel, transactionViewModel: transactionViewModel)
+            },
+            content: {
+                PurchaseView(viewModel: viewModel, portraitBottomSheetHeight: self.portraitBottomSheetHeight, buttonHeightPlusTopSpace: self.buttonHeightPlusTopSpace, bottomSheetHeaderHeight: self.bottomSheetHeaderHeight, buttonBottomSafeArea: buttonBottomSafeArea)
             }
-            
-            if viewModel.purchaseState == .adyen {
-                if adyenController.state == .none {
-                    AdyenLoadingBottomSheet(viewModel: viewModel)
-                }
-                
-                if adyenController.state == .choosingCreditCard {
-                    CreditCardChoiceBottomSheet(viewModel: viewModel)
-                }
-                
-                if adyenController.state == .newCreditCard {
-                    CreditCardBottomSheet(viewModel: viewModel, transactionViewModel: transactionViewModel, authViewModel: authViewModel, dynamicHeight: $dynamicHeight)
-                        .onAppear{
-                            viewModel.setCreditCardView(isCreditCardView: true)
-                            startObservingDynamicHeight()
-                        }
-                        .onDisappear{
-                            if viewModel.isCreditCardView {
-                                viewModel.setCreditCardView(isCreditCardView: false)
-                            }
-                            stopObservingDynamicHeight()
-                        }
-                }
-                
-                if adyenController.state == .paypal {
-                    EmptyView()
-                }
-            }
-            
-            if viewModel.purchaseState == .login {
-                ZStack(alignment: .top) {
-                    VStack(spacing: 0) {
-                        switch authViewModel.authState {
-                        case .choice:
-                            LoginView(viewModel: viewModel, authViewModel: authViewModel, transactionViewModel: transactionViewModel, portraitBottomSheetHeight: self.portraitBottomSheetHeight, buttonHeightPlusTopSpace: self.buttonHeightPlusTopSpace, bottomSheetHeaderHeight: self.bottomSheetHeaderHeight, buttonBottomSafeArea: buttonBottomSafeArea)
-                        case .google:
-                            EmptyView()
-                        case .magicLink:
-                            MagicLinkView(viewModel: viewModel, authViewModel: authViewModel, transactionViewModel: transactionViewModel, portraitBottomSheetHeight: self.portraitBottomSheetHeight, buttonHeightPlusTopSpace: self.buttonHeightPlusTopSpace, buttonBottomSafeArea: self.buttonBottomSafeArea)
-                        case .loading:
-                            LoadingLoginView()
-                        case .success:
-                            SuccessLoginView()
-                        case .error:
-                            ErrorLoginView(viewModel: viewModel)
-                        }
-                    }.frame(maxHeight: .infinity, alignment: .bottom)
-                    
-                    if authViewModel.authState == .choice { AuthenticationHeader(viewModel: viewModel) }
-                }
-            }
-            
-        }
-        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: viewModel.orientation == .landscape ? UIScreen.main.bounds.height * 0.9 : viewModel.isCreditCardView ? dynamicHeight + 72 : viewModel.purchaseState == .login && keyboardObserver.isKeyboardVisible ? self.setHeightFromKeyboardToTop(keyboardObserverHeight: keyboardObserver.heighFromKeyboardToTop) : portraitBottomSheetHeight, alignment: .center)
+        )
+        .frame(
+            width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width,
+            height: viewModel.orientation == .landscape ? UIScreen.main.bounds.height * 0.9 :
+                viewModel.isCreditCardView ? dynamicHeight + 72 :
+                viewModel.purchaseState == .login && keyboardObserver.isKeyboardVisible ? self.setHeightFromKeyboardToTop(keyboardObserverHeight: keyboardObserver.heighFromKeyboardToTop) :
+                portraitBottomSheetHeight,
+            alignment: .center)
         .padding(.bottom, keyboardObserver.isKeyboardVisible && viewModel.orientation != .landscape ? keyboardObserver.keyboardHeight: 0)
-        .background(ColorsUi.APC_BottomSheet_LightGray_Background)
-        .cornerRadius(13, corners: [.topLeft, .topRight])
-        .offset(y: isPresented ? 0 : UIScreen.main.bounds.height)
-        .transition(.move(edge: isPresented ? .bottom : .top))
-        .onAppear { withAnimation { isPresented = true } }
+        
+//        switch viewModel.purchaseState {
+//        case .paying:
+//            PurchaseView(viewModel: viewModel, portraitBottomSheetHeight: self.portraitBottomSheetHeight, buttonHeightPlusTopSpace: self.buttonHeightPlusTopSpace, bottomSheetHeaderHeight: self.bottomSheetHeaderHeight, buttonBottomSafeArea: buttonBottomSafeArea)
+//            
+//        case .adyen:
+//            switch adyenController.state {
+//            case .none:
+//                AdyenLoadingBottomSheet(viewModel: viewModel)
+//            
+//            case .choosingCreditCard:
+//                CreditCardChoiceBottomSheet(viewModel: viewModel)
+//
+//            case .newCreditCard:
+//                CreditCardFormBottomSheet(viewModel: viewModel, transactionViewModel: transactionViewModel, authViewModel: authViewModel, dynamicHeight: $dynamicHeight, startObservingDynamicHeight: startObservingDynamicHeight, stopObservingDynamicHeight: stopObservingDynamicHeight)
+//            
+//            default:
+//                EmptyView()
+//            }
+//            
+//        case .login:
+//            ZStack(alignment: .top) {
+//                VStack(spacing: 0) {
+//                    switch authViewModel.authState {
+//                    case .choice:
+//                        LoginView(viewModel: viewModel, authViewModel: authViewModel, transactionViewModel: transactionViewModel, portraitBottomSheetHeight: self.portraitBottomSheetHeight, buttonHeightPlusTopSpace: self.buttonHeightPlusTopSpace, bottomSheetHeaderHeight: self.bottomSheetHeaderHeight, buttonBottomSafeArea: buttonBottomSafeArea)
+//                    case .google:
+//                        EmptyView()
+//                    case .magicLink:
+//                        MagicLinkView(viewModel: viewModel, authViewModel: authViewModel, transactionViewModel: transactionViewModel, portraitBottomSheetHeight: self.portraitBottomSheetHeight, buttonHeightPlusTopSpace: self.buttonHeightPlusTopSpace, buttonBottomSafeArea: self.buttonBottomSafeArea)
+//                    case .loading:
+//                        LoadingLoginView()
+//                    case .success:
+//                        SuccessLoginView()
+//                    case .error:
+//                        ErrorLoginView(viewModel: viewModel)
+//                    }
+//                }.frame(maxHeight: .infinity, alignment: .bottom)
+//                
+//                if authViewModel.authState == .choice { AuthenticationHeader(viewModel: viewModel) }
+//            }
+//            
+//        default: EmptyView()
+//        }
     }
     
     private func startObservingDynamicHeight() {
@@ -172,4 +151,5 @@ internal struct PurchaseBottomSheet: View {
             return keyboardObserverHeight
         }
     }
+    
 }

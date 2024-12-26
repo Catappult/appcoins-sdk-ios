@@ -9,13 +9,17 @@ import Foundation
 import SwiftUI
 @_implementationOnly import ActivityIndicatorView
 
-internal struct CreditCardBottomSheet: View {
+internal struct CreditCardFormBottomSheet: View {
     
     @ObservedObject internal var viewModel: BottomSheetViewModel
     @ObservedObject internal var transactionViewModel: TransactionViewModel
     @ObservedObject internal var authViewModel: AuthViewModel
     @ObservedObject internal var adyenController: AdyenController = AdyenController.shared
-    @Binding var dynamicHeight: CGFloat
+    
+    @Binding internal var dynamicHeight: CGFloat
+    
+    internal var startObservingDynamicHeight: () -> Void
+    internal var stopObservingDynamicHeight: () -> Void
     
     internal var body: some View {
         
@@ -77,6 +81,15 @@ internal struct CreditCardBottomSheet: View {
                     }
                 }.frame(width: UIScreen.main.bounds.width - 32)
             }
+        }.onAppear{
+            viewModel.setCreditCardView(isCreditCardView: true)
+            startObservingDynamicHeight()
+        }
+        .onDisappear{
+            if viewModel.isCreditCardView {
+                viewModel.setCreditCardView(isCreditCardView: false)
+            }
+            stopObservingDynamicHeight()
         }
     }
 }

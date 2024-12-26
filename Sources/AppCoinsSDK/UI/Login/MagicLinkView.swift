@@ -22,7 +22,7 @@ struct MagicLinkView: View {
     var body: some View {
         if #available(iOS 17, *) {
             ZStack(alignment: .top) {
-                PurchaseViewWrapper(height: viewModel.orientation == .landscape ? UIScreen.main.bounds.height * 0.9 : portraitBottomSheetHeight, buttonHeightPlusTopSpace: buttonHeightPlusTopSpace, buttonBottomSafeArea: buttonBottomSafeArea, magicLinkCodeViewTopSpace: viewModel.orientation == .landscape ? 40 : 56) {
+                PurchaseViewWrapper(height: viewModel.orientation == .landscape ? UIScreen.main.bounds.height * 0.9 : portraitBottomSheetHeight) {
                     
                     VStack(spacing: 0) {
                         
