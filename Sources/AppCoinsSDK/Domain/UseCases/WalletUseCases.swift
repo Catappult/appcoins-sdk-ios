@@ -68,10 +68,6 @@ internal class WalletUseCases {
         return repository.getClientWallet()
     }
     
-    internal func importWallet(keystore: String, password: String, privateKey: String, completion: @escaping (Result<ClientWallet?, WalletLocalErrors>) -> Void) {
-        repository.importWallet(keystore: keystore, password: password, privateKey: privateKey) { result in completion(result) }
-    }
-    
     internal func getWalletBalance(wallet: Wallet, currency: Currency, completion: @escaping (Result<Balance, AppcTransactionError>) -> Void) {
         repository.getWalletBalance(wallet: wallet, currency: currency) { result in completion(result) }
     }

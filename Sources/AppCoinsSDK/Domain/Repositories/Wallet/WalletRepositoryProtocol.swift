@@ -12,7 +12,6 @@ internal protocol WalletRepositoryProtocol {
     func getClientWallet() -> ClientWallet?
     func getGuestWallet(guestUID: String, completion: @escaping (Result<GuestWallet, APPCServiceError>) -> Void)
     func getWalletList() -> [ClientWallet]
-    func importWallet(keystore: String, password: String, privateKey: String, completion: @escaping (Result<ClientWallet?, WalletLocalErrors>) -> Void)
     func getWalletBalance(wallet: Wallet, currency: Currency, completion: @escaping (Result<Balance, AppcTransactionError>) -> Void)
     func getWalletPrivateKey(wallet: Wallet) -> Data?
     

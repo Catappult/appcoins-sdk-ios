@@ -12,7 +12,6 @@ internal protocol WalletLocalService {
     func getActiveWallet() -> ClientWallet?
     func getWalletList() -> [ClientWallet]
     func createNewWallet() throws -> ClientWallet?
-    func importWallet(keystore: String, password: String, privateKey: String, completion: @escaping (Result<ClientWallet?, WalletLocalErrors>) -> Void)
     func getPrivateKey(wallet: Wallet) -> Data?
     
 }
