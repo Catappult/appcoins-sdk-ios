@@ -68,23 +68,6 @@ internal class WalletRepository: WalletRepositoryProtocol {
         }
     }
     
-    internal func importWallet(keystore: String, password: String, privateKey: String, completion: @escaping (Result<ClientWallet?, WalletLocalErrors>) -> Void) {
-        walletService.importWallet(keystore: keystore, password: password, privateKey: privateKey) { result in
-            switch result {
-            case .success(let newWallet):
-                self.ActiveWalletCache.setValue(newWallet, forKey: "activeWallet", storageOption: .memory)
-                self.WalletListCache.removeValue(forKey: "walletList") // next time we need the wallet list we'll get it from the wallet service
-                completion(.success(newWallet))
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
-    
-    internal func getWalletSyncingStatus() -> WalletSyncingStatus { return walletService.getWalletSyncingStatus() }
-    
-    internal func updateWalletSyncingStatus(status: WalletSyncingStatus) { walletService.updateWalletSyncingStatus(status: status) }
-    
     internal func getWalletBalance(wallet: Wallet, currency: Currency, completion: @escaping (Result<Balance, AppcTransactionError>) -> Void) {
         appcTransactionService.getBalance(wallet: wallet, currency: currency) {
             result in

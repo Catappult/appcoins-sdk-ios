@@ -9,16 +9,10 @@ import Foundation
 
 internal enum PurchaseState {
     case none
-    case initialAskForSync
-    case syncProcessing
-    case syncSuccess
-    case syncError
     case paying
     case adyen
     case processing
     case success
-    case successAskForInstall
-    case successAskForSync
     case failed
     case nointernet
 }
