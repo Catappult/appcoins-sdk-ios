@@ -40,18 +40,16 @@ internal class BottomSheetViewModel: ObservableObject {
     internal var currencyUseCases: CurrencyUseCases = CurrencyUseCases.shared
     
     // Device Orientation
-    @Published var orientation: Orientation = .portrait
+    @Published internal var orientation: Orientation = .portrait
     
     // Keyboard Dismiss
-    @Published var isKeyboardVisible: Bool = false
+    @Published internal var isKeyboardVisible: Bool = false
     private var cancellables = Set<AnyCancellable>()
     
-    @Published var isCreditCardView: Bool = false
+    @Published internal var isCreditCardView: Bool = false
     
-    @Published var isPaymentMethodChoiceSheetPresented: Bool = false
-    
-    @Published var isLoggedIn: Bool = false
-    
+    @Published internal var isPaymentMethodChoiceSheetPresented: Bool = false
+        
     private init() {
         // Prevents Layout Warning Prints
         UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
@@ -75,28 +73,25 @@ internal class BottomSheetViewModel: ObservableObject {
     
     // Resets the BottomSheet
     private func reset() {
-        DispatchQueue.main.async {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.purchaseState = .paying
             self.finalWalletBalance = nil
             self.purchaseFailedMessage = Constants.somethingWentWrong
             
             TransactionViewModel.shared.reset()
+            AuthViewModel.shared.reset()
             PayPalDirectViewModel.shared.reset()
             AdyenController.shared.reset()
         }
     }
     
     internal func presentPaymentMethodChoiceSheet() { self.isPaymentMethodChoiceSheetPresented = true }
-    
+        
     internal func dismissPaymentMethodChoiceSheet() { self.isPaymentMethodChoiceSheetPresented = false }
     
-    internal func setOrientation(orientation: Orientation) {
-        self.orientation = orientation
-    }
+    internal func setOrientation(orientation: Orientation) { self.orientation = orientation }
     
-    internal func setCreditCardView(isCreditCardView: Bool) {
-        self.isCreditCardView = isCreditCardView
-    }
+    internal func setCreditCardView(isCreditCardView: Bool) { self.isCreditCardView = isCreditCardView }
     
     // Reloads the purchase on failure screens
     internal func reload() {
@@ -128,10 +123,12 @@ internal class BottomSheetViewModel: ObservableObject {
                 AdyenController.shared.cancel()
                 self.userCancelled()
             }
+        case .login: self.userCancelled()
         case .processing: break
         case .success: self.dismissVC()
         case .failed: self.dismissVC()
         case .nointernet: self.dismissVC()
+        case .login: self.userCancelled()
         }
     }
     
@@ -162,29 +159,36 @@ internal class BottomSheetViewModel: ObservableObject {
     // User presses buy button
     internal func buy() {
         
-        AnalyticsUseCases.shared.recordPurchaseIntent(paymentMethod: TransactionViewModel.shared.paymentMethodSelected?.name ?? "")
-        
-        DispatchQueue(label: "buy-item", qos: .userInteractive).async {
-            switch TransactionViewModel.shared.paymentMethodSelected?.name {
-            case Method.appc.rawValue:
-                DispatchQueue.main.async { self.purchaseState = .processing }
-                self.buyWithAppc()
-            case Method.creditCard.rawValue:
-                DispatchQueue.main.async { self.purchaseState = .adyen }
-                self.buyWithCreditCard()
-            case Method.paypalAdyen.rawValue:
-                DispatchQueue.main.async { self.purchaseState = .processing }
-                self.buyWithPayPalAdyen()
-            case Method.paypalDirect.rawValue:
-                DispatchQueue.main.async { self.purchaseState = .processing }
-                self.buyWithPayPalDirect()
-            case Method.sandbox.rawValue:
-                DispatchQueue.main.async { self.purchaseState = .processing }
-                self.buyWithSandbox()
-            default:
-                self.transactionFailedWith(error: .systemError(message: "Payment Method not available", description: "Tried to purchase with a Payment Method that is not available at BottomSheetViewModel.swift:buy"))
+        if let paymentMethodSelected = TransactionViewModel.shared.paymentMethodSelected {
+            DispatchQueue.main.async { self.purchaseState = .processing }
+            
+            AnalyticsUseCases.shared.recordPurchaseIntent(paymentMethod: TransactionViewModel.shared.paymentMethodSelected?.name ?? "")
+            
+            DispatchQueue(label: "buy-item", qos: .userInteractive).async {
+                switch TransactionViewModel.shared.paymentMethodSelected?.name {
+                case Method.appc.rawValue:
+                    DispatchQueue.main.async { self.purchaseState = .processing }
+                    self.buyWithAppc()
+                case Method.creditCard.rawValue:
+                    DispatchQueue.main.async { self.purchaseState = .adyen }
+                    self.buyWithCreditCard()
+                case Method.paypalAdyen.rawValue:
+                    DispatchQueue.main.async { self.purchaseState = .processing }
+                    self.buyWithPayPalAdyen()
+                case Method.paypalDirect.rawValue:
+                    DispatchQueue.main.async { self.purchaseState = .processing }
+                    self.buyWithPayPalDirect()
+                case Method.sandbox.rawValue:
+                    DispatchQueue.main.async { self.purchaseState = .processing }
+                    self.buyWithSandbox()
+                default:
+                    self.transactionFailedWith(error: .systemError(message: "Payment Method not available", description: "Tried to purchase with a Payment Method that is not available at BottomSheetViewModel.swift:buy"))
+                }
             }
+        } else {
+            self.presentPaymentMethodChoiceSheet()
         }
+        
     }
     
     internal func buyWithAppc() {
@@ -407,6 +411,7 @@ internal class BottomSheetViewModel: ObservableObject {
                                 result in
                                 switch result {
                                 case .success(let balance):
+                                    print(balance)
                                     Purchase.verify(domain: transaction.domain ,purchaseUID: purchaseUID) {
                                         result in
                                         switch result {

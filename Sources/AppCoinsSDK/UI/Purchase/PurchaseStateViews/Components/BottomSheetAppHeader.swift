@@ -15,7 +15,7 @@ struct BottomSheetAppHeader: View {
     var body: some View {
         HStack(spacing: 0) {
             
-            VStack {}.frame(width: 24)
+            VStack{}.frame(width: 24)
             
             Image(uiImage: Utils.getAppIcon())
                 .resizable()
@@ -24,7 +24,7 @@ struct BottomSheetAppHeader: View {
                 .clipShape(Circle())
                 .frame(maxWidth: 40, alignment: .leading)
             
-            VStack {}.frame(width: 15)
+            VStack{}.frame(width: 15)
             
             VStack(alignment: .leading, spacing: 0) {
                 if let title = transactionViewModel.transaction?.getTitle() {
@@ -37,7 +37,7 @@ struct BottomSheetAppHeader: View {
                         Text("")
                             .skeleton(with: true)
                             .frame(width: 125, height: 22, alignment: .leading)
-                        VStack {}.frame(maxWidth: .infinity)
+                        VStack{}.frame(maxWidth: .infinity)
                     }.frame(maxWidth: .infinity)
                 }
                 
@@ -48,7 +48,7 @@ struct BottomSheetAppHeader: View {
                             .font(FontsUi.APC_Subheadline_Bold)
                             .lineLimit(1)
                         
-                        VStack {}.frame(width: 4)
+                        VStack{}.frame(width: 4)
                         
                         Text(transactionViewModel.transaction?.moneyCurrency.currency ?? "-")
                             .foregroundColor(ColorsUi.APC_Black)
@@ -59,11 +59,11 @@ struct BottomSheetAppHeader: View {
                             Text("")
                                 .skeleton(with: true)
                                 .frame(width: 60, height: 14, alignment: .leading)
-                            VStack {}.frame(maxWidth: .infinity)
+                            VStack{}.frame(maxWidth: .infinity)
                         }.frame(maxWidth: .infinity)
                     }
                     
-                    VStack {}.frame(width: 16)
+                    VStack{}.frame(width: 16)
                     
                     if let appcAmount = transactionViewModel.transaction?.appcAmount {
                         Text(verbatim: String(format: "%.2f", appcAmount) + " APPC")
@@ -75,33 +75,22 @@ struct BottomSheetAppHeader: View {
                                 .skeleton(with: true)
                                 .frame(width: 55, height: 10, alignment: .leading)
                                 .padding(.top, 2)
-                            VStack {}.frame(maxWidth: .infinity)
+                            VStack{}.frame(maxWidth: .infinity)
                         }.frame(maxWidth: .infinity)
                     }
                 }
                 .frame(width: viewModel.orientation == .landscape ? 256 : UIScreen.main.bounds.width - 154, alignment: .bottomLeading)
                 
-                VStack {}.frame(height: 4)
+                VStack{}.frame(height: 4)
                 
             }.frame(maxWidth: .infinity, maxHeight: 40, alignment: .leading)
             
-            Button {
-                viewModel.dismiss()
-            } label: {
-                ZStack {
-                    Circle()
-                        .fill(ColorsUi.APC_BackgroundLightGray_Button)
-                        .frame(width: 30, height: 30)
-                    
-                    Image(systemName: "xmark")
-                        .foregroundColor(ColorsUi.APC_DarkGray_Xmark)
-                }
-            }
+            CloseButton(action: viewModel.dismiss)
             
-            VStack {}.frame(width: 24)
+            VStack{}.frame(width: 24)
             
         }
         .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.width, height: 72)
-        .background(viewModel.orientation == .landscape ? BlurView(style: .systemMaterial) : BlurView(style: .systemMaterial))
+        .background(BlurView(style: .systemMaterial))
     }
 }

@@ -11,6 +11,7 @@ internal enum PurchaseState {
     case none
     case paying
     case adyen
+    case login
     case processing
     case success
     case failed

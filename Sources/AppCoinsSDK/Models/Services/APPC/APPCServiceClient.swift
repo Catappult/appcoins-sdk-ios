@@ -47,4 +47,39 @@ internal class APPCServiceClient : APPCService {
             task.resume()
         }
     }
+    
+    internal func refreshUserWallet(refreshToken: String, result: @escaping (Result<UserWalletRaw, APPCServiceError>) -> Void) {
+        let route = "/user_wallet"
+        if let url = URL(string: endpoint + route) {
+            
+            var request = URLRequest(url: url)
+            
+            let userAgent = "AppCoinsWalletIOS/.."
+            request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
+            request.setValue("Bearer \(refreshToken)", forHTTPHeaderField: "Authorization")
+            
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                if let error = error {
+                    if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
+                        result(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url) at APPCServiceClient.swift:refreshUserWallet", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                    } else {
+                        result(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url) at APPCServiceClient.swift:refreshUserWallet", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                    }
+                } else {
+                    do {
+                        if let data = data {
+                            print(String(data: data, encoding: .utf8))
+                            let findResult = try JSONDecoder().decode(UserWalletRaw.self, from: data)
+                            result(.success(findResult))
+                        } else {
+                            result(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url) at APPCServiceClient.swift:refreshUserWallet")))
+                        }
+                    } catch {
+                        result(.failure(.failed(message: "Service Failed", description: "Failed to decode response from endpoint: \(url). Error: \(error.localizedDescription) at APPCServiceClient.swift:refreshUserWallet", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                    }
+                }
+            }
+            task.resume()
+        }
+    }
 }

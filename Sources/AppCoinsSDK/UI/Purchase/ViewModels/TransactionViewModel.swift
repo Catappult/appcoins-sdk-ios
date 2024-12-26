@@ -67,6 +67,13 @@ internal class TransactionViewModel : ObservableObject {
         self.reference = reference
     }
     
+    internal func rebuildTransactionOnWalletChanged() {
+        self.transaction = nil
+        self.transactionParameters = nil
+        
+        buildTransaction()
+    }
+    
     internal func buildTransaction() {
         bottomSheetViewModel.setPurchaseState(newState: .paying)
         
@@ -83,6 +90,8 @@ internal class TransactionViewModel : ObservableObject {
                         
                         switch result {
                         case .success(let wallet):
+                            if wallet is UserWallet { AuthViewModel.shared.setLogIn() }
+                            
                             // 3. Get product value
                             self.getProductAppcValue(product: product) {
                                 appcValue in

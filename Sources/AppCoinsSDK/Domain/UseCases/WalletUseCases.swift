@@ -12,16 +12,25 @@ internal class WalletUseCases {
     static var shared : WalletUseCases = WalletUseCases()
     
     private var repository: WalletRepositoryProtocol
+    private var authRepository: AuthRepositoryProtocol
     private var mmpRepository: MMPRepositoryProtocol
     
-    private init(repository: WalletRepositoryProtocol = WalletRepository(), mmpRepository: MMPRepositoryProtocol = MMPRepository()) {
+    private init(repository: WalletRepositoryProtocol = WalletRepository(), authRepository: AuthRepositoryProtocol = AuthRepository(), mmpRepository: MMPRepositoryProtocol = MMPRepository()) {
         self.repository = repository
+        self.authRepository = authRepository
         self.mmpRepository = mmpRepository
     }
     
     internal func getWallet(completion: @escaping (Result<Wallet, APPCServiceError>) -> Void)  {
-        if let clientWallet = self.repository.getClientWallet() { completion(.success(clientWallet)) }
-        else { completion(.failure(.failed(message: "Failed to get wallet", description: "There is no active wallet, and it was impossible to create a new wallet at WalletUseCases.swift:getWallet", request: nil))) }
+        authRepository.getUserWallet() { userWallet in
+            if let userWallet = userWallet {
+                print("Using a user wallet: \(userWallet.getWalletAddress())")
+                completion(.success(userWallet))
+            } else {
+                if let clientWallet = self.repository.getClientWallet() { completion(.success(clientWallet)) }
+                else { completion(.failure(.failed(message: "Failed to get wallet", description: "There is no active wallet, and it was impossible to create a new wallet at WalletUseCases.swift:getWallet", request: nil))) }
+            }
+        }
         
         // We will not be using guestWallets yet
 //        if let guestUID = mmpRepository.getGuestUID() {
@@ -43,7 +52,12 @@ internal class WalletUseCases {
     }
     
     internal func getWalletList(completion: @escaping ([Wallet]) -> Void) {
-        completion(self.repository.getWalletList())
+        authRepository.getUserWallet() { userWallet in            
+            var clientWallets: [Wallet] = self.repository.getWalletList()
+            
+            if let userWallet = userWallet { clientWallets.append(userWallet) }
+            completion(clientWallets)
+        }
         
         // We will not be using guestWallets yet
 //        if let guestUID = mmpRepository.getGuestUID() {

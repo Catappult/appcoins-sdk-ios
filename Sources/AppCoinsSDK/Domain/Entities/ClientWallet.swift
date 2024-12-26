@@ -98,7 +98,7 @@ internal class ClientWallet: Wallet, Codable {
          return signatureHex
      }
     
-    internal func getEWT() -> String? {
+    internal func getAuthToken() -> String? {
         // Header
         let headerString = "{\"typ\":\"EWT\"}"
         let header = replaceInvalidCharacters(convertToBase64(headerString))
