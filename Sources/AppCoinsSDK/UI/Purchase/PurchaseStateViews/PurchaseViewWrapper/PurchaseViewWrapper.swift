@@ -30,6 +30,8 @@ internal struct PurchaseViewWrapper<Content: View>: View {
                                 Color.clear
                                     .onAppear {
                                         let contentHeight = innerGeometry.size.height
+                                        print(contentHeight)
+                                        print(height)
                                         contentFits = contentHeight <= height
                                     }
                             }

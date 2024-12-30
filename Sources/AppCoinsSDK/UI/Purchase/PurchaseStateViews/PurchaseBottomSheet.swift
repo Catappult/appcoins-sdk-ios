@@ -109,6 +109,13 @@ internal struct PurchaseBottomSheet: View {
                     default:
                         EmptyView()
                     }
+                case .login:
+                    switch authViewModel.authState {
+                    case .choice:
+                        AuthenticationHeader(viewModel: viewModel)
+                    default:
+                        EmptyView()
+                    }
                 default:
                     EmptyView()
                 }
@@ -118,17 +125,32 @@ internal struct PurchaseBottomSheet: View {
                 case .loading:
                     APPCLoading()
                 case .paying:
-                    PayingView(viewModel: viewModel)
+                    PayingView()
                 case .adyen:
                     switch adyenController.state {
                     case .none:
-                        AdyenLoadingBottomSheet()
+                        APPCLoading()
                     case .choosingCreditCard:
-                        CreditCardChoiceBottomSheet(viewModel: viewModel)
+                        CreditCardChoiceView()
                     case .newCreditCard:
-                        CreditCardFormBottomSheet(viewModel: viewModel, transactionViewModel: transactionViewModel, authViewModel: authViewModel, dynamicHeight: $dynamicHeight, startObservingDynamicHeight: startObservingDynamicHeight, stopObservingDynamicHeight: stopObservingDynamicHeight)
+                        CreditCardFormView(dynamicHeight: $dynamicHeight, startObservingDynamicHeight: startObservingDynamicHeight, stopObservingDynamicHeight: stopObservingDynamicHeight)
                     default:
                         EmptyView()
+                    }
+                case .login:
+                    switch authViewModel.authState {
+                    case .choice:
+                        LoginView()
+                    case .google:
+                        EmptyView()
+                    case .magicLink:
+                        MagicLinkView()
+                    case .loading:
+                        APPCLoading()
+                    case .success:
+                        SuccessLoginView()
+                    case .error:
+                        ErrorLoginView(viewModel: viewModel)
                     }
                 default:
                     EmptyView()

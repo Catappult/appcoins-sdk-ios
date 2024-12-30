@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ErrorLoginView: View {
     
-    @ObservedObject internal var viewModel: BottomSheetViewModel
+    @ObservedObject internal var viewModel: BottomSheetViewModel = BottomSheetViewModel.shared
     @State private var toast: FancyToast? = nil
     
     var header: some View {

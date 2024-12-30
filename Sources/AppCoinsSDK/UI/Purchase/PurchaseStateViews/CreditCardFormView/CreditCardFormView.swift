@@ -9,11 +9,10 @@ import Foundation
 import SwiftUI
 @_implementationOnly import ActivityIndicatorView
 
-internal struct CreditCardFormBottomSheet: View {
+internal struct CreditCardFormView: View {
     
-    @ObservedObject internal var viewModel: BottomSheetViewModel
-    @ObservedObject internal var transactionViewModel: TransactionViewModel
-    @ObservedObject internal var authViewModel: AuthViewModel
+    @ObservedObject internal var viewModel: BottomSheetViewModel = BottomSheetViewModel.shared
+    @ObservedObject internal var transactionViewModel: TransactionViewModel = TransactionViewModel.shared
     @ObservedObject internal var adyenController: AdyenController = AdyenController.shared
     
     @Binding internal var dynamicHeight: CGFloat

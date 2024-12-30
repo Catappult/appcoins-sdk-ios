@@ -9,20 +9,13 @@ import SwiftUI
 
 struct LoginView: View {
     
-    @ObservedObject internal var viewModel: BottomSheetViewModel
-    @ObservedObject internal var authViewModel: AuthViewModel
-    @ObservedObject internal var transactionViewModel: TransactionViewModel
-    
-    internal let portraitBottomSheetHeight: CGFloat
-    internal let buttonHeightPlusTopSpace: CGFloat
-    internal let bottomSheetHeaderHeight: CGFloat
-    internal let buttonBottomSafeArea: CGFloat
-    
-//    @State private var shouldFocusTextField: Bool = false
+    @ObservedObject internal var viewModel: BottomSheetViewModel = BottomSheetViewModel.shared
+    @ObservedObject internal var authViewModel: AuthViewModel = AuthViewModel.shared
+    @ObservedObject internal var transactionViewModel: TransactionViewModel = TransactionViewModel.shared
     
     var body: some View {
         if #available(iOS 17, *) {
-            PurchaseViewWrapper(height: viewModel.orientation == .landscape ? UIScreen.main.bounds.height * 0.9 : portraitBottomSheetHeight, offset: 72) {
+            PurchaseViewWrapper(height: viewModel.orientation == .landscape ? UIScreen.main.bounds.height * 0.9 : 420, offset: 72) {
                 
                 if viewModel.orientation == .landscape && authViewModel.isTextFieldFocused {
                     VStack(spacing: 0) {
@@ -153,7 +146,7 @@ struct LoginView: View {
             .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
             .foregroundColor(ColorsUi.APC_White)
             
-            VStack{}.frame(height: buttonBottomSafeArea)
+            VStack{}.frame(height: Utils.bottomSafeAreaHeight == 0 ? 5 : 28)
             
         }
     }
