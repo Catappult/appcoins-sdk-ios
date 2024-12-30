@@ -10,8 +10,8 @@ import Foundation
 internal struct GetPurchasesRaw: Codable {
     
     internal let items: [PurchaseRaw]
-    let next: Cursor?
-    let previous: Cursor?
+    internal let next: Cursor?
+    internal let previous: Cursor?
     
     internal enum CodingKeys: String, CodingKey {
         case items = "items"
