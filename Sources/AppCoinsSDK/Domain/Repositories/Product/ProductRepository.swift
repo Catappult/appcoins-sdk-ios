@@ -17,11 +17,11 @@ internal class ProductRepository: ProductRepositoryProtocol {
             result in
             
             switch result {
-            case .success(let productItemsRaw):
-                if let productRaw = productItemsRaw.items?.first {
+            case .success(let productRaw):
+                if let productRaw = productRaw {
                     completion(.success(Product(raw: productRaw)))
                 } else {
-                    completion(.failure(.failed(message: "Failed to get product", description: "Product list is empty or nil at ProductRepository.swift:getProduct", request: nil)))
+                    completion(.failure(.failed(message: "Product Not Found", description: "Product not found at ProductRepository.swift:getProduct", request: nil)))
                 }
             case .failure(let error):
                 completion(.failure(error))
@@ -34,16 +34,12 @@ internal class ProductRepository: ProductRepositoryProtocol {
             result in
             
             switch result {
-            case .success(let productItemsRaw):
-                if let productsRaw = productItemsRaw.items {
-                    var products : [Product] = []
-                    for productRaw in productsRaw {
-                        products.append(Product(raw: productRaw))
-                    }
-                    completion(.success(products))
-                } else {
-                    completion(.failure(.failed(message: "Failed to get all products", description: "Product list is empty or nil at ProductRepository.swift:getProduct", request: nil)))
+            case .success(let productsRaw):
+                var products : [Product] = []
+                for productRaw in productsRaw {
+                    products.append(Product(raw: productRaw))
                 }
+                completion(.success(products))
             case .failure(let error):
                 completion(.failure(error))
             }
