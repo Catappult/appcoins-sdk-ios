@@ -35,16 +35,4 @@ internal struct CurrencyListRaw: Codable {
         case next = "next"
         case previous = "previous"
     }
-    
-    internal struct Cursor: Codable {
-        let cursor: String
-        let query: String
-        let url: String
-        
-        enum CodingKeys: String, CodingKey {
-            case cursor = "cursor"
-            case query = "query"
-            case url = "url"
-        }
-    }
 }

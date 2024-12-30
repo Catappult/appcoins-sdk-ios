@@ -9,14 +9,18 @@ import Foundation
 
 internal struct GetPurchasesRaw: Codable {
     
-    internal let items: [PurchaseInformationRaw]
+    internal let items: [PurchaseRaw]
+    let next: Cursor?
+    let previous: Cursor?
     
     internal enum CodingKeys: String, CodingKey {
         case items = "items"
+        case next = "next"
+        case previous = "previous"
     }
 }
 
-internal struct PurchaseInformationRaw: Codable {
+internal struct PurchaseRaw: Codable {
     
     internal let uid: String
     internal let sku: String
