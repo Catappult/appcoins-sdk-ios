@@ -9,11 +9,11 @@ import Foundation
 
 internal struct AttributionRaw: Codable {
     
-    let package: String?
-    let oemID: String?
-    let guestUID: String
+    internal let package: String?
+    internal let oemID: String?
+    internal let guestUID: String
     
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case package = "package_name"
         case oemID = "oemid"
         case guestUID = "guest_uid"
