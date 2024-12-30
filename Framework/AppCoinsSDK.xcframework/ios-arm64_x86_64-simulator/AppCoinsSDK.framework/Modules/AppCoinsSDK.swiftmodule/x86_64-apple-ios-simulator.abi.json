@@ -5908,7 +5908,7 @@
       "kind": "StringLiteral",
       "offset": 3862,
       "length": 7,
-      "value": "\"1.6.0\""
+      "value": "\"1.6.1\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/BuildConfiguration.swift",
