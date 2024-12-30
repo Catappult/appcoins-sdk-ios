@@ -28,7 +28,7 @@ public struct Product {
         self.priceSymbol = priceSymbol
     }
     
-    internal init(raw: ProductInformationRaw) {
+    internal init(raw: ProductRaw) {
         self.sku = raw.sku
         self.title = raw.title
         self.description = raw.description
