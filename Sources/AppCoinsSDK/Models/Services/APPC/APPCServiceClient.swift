@@ -68,7 +68,6 @@ internal class APPCServiceClient : APPCService {
                 } else {
                     do {
                         if let data = data {
-                            print(String(data: data, encoding: .utf8))
                             let findResult = try JSONDecoder().decode(UserWalletRaw.self, from: data)
                             result(.success(findResult))
                         } else {

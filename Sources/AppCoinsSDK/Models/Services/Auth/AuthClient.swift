@@ -27,9 +27,6 @@ internal class AuthClient : AuthService {
                     request.httpBody = body
                     request.httpMethod = "POST"
                     
-                    print(url)
-                    print(String(data: body, encoding: .utf8))
-                    
                     let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
                         
                         if let error = error {
@@ -41,7 +38,6 @@ internal class AuthClient : AuthService {
                         } else {
                             do {
                                 if let data = data {
-                                    print(String(data: data, encoding: .utf8))
                                     let successResponse = try JSONDecoder().decode(LoginWithMagicLinkResponseRaw.self, from: data)
                                     completion(.success(successResponse))
                                 } else {
@@ -80,7 +76,6 @@ internal class AuthClient : AuthService {
                         } else {
                             do {
                                 if let data = data {
-                                    print(String(data: data, encoding: .utf8))
                                     let successResponse = try JSONDecoder().decode(LoginWithMagicLinkResponseRaw.self, from: data)
                                     completion(.success(successResponse))
                                 } else {

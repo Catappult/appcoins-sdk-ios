@@ -15,6 +15,9 @@ internal struct UserAuthRaw: Codable {
     internal let state: String?
     internal let agent: String?
     internal let accepted: [String]
+    internal let domain: String?
+    internal let channel: String?
+    internal let consents: [String]
     
     internal enum CodingKeys: String, CodingKey {
         case credential = "credential"
@@ -23,18 +26,51 @@ internal struct UserAuthRaw: Codable {
         case state = "state"
         case agent = "agent"
         case accepted = "accepted"
+        case domain = "domain"
+        case channel = "channel"
+        case consents = "consents"
     }
     
     internal static func fromGoogleAuth(code: String) -> UserAuthRaw {
-        return UserAuthRaw(credential: code, type: UserAuthType.Google.rawValue, supported: UserAuthSupported.WalletJWT.rawValue, state: nil, agent: nil, accepted: ["TOS", "PRIVACY", "DISTRIBUTION"])
+        return UserAuthRaw(
+            credential: code,
+            type: UserAuthType.Google.rawValue,
+            supported: UserAuthSupported.WalletJWT.rawValue,
+            state: nil,
+            agent: nil,
+            accepted: ["TOS", "PRIVACY", "DISTRIBUTION"],
+            domain: Bundle.main.bundleIdentifier,
+            channel: "IOS",
+            consents: ["email"]
+        )
     }
     
     internal static func fromMagicLinkCode(code: String, state: String) -> UserAuthRaw {
-        return UserAuthRaw(credential: code, type: UserAuthType.Code.rawValue, supported: UserAuthSupported.WalletJWT.rawValue, state: state, agent: nil, accepted: ["TOS", "PRIVACY", "DISTRIBUTION"])
+        return UserAuthRaw(
+            credential: code,
+            type: UserAuthType.Code.rawValue,
+            supported: UserAuthSupported.WalletJWT.rawValue,
+            state: state,
+            agent: nil,
+            accepted: ["TOS", "PRIVACY", "DISTRIBUTION"],
+            domain: Bundle.main.bundleIdentifier,
+            channel: "IOS",
+            consents: ["email"]
+        )
     }
     
     internal static func fromMagicLinkEmail(email: String) -> UserAuthRaw {
-        return UserAuthRaw(credential: email, type: UserAuthType.Email.rawValue, supported: UserAuthSupported.Code.rawValue, state: nil, agent: nil, accepted: ["TOS", "PRIVACY", "DISTRIBUTION"])
+        return UserAuthRaw(
+            credential: email,
+            type: UserAuthType.Email.rawValue,
+            supported: UserAuthSupported.Code.rawValue,
+            state: nil,
+            agent: nil,
+            accepted: ["TOS", "PRIVACY", "DISTRIBUTION"],
+            domain: Bundle.main.bundleIdentifier,
+            channel: "IOS",
+            consents: ["email"]
+        )
     }
     
     internal func toJSON() -> Data? {
