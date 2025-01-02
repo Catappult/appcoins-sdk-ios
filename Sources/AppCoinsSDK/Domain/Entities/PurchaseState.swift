@@ -9,8 +9,10 @@ import Foundation
 
 internal enum PurchaseState {
     case none
+    case loading
     case paying
     case adyen
+    case login
     case processing
     case success
     case failed
