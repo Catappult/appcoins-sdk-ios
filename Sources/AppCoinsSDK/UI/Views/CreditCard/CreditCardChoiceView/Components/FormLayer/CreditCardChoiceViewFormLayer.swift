@@ -24,7 +24,13 @@ internal struct CreditCardChoiceViewFormLayer: View {
             if let storedPaymentMethods = adyenController.session?.sessionContext.paymentMethods.stored {
                 OverflowAnimationWrapper(height: viewModel.orientation == .landscape ? (UIScreen.main.bounds.height * 0.9) - 78 - 72 : 420 - 78 - 72, offset: 72) {
                     VStack(spacing: 0) {
-                        PurchaseBonusBanner(viewModel: viewModel, transactionViewModel: transactionViewModel, authViewModel: authViewModel)
+                        PurchaseBonusBanner()
+                        
+                        if authViewModel.isLoggedIn {
+                            VStack{}.frame(height: 8)
+                            
+                            WalletBalanceBanner()
+                        }
                         
                         VStack{}.frame(height: 16)
                         
@@ -43,6 +49,8 @@ internal struct CreditCardChoiceViewFormLayer: View {
                                 .lineLimit(1)
                         }
                         .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 18, alignment: .trailing)
+                        
+                        VStack{}.frame(height: 8)
                     }.ignoresSafeArea(.all)
                 }
                 

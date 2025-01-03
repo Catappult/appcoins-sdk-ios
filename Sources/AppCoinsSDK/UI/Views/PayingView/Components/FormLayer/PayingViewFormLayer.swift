@@ -20,7 +20,13 @@ internal struct PayingViewFormLayer: View {
             if #available(iOS 17.0, *) {
                 OverflowAnimationWrapper(height: viewModel.orientation == .landscape ? (UIScreen.main.bounds.height * 0.9) - 78 - 72 : 420 - 78 - 72, offset: 72) {
                     VStack(spacing: 0) {
-                        PurchaseBonusBanner(viewModel: viewModel, transactionViewModel: transactionViewModel, authViewModel: authViewModel)
+                        PurchaseBonusBanner()
+                        
+                        if authViewModel.isLoggedIn {
+                            VStack{}.frame(height: 8)
+                            
+                            WalletBalanceBanner()
+                        }
                         
                         VStack{}.frame(height: 16)
                         

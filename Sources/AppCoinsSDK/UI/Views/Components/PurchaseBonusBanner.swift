@@ -7,22 +7,23 @@
 
 import SwiftUI
 
-struct PurchaseBonusBanner: View {
+internal struct PurchaseBonusBanner: View {
     
-    @ObservedObject internal var viewModel: BottomSheetViewModel
-    @ObservedObject internal var transactionViewModel: TransactionViewModel
-    @ObservedObject internal var authViewModel: AuthViewModel
+    @ObservedObject internal var viewModel: BottomSheetViewModel = BottomSheetViewModel.shared
+    @ObservedObject internal var transactionViewModel: TransactionViewModel = TransactionViewModel.shared
+    @ObservedObject internal var authViewModel: AuthViewModel = AuthViewModel.shared
     
     internal var body: some View {
-        VStack(spacing: 0) {
-            if transactionViewModel.hasBonus {
-                VStack{}.frame(height: 10)
+        HStack(spacing: 0) {
+            
+            VStack{}.frame(width: 16)
                 
+            if transactionViewModel.hasBonus {
                 HStack {
                     Image("gift-pink", bundle: Bundle.APPCModule)
                         .resizable()
                         .edgesIgnoringSafeArea(.all)
-                        .frame(width: 16, height: 16)
+                        .frame(width: 13, height: 14)
                     
                     if let bonusCurrency = transactionViewModel.transaction?.bonusCurrency.sign, let bonusAmount = transactionViewModel.transaction?.bonusAmount {
                         Text(String(format: Constants.purchaseBonus, "\(bonusCurrency)\(String(format: "%.2f", bonusAmount))"))
@@ -39,51 +40,11 @@ struct PurchaseBonusBanner: View {
                         }
                     }
                     
-                    Image("appc-payment-method-pink", bundle: Bundle.APPCModule)
+                    Image("appc-payment-method-white", bundle: Bundle.APPCModule)
                         .resizable()
                         .edgesIgnoringSafeArea(.all)
                         .frame(width: 16, height: 16)
-                }
-                
-                VStack{}.frame(height: 4)
-                
-                if authViewModel.isLoggedIn {
-                    HStack(spacing: 0) {
-                        Image("white-wallet", bundle: Bundle.APPCModule)
-                            .resizable()
-                            .edgesIgnoringSafeArea(.all)
-                            .frame(width: 16, height: 14)
-                        
-                        
-                        if let balanceCurrency = transactionViewModel.transaction?.balanceCurrency.sign, let balanceValue = transactionViewModel.transaction?.balanceAmount {
-                            
-                            VStack{}.frame(width: 6.22)
-                            
-                            StyledText(
-                                String(format: Constants.walletBalance, "*\(balanceCurrency)\(String(format: "%.2f", balanceValue))*"),
-                                textStyle: FontsUi.APC_Caption1_Bold,
-                                boldStyle: FontsUi.APC_Caption1_Bold,
-                                textColorRegular: ColorsUi.APC_White,
-                                textColorBold: ColorsUi.APC_White)
-                            
-                        } else {
-                            
-                            VStack{}.frame(width: 6.22)
-                            
-                            Text(String(format: Constants.walletBalance, ""))
-                                .font(FontsUi.APC_Caption1_Bold)
-                                .foregroundColor(ColorsUi.APC_Pink)
-                            
-                            Text("")
-                                .skeleton(with: true)
-                                .font(FontsUi.APC_Caption1_Bold)
-                                .opacity(0.1)
-                                .frame(width: 35, height: 15)
-                        }
-                    }
-                }
-                
-                VStack{}.frame(height: 10)
+                }.frame(maxWidth: .infinity, alignment: .leading)
             } else {
                 HStack {
                     Image("gift-gray", bundle: Bundle.APPCModule)
@@ -94,10 +55,12 @@ struct PurchaseBonusBanner: View {
                     Text(Constants.bonusNotAvailableText)
                         .font(FontsUi.APC_Caption1_Bold)
                         .foregroundColor(ColorsUi.APC_BottomSheet_APPC)
-                }
+                }.frame(maxWidth: .infinity, alignment: .leading)
             }
+            
+            VStack{}.frame(width: 16)
         }
-        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 56)
+        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 40)
         .background(transactionViewModel.hasBonus ? ColorsUi.APC_DarkBlue : ColorsUi.APC_BonusBannerBackground)
         .animation(.easeInOut(duration: 0.2))
         .cornerRadius(12)

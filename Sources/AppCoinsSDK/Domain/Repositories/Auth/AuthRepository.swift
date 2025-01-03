@@ -12,8 +12,8 @@ internal class AuthRepository: AuthRepositoryProtocol {
     private let authService: AuthService = AuthClient()
     private let appcService: APPCService = APPCServiceClient()
     
-    internal let AuthStateCache: Cache<String, String> = Cache(cacheName: "AuthStateCache")
-    internal let UserWalletCache: Cache<String, UserWallet> = Cache(cacheName: "UserWalletCache")
+    internal let AuthStateCache: Cache<String, String> = Cache<String, String>.shared(cacheName: "AuthStateCache")
+    internal let UserWalletCache: Cache<String, UserWallet> = Cache<String, UserWallet>.shared(cacheName: "UserWalletCache")
     
     internal func getUserWallet(completion: @escaping (UserWallet?) -> Void) {
         if let userWallet = self.UserWalletCache.getValue(forKey: "userWallet") {
@@ -29,7 +29,8 @@ internal class AuthRepository: AuthRepositoryProtocol {
             } else {
                 completion(userWallet)
             }
-        } else { completion(nil) }
+        } else {
+            completion(nil) }
     }
     
     internal func loginWithGoogle(code: String, completion: @escaping (Result<UserWallet, AuthError>) -> Void) {
@@ -57,8 +58,7 @@ internal class AuthRepository: AuthRepositoryProtocol {
                     completion(.failure(error))
                 }
             }
-        } else { 
-            print("No stored state")
+        } else {
             completion(.failure(.failed(message: "No State Stored on Magic Link Login", description: "No state stored to complete Magic Link Login flow at AuthRepository.swift:loginWithMagicLink", request: nil))) }
     }
     
@@ -78,20 +78,21 @@ internal class AuthRepository: AuthRepositoryProtocol {
     
     internal func refreshLogin(refreshToken: String, completion: @escaping (Result<UserWallet, AuthError>) -> Void) {
         appcService.refreshUserWallet(refreshToken: refreshToken) { result in
-            
-            completion(.failure(AuthError.failed(message: "Forced error", description: "Forced", request: nil)))
-            
-//            switch result {
-//            case .success(let raw):
-//                completion(.success(UserWallet(address: raw.address, authToken: raw.authToken, refreshToken: raw.refreshToken)))
-//            case .failure(let error):
-//                switch error {
-//                case .failed(let message, let description, let request):
-//                    completion(.failure(AuthError.failed(message: message, description: description, request: request)))
-//                case .noInternet(let message, let description, let request):
-//                    completion(.failure(AuthError.noInternet(message: message, description: description, request: request)))
-//                }
-//            }
+            switch result {
+            case .success(let raw):
+                completion(.success(UserWallet(address: raw.address, authToken: raw.authToken, refreshToken: raw.refreshToken)))
+            case .failure(let error):
+                switch error {
+                case .failed(let message, let description, let request):
+                    completion(.failure(AuthError.failed(message: message, description: description, request: request)))
+                case .noInternet(let message, let description, let request):
+                    completion(.failure(AuthError.noInternet(message: message, description: description, request: request)))
+                }
+            }
         }
+    }
+    
+    internal func logout() {
+        self.UserWalletCache.removeValue(forKey: "userWallet")
     }
 }

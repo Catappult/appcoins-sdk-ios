@@ -90,7 +90,7 @@ internal class TransactionViewModel : ObservableObject {
                         
                         switch result {
                         case .success(let wallet):
-                            if wallet is UserWallet { AuthViewModel.shared.setLogIn() }
+                            AuthViewModel.shared.setLogInState(isLoggedIn: wallet is UserWallet)
                             
                             // 3. Get product value
                             self.getProductAppcValue(product: product) {

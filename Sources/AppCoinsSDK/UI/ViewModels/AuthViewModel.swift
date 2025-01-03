@@ -36,11 +36,11 @@ internal class AuthViewModel : NSObject, ObservableObject {
         self.isMagicLinkEmailValid = true
     }
     
-    internal func showFocusedTextField() { self.isTextFieldFocused = true }
+    internal func showFocusedTextField() { DispatchQueue.main.async { self.isTextFieldFocused = true } }
     
-    internal func hideFocusedTextField() { self.isTextFieldFocused = false }
+    internal func hideFocusedTextField() { DispatchQueue.main.async { self.isTextFieldFocused = false } }
     
-    internal func setLogIn() { self.isLoggedIn = true }
+    internal func setLogInState(isLoggedIn: Bool) { DispatchQueue.main.async { self.isLoggedIn = isLoggedIn } }
     
     internal func setAuthState(state: AuthState) {
         self.authState = state
@@ -76,7 +76,6 @@ internal class AuthViewModel : NSObject, ObservableObject {
                     if let code = queryItems.first(where: { $0.name == "code" })?.value {
                         DispatchQueue.main.async { self.authState = .loading }
                         
-                        print("Code: \(code)")
                         AuthUseCases.shared.loginWithGoogle(code: code) { result in
                             switch result {
                             case .success(let wallet):
@@ -129,6 +128,12 @@ internal class AuthViewModel : NSObject, ObservableObject {
                 break // SOLVE BEFORE MERGING
             }
         }
+    }
+    
+    internal func logout() {
+        AuthUseCases.shared.logout()
+        self.reset()
+        TransactionViewModel.shared.rebuildTransactionOnWalletChanged() // Re-build the transaction with the new Client Wallet
     }
     
     internal func startRetryMagicLinkTimer() {
