@@ -43,7 +43,7 @@ internal struct PurchaseBottomSheet: View {
                     switch authViewModel.authState {
                     case .choice:
                         AuthenticationHeader()
-                    case .error:
+                    case .magicLink, .error:
                         DismissHeader()
                     default:
                         EmptyView()

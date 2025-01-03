@@ -26,7 +26,7 @@ internal struct ErrorLoginView: View {
             
             LoginErrorSupportButton(toast: $toast)
             
-            HStack{}.frame(height: Utils.bottomSafeAreaHeight + 12)
+            HStack{}.frame(height: Utils.bottomSafeAreaHeight == 0 ? 5 : 28)
         }.frame(maxWidth: .infinity, alignment: .top)
         .toastView(toast: $toast)
     }
