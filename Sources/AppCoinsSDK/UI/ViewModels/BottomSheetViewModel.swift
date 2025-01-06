@@ -122,22 +122,10 @@ internal class BottomSheetViewModel: ObservableObject {
                 self.userCancelled()
             }
         case .login: 
-            if self.hasCompletedPurchase() {
-                self.transactionSucceeded()
-            } else {
-                self.userCancelled()
-            }
+            if self.hasCompletedPurchase() { self.transactionSucceeded() }
+            else { self.userCancelled() }
         case .processing: break
-        case .success: 
-            if AuthViewModel.shared.isLoggedIn {
-                self.transactionSucceeded()
-            } else {
-                if self.hasCompletedPurchase() {
-                    self.transactionSucceeded()
-                } else {
-                    self.dismissVC()
-                }
-            }
+        case .success: self.transactionSucceeded()
         case .failed: self.dismissVC()
         case .nointernet: self.dismissVC()
         }

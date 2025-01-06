@@ -75,5 +75,7 @@ internal struct Constants {
     static internal let tryAgain = NSLocalizedString("try_again_button", bundle: .APPCModule, comment: "Try again")
     static internal let confirmLogOutText = NSLocalizedString("confirm_logout_body", bundle: .APPCModule, comment: "Are you sure you want to log out?")
     static internal let purchaseBonus = NSLocalizedString("purchase_bonus_title", bundle: .APPCModule, comment: "*Purchase Bonus:* %@ in AppCoins Credits")
+    static internal let signInButton = NSLocalizedString("sign_in_button", bundle: .APPCModule, comment: "Sign in")
+    static internal let signInToRedeem = NSLocalizedString("sign_in_to_redeem_body", bundle: .APPCModule, comment: "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!")
    
 }

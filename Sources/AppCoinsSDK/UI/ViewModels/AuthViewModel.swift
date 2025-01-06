@@ -129,6 +129,7 @@ internal class AuthViewModel : NSObject, ObservableObject {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
             if BottomSheetViewModel.shared.hasCompletedPurchase() {
+                TransactionViewModel.shared.transferBonusOnLogin()
                 BottomSheetViewModel.shared.transactionSucceeded()
             } else {
                 TransactionViewModel.shared.rebuildTransactionOnWalletChanged() // Re-build the transaction with the new User Wallet

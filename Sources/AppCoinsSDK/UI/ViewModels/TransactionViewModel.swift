@@ -296,4 +296,24 @@ internal class TransactionViewModel : ObservableObject {
     internal func selectPaymentMethod(paymentMethod: PaymentMethod) {
         DispatchQueue.main.async { self.paymentMethodSelected = paymentMethod }
     }
+    
+    internal func transferBonusOnLogin() {
+        if let clientWallet: Wallet = walletUseCases.getClientWallet(),
+           let transaction: TransactionAlertUi = self.transaction {
+            let amount: String = String(transaction.bonusAmount).replacingOccurrences(of: ",", with: ".")
+            let currency: String = transaction.bonusCurrency.currency
+            
+            walletUseCases.getWallet() { result in
+                switch result {
+                case .success(let userWallet):
+                    if userWallet is UserWallet {
+                        let raw: TransferAPPCRaw = TransferAPPCRaw.from(price: amount, currency: currency, userWa: userWallet.getWalletAddress())
+                        self.transactionUseCases.transferAPPC(wa: clientWallet, raw: raw) { result in }
+                    }
+                case .failure(let failure):
+                    break // For now not throwing errors when this happens
+                }
+            }
+        }
+    }
 }
