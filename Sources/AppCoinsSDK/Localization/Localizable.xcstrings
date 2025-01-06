@@ -1780,6 +1780,18 @@
         }
       }
     },
+    "confirm_logout_body" : {
+      "comment" : "Are you sure you want to log out?",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you sure you want to log out?"
+          }
+        }
+      }
+    },
     "continue_button" : {
       "comment" : "Continue",
       "extractionState" : "manual",
@@ -3569,12 +3581,12 @@
       }
     },
     "purchase_bonus_title" : {
-      "comment" : "Purchase Bonus: %@ in AppCoins Credits",
+      "comment" : "*Purchase Bonus:* %@ in AppCoins Credits",
       "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "مكافأة المشتريات: %@ AppCoins Credits"
           }
         },
@@ -3586,37 +3598,37 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Kaufbonus: %@ in AppCoins Credits"
           }
         },
         "el" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Bonus Αγοράς: %@ σε AppCoins Credits"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Purchase Bonus: %@ in AppCoins Credits"
+            "value" : "*Purchase Bonus:* %@ in AppCoins Credits"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Bonus de Compra: %@ en AppCoins Credits"
           }
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "بونوس بخرید: %@ در AppCoins Credits"
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Bonus d'achat : %@ en AppCoins Credits"
           }
         },
@@ -3628,55 +3640,55 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Vásárlás utáni bónusz: %@ AppCoins kreditben"
           }
         },
         "id" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Bonus Pembelian: Kredit AppCoins %@"
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Bonus acquisti: %@ in AppCoins Credits"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "購入ボーナス：%@のAppCoinsクレジット"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "구매 보너스: AppCoins 크레디트로 %@"
           }
         },
         "mr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "खरेदी बोनस: अॅपकॉईन्स क्रेडीटस मध्ये %@"
           }
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Bonus Pembelian: %@ dalam Kredit AppCoins"
           }
         },
         "my" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "ဝယ္ယူမႈေဘာနပ္စ္ - %@ ကို AppCoins Credits အေနျဖင့္"
           }
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Aankoopbonus: %@ in AppCoins Credits"
           }
         },
@@ -3688,67 +3700,67 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Bonus zakupowy: %@ w AppCoins Credits"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Bônus de Compra: %@ em Créditos AppCoins"
           }
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Bónus de compra: %@ em AppCoins Credits"
           }
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Bonus la achiziție: %@ în AppCoins Credits"
           }
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Бонус за покупку: %@ в AppCoins Credits"
           }
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Kupite bonus od: %@ u AppCoins Credits"
           }
         },
         "th" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "โบนัสการซื้อ: %@ ในเครดิต AppCoins"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Satın Alma Bonusu: %@ AppCoins Kredisi"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Бонус за покупку: %@ в AppCoin Credits"
           }
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Tiền thưởng mua hàng: %@ bằng AppCoins Credits"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "购买奖金：价值%@的AppCoins 积分"
           }
         },

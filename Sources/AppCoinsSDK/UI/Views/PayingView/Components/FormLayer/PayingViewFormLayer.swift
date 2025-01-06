@@ -42,8 +42,10 @@ internal struct PayingViewFormLayer: View {
                             LoginButton(action: { viewModel.setPurchaseState(newState: .login) }, orientation: viewModel.orientation)
                         }
                     }.ignoresSafeArea(.all)
-                }.onChange(of: viewModel.isPaymentMethodChoiceSheetPresented) { isPresented in if !isPresented { formLayerID = UUID() } }
-                    .id(formLayerID)
+                }
+                .onChange(of: viewModel.isPaymentMethodChoiceSheetPresented) { isPresented in if !isPresented { formLayerID = UUID() } }
+                .onChange(of: authViewModel.isLoggedIn) { formLayerID = UUID() }
+                .id(formLayerID)
             }
             
             HStack{}.frame(height: 78)

@@ -136,6 +136,13 @@ internal class AuthViewModel : NSObject, ObservableObject {
         }
     }
     
+    internal func showLogoutAlert() {
+        if let rootViewController = UIApplication.shared.windows.first?.rootViewController,
+           let presentedPurchaseVC = rootViewController.presentedViewController as? PurchaseViewController {
+            presentedPurchaseVC.presentLogoutAlert()
+        }
+    }
+    
     internal func logout() {
         AuthUseCases.shared.logout()
         self.reset()
