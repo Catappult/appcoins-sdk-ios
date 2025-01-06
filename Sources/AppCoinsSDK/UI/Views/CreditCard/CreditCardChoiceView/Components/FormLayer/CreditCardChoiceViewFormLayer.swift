@@ -24,16 +24,6 @@ internal struct CreditCardChoiceViewFormLayer: View {
             if let storedPaymentMethods = adyenController.session?.sessionContext.paymentMethods.stored {
                 OverflowAnimationWrapper(height: viewModel.orientation == .landscape ? (UIScreen.main.bounds.height * 0.9) - 78 - 72 : 420 - 78 - 72, offset: 72) {
                     VStack(spacing: 0) {
-                        PurchaseBonusBanner()
-                        
-                        if authViewModel.isLoggedIn {
-                            VStack{}.frame(height: 8)
-                            
-                            WalletBalanceBanner()
-                        }
-                        
-                        VStack{}.frame(height: 16)
-                        
                         if storedPaymentMethods.count == 1, let paymentMethod = storedPaymentMethods.first as? StoredCardPaymentMethod {
                             SingleStoredCard(paymentMethod: paymentMethod)
                         } else {

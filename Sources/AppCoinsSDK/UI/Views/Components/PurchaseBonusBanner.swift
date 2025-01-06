@@ -26,10 +26,13 @@ internal struct PurchaseBonusBanner: View {
                         .frame(width: 13, height: 14)
                     
                     if let bonusCurrency = transactionViewModel.transaction?.bonusCurrency.sign, let bonusAmount = transactionViewModel.transaction?.bonusAmount {
-                        Text(String(format: Constants.purchaseBonus, "\(bonusCurrency)\(String(format: "%.2f", bonusAmount))"))
-                            .font(FontsUi.APC_Caption1_Bold)
-                            .foregroundColor(ColorsUi.APC_White)
-                            .frame(height: 16)
+                        StyledText(
+                            String(format: Constants.purchaseBonus, "\(bonusCurrency)\(String(format: "%.2f", bonusAmount))"),
+                            textStyle: FontsUi.APC_Caption1_Bold,
+                            boldStyle: FontsUi.APC_Caption1_Bold,
+                            textColorRegular: ColorsUi.APC_White,
+                            textColorBold: ColorsUi.APC_Pink
+                        ).frame(height: 16)
                     } else {
                         HStack(spacing: 0) {
                             Text("")
