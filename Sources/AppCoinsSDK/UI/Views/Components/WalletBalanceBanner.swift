@@ -46,7 +46,7 @@ internal struct WalletBalanceBanner: View {
                 }
             }.frame(maxWidth: .infinity, alignment: .leading)
             
-            Button(action: authViewModel.logout) {
+            Button(action: authViewModel.showLogoutAlert) {
                 Image(systemName: "rectangle.portrait.and.arrow.right")
                     .resizable()
                     .foregroundColor(ColorsUi.APC_Black)
