@@ -65,11 +65,12 @@ internal class AuthViewModel : NSObject, ObservableObject {
                 var authSession = ASWebAuthenticationSession(url: url, callbackURLScheme: "\(Bundle.main.bundleIdentifier).iap") { callbackURL, error in
                     
                     if let error = error {
-                        print(error)
+                        DispatchQueue.main.async { self.authState = .error }
+                        return
                     }
                     
                     guard let callbackURL = callbackURL, let queryItems = URLComponents(string: callbackURL.absoluteString)?.queryItems else {
-                        print("Invalid callback URL")
+                        DispatchQueue.main.async { self.authState = .error }
                         return
                     }
                     
@@ -81,13 +82,16 @@ internal class AuthViewModel : NSObject, ObservableObject {
                             case .success(let wallet):
                                 self.setLoginSuccess()
                             case .failure(let failure):
-                                break // SOLVE BEFORE MERGING
+                                switch failure {
+                                    case .failed: DispatchQueue.main.async { self.authState = .error }
+                                    case .noInternet: DispatchQueue.main.async { self.authState = .noInternet }
+                                }
                             }
                         }
                     } else if let errorDescription = queryItems.first(where: { $0.name == "error" })?.value {
-                        print("Error: \(errorDescription)")
+                        DispatchQueue.main.async { self.authState = .error }
                     } else {
-                        print("Error: Unknown error")
+                        DispatchQueue.main.async { self.authState = .error }
                     }
                 }
                 
@@ -102,10 +106,18 @@ internal class AuthViewModel : NSObject, ObservableObject {
         DispatchQueue.main.async { self.isSendingMagicLink = true }
 
         AuthUseCases.shared.sendMagicLink(email: self.magicLinkEmail) { result in
-            DispatchQueue.main.async {
-                self.startRetryMagicLinkTimer()
-                self.isSendingMagicLink = false
-                self.authState = .magicLink
+            switch result {
+            case .success(_):
+                DispatchQueue.main.async {
+                    self.startRetryMagicLinkTimer()
+                    self.isSendingMagicLink = false
+                    self.authState = .magicLink
+                }
+            case .failure(let failure):
+                switch failure {
+                    case .failed: DispatchQueue.main.async { self.authState = .error }
+                    case .noInternet: DispatchQueue.main.async { self.authState = .noInternet }
+                }
             }
         }
     }
@@ -119,7 +131,10 @@ internal class AuthViewModel : NSObject, ObservableObject {
             case .success(let wallet):
                 self.setLoginSuccess()
             case .failure(let failure):
-                break // SOLVE BEFORE MERGING
+                switch failure {
+                    case .failed: DispatchQueue.main.async { self.authState = .error }
+                    case .noInternet: DispatchQueue.main.async { self.authState = .noInternet }
+                }
             }
         }
     }
@@ -182,8 +197,12 @@ internal class AuthViewModel : NSObject, ObservableObject {
     }
     
     internal func tryAgain() {
-        DispatchQueue.main.async { BottomSheetViewModel.shared.setPurchaseState(newState: .paying) }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { self.reset() }
+        if BottomSheetViewModel.shared.hasCompletedPurchase() {
+            DispatchQueue.main.async { self.setAuthState(state: .choice) }
+        } else {
+            DispatchQueue.main.async { BottomSheetViewModel.shared.setPurchaseState(newState: .paying) }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { self.reset() }
+        }
     }
 }
 

@@ -43,7 +43,7 @@ internal struct PurchaseBottomSheet: View {
                     switch authViewModel.authState {
                     case .choice:
                         AuthenticationHeader()
-                    case .magicLink, .error:
+                    case .magicLink, .error, .noInternet:
                         DismissHeader()
                     default:
                         EmptyView()
@@ -82,7 +82,9 @@ internal struct PurchaseBottomSheet: View {
                     case .success:
                         SuccessLoginView()
                     case .error:
-                        ErrorLoginView(viewModel: viewModel)
+                        ErrorLoginView()
+                    case .noInternet:
+                        NoInternetLoginView()
                     }
                 default:
                     EmptyView()
