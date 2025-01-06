@@ -79,10 +79,7 @@ internal class AuthViewModel : NSObject, ObservableObject {
                         AuthUseCases.shared.loginWithGoogle(code: code) { result in
                             switch result {
                             case .success(let wallet):
-                                DispatchQueue.main.async { self.authState = .success }
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
-                                    TransactionViewModel.shared.rebuildTransactionOnWalletChanged() // Re-build the transaction with the new User Wallet
-                                }
+                                self.setLoginSuccess()
                             case .failure(let failure):
                                 break // SOLVE BEFORE MERGING
                             }
@@ -120,12 +117,21 @@ internal class AuthViewModel : NSObject, ObservableObject {
         AuthUseCases.shared.loginWithMagicLink(code: code) { result in
             switch result {
             case .success(let wallet):
-                DispatchQueue.main.async { self.authState = .success }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
-                    TransactionViewModel.shared.rebuildTransactionOnWalletChanged() // Re-build the transaction with the new User Wallet
-                }
+                self.setLoginSuccess()
             case .failure(let failure):
                 break // SOLVE BEFORE MERGING
+            }
+        }
+    }
+    
+    private func setLoginSuccess() {
+        DispatchQueue.main.async { self.authState = .success }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+            if BottomSheetViewModel.shared.hasCompletedPurchase() {
+                BottomSheetViewModel.shared.transactionSucceeded()
+            } else {
+                TransactionViewModel.shared.rebuildTransactionOnWalletChanged() // Re-build the transaction with the new User Wallet
             }
         }
     }

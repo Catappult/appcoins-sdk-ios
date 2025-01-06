@@ -74,5 +74,7 @@ internal struct Constants {
   static internal let resendInTime = NSLocalizedString("resend_in_time_body", bundle: .APPCModule, comment: "If you have not received an email, you can retry again.")
   static internal let loginFailed = NSLocalizedString("login_failed", bundle: .APPCModule, comment: "Login Failed")
   static internal let tryAgain = NSLocalizedString("try_again_button", bundle: .APPCModule, comment: "Try again")
+  static internal let signInToRedeem = NSLocalizedString("sign_in_to_redeem_body", bundle: .APPCModule, comment: "You've earned $X from your in-app purchases. Sign in to receive it and use it in your next purchases!")
+  static internal let signInButton = NSLocalizedString("sign_in_button", bundle: .APPCModule, comment: "Sign in")
    
 }
