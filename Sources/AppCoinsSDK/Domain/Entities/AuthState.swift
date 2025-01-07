@@ -14,4 +14,5 @@ internal enum AuthState {
     case loading
     case success
     case error
+    case noInternet
 }

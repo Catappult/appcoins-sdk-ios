@@ -10,6 +10,7 @@ import SwiftUI
 
 internal struct ColorsUi {
     static internal var APC_Pink: Color = Color(red: 1, green: 0.388, blue: 0.506, opacity: 1)
+    static internal var APC_LightPink: Color = Color(red: 0.95, green: 0.84, blue: 0.88, opacity: 1)
     static internal var APC_Black: Color = Color(red: 0.098, green: 0.137, blue: 0.165, opacity: 1)
     static internal var APC_DarkBlue: Color = Color(red: 0.067, green: 0.106, blue: 0.224, opacity: 1)
     static internal var APC_DarkGray: Color = Color(red: 0.533, green: 0.533, blue: 0.549, opacity: 1)

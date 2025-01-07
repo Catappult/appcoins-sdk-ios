@@ -24,7 +24,6 @@ internal class WalletUseCases {
     internal func getWallet(completion: @escaping (Result<Wallet, APPCServiceError>) -> Void)  {
         authRepository.getUserWallet() { userWallet in
             if let userWallet = userWallet {
-                print("Using a user wallet: \(userWallet.getWalletAddress())")
                 completion(.success(userWallet))
             } else {
                 if let clientWallet = self.repository.getClientWallet() { completion(.success(clientWallet)) }

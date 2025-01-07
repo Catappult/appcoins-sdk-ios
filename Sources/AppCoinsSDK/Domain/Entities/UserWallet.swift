@@ -54,7 +54,6 @@ internal class UserWallet: Wallet, Codable {
     }
     
     // Conform to Codable Protocol
-    
     enum CodingKeys: String, CodingKey {
             case address
             case authToken

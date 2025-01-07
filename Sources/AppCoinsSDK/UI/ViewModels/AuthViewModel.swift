@@ -36,11 +36,11 @@ internal class AuthViewModel : NSObject, ObservableObject {
         self.isMagicLinkEmailValid = true
     }
     
-    internal func showFocusedTextField() { self.isTextFieldFocused = true }
+    internal func showFocusedTextField() { DispatchQueue.main.async { self.isTextFieldFocused = true } }
     
-    internal func hideFocusedTextField() { self.isTextFieldFocused = false }
+    internal func hideFocusedTextField() { DispatchQueue.main.async { self.isTextFieldFocused = false } }
     
-    internal func setLogIn() { self.isLoggedIn = true }
+    internal func setLogInState(isLoggedIn: Bool) { DispatchQueue.main.async { self.isLoggedIn = isLoggedIn } }
     
     internal func setAuthState(state: AuthState) {
         self.authState = state
@@ -65,33 +65,33 @@ internal class AuthViewModel : NSObject, ObservableObject {
                 var authSession = ASWebAuthenticationSession(url: url, callbackURLScheme: "\(Bundle.main.bundleIdentifier).iap") { callbackURL, error in
                     
                     if let error = error {
-                        print(error)
+                        DispatchQueue.main.async { self.authState = .error }
+                        return
                     }
                     
                     guard let callbackURL = callbackURL, let queryItems = URLComponents(string: callbackURL.absoluteString)?.queryItems else {
-                        print("Invalid callback URL")
+                        DispatchQueue.main.async { self.authState = .error }
                         return
                     }
                     
                     if let code = queryItems.first(where: { $0.name == "code" })?.value {
                         DispatchQueue.main.async { self.authState = .loading }
                         
-                        print("Code: \(code)")
                         AuthUseCases.shared.loginWithGoogle(code: code) { result in
                             switch result {
                             case .success(let wallet):
-                                DispatchQueue.main.async { self.authState = .success }
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
-                                    TransactionViewModel.shared.rebuildTransactionOnWalletChanged() // Re-build the transaction with the new User Wallet
-                                }
+                                self.setLoginSuccess()
                             case .failure(let failure):
-                                break // SOLVE BEFORE MERGING
+                                switch failure {
+                                    case .failed: DispatchQueue.main.async { self.authState = .error }
+                                    case .noInternet: DispatchQueue.main.async { self.authState = .noInternet }
+                                }
                             }
                         }
                     } else if let errorDescription = queryItems.first(where: { $0.name == "error" })?.value {
-                        print("Error: \(errorDescription)")
+                        DispatchQueue.main.async { self.authState = .error }
                     } else {
-                        print("Error: Unknown error")
+                        DispatchQueue.main.async { self.authState = .error }
                     }
                 }
                 
@@ -106,10 +106,18 @@ internal class AuthViewModel : NSObject, ObservableObject {
         DispatchQueue.main.async { self.isSendingMagicLink = true }
 
         AuthUseCases.shared.sendMagicLink(email: self.magicLinkEmail) { result in
-            DispatchQueue.main.async {
-                self.startRetryMagicLinkTimer()
-                self.isSendingMagicLink = false
-                self.authState = .magicLink
+            switch result {
+            case .success(_):
+                DispatchQueue.main.async {
+                    self.startRetryMagicLinkTimer()
+                    self.isSendingMagicLink = false
+                    self.authState = .magicLink
+                }
+            case .failure(let failure):
+                switch failure {
+                    case .failed: DispatchQueue.main.async { self.authState = .error }
+                    case .noInternet: DispatchQueue.main.async { self.authState = .noInternet }
+                }
             }
         }
     }
@@ -121,14 +129,53 @@ internal class AuthViewModel : NSObject, ObservableObject {
         AuthUseCases.shared.loginWithMagicLink(code: code) { result in
             switch result {
             case .success(let wallet):
-                DispatchQueue.main.async { self.authState = .success }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
-                    TransactionViewModel.shared.rebuildTransactionOnWalletChanged() // Re-build the transaction with the new User Wallet
-                }
+                self.setLoginSuccess()
             case .failure(let failure):
-                break // SOLVE BEFORE MERGING
+                switch failure {
+                    case .failed: DispatchQueue.main.async { self.authState = .error }
+                    case .noInternet: DispatchQueue.main.async { self.authState = .noInternet }
+                }
             }
         }
+    }
+    
+    private func setLoginSuccess() {
+        if BottomSheetViewModel.shared.hasCompletedPurchase() {
+            TransactionViewModel.shared.transferBonusOnLogin() { result in
+                switch result {
+                case .success(let success):
+                    DispatchQueue.main.async { self.authState = .success }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.25) {
+                        BottomSheetViewModel.shared.transactionSucceeded()
+                    }
+                case .failure(let failure):
+                    AuthUseCases.shared.logout()
+                    switch failure {
+                    case .noInternet: DispatchQueue.main.async { self.authState = .noInternet }
+                    default: DispatchQueue.main.async { self.authState = .error }
+                    }
+                }
+            }
+            
+        } else {
+            DispatchQueue.main.async { self.authState = .success }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.25) {
+                TransactionViewModel.shared.rebuildTransactionOnWalletChanged() // Re-build the transaction with the new User Wallet
+            }
+        }
+    }
+    
+    internal func showLogoutAlert() {
+        if let rootViewController = UIApplication.shared.windows.first?.rootViewController,
+           let presentedPurchaseVC = rootViewController.presentedViewController as? PurchaseViewController {
+            presentedPurchaseVC.presentLogoutAlert()
+        }
+    }
+    
+    internal func logout() {
+        AuthUseCases.shared.logout()
+        self.reset()
+        TransactionViewModel.shared.rebuildTransactionOnWalletChanged() // Re-build the transaction with the new Client Wallet
     }
     
     internal func startRetryMagicLinkTimer() {
@@ -163,8 +210,12 @@ internal class AuthViewModel : NSObject, ObservableObject {
     }
     
     internal func tryAgain() {
-        DispatchQueue.main.async { BottomSheetViewModel.shared.setPurchaseState(newState: .paying) }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { self.reset() }
+        if BottomSheetViewModel.shared.hasCompletedPurchase() {
+            DispatchQueue.main.async { self.setAuthState(state: .choice) }
+        } else {
+            DispatchQueue.main.async { BottomSheetViewModel.shared.setPurchaseState(newState: .paying) }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { self.reset() }
+        }
     }
 }
 

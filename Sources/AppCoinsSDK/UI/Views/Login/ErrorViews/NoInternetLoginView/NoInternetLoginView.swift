@@ -1,13 +1,13 @@
 //
-//  ErrorLoginView.swift
+//  File.swift
+//  
 //
-//
-//  Created by aptoide on 20/12/2024.
+//  Created by aptoide on 06/01/2025.
 //
 
 import SwiftUI
 
-internal struct ErrorLoginView: View {
+internal struct NoInternetLoginView: View {
     
     @ObservedObject internal var viewModel: BottomSheetViewModel = BottomSheetViewModel.shared
     @State private var toast: FancyToast? = nil
@@ -16,17 +16,13 @@ internal struct ErrorLoginView: View {
         VStack(spacing: 0) {
             HStack{}.frame(maxHeight: .infinity)
             
-            ErrorExclamationImageAndLabel()
+            LoginNoInternetImageAndLabel()
             
             HStack{}.frame(maxHeight: .infinity)
             
             TryAgainButton()
             
-            HStack{}.frame(height: 19)
-            
-            LoginErrorSupportButton(toast: $toast)
-            
-            HStack{}.frame(height: Utils.bottomSafeAreaHeight + 12)
+            HStack{}.frame(height: Utils.bottomSafeAreaHeight == 0 ? 5 : 28)
         }.frame(maxWidth: .infinity, alignment: .top)
         .toastView(toast: $toast)
     }

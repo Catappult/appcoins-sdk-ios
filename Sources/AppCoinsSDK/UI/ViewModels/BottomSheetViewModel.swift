@@ -21,6 +21,7 @@ internal class BottomSheetViewModel: ObservableObject {
     
     // Purchase status
     @Published internal var purchaseState: PurchaseState = .none
+    @Published internal var successfulPurchase: Purchase?
     
     // Variables used for BottomSheet animations on changing states
     @Published internal var isBottomSheetPresented = false
@@ -73,6 +74,7 @@ internal class BottomSheetViewModel: ObservableObject {
     private func reset() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.purchaseState = .loading
+            self.successfulPurchase = nil
             self.finalWalletBalance = nil
             self.purchaseFailedMessage = Constants.somethingWentWrong
             
@@ -120,12 +122,13 @@ internal class BottomSheetViewModel: ObservableObject {
                 AdyenController.shared.cancel()
                 self.userCancelled()
             }
-        case .login: self.userCancelled()
+        case .login: 
+            if self.hasCompletedPurchase() { self.transactionSucceeded() }
+            else { self.userCancelled() }
         case .processing: break
-        case .success: self.dismissVC()
+        case .success: self.transactionSucceeded()
         case .failed: self.dismissVC()
         case .nointernet: self.dismissVC()
-        case .login: self.userCancelled()
         }
     }
     
@@ -416,7 +419,7 @@ internal class BottomSheetViewModel: ObservableObject {
                                                 error in
                                                 if let error = error { self.transactionFailedWith(error: error) }
                                                 else {
-                                                    self.successfulTransaction(purchase: purchase, balance: balance, method: method)
+                                                    self.setSuccessfulPurchase(purchase: purchase, balance: balance, method: method)
                                                 }
                                             }
                                         case .failure(let error): self.transactionFailedWith(error: error)
@@ -460,19 +463,34 @@ internal class BottomSheetViewModel: ObservableObject {
     
     internal func setPurchaseState(newState: PurchaseState) { DispatchQueue.main.async { self.purchaseState = newState } }
     
-    internal func successfulTransaction(purchase: Purchase, balance: Balance, method: Method) {
+    internal func setSuccessfulPurchase(purchase: Purchase, balance: Balance, method: Method) {
         DispatchQueue.main.async {
             self.finalWalletBalance = "\(balance.balanceCurrency.sign)\(String(format: "%.2f", floor(balance.balance*100)/100))"
             self.purchaseState = .success
+            self.successfulPurchase = purchase
         }
 
-        let verificationResult: VerificationResult = .verified(purchase: purchase)
-        let transactionResult: TransactionResult = .success(verificationResult: verificationResult)
-        Utils.transactionResult(result: transactionResult)
-
         self.transactionUseCases.setLastPaymentMethod(paymentMethod: method)
+        
+        if AuthViewModel.shared.isLoggedIn { self.transactionSucceeded() }
+    }
+    
+    internal func hasCompletedPurchase() -> Bool { return self.successfulPurchase != nil }
+    
+    internal func transactionSucceeded() {
+        if let successfulPurchase = self.successfulPurchase {
+            let verificationResult: VerificationResult = .verified(purchase: successfulPurchase)
+            let transactionResult: TransactionResult = .success(verificationResult: verificationResult)
+            Utils.transactionResult(result: transactionResult)
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) { self.dismissSuccessWithAnimation() }
+            if AuthViewModel.shared.isLoggedIn {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) { self.dismissSuccessWithAnimation() }
+            } else {
+                self.dismissVC()
+            }
+        } else {
+            self.transactionFailedWith(error: .systemError(message: "Failed to set transaction success", description: "Missing required transaction purchase BottomSheetViewModel.swift:transactionSucceeded"))
+        }
     }
     
     internal func transactionFailedWith(error: AppCoinsSDKError, description: String? = nil) {

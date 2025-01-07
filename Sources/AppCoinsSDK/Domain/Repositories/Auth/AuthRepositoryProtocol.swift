@@ -13,5 +13,6 @@ internal protocol AuthRepositoryProtocol {
     func loginWithGoogle(code: String, completion: @escaping (Result<UserWallet, AuthError>) -> Void)
     func loginWithMagicLink(code: String, completion: @escaping (Result<UserWallet, AuthError>) -> Void)
     func sendMagicLink(email: String, completion: @escaping (Result<Bool, AuthError>) -> Void)
+    func logout()
     
 }

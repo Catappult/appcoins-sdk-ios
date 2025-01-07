@@ -30,4 +30,8 @@ internal class AuthUseCases {
     internal func sendMagicLink(email: String, completion: @escaping (Result<Bool, AuthError>) -> Void) {
         self.repository.sendMagicLink(email: email) { result in completion(result) }
     }
+    
+    internal func logout() {
+        self.repository.logout()
+    }
 }
