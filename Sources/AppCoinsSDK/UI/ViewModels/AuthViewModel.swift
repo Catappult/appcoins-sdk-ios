@@ -140,24 +140,26 @@ internal class AuthViewModel : NSObject, ObservableObject {
     }
     
     private func setLoginSuccess() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
-            if BottomSheetViewModel.shared.hasCompletedPurchase() {
-                TransactionViewModel.shared.transferBonusOnLogin() { result in
-                    switch result {
-                    case .success(let success):
-                        DispatchQueue.main.async { self.authState = .success }
+        if BottomSheetViewModel.shared.hasCompletedPurchase() {
+            TransactionViewModel.shared.transferBonusOnLogin() { result in
+                switch result {
+                case .success(let success):
+                    DispatchQueue.main.async { self.authState = .success }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.25) {
                         BottomSheetViewModel.shared.transactionSucceeded()
-                    case .failure(let failure):
-                        AuthUseCases.shared.logout()
-                        switch failure {
-                        case .noInternet: DispatchQueue.main.async { self.authState = .noInternet }
-                        default: DispatchQueue.main.async { self.authState = .error }
-                        }
+                    }
+                case .failure(let failure):
+                    AuthUseCases.shared.logout()
+                    switch failure {
+                    case .noInternet: DispatchQueue.main.async { self.authState = .noInternet }
+                    default: DispatchQueue.main.async { self.authState = .error }
                     }
                 }
-                
-            } else {
-                DispatchQueue.main.async { self.authState = .success }
+            }
+            
+        } else {
+            DispatchQueue.main.async { self.authState = .success }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.25) {
                 TransactionViewModel.shared.rebuildTransactionOnWalletChanged() // Re-build the transaction with the new User Wallet
             }
         }
