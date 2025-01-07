@@ -65,7 +65,7 @@ internal struct PurchaseBottomSheetWrapper<Header: View, Body: View>: View {
         .cornerRadius(13, corners: [.topLeft, .topRight])
         .offset(y: isPresented ? 0 : UIScreen.main.bounds.height)
         .transition(.move(edge: isPresented ? .bottom : .top))
-        .onAppear { withAnimation { isPresented = true } }
+        .onAppear { withAnimation(.easeIn) { isPresented = true } }
     }
     
     private func setHeightFromKeyboardToTop(keyboardObserverHeight: CGFloat) -> CGFloat {

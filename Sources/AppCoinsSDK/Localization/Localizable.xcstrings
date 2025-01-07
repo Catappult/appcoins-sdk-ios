@@ -6412,6 +6412,18 @@
         }
       }
     },
+    "your_balance_body" : {
+      "comment" : "Your Balance: %@",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your Balance: %@"
+          }
+        }
+      }
+    },
     "your_card_title" : {
       "comment" : "Your card",
       "localizations" : {

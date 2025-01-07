@@ -22,13 +22,13 @@ internal struct LoggedInSuccessNewWalletBalanceLabel: View {
             
             if let balance = viewModel.finalWalletBalance {
                 StyledText(
-                    String(format: Constants.walletBalance, "*\(balance)*"),
+                    String(format: Constants.yourBalance, "*\(balance)*"),
                     textStyle: FontsUi.APC_Caption1_Bold,
                     boldStyle: FontsUi.APC_Caption1_Bold,
                     textColorRegular: ColorsUi.APC_Pink,
                     textColorBold: ColorsUi.APC_Black)
             } else {
-                Text(String(format: Constants.walletBalance, ""))
+                Text(String(format: Constants.yourBalance, ""))
                     .font(FontsUi.APC_Caption1_Bold)
                     .foregroundColor(ColorsUi.APC_Pink)
                 

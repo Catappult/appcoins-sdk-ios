@@ -12,6 +12,8 @@ internal struct SuccessBottomSheet: View {
     @ObservedObject internal var viewModel: BottomSheetViewModel = BottomSheetViewModel.shared
     @ObservedObject internal var authViewModel: AuthViewModel = AuthViewModel.shared
     
+    @State internal var isPresented: Bool = false
+    
     internal var body: some View {
         ZStack {
             ColorsUi.APC_BottomSheet_LightGray_Background
@@ -31,8 +33,8 @@ internal struct SuccessBottomSheet: View {
             height: viewModel.orientation == .landscape ? UIScreen.main.bounds.height * 0.9 : 420
         )
         .cornerRadius(13, corners: [.topLeft, .topRight])
-        .offset(y: authViewModel.isLoggedIn ? 0 : viewModel.successAnimation ? 0 : 420)
-        .transition(authViewModel.isLoggedIn ? .identity : viewModel.successAnimation ? .identity : .move(edge: .top))
-        .animation(.easeOut(duration: 0.5))
+        .offset(y: isPresented ? 0 : UIScreen.main.bounds.height)
+        .transition(.move(edge: isPresented ? .bottom : .top))
+        .onAppear { withAnimation(.easeIn) { isPresented = true } }
     }
 }
