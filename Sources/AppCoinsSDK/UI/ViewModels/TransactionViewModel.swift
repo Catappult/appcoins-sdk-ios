@@ -90,7 +90,7 @@ internal class TransactionViewModel : ObservableObject {
                         
                         switch result {
                         case .success(let wallet):
-                            if wallet is UserWallet { AuthViewModel.shared.setLogIn() }
+                            AuthViewModel.shared.setLogInState(isLoggedIn: wallet is UserWallet)
                             
                             // 3. Get product value
                             self.getProductAppcValue(product: product) {
@@ -254,12 +254,20 @@ internal class TransactionViewModel : ObservableObject {
         }
         
         func disableAppCoinsIfNeeded(balance: Balance) {
-            if balance.appcoinsBalance < self.transaction?.appcAmount ?? 0,
-               let index = self.transaction?.paymentMethods.firstIndex(where: { $0.name == Method.appc.rawValue }) {
-                if var appcPaymentMethod = self.transaction?.paymentMethods[index] {
-                    appcPaymentMethod.disable()
-                    self.transaction?.paymentMethods[index] = appcPaymentMethod
-                }
+            guard let index = self.transaction?.paymentMethods.firstIndex(where: { $0.name == Method.appc.rawValue }) else {
+                return
+            }
+            
+            guard var APPC: PaymentMethod = self.transaction?.paymentMethods[index] else {
+                return
+            }
+            
+            let hasEnoughBalance: Bool = balance.appcoinsBalance >= self.transaction?.appcAmount ?? 0
+            let isLoggedIn: Bool = AuthViewModel.shared.isLoggedIn
+            
+            if !hasEnoughBalance || !isLoggedIn {
+                APPC.disable()
+                self.transaction?.paymentMethods[index] = APPC
             }
         }
         
@@ -295,5 +303,42 @@ internal class TransactionViewModel : ObservableObject {
     
     internal func selectPaymentMethod(paymentMethod: PaymentMethod) {
         DispatchQueue.main.async { self.paymentMethodSelected = paymentMethod }
+    }
+    
+    internal func transferBonusOnLogin(completion: @escaping (Result<Bool, TransactionError>) -> Void) {
+        guard let clientWallet: Wallet = walletUseCases.getClientWallet() else {
+            completion(.failure(.failed(message: "Failed to transfer bonus on Login", description: "Missing Client Wallet transferring bonus from Client Wallet to User Wallet after Login at TransactionViewModel.swift:transferBonusOnLogin")))
+            return
+        }
+        
+        guard let transaction: TransactionAlertUi = self.transaction else {
+            completion(.failure(.failed(message: "Failed to transfer bonus on Login", description: "Missing active transaction transferring bonus from Client Wallet to User Wallet after Login at TransactionViewModel.swift:transferBonusOnLogin")))
+            return
+        }
+        
+        let amount: String = String(transaction.bonusAmount).replacingOccurrences(of: ",", with: ".")
+        let currency: String = transaction.bonusCurrency.currency
+            
+        walletUseCases.getWallet() { result in
+            switch result {
+            case .success(let userWallet):
+                if userWallet is UserWallet {
+                    let raw: TransferAPPCRaw = TransferAPPCRaw.from(price: amount, currency: currency, userWa: userWallet.getWalletAddress())
+                    self.transactionUseCases.transferAPPC(wa: clientWallet, raw: raw) { result in
+                        switch result {
+                        case .success(_):
+                            completion(.success(true))
+                        case .failure(let failure):
+                            completion(.failure(failure))
+                        }
+                    }
+                }
+            case .failure(let failure):
+                switch failure {
+                case .failed(let message, let description, let request): completion(.failure(.failed(message: message, description: description, request: request)))
+                case .noInternet(let message, let description, let request): completion(.failure(.noInternet(message: message, description: description, request: request)))
+                }
+            }
+        }
     }
 }

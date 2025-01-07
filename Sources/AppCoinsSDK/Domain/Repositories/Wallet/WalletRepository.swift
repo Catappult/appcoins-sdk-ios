@@ -14,8 +14,8 @@ internal class WalletRepository: WalletRepositoryProtocol {
     private var appcService: APPCService = APPCServiceClient()
     private var appcTransactionService: AppCoinTransactionService = AppCoinTransactionClient()
     
-    private let ActiveWalletCache: Cache<String, ClientWallet?> = Cache(cacheName: "ActiveWalletCache")
-    private let WalletListCache: Cache<String, [ClientWallet]> = Cache(cacheName: "WalletListCache")
+    private let ActiveWalletCache: Cache<String, ClientWallet?> = Cache<String, ClientWallet?>.shared(cacheName: "ActiveWalletCache")
+    private let WalletListCache: Cache<String, [ClientWallet]> = Cache<String, [ClientWallet]>.shared(cacheName: "WalletListCache")
     
     internal func getClientWallet() -> ClientWallet? {
         if let clientWallet = self.ActiveWalletCache.getValue(forKey: "activeWallet") {

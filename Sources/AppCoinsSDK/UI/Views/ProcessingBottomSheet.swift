@@ -40,7 +40,6 @@ internal struct ProcessingBottomSheet: View {
             .cornerRadius(13, corners: [.topLeft, .topRight])
             .offset(y: isPresented ? 0 : UIScreen.main.bounds.height)
             .transition(.move(edge: isPresented ? .bottom : .top))
-            .onAppear { withAnimation { isPresented = true } }
-            .onDisappear { withAnimation { isPresented = false } }
+            .onAppear { withAnimation(.easeIn) { isPresented = true } }
     }
 }
