@@ -5,124 +5,96 @@
 //  Created by aptoide on 07/03/2023.
 //
 
-import Foundation
 import SwiftUI
-import UIKit
+import WebKit
 
-internal struct BottomSheetView: View {
+// Custom WebView for SwiftUI
+struct WebView: UIViewRepresentable {
+    let url: URL = URL(string: "https://wallet.dev.appcoins.io/iap/sdk?origin=BDS&type=INAPP&domain=com.appcoins.diceroll.sdk.dev&product=attempts&country=PT&metadata=user12345&reference=orderId%3D1730891513596&guestWalletID=6cdbdcfae8b682787da5e3cb90bed0099c0d80c6&version=135&lang_code=en")!
     
-    @ObservedObject var viewModel: BottomSheetViewModel = BottomSheetViewModel.shared
-    @ObservedObject var adyenController: AdyenController = AdyenController.shared
-    @ObservedObject var paypalViewModel: PayPalDirectViewModel = PayPalDirectViewModel.shared
+    func makeUIView(context: Context) -> WKWebView {
+        let webView = WKWebView()
+        webView.navigationDelegate = context.coordinator
+        webView.allowsBackForwardNavigationGestures = false
+        return webView
+    }
     
-    @State private var isSafeAreaPresented = false
+    func updateUIView(_ webView: WKWebView, context: Context) {
+        if webView.url != url {
+            webView.load(URLRequest(url: url))
+        }
+    }
     
-    internal var body: some View {
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+    
+    class Coordinator: NSObject, WKNavigationDelegate {
+        var parent: WebView
+        
+        init(_ parent: WebView) {
+            self.parent = parent
+        }
+        
+        func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+            
+        }
+        
+        func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+            
+        }
+    }
+}
+
+// Bottom Sheet View
+struct BottomSheetView: View {
+    @ObservedObject internal var viewModel: BottomSheetViewModel = BottomSheetViewModel.shared
+    @State private var isPresented = false
+    
+    var body: some View {
         ZStack {
             
             Color.black.opacity(0.3)
-                .onTapGesture {
-                    if viewModel.isKeyboardVisible {
-                        AdyenController.shared.presentableComponent?.viewController.view.findAndResignFirstResponder()
-                    } else {
-                        viewModel.dismiss()
-                    }
-                }
+                .onTapGesture { viewModel.dismiss() }
                 .ignoresSafeArea()
             
             ZStack {
-                switch viewModel.purchaseState {
-                case .initialAskForSync:
-                    VStack(spacing: 0) {
-                        Color.clear.frame(maxHeight: .infinity)
-                        
-                        InitialSyncBottomSheet(viewModel: viewModel)
-                    }.ignoresSafeArea()
-                    
-                case .successAskForInstall:
-                    VStack(spacing: 0) {
-                        Color.clear.frame(maxHeight: .infinity)
-                        
-                        SuccessAskForInstallBottomSheet(viewModel: viewModel)
-                    }.ignoresSafeArea()
-                    
-                case .successAskForSync:
-                    VStack(spacing: 0) {
-                        Color.clear.frame(maxHeight: .infinity)
-                        
-                        SuccessAskForSyncBottomSheet(viewModel: viewModel)
-                    }.ignoresSafeArea()
-                    
-                case .syncProcessing:
-                    VStack(spacing: 0) {
-                        Color.clear.frame(maxHeight: .infinity)
-                        
-                        SyncProcessingBottomSheet()
-                    }.ignoresSafeArea()
-                    
-                case .syncSuccess:
-                    VStack(spacing: 0) {
-                        Color.clear.frame(maxHeight: .infinity)
-                        
-                        SyncSuccessBottomSheet()
-                    }.ignoresSafeArea()
-                    
-                case .syncError:
-                    VStack(spacing: 0) {
-                        Color.clear.frame(maxHeight: .infinity)
-                        
-                        SyncErrorBottomSheet()
-                    }.ignoresSafeArea()
-                    
-                default:
-                    EmptyView()
-                }
-                
                 VStack(spacing: 0) {
-                    VStack{ }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                    Color.clear.frame(maxHeight: .infinity)
                     
-                    if [.paying, .adyen].contains(viewModel.purchaseState) && !(viewModel.purchaseState == .adyen && adyenController.state == .storedCreditCard) {
-                        PurchaseBottomSheet(viewModel: viewModel)
-                    }
-                    
-                    if viewModel.purchaseState == .processing {
-                        ProcessingBottomSheet(viewModel: viewModel)
-                    }
-                    
-                    if viewModel.purchaseState == .success {
-                        SuccessBottomSheet(viewModel: viewModel)
-                    }
-                    
-                    if viewModel.purchaseState == .failed {
-                        ErrorBottomSheet(viewModel: viewModel)
-                    }
-                    
-                    if viewModel.purchaseState == .nointernet {
-                        NoInternetBottomSheet(viewModel: viewModel)
-                    }
-                }
-                
-                // Workaround to place multiple sheets on the same view on older iOS versions
-                // https://stackoverflow.com/a/64403206/18917552
-                HStack(spacing: 0) {}
-                    .sheet(isPresented: $paypalViewModel.presentPayPalSheet, onDismiss: paypalViewModel.dismissPayPalView) {
-                        if let presentURL = paypalViewModel.presentPayPalSheetURL {
-                                PayPalWebView(url: presentURL, method: paypalViewModel.presentPayPalSheetMethod ?? "POST", successHandler: paypalViewModel.createBillingAgreementAndFinishTransaction, cancelHandler: paypalViewModel.cancelBillingAgreementTokenPayPal)
+                    VStack(spacing: 0) {
+                        switch viewModel.purchaseState {
+                        case .none:
+                            ProgressView()
+                        case .paying:
+                            WebView()
+                        default:
+                            EmptyView()
                         }
                     }
-                
-                HStack(spacing: 0) {}
-                    .sheet(isPresented: $adyenController.presentAdyenRedirect) {
-                        if let viewController = adyenController.presentableComponent?.viewController {
-                            AdyenViewControllerWrapper(viewController: viewController, orientation: viewModel.orientation)
-                                .ignoresSafeArea(.all)
-                        }
-                    }
+                    .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width, height: viewModel.orientation == .landscape ? UIScreen.main.bounds.height * 0.9 : 620)
+                    .cornerRadius(13, corners: [.topLeft, .topRight])
+                    .offset(y: isPresented ? 0 : UIScreen.main.bounds.height)
+                    .transition(.move(edge: isPresented ? .bottom : .top))
+                    .onAppear { withAnimation { isPresented = true } }
+                }.ignoresSafeArea()
             }
-            .ignoresSafeArea(.all)
-            .offset(y: viewModel.isBottomSheetPresented ? 0 : UIScreen.main.bounds.height)
-            .transition(.move(edge: viewModel.isBottomSheetPresented ? .bottom : .top))
-            .onAppear { withAnimation { viewModel.isBottomSheetPresented = true } }
+        
+        
+//        VStack {}
+//            .sheet(isPresented: .constant(true)) {
+//                if #available(iOS 16.0, *) {
+//                    VStack {
+//                        switch viewModel.purchaseState {
+//                        case .none:
+//                            ProgressView()
+//                        case .paying:
+//                            WebView()
+//                        default:
+//                            EmptyView()
+//                        }
+//                    }.presentationDetents([.fraction(0.5), .fraction(0.8)])
+//                }
         }
     }
 }
