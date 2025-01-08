@@ -1,386 +1,386 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "add_card_button" : {
-      "comment" : "Add new card",
+    "skip_sync_button" : {
+      "comment" : "Skip and buy",
       "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "أضف بطاقة جديدة"
+            "value" : "تجاوز واشترِ"
           }
         },
         "bn" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Add new card"
+            "value" : "Skip and buy"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Neue Karte hinzufügen"
+            "value" : "Überspringen und kaufen"
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Προσθήκη νέας κάρτας"
+            "value" : "Παράλειψη και αγορά"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Add new card"
+            "value" : "Skip and buy"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Añadir tarjeta"
+            "value" : "Saltar y hacer compra"
           }
         },
         "fa" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "افزودن کارت جدید"
+            "value" : "عبور و خرید"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ajouter une nouvelle carte"
+            "value" : "Passer et acheter"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Add new card"
+            "value" : "Skip and buy"
           }
         },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Új kártya hozzáadása"
+            "value" : "Kihagyás és vásárlás"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tambah kartu baru"
+            "value" : "Lewati dan beli"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aggiungi nuova carta"
+            "value" : "Salta e acquista"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "新しいカードの追加"
+            "value" : "スキップして購入"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "신규 카드 추가"
+            "value" : "건너띄고 구매"
           }
         },
         "mr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "नविन कार्ड जोडा"
+            "value" : "वगळा आणि खरेदी करा"
           }
         },
         "ms" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tambah kad baru"
+            "value" : "Langkau dan beli"
           }
         },
         "my" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ကဒ္အသစ္ကိုထည့္မည္"
+            "value" : "ေက်ာ္သြားကာဝယ္မည္"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nieuwe kaart toevoegen"
+            "value" : "Overslaan en kopen"
           }
         },
         "pa" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "ਨਵਾਂ ਕਾਰਡ ਸ਼ਾਮਲ ਕਰੋ"
+            "state" : "new",
+            "value" : "Skip and buy"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dodaj nową kartę"
+            "value" : "Pomiń i kup"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Adicionar novo cartão"
+            "value" : "Ignorar e comprar"
           }
         },
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Adicionar novo cartão"
+            "value" : "Saltar e comprar"
           }
         },
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Adaugă card nou"
+            "value" : "Omite și cumpără"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Добавить новую карту"
+            "value" : "Пропустить и купить"
           }
         },
         "sr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dodajte novu karticu"
+            "value" : "Preskoči i kupi"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "เพิ่มบัตรใหม่"
+            "value" : "ข้ามและซื้อ"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Yeni kart ekleyin"
+            "value" : "Geç ve satın al"
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Додати нову картку"
+            "value" : "Пропустити та купити"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Thêm thẻ mới"
+            "value" : "Bỏ qua và mua"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "添加新卡"
+            "value" : "跳过并购买"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "新增卡片"
+            "state" : "new",
+            "value" : "Skip and buy"
           }
         }
       }
     },
-    "appc_credits" : {
-      "comment" : "AppCoins Credits",
+    "code_label" : {
+      "comment" : "Code",
       "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "أرصدة AppCoins"
+            "state" : "new",
+            "value" : "Code"
           }
         },
         "bn" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "AppCoins Credits"
+            "value" : "Code"
           }
         },
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "AppCoins Credits"
+            "state" : "new",
+            "value" : "Code"
           }
         },
         "el" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "AppCoins Credits"
+            "state" : "new",
+            "value" : "Code"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AppCoins Credits"
+            "value" : "Code"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "AppCoins Credits"
+            "state" : "new",
+            "value" : "Code"
           }
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "اعتبار AppCoins"
+            "state" : "new",
+            "value" : "Code"
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "AppCoins Credits"
+            "state" : "new",
+            "value" : "Code"
           }
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "AppCoins क्रेडिट"
+            "state" : "new",
+            "value" : "Code"
           }
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "AppCoins kreditek"
+            "state" : "new",
+            "value" : "Code"
           }
         },
         "id" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kredit AppCoins"
+            "state" : "new",
+            "value" : "Code"
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "AppCoins Credits"
+            "state" : "new",
+            "value" : "Code"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "AppCoinsクレジット"
+            "state" : "new",
+            "value" : "Code"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "AppCoins 크레디트"
+            "state" : "new",
+            "value" : "Code"
           }
         },
         "mr" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "अॅपकॉइन्स क्रेडीटस"
+            "state" : "new",
+            "value" : "Code"
           }
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kredit AppCoins"
+            "state" : "new",
+            "value" : "Code"
           }
         },
         "my" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "AppCoins Credit မ်ား"
+            "state" : "new",
+            "value" : "Code"
           }
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "AppCoins Credits"
+            "state" : "new",
+            "value" : "Code"
           }
         },
         "pa" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "ਐਪ ਸਿੱਕੇ ਕ੍ਰੈਡਿਟ"
+            "state" : "new",
+            "value" : "Code"
           }
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kredyty AppCoins"
+            "state" : "new",
+            "value" : "Code"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Créditos AppCoins"
+            "state" : "new",
+            "value" : "Code"
           }
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "AppCoins Credits"
+            "state" : "new",
+            "value" : "Code"
           }
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "AppCoins Credits"
+            "state" : "new",
+            "value" : "Code"
           }
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Кредиты AppCoins"
+            "state" : "new",
+            "value" : "Code"
           }
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "AppCoins Credits"
+            "state" : "new",
+            "value" : "Code"
           }
         },
         "th" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "เครดิต AppCoins"
+            "state" : "new",
+            "value" : "Code"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "AppCoins Kredileri"
+            "state" : "new",
+            "value" : "Code"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "AppCoins Credits"
+            "state" : "new",
+            "value" : "Code"
           }
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "AppCoins Credits"
+            "state" : "new",
+            "value" : "Code"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "AppCoins积金"
+            "state" : "new",
+            "value" : "Code"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "AppCoins Credits"
+            "value" : "Code"
           }
         }
       }
@@ -2113,6 +2113,198 @@
         }
       }
     },
+    "no_internet_title" : {
+      "comment" : "No internet connection",
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أنت لست متصلًا بالإنترنت"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "No internet connection"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Keine Internetverbindung"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δεν υπάρχει σύνδεση στο Ίντερνετ"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No internet connection"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sin conexión a internet"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اتصال اینترنت قطع است"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pas de connexion internet"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "No internet connection"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nincs internetkapcsolat"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tidak ada koneksi internet"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nessuna connessione internet"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "インターネット接続なし"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "인터넷 연결 없음"
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इंटरनेट कनेक्शन नाही"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tiada sambungan internet"
+          }
+        },
+        "my" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "အင္တာနက္ဆက္သြယ္မႈ မရွိပါ"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Geen internetverbinding"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "No internet connection"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Brak połączenia z Internetem"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sem conexão com a Internet"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sem ligação à internet"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fără conexiune la internet"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отсутствует сетевое подключение"
+          }
+        },
+        "sr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nema internet veze"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ไม่มีการเชื่อมต่ออินเตอร์เน็ต"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "İnternet bağlantısı yok"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Немає підключення до Інтернету"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không có kết nối Internet"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无网络连接"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "No internet connection"
+          }
+        }
+      }
+    },
     "choose_your_payment_method_title" : {
       "comment" : "Choose your payment method",
       "extractionState" : "manual",
@@ -2301,198 +2493,6 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Choose your payment method"
-          }
-        }
-      }
-    },
-    "code_label" : {
-      "comment" : "Code",
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
-          }
-        },
-        "bn" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Code"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
-          }
-        },
-        "fa" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
-          }
-        },
-        "hu" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
-          }
-        },
-        "mr" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
-          }
-        },
-        "ms" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
-          }
-        },
-        "my" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
-          }
-        },
-        "pa" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
-          }
-        },
-        "sr" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
           }
         }
       }
@@ -4417,770 +4417,386 @@
         }
       }
     },
-    "no_internet_title" : {
-      "comment" : "No internet connection",
+    "appc_credits" : {
+      "comment" : "AppCoins Credits",
       "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "أنت لست متصلًا بالإنترنت"
+            "value" : "أرصدة AppCoins"
           }
         },
         "bn" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "No internet connection"
+            "value" : "AppCoins Credits"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Keine Internetverbindung"
+            "value" : "AppCoins Credits"
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Δεν υπάρχει σύνδεση στο Ίντερνετ"
+            "value" : "AppCoins Credits"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No internet connection"
+            "value" : "AppCoins Credits"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sin conexión a internet"
+            "value" : "AppCoins Credits"
           }
         },
         "fa" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "اتصال اینترنت قطع است"
+            "value" : "اعتبار AppCoins"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pas de connexion internet"
+            "value" : "AppCoins Credits"
           }
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "No internet connection"
+            "state" : "translated",
+            "value" : "AppCoins क्रेडिट"
           }
         },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nincs internetkapcsolat"
+            "value" : "AppCoins kreditek"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tidak ada koneksi internet"
+            "value" : "Kredit AppCoins"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nessuna connessione internet"
+            "value" : "AppCoins Credits"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "インターネット接続なし"
+            "value" : "AppCoinsクレジット"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "인터넷 연결 없음"
+            "value" : "AppCoins 크레디트"
           }
         },
         "mr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "इंटरनेट कनेक्शन नाही"
+            "value" : "अॅपकॉइन्स क्रेडीटस"
           }
         },
         "ms" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tiada sambungan internet"
+            "value" : "Kredit AppCoins"
           }
         },
         "my" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "အင္တာနက္ဆက္သြယ္မႈ မရွိပါ"
+            "value" : "AppCoins Credit မ်ား"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Geen internetverbinding"
+            "value" : "AppCoins Credits"
           }
         },
         "pa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "No internet connection"
+            "state" : "translated",
+            "value" : "ਐਪ ਸਿੱਕੇ ਕ੍ਰੈਡਿਟ"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Brak połączenia z Internetem"
+            "value" : "Kredyty AppCoins"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sem conexão com a Internet"
+            "value" : "Créditos AppCoins"
           }
         },
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sem ligação à internet"
+            "value" : "AppCoins Credits"
           }
         },
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fără conexiune la internet"
+            "value" : "AppCoins Credits"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Отсутствует сетевое подключение"
+            "value" : "Кредиты AppCoins"
           }
         },
         "sr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nema internet veze"
+            "value" : "AppCoins Credits"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ไม่มีการเชื่อมต่ออินเตอร์เน็ต"
+            "value" : "เครดิต AppCoins"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "İnternet bağlantısı yok"
+            "value" : "AppCoins Kredileri"
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Немає підключення до Інтернету"
+            "value" : "AppCoins Credits"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Không có kết nối Internet"
+            "value" : "AppCoins Credits"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "无网络连接"
+            "value" : "AppCoins积金"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "No internet connection"
+            "value" : "AppCoins Credits"
           }
         }
       }
     },
-    "or_continue_with_body" : {
-      "comment" : "Or continue with:",
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
-          }
-        },
-        "bn" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Or continue with:"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
-          }
-        },
-        "fa" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
-          }
-        },
-        "hu" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
-          }
-        },
-        "mr" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
-          }
-        },
-        "ms" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
-          }
-        },
-        "my" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
-          }
-        },
-        "pa" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
-          }
-        },
-        "sr" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
-          }
-        }
-      }
-    },
-    "other_payment_methods_body" : {
-      "comment" : "Other payment methods",
+    "add_card_button" : {
+      "comment" : "Add new card",
       "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "وسائل دفع أخرى"
+            "value" : "أضف بطاقة جديدة"
           }
         },
         "bn" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Other payment methods"
+            "value" : "Add new card"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Weitere Zahlungsmethoden"
+            "value" : "Neue Karte hinzufügen"
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Άλλες μέθοδοι πληρωμής"
+            "value" : "Προσθήκη νέας κάρτας"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Other payment methods"
+            "value" : "Add new card"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Otros métodos de pago"
+            "value" : "Añadir tarjeta"
           }
         },
         "fa" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "سایر روش‌های پرداخت"
+            "value" : "افزودن کارت جدید"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Autres moyens de paiement"
+            "value" : "Ajouter une nouvelle carte"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Other payment methods"
+            "value" : "Add new card"
           }
         },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Egyéb fizetési módok"
+            "value" : "Új kártya hozzáadása"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Metode pembayaran lain"
+            "value" : "Tambah kartu baru"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Altri metodi di pagamento"
+            "value" : "Aggiungi nuova carta"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "他の支払い方法"
+            "value" : "新しいカードの追加"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "기타 결체 방법"
+            "value" : "신규 카드 추가"
           }
         },
         "mr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "इतर पेमेंट पद्धती"
+            "value" : "नविन कार्ड जोडा"
           }
         },
         "ms" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kaedah pembayaran lain"
+            "value" : "Tambah kad baru"
           }
         },
         "my" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "အျခားေငြေပးေခ်မႈ နည္းလမ္းမ်ား"
+            "value" : "ကဒ္အသစ္ကိုထည့္မည္"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Andere betaalmethoden"
-          }
-        },
-        "pa" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Other payment methods"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inne metody płatności"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Outros métodos de pagamento"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Outros métodos de pagamento"
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Alte metode de plată"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Другие способы оплаты"
-          }
-        },
-        "sr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Drugi načini plaćanja"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "วิธีการชำระเงินเพิ่มเติม"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Diğer ödeme yöntemleri"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Інші способи оплати"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Phương thức thanh toán khác"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "其他支付方式"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Other payment methods"
-          }
-        }
-      }
-    },
-    "purchase_bonus_body" : {
-      "comment" : "You can use this bonus in your next purchase.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "يمكن استخدام هذه المكافأة في مشترياتك القادمة."
-          }
-        },
-        "bn" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "You can use this bonus in your next purchase."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Du kannst diesen Bonus bei deinem nächsten Einkauf verwenden."
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Μπορείτε να χρησιμοποιήσετε αυτό το bonus στην επόμενη αγορά σας."
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "You can use this bonus in your next purchase."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Puedes usar este bonus en tu próxima compra."
-          }
-        },
-        "fa" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "شما می‌توانید از این بونوس در خرید بعدی خود استفاده کنید."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vous pouvez utiliser ce bonus lors de votre prochain achat."
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "आप इस बोनस का उपयोग अपनी अगली खरीद में कर सकते हैं।"
-          }
-        },
-        "hu" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "A bónuszt a következő vásárlás során használhatod fel."
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Anda bisa menggunakan bonus ini di pembelian berikutnya."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Potrai usare questo bonus al tuo prossimo acquisto."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "このボーナスは次回のお買い物でご利用いただけます。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "다음 구매에서 이 보너스를 사용하실 수 있습니다."
-          }
-        },
-        "mr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "आपल्या पुढील खरेदीत आपण हा बोन वापरु शकता."
-          }
-        },
-        "ms" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Anda boleh guna bonus ini dalam pembelian seterusnya."
-          }
-        },
-        "my" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ဤေဘာနပ္စ္ကို သင့္ေနာက္တစ္္ႀကိမ္ ၀ယ္ယူမႈတြင္ သံုးႏိုင္္ပါသည္။"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Je kunt deze bonus bij je volgende aankoop gebruiken."
+            "value" : "Nieuwe kaart toevoegen"
           }
         },
         "pa" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ਤੁਸੀਂ ਇਸ ਬੋਨਸ ਨੂੰ ਆਪਣੀ ਅਗਲੀ ਖਰੀਦ ਵਿਚ ਵਰਤ ਸਕਦੇ ਹੋ|"
+            "value" : "ਨਵਾਂ ਕਾਰਡ ਸ਼ਾਮਲ ਕਰੋ"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wykorzystaj ten bonus przy następnych zakupach."
+            "value" : "Dodaj nową kartę"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Você pode usar este bônus em sua próxima compra."
+            "value" : "Adicionar novo cartão"
           }
         },
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Podes usar este bónus na tua próxima compra."
+            "value" : "Adicionar novo cartão"
           }
         },
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Poți folosi acest bonus la următoarea ta achiziție."
+            "value" : "Adaugă card nou"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Вы можете использовать этот бонус при следующей покупке."
+            "value" : "Добавить новую карту"
           }
         },
         "sr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ovaj bonus možete da upotrebite prilikom sledeće kupovine."
+            "value" : "Dodajte novu karticu"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "คุณสามารถใช้โบนัสนี้ในการซื้อครั้งต่อไปของคุณ"
+            "value" : "เพิ่มบัตรใหม่"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bu bonusu bir sonraki satın alma işleminde kullanabilirsin."
+            "value" : "Yeni kart ekleyin"
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ви можете використати цей бонус під час наступної покупки."
+            "value" : "Додати нову картку"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bạn có thể sử dụng phần thưởng này trong lần mua hàng tiếp theo."
+            "value" : "Thêm thẻ mới"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "您可以在下次购买时使用此奖金。"
+            "value" : "添加新卡"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "您可以在下次購買時使用獎勵。"
+            "value" : "新增卡片"
           }
         }
       }
@@ -5373,6 +4989,198 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Purchase Bonus: %@ in AppCoins Credits"
+          }
+        }
+      }
+    },
+    "other_payment_methods_body" : {
+      "comment" : "Other payment methods",
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "وسائل دفع أخرى"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Other payment methods"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weitere Zahlungsmethoden"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Άλλες μέθοδοι πληρωμής"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Other payment methods"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Otros métodos de pago"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سایر روش‌های پرداخت"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Autres moyens de paiement"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Other payment methods"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Egyéb fizetési módok"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Metode pembayaran lain"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Altri metodi di pagamento"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "他の支払い方法"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기타 결체 방법"
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "इतर पेमेंट पद्धती"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kaedah pembayaran lain"
+          }
+        },
+        "my" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "အျခားေငြေပးေခ်မႈ နည္းလမ္းမ်ား"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Andere betaalmethoden"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Other payment methods"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inne metody płatności"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Outros métodos de pagamento"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Outros métodos de pagamento"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alte metode de plată"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Другие способы оплаты"
+          }
+        },
+        "sr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Drugi načini plaćanja"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "วิธีการชำระเงินเพิ่มเติม"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diğer ödeme yöntemleri"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Інші способи оплати"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Phương thức thanh toán khác"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "其他支付方式"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Other payment methods"
           }
         }
       }
@@ -7105,198 +6913,6 @@
         }
       }
     },
-    "skip_sync_button" : {
-      "comment" : "Skip and buy",
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "تجاوز واشترِ"
-          }
-        },
-        "bn" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Skip and buy"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Überspringen und kaufen"
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Παράλειψη και αγορά"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Skip and buy"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Saltar y hacer compra"
-          }
-        },
-        "fa" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "عبور و خرید"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Passer et acheter"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Skip and buy"
-          }
-        },
-        "hu" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kihagyás és vásárlás"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lewati dan beli"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Salta e acquista"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "スキップして購入"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "건너띄고 구매"
-          }
-        },
-        "mr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "वगळा आणि खरेदी करा"
-          }
-        },
-        "ms" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Langkau dan beli"
-          }
-        },
-        "my" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ေက်ာ္သြားကာဝယ္မည္"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Overslaan en kopen"
-          }
-        },
-        "pa" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Skip and buy"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pomiń i kup"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ignorar e comprar"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Saltar e comprar"
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Omite și cumpără"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Пропустить и купить"
-          }
-        },
-        "sr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Preskoči i kupi"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ข้ามและซื้อ"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Geç ve satın al"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Пропустити та купити"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bỏ qua và mua"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "跳过并购买"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Skip and buy"
-          }
-        }
-      }
-    },
     "something_went_wrong_body" : {
       "comment" : "Oops, something went wrong. Try again!",
       "extractionState" : "manual",
@@ -7677,6 +7293,198 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "發生了一個錯誤!"
+          }
+        }
+      }
+    },
+    "or_continue_with_body" : {
+      "comment" : "Or continue with:",
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Or continue with:"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Or continue with:"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Or continue with:"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Or continue with:"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Or continue with:"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Or continue with:"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Or continue with:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Or continue with:"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Or continue with:"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Or continue with:"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Or continue with:"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Or continue with:"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Or continue with:"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Or continue with:"
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Or continue with:"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Or continue with:"
+          }
+        },
+        "my" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Or continue with:"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Or continue with:"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Or continue with:"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Or continue with:"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Or continue with:"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Or continue with:"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Or continue with:"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Or continue with:"
+          }
+        },
+        "sr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Or continue with:"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Or continue with:"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Or continue with:"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Or continue with:"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Or continue with:"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Or continue with:"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Or continue with:"
           }
         }
       }
@@ -9404,6 +9212,198 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Your card"
+          }
+        }
+      }
+    },
+    "purchase_bonus_body" : {
+      "comment" : "You can use this bonus in your next purchase.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يمكن استخدام هذه المكافأة في مشترياتك القادمة."
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "You can use this bonus in your next purchase."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du kannst diesen Bonus bei deinem nächsten Einkauf verwenden."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Μπορείτε να χρησιμοποιήσετε αυτό το bonus στην επόμενη αγορά σας."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You can use this bonus in your next purchase."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Puedes usar este bonus en tu próxima compra."
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "شما می‌توانید از این بونوس در خرید بعدی خود استفاده کنید."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous pouvez utiliser ce bonus lors de votre prochain achat."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आप इस बोनस का उपयोग अपनी अगली खरीद में कर सकते हैं।"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A bónuszt a következő vásárlás során használhatod fel."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anda bisa menggunakan bonus ini di pembelian berikutnya."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Potrai usare questo bonus al tuo prossimo acquisto."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "このボーナスは次回のお買い物でご利用いただけます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다음 구매에서 이 보너스를 사용하실 수 있습니다."
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आपल्या पुढील खरेदीत आपण हा बोन वापरु शकता."
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anda boleh guna bonus ini dalam pembelian seterusnya."
+          }
+        },
+        "my" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ဤေဘာနပ္စ္ကို သင့္ေနာက္တစ္္ႀကိမ္ ၀ယ္ယူမႈတြင္ သံုးႏိုင္္ပါသည္။"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Je kunt deze bonus bij je volgende aankoop gebruiken."
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ਤੁਸੀਂ ਇਸ ਬੋਨਸ ਨੂੰ ਆਪਣੀ ਅਗਲੀ ਖਰੀਦ ਵਿਚ ਵਰਤ ਸਕਦੇ ਹੋ|"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wykorzystaj ten bonus przy następnych zakupach."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Você pode usar este bônus em sua próxima compra."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Podes usar este bónus na tua próxima compra."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Poți folosi acest bonus la următoarea ta achiziție."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы можете использовать этот бонус при следующей покупке."
+          }
+        },
+        "sr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ovaj bonus možete da upotrebite prilikom sledeće kupovine."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "คุณสามารถใช้โบนัสนี้ในการซื้อครั้งต่อไปของคุณ"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bu bonusu bir sonraki satın alma işleminde kullanabilirsin."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ви можете використати цей бонус під час наступної покупки."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bạn có thể sử dụng phần thưởng này trong lần mua hàng tiếp theo."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "您可以在下次购买时使用此奖金。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "您可以在下次購買時使用獎勵。"
           }
         }
       }
