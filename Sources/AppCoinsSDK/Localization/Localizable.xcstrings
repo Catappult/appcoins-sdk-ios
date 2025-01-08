@@ -4,6 +4,18 @@
     "" : {
 
     },
+    "accept_terms_body" : {
+      "comment" : "I accept Aptoide's Terms and Conditions and Privacy Policy",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I accept Aptoide's Terms and Conditions and Privacy Policy"
+          }
+        }
+      }
+    },
     "add_card_button" : {
       "comment" : "Add new card",
       "extractionState" : "manual",
@@ -1788,6 +1800,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Are you sure you want to log out?"
+          }
+        }
+      }
+    },
+    "consent_email_body" : {
+      "comment" : "I authorize Aptoide to use my email for marketing purposes",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I authorize Aptoide to use my email for marketing purposes"
           }
         }
       }

@@ -28,6 +28,8 @@ internal class AuthViewModel : NSObject, ObservableObject {
     @Published internal var retryMagicLinkTimer: Timer?
     @Published internal var retryMagicLinkIn: Int = 0
     
+    @Published internal var hasConsentedEmailStorage: Bool = false
+    
     private override init() {}
     
     internal func reset() {

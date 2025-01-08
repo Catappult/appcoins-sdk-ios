@@ -46,21 +46,19 @@ internal struct MagicLinkEmailInput: View {
     
     internal var errorMessage: some View {
         VStack(spacing: 0) {
-            if !authViewModel.isMagicLinkEmailValid {
-                VStack{}.frame(height: 4)
-                
-                Text(Constants.invalidEmail)
-                    .font(FontsUi.APC_Footnote_Bold)
-                    .foregroundColor(Color.red)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-            }
+            VStack{}.frame(height: 4)
+            
+            Text(Constants.invalidEmail)
+                .font(FontsUi.APC_Footnote_Bold)
+                .foregroundColor(Color.red)
+                .frame(maxWidth: .infinity, alignment: .leading)
         }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 20)
     }
     
     internal var body: some View {
         VStack(spacing: 0) {
             inputField
-            errorMessage
+            if !authViewModel.isMagicLinkEmailValid { errorMessage }
         }.animation(.easeInOut(duration: 0.2))
     }
 }
