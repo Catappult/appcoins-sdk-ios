@@ -9,13 +9,13 @@ import Foundation
 
 internal struct CurrencyRaw: Codable {
     
-    let currency: String
-    let label: String
-    let sign: String
-    let type: String?
-    let flag: String?
+    internal let currency: String
+    internal let label: String
+    internal let sign: String
+    internal let type: String?
+    internal let flag: String?
     
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case currency = "currency"
         case label = "label"
         case sign = "sign"
@@ -26,25 +26,13 @@ internal struct CurrencyRaw: Codable {
 
 internal struct CurrencyListRaw: Codable {
     
-    let items: [CurrencyRaw]
-    let next: Cursor?
-    let previous: Cursor?
+    internal let items: [CurrencyRaw]
+    internal let next: Cursor?
+    internal let previous: Cursor?
     
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case items = "items"
         case next = "next"
         case previous = "previous"
-    }
-    
-    internal struct Cursor: Codable {
-        let cursor: String
-        let query: String
-        let url: String
-        
-        enum CodingKeys: String, CodingKey {
-            case cursor = "cursor"
-            case query = "query"
-            case url = "url"
-        }
     }
 }

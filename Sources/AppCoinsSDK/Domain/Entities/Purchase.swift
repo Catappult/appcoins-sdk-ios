@@ -49,7 +49,7 @@ public class Purchase: Codable {
         }
     }
     
-    internal init(raw: PurchaseInformationRaw) {
+    internal init(raw: PurchaseRaw) {
         self.uid = raw.uid
         self.sku = raw.sku
         self.state = raw.state

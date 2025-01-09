@@ -8,12 +8,12 @@
 import Foundation
 
 internal struct UserCurrencyRaw: Codable {
-    let currency: String
-    let label: String
-    let sign: String
-    let value: String
+    internal let currency: String
+    internal let label: String
+    internal let sign: String
+    internal let value: String
     
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
         case currency = "currency"
         case label = "label"
         case sign = "sign"

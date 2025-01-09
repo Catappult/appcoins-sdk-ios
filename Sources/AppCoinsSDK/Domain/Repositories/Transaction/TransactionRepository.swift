@@ -100,7 +100,7 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
             switch result {
             case .success(let purchasesRaw):
                 var purchases: [Purchase] = []
-                for raw in purchasesRaw.items {
+                for raw in purchasesRaw {
                     purchases.append(Purchase(raw: raw))
                 }
                 completion(.success(purchases))
@@ -115,7 +115,7 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
             result in
             switch result {
             case .success(let purchasesRaw):
-                if let rawSKU = purchasesRaw.items.first {
+                if let rawSKU = purchasesRaw.first {
                     let skuPurchase: Purchase = Purchase(raw: rawSKU)
                     completion(.success(skuPurchase))
                 } else {
@@ -133,7 +133,7 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
             switch result {
             case .success(let purchasesRaw):
                 var purchases: [Purchase] = []
-                for raw in purchasesRaw.items {
+                for raw in purchasesRaw {
                     purchases.append(Purchase(raw: raw))
                 }
                 completion(.success(purchases))
