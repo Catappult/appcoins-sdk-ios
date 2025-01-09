@@ -46,7 +46,7 @@ internal class GuestWallet: Wallet, Codable {
     
     func getSignedWalletAddress() -> String { return self.signature }
     
-    func getEWT() -> String? { return "Bearer \(self.ewt)" }
+    func getAuthToken() -> String? { return "Bearer \(self.ewt)" }
     
     // Conform to Codable Protocol
     

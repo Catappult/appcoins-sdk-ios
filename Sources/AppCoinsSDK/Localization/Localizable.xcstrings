@@ -4,6 +4,18 @@
     "" : {
 
     },
+    "accept_terms_body" : {
+      "comment" : "I accept Aptoide's %@ and %@",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I accept Aptoide's %@ and %@"
+          }
+        }
+      }
+    },
     "add_card_button" : {
       "comment" : "Add new card",
       "extractionState" : "manual",
@@ -1780,6 +1792,30 @@
         }
       }
     },
+    "confirm_logout_body" : {
+      "comment" : "Are you sure you want to log out?",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you sure you want to log out?"
+          }
+        }
+      }
+    },
+    "consent_email_body" : {
+      "comment" : "I authorize Aptoide to use my email for marketing purposes",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I authorize Aptoide to use my email for marketing purposes"
+          }
+        }
+      }
+    },
     "continue_button" : {
       "comment" : "Continue",
       "extractionState" : "manual",
@@ -3376,6 +3412,18 @@
         }
       }
     },
+    "privacy_policy_body" : {
+      "comment" : "Privacy Policy",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privacy Policy"
+          }
+        }
+      }
+    },
     "purchase_bonus_body" : {
       "comment" : "You can use this bonus in your next purchase.",
       "extractionState" : "manual",
@@ -3569,12 +3617,12 @@
       }
     },
     "purchase_bonus_title" : {
-      "comment" : "Purchase Bonus: %@ in AppCoins Credits",
+      "comment" : "*Purchase Bonus:* %@ in AppCoins Credits",
       "extractionState" : "manual",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "مكافأة المشتريات: %@ AppCoins Credits"
           }
         },
@@ -3586,37 +3634,37 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Kaufbonus: %@ in AppCoins Credits"
           }
         },
         "el" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Bonus Αγοράς: %@ σε AppCoins Credits"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Purchase Bonus: %@ in AppCoins Credits"
+            "value" : "*Purchase Bonus:* %@ in AppCoins Credits"
           }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Bonus de Compra: %@ en AppCoins Credits"
           }
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "بونوس بخرید: %@ در AppCoins Credits"
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Bonus d'achat : %@ en AppCoins Credits"
           }
         },
@@ -3628,55 +3676,55 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Vásárlás utáni bónusz: %@ AppCoins kreditben"
           }
         },
         "id" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Bonus Pembelian: Kredit AppCoins %@"
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Bonus acquisti: %@ in AppCoins Credits"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "購入ボーナス：%@のAppCoinsクレジット"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "구매 보너스: AppCoins 크레디트로 %@"
           }
         },
         "mr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "खरेदी बोनस: अॅपकॉईन्स क्रेडीटस मध्ये %@"
           }
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Bonus Pembelian: %@ dalam Kredit AppCoins"
           }
         },
         "my" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "ဝယ္ယူမႈေဘာနပ္စ္ - %@ ကို AppCoins Credits အေနျဖင့္"
           }
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Aankoopbonus: %@ in AppCoins Credits"
           }
         },
@@ -3688,67 +3736,67 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Bonus zakupowy: %@ w AppCoins Credits"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Bônus de Compra: %@ em Créditos AppCoins"
           }
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Bónus de compra: %@ em AppCoins Credits"
           }
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Bonus la achiziție: %@ în AppCoins Credits"
           }
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Бонус за покупку: %@ в AppCoins Credits"
           }
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Kupite bonus od: %@ u AppCoins Credits"
           }
         },
         "th" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "โบนัสการซื้อ: %@ ในเครดิต AppCoins"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Satın Alma Bonusu: %@ AppCoins Kredisi"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Бонус за покупку: %@ в AppCoin Credits"
           }
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "Tiền thưởng mua hàng: %@ bằng AppCoins Credits"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
+            "state" : "needs_review",
             "value" : "购买奖金：价值%@的AppCoins 积分"
           }
         },
@@ -3768,6 +3816,30 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Redeem bonus"
+          }
+        }
+      }
+    },
+    "resend_email_button" : {
+      "comment" : "Re-send Email",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Re-send Email"
+          }
+        }
+      }
+    },
+    "resend_in_time_body" : {
+      "comment" : "If you have not received an email, you can retry again in %@ seconds.",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "If you have not received an email, you can retry again in %@ seconds."
           }
         }
       }
@@ -3996,6 +4068,30 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sign in and join us!"
+          }
+        }
+      }
+    },
+    "sign_in_button" : {
+      "comment" : "Sign in",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign in"
+          }
+        }
+      }
+    },
+    "sign_in_to_redeem_body" : {
+      "comment" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
           }
         }
       }
@@ -5764,6 +5860,30 @@
         }
       }
     },
+    "terms_conditions_body" : {
+      "comment" : "Terms and Conditions",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terms and Conditions"
+          }
+        }
+      }
+    },
+    "try_again_button" : {
+      "comment" : "Try again",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Try again"
+          }
+        }
+      }
+    },
     "wallet_already_installed_title" : {
       "comment" : "You already have the AppCoins Wallet installed!",
       "extractionState" : "manual",
@@ -6336,6 +6456,18 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "It seems your wallet is not synced yet!"
+          }
+        }
+      }
+    },
+    "your_balance_body" : {
+      "comment" : "Your Balance: %@",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Your Balance: %@"
           }
         }
       }

@@ -118,8 +118,8 @@ internal class AppCoinProductServiceClient : AppCoinProductService {
                 var request = URLRequest(url: url)
                 request.httpMethod = "POST"
                 
-                if let ewt = wa.getEWT() {
-                    request.setValue(ewt, forHTTPHeaderField: "Authorization")
+                if let token = wa.getAuthToken() {
+                    request.setValue(token, forHTTPHeaderField: "Authorization")
                 }
                 
                 let userAgent = "AppCoinsWalletIOS/.."
@@ -157,8 +157,8 @@ internal class AppCoinProductServiceClient : AppCoinProductService {
                 var request = URLRequest(url: url)
                 request.httpMethod = "POST"
                 
-                if let ewt = wa.getEWT() {
-                    request.setValue(ewt, forHTTPHeaderField: "Authorization")
+                if let token = wa.getAuthToken() {
+                    request.setValue(token, forHTTPHeaderField: "Authorization")
                 }
                 
                 let userAgent = "AppCoinsWalletIOS/.."
@@ -194,8 +194,8 @@ internal class AppCoinProductServiceClient : AppCoinProductService {
             if let url = urlComponents.url {
                 var request = URLRequest(url: url)
                 
-                if let ewt = wa.getEWT() {
-                    request.setValue(ewt, forHTTPHeaderField: "Authorization")
+                if let token = wa.getAuthToken() {
+                    request.setValue(token, forHTTPHeaderField: "Authorization")
                 }
                 
                 let userAgent = "AppCoinsWalletIOS/.."
@@ -239,7 +239,7 @@ internal class AppCoinProductServiceClient : AppCoinProductService {
                 func getNextPurchasesBatch(url: URL) {
                     var request = URLRequest(url: url)
                     
-                    if let ewt = wa.getEWT() {
+                    if let ewt = wa.getAuthToken() {
                         request.setValue(ewt, forHTTPHeaderField: "Authorization")
                     }
                     
@@ -297,7 +297,7 @@ internal class AppCoinProductServiceClient : AppCoinProductService {
                 func getNextPurchasesBatch(url: URL) {
                     var request = URLRequest(url: url)
                     
-                    if let ewt = wa.getEWT() {
+                    if let ewt = wa.getAuthToken() {
                         request.setValue(ewt, forHTTPHeaderField: "Authorization")
                     }
                     
@@ -355,7 +355,7 @@ internal class AppCoinProductServiceClient : AppCoinProductService {
                 func getNextPurchasesBatch(url: URL) {
                     var request = URLRequest(url: url)
                     
-                    if let ewt = wa.getEWT() {
+                    if let ewt = wa.getAuthToken() {
                         request.setValue(ewt, forHTTPHeaderField: "Authorization")
                     }
                     

@@ -75,9 +75,11 @@ public struct AppcSDK {
         if let redirectURL = redirectURL {
             if let host = redirectURL.host, host == "wallet.appcoins.io" {
                 let pathRoot = redirectURL.pathComponents[1]
-                if pathRoot == "sync" {
-                    SyncWalletViewModel.shared.importWalletReturn(redirectURL: redirectURL)
-                    return true
+                if pathRoot == "auth" {
+                    if let code = URLComponents(url: redirectURL, resolvingAgainstBaseURL: false)?.queryItems?.first(where: { $0.name == "code" })?.value {
+                        AuthViewModel.shared.loginWithMagicLink(code: code)
+                        return true
+                    }
                 }
             } else {
                 return AdyenController.shared.handleRedirectURL(redirectURL: redirectURL)
