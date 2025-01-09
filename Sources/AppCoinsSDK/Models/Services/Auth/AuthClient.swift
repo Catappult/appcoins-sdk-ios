@@ -15,13 +15,13 @@ internal class AuthClient : AuthService {
         self.endpoint = endpoint
     }
     
-    internal func loginWithGoogle(code: String, completion: @escaping (Result<LoginWithMagicLinkResponseRaw, AuthError>) -> Void) {
+    internal func loginWithGoogle(code: String, acceptedTC: Bool, consents: [String], completion: @escaping (Result<LoginWithMagicLinkResponseRaw, AuthError>) -> Void) {
         
         if var urlComponents = URLComponents(string: endpoint) {
             urlComponents.path += "/user/authorize"
             
             if let url = urlComponents.url {
-                if let body = UserAuthRaw.fromGoogleAuth(code: code).toJSON() {
+                if let body = UserAuthRaw.fromGoogleAuth(code: code, acceptedTC: acceptedTC, consents: consents).toJSON() {
                     var request = URLRequest(url: url)
                     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
                     request.httpBody = body
@@ -54,12 +54,12 @@ internal class AuthClient : AuthService {
         }
     }
     
-    internal func loginWithMagicLink(code: String, state: String, completion: @escaping (Result<LoginWithMagicLinkResponseRaw, AuthError>) -> Void) {
+    internal func loginWithMagicLink(code: String, state: String, acceptedTC: Bool, consents: [String], completion: @escaping (Result<LoginWithMagicLinkResponseRaw, AuthError>) -> Void) {
         if var urlComponents = URLComponents(string: endpoint) {
             urlComponents.path += "/user/authorize"
             
             if let url = urlComponents.url {
-                if let body = UserAuthRaw.fromMagicLinkCode(code: code, state: state).toJSON() {
+                if let body = UserAuthRaw.fromMagicLinkCode(code: code, state: state, acceptedTC: acceptedTC, consents: consents).toJSON() {
                     var request = URLRequest(url: url)
                     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
                     request.httpBody = body
@@ -92,12 +92,12 @@ internal class AuthClient : AuthService {
         }
     }
 
-    internal func sendMagicLink(email: String, completion: @escaping (Result<SendMagicLinkResponseRaw, AuthError>) -> Void) {
+    internal func sendMagicLink(email: String, acceptedTC: Bool, consents: [String], completion: @escaping (Result<SendMagicLinkResponseRaw, AuthError>) -> Void) {
         if var urlComponents = URLComponents(string: endpoint) {
             urlComponents.path += "/user/authorize"
             
             if let url = urlComponents.url {
-                if let body = UserAuthRaw.fromMagicLinkEmail(email: email).toJSON() {
+                if let body = UserAuthRaw.fromMagicLinkEmail(email: email, acceptedTC: acceptedTC, consents: consents).toJSON() {
                     var request = URLRequest(url: url)
                     request.addValue("application/json", forHTTPHeaderField: "Content-Type")
                     request.httpBody = body

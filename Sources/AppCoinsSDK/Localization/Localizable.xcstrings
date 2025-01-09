@@ -4,6 +4,18 @@
     "" : {
 
     },
+    "accept_terms_body" : {
+      "comment" : "I accept Aptoide's %@ and %@",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I accept Aptoide's %@ and %@"
+          }
+        }
+      }
+    },
     "add_card_button" : {
       "comment" : "Add new card",
       "extractionState" : "manual",
@@ -1792,6 +1804,18 @@
         }
       }
     },
+    "consent_email_body" : {
+      "comment" : "I authorize Aptoide to use my email for marketing purposes",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I authorize Aptoide to use my email for marketing purposes"
+          }
+        }
+      }
+    },
     "continue_button" : {
       "comment" : "Continue",
       "extractionState" : "manual",
@@ -3384,6 +3408,18 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Other payment methods"
+          }
+        }
+      }
+    },
+    "privacy_policy_body" : {
+      "comment" : "Privacy Policy",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privacy Policy"
           }
         }
       }
@@ -5820,6 +5856,18 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Sync Wallet"
+          }
+        }
+      }
+    },
+    "terms_conditions_body" : {
+      "comment" : "Terms and Conditions",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terms and Conditions"
           }
         }
       }

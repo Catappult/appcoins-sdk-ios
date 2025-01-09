@@ -31,45 +31,45 @@ internal struct UserAuthRaw: Codable {
         case consents = "consents"
     }
     
-    internal static func fromGoogleAuth(code: String) -> UserAuthRaw {
+    internal static func fromGoogleAuth(code: String, acceptedTC: Bool, consents: [String]) -> UserAuthRaw {
         return UserAuthRaw(
             credential: code,
             type: UserAuthType.Google.rawValue,
             supported: UserAuthSupported.WalletJWT.rawValue,
             state: nil,
             agent: nil,
-            accepted: ["TOS", "PRIVACY", "DISTRIBUTION"],
+            accepted: acceptedTC ? ["TOS", "PRIVACY", "DISTRIBUTION"] : [],
             domain: Bundle.main.bundleIdentifier,
             channel: "IOS",
-            consents: ["email"]
+            consents: consents
         )
     }
     
-    internal static func fromMagicLinkCode(code: String, state: String) -> UserAuthRaw {
+    internal static func fromMagicLinkCode(code: String, state: String, acceptedTC: Bool, consents: [String]) -> UserAuthRaw {
         return UserAuthRaw(
             credential: code,
             type: UserAuthType.Code.rawValue,
             supported: UserAuthSupported.WalletJWT.rawValue,
             state: state,
             agent: nil,
-            accepted: ["TOS", "PRIVACY", "DISTRIBUTION"],
+            accepted: acceptedTC ? ["TOS", "PRIVACY", "DISTRIBUTION"] : [],
             domain: Bundle.main.bundleIdentifier,
             channel: "IOS",
-            consents: ["email"]
+            consents: consents
         )
     }
     
-    internal static func fromMagicLinkEmail(email: String) -> UserAuthRaw {
+    internal static func fromMagicLinkEmail(email: String, acceptedTC: Bool, consents: [String]) -> UserAuthRaw {
         return UserAuthRaw(
             credential: email,
             type: UserAuthType.Email.rawValue,
             supported: UserAuthSupported.Code.rawValue,
             state: nil,
             agent: nil,
-            accepted: ["TOS", "PRIVACY", "DISTRIBUTION"],
+            accepted: acceptedTC ? ["TOS", "PRIVACY", "DISTRIBUTION"] : [],
             domain: Bundle.main.bundleIdentifier,
             channel: "IOS",
-            consents: ["email"]
+            consents: consents
         )
     }
     

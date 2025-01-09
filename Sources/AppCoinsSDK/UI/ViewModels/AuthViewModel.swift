@@ -28,12 +28,20 @@ internal class AuthViewModel : NSObject, ObservableObject {
     @Published internal var retryMagicLinkTimer: Timer?
     @Published internal var retryMagicLinkIn: Int = 0
     
+    @Published internal var hasConsentedEmailStorage: Bool = false
+    @Published internal var hasAcceptedTC: Bool = false
+    @Published internal var presentTCError: Bool = false
+    
     private override init() {}
     
     internal func reset() {
         self.authState = .choice
         self.magicLinkEmail = ""
         self.isMagicLinkEmailValid = true
+        self.isSendingMagicLink = false
+        self.hasConsentedEmailStorage = false
+        self.hasAcceptedTC = false
+        self.presentTCError = false
     }
     
     internal func showFocusedTextField() { DispatchQueue.main.async { self.isTextFieldFocused = true } }
@@ -55,7 +63,18 @@ internal class AuthViewModel : NSObject, ObservableObject {
         return isMagicLinkEmailValid
     }
     
+    internal func validateTCAcceptance() -> Bool {
+        if self.hasAcceptedTC { return true }
+        else {
+            DispatchQueue.main.async { self.presentTCError = true }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) { self.presentTCError = false } // Set value back to origin after displaying error
+            return false
+        }
+    }
+    
     internal func loginWithGoogle() {
+        guard self.validateTCAcceptance() else { return }
+        
         DispatchQueue.main.async {
             self.presentWebView = true
             let googleBaseURL = "\(BuildConfiguration.aptoideIosServiceURL)/auth/user/login/social/google?domain=\(Bundle.main.bundleIdentifier ?? "")"
@@ -65,7 +84,12 @@ internal class AuthViewModel : NSObject, ObservableObject {
                 var authSession = ASWebAuthenticationSession(url: url, callbackURLScheme: "\(Bundle.main.bundleIdentifier).iap") { callbackURL, error in
                     
                     if let error = error {
-                        DispatchQueue.main.async { self.authState = .error }
+                        if let asError = error as? ASWebAuthenticationSessionError,
+                           asError.code == .canceledLogin {
+                            DispatchQueue.main.async { self.authState = .choice } // Handle user cancellation
+                        } else {
+                            DispatchQueue.main.async { self.authState = .error } // Handle other errors
+                        }
                         return
                     }
                     
@@ -77,7 +101,9 @@ internal class AuthViewModel : NSObject, ObservableObject {
                     if let code = queryItems.first(where: { $0.name == "code" })?.value {
                         DispatchQueue.main.async { self.authState = .loading }
                         
-                        AuthUseCases.shared.loginWithGoogle(code: code) { result in
+                        var consents: [String] = []
+                        if self.hasConsentedEmailStorage { consents.append("email") }
+                        AuthUseCases.shared.loginWithGoogle(code: code, acceptedTC: self.hasAcceptedTC, consents: consents) { result in
                             switch result {
                             case .success(let wallet):
                                 self.setLoginSuccess()
@@ -103,9 +129,14 @@ internal class AuthViewModel : NSObject, ObservableObject {
     }
     
     internal func sendMagicLink() {
+        guard self.validateEmail() else { return }
+        guard self.validateTCAcceptance() else { return }
+        
         DispatchQueue.main.async { self.isSendingMagicLink = true }
 
-        AuthUseCases.shared.sendMagicLink(email: self.magicLinkEmail) { result in
+        var consents: [String] = []
+        if self.hasConsentedEmailStorage { consents.append("email") }
+        AuthUseCases.shared.sendMagicLink(email: self.magicLinkEmail, acceptedTC: self.hasAcceptedTC, consents: consents) { result in
             switch result {
             case .success(_):
                 DispatchQueue.main.async {
@@ -126,7 +157,9 @@ internal class AuthViewModel : NSObject, ObservableObject {
         self.stopRetryMagicLinkTimer()
         DispatchQueue.main.async { self.authState = .loading }
         
-        AuthUseCases.shared.loginWithMagicLink(code: code) { result in
+        var consents: [String] = []
+        if self.hasConsentedEmailStorage { consents.append("email") }
+        AuthUseCases.shared.loginWithMagicLink(code: code, acceptedTC: self.hasAcceptedTC, consents: consents) { result in
             switch result {
             case .success(let wallet):
                 self.setLoginSuccess()

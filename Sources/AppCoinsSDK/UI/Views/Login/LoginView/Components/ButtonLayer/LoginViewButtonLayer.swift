@@ -18,7 +18,7 @@ internal struct LoginViewButtonLayer: View {
                 HStack{}.frame(maxHeight: .infinity)
                 
                 Button(action: {
-                    if authViewModel.validateEmail() { authViewModel.sendMagicLink() }
+                    authViewModel.sendMagicLink()
                 }) {
                     ZStack {
                         RoundedRectangle(cornerRadius: 12)

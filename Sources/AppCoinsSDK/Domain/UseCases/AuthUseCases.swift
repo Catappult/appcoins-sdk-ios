@@ -19,16 +19,16 @@ internal class AuthUseCases {
     
     internal func refreshLogin() {}
     
-    internal func loginWithGoogle(code: String, completion: @escaping (Result<UserWallet, AuthError>) -> Void) {
-        self.repository.loginWithGoogle(code: code) { result in completion(result) }
+    internal func loginWithGoogle(code: String, acceptedTC: Bool, consents: [String], completion: @escaping (Result<UserWallet, AuthError>) -> Void) {
+        self.repository.loginWithGoogle(code: code, acceptedTC: acceptedTC, consents: consents) { result in completion(result) }
     }
     
-    internal func loginWithMagicLink(code: String, completion: @escaping (Result<UserWallet, AuthError>) -> Void) {
-        self.repository.loginWithMagicLink(code: code) { result in completion(result) }
+    internal func loginWithMagicLink(code: String, acceptedTC: Bool, consents: [String], completion: @escaping (Result<UserWallet, AuthError>) -> Void) {
+        self.repository.loginWithMagicLink(code: code, acceptedTC: acceptedTC, consents: consents) { result in completion(result) }
     }
     
-    internal func sendMagicLink(email: String, completion: @escaping (Result<Bool, AuthError>) -> Void) {
-        self.repository.sendMagicLink(email: email) { result in completion(result) }
+    internal func sendMagicLink(email: String, acceptedTC: Bool, consents: [String], completion: @escaping (Result<Bool, AuthError>) -> Void) {
+        self.repository.sendMagicLink(email: email, acceptedTC: acceptedTC, consents: consents) { result in completion(result) }
     }
     
     internal func logout() {
