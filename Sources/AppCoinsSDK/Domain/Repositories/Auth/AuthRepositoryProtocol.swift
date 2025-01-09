@@ -10,9 +10,9 @@ import Foundation
 internal protocol AuthRepositoryProtocol {
     
     func getUserWallet(completion: @escaping (UserWallet?) -> Void)
-    func loginWithGoogle(code: String, completion: @escaping (Result<UserWallet, AuthError>) -> Void)
-    func loginWithMagicLink(code: String, completion: @escaping (Result<UserWallet, AuthError>) -> Void)
-    func sendMagicLink(email: String, completion: @escaping (Result<Bool, AuthError>) -> Void)
+    func loginWithGoogle(code: String, acceptedTC: Bool, consents: [String], completion: @escaping (Result<UserWallet, AuthError>) -> Void)
+    func loginWithMagicLink(code: String, acceptedTC: Bool, consents: [String], completion: @escaping (Result<UserWallet, AuthError>) -> Void)
+    func sendMagicLink(email: String, acceptedTC: Bool, consents: [String], completion: @escaping (Result<Bool, AuthError>) -> Void)
     func logout()
     
 }

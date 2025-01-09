@@ -78,5 +78,9 @@ internal struct Constants {
     static internal let signInButton = NSLocalizedString("sign_in_button", bundle: .APPCModule, comment: "Sign in")
     static internal let signInToRedeem = NSLocalizedString("sign_in_to_redeem_body", bundle: .APPCModule, comment: "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!")
     static internal let yourBalance = NSLocalizedString("your_balance_body", bundle: .APPCModule, comment: "Your Balance: %@")
+    static internal let consentEmailBody = NSLocalizedString("consent_email_body", bundle: .APPCModule, comment: "I authorize Aptoide to use my email for marketing purposes")
+    static internal let acceptTermsBody = NSLocalizedString("accept_terms_body", bundle: .APPCModule, comment: "I accept Aptoide's %@ and %@")
+    static internal let termsAndConditions = NSLocalizedString("terms_conditions_body", bundle: .APPCModule, comment: "Terms and Conditions")
+    static internal let privacyPolicy = NSLocalizedString("privacy_policy_body", bundle: .APPCModule, comment: "Privacy Policy")
     
 }

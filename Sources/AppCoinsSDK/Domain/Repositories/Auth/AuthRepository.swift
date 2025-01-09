@@ -33,8 +33,8 @@ internal class AuthRepository: AuthRepositoryProtocol {
             completion(nil) }
     }
     
-    internal func loginWithGoogle(code: String, completion: @escaping (Result<UserWallet, AuthError>) -> Void) {
-        authService.loginWithGoogle(code: code) { result in
+    internal func loginWithGoogle(code: String, acceptedTC: Bool, consents: [String], completion: @escaping (Result<UserWallet, AuthError>) -> Void) {
+        authService.loginWithGoogle(code: code, acceptedTC: acceptedTC, consents: consents) { result in
             switch result {
             case .success(let data):
                 let userWallet = UserWallet(address: data.data.address, authToken: data.data.authToken, refreshToken: data.data.refreshToken)
@@ -46,9 +46,9 @@ internal class AuthRepository: AuthRepositoryProtocol {
         }
     }
     
-    internal func loginWithMagicLink(code: String, completion: @escaping (Result<UserWallet, AuthError>) -> Void) {
+    internal func loginWithMagicLink(code: String, acceptedTC: Bool, consents: [String], completion: @escaping (Result<UserWallet, AuthError>) -> Void) {
         if let state = self.AuthStateCache.getValue(forKey: "state") {
-            authService.loginWithMagicLink(code: code, state: state) { result in
+            authService.loginWithMagicLink(code: code, state: state, acceptedTC: acceptedTC, consents: consents) { result in
                 switch result {
                 case .success(let data):
                     let userWallet = UserWallet(address: data.data.address, authToken: data.data.authToken, refreshToken: data.data.refreshToken)
@@ -62,8 +62,8 @@ internal class AuthRepository: AuthRepositoryProtocol {
             completion(.failure(.failed(message: "No State Stored on Magic Link Login", description: "No state stored to complete Magic Link Login flow at AuthRepository.swift:loginWithMagicLink", request: nil))) }
     }
     
-    internal func sendMagicLink(email: String, completion: @escaping (Result<Bool, AuthError>) -> Void) {
-        authService.sendMagicLink(email: email) { result in
+    internal func sendMagicLink(email: String, acceptedTC: Bool, consents: [String], completion: @escaping (Result<Bool, AuthError>) -> Void) {
+        authService.sendMagicLink(email: email, acceptedTC: acceptedTC, consents: consents) { result in
             switch result {
             case .success(let data):
                 if let state = data.state {
