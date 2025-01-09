@@ -5,13 +5,13 @@
 
     },
     "accept_terms_body" : {
-      "comment" : "I accept Aptoide's Terms and Conditions and Privacy Policy",
+      "comment" : "I accept Aptoide's %@ and %@",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "I accept Aptoide's Terms and Conditions and Privacy Policy"
+            "value" : "I accept Aptoide's %@ and %@"
           }
         }
       }
@@ -3412,6 +3412,18 @@
         }
       }
     },
+    "privacy_policy_body" : {
+      "comment" : "Privacy Policy",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privacy Policy"
+          }
+        }
+      }
+    },
     "purchase_bonus_body" : {
       "comment" : "You can use this bonus in your next purchase.",
       "extractionState" : "manual",
@@ -5844,6 +5856,18 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Sync Wallet"
+          }
+        }
+      }
+    },
+    "terms_conditions_body" : {
+      "comment" : "Terms and Conditions",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terms and Conditions"
           }
         }
       }

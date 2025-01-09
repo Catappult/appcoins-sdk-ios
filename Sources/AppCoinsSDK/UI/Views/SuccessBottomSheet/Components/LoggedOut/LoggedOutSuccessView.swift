@@ -25,10 +25,6 @@ internal struct LoggedOutSuccessView: View {
                 
                 VStack{}.frame(maxHeight: .infinity)
                 
-                LoggedOutSuccessBonusGiftImage()
-                
-                VStack{}.frame(maxHeight: .infinity)
-                
                 LoggedOutSuccessSignInLabel()
                 
                 VStack{}.frame(height: 8)
@@ -36,8 +32,8 @@ internal struct LoggedOutSuccessView: View {
                 LoggedOutSuccessSignInButton()
                 
                 HStack{}.frame(height: Utils.bottomSafeAreaHeight == 0 ? 5 : 28)
-            }.background(
-                Image("horizontal-bonus-background", bundle: Bundle.APPCModule)
+            }.background (
+                Image(viewModel.orientation == .landscape ? "horizontal-bonus-background" : "vertical-bonus-background", bundle: Bundle.APPCModule)
                     .resizable()
                     .edgesIgnoringSafeArea(.all)
                     .frame(
