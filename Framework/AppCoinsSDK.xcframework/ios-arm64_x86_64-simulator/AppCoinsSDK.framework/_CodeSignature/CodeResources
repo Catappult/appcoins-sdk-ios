@@ -6,7 +6,7 @@
 	<dict>
 		<key>Adyen_Adyen.bundle/Assets.car</key>
 		<data>
-		EVu7La+QS2julLWM3TYmQ4PxrK4=
+		KVKTY84UPT9HtOM5wjkG9HJPh9E=
 		</data>
 		<key>Adyen_Adyen.bundle/Info.plist</key>
 		<data>
@@ -18,7 +18,7 @@
 		</data>
 		<key>Adyen_Adyen.bundle/_CodeSignature/CodeDirectory</key>
 		<data>
-		OxnzMCkf2zUKO1awYpdHuD4k8co=
+		N7bq2mEfIyYm3C/d9ax3BzQrLxI=
 		</data>
 		<key>Adyen_Adyen.bundle/_CodeSignature/CodeRequirements</key>
 		<data>
@@ -26,11 +26,11 @@
 		</data>
 		<key>Adyen_Adyen.bundle/_CodeSignature/CodeRequirements-1</key>
 		<data>
-		5ag2pDTovG7lG/2Bju69UwsssbM=
+		D2UND86Ph8bMl/+1o6bzem1Bnm0=
 		</data>
 		<key>Adyen_Adyen.bundle/_CodeSignature/CodeResources</key>
 		<data>
-		d2VpbaIsN2gUB8j7IHqmRRBo9oM=
+		1FKXOgGvQ97unbP6xI2MCuNJBY8=
 		</data>
 		<key>Adyen_Adyen.bundle/_CodeSignature/CodeSignature</key>
 		<data>
@@ -326,7 +326,7 @@
 		</dict>
 		<key>Adyen_AdyenActions.bundle/Assets.car</key>
 		<data>
-		gou3DyBvSTZ7anycolC2vwnfWsA=
+		376F9NffhWCHXR0U8X+HvWV+y8E=
 		</data>
 		<key>Adyen_AdyenActions.bundle/Info.plist</key>
 		<data>
@@ -334,7 +334,7 @@
 		</data>
 		<key>Adyen_AdyenActions.bundle/_CodeSignature/CodeDirectory</key>
 		<data>
-		hQy0tcPKFPcTNB37KtYiRIi6wDI=
+		WrWaIoKMaTqTcjxwvi6KFl+xF6Y=
 		</data>
 		<key>Adyen_AdyenActions.bundle/_CodeSignature/CodeRequirements</key>
 		<data>
@@ -342,11 +342,11 @@
 		</data>
 		<key>Adyen_AdyenActions.bundle/_CodeSignature/CodeRequirements-1</key>
 		<data>
-		BiWk8OpIkoF0sbHR20uC5c3MV9Q=
+		u+iJMw1skn5hMFB2C1Y3YRJ1H1M=
 		</data>
 		<key>Adyen_AdyenActions.bundle/_CodeSignature/CodeResources</key>
 		<data>
-		AQceFZIGv+C2E+WmnqEGZ1G/zsU=
+		Y4U0SZaC0IH6ge4hkUhtqQ+D/60=
 		</data>
 		<key>Adyen_AdyenActions.bundle/_CodeSignature/CodeSignature</key>
 		<data>
@@ -382,11 +382,11 @@
 		</data>
 		<key>Assets.car</key>
 		<data>
-		d4cGL0nV+ADAdt7PnQ8Pkkeq0rY=
+		T1dMiUtogv0DDoEbFjvEY0KDSZc=
 		</data>
 		<key>Headers/AppCoinsSDK-Swift.h</key>
 		<data>
-		PicrouB/mn2u39A5ugacKg17Zw0=
+		jMy2bLCUQcKSNuMlg4Uvm3OCH48=
 		</data>
 		<key>Info.plist</key>
 		<data>
@@ -394,15 +394,15 @@
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		T9gp9K7rFo+URePVJlsyjuXLAx4=
+		ElA1IioEB4AYqTdhpjimyq45rMQ=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		LBzu9DUGAhD+uFbo4g4LBX0b5Uw=
+		GwdB3ZWsMI4ki2qW/soQ5SrWt88=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		Luo7nEf3hoGRcUD1bnwZa7nna5I=
+		1o/4pGZiwwKKkigiEakjhhJDAEA=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
@@ -418,11 +418,11 @@
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		taWX6pCuTUsqEaCiQI78/FYfwRo=
+		t2u9BhwgtMd4Y1FfHMmZQJMHD7U=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		Luo7nEf3hoGRcUD1bnwZa7nna5I=
+		1o/4pGZiwwKKkigiEakjhhJDAEA=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
@@ -438,7 +438,7 @@
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		AnmyV3hf7xnUQzlzuU+AtT2++4s=
+		juai7tMjmCLdGPeJOz22hiJ9QNQ=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -520,7 +520,7 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			9vj+UR0Jptsj4XUBVyU0vSg64ak=
+			v0X5QEq/Ak024NNK7QfsCeF5wYs=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -766,7 +766,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			0iVHSDuEQEfsl8CxyBQ954Vnmn1uZTsXc6+TLOnmTc8=
+			E/+fpzMqn03qV7juhUODISoT6xoBtJwY+N5pCsaE16M=
 			</data>
 		</dict>
 		<key>Adyen_Adyen.bundle/Info.plist</key>
@@ -787,7 +787,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			JjSoYJ/ussqDdtd4ktXMeh9Rq7RcaHdQaZXIyjqVuq4=
+			zHI29NBDS3ozHWJPIg/8DmFkp4JWVg7eBSB2im6MVM4=
 			</data>
 		</dict>
 		<key>Adyen_Adyen.bundle/_CodeSignature/CodeRequirements</key>
@@ -801,14 +801,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			t2lbF0Gy5UcjJ0h72mV423ppINEqsU9JWMi/tcZubzI=
+			wKK4wUb22RgkZ3yveDiX+Y68qvs5oWJ5spibeBlXEoM=
 			</data>
 		</dict>
 		<key>Adyen_Adyen.bundle/_CodeSignature/CodeResources</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Pc6LbmUmnsoN9+OSKhC0plfljcNAsR7WTsdTHX3JbtI=
+			yMhH+UVTqsyYf1MfGGlKeE6xQAYI5AAKrryQN8616Io=
 			</data>
 		</dict>
 		<key>Adyen_Adyen.bundle/_CodeSignature/CodeSignature</key>
@@ -1110,7 +1110,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			AlOtMqmMMXp90S+vQm3oYH7PVoI3y/q0PKxtndQ2w0Y=
+			h8N+UPBFhz4Bi00cilH/BAi42vIr5MJp1E+9NPr4sPY=
 			</data>
 		</dict>
 		<key>Adyen_AdyenActions.bundle/Info.plist</key>
@@ -1124,7 +1124,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Ky6gnFdgHoN5L46wQGGdaDPw9uq9O3+hS94SAsrk/I0=
+			Upp/LyQxvHBVJomS62lZdxGqF/VPmWhrz2KBV6BbzYQ=
 			</data>
 		</dict>
 		<key>Adyen_AdyenActions.bundle/_CodeSignature/CodeRequirements</key>
@@ -1138,14 +1138,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			yI+GqKLt4mdRInIHLtGAYFfQa+uXwuae47VcLlWsNaM=
+			wXBcg2yrSCNHNiRPN2rC9QE7IBU2ewloK01J92NbPJA=
 			</data>
 		</dict>
 		<key>Adyen_AdyenActions.bundle/_CodeSignature/CodeResources</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			kfkfshXJUKIBCwYiZ3FlR2ey6AsTSya6PgYErOYXf/8=
+			pfKUe+sB7l0XeVam1kJ0hQgiqgyEsZ9va1K/NBYGXzo=
 			</data>
 		</dict>
 		<key>Adyen_AdyenActions.bundle/_CodeSignature/CodeSignature</key>
@@ -1208,35 +1208,35 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			qfoCBqX0DORHwMu8U0tSbnMaPXhOETJoWBrRzrRyKZ4=
+			UdXn0YzqWhvCCwRfY7u6sy0VWpP3jICc1Acodcd+ksU=
 			</data>
 		</dict>
 		<key>Headers/AppCoinsSDK-Swift.h</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			c+s7g+5nIyYkMT/xoTlH+Vl4WPZgkwFvCgD6a8Iq++A=
+			xCLbl+XtYyydn8CnqQN7LzZak7GeRfaoURxf3pKeamE=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ZmcBTMXaOscBMmbKEaED+I3Ql3NQvAGuUKmRuPadzgk=
+			J1xpHj6KRH6Jx2vduyt3TyRFRSILg7AxlOzDxSFvuqg=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			yj/AtN5++4RgOS725Z1Y73UIh3KLfXv21fZ8WBXs1cI=
+			nA1YxflA5yyLQzqkfXSKhMK7sFoVP1q3JTy6LRsfcMc=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			YgfB6JjXF2GQ74qFYYailMO5Vw0OYMBzqsdo0l758Tk=
+			hJ18O7seA9OfVNUOi+zdoSj0yW6WZYrl94m0+O8gOj0=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
@@ -1264,14 +1264,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			VRc61RmxZR+BIvMqeQnAy7GqPhdBlEdLl2YP44B949o=
+			5h+RZVyOmsMLyDzX+yFtzR+8V4CfQLOtKXHgx8jT8lI=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			YgfB6JjXF2GQ74qFYYailMO5Vw0OYMBzqsdo0l758Tk=
+			hJ18O7seA9OfVNUOi+zdoSj0yW6WZYrl94m0+O8gOj0=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
@@ -1299,7 +1299,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			PfY3S/Iyd+H3OnoiegP9dwh9h6ZtrrKBF0NjSQ0hNc4=
+			A4SywaTEMcOEA+Yt/56wpmbRwPB2FXXidk1b19gFsq8=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -1412,7 +1412,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			SQAo+fU3BOKAJ3BVYBOfsOuo5adLlbjPDR6W4fFQ4l4=
+			UO1Rc4MtFZUSuRoW33buGWYkBf4JkCnzt8Q6RWV1A8I=
 			</data>
 			<key>optional</key>
 			<true/>
