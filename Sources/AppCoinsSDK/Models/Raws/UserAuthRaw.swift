@@ -59,7 +59,7 @@ internal struct UserAuthRaw: Codable {
         )
     }
     
-    internal static func fromMagicLinkEmail(email: String, acceptedTC: Bool, consents: [String]) -> UserAuthRaw {
+    internal static func fromMagicLinkEmail(email: String, acceptedTC: Bool) -> UserAuthRaw {
         return UserAuthRaw(
             credential: email,
             type: UserAuthType.Email.rawValue,
@@ -69,7 +69,7 @@ internal struct UserAuthRaw: Codable {
             accepted: acceptedTC ? ["TOS", "PRIVACY", "DISTRIBUTION"] : [],
             domain: Bundle.main.bundleIdentifier,
             channel: "IOS",
-            consents: consents
+            consents: []
         )
     }
     

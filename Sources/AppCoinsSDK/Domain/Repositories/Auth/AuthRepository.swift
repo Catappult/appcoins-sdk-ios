@@ -62,8 +62,8 @@ internal class AuthRepository: AuthRepositoryProtocol {
             completion(.failure(.failed(message: "No State Stored on Magic Link Login", description: "No state stored to complete Magic Link Login flow at AuthRepository.swift:loginWithMagicLink", request: nil))) }
     }
     
-    internal func sendMagicLink(email: String, acceptedTC: Bool, consents: [String], completion: @escaping (Result<Bool, AuthError>) -> Void) {
-        authService.sendMagicLink(email: email, acceptedTC: acceptedTC, consents: consents) { result in
+    internal func sendMagicLink(email: String, acceptedTC: Bool, completion: @escaping (Result<Bool, AuthError>) -> Void) {
+        authService.sendMagicLink(email: email, acceptedTC: acceptedTC) { result in
             switch result {
             case .success(let data):
                 if let state = data.state {

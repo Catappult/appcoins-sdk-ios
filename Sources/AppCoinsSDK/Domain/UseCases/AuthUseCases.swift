@@ -27,8 +27,8 @@ internal class AuthUseCases {
         self.repository.loginWithMagicLink(code: code, acceptedTC: acceptedTC, consents: consents) { result in completion(result) }
     }
     
-    internal func sendMagicLink(email: String, acceptedTC: Bool, consents: [String], completion: @escaping (Result<Bool, AuthError>) -> Void) {
-        self.repository.sendMagicLink(email: email, acceptedTC: acceptedTC, consents: consents) { result in completion(result) }
+    internal func sendMagicLink(email: String, acceptedTC: Bool, completion: @escaping (Result<Bool, AuthError>) -> Void) {
+        self.repository.sendMagicLink(email: email, acceptedTC: acceptedTC) { result in completion(result) }
     }
     
     internal func logout() {

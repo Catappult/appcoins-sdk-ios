@@ -134,9 +134,7 @@ internal class AuthViewModel : NSObject, ObservableObject {
         
         DispatchQueue.main.async { self.isSendingMagicLink = true }
 
-        var consents: [String] = []
-        if self.hasConsentedEmailStorage { consents.append("email") }
-        AuthUseCases.shared.sendMagicLink(email: self.magicLinkEmail, acceptedTC: self.hasAcceptedTC, consents: consents) { result in
+        AuthUseCases.shared.sendMagicLink(email: self.magicLinkEmail, acceptedTC: self.hasAcceptedTC) { result in
             switch result {
             case .success(_):
                 DispatchQueue.main.async {

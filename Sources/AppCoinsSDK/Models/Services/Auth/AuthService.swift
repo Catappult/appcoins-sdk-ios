@@ -11,6 +11,6 @@ internal protocol AuthService {
     
     func loginWithGoogle(code: String, acceptedTC: Bool, consents: [String], completion: @escaping (Result<LoginWithMagicLinkResponseRaw, AuthError>) -> Void)
     func loginWithMagicLink(code: String, state: String, acceptedTC: Bool, consents: [String], completion: @escaping (Result<LoginWithMagicLinkResponseRaw, AuthError>) -> Void)
-    func sendMagicLink(email: String, acceptedTC: Bool, consents: [String], completion: @escaping (Result<SendMagicLinkResponseRaw, AuthError>) -> Void)
+    func sendMagicLink(email: String, acceptedTC: Bool, completion: @escaping (Result<SendMagicLinkResponseRaw, AuthError>) -> Void)
     
 }
