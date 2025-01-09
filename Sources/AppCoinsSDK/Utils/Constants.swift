@@ -10,6 +10,8 @@ import Foundation
 internal struct Constants {
    
     // Purchase
+    static internal let purchaseBonus = NSLocalizedString("purchase_bonus_title", bundle: .APPCModule, comment: "*Purchase Bonus:* %@ in AppCoins Credits")
+    static internal let yourBalance = NSLocalizedString("your_balance_body", bundle: .APPCModule, comment: "Your Balance: %@")
     static internal let canSeeBonusText = NSLocalizedString("purchase_bonus_body", bundle: .APPCModule, comment: "You can use this bonus in your next purchase.")
     static internal let bonusNotAvailableText = NSLocalizedString("bonus_not_available", bundle: .APPCModule, comment: "Bonus not available with this payment method")
     static internal let earnedEnoughAppcText = NSLocalizedString("earned_enough_appc_body", bundle: .APPCModule, comment: "You earned enough AppCoins Credits for this purchase. Enjoy!")
@@ -41,6 +43,7 @@ internal struct Constants {
     static internal let retryConnection = NSLocalizedString("retry_connection_button", bundle: .APPCModule, comment: "Retry Connection")
     static internal let supportAvailableSoonTitle = NSLocalizedString("support_available_soon_title", bundle: .APPCModule, comment: "Available Soon")
     static internal let supportAvailableSoonMessage = NSLocalizedString("support_available_soon_body", bundle: .APPCModule, comment: "AppCoins Support is not available at the moment")
+    static internal let tryAgain = NSLocalizedString("try_again_button", bundle: .APPCModule, comment: "Try again")
 
     // Sync
     static internal let titleWalletInitialSync = NSLocalizedString("wallet_already_installed_title", bundle: .APPCModule, comment: "You already have the AppCoins Wallet installed!")
@@ -68,19 +71,18 @@ internal struct Constants {
     static internal let codeLabel = NSLocalizedString("code_label", bundle: .APPCModule, comment: "Code")
     static internal let checkYourEmail = NSLocalizedString("check_your_email_body", bundle: .APPCModule, comment: "Check your email")
 
-    // Non-final
+    static internal let sentEmailTo = NSLocalizedString("sent_email_to_body", bundle: .APPCModule, comment: "We've sent an email to: %@")
     static internal let resendEmail = NSLocalizedString("resend_email_button", bundle: .APPCModule, comment: "Re-send Email")
     static internal let resendInTime = NSLocalizedString("resend_in_time_body", bundle: .APPCModule, comment: "If you have not received an email, you can retry again in %@ seconds.")
     static internal let loginFailed = NSLocalizedString("login_failed", bundle: .APPCModule, comment: "Login Failed")
-    static internal let tryAgain = NSLocalizedString("try_again_button", bundle: .APPCModule, comment: "Try again")
     static internal let confirmLogOutText = NSLocalizedString("confirm_logout_body", bundle: .APPCModule, comment: "Are you sure you want to log out?")
-    static internal let purchaseBonus = NSLocalizedString("purchase_bonus_title", bundle: .APPCModule, comment: "*Purchase Bonus:* %@ in AppCoins Credits")
     static internal let signInButton = NSLocalizedString("sign_in_button", bundle: .APPCModule, comment: "Sign in")
     static internal let signInToRedeem = NSLocalizedString("sign_in_to_redeem_body", bundle: .APPCModule, comment: "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!")
-    static internal let yourBalance = NSLocalizedString("your_balance_body", bundle: .APPCModule, comment: "Your Balance: %@")
     static internal let consentEmailBody = NSLocalizedString("consent_email_body", bundle: .APPCModule, comment: "I authorize Aptoide to use my email for marketing purposes")
     static internal let acceptTermsBody = NSLocalizedString("accept_terms_body", bundle: .APPCModule, comment: "I accept Aptoide's %@ and %@")
     static internal let termsAndConditions = NSLocalizedString("terms_conditions_body", bundle: .APPCModule, comment: "Terms and Conditions")
     static internal let privacyPolicy = NSLocalizedString("privacy_policy_body", bundle: .APPCModule, comment: "Privacy Policy")
+    static internal let missingFields = NSLocalizedString("missing_fields_title", bundle: .APPCModule, comment: "Missing fields")
+    static internal let acceptTermsErrorBody = NSLocalizedString("accept_terms_error_body", bundle: .APPCModule, comment: "Please read and accept Aptoide's Terms and Conditions and Privacy Policy")
     
 }

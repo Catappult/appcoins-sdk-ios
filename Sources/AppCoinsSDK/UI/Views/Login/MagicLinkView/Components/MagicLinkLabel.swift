@@ -13,7 +13,7 @@ internal struct MagicLinkLabel: View {
     @ObservedObject internal var authViewModel: AuthViewModel = AuthViewModel.shared
     
     internal var magicLinkSentCodeLabelHeight: CGFloat {
-        "\(Constants.sentCodeTo): \(authViewModel.magicLinkEmail)"
+        String(format: Constants.sentEmailTo, authViewModel.magicLinkEmail)
             .height(
                 withConstrainedWidth: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48,
                 font: UIFont.systemFont(ofSize: 15, weight: .regular)
@@ -28,7 +28,7 @@ internal struct MagicLinkLabel: View {
             
             VStack{}.frame(height: 8)
             
-            Text(Constants.sentCodeTo + ": " + authViewModel.magicLinkEmail)
+            Text(String(format: Constants.sentEmailTo, authViewModel.magicLinkEmail))
                 .font(FontsUi.APC_Subheadline)
                 .foregroundColor(ColorsUi.APC_Black)
                 .frame(

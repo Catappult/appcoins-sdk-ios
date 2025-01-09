@@ -16,6 +16,18 @@
         }
       }
     },
+    "accept_terms_error_body" : {
+      "comment" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
+          }
+        }
+      }
+    },
     "add_card_button" : {
       "comment" : "Add new card",
       "extractionState" : "manual",
@@ -2824,6 +2836,18 @@
         }
       }
     },
+    "missing_fields_title" : {
+      "comment" : "Missing fields",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Missing fields"
+          }
+        }
+      }
+    },
     "no_internet_body" : {
       "comment" : "It seems you're not connected to the Internet. Check your connection and try again!",
       "extractionState" : "manual",
@@ -4049,13 +4073,25 @@
       }
     },
     "sent_code_to_body" : {
-      "comment" : "We've sent a code to",
+      "comment" : "We've sent an email to",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "We've sent a code to"
+            "value" : "We've sent an email to"
+          }
+        }
+      }
+    },
+    "sent_email_to_body" : {
+      "comment" : "We've sent an email to: %@",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "We've sent an email to: %@"
           }
         }
       }

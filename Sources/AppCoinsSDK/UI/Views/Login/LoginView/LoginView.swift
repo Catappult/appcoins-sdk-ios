@@ -19,7 +19,7 @@ internal struct LoginView: View {
         }.frame(maxHeight: .infinity, alignment: .bottom)
         .toastView(toast: $toast)
         .onChange(of: authViewModel.presentTCError) { isPresented in
-            if isPresented { self.toast = FancyToast(type: .error, title: "Missing fields", message: "Please read and accept Aptoide's Terms and Conditions and Privacy Policy") }
+            if isPresented { self.toast = FancyToast(type: .error, title: Constants.missingFields, message: Constants.acceptTermsErrorBody) }
             else { self.toast = nil }
         }
     }
