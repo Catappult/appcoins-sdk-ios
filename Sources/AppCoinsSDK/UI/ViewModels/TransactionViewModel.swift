@@ -248,7 +248,7 @@ internal class TransactionViewModel : ObservableObject {
         
         // Quick view of the last payment method used
         if let lastPaymentMethod = self.transactionUseCases.getLastPaymentMethod() {
-            showQuickPaymentMethod(lastPaymentMethod)
+            showQuickPaymentMethod(wallet: wallet, lastPaymentMethod: lastPaymentMethod)
         } else {
             self.showOtherPaymentMethods = true
         }
@@ -271,15 +271,15 @@ internal class TransactionViewModel : ObservableObject {
             }
         }
         
-        func showQuickPaymentMethod(_ lastPaymentMethod: Method) {
+        func showQuickPaymentMethod(wallet: Wallet, lastPaymentMethod: Method) {
             if let selectedMethod = self.transaction?.paymentMethods.first(where: { $0.name == lastPaymentMethod.rawValue && !$0.disabled }) {
                 self.lastPaymentMethod = selectedMethod
                 self.paymentMethodSelected = selectedMethod
             } else {
-                handleFallbackPaymentMethod(for: lastPaymentMethod)
+                handleFallbackPaymentMethod(for: lastPaymentMethod, wallet: wallet)
             }
             
-            func handleFallbackPaymentMethod(for method: Method) {
+            func handleFallbackPaymentMethod(for method: Method, wallet: Wallet) {
                 if let fallback = findFallbackPaymentMethod() {
                     self.paymentMethodSelected = fallback
                 }
