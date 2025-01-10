@@ -11,7 +11,7 @@ import Foundation
 internal class AnalyticsRepository: AnalyticsRepositoryProtocol {
     
     private let AnalyticsService: AnalyticsService = IndicativeAnalyticsClient()
-    private var UserPropertiesCache: Cache<String, AnalyticsUserProperties> = Cache(cacheName: "UserProperties")
+    private var UserPropertiesCache: Cache<String, AnalyticsUserProperties> = Cache<String, AnalyticsUserProperties>.shared(cacheName: "UserProperties")
     
     internal func initialize() {
         AnalyticsService.initialize(userProperties: self.getUserProperties())
