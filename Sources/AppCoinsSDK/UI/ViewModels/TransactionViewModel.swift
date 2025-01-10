@@ -123,7 +123,7 @@ internal class TransactionViewModel : ObservableObject {
                                                     self.transactionParameters = TransactionParameters(value: String(moneyAmount), currency: product.priceCurrency, domain: domain, product: product.sku, appcAmount: String(appcValue), guestUID: guestUID, oemID: oemID, metadata: self.metadata, reference: self.reference)
                                                     
                                                     // 9. Show payment method options
-                                                    self.showPaymentMethodsOnBuild(balance: balance)
+                                                    self.showPaymentMethodsOnBuild(wallet: wallet, balance: balance)
                                                     
                                                     // 10. Show loaded view
                                                     self.bottomSheetViewModel.setPurchaseState(newState: .paying)
@@ -242,7 +242,7 @@ internal class TransactionViewModel : ObservableObject {
         }
     }
     
-    private func showPaymentMethodsOnBuild(balance: Balance) {
+    private func showPaymentMethodsOnBuild(wallet: Wallet, balance: Balance) {
         // Filter out the AppCoins payment method if balance is insufficient
         disableAppCoinsIfNeeded(balance: balance)
         
@@ -284,7 +284,7 @@ internal class TransactionViewModel : ObservableObject {
                     self.paymentMethodSelected = fallback
                 }
                 
-                if method == .paypalDirect, self.transactionUseCases.hasBillingAgreement() {
+                if method == .paypalDirect, self.transactionUseCases.hasBillingAgreement(wallet: wallet) {
                     self.paypalLogOut = true
                 }
                 

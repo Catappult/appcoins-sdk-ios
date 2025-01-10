@@ -54,7 +54,7 @@ internal class PayPalDirectViewModel : ObservableObject {
             case .failure(let error):
                 switch error {
                 case .noBillingAgreement:
-                    self.transactionUseCases.createBillingAgreementToken() {
+                    self.transactionUseCases.createBillingAgreementToken(wallet: wallet) {
                         result in
                         
                         switch result {
@@ -78,10 +78,22 @@ internal class PayPalDirectViewModel : ObservableObject {
     
     // Cancels a user Billing Agreement
     internal func logoutPayPal() {
-        DispatchQueue(label: "logout-paypal", qos: .userInteractive).async {
-            self.transactionUseCases.cancelBillingAgreement() { result in }
+        self.walletUseCases.getWallet() { result in
+            switch result {
+            case .success(let wallet):
+                DispatchQueue(label: "logout-paypal", qos: .userInteractive).async {
+                    self.transactionUseCases.cancelBillingAgreement(wallet: wallet) { result in }
+                }
+                self.transactionViewModel.showPaymentMethodOptions()
+            case .failure(let failure):
+                switch failure {
+                case .failed(let message, let description, let request):
+                    self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
+                case .noInternet(let message, let description, let request):
+                    self.bottomSheetViewModel.transactionFailedWith(error: .networkError(message: message, description: description, request: request))
+                }
+            }
         }
-        transactionViewModel.showPaymentMethodOptions()
     }
     
     // Dismisses the PayPal WebView
@@ -102,18 +114,28 @@ internal class PayPalDirectViewModel : ObservableObject {
             self.isPayPalSheetPresented = false
         }
         
-        if let token = token {
-            self.transactionUseCases.cancelBillingAgreementToken(token: token) {
-                result in
+        walletUseCases.getWallet() { result in
+            switch result {
+            case .success(let wallet):
+                if let token = token {
+                    self.transactionUseCases.cancelBillingAgreementToken(wallet: wallet, token: token) {
+                        result in
+                        DispatchQueue.main.async {
+                            self.isPayPalSheetPresented = false
+                            self.bottomSheetViewModel.userCancelled()
+                        }
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        self.isPayPalSheetPresented = false
+                        self.bottomSheetViewModel.userCancelled()
+                    }
+                }
+            case .failure(let failure):
                 DispatchQueue.main.async {
                     self.isPayPalSheetPresented = false
                     self.bottomSheetViewModel.userCancelled()
                 }
-            }
-        } else {
-            DispatchQueue.main.async {
-                self.isPayPalSheetPresented = false
-                self.bottomSheetViewModel.userCancelled()
             }
         }
     }
@@ -125,58 +147,70 @@ internal class PayPalDirectViewModel : ObservableObject {
             self.isPayPalSheetPresented = false
         }
         
-        self.transactionUseCases.createBillingAgreement(token: token) {
-            result in
-            
+        self.walletUseCases.getWallet() { result in
             switch result {
-            case .success(_):
-                if let raw = self.raw {
-                    self.walletUseCases.getWallet() {
-                        result in
-                        
-                        switch result {
-                        case .success(let wallet):
-                            self.buyWithPayPalDirect(raw: raw, wallet: wallet) {
+            case .success(let wallet):
+                self.transactionUseCases.createBillingAgreement(wallet: wallet, token: token) {
+                    result in
+                    
+                    switch result {
+                    case .success(_):
+                        if let raw = self.raw {
+                            self.walletUseCases.getWallet() {
                                 result in
+                                
                                 switch result {
-                                case .success(let uuid): self.bottomSheetViewModel.finishPurchase(transactionUuid: uuid, method: .paypalDirect)
+                                case .success(let wallet):
+                                    self.buyWithPayPalDirect(raw: raw, wallet: wallet) {
+                                        result in
+                                        switch result {
+                                        case .success(let uuid): self.bottomSheetViewModel.finishPurchase(transactionUuid: uuid, method: .paypalDirect)
+                                        case .failure(let error):
+                                            switch error {
+                                            case .failed(let message, let description, let request):
+                                                self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
+                                            case .general(let message, let description, let request):
+                                                self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
+                                            case .noBillingAgreement(let message, let description, let request):
+                                                self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
+                                            case .noInternet(let message, let description, let request):
+                                                self.bottomSheetViewModel.transactionFailedWith(error: .networkError(message: message, description: description, request: request))
+                                            case .timeOut(let message, let description, let request):
+                                                self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
+                                            }
+                                        }
+                                    }
                                 case .failure(let error):
                                     switch error {
                                     case .failed(let message, let description, let request):
-                                        self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
-                                    case .general(let message, let description, let request):
-                                        self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
-                                    case .noBillingAgreement(let message, let description, let request):
-                                        self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
+                                        self.bottomSheetViewModel.transactionFailedWith(error: .notEntitled(message: message, description: description, request: request))
                                     case .noInternet(let message, let description, let request):
-                                        self.bottomSheetViewModel.transactionFailedWith(error: .networkError(message: message, description: description, request: request))
-                                    case .timeOut(let message, let description, let request):
-                                        self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
+                                        self.bottomSheetViewModel.transactionFailedWith(error: .notEntitled(message: message, description: description, request: request))
                                     }
                                 }
                             }
-                        case .failure(let error):
-                            switch error {
-                            case .failed(let message, let description, let request):
-                                self.bottomSheetViewModel.transactionFailedWith(error: .notEntitled(message: message, description: description, request: request))
-                            case .noInternet(let message, let description, let request):
-                                self.bottomSheetViewModel.transactionFailedWith(error: .notEntitled(message: message, description: description, request: request))
-                            }
+                        } else { self.bottomSheetViewModel.transactionFailedWith(error: .notEntitled(message: "Failed to create billing agreement and finish transaction", description: "Missing required parameters: raw: CreateBAPayPalTransactionRaw is nil at PaypalDirectViewModel.swift:createBillingAgreementAndFinishTransaction")) }
+                    case .failure(let error):
+                        switch error {
+                        case .failed(let message, let description, let request):
+                            self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
+                        case .general(let message, let description, let request):
+                            self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
+                        case .noBillingAgreement(let message, let description, let request):
+                            self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
+                        case .noInternet(let message, let description, let request):
+                            self.bottomSheetViewModel.transactionFailedWith(error: .networkError(message: message, description: description, request: request))
+                        case .timeOut(let message, let description, let request):
+                            self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
                         }
                     }
-                } else { self.bottomSheetViewModel.transactionFailedWith(error: .notEntitled(message: "Failed to create billing agreement and finish transaction", description: "Missing required parameters: raw: CreateBAPayPalTransactionRaw is nil at PaypalDirectViewModel.swift:createBillingAgreementAndFinishTransaction")) }
+                }
             case .failure(let error):
                 switch error {
                 case .failed(let message, let description, let request):
-                    self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
-                case .general(let message, let description, let request):
-                    self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
-                case .noBillingAgreement(let message, let description, let request):
-                    self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
+                    self.bottomSheetViewModel.transactionFailedWith(error: .notEntitled(message: message, description: description, request: request))
                 case .noInternet(let message, let description, let request):
-                    self.bottomSheetViewModel.transactionFailedWith(error: .networkError(message: message, description: description, request: request))
-                case .timeOut(let message, let description, let request):
-                    self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
+                    self.bottomSheetViewModel.transactionFailedWith(error: .notEntitled(message: message, description: description, request: request))
                 }
             }
         }
