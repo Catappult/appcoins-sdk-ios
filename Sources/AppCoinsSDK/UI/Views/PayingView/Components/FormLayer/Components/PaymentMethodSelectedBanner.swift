@@ -10,6 +10,8 @@ import SwiftUI
 internal struct PaymentMethodSelectedBanner: View {
     
     @ObservedObject internal var viewModel: BottomSheetViewModel = BottomSheetViewModel.shared
+    @ObservedObject internal var transactionViewModel: TransactionViewModel = TransactionViewModel.shared
+    @ObservedObject internal var paypalDirectViewModel: PayPalDirectViewModel = PayPalDirectViewModel.shared
     
     internal var paymentMethodSelected: PaymentMethod
     
@@ -25,6 +27,17 @@ internal struct PaymentMethodSelectedBanner: View {
                 Text(paymentMethodSelected.label)
                     .font(FontsUi.APC_Body)
                     .frame(maxWidth: .infinity, alignment: .leading)
+                
+                if transactionViewModel.isPaypalLogOutPresented {
+                    Button(action: paypalDirectViewModel.showPayPalLogoutAlert) {
+                        Image(systemName: "rectangle.portrait.and.arrow.right")
+                            .resizable()
+                            .foregroundColor(ColorsUi.APC_DarkGray_Xmark)
+                            .frame(width: 18, height: 22)
+                    }
+                    
+                    VStack{}.frame(width: 24)
+                }
             }
             .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 - 32 : UIScreen.main.bounds.width - 48 - 32, height: 64)
         }

@@ -8,7 +8,7 @@
 import Foundation
 
 internal struct PaymentMethod: Hashable {
-    internal let name: String
+    internal var name: String
     internal let label: String
     internal let icon: String
     internal let status: String

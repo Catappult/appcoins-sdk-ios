@@ -76,12 +76,19 @@ internal class PayPalDirectViewModel : ObservableObject {
         }
     }
     
+    internal func showPayPalLogoutAlert() {
+        if let rootViewController = UIApplication.shared.windows.first?.rootViewController,
+           let presentedPurchaseVC = rootViewController.presentedViewController as? PurchaseViewController {
+            presentedPurchaseVC.presentPayPalLogoutAlert()
+        }
+    }
+    
     // Cancels a user Billing Agreement
     internal func logoutPayPal() {
         DispatchQueue(label: "logout-paypal", qos: .userInteractive).async {
             self.transactionUseCases.cancelBillingAgreement() { result in }
         }
-        transactionViewModel.showPaymentMethodOptions()
+        self.transactionViewModel.hidePayPalLogOutOption()
     }
     
     // Dismisses the PayPal WebView

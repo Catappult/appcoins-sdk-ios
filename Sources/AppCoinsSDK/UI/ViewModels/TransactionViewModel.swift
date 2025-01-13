@@ -31,7 +31,7 @@ internal class TransactionViewModel : ObservableObject {
     @Published internal var paymentMethodSelected: PaymentMethod?
     @Published internal var showOtherPaymentMethods = false
     @Published internal var lastPaymentMethod: PaymentMethod? = nil
-    @Published internal var paypalLogOut = false // Show Log Out from PayPal option on Quick Screen
+    @Published internal var isPaypalLogOutPresented = false // Show Log Out from PayPal option on Quick Screen
     internal var hasBonus: Bool {
         if paymentMethodSelected?.name == Method.appc.rawValue {
             return false
@@ -56,7 +56,7 @@ internal class TransactionViewModel : ObservableObject {
         self.paymentMethodSelected = nil
         self.showOtherPaymentMethods = false
         self.lastPaymentMethod = nil
-        self.paypalLogOut = false
+        self.isPaypalLogOutPresented = false
     }
     
     // Called when a user starts a product purchase
@@ -201,10 +201,11 @@ internal class TransactionViewModel : ObservableObject {
             result in
             
             switch result {
-            case .success(let paymentMethods):
+            case .success(var paymentMethods):
                 var availablePaymentMethods: [PaymentMethod] = []
-                for method in paymentMethods {
+                for var method in paymentMethods {
                     if BuildConfiguration.integratedMethods.map({$0.rawValue}).contains(method.name) {
+                        if method.name == Method.paypalAdyen.rawValue { method.name = Method.paypalDirect.rawValue }
                         if !availablePaymentMethods.contains(where: { $0.name == Method.appc.rawValue }) {
                             availablePaymentMethods.insert(method, at: 0)
                         } else {
@@ -275,6 +276,10 @@ internal class TransactionViewModel : ObservableObject {
             if let selectedMethod = self.transaction?.paymentMethods.first(where: { $0.name == lastPaymentMethod.rawValue && !$0.disabled }) {
                 self.lastPaymentMethod = selectedMethod
                 self.paymentMethodSelected = selectedMethod
+                
+                if selectedMethod.name == Method.paypalDirect.rawValue, self.transactionUseCases.hasBillingAgreement() {
+                    self.isPaypalLogOutPresented = true
+                }
             } else {
                 handleFallbackPaymentMethod(for: lastPaymentMethod)
             }
@@ -285,7 +290,7 @@ internal class TransactionViewModel : ObservableObject {
                 }
                 
                 if method == .paypalDirect, self.transactionUseCases.hasBillingAgreement() {
-                    self.paypalLogOut = true
+                    self.isPaypalLogOutPresented = true
                 }
                 
                 self.showOtherPaymentMethods = true
@@ -341,4 +346,6 @@ internal class TransactionViewModel : ObservableObject {
             }
         }
     }
+    
+    internal func hidePayPalLogOutOption() { DispatchQueue.main.async { self.isPaypalLogOutPresented = false } }
 }
