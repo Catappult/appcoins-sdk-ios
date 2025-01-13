@@ -16,30 +16,33 @@ internal struct PaymentMethodSelectedBanner: View {
     internal var paymentMethodSelected: PaymentMethod
     
     internal var body: some View {
-        VStack(spacing: 0) {
-            HStack(spacing: 0) {
-                PaymentMethodIcon(icon: paymentMethodSelected.icon, disabled: false)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .frame(width: 24, height: 24)
-                
-                VStack{}.frame(width: 16)
-                
-                Text(paymentMethodSelected.label)
-                    .font(FontsUi.APC_Body)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                
+        HStack(spacing: 0) {
+            VStack{}.frame(width: 16)
+            
+            PaymentMethodIcon(icon: paymentMethodSelected.icon, disabled: false)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .frame(width: 24, height: 24)
+            
+            VStack{}.frame(width: 16)
+            
+            Text(paymentMethodSelected.label)
+                .font(FontsUi.APC_Body)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            
+            if transactionViewModel.paymentMethodSelected?.name == Method.paypalDirect.rawValue {
                 if transactionViewModel.isPaypalLogOutPresented {
                     Button(action: paypalDirectViewModel.showPayPalLogoutAlert) {
                         Image(systemName: "rectangle.portrait.and.arrow.right")
                             .resizable()
-                            .foregroundColor(ColorsUi.APC_DarkGray_Xmark)
+                            .foregroundColor(ColorsUi.APC_DarkGray_Xmark.opacity(0.3))
                             .frame(width: 18, height: 22)
                     }
-                    
-                    VStack{}.frame(width: 24)
+                } else if transactionViewModel.isPaypalLogOutLoadingPresented {
+                    ProgressView()
                 }
             }
-            .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 - 32 : UIScreen.main.bounds.width - 48 - 32, height: 64)
+            
+            VStack{}.frame(width: 24)
         }
         .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 64)
         .background(ColorsUi.APC_White)

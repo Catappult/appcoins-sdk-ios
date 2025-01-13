@@ -85,20 +85,23 @@ internal class PayPalDirectViewModel : ObservableObject {
     
     // Cancels a user Billing Agreement
     internal func logoutPayPal() {
+        self.transactionViewModel.presentPayPalLogoutLoading()
+        
         self.walletUseCases.getWallet() { result in
             switch result {
             case .success(let wallet):
                 DispatchQueue(label: "logout-paypal", qos: .userInteractive).async {
-                    self.transactionUseCases.cancelBillingAgreement(wallet: wallet) { result in }
+                    self.transactionUseCases.cancelBillingAgreement(wallet: wallet) { result in
+                        switch result {
+                        case .success(_):
+                            self.transactionViewModel.hidePayPalLogOutOption()
+                        case .failure(_):
+                            self.transactionViewModel.presentPayPalLogoutOption()
+                        }
+                    }
                 }
-                self.transactionViewModel.hidePayPalLogOutOption()
-            case .failure(let failure):
-                switch failure {
-                case .failed(let message, let description, let request):
-                    self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
-                case .noInternet(let message, let description, let request):
-                    self.bottomSheetViewModel.transactionFailedWith(error: .networkError(message: message, description: description, request: request))
-                }
+            case .failure(_):
+                self.transactionViewModel.presentPayPalLogoutOption()
             }
         }
     }

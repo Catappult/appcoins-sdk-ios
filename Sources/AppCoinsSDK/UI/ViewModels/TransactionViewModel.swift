@@ -31,7 +31,11 @@ internal class TransactionViewModel : ObservableObject {
     @Published internal var paymentMethodSelected: PaymentMethod?
     @Published internal var showOtherPaymentMethods = false
     @Published internal var lastPaymentMethod: PaymentMethod? = nil
-    @Published internal var isPaypalLogOutPresented = false // Show Log Out from PayPal option on Quick Screen
+    
+    // Show Log Out from PayPal option on Selected Payment Method Banner
+    @Published internal var isPaypalLogOutPresented = false
+    @Published internal var isPaypalLogOutLoadingPresented = false
+    
     internal var hasBonus: Bool {
         if paymentMethodSelected?.name == Method.appc.rawValue {
             return false
@@ -278,7 +282,9 @@ internal class TransactionViewModel : ObservableObject {
                 self.paymentMethodSelected = selectedMethod
                 
                 if selectedMethod.name == Method.paypalDirect.rawValue, self.transactionUseCases.hasBillingAgreement(wallet: wallet) {
-                    self.isPaypalLogOutPresented = true
+                    self.presentPayPalLogoutOption()
+                } else {
+                    self.hidePayPalLogOutOption()
                 }
             } else {
                 handleFallbackPaymentMethod(for: lastPaymentMethod, wallet: wallet)
@@ -290,7 +296,9 @@ internal class TransactionViewModel : ObservableObject {
                 }
                 
                 if method == .paypalDirect, self.transactionUseCases.hasBillingAgreement(wallet: wallet) {
-                    self.isPaypalLogOutPresented = true
+                    self.presentPayPalLogoutOption()
+                } else {
+                    self.hidePayPalLogOutOption()
                 }
                 
                 self.showOtherPaymentMethods = true
@@ -347,5 +355,26 @@ internal class TransactionViewModel : ObservableObject {
         }
     }
     
-    internal func hidePayPalLogOutOption() { DispatchQueue.main.async { self.isPaypalLogOutPresented = false } }
+    internal func presentPayPalLogoutOption() {
+        DispatchQueue.main.async {
+            self.isPaypalLogOutPresented = true
+            self.isPaypalLogOutLoadingPresented = false
+        }
+    }
+    
+    internal func presentPayPalLogoutLoading() {
+        DispatchQueue.main.async {
+            self.isPaypalLogOutPresented = false
+            self.isPaypalLogOutLoadingPresented = true
+        }
+    }
+    
+    internal func hidePayPalLogOutOption() {
+        DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                self.isPaypalLogOutPresented = false
+                self.isPaypalLogOutLoadingPresented = false
+            }
+        }
+    }
 }
