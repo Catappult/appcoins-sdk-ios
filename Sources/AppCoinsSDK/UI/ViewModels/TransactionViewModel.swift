@@ -123,7 +123,7 @@ internal class TransactionViewModel : ObservableObject {
                                                     self.transactionParameters = TransactionParameters(value: String(moneyAmount), currency: product.priceCurrency, domain: domain, product: product.sku, appcAmount: String(appcValue), guestUID: guestUID, oemID: oemID, metadata: self.metadata, reference: self.reference)
                                                     
                                                     // 9. Show payment method options
-                                                    self.showPaymentMethodsOnBuild(balance: balance)
+                                                    self.showPaymentMethodsOnBuild(wallet: wallet, balance: balance)
                                                     
                                                     // 10. Show loaded view
                                                     self.bottomSheetViewModel.setPurchaseState(newState: .paying)
@@ -242,13 +242,13 @@ internal class TransactionViewModel : ObservableObject {
         }
     }
     
-    private func showPaymentMethodsOnBuild(balance: Balance) {
+    private func showPaymentMethodsOnBuild(wallet: Wallet, balance: Balance) {
         // Filter out the AppCoins payment method if balance is insufficient
         disableAppCoinsIfNeeded(balance: balance)
         
         // Quick view of the last payment method used
         if let lastPaymentMethod = self.transactionUseCases.getLastPaymentMethod() {
-            showQuickPaymentMethod(lastPaymentMethod)
+            showQuickPaymentMethod(wallet: wallet, lastPaymentMethod: lastPaymentMethod)
         } else {
             self.showOtherPaymentMethods = true
         }
@@ -271,20 +271,20 @@ internal class TransactionViewModel : ObservableObject {
             }
         }
         
-        func showQuickPaymentMethod(_ lastPaymentMethod: Method) {
+        func showQuickPaymentMethod(wallet: Wallet, lastPaymentMethod: Method) {
             if let selectedMethod = self.transaction?.paymentMethods.first(where: { $0.name == lastPaymentMethod.rawValue && !$0.disabled }) {
                 self.lastPaymentMethod = selectedMethod
                 self.paymentMethodSelected = selectedMethod
             } else {
-                handleFallbackPaymentMethod(for: lastPaymentMethod)
+                handleFallbackPaymentMethod(for: lastPaymentMethod, wallet: wallet)
             }
             
-            func handleFallbackPaymentMethod(for method: Method) {
+            func handleFallbackPaymentMethod(for method: Method, wallet: Wallet) {
                 if let fallback = findFallbackPaymentMethod() {
                     self.paymentMethodSelected = fallback
                 }
                 
-                if method == .paypalDirect, self.transactionUseCases.hasBillingAgreement() {
+                if method == .paypalDirect, self.transactionUseCases.hasBillingAgreement(wallet: wallet) {
                     self.paypalLogOut = true
                 }
                 
