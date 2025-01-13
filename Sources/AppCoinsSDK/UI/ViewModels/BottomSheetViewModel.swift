@@ -472,7 +472,7 @@ internal class BottomSheetViewModel: ObservableObject {
 
         self.transactionUseCases.setLastPaymentMethod(paymentMethod: method)
         
-        if AuthViewModel.shared.isLoggedIn { self.transactionSucceeded() }
+        if AuthViewModel.shared.isLoggedIn { DispatchQueue.main.async { self.transactionSucceeded() } }
     }
     
     internal func hasCompletedPurchase() -> Bool { return self.successfulPurchase != nil }
