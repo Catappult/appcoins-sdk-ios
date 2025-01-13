@@ -76,22 +76,30 @@ internal class PayPalDirectViewModel : ObservableObject {
         }
     }
     
+    internal func showPayPalLogoutAlert() {
+        if let rootViewController = UIApplication.shared.windows.first?.rootViewController,
+           let presentedPurchaseVC = rootViewController.presentedViewController as? PurchaseViewController {
+            presentedPurchaseVC.presentPayPalLogoutAlert()
+        }
+    }
+    
     // Cancels a user Billing Agreement
     internal func logoutPayPal() {
+        DispatchQueue.main.async { self.transactionViewModel.presentPayPalLogoutLoading() }
+        
         self.walletUseCases.getWallet() { result in
             switch result {
             case .success(let wallet):
-                DispatchQueue(label: "logout-paypal", qos: .userInteractive).async {
-                    self.transactionUseCases.cancelBillingAgreement(wallet: wallet) { result in }
+                self.transactionUseCases.cancelBillingAgreement(wallet: wallet) { result in
+                    switch result {
+                    case .success(_):
+                        DispatchQueue.main.async { self.transactionViewModel.hidePayPalLogOutOption() }
+                    case .failure(_):
+                        DispatchQueue.main.async { self.transactionViewModel.presentPayPalLogoutOption() }
+                    }
                 }
-                self.transactionViewModel.showPaymentMethodOptions()
-            case .failure(let failure):
-                switch failure {
-                case .failed(let message, let description, let request):
-                    self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
-                case .noInternet(let message, let description, let request):
-                    self.bottomSheetViewModel.transactionFailedWith(error: .networkError(message: message, description: description, request: request))
-                }
+            case .failure(_):
+                DispatchQueue.main.async { self.transactionViewModel.presentPayPalLogoutOption() }
             }
         }
     }
