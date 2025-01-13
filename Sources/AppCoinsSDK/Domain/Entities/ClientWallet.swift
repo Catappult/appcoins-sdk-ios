@@ -1,6 +1,6 @@
 //
-//  Wallet.swift
-//  
+//  ClientWallet.swift
+//
 //
 //  Created by aptoide on 16/05/2023.
 //
@@ -153,7 +153,6 @@ internal class ClientWallet: Wallet, Codable {
     
     
     // Conform to Codable Protocol
-    
     internal enum CodingKeys: CodingKey {
         case name
         case balance
@@ -178,7 +177,7 @@ internal class ClientWallet: Wallet, Codable {
         self.keystore = keystore
     }
     
-    func encode(to encoder: Encoder) throws {
+    internal func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(name, forKey: .name)
         try container.encode(balance, forKey: .balance)

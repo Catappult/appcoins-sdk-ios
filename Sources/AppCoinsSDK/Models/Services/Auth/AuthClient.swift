@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  AuthClient.swift
 //  
 //
 //  Created by aptoide on 28/11/2024.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-internal class AuthClient : AuthService {
+internal class AuthClient: AuthService {
     
     private let endpoint: String
     
@@ -15,7 +15,7 @@ internal class AuthClient : AuthService {
         self.endpoint = endpoint
     }
     
-    internal func loginWithGoogle(code: String, acceptedTC: Bool, consents: [String], completion: @escaping (Result<LoginWithMagicLinkResponseRaw, AuthError>) -> Void) {
+    internal func loginWithGoogle(code: String, acceptedTC: Bool, consents: [String], completion: @escaping (Result<LoginResponseRaw, AuthError>) -> Void) {
         
         if var urlComponents = URLComponents(string: endpoint) {
             urlComponents.path += "/user/authorize"
@@ -38,7 +38,7 @@ internal class AuthClient : AuthService {
                         } else {
                             do {
                                 if let data = data {
-                                    let successResponse = try JSONDecoder().decode(LoginWithMagicLinkResponseRaw.self, from: data)
+                                    let successResponse = try JSONDecoder().decode(LoginResponseRaw.self, from: data)
                                     completion(.success(successResponse))
                                 } else {
                                     completion(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url) at AuthClient.swift:loginWithGoogle")))
@@ -54,7 +54,7 @@ internal class AuthClient : AuthService {
         }
     }
     
-    internal func loginWithMagicLink(code: String, state: String, acceptedTC: Bool, consents: [String], completion: @escaping (Result<LoginWithMagicLinkResponseRaw, AuthError>) -> Void) {
+    internal func loginWithMagicLink(code: String, state: String, acceptedTC: Bool, consents: [String], completion: @escaping (Result<LoginResponseRaw, AuthError>) -> Void) {
         if var urlComponents = URLComponents(string: endpoint) {
             urlComponents.path += "/user/authorize"
             
@@ -76,7 +76,7 @@ internal class AuthClient : AuthService {
                         } else {
                             do {
                                 if let data = data {
-                                    let successResponse = try JSONDecoder().decode(LoginWithMagicLinkResponseRaw.self, from: data)
+                                    let successResponse = try JSONDecoder().decode(LoginResponseRaw.self, from: data)
                                     completion(.success(successResponse))
                                 } else {
                                     completion(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url) at AuthClient.swift:loginWithMagicLink")))

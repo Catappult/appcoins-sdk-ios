@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  UserWallet.swift
+//
 //
 //  Created by aptoide on 16/12/2024.
 //
@@ -21,7 +21,7 @@ internal class UserWallet: Wallet, Codable {
         self.added = Date()
     }
 
-    func getBalance(completion: @escaping (Result<Balance, AppcTransactionError>) -> Void) {
+    internal func getBalance(completion: @escaping (Result<Balance, AppcTransactionError>) -> Void) {
         CurrencyUseCases.shared.getUserCurrency { result in
             switch result {
             case .success(let currency):
@@ -44,24 +44,24 @@ internal class UserWallet: Wallet, Codable {
         }
     }
     
-    func getWalletAddress() -> String { return self.address }
+    internal func getWalletAddress() -> String { return self.address }
     
-    func getAuthToken() -> String? { return "Bearer \(self.authToken)" }
+    internal func getAuthToken() -> String? { return "Bearer \(self.authToken)" }
     
-    func isExpired() -> Bool {
+    internal func isExpired() -> Bool {
         let minutesLived = -self.added.timeIntervalSinceNow / 60
         return minutesLived > 10 // Is expired if it was fetched more than 10 minutes ago
     }
     
     // Conform to Codable Protocol
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
             case address
             case authToken
             case refreshToken
             case added
         }
         
-    required init(from decoder: Decoder) throws {
+    internal required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         address = try container.decode(String.self, forKey: .address)
         authToken = try container.decode(String.self, forKey: .authToken)
@@ -69,7 +69,7 @@ internal class UserWallet: Wallet, Codable {
         added = try container.decode(Date.self, forKey: .added)
     }
     
-    func encode(to encoder: Encoder) throws {
+    internal func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(address, forKey: .address)
         try container.encode(authToken, forKey: .authToken)
