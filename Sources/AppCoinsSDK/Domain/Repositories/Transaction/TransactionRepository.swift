@@ -231,13 +231,11 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
         
         let raw = CreateBillingAgreementTokenRaw(urls: CreateBillingAgreementTokenURLsRaw(returnURL: returnURL, cancelURL: cancelURL))
         
-        billingService.createBillingAgreementToken(wa: wallet, raw: raw) { result in
-            completion(result) }
+        billingService.createBillingAgreementToken(wa: wallet, raw: raw) { result in completion(result) }
     }
     
     internal func cancelBillingAgreementToken(wallet: Wallet, token: String, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
-        billingService.cancelBillingAgreementToken(token: token, wa: wallet) { result in
-                completion(result) }
+        billingService.cancelBillingAgreementToken(token: token, wa: wallet) { result in completion(result) }
     }
     
     internal func cancelBillingAgreement(wallet: Wallet, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
