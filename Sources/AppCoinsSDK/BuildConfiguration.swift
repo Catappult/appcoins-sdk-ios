@@ -55,7 +55,7 @@ internal class BuildConfiguration {
     static internal var aptoideIosServiceURL: String {
         switch environment {
             case .debugSDKDev, .releaseSDKDev:
-                return "https://api.staging.aptoide.com/aptoide-ios"
+                return "https://api.dev.aptoide.com/aptoide-ios"
             case .debugSDKProd, .releaseSDKProd:
                 return "https://api.aptoide.com/aptoide-ios"
         }
@@ -103,6 +103,15 @@ internal class BuildConfiguration {
             return "https://aptoide-mmp.dev.aptoide.com"
         case .debugSDKProd, .releaseSDKProd:
             return "https://aptoide-mmp.aptoide.com"
+        }
+    }
+    
+    static internal var aptoideWebservicesBaseURL: String {
+        switch environment {
+        case .debugSDKDev, .releaseSDKDev:
+            return "https://webservices-devel.aptoide.com/api/7"
+        case .debugSDKProd, .releaseSDKProd:
+            return "https://webservices.aptoide.com/api/7"
         }
     }
     
