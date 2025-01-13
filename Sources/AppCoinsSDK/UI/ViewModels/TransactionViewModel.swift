@@ -60,7 +60,9 @@ internal class TransactionViewModel : ObservableObject {
         self.paymentMethodSelected = nil
         self.showOtherPaymentMethods = false
         self.lastPaymentMethod = nil
+        
         self.isPaypalLogOutPresented = false
+        self.isPaypalLogOutLoadingPresented = false
     }
     
     // Called when a user starts a product purchase
@@ -205,11 +207,10 @@ internal class TransactionViewModel : ObservableObject {
             result in
             
             switch result {
-            case .success(var paymentMethods):
+            case .success(let paymentMethods):
                 var availablePaymentMethods: [PaymentMethod] = []
-                for var method in paymentMethods {
+                for method in paymentMethods {
                     if BuildConfiguration.integratedMethods.map({$0.rawValue}).contains(method.name) {
-                        if method.name == Method.paypalAdyen.rawValue { method.name = Method.paypalDirect.rawValue }
                         if !availablePaymentMethods.contains(where: { $0.name == Method.appc.rawValue }) {
                             availablePaymentMethods.insert(method, at: 0)
                         } else {
