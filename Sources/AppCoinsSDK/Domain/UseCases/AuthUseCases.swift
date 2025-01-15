@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  AuthUseCases.swift
+//
 //
 //  Created by aptoide on 28/11/2024.
 //
@@ -9,15 +9,13 @@ import Foundation
 
 internal class AuthUseCases {
     
-    static var shared : AuthUseCases = AuthUseCases()
+    static var shared: AuthUseCases = AuthUseCases()
     
     private var repository: AuthRepositoryProtocol
     
     private init(repository: AuthRepositoryProtocol = AuthRepository()) {
         self.repository = repository
     }
-    
-    internal func refreshLogin() {}
     
     internal func loginWithGoogle(code: String, acceptedTC: Bool, consents: [String], completion: @escaping (Result<UserWallet, AuthError>) -> Void) {
         self.repository.loginWithGoogle(code: code, acceptedTC: acceptedTC, consents: consents) { result in completion(result) }

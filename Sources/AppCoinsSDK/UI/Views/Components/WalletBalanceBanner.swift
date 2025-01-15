@@ -6,7 +6,6 @@
 //
 
 import Foundation
-
 import SwiftUI
 
 internal struct WalletBalanceBanner: View {

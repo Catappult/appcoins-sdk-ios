@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  AuthRepository.swift
+//
 //
 //  Created by aptoide on 28/11/2024.
 //

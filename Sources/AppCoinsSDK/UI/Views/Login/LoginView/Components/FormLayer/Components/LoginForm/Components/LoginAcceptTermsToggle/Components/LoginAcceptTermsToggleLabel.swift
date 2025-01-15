@@ -19,7 +19,7 @@ internal struct LoginAcceptTermsToggleLabel: View {
     private var labelHeight: CGFloat = 0
     private var labelComponents: [(String, URL?)] = []
     
-    init() {
+    internal init() {
         let acceptTermsTextRanges: [Range<String.Index>] = ranges(Constants.acceptTermsBody, of: "%@")
         
         guard acceptTermsTextRanges.count > 1 else { return } // Ensure the array has at least two elements
@@ -64,7 +64,7 @@ internal struct LoginAcceptTermsToggleLabel: View {
         )
     }
     
-    func ranges(_ searchString: String, of breakString: String) -> [Range<String.Index>] {
+    internal func ranges(_ searchString: String, of breakString: String) -> [Range<String.Index>] {
         var ranges: [Range<String.Index>] = []
         var startIndex = searchString.startIndex
         

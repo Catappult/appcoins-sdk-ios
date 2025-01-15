@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  UserAuthRaw.swift
 //  
 //
 //  Created by aptoide on 28/11/2024.
@@ -76,68 +76,16 @@ internal struct UserAuthRaw: Codable {
     internal func toJSON() -> Data? {
         return try? JSONEncoder().encode(self)
     }
-}
-
-internal enum UserAuthType: String {
-    case Code = "CODE"
-    case Email = "EMAIL"
-    case Google = "GOOGLE"
-}
-
-internal enum UserAuthSupported: String {
-    case WalletJWT = "WALLETJWT"
-    case Code = "CODE:TOKEN:EMAIL"
-    case OAuth2 = "OAUTH2"
-}
-
-internal struct SendMagicLinkResponseRaw: Codable {
     
-    internal let type: String
-    internal let state: String?
-    internal let signup: Bool
-    internal let data: SendMagicLinkResponseDataRaw
-    
-    internal enum CodingKeys: String, CodingKey {
-        case type = "type"
-        case state = "state"
-        case signup = "signup"
-        case data = "data"
+    internal enum UserAuthType: String {
+        case Code = "CODE"
+        case Email = "EMAIL"
+        case Google = "GOOGLE"
     }
-    
-    internal struct SendMagicLinkResponseDataRaw: Codable {
-        internal let type: String
-        internal let method: String
-        
-        internal enum CodingKeys: String, CodingKey {
-            case type = "type"
-            case method = "method"
-        }
-    }
-}
 
-internal struct LoginWithMagicLinkResponseRaw: Codable {
-    
-    internal let type: String
-    internal let state: String?
-    internal let signup: Bool
-    internal let data: LoginWithMagicLinkResponseDataRaw
-    
-    internal enum CodingKeys: String, CodingKey {
-        case type = "type"
-        case state = "state"
-        case signup = "signup"
-        case data = "data"
-    }
-    
-    internal struct LoginWithMagicLinkResponseDataRaw: Codable {
-        internal let address: String
-        internal let authToken: String
-        internal let refreshToken: String
-        
-        internal enum CodingKeys: String, CodingKey {
-            case address = "address"
-            case authToken = "auth_token"
-            case refreshToken = "refresh_token"
-        }
+    internal enum UserAuthSupported: String {
+        case WalletJWT = "WALLETJWT"
+        case Code = "CODE:TOKEN:EMAIL"
+        case OAuth2 = "OAUTH2"
     }
 }

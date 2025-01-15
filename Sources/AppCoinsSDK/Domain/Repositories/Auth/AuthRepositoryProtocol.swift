@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  AuthRepositoryProtocol.swift
 //  
 //
 //  Created by aptoide on 28/11/2024.

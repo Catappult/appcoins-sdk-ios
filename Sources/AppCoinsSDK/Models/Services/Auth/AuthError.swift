@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  AuthError.swift
 //  
 //
 //  Created by aptoide on 12/12/2024.
