@@ -31,7 +31,11 @@ internal class TransactionViewModel : ObservableObject {
     @Published internal var paymentMethodSelected: PaymentMethod?
     @Published internal var showOtherPaymentMethods = false
     @Published internal var lastPaymentMethod: PaymentMethod? = nil
-    @Published internal var paypalLogOut = false // Show Log Out from PayPal option on Quick Screen
+    
+    // Show Log Out from PayPal option on Selected Payment Method Banner
+    @Published internal var isPaypalLogOutPresented = false
+    @Published internal var isPaypalLogOutLoadingPresented = false
+    
     internal var hasBonus: Bool {
         if paymentMethodSelected?.name == Method.appc.rawValue {
             return false
@@ -56,7 +60,9 @@ internal class TransactionViewModel : ObservableObject {
         self.paymentMethodSelected = nil
         self.showOtherPaymentMethods = false
         self.lastPaymentMethod = nil
-        self.paypalLogOut = false
+        
+        self.isPaypalLogOutPresented = false
+        self.isPaypalLogOutLoadingPresented = false
     }
     
     // Called when a user starts a product purchase
@@ -275,6 +281,12 @@ internal class TransactionViewModel : ObservableObject {
             if let selectedMethod = self.transaction?.paymentMethods.first(where: { $0.name == lastPaymentMethod.rawValue && !$0.disabled }) {
                 self.lastPaymentMethod = selectedMethod
                 self.paymentMethodSelected = selectedMethod
+                
+                if selectedMethod.name == Method.paypalDirect.rawValue, self.transactionUseCases.hasBillingAgreement(wallet: wallet) {
+                    self.presentPayPalLogoutOption()
+                } else {
+                    self.hidePayPalLogOutOption()
+                }
             } else {
                 handleFallbackPaymentMethod(for: lastPaymentMethod, wallet: wallet)
             }
@@ -285,7 +297,9 @@ internal class TransactionViewModel : ObservableObject {
                 }
                 
                 if method == .paypalDirect, self.transactionUseCases.hasBillingAgreement(wallet: wallet) {
-                    self.paypalLogOut = true
+                    self.presentPayPalLogoutOption()
+                } else {
+                    self.hidePayPalLogOutOption()
                 }
                 
                 self.showOtherPaymentMethods = true
@@ -338,6 +352,29 @@ internal class TransactionViewModel : ObservableObject {
                 case .failed(let message, let description, let request): completion(.failure(.failed(message: message, description: description, request: request)))
                 case .noInternet(let message, let description, let request): completion(.failure(.noInternet(message: message, description: description, request: request)))
                 }
+            }
+        }
+    }
+    
+    internal func presentPayPalLogoutOption() {
+        DispatchQueue.main.async {
+            self.isPaypalLogOutPresented = true
+            self.isPaypalLogOutLoadingPresented = false
+        }
+    }
+    
+    internal func presentPayPalLogoutLoading() {
+        DispatchQueue.main.async {
+            self.isPaypalLogOutPresented = false
+            self.isPaypalLogOutLoadingPresented = true
+        }
+    }
+    
+    internal func hidePayPalLogOutOption() {
+        DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                self.isPaypalLogOutPresented = false
+                self.isPaypalLogOutLoadingPresented = false
             }
         }
     }
