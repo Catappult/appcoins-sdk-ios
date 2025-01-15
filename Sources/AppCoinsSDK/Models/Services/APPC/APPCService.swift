@@ -10,5 +10,6 @@ import Foundation
 internal protocol APPCService {
     
     func getGuestWallet(guestUID: String, result: @escaping (Result<GuestWalletRaw, APPCServiceError>) -> Void)
+    func refreshUserWallet(refreshToken: String, result: @escaping (Result<UserWalletRaw, APPCServiceError>) -> Void)
     
 }
