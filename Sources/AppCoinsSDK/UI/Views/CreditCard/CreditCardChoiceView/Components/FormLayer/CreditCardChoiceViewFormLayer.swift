@@ -22,7 +22,7 @@ internal struct CreditCardChoiceViewFormLayer: View {
     internal var body: some View {
         VStack(spacing: 0) {
             if let storedPaymentMethods = adyenController.session?.sessionContext.paymentMethods.stored {
-                OverflowAnimationWrapper(height: viewModel.orientation == .landscape ? (UIScreen.main.bounds.height * 0.9) - 78 - 72 : 420 - 78 - 72, offset: 72) {
+                OverflowAnimationWrapper(height: viewModel.orientation == .landscape ? (UIScreen.main.bounds.height * 0.9) - 86 - 72 : 420 - 86 - 72, offset: 72) {
                     VStack(spacing: 0) {
                         if storedPaymentMethods.count == 1, let paymentMethod = storedPaymentMethods.first as? StoredCardPaymentMethod {
                             SingleStoredCard(paymentMethod: paymentMethod)
@@ -44,7 +44,7 @@ internal struct CreditCardChoiceViewFormLayer: View {
                     }.ignoresSafeArea(.all)
                 }
                 
-                HStack{}.frame(height: 78)
+                HStack{}.frame(height: 86)
             }
         }
     }

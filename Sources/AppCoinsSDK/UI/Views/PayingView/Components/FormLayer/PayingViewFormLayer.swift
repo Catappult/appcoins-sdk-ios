@@ -18,7 +18,7 @@ internal struct PayingViewFormLayer: View {
     internal var body: some View {
         VStack(spacing: 0) {
             if #available(iOS 17.0, *) {
-                OverflowAnimationWrapper(height: viewModel.orientation == .landscape ? (UIScreen.main.bounds.height * 0.9) - 78 - 72 : 420 - 78 - 72, offset: 72) {
+                OverflowAnimationWrapper(height: viewModel.orientation == .landscape ? (UIScreen.main.bounds.height * 0.9) - 86 - 72 : 420 - 86 - 72, offset: 72) {
                     VStack(spacing: 0) {
                         PurchaseBonusBanner()
                         
@@ -48,7 +48,7 @@ internal struct PayingViewFormLayer: View {
                 .id(formLayerID)
             }
             
-            HStack{}.frame(height: 78)
+            HStack{}.frame(height: 86)
         }
     }
 }

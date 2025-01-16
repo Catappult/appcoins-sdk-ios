@@ -14,7 +14,7 @@ internal struct LoginViewFormLayer: View {
     
     internal var body: some View {
         VStack(spacing: 0) {
-            OverflowAnimationWrapper(height: viewModel.orientation == .landscape ? UIScreen.main.bounds.height * 0.9 - 78 - 72 : 420 - 78 - 72, offset: 72) {
+            OverflowAnimationWrapper(height: viewModel.orientation == .landscape ? UIScreen.main.bounds.height * 0.9 - 86 - 72 : 420 - 86 - 72, offset: 72) {
                 if viewModel.orientation == .landscape && authViewModel.isTextFieldFocused {
                     FocusedMagicLink()
                 } else {
@@ -22,7 +22,7 @@ internal struct LoginViewFormLayer: View {
                 }
             }
             
-            HStack{}.frame(height: 78)
+            HStack{}.frame(height: 86)
         }
     }
 }
