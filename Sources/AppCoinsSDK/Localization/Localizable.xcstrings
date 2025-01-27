@@ -5,9 +5,189 @@
       "comment" : "I accept Aptoide's %@ and %@",
       "extractionState" : "manual",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أوافق على %@ و %@ لـ Aptoide"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "I accept Aptoide's %@ and %@"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ich akzeptiere die %@ und %@ von Aptoide"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "I accept Aptoide's %@ and %@"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "I accept Aptoide's %@ and %@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "I accept Aptoide's %@ and %@"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "I accept Aptoide's %@ and %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "J'accepte les %@ et %@ d'Aptoide"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "I accept Aptoide's %@ and %@"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "I accept Aptoide's %@ and %@"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "I accept Aptoide's %@ and %@"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Acconsento ai %@ e all'%@ di Aptoide"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "私はAptoideの%@と%@を受け入れます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aptoide의 %@와 %@를 수락합니다"
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मी Aptoide चे %@ आणि %@ मान्य करतो"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "I accept Aptoide's %@ and %@"
+          }
+        },
+        "my" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "I accept Aptoide's %@ and %@"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "I accept Aptoide's %@ and %@"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "I accept Aptoide's %@ and %@"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "I accept Aptoide's %@ and %@"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "I accept Aptoide's %@ and %@"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "I accept Aptoide's %@ and %@"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "I accept Aptoide's %@ and %@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Я принимаю %@ и %@ Aptoide"
+          }
+        },
+        "sr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "I accept Aptoide's %@ and %@"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "I accept Aptoide's %@ and %@"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "I accept Aptoide's %@ and %@"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Я приймаю %@ та %@ Aptoide"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "I accept Aptoide's %@ and %@"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "我接受 Aptoide 的 %@ 和 %@"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "I accept Aptoide's %@ and %@"
           }
         }
@@ -17,9 +197,189 @@
       "comment" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy",
       "extractionState" : "manual",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لطفًا، اقرأ ووافق على الشروط والأحكام وسياسة الخصوصية لـ Aptoide"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bitte lies und akzeptiere die AGB und die Datenschutzrichtlinie von Aptoide"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Veuillez lire et accepter les conditions générales et la politique de confidentialité d'Aptoide."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Leggi e accetta i Termini e condizioni e l'Informativa sulla privacy di Aptoide"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aptoideの利用規約とプライバシーポリシーに同意します。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aptoide의 이용 약관 및 개인정보 보호정책을 읽고 동의해 주시기 바랍니다"
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "कृपया Aptoide चे गोपनीयता धोरण आणि अटी व शर्ती वाचून मान्य करा"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
+          }
+        },
+        "my" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пожалуйста, прочитайте и примите Условия и Положения и Политику конфиденциальности Aptoide"
+          }
+        },
+        "sr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Будь ласка, прочитайте та прийміть Загальні положення та умови та Політику конфіденційності Aptoide"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "请阅读并接受 Aptoide 的《条款与条件》和《隐私政策》"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
           }
         }
@@ -799,8 +1159,8 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You'll get a bonus on every purchase!"
+            "state" : "translated",
+            "value" : "ستحصل على مكافأة في كل مشترياتك!"
           }
         },
         "bn" : {
@@ -811,8 +1171,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You'll get a bonus on every purchase!"
+            "state" : "translated",
+            "value" : "Du erhältst einen Bonus auf jeden Einkauf!"
           }
         },
         "el" : {
@@ -841,8 +1201,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You'll get a bonus on every purchase!"
+            "state" : "translated",
+            "value" : "Vous recevrez un bonus pour chaque achat !"
           }
         },
         "hi" : {
@@ -865,26 +1225,26 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You'll get a bonus on every purchase!"
+            "state" : "translated",
+            "value" : "Ricevi un bonus su ogni acquisto!"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You'll get a bonus on every purchase!"
+            "state" : "translated",
+            "value" : "購入のたびにボーナスがもらえます！"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You'll get a bonus on every purchase!"
+            "state" : "translated",
+            "value" : "모든 구매 시 보너스를 받으실 수 있습니다!"
           }
         },
         "mr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You'll get a bonus on every purchase!"
+            "state" : "translated",
+            "value" : "आपणांस सर्व खरेदीवर मिळेल बोनस!"
           }
         },
         "ms" : {
@@ -937,8 +1297,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You'll get a bonus on every purchase!"
+            "state" : "translated",
+            "value" : "Вы получите бонус за каждую покупку!"
           }
         },
         "sr" : {
@@ -961,8 +1321,8 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You'll get a bonus on every purchase!"
+            "state" : "translated",
+            "value" : "Ви отримуватимете бонус на кожну покупку!"
           }
         },
         "vi" : {
@@ -973,8 +1333,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You'll get a bonus on every purchase!"
+            "state" : "translated",
+            "value" : "每次购买都能获得奖金！"
           }
         },
         "zh-Hant" : {
@@ -1759,8 +2119,8 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Check your email"
+            "state" : "translated",
+            "value" : "تفقد بريدك الإلكتروني"
           }
         },
         "bn" : {
@@ -1771,8 +2131,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Check your email"
+            "state" : "translated",
+            "value" : "Überprüfe deine E-Mails"
           }
         },
         "el" : {
@@ -1801,8 +2161,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Check your email"
+            "state" : "translated",
+            "value" : "Vérifiez votre courriel"
           }
         },
         "hi" : {
@@ -1825,26 +2185,26 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Check your email"
+            "state" : "translated",
+            "value" : "Controlla la tua email"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Check your email"
+            "state" : "translated",
+            "value" : "メールを確認してください"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Check your email"
+            "state" : "translated",
+            "value" : "이메일을 확인해 주세요"
           }
         },
         "mr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Check your email"
+            "state" : "translated",
+            "value" : "आपली ईमेल पहा"
           }
         },
         "ms" : {
@@ -1897,8 +2257,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Check your email"
+            "state" : "translated",
+            "value" : "Проверьте свою электронную почту"
           }
         },
         "sr" : {
@@ -1921,8 +2281,8 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Check your email"
+            "state" : "translated",
+            "value" : "Перевірте електронну пошту"
           }
         },
         "vi" : {
@@ -1933,8 +2293,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Check your email"
+            "state" : "translated",
+            "value" : "请检查您的收件箱"
           }
         },
         "zh-Hant" : {
@@ -2143,8 +2503,8 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Choose your payment method"
+            "state" : "translated",
+            "value" : "اختر وسيلة الدفع الخاصة بك"
           }
         },
         "bn" : {
@@ -2155,8 +2515,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Choose your payment method"
+            "state" : "translated",
+            "value" : "Wähle deine Zahlungsmethode"
           }
         },
         "el" : {
@@ -2185,8 +2545,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Choose your payment method"
+            "state" : "translated",
+            "value" : "Choisissez votre mode de paiement"
           }
         },
         "hi" : {
@@ -2209,26 +2569,26 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Choose your payment method"
+            "state" : "translated",
+            "value" : "Scegli il tuo metodo di pagamento"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Choose your payment method"
+            "state" : "translated",
+            "value" : "支払い方法を選択"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Choose your payment method"
+            "state" : "translated",
+            "value" : "결제 방법을 선택하세요"
           }
         },
         "mr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Choose your payment method"
+            "state" : "translated",
+            "value" : "आपली पेमेंट पद्धत निवडा"
           }
         },
         "ms" : {
@@ -2281,8 +2641,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Choose your payment method"
+            "state" : "translated",
+            "value" : "Выберите ваш способ оплаты"
           }
         },
         "sr" : {
@@ -2305,8 +2665,8 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Choose your payment method"
+            "state" : "translated",
+            "value" : "Виберіть спосіб оплати"
           }
         },
         "vi" : {
@@ -2317,8 +2677,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Choose your payment method"
+            "state" : "translated",
+            "value" : "请选择您的付款方式"
           }
         },
         "zh-Hant" : {
@@ -2335,8 +2695,8 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
+            "state" : "translated",
+            "value" : "الرمز"
           }
         },
         "bn" : {
@@ -2347,7 +2707,7 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "Code"
           }
         },
@@ -2377,7 +2737,7 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "Code"
           }
         },
@@ -2401,26 +2761,26 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
+            "state" : "translated",
+            "value" : "Codice"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
+            "state" : "translated",
+            "value" : "コード"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
+            "state" : "translated",
+            "value" : "코드"
           }
         },
         "mr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
+            "state" : "translated",
+            "value" : "कोड"
           }
         },
         "ms" : {
@@ -2473,8 +2833,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
+            "state" : "translated",
+            "value" : "Код"
           }
         },
         "sr" : {
@@ -2497,8 +2857,8 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
+            "state" : "translated",
+            "value" : "Код"
           }
         },
         "vi" : {
@@ -2509,8 +2869,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
+            "state" : "translated",
+            "value" : "验证码"
           }
         },
         "zh-Hant" : {
@@ -2525,9 +2885,189 @@
       "comment" : "Are you sure you want to log out?",
       "extractionState" : "manual",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "هل تريد حقًا تسجيل الخروج؟"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Are you sure you want to log out?"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Möchtest du dich wirklich ausloggen?"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Are you sure you want to log out?"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Are you sure you want to log out?"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Are you sure you want to log out?"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Are you sure you want to log out?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Êtes-vous sûr de vouloir vous déconnecter ?"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Are you sure you want to log out?"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Are you sure you want to log out?"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Are you sure you want to log out?"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sei sicuro di volerti disconnettere?"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "本当にログアウトしますか？"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "로그아웃하시겠습니까?"
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नक्की लॉग आऊट करायचय?"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Are you sure you want to log out?"
+          }
+        },
+        "my" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Are you sure you want to log out?"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Are you sure you want to log out?"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Are you sure you want to log out?"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Are you sure you want to log out?"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Are you sure you want to log out?"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Are you sure you want to log out?"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Are you sure you want to log out?"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы уверены, что хотите выйти?"
+          }
+        },
+        "sr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Are you sure you want to log out?"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Are you sure you want to log out?"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Are you sure you want to log out?"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ви впевнені, що хочете вийти?"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Are you sure you want to log out?"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "您确定要退出登录吗？"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "Are you sure you want to log out?"
           }
         }
@@ -2537,9 +3077,189 @@
       "comment" : "I authorize Aptoide to use my email for marketing purposes",
       "extractionState" : "manual",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أنا أفوّض Aptoide لاستخدام بريدي الإلكتروني لأغراض تسويقية"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "I authorize Aptoide to use my email for marketing purposes"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ich bin damit einverstanden, dass Aptoide meine E-Mail-Adresse für Marketingzwecke verwendet"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "I authorize Aptoide to use my email for marketing purposes"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "I authorize Aptoide to use my email for marketing purposes"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "I authorize Aptoide to use my email for marketing purposes"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "I authorize Aptoide to use my email for marketing purposes"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "J'autorise Aptoide à utiliser mon courriel à des fins marketing"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "I authorize Aptoide to use my email for marketing purposes"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "I authorize Aptoide to use my email for marketing purposes"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "I authorize Aptoide to use my email for marketing purposes"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Autorizzo Aptoide a usare la mia email a scopi di marketing"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aptoideが私のEメールをマーケティング目的で使用することを許可します。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aptoide가 마케팅 목적으로 제 이메일을 사용할 수 있도록 허가합니다"
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मी Aptoideला माझी ईमेल वितरण हेतुसाठी वापरण्याची परवानगी देत आहे"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "I authorize Aptoide to use my email for marketing purposes"
+          }
+        },
+        "my" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "I authorize Aptoide to use my email for marketing purposes"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "I authorize Aptoide to use my email for marketing purposes"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "I authorize Aptoide to use my email for marketing purposes"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "I authorize Aptoide to use my email for marketing purposes"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "I authorize Aptoide to use my email for marketing purposes"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "I authorize Aptoide to use my email for marketing purposes"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "I authorize Aptoide to use my email for marketing purposes"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Я разрешаю Aptoide использовать мой адрес электронной почты в маркетинговых целях"
+          }
+        },
+        "sr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "I authorize Aptoide to use my email for marketing purposes"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "I authorize Aptoide to use my email for marketing purposes"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "I authorize Aptoide to use my email for marketing purposes"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Я дозволяю Aptoide використовувати мою електронну адресу в маркетингових цілях"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "I authorize Aptoide to use my email for marketing purposes"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "我授权 Aptoide 使用我的电子邮箱用于营销目的"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "I authorize Aptoide to use my email for marketing purposes"
           }
         }
@@ -2551,8 +3271,8 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Continue"
+            "state" : "translated",
+            "value" : "متابعة"
           }
         },
         "bn" : {
@@ -2563,8 +3283,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Continue"
+            "state" : "translated",
+            "value" : "Fortfahren"
           }
         },
         "el" : {
@@ -2593,8 +3313,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Continue"
+            "state" : "translated",
+            "value" : "Continuer"
           }
         },
         "hi" : {
@@ -2617,26 +3337,26 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Continue"
+            "state" : "translated",
+            "value" : "Continua"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Continue"
+            "state" : "translated",
+            "value" : "続ける"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Continue"
+            "state" : "translated",
+            "value" : "계속"
           }
         },
         "mr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Continue"
+            "state" : "translated",
+            "value" : "चालू ठेवा"
           }
         },
         "ms" : {
@@ -2689,8 +3409,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Continue"
+            "state" : "translated",
+            "value" : "Продолжить"
           }
         },
         "sr" : {
@@ -2713,8 +3433,8 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Continue"
+            "state" : "translated",
+            "value" : "Продовжити"
           }
         },
         "vi" : {
@@ -2725,8 +3445,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Continue"
+            "state" : "translated",
+            "value" : "继续"
           }
         },
         "zh-Hant" : {
@@ -2935,8 +3655,8 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Email"
+            "state" : "translated",
+            "value" : "البريد الإلكتروني"
           }
         },
         "bn" : {
@@ -2947,8 +3667,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Email"
+            "state" : "translated",
+            "value" : "E-Mail"
           }
         },
         "el" : {
@@ -2977,8 +3697,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Email"
+            "state" : "translated",
+            "value" : "Courriel"
           }
         },
         "hi" : {
@@ -3001,26 +3721,26 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Email"
+            "state" : "translated",
+            "value" : "Indirizzo email"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Email"
+            "state" : "translated",
+            "value" : "メールアドレス"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Email"
+            "state" : "translated",
+            "value" : "이메일"
           }
         },
         "mr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Email"
+            "state" : "translated",
+            "value" : "ईमेल"
           }
         },
         "ms" : {
@@ -3073,7 +3793,7 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "Email"
           }
         },
@@ -3097,8 +3817,8 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Email"
+            "state" : "translated",
+            "value" : "Пошта"
           }
         },
         "vi" : {
@@ -3109,8 +3829,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Email"
+            "state" : "translated",
+            "value" : "电子邮箱"
           }
         },
         "zh-Hant" : {
@@ -3319,8 +4039,8 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your code is incorrect."
+            "state" : "translated",
+            "value" : "الرمز غير صحيح."
           }
         },
         "bn" : {
@@ -3331,8 +4051,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your code is incorrect."
+            "state" : "translated",
+            "value" : "Dein Code ist falsch."
           }
         },
         "el" : {
@@ -3361,8 +4081,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your code is incorrect."
+            "state" : "translated",
+            "value" : "Votre code est incorrect."
           }
         },
         "hi" : {
@@ -3385,26 +4105,26 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your code is incorrect."
+            "state" : "translated",
+            "value" : "Il tuo codice non è corretto."
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your code is incorrect."
+            "state" : "translated",
+            "value" : "コードが正しくありません。"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your code is incorrect."
+            "state" : "translated",
+            "value" : "코드가 잘못되었습니다."
           }
         },
         "mr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your code is incorrect."
+            "state" : "translated",
+            "value" : "कोड चूक आहे."
           }
         },
         "ms" : {
@@ -3457,8 +4177,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your code is incorrect."
+            "state" : "translated",
+            "value" : "Ваш код неверен."
           }
         },
         "sr" : {
@@ -3481,8 +4201,8 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your code is incorrect."
+            "state" : "translated",
+            "value" : "Ваш код невірний."
           }
         },
         "vi" : {
@@ -3493,8 +4213,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your code is incorrect."
+            "state" : "translated",
+            "value" : "您的验证码错误。"
           }
         },
         "zh-Hant" : {
@@ -3895,8 +4615,8 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Invalid email address."
+            "state" : "translated",
+            "value" : "بريد إلكتروني غير صالح."
           }
         },
         "bn" : {
@@ -3907,8 +4627,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Invalid email address."
+            "state" : "translated",
+            "value" : "Ungültige E-Mail-Adresse."
           }
         },
         "el" : {
@@ -3937,8 +4657,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Invalid email address."
+            "state" : "translated",
+            "value" : "Adresse courriel non valide."
           }
         },
         "hi" : {
@@ -3961,26 +4681,26 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Invalid email address."
+            "state" : "translated",
+            "value" : "Indirizzo email non valido."
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Invalid email address."
+            "state" : "translated",
+            "value" : "メールアドレスが無効です。"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Invalid email address."
+            "state" : "translated",
+            "value" : "잘못된 이메일 주소입니다."
           }
         },
         "mr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Invalid email address."
+            "state" : "translated",
+            "value" : "अवैध ईमेल पत्ता."
           }
         },
         "ms" : {
@@ -4033,8 +4753,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Invalid email address."
+            "state" : "translated",
+            "value" : "Неверный адрес электронной почты."
           }
         },
         "sr" : {
@@ -4057,8 +4777,8 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Invalid email address."
+            "state" : "translated",
+            "value" : "Неправильна електронна адреса."
           }
         },
         "vi" : {
@@ -4069,8 +4789,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Invalid email address."
+            "state" : "translated",
+            "value" : "电子邮箱地址无效。"
           }
         },
         "zh-Hant" : {
@@ -4277,9 +4997,189 @@
       "comment" : "Login Failed",
       "extractionState" : "manual",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "فشل تسجيل الدخول"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Login Failed"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Login fehlgeschlagen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Login Failed"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Login Failed"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Login Failed"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Login Failed"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La connexion a échoué"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Login Failed"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Login Failed"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Login Failed"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Login non riuscito"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ログイン失敗"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "로그인 실패"
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "लॉगइन असफल"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Login Failed"
+          }
+        },
+        "my" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Login Failed"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Login Failed"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Login Failed"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Login Failed"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Login Failed"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Login Failed"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Login Failed"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вход не выполнен"
+          }
+        },
+        "sr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Login Failed"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Login Failed"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Login Failed"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Помилка входу"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Login Failed"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "登录失败"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "Login Failed"
           }
         }
@@ -4289,9 +5189,189 @@
       "comment" : "Missing fields",
       "extractionState" : "manual",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "خانات ناقصة"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Missing fields"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fehlende Felder"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Missing fields"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Missing fields"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Missing fields"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Missing fields"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Champs manquants"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Missing fields"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Missing fields"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Missing fields"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Campi mancanti"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "記入漏れ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "누락된 필드"
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "जागा रिकाम्या आहेत"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Missing fields"
+          }
+        },
+        "my" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Missing fields"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Missing fields"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Missing fields"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Missing fields"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Missing fields"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Missing fields"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Missing fields"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отсутствующие поля"
+          }
+        },
+        "sr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Missing fields"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Missing fields"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Missing fields"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Відсутні поля"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Missing fields"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "缺少字段"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "Missing fields"
           }
         }
@@ -4687,8 +5767,8 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
+            "state" : "translated",
+            "value" : "أو المتابعة مع:"
           }
         },
         "bn" : {
@@ -4699,8 +5779,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
+            "state" : "translated",
+            "value" : "Oder fortfahren mit:"
           }
         },
         "el" : {
@@ -4729,8 +5809,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
+            "state" : "translated",
+            "value" : "Ou continuez avec :"
           }
         },
         "hi" : {
@@ -4753,26 +5833,26 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
+            "state" : "translated",
+            "value" : "O continua con:"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
+            "state" : "translated",
+            "value" : "または次で続ける："
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
+            "state" : "translated",
+            "value" : "또는 계속 진행:"
           }
         },
         "mr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
+            "state" : "translated",
+            "value" : "किंवा ह्यासह चालू ठेवा:"
           }
         },
         "ms" : {
@@ -4825,8 +5905,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
+            "state" : "translated",
+            "value" : "Или продолжить с:"
           }
         },
         "sr" : {
@@ -4849,8 +5929,8 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
+            "state" : "translated",
+            "value" : "Або продовжити:"
           }
         },
         "vi" : {
@@ -4861,8 +5941,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
+            "state" : "translated",
+            "value" : "或使用以下方式继续登录："
           }
         },
         "zh-Hant" : {
@@ -5069,9 +6149,189 @@
       "comment" : "Privacy Policy",
       "extractionState" : "manual",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "سياسة الخصوصية"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datenschutzrichtlinie"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Privacy Policy"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Politique de confidentialité"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Informativa sulla privacy"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "プライバシー ポリシー"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "개인정보 보호정책"
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "गोपनीयता धोरण"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "my" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Политика конфиденциальности"
+          }
+        },
+        "sr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Політика конфіденційності"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Privacy Policy"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "隐私政策"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "Privacy Policy"
           }
         }
@@ -5275,26 +6535,26 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "مكافأة المشتريات: %@ AppCoins Credits"
+            "state" : "translated",
+            "value" : "*مكافأة مشتريات:* %@ برصيد AppCoins Credits"
           }
         },
         "bn" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Purchase Bonus: %@ in AppCoins Credits"
+            "value" : "*Purchase Bonus:* %@ in AppCoins Credits"
           }
         },
         "de" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Kaufbonus: %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "*Kaufbonus:* %@ als AppCoins Credits"
           }
         },
         "el" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Bonus Αγοράς: %@ σε AppCoins Credits"
+            "state" : "new",
+            "value" : "*Purchase Bonus:* %@ in AppCoins Credits"
           }
         },
         "en" : {
@@ -5305,158 +6565,158 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Bonus de Compra: %@ en AppCoins Credits"
+            "state" : "new",
+            "value" : "*Purchase Bonus:* %@ in AppCoins Credits"
           }
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "بونوس بخرید: %@ در AppCoins Credits"
+            "state" : "new",
+            "value" : "*Purchase Bonus:* %@ in AppCoins Credits"
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Bonus d'achat : %@ en AppCoins Credits"
+            "state" : "translated",
+            "value" : "*Bonus d'achat :* %@ en AppCoins Credits"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Purchase Bonus: %@ in AppCoins Credits"
+            "value" : "*Purchase Bonus:* %@ in AppCoins Credits"
           }
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Vásárlás utáni bónusz: %@ AppCoins kreditben"
+            "state" : "new",
+            "value" : "*Purchase Bonus:* %@ in AppCoins Credits"
           }
         },
         "id" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Bonus Pembelian: Kredit AppCoins %@"
+            "state" : "new",
+            "value" : "*Purchase Bonus:* %@ in AppCoins Credits"
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Bonus acquisti: %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "*Bonus acquisti:* %@ in AppCoins Credits"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "購入ボーナス：%@のAppCoinsクレジット"
+            "state" : "translated",
+            "value" : "*購入ボーナス:* %@のAppCoinsクレジット"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "구매 보너스: AppCoins 크레디트로 %@"
+            "state" : "translated",
+            "value" : "*구매 보너스:* AppCoins 크레딧에서 %@"
           }
         },
         "mr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "खरेदी बोनस: अॅपकॉईन्स क्रेडीटस मध्ये %@"
+            "state" : "translated",
+            "value" : "*खरेदी बोनस: अॅपकॉईन्स क्रेडीटस मध्ये %@"
           }
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Bonus Pembelian: %@ dalam Kredit AppCoins"
+            "state" : "new",
+            "value" : "*Purchase Bonus:* %@ in AppCoins Credits"
           }
         },
         "my" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "ဝယ္ယူမႈေဘာနပ္စ္ - %@ ကို AppCoins Credits အေနျဖင့္"
+            "state" : "new",
+            "value" : "*Purchase Bonus:* %@ in AppCoins Credits"
           }
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Aankoopbonus: %@ in AppCoins Credits"
+            "state" : "new",
+            "value" : "*Purchase Bonus:* %@ in AppCoins Credits"
           }
         },
         "pa" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Purchase Bonus: %@ in AppCoins Credits"
+            "value" : "*Purchase Bonus:* %@ in AppCoins Credits"
           }
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Bonus zakupowy: %@ w AppCoins Credits"
+            "state" : "new",
+            "value" : "*Purchase Bonus:* %@ in AppCoins Credits"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Bônus de Compra: %@ em Créditos AppCoins"
+            "state" : "new",
+            "value" : "*Purchase Bonus:* %@ in AppCoins Credits"
           }
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Bónus de compra: %@ em AppCoins Credits"
+            "state" : "new",
+            "value" : "*Purchase Bonus:* %@ in AppCoins Credits"
           }
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Bonus la achiziție: %@ în AppCoins Credits"
+            "state" : "new",
+            "value" : "*Purchase Bonus:* %@ in AppCoins Credits"
           }
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Бонус за покупку: %@ в AppCoins Credits"
+            "state" : "translated",
+            "value" : "*Бонус за покупку:* %@ в AppCoins Credits"
           }
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Kupite bonus od: %@ u AppCoins Credits"
+            "state" : "new",
+            "value" : "*Purchase Bonus:* %@ in AppCoins Credits"
           }
         },
         "th" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "โบนัสการซื้อ: %@ ในเครดิต AppCoins"
+            "state" : "new",
+            "value" : "*Purchase Bonus:* %@ in AppCoins Credits"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Satın Alma Bonusu: %@ AppCoins Kredisi"
+            "state" : "new",
+            "value" : "*Purchase Bonus:* %@ in AppCoins Credits"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Бонус за покупку: %@ в AppCoin Credits"
+            "state" : "translated",
+            "value" : "*Бонус за покупку:* %@ в AppCoin Credits"
           }
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Tiền thưởng mua hàng: %@ bằng AppCoins Credits"
+            "state" : "new",
+            "value" : "*Purchase Bonus:* %@ in AppCoins Credits"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "购买奖金：价值%@的AppCoins 积分"
+            "state" : "translated",
+            "value" : "*购买奖金：* 价值 %@ 的 AppCoins 积分"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Purchase Bonus: %@ in AppCoins Credits"
+            "value" : "*Purchase Bonus:* %@ in AppCoins Credits"
           }
         }
       }
@@ -5467,8 +6727,8 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Redeem bonus"
+            "state" : "translated",
+            "value" : "استعادة المكافأة"
           }
         },
         "bn" : {
@@ -5479,8 +6739,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Redeem bonus"
+            "state" : "translated",
+            "value" : "Bonus einlösen"
           }
         },
         "el" : {
@@ -5509,8 +6769,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Redeem bonus"
+            "state" : "translated",
+            "value" : "Échanger le bonus"
           }
         },
         "hi" : {
@@ -5533,26 +6793,26 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Redeem bonus"
+            "state" : "translated",
+            "value" : "Riscatta il bonus"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Redeem bonus"
+            "state" : "translated",
+            "value" : "ボーナスを使う"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Redeem bonus"
+            "state" : "translated",
+            "value" : "상환 보너스"
           }
         },
         "mr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Redeem bonus"
+            "state" : "translated",
+            "value" : "बोनस रिडीम करा"
           }
         },
         "ms" : {
@@ -5605,8 +6865,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Redeem bonus"
+            "state" : "translated",
+            "value" : "Использовать бонус"
           }
         },
         "sr" : {
@@ -5629,8 +6889,8 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Redeem bonus"
+            "state" : "translated",
+            "value" : "Активувати бонус"
           }
         },
         "vi" : {
@@ -5641,8 +6901,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Redeem bonus"
+            "state" : "translated",
+            "value" : "兑换奖金"
           }
         },
         "zh-Hant" : {
@@ -5657,9 +6917,189 @@
       "comment" : "Re-send Email",
       "extractionState" : "manual",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "رعادة إرسال البريد الإلكتروني"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Re-send Email"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "E-Mail erneut senden"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Re-send Email"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Re-send Email"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Re-send Email"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Re-send Email"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Renvoyer le courriel"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Re-send Email"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Re-send Email"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Re-send Email"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reinvia email"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "メールを再送"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이메일 다시 보내기"
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ईमेल पुन्हा पाठवा"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Re-send Email"
+          }
+        },
+        "my" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Re-send Email"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Re-send Email"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Re-send Email"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Re-send Email"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Re-send Email"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Re-send Email"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Re-send Email"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Повторно отправить письмо"
+          }
+        },
+        "sr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Re-send Email"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Re-send Email"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Re-send Email"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Повторно надіслати лист"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Re-send Email"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重新发送电子邮件"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "Re-send Email"
           }
         }
@@ -5669,9 +7109,189 @@
       "comment" : "If you have not received an email, you can retry again in %@ seconds.",
       "extractionState" : "manual",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إذا لم تكن قد تلقيت رسالة البريد الإلكترني، يمكنك المحاولة ثانية خلال %@ تانية."
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "If you have not received an email, you can retry again in %@ seconds."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wenn du keine E-Mail erhalten hast, kannst du es in %@ Sekunden erneut versuchen."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "If you have not received an email, you can retry again in %@ seconds."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "If you have not received an email, you can retry again in %@ seconds."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "If you have not received an email, you can retry again in %@ seconds."
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "If you have not received an email, you can retry again in %@ seconds."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Si vous n'avez pas reçu de courriel, vous pouvez réessayer dans %@ secondes."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "If you have not received an email, you can retry again in %@ seconds."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "If you have not received an email, you can retry again in %@ seconds."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "If you have not received an email, you can retry again in %@ seconds."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se non hai ricevuto l'email, puoi riprovare tra %@ secondi."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "メールが届かない場合、%@秒後に再試行できます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이메일을 받지 못한 경우 %@초 후에 다시 시도해 주세요."
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "जर आपणांस ईमेल मिळाली नाही, तर आपण %@ सेकंदात पुन्हा प्रयत्न करु शकता."
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "If you have not received an email, you can retry again in %@ seconds."
+          }
+        },
+        "my" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "If you have not received an email, you can retry again in %@ seconds."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "If you have not received an email, you can retry again in %@ seconds."
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "If you have not received an email, you can retry again in %@ seconds."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "If you have not received an email, you can retry again in %@ seconds."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "If you have not received an email, you can retry again in %@ seconds."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "If you have not received an email, you can retry again in %@ seconds."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "If you have not received an email, you can retry again in %@ seconds."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Если вы не получили электронное письмо, вы можете повторить попытку через %@ секунд."
+          }
+        },
+        "sr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "If you have not received an email, you can retry again in %@ seconds."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "If you have not received an email, you can retry again in %@ seconds."
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "If you have not received an email, you can retry again in %@ seconds."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Якщо ви не отримали листа, можете повторити спробу через %@ секунд."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "If you have not received an email, you can retry again in %@ seconds."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "如果您尚未收到电子邮件，可以在 %@ 秒后重试。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "If you have not received an email, you can retry again in %@ seconds."
           }
         }
@@ -5875,8 +7495,8 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Select payment method"
+            "state" : "translated",
+            "value" : "اختر وسيلة الدفع"
           }
         },
         "bn" : {
@@ -5887,8 +7507,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Select payment method"
+            "state" : "translated",
+            "value" : "Zahlungsmethode auswählen"
           }
         },
         "el" : {
@@ -5917,8 +7537,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Select payment method"
+            "state" : "translated",
+            "value" : "Sélectionnez une méthode de paiement"
           }
         },
         "hi" : {
@@ -5941,26 +7561,26 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Select payment method"
+            "state" : "translated",
+            "value" : "Seleziona metodo di pagamento"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Select payment method"
+            "state" : "translated",
+            "value" : "支払い方法の洗濯"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Select payment method"
+            "state" : "translated",
+            "value" : "결제 방법 선택"
           }
         },
         "mr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Select payment method"
+            "state" : "translated",
+            "value" : "पेमेंट पद्धत निवडा"
           }
         },
         "ms" : {
@@ -6013,8 +7633,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Select payment method"
+            "state" : "translated",
+            "value" : "Выбрать способ оплаты"
           }
         },
         "sr" : {
@@ -6037,8 +7657,8 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Select payment method"
+            "state" : "translated",
+            "value" : "Оберіть спосіб оплати"
           }
         },
         "vi" : {
@@ -6049,8 +7669,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Select payment method"
+            "state" : "translated",
+            "value" : "选择付款方式"
           }
         },
         "zh-Hant" : {
@@ -6067,8 +7687,8 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent a code to"
+            "state" : "translated",
+            "value" : "أرسلنا الرمز إلى"
           }
         },
         "bn" : {
@@ -6079,8 +7699,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent a code to"
+            "state" : "translated",
+            "value" : "Wir haben einen Code gesendet an"
           }
         },
         "el" : {
@@ -6109,8 +7729,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent a code to"
+            "state" : "translated",
+            "value" : "Nous avons envoyé un code à"
           }
         },
         "hi" : {
@@ -6133,26 +7753,26 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent a code to"
+            "state" : "translated",
+            "value" : "Abbiamo inviato un codice a"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent a code to"
+            "state" : "translated",
+            "value" : "コードの送信先："
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent a code to"
+            "state" : "translated",
+            "value" : "코드를 보냈습니다"
           }
         },
         "mr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent a code to"
+            "state" : "translated",
+            "value" : "ह्यावर कोड पाठविला आहे"
           }
         },
         "ms" : {
@@ -6205,8 +7825,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent a code to"
+            "state" : "translated",
+            "value" : "Мы отправили код на"
           }
         },
         "sr" : {
@@ -6229,8 +7849,8 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent a code to"
+            "state" : "translated",
+            "value" : "Ми надіслали код на"
           }
         },
         "vi" : {
@@ -6241,8 +7861,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent a code to"
+            "state" : "translated",
+            "value" : "我们已发送验证码至："
           }
         },
         "zh-Hant" : {
@@ -6257,9 +7877,189 @@
       "comment" : "We've sent an email to: %@",
       "extractionState" : "manual",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أرسلنا رسالة بريد إلكتروني إلى: %@"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "We've sent an email to: %@"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wir haben eine E-Mail gesendet an: %@"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "We've sent an email to: %@"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "We've sent an email to: %@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "We've sent an email to: %@"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "We've sent an email to: %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nous avons envoyé un courriel à : %@"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "We've sent an email to: %@"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "We've sent an email to: %@"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "We've sent an email to: %@"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Abbiamo inviato un'email all'indirizzo: %@"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@にメールを送信しました。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@에게 이메일을 보냈습니다:"
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आम्ही %@ वर ईमेल पाठवली आहे"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "We've sent an email to: %@"
+          }
+        },
+        "my" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "We've sent an email to: %@"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "We've sent an email to: %@"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "We've sent an email to: %@"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "We've sent an email to: %@"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "We've sent an email to: %@"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "We've sent an email to: %@"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "We've sent an email to: %@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мы отправили письмо на: %@"
+          }
+        },
+        "sr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "We've sent an email to: %@"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "We've sent an email to: %@"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "We've sent an email to: %@"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ми надіслали листа на адресу %@"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "We've sent an email to: %@"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "我们已发送一封邮件至：%@"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "We've sent an email to: %@"
           }
         }
@@ -6271,8 +8071,8 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in and join us!"
+            "state" : "translated",
+            "value" : "سجل الدخول وانضم إلينا!"
           }
         },
         "bn" : {
@@ -6283,8 +8083,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in and join us!"
+            "state" : "translated",
+            "value" : "Melde dich an und sei dabei!"
           }
         },
         "el" : {
@@ -6313,8 +8113,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in and join us!"
+            "state" : "translated",
+            "value" : "Connectez-vous et rejoignez-nous !"
           }
         },
         "hi" : {
@@ -6337,26 +8137,26 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in and join us!"
+            "state" : "translated",
+            "value" : "Accedi e unisciti a noi!"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in and join us!"
+            "state" : "translated",
+            "value" : "サインインしてご参加ください！"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in and join us!"
+            "state" : "translated",
+            "value" : "로그인하고 참여하세요!"
           }
         },
         "mr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in and join us!"
+            "state" : "translated",
+            "value" : "साईन इन करुन आमच्याशी जुडा!"
           }
         },
         "ms" : {
@@ -6409,8 +8209,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in and join us!"
+            "state" : "translated",
+            "value" : "Войдите и присоединяйтесь к нам!"
           }
         },
         "sr" : {
@@ -6433,8 +8233,8 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in and join us!"
+            "state" : "translated",
+            "value" : "Зареєструйтесь та приєднуйтесь до нас!"
           }
         },
         "vi" : {
@@ -6445,8 +8245,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in and join us!"
+            "state" : "translated",
+            "value" : "登录并加入我们吧！"
           }
         },
         "zh-Hant" : {
@@ -6461,9 +8261,189 @@
       "comment" : "Sign in",
       "extractionState" : "manual",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تسجيل الدخول"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Sign in"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anmelden"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Sign in"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Sign in"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Sign in"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Sign in"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se connecter"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Sign in"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Sign in"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Sign in"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Accedi"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "サインイン"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "로그인"
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "साईन इन"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Sign in"
+          }
+        },
+        "my" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Sign in"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Sign in"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Sign in"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Sign in"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Sign in"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Sign in"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Sign in"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Войти"
+          }
+        },
+        "sr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Sign in"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Sign in"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Sign in"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Увійти"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Sign in"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "登录"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "Sign in"
           }
         }
@@ -6473,9 +8453,189 @@
       "comment" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!",
       "extractionState" : "manual",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لقد كسبت على %@ من مشترياتك داخل التطبيقات. سجل الدخول لتحصل عليها وتستخدمها في مشترياتك القادمة!"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du hast %@ durch deine In-App-Käufe verdient. Melde dich an, um deinen Bonus zu erhalten und bei deinen nächsten Einkäufen zu verwenden!"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous avez gagné %@ grâce à vos achats in-app. Connectez-vous pour les recevoir et utilisez-les lors de vos prochains achats !"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hai ottenuto %@ grazie ai tuoi acquisti in-app. Accedi per riceverli e usarli ai tuoi prossimi acquisti!"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アプリ内購入で%@を獲得しました。サインインしてボーナスを受け取り、次回のお買い物でご利用ください！"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "인앱 구매를 통해 %@을 적립했습니다. 로그인하여 수령하고 다음 구매 시 사용하세요!"
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अॅपकरेदीतुन आपणांस %@ मिळाले आहेत. ते मिळवुन पुढील खरेदीत वापरण्यासाठी साईन इन करा!"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
+          }
+        },
+        "my" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы заработали %@ от покупок в приложении. Войдите, чтобы получить их и использовать в следующих покупках!"
+          }
+        },
+        "sr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ви заробили %@ за покупки в додатку. Увійдіть, щоб отримати бонус і використайте його в наступних покупках!"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "您已通过应用内购买赚取了 %@。登录以领取并在您的下一次购买中使用吧！"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
           }
         }
@@ -6487,8 +8647,8 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Facebook"
+            "state" : "translated",
+            "value" : "سجل الدخول عبر Facebook"
           }
         },
         "bn" : {
@@ -6499,8 +8659,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Facebook"
+            "state" : "translated",
+            "value" : "Mit Facebook anmelden"
           }
         },
         "el" : {
@@ -6529,8 +8689,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Facebook"
+            "state" : "translated",
+            "value" : "Connectez-vous avec Facebook"
           }
         },
         "hi" : {
@@ -6553,26 +8713,26 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Facebook"
+            "state" : "translated",
+            "value" : "Accedi con Facebook"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Facebook"
+            "state" : "translated",
+            "value" : "Facebookでサインイン"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Facebook"
+            "state" : "translated",
+            "value" : "Facebook 로그인"
           }
         },
         "mr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Facebook"
+            "state" : "translated",
+            "value" : "फेसबुकसह साईन इन करा"
           }
         },
         "ms" : {
@@ -6625,8 +8785,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Facebook"
+            "state" : "translated",
+            "value" : "Войдите через Facebook"
           }
         },
         "sr" : {
@@ -6649,8 +8809,8 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Facebook"
+            "state" : "translated",
+            "value" : "Увійти за допомогою Facebook"
           }
         },
         "vi" : {
@@ -6661,8 +8821,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Facebook"
+            "state" : "translated",
+            "value" : "使用 Facebook 登录"
           }
         },
         "zh-Hant" : {
@@ -6679,8 +8839,8 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Google"
+            "state" : "translated",
+            "value" : "سجل الدخول عبر Google"
           }
         },
         "bn" : {
@@ -6691,8 +8851,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Google"
+            "state" : "translated",
+            "value" : "Mit Google anmelden"
           }
         },
         "el" : {
@@ -6721,8 +8881,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Google"
+            "state" : "translated",
+            "value" : "Connectez-vous avec Google"
           }
         },
         "hi" : {
@@ -6745,26 +8905,26 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Google"
+            "state" : "translated",
+            "value" : "Accedi con Google"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Google"
+            "state" : "translated",
+            "value" : "Googleでサインイン"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Google"
+            "state" : "translated",
+            "value" : "Google 로그인"
           }
         },
         "mr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Google"
+            "state" : "translated",
+            "value" : "गुगलसह साईन इन करा"
           }
         },
         "ms" : {
@@ -6817,8 +8977,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Google"
+            "state" : "translated",
+            "value" : "Войдите через Google"
           }
         },
         "sr" : {
@@ -6841,8 +9001,8 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Google"
+            "state" : "translated",
+            "value" : "Увійти за допомогою Google"
           }
         },
         "vi" : {
@@ -6853,8 +9013,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Google"
+            "state" : "translated",
+            "value" : "使用 Google 登录"
           }
         },
         "zh-Hant" : {
@@ -6871,8 +9031,8 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in to get your bonus"
+            "state" : "translated",
+            "value" : "سجل الدخول لتحصل على مكافآتك"
           }
         },
         "bn" : {
@@ -6883,8 +9043,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in to get your bonus"
+            "state" : "translated",
+            "value" : "Melde dich an, um deinen Bonus zu erhalten"
           }
         },
         "el" : {
@@ -6913,8 +9073,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in to get your bonus"
+            "state" : "translated",
+            "value" : "Connectez-vous pour obtenir votre bonus"
           }
         },
         "hi" : {
@@ -6937,26 +9097,26 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in to get your bonus"
+            "state" : "translated",
+            "value" : "Accedi per ricevere il tuo bonus"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in to get your bonus"
+            "state" : "translated",
+            "value" : "サインインしてボーナスを受け取る"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in to get your bonus"
+            "state" : "translated",
+            "value" : "보너스를 받으려면 로그인하세요"
           }
         },
         "mr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in to get your bonus"
+            "state" : "translated",
+            "value" : "बोनस मिळविण्यासाठी साईन इन करा"
           }
         },
         "ms" : {
@@ -7009,8 +9169,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in to get your bonus"
+            "state" : "translated",
+            "value" : "Войдите, чтобы получить бонус"
           }
         },
         "sr" : {
@@ -7033,8 +9193,8 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in to get your bonus"
+            "state" : "translated",
+            "value" : "Увійдіть, щоб отримати бонус"
           }
         },
         "vi" : {
@@ -7045,8 +9205,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in to get your bonus"
+            "state" : "translated",
+            "value" : "登录以领取您的奖金"
           }
         },
         "zh-Hant" : {
@@ -8789,9 +10949,189 @@
       "comment" : "Terms and Conditions",
       "extractionState" : "manual",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الشروط والأحكام"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Terms and Conditions"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allgemeine Geschäftsbedingungen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Terms and Conditions"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Terms and Conditions"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Terms and Conditions"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Terms and Conditions"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Termes et Conditions"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Terms and Conditions"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Terms and Conditions"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Terms and Conditions"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Termini e condizioni"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "利用規約"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이용 약관"
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अटी आणि शर्ती"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Terms and Conditions"
+          }
+        },
+        "my" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Terms and Conditions"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Terms and Conditions"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Terms and Conditions"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Terms and Conditions"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Terms and Conditions"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Terms and Conditions"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Terms and Conditions"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Условия и ограничения"
+          }
+        },
+        "sr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Terms and Conditions"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Terms and Conditions"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Terms and Conditions"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Правила та умови"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Terms and Conditions"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "条款与条件"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "Terms and Conditions"
           }
         }
@@ -8801,9 +11141,189 @@
       "comment" : "Try again",
       "extractionState" : "manual",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "حاول ثانية"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Try again"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erneut versuchen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Try again"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Try again"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Try again"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Try again"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Réessayez"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Try again"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Try again"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Try again"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Riprova"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "もう一度やり直してください"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다시 시도하십시오"
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पुन्हा प्रयत्न करा"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Try again"
+          }
+        },
+        "my" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Try again"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Try again"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Try again"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Try again"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Try again"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Try again"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Try again"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Повторить"
+          }
+        },
+        "sr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Try again"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Try again"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Try again"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Спробувати знову"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Try again"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重试"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "Try again"
           }
         }
@@ -9389,9 +11909,189 @@
       "comment" : "Your Balance: %@",
       "extractionState" : "manual",
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "رصيدك: %@"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Your Balance: %@"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dein Guthaben: %@"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Your Balance: %@"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
+            "value" : "Your Balance: %@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Your Balance: %@"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Your Balance: %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Votre solde : %@"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Your Balance: %@"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Your Balance: %@"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Your Balance: %@"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il tuo saldo: %@"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "残高: %@"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "잔액: %@"
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आपली शिल्लक: %@"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Your Balance: %@"
+          }
+        },
+        "my" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Your Balance: %@"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Your Balance: %@"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Your Balance: %@"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Your Balance: %@"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Your Balance: %@"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Your Balance: %@"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Your Balance: %@"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ваш баланс: %@"
+          }
+        },
+        "sr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Your Balance: %@"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Your Balance: %@"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Your Balance: %@"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ваш баланс: %@"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Your Balance: %@"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "您的余额：%@"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "new",
             "value" : "Your Balance: %@"
           }
         }
@@ -9594,8 +12294,8 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your email here"
+            "state" : "translated",
+            "value" : "بريدك الإلكتروني هنا"
           }
         },
         "bn" : {
@@ -9606,8 +12306,8 @@
         },
         "de" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your email here"
+            "state" : "translated",
+            "value" : "Deine E-Mail hier"
           }
         },
         "el" : {
@@ -9636,8 +12336,8 @@
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your email here"
+            "state" : "translated",
+            "value" : "Votre courriel ici"
           }
         },
         "hi" : {
@@ -9660,26 +12360,26 @@
         },
         "it" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your email here"
+            "state" : "translated",
+            "value" : "Inserisci il tuo indirizzo email qui"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your email here"
+            "state" : "translated",
+            "value" : "メールアドレスをここに記入して下さい。"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your email here"
+            "state" : "translated",
+            "value" : "이메일을 입력하세요"
           }
         },
         "mr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your email here"
+            "state" : "translated",
+            "value" : "ईमेल पत्ता इथे लिहा"
           }
         },
         "ms" : {
@@ -9732,8 +12432,8 @@
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your email here"
+            "state" : "translated",
+            "value" : "Ваш адрес здесь"
           }
         },
         "sr" : {
@@ -9756,8 +12456,8 @@
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your email here"
+            "state" : "translated",
+            "value" : "Ваша пошта тут"
           }
         },
         "vi" : {
@@ -9768,8 +12468,8 @@
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your email here"
+            "state" : "translated",
+            "value" : "请在此输入您的电子邮箱地址"
           }
         },
         "zh-Hant" : {
