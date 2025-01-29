@@ -25,8 +25,8 @@
         },
         "el" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "I accept Aptoide's %@ and %@"
+            "state" : "translated",
+            "value" : "Αποδέχομαι τους %@ και την %@ του Aptoide"
           }
         },
         "en" : {
@@ -67,8 +67,8 @@
         },
         "id" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "I accept Aptoide's %@ and %@"
+            "state" : "translated",
+            "value" : "Saya menerima %@ dan %@ Aptoide"
           }
         },
         "it" : {
@@ -151,8 +151,8 @@
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "I accept Aptoide's %@ and %@"
+            "state" : "translated",
+            "value" : "Prihvatam %@ i %@ kompanije Aptoide"
           }
         },
         "th" : {
@@ -217,8 +217,8 @@
         },
         "el" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
+            "state" : "translated",
+            "value" : "Παρακαλούμε διαβάστε και αποδεχτείτε τους Όρους και Προϋποθέσεις και την Πολιτική Απορρήτου του Aptoide"
           }
         },
         "en" : {
@@ -259,8 +259,8 @@
         },
         "id" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
+            "state" : "translated",
+            "value" : "Silakan baca dan terima Syarat dan Ketentuan serta Kebijakan Privasi Aptoide"
           }
         },
         "it" : {
@@ -343,8 +343,8 @@
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
+            "state" : "translated",
+            "value" : "Pročitajte i prihvatite Uslove i odredbe i Smernice za privatnost kompanije Aptoide"
           }
         },
         "th" : {
@@ -1177,8 +1177,8 @@
         },
         "el" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You'll get a bonus on every purchase!"
+            "state" : "translated",
+            "value" : "Θα λάβετε ένα bonus σε κάθε αγορά!"
           }
         },
         "en" : {
@@ -1219,8 +1219,8 @@
         },
         "id" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You'll get a bonus on every purchase!"
+            "state" : "translated",
+            "value" : "Anda akan mendapatkan bonus pada setiap pembelian!"
           }
         },
         "it" : {
@@ -1303,8 +1303,8 @@
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You'll get a bonus on every purchase!"
+            "state" : "translated",
+            "value" : "Dobićete bonus prilikom svake kupovine!"
           }
         },
         "th" : {
@@ -2137,8 +2137,8 @@
         },
         "el" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Check your email"
+            "state" : "translated",
+            "value" : "Ελέγξτε το e-mail σας"
           }
         },
         "en" : {
@@ -2179,8 +2179,8 @@
         },
         "id" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Check your email"
+            "state" : "translated",
+            "value" : "Periksa email Anda"
           }
         },
         "it" : {
@@ -2263,8 +2263,8 @@
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Check your email"
+            "state" : "translated",
+            "value" : "Proverite svoju e-poštu"
           }
         },
         "th" : {
@@ -2521,8 +2521,8 @@
         },
         "el" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Choose your payment method"
+            "state" : "translated",
+            "value" : "Επιλέξτε τη μέθοδο πληρωμής σας"
           }
         },
         "en" : {
@@ -2563,8 +2563,8 @@
         },
         "id" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Choose your payment method"
+            "state" : "translated",
+            "value" : "Pilih metode pembayaran Anda"
           }
         },
         "it" : {
@@ -2647,8 +2647,8 @@
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Choose your payment method"
+            "state" : "translated",
+            "value" : "Odaberite svoj način plaćanja"
           }
         },
         "th" : {
@@ -2713,8 +2713,8 @@
         },
         "el" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
+            "state" : "translated",
+            "value" : "Κωδικός"
           }
         },
         "en" : {
@@ -2755,8 +2755,8 @@
         },
         "id" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
+            "state" : "translated",
+            "value" : "Kode"
           }
         },
         "it" : {
@@ -2839,8 +2839,8 @@
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
+            "state" : "translated",
+            "value" : "Kod"
           }
         },
         "th" : {
@@ -2905,8 +2905,8 @@
         },
         "el" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Are you sure you want to log out?"
+            "state" : "translated",
+            "value" : "Σίγουρα θέλετε να αποσυνδεθείτε;"
           }
         },
         "en" : {
@@ -2947,8 +2947,8 @@
         },
         "id" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Are you sure you want to log out?"
+            "state" : "translated",
+            "value" : "Apakah Anda yakin ingin keluar?"
           }
         },
         "it" : {
@@ -3031,8 +3031,8 @@
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Are you sure you want to log out?"
+            "state" : "translated",
+            "value" : "Jeste li sigurni da želite da se odjavite?"
           }
         },
         "th" : {
@@ -3097,8 +3097,8 @@
         },
         "el" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "I authorize Aptoide to use my email for marketing purposes"
+            "state" : "translated",
+            "value" : "Εξουσιοδοτώ το Aptoide να χρησιμοποιεί το email μου για σκοπούς μάρκετινγκ"
           }
         },
         "en" : {
@@ -3139,8 +3139,8 @@
         },
         "id" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "I authorize Aptoide to use my email for marketing purposes"
+            "state" : "translated",
+            "value" : "Saya mengizinkan Aptoide untuk menggunakan email saya untuk tujuan pemasaran"
           }
         },
         "it" : {
@@ -3223,8 +3223,8 @@
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "I authorize Aptoide to use my email for marketing purposes"
+            "state" : "translated",
+            "value" : "Ovlašćujem kompaniju Aptoide da može koristiti moju adresu e-pošte u marketinške svrhe"
           }
         },
         "th" : {
@@ -3289,8 +3289,8 @@
         },
         "el" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Continue"
+            "state" : "translated",
+            "value" : "Συνέχεια"
           }
         },
         "en" : {
@@ -3331,8 +3331,8 @@
         },
         "id" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Continue"
+            "state" : "translated",
+            "value" : "Lanjutkan"
           }
         },
         "it" : {
@@ -3415,8 +3415,8 @@
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Continue"
+            "state" : "translated",
+            "value" : "Nastavi"
           }
         },
         "th" : {
@@ -3673,8 +3673,8 @@
         },
         "el" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Email"
+            "state" : "translated",
+            "value" : "E-Mail"
           }
         },
         "en" : {
@@ -3715,7 +3715,7 @@
         },
         "id" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "Email"
           }
         },
@@ -3799,8 +3799,8 @@
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Email"
+            "state" : "translated",
+            "value" : "E-pošta"
           }
         },
         "th" : {
@@ -4057,8 +4057,8 @@
         },
         "el" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your code is incorrect."
+            "state" : "translated",
+            "value" : "Ο κωδικός σας είναι λανθασμένος."
           }
         },
         "en" : {
@@ -4099,8 +4099,8 @@
         },
         "id" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your code is incorrect."
+            "state" : "translated",
+            "value" : "Kode Anda salah."
           }
         },
         "it" : {
@@ -4183,8 +4183,8 @@
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your code is incorrect."
+            "state" : "translated",
+            "value" : "Vaš kod je netačan."
           }
         },
         "th" : {
@@ -4633,8 +4633,8 @@
         },
         "el" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Invalid email address."
+            "state" : "translated",
+            "value" : "Μη έγκυρη διεύθυνση e-mail."
           }
         },
         "en" : {
@@ -4675,8 +4675,8 @@
         },
         "id" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Invalid email address."
+            "state" : "translated",
+            "value" : "Alamat email tidak valid."
           }
         },
         "it" : {
@@ -4759,8 +4759,8 @@
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Invalid email address."
+            "state" : "translated",
+            "value" : "Neispravna adresa e-pošte."
           }
         },
         "th" : {
@@ -5017,8 +5017,8 @@
         },
         "el" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Login Failed"
+            "state" : "translated",
+            "value" : "Η σύνδεση απέτυχε"
           }
         },
         "en" : {
@@ -5059,8 +5059,8 @@
         },
         "id" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Login Failed"
+            "state" : "translated",
+            "value" : "Login Gagal"
           }
         },
         "it" : {
@@ -5143,8 +5143,8 @@
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Login Failed"
+            "state" : "translated",
+            "value" : "Prijava nije uspela"
           }
         },
         "th" : {
@@ -5209,8 +5209,8 @@
         },
         "el" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Missing fields"
+            "state" : "translated",
+            "value" : "Λείπουν πεδία"
           }
         },
         "en" : {
@@ -5251,8 +5251,8 @@
         },
         "id" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Missing fields"
+            "state" : "translated",
+            "value" : "Kolom yang hilang"
           }
         },
         "it" : {
@@ -5335,8 +5335,8 @@
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Missing fields"
+            "state" : "translated",
+            "value" : "Nedostaju polja"
           }
         },
         "th" : {
@@ -5785,8 +5785,8 @@
         },
         "el" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
+            "state" : "translated",
+            "value" : "Ή συνέχεια με:"
           }
         },
         "en" : {
@@ -5827,8 +5827,8 @@
         },
         "id" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
+            "state" : "translated",
+            "value" : "Atau lanjutkan dengan:"
           }
         },
         "it" : {
@@ -5911,8 +5911,8 @@
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
+            "state" : "translated",
+            "value" : "Ili nastavite preko:"
           }
         },
         "th" : {
@@ -6169,8 +6169,8 @@
         },
         "el" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Privacy Policy"
+            "state" : "translated",
+            "value" : "Πολιτική Απορρήτου"
           }
         },
         "en" : {
@@ -6211,8 +6211,8 @@
         },
         "id" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Privacy Policy"
+            "state" : "translated",
+            "value" : "Kebijakan Privasi"
           }
         },
         "it" : {
@@ -6295,8 +6295,8 @@
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Privacy Policy"
+            "state" : "translated",
+            "value" : "Smernice za privatnost"
           }
         },
         "th" : {
@@ -6553,8 +6553,8 @@
         },
         "el" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "*Purchase Bonus:* %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "*Bonus Αγοράς:* %@ σε AppCoins Credits"
           }
         },
         "en" : {
@@ -6595,8 +6595,8 @@
         },
         "id" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "*Purchase Bonus:* %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "*Bonus Pembelian: %@ dalam Kredit AppCoins"
           }
         },
         "it" : {
@@ -6679,8 +6679,8 @@
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "*Purchase Bonus:* %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "*Kupite bonus od:* %@ u AppCoins Credits"
           }
         },
         "th" : {
@@ -6745,8 +6745,8 @@
         },
         "el" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Redeem bonus"
+            "state" : "translated",
+            "value" : "Εξαργύρωση bonus"
           }
         },
         "en" : {
@@ -6787,8 +6787,8 @@
         },
         "id" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Redeem bonus"
+            "state" : "translated",
+            "value" : "Klaim Bonus"
           }
         },
         "it" : {
@@ -6871,8 +6871,8 @@
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Redeem bonus"
+            "state" : "translated",
+            "value" : "Iskoristite bonus"
           }
         },
         "th" : {
@@ -6937,8 +6937,8 @@
         },
         "el" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Re-send Email"
+            "state" : "translated",
+            "value" : "Επαναποστολή e-mail"
           }
         },
         "en" : {
@@ -6979,8 +6979,8 @@
         },
         "id" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Re-send Email"
+            "state" : "translated",
+            "value" : "Kirim Ulang Email"
           }
         },
         "it" : {
@@ -7063,8 +7063,8 @@
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Re-send Email"
+            "state" : "translated",
+            "value" : "Ponovo pošaljite e-poštu"
           }
         },
         "th" : {
@@ -7129,8 +7129,8 @@
         },
         "el" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "If you have not received an email, you can retry again in %@ seconds."
+            "state" : "translated",
+            "value" : "Αν δεν έχετε λάβει e-mail, μπορείτε να δοκιμάσετε ξανά σε %@ δευτερόλεπτα."
           }
         },
         "en" : {
@@ -7171,8 +7171,8 @@
         },
         "id" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "If you have not received an email, you can retry again in %@ seconds."
+            "state" : "translated",
+            "value" : "Jika Anda belum menerima email, Anda bisa mencoba lagi dalam %@ detik."
           }
         },
         "it" : {
@@ -7255,8 +7255,8 @@
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "If you have not received an email, you can retry again in %@ seconds."
+            "state" : "translated",
+            "value" : "Ako još niste dobili e-poštu, možete pokušati ponovo za %@ sekundi."
           }
         },
         "th" : {
@@ -7513,8 +7513,8 @@
         },
         "el" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Select payment method"
+            "state" : "translated",
+            "value" : "Επιλογή μεθόδου πληρωμής"
           }
         },
         "en" : {
@@ -7555,8 +7555,8 @@
         },
         "id" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Select payment method"
+            "state" : "translated",
+            "value" : "Pilih metode pembayaran"
           }
         },
         "it" : {
@@ -7639,8 +7639,8 @@
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Select payment method"
+            "state" : "translated",
+            "value" : "Izaberite način plaćanja"
           }
         },
         "th" : {
@@ -7705,8 +7705,8 @@
         },
         "el" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent a code to"
+            "state" : "translated",
+            "value" : "Στείλαμε έναν κωδικό στο"
           }
         },
         "en" : {
@@ -7747,8 +7747,8 @@
         },
         "id" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent a code to"
+            "state" : "translated",
+            "value" : "Kami sudah mengirim kode ke"
           }
         },
         "it" : {
@@ -7831,8 +7831,8 @@
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent a code to"
+            "state" : "translated",
+            "value" : "Poslali smo kod na"
           }
         },
         "th" : {
@@ -7897,8 +7897,8 @@
         },
         "el" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent an email to: %@"
+            "state" : "translated",
+            "value" : "Στείλαμε ένα e-mail στο: %@"
           }
         },
         "en" : {
@@ -7939,8 +7939,8 @@
         },
         "id" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent an email to: %@"
+            "state" : "translated",
+            "value" : "Kami sudah mengirim email ke %@"
           }
         },
         "it" : {
@@ -8023,8 +8023,8 @@
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent an email to: %@"
+            "state" : "translated",
+            "value" : "Poslali smo e-poštu na: %@"
           }
         },
         "th" : {
@@ -8089,8 +8089,8 @@
         },
         "el" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in and join us!"
+            "state" : "translated",
+            "value" : "Συνδεθείτε και γίνετε μέλος!"
           }
         },
         "en" : {
@@ -8131,8 +8131,8 @@
         },
         "id" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in and join us!"
+            "state" : "translated",
+            "value" : "Masuk dan bergabung dengan kami!"
           }
         },
         "it" : {
@@ -8215,8 +8215,8 @@
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in and join us!"
+            "state" : "translated",
+            "value" : "Prijavite se i pridružite nam se!"
           }
         },
         "th" : {
@@ -8281,8 +8281,8 @@
         },
         "el" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in"
+            "state" : "translated",
+            "value" : "Σύνδεση"
           }
         },
         "en" : {
@@ -8323,8 +8323,8 @@
         },
         "id" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in"
+            "state" : "translated",
+            "value" : "Masuk"
           }
         },
         "it" : {
@@ -8407,8 +8407,8 @@
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in"
+            "state" : "translated",
+            "value" : "Prijava"
           }
         },
         "th" : {
@@ -8473,8 +8473,8 @@
         },
         "el" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
+            "state" : "translated",
+            "value" : "Κερδίσατε %@ από τις αγορές σας εντός εφαρμογής. Συνδεθείτε για να το λάβετε και να το χρησιμοποιήσετε στις επόμενες αγορές σας!"
           }
         },
         "en" : {
@@ -8515,8 +8515,8 @@
         },
         "id" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
+            "state" : "translated",
+            "value" : "Anda sudah mendapatkan %@ dari pembelian dalam aplikasi. Masuklah untuk menerimanya dan menggunakannya pada pembelian Anda berikutnya!"
           }
         },
         "it" : {
@@ -8599,8 +8599,8 @@
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
+            "state" : "translated",
+            "value" : "Zaradili ste %@ od kupovina unutar aplikacija. Prijavite se da biste ih preuzeli i iskoristite ih pri sledećim kupovinama!"
           }
         },
         "th" : {
@@ -8665,8 +8665,8 @@
         },
         "el" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Facebook"
+            "state" : "translated",
+            "value" : "Σύνδεση μέσω Facebook"
           }
         },
         "en" : {
@@ -8707,8 +8707,8 @@
         },
         "id" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Facebook"
+            "state" : "translated",
+            "value" : "Masuk dengan Facebook"
           }
         },
         "it" : {
@@ -8791,8 +8791,8 @@
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Facebook"
+            "state" : "translated",
+            "value" : "Prijavite se putem Facebook-a"
           }
         },
         "th" : {
@@ -8857,8 +8857,8 @@
         },
         "el" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Google"
+            "state" : "translated",
+            "value" : "Σύνδεση μέσω Google"
           }
         },
         "en" : {
@@ -8899,8 +8899,8 @@
         },
         "id" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Google"
+            "state" : "translated",
+            "value" : "Masuk dengan Google"
           }
         },
         "it" : {
@@ -8983,8 +8983,8 @@
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Google"
+            "state" : "translated",
+            "value" : "Prijavite se putem Google-a"
           }
         },
         "th" : {
@@ -9049,8 +9049,8 @@
         },
         "el" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in to get your bonus"
+            "state" : "translated",
+            "value" : "Συνδεθείτε για να λάβετε το bonus σας"
           }
         },
         "en" : {
@@ -9091,8 +9091,8 @@
         },
         "id" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in to get your bonus"
+            "state" : "translated",
+            "value" : "Masuk untuk mendapatkan bonus Anda"
           }
         },
         "it" : {
@@ -9175,8 +9175,8 @@
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in to get your bonus"
+            "state" : "translated",
+            "value" : "Prijavite se da biste preuzeli bonus"
           }
         },
         "th" : {
@@ -10969,8 +10969,8 @@
         },
         "el" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Terms and Conditions"
+            "state" : "translated",
+            "value" : "Όροι και Προϋποθέσεις"
           }
         },
         "en" : {
@@ -11011,8 +11011,8 @@
         },
         "id" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Terms and Conditions"
+            "state" : "translated",
+            "value" : "Syarat dan Ketentuan"
           }
         },
         "it" : {
@@ -11095,8 +11095,8 @@
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Terms and Conditions"
+            "state" : "translated",
+            "value" : "Uslovi i odredbe"
           }
         },
         "th" : {
@@ -11161,8 +11161,8 @@
         },
         "el" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Try again"
+            "state" : "translated",
+            "value" : "Προσπαθήστε ξανά"
           }
         },
         "en" : {
@@ -11203,8 +11203,8 @@
         },
         "id" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Try again"
+            "state" : "translated",
+            "value" : "Coba lagi"
           }
         },
         "it" : {
@@ -11287,8 +11287,8 @@
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Try again"
+            "state" : "translated",
+            "value" : "Pokušajte ponovo"
           }
         },
         "th" : {
@@ -11929,8 +11929,8 @@
         },
         "el" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your Balance: %@"
+            "state" : "translated",
+            "value" : "Το υπόλοιπό σας: %@"
           }
         },
         "en" : {
@@ -11971,8 +11971,8 @@
         },
         "id" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your Balance: %@"
+            "state" : "translated",
+            "value" : "Saldo Anda: %@"
           }
         },
         "it" : {
@@ -12055,8 +12055,8 @@
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your Balance: %@"
+            "state" : "translated",
+            "value" : "Vaše stanje: %@"
           }
         },
         "th" : {
@@ -12312,8 +12312,8 @@
         },
         "el" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your email here"
+            "state" : "translated",
+            "value" : "Το e-mail σας εδώ"
           }
         },
         "en" : {
@@ -12354,8 +12354,8 @@
         },
         "id" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your email here"
+            "state" : "translated",
+            "value" : "Email Anda di sini"
           }
         },
         "it" : {
@@ -12438,8 +12438,8 @@
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your email here"
+            "state" : "translated",
+            "value" : "Vaša e-pošta ovde"
           }
         },
         "th" : {
