@@ -61,8 +61,8 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "I accept Aptoide's %@ and %@"
+            "state" : "translated",
+            "value" : "Elfogadom a következőket: Aptoide %@ és %@"
           }
         },
         "id" : {
@@ -133,8 +133,8 @@
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "I accept Aptoide's %@ and %@"
+            "state" : "translated",
+            "value" : "Aceito os %@ e %@ da Aptoide"
           }
         },
         "ro" : {
@@ -253,8 +253,8 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
+            "state" : "translated",
+            "value" : "Kérjük, olvasd el és fogadd el az Aptoide Felhasználási feltételeit és Adatvédelmi irányelveit"
           }
         },
         "id" : {
@@ -325,8 +325,8 @@
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
+            "state" : "translated",
+            "value" : "Lê e aceita os Termos e Condições, e a Política de Privacidade da Aptoide"
           }
         },
         "ro" : {
@@ -1213,8 +1213,8 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You'll get a bonus on every purchase!"
+            "state" : "translated",
+            "value" : "Minden vásárlás után bónuszt kapsz!"
           }
         },
         "id" : {
@@ -1285,8 +1285,8 @@
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You'll get a bonus on every purchase!"
+            "state" : "translated",
+            "value" : "Vais receber um bónus em cada compra!"
           }
         },
         "ro" : {
@@ -2173,8 +2173,8 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Check your email"
+            "state" : "translated",
+            "value" : "Ellenőrizd az e-mailjeid"
           }
         },
         "id" : {
@@ -2245,8 +2245,8 @@
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Check your email"
+            "state" : "translated",
+            "value" : "Verifica o teu e-mail"
           }
         },
         "ro" : {
@@ -2557,8 +2557,8 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Choose your payment method"
+            "state" : "translated",
+            "value" : "Válassz fizetési módot"
           }
         },
         "id" : {
@@ -2629,8 +2629,8 @@
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Choose your payment method"
+            "state" : "translated",
+            "value" : "Escolhe o teu método de pagamento"
           }
         },
         "ro" : {
@@ -2749,8 +2749,8 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
+            "state" : "translated",
+            "value" : "Kód"
           }
         },
         "id" : {
@@ -2821,8 +2821,8 @@
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
+            "state" : "translated",
+            "value" : "Código"
           }
         },
         "ro" : {
@@ -2941,8 +2941,8 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Are you sure you want to log out?"
+            "state" : "translated",
+            "value" : "Biztos, kijelentkezel?"
           }
         },
         "id" : {
@@ -3013,8 +3013,8 @@
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Are you sure you want to log out?"
+            "state" : "translated",
+            "value" : "Tens a certeza de que pretendes terminar a sessão?"
           }
         },
         "ro" : {
@@ -3133,8 +3133,8 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "I authorize Aptoide to use my email for marketing purposes"
+            "state" : "translated",
+            "value" : "Engedélyezem az Aptoide számára, hogy az e-mail címem marketing célokra használja fel"
           }
         },
         "id" : {
@@ -3205,8 +3205,8 @@
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "I authorize Aptoide to use my email for marketing purposes"
+            "state" : "translated",
+            "value" : "Autorizo a Aptoide a utilizar o meu e-mail para fins de marketing"
           }
         },
         "ro" : {
@@ -3325,8 +3325,8 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Continue"
+            "state" : "translated",
+            "value" : "Tovább"
           }
         },
         "id" : {
@@ -3397,8 +3397,8 @@
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Continue"
+            "state" : "translated",
+            "value" : "Continuar"
           }
         },
         "ro" : {
@@ -3709,8 +3709,8 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Email"
+            "state" : "translated",
+            "value" : "E-mail"
           }
         },
         "id" : {
@@ -3781,8 +3781,8 @@
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Email"
+            "state" : "translated",
+            "value" : "E-mail"
           }
         },
         "ro" : {
@@ -4093,8 +4093,8 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your code is incorrect."
+            "state" : "translated",
+            "value" : "A kód helytelen."
           }
         },
         "id" : {
@@ -4165,8 +4165,8 @@
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your code is incorrect."
+            "state" : "translated",
+            "value" : "O teu código está incorreto."
           }
         },
         "ro" : {
@@ -4669,8 +4669,8 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Invalid email address."
+            "state" : "translated",
+            "value" : "Érvénytelen e-mail cím."
           }
         },
         "id" : {
@@ -4741,8 +4741,8 @@
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Invalid email address."
+            "state" : "translated",
+            "value" : "Endereço de e-mail inválido."
           }
         },
         "ro" : {
@@ -5053,8 +5053,8 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Login Failed"
+            "state" : "translated",
+            "value" : "Sikertelen bejelentkezés"
           }
         },
         "id" : {
@@ -5125,8 +5125,8 @@
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Login Failed"
+            "state" : "translated",
+            "value" : "Falha no Login"
           }
         },
         "ro" : {
@@ -5245,8 +5245,8 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Missing fields"
+            "state" : "translated",
+            "value" : "Hiányzó mezők"
           }
         },
         "id" : {
@@ -5317,8 +5317,8 @@
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Missing fields"
+            "state" : "translated",
+            "value" : "Campos em falta"
           }
         },
         "ro" : {
@@ -5821,8 +5821,8 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
+            "state" : "translated",
+            "value" : "Vagy lépj tovább:"
           }
         },
         "id" : {
@@ -5893,8 +5893,8 @@
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
+            "state" : "translated",
+            "value" : "Ou continua com:"
           }
         },
         "ro" : {
@@ -6205,8 +6205,8 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Privacy Policy"
+            "state" : "translated",
+            "value" : "Adatvédelmi szabályzat"
           }
         },
         "id" : {
@@ -6277,8 +6277,8 @@
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Privacy Policy"
+            "state" : "translated",
+            "value" : "Política de Privacidade"
           }
         },
         "ro" : {
@@ -6589,8 +6589,8 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "*Purchase Bonus:* %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "*Vásárlás utáni bónusz:* %@ AppCoins kreditben"
           }
         },
         "id" : {
@@ -6661,8 +6661,8 @@
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "*Purchase Bonus:* %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "*Bónus de compra:* %@ em AppCoins Credits"
           }
         },
         "ro" : {
@@ -6781,8 +6781,8 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Redeem bonus"
+            "state" : "translated",
+            "value" : "Bónusz átvétele"
           }
         },
         "id" : {
@@ -6853,8 +6853,8 @@
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Redeem bonus"
+            "state" : "translated",
+            "value" : "Resgatar bónus"
           }
         },
         "ro" : {
@@ -6973,8 +6973,8 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Re-send Email"
+            "state" : "translated",
+            "value" : "E-mail újraküldése"
           }
         },
         "id" : {
@@ -7045,8 +7045,8 @@
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Re-send Email"
+            "state" : "translated",
+            "value" : "Reenviar E-mail"
           }
         },
         "ro" : {
@@ -7165,8 +7165,8 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "If you have not received an email, you can retry again in %@ seconds."
+            "state" : "translated",
+            "value" : "Ha nem érkezett meg az e-mail, %@ másodperc múlva próbálkozhatsz ójra."
           }
         },
         "id" : {
@@ -7549,8 +7549,8 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Select payment method"
+            "state" : "translated",
+            "value" : "Fizetési mód kiválasztása"
           }
         },
         "id" : {
@@ -7741,8 +7741,8 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent a code to"
+            "state" : "translated",
+            "value" : "Elküldtük a kódot"
           }
         },
         "id" : {
@@ -7933,8 +7933,8 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent an email to: %@"
+            "state" : "translated",
+            "value" : "Küldtünk egy e-mailt ide: %@"
           }
         },
         "id" : {
@@ -8125,8 +8125,8 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in and join us!"
+            "state" : "translated",
+            "value" : "Jelentkezz be és csatlakozz!"
           }
         },
         "id" : {
@@ -8317,8 +8317,8 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in"
+            "state" : "translated",
+            "value" : "Bejelentkezés"
           }
         },
         "id" : {
@@ -8509,8 +8509,8 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
+            "state" : "translated",
+            "value" : "Az appon belüli vásárlások után járó jutalmad: %@. Jelentkezz be, hogy megkapd őket a következő vásárlások során!"
           }
         },
         "id" : {
@@ -8701,8 +8701,8 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Facebook"
+            "state" : "translated",
+            "value" : "Bejelentkezés Facebook-fiókkal"
           }
         },
         "id" : {
@@ -8893,8 +8893,8 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Google"
+            "state" : "translated",
+            "value" : "Bejelentkezés Google-fiókkal"
           }
         },
         "id" : {
@@ -9085,8 +9085,8 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in to get your bonus"
+            "state" : "translated",
+            "value" : "Jelentkezz be, hogy megkapd a bónuszod"
           }
         },
         "id" : {
@@ -11005,8 +11005,8 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Terms and Conditions"
+            "state" : "translated",
+            "value" : "Általános szerződési feltételek"
           }
         },
         "id" : {
@@ -11197,8 +11197,8 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Try again"
+            "state" : "translated",
+            "value" : "Próbáld újra"
           }
         },
         "id" : {
@@ -11965,8 +11965,8 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your Balance: %@"
+            "state" : "translated",
+            "value" : "Az egyenleged: %@"
           }
         },
         "id" : {
@@ -12348,8 +12348,8 @@
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your email here"
+            "state" : "translated",
+            "value" : "Az e-mail címed"
           }
         },
         "id" : {
