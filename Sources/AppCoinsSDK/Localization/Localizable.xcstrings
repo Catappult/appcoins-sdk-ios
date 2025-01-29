@@ -175,8 +175,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "I accept Aptoide's %@ and %@"
+            "state" : "translated",
+            "value" : "Tôi chấp nhận %@ và %@ của Aptoide"
           }
         },
         "zh-Hans" : {
@@ -367,8 +367,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
+            "state" : "translated",
+            "value" : "Vui lòng đọc và chấp nhận Điều khoản và Điều kiện và Chính sách Bảo mật của Aptoide"
           }
         },
         "zh-Hans" : {
@@ -1327,8 +1327,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You'll get a bonus on every purchase!"
+            "state" : "translated",
+            "value" : "Bạn sẽ nhận được tiền thưởng cho mỗi lần mua hàng!"
           }
         },
         "zh-Hans" : {
@@ -2287,8 +2287,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Check your email"
+            "state" : "translated",
+            "value" : "Kiểm tra email của bạn"
           }
         },
         "zh-Hans" : {
@@ -2671,8 +2671,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Choose your payment method"
+            "state" : "translated",
+            "value" : "Chọn phương thức thanh toán của bạn"
           }
         },
         "zh-Hans" : {
@@ -2863,8 +2863,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
+            "state" : "translated",
+            "value" : "Mã"
           }
         },
         "zh-Hans" : {
@@ -3055,8 +3055,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Are you sure you want to log out?"
+            "state" : "translated",
+            "value" : "Bạn có chắc chắn muốn đăng xuất không?"
           }
         },
         "zh-Hans" : {
@@ -3247,8 +3247,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "I authorize Aptoide to use my email for marketing purposes"
+            "state" : "translated",
+            "value" : "Tôi cho phép Aptoide sử dụng email của tôi cho mục đích tiếp thị"
           }
         },
         "zh-Hans" : {
@@ -3439,8 +3439,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Continue"
+            "state" : "translated",
+            "value" : "Tiếp tục"
           }
         },
         "zh-Hans" : {
@@ -3823,7 +3823,7 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "Email"
           }
         },
@@ -4207,8 +4207,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your code is incorrect."
+            "state" : "translated",
+            "value" : "Mã của bạn không đúng."
           }
         },
         "zh-Hans" : {
@@ -4783,8 +4783,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Invalid email address."
+            "state" : "translated",
+            "value" : "Địa chỉ email không hợp lệ."
           }
         },
         "zh-Hans" : {
@@ -5167,8 +5167,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Login Failed"
+            "state" : "translated",
+            "value" : "Đăng nhập không thành công"
           }
         },
         "zh-Hans" : {
@@ -5359,8 +5359,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Missing fields"
+            "state" : "translated",
+            "value" : "Các trường bị thiếu"
           }
         },
         "zh-Hans" : {
@@ -5935,8 +5935,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
+            "state" : "translated",
+            "value" : "Hoặc tiếp tục với:"
           }
         },
         "zh-Hans" : {
@@ -6319,8 +6319,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Privacy Policy"
+            "state" : "translated",
+            "value" : "Chính sách Bảo mật"
           }
         },
         "zh-Hans" : {
@@ -6703,8 +6703,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "*Purchase Bonus:* %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "*Tiền thưởng Mua hàng:* %@ bằng AppCoins Credit"
           }
         },
         "zh-Hans" : {
@@ -6895,8 +6895,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Redeem bonus"
+            "state" : "translated",
+            "value" : "Đổi tiền thưởng"
           }
         },
         "zh-Hans" : {
@@ -7087,8 +7087,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Re-send Email"
+            "state" : "translated",
+            "value" : "Gửi lại Email"
           }
         },
         "zh-Hans" : {
@@ -7237,8 +7237,8 @@
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "If you have not received an email, you can retry again in %@ seconds."
+            "state" : "translated",
+            "value" : "Se não tiveres recebido um e-mail, podes voltar a tentar dentro de %@ segundos."
           }
         },
         "ro" : {
@@ -7279,8 +7279,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "If you have not received an email, you can retry again in %@ seconds."
+            "state" : "translated",
+            "value" : "Nếu bạn không nhận được email, bạn có thể thử lại sau %@ giây."
           }
         },
         "zh-Hans" : {
@@ -7621,8 +7621,8 @@
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Select payment method"
+            "state" : "translated",
+            "value" : "Selecionar o método de pagamento"
           }
         },
         "ro" : {
@@ -7663,8 +7663,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Select payment method"
+            "state" : "translated",
+            "value" : "Chọn phương thức thanh toán"
           }
         },
         "zh-Hans" : {
@@ -7813,8 +7813,8 @@
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent a code to"
+            "state" : "translated",
+            "value" : "Enviámos um código para"
           }
         },
         "ro" : {
@@ -7855,8 +7855,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent a code to"
+            "state" : "translated",
+            "value" : "Chúng tôi đã gửi một mã đến"
           }
         },
         "zh-Hans" : {
@@ -8005,8 +8005,8 @@
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent an email to: %@"
+            "state" : "translated",
+            "value" : "Enviámos um e-mail para: %@"
           }
         },
         "ro" : {
@@ -8047,8 +8047,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent an email to: %@"
+            "state" : "translated",
+            "value" : "Chúng tôi đã gửi email đến: %@"
           }
         },
         "zh-Hans" : {
@@ -8197,8 +8197,8 @@
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in and join us!"
+            "state" : "translated",
+            "value" : "Inicia a sessão e junta-te a nós!"
           }
         },
         "ro" : {
@@ -8239,8 +8239,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in and join us!"
+            "state" : "translated",
+            "value" : "Đăng nhập và tham gia cùng chúng tôi!"
           }
         },
         "zh-Hans" : {
@@ -8389,8 +8389,8 @@
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in"
+            "state" : "translated",
+            "value" : "Iniciar sessão"
           }
         },
         "ro" : {
@@ -8431,8 +8431,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in"
+            "state" : "translated",
+            "value" : "Đăng nhập"
           }
         },
         "zh-Hans" : {
@@ -8581,8 +8581,8 @@
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
+            "state" : "translated",
+            "value" : "Ganhaste %@ com as tuas compras na app. Inicia a sessão para o receberes, e utiliza-o nas tuas próximas compras!"
           }
         },
         "ro" : {
@@ -8623,8 +8623,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
+            "state" : "translated",
+            "value" : "Bạn đã kiếm được %@ từ các giao dịch mua trong ứng dụng. Hãy đăng nhập để nhận và sử dụng trong các giao dịch mua tiếp theo của bạn!"
           }
         },
         "zh-Hans" : {
@@ -8773,8 +8773,8 @@
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Facebook"
+            "state" : "translated",
+            "value" : "Iniciar sessão com o Facebook"
           }
         },
         "ro" : {
@@ -8815,8 +8815,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Facebook"
+            "state" : "translated",
+            "value" : "Đăng nhập bằng Facebook"
           }
         },
         "zh-Hans" : {
@@ -8965,8 +8965,8 @@
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Google"
+            "state" : "translated",
+            "value" : "Iniciar sessão com o Google"
           }
         },
         "ro" : {
@@ -9007,8 +9007,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Google"
+            "state" : "translated",
+            "value" : "Đăng nhập bằng Google"
           }
         },
         "zh-Hans" : {
@@ -9157,8 +9157,8 @@
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in to get your bonus"
+            "state" : "translated",
+            "value" : "Inicia a sessão para receberes o teu bónus"
           }
         },
         "ro" : {
@@ -9199,8 +9199,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in to get your bonus"
+            "state" : "translated",
+            "value" : "Đăng nhập để nhận tiền thưởng của bạn"
           }
         },
         "zh-Hans" : {
@@ -11077,8 +11077,8 @@
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Terms and Conditions"
+            "state" : "translated",
+            "value" : "Termos e Condições"
           }
         },
         "ro" : {
@@ -11119,8 +11119,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Terms and Conditions"
+            "state" : "translated",
+            "value" : "Điều khoản và Điều kiện"
           }
         },
         "zh-Hans" : {
@@ -11269,8 +11269,8 @@
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Try again"
+            "state" : "translated",
+            "value" : "Tentar novamente"
           }
         },
         "ro" : {
@@ -11311,8 +11311,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Try again"
+            "state" : "translated",
+            "value" : "Thử lại"
           }
         },
         "zh-Hans" : {
@@ -12037,8 +12037,8 @@
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your Balance: %@"
+            "state" : "translated",
+            "value" : "O Teu Saldo: %@"
           }
         },
         "ro" : {
@@ -12079,8 +12079,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your Balance: %@"
+            "state" : "translated",
+            "value" : "Số dư của bạn: %@"
           }
         },
         "zh-Hans" : {
@@ -12420,8 +12420,8 @@
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your email here"
+            "state" : "translated",
+            "value" : "O teu e-mail aqui"
           }
         },
         "ro" : {
@@ -12462,8 +12462,8 @@
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your email here"
+            "state" : "translated",
+            "value" : "Email của bạn ở đây"
           }
         },
         "zh-Hans" : {
