@@ -1291,8 +1291,8 @@
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You'll get a bonus on every purchase!"
+            "state" : "translated",
+            "value" : "Vei primi un bonus la fiecare achiziție!"
           }
         },
         "ru" : {
@@ -2251,8 +2251,8 @@
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Check your email"
+            "state" : "translated",
+            "value" : "Verifică email-ul"
           }
         },
         "ru" : {
@@ -2635,8 +2635,8 @@
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Choose your payment method"
+            "state" : "translated",
+            "value" : "Alege metoda ta de plată"
           }
         },
         "ru" : {
@@ -2827,8 +2827,8 @@
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
+            "state" : "translated",
+            "value" : "Cod"
           }
         },
         "ru" : {
@@ -3019,8 +3019,8 @@
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Are you sure you want to log out?"
+            "state" : "translated",
+            "value" : "Ești sigur că vrei să te deconectezi?"
           }
         },
         "ru" : {
@@ -3211,8 +3211,8 @@
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "I authorize Aptoide to use my email for marketing purposes"
+            "state" : "translated",
+            "value" : "Autorizez Aptoide să folosească adresa mea de e-mail în scopuri de marketing"
           }
         },
         "ru" : {
@@ -3403,8 +3403,8 @@
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Continue"
+            "state" : "translated",
+            "value" : "Continuă"
           }
         },
         "ru" : {
@@ -3787,8 +3787,8 @@
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Email"
+            "state" : "translated",
+            "value" : "E-mail"
           }
         },
         "ru" : {
@@ -4171,8 +4171,8 @@
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your code is incorrect."
+            "state" : "translated",
+            "value" : "Codul tău este incorect."
           }
         },
         "ru" : {
@@ -4747,8 +4747,8 @@
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Invalid email address."
+            "state" : "translated",
+            "value" : "Adresă de e-mail nevalidă."
           }
         },
         "ru" : {
@@ -5131,8 +5131,8 @@
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Login Failed"
+            "state" : "translated",
+            "value" : "Autentificare eșuată"
           }
         },
         "ru" : {
@@ -5323,8 +5323,8 @@
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Missing fields"
+            "state" : "translated",
+            "value" : "Câmpuri lipsă"
           }
         },
         "ru" : {
@@ -5899,8 +5899,8 @@
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
+            "state" : "translated",
+            "value" : "Sau continuă cu:"
           }
         },
         "ru" : {
@@ -6283,8 +6283,8 @@
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Privacy Policy"
+            "state" : "translated",
+            "value" : "Politica de confidențialitate"
           }
         },
         "ru" : {
@@ -6667,8 +6667,8 @@
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "*Purchase Bonus:* %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "*Bonus la achiziție:* %@ în AppCoins Credits"
           }
         },
         "ru" : {
@@ -6859,8 +6859,8 @@
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Redeem bonus"
+            "state" : "translated",
+            "value" : "Revendică bonus"
           }
         },
         "ru" : {
@@ -7051,8 +7051,8 @@
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Re-send Email"
+            "state" : "translated",
+            "value" : "Retrimite e-mail"
           }
         },
         "ru" : {
@@ -7243,8 +7243,8 @@
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "If you have not received an email, you can retry again in %@ seconds."
+            "state" : "translated",
+            "value" : "Dacă nu ai primit un e-mail, poți reîncerca din nou în %@ secunde."
           }
         },
         "ru" : {
@@ -7627,8 +7627,8 @@
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Select payment method"
+            "state" : "translated",
+            "value" : "Selectează metoda de plată"
           }
         },
         "ru" : {
@@ -7819,8 +7819,8 @@
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent a code to"
+            "state" : "translated",
+            "value" : "Am trimis un cod la"
           }
         },
         "ru" : {
@@ -8011,8 +8011,8 @@
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent an email to: %@"
+            "state" : "translated",
+            "value" : "Am trimis un e-mail la: %@"
           }
         },
         "ru" : {
@@ -8203,8 +8203,8 @@
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in and join us!"
+            "state" : "translated",
+            "value" : "Conectează-te și hai și tu!"
           }
         },
         "ru" : {
@@ -8395,8 +8395,8 @@
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in"
+            "state" : "translated",
+            "value" : "Conectează-te"
           }
         },
         "ru" : {
@@ -8587,8 +8587,8 @@
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
+            "state" : "translated",
+            "value" : "Ai câștigat %@ în urma achizițiilor tale în aplicații. Conectează-te ca să îi revendici și să îi poți folosi la următoarele achiziții!"
           }
         },
         "ru" : {
@@ -8779,8 +8779,8 @@
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Facebook"
+            "state" : "translated",
+            "value" : "Conectează-te cu Facebook"
           }
         },
         "ru" : {
@@ -8971,8 +8971,8 @@
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Google"
+            "state" : "translated",
+            "value" : "Conectează-te cu Google"
           }
         },
         "ru" : {
@@ -9163,8 +9163,8 @@
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in to get your bonus"
+            "state" : "translated",
+            "value" : "Conectează-te pentru a-ți primi bonusul"
           }
         },
         "ru" : {
@@ -11083,8 +11083,8 @@
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Terms and Conditions"
+            "state" : "translated",
+            "value" : "Termeni și condiții"
           }
         },
         "ru" : {
@@ -11275,8 +11275,8 @@
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Try again"
+            "state" : "translated",
+            "value" : "Încearcă din nou"
           }
         },
         "ru" : {
@@ -12043,8 +12043,8 @@
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your Balance: %@"
+            "state" : "translated",
+            "value" : "Balanța ta: %@"
           }
         },
         "ru" : {
@@ -12426,8 +12426,8 @@
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your email here"
+            "state" : "translated",
+            "value" : "E-mailul tău aici"
           }
         },
         "ru" : {
