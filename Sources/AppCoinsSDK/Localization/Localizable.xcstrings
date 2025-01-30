@@ -127,8 +127,8 @@
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "I accept Aptoide's %@ and %@"
+            "state" : "translated",
+            "value" : "Eu aceito os %@ e %@ da Aptoide"
           }
         },
         "pt-PT" : {
@@ -139,8 +139,8 @@
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "I accept Aptoide's %@ and %@"
+            "state" : "translated",
+            "value" : "Accept %@ și %@ ale Aptoide"
           }
         },
         "ru" : {
@@ -319,8 +319,8 @@
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
+            "state" : "translated",
+            "value" : "Por favor, leia e aceite os Termos e Condições e a Política de Privacidade da Aptoide"
           }
         },
         "pt-PT" : {
@@ -331,8 +331,8 @@
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
+            "state" : "translated",
+            "value" : "Vă rugăm să citiți și să acceptați Termenii și condițiile și Politica de confidențialitate ale Aptoide"
           }
         },
         "ru" : {
@@ -1279,8 +1279,8 @@
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You'll get a bonus on every purchase!"
+            "state" : "translated",
+            "value" : "Você receberá um bônus em todas as compras!"
           }
         },
         "pt-PT" : {
@@ -2239,8 +2239,8 @@
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Check your email"
+            "state" : "translated",
+            "value" : "Verifique o seu e-mail"
           }
         },
         "pt-PT" : {
@@ -2623,8 +2623,8 @@
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Choose your payment method"
+            "state" : "translated",
+            "value" : "Selecione seu método de pagamento"
           }
         },
         "pt-PT" : {
@@ -2815,8 +2815,8 @@
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
+            "state" : "translated",
+            "value" : "Código"
           }
         },
         "pt-PT" : {
@@ -3007,8 +3007,8 @@
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Are you sure you want to log out?"
+            "state" : "translated",
+            "value" : "Tem certeza que deseja deslogar?"
           }
         },
         "pt-PT" : {
@@ -3199,8 +3199,8 @@
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "I authorize Aptoide to use my email for marketing purposes"
+            "state" : "translated",
+            "value" : "Autorizo a Aptoide a usar meu e-mail para fins de marketing"
           }
         },
         "pt-PT" : {
@@ -3391,8 +3391,8 @@
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Continue"
+            "state" : "translated",
+            "value" : "Continuar"
           }
         },
         "pt-PT" : {
@@ -3775,8 +3775,8 @@
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Email"
+            "state" : "translated",
+            "value" : "E-Mail"
           }
         },
         "pt-PT" : {
@@ -4159,8 +4159,8 @@
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your code is incorrect."
+            "state" : "translated",
+            "value" : "Seu código está incorreto."
           }
         },
         "pt-PT" : {
@@ -4735,8 +4735,8 @@
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Invalid email address."
+            "state" : "translated",
+            "value" : "Endereço de e-mail inválido."
           }
         },
         "pt-PT" : {
@@ -5119,8 +5119,8 @@
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Login Failed"
+            "state" : "translated",
+            "value" : "Falha no Login"
           }
         },
         "pt-PT" : {
@@ -5311,8 +5311,8 @@
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Missing fields"
+            "state" : "translated",
+            "value" : "Campos não preenchidos"
           }
         },
         "pt-PT" : {
@@ -5887,8 +5887,8 @@
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
+            "state" : "translated",
+            "value" : "Ou continue com:"
           }
         },
         "pt-PT" : {
@@ -6271,8 +6271,8 @@
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Privacy Policy"
+            "state" : "translated",
+            "value" : "Política de Privacidade"
           }
         },
         "pt-PT" : {
@@ -6655,8 +6655,8 @@
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "*Purchase Bonus:* %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "*Bônus de Compra:* %@ em Créditos AppCoins"
           }
         },
         "pt-PT" : {
@@ -6847,8 +6847,8 @@
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Redeem bonus"
+            "state" : "translated",
+            "value" : "Resgatar bônus"
           }
         },
         "pt-PT" : {
@@ -7039,8 +7039,8 @@
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Re-send Email"
+            "state" : "translated",
+            "value" : "Re-enviar E-Mail"
           }
         },
         "pt-PT" : {
@@ -7231,8 +7231,8 @@
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "If you have not received an email, you can retry again in %@ seconds."
+            "state" : "translated",
+            "value" : "Caso não tenha recebido um e-mail, você poderá tentar novamente em %@ segundos."
           }
         },
         "pt-PT" : {
@@ -7615,8 +7615,8 @@
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Select payment method"
+            "state" : "translated",
+            "value" : "Selecionar método de pagamento"
           }
         },
         "pt-PT" : {
@@ -7807,8 +7807,8 @@
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent a code to"
+            "state" : "translated",
+            "value" : "Enviamos um código para"
           }
         },
         "pt-PT" : {
@@ -7999,8 +7999,8 @@
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent an email to: %@"
+            "state" : "translated",
+            "value" : "Enviamos um e-mail para: %@"
           }
         },
         "pt-PT" : {
@@ -8191,8 +8191,8 @@
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in and join us!"
+            "state" : "translated",
+            "value" : "Registre-se e junte-se a nós!"
           }
         },
         "pt-PT" : {
@@ -8383,8 +8383,8 @@
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in"
+            "state" : "translated",
+            "value" : "Registrar-se"
           }
         },
         "pt-PT" : {
@@ -8575,8 +8575,8 @@
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
+            "state" : "translated",
+            "value" : "Você ganhou %@ com suas compras dentro do app! Faça ologin para resgatar e usar em suas próximas compras!"
           }
         },
         "pt-PT" : {
@@ -8767,8 +8767,8 @@
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Facebook"
+            "state" : "translated",
+            "value" : "Entrar com o Facebook"
           }
         },
         "pt-PT" : {
@@ -8959,8 +8959,8 @@
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Google"
+            "state" : "translated",
+            "value" : "Entrar com o Google"
           }
         },
         "pt-PT" : {
@@ -9151,8 +9151,8 @@
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in to get your bonus"
+            "state" : "translated",
+            "value" : "Registre-se para receber seu bônus"
           }
         },
         "pt-PT" : {
@@ -11071,8 +11071,8 @@
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Terms and Conditions"
+            "state" : "translated",
+            "value" : "Termos e Condições"
           }
         },
         "pt-PT" : {
@@ -11263,8 +11263,8 @@
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Try again"
+            "state" : "translated",
+            "value" : "Tente novamente"
           }
         },
         "pt-PT" : {
@@ -12031,8 +12031,8 @@
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your Balance: %@"
+            "state" : "translated",
+            "value" : "Seu saldo: %@"
           }
         },
         "pt-PT" : {
@@ -12414,8 +12414,8 @@
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your email here"
+            "state" : "translated",
+            "value" : "Insira o seu e-mail"
           }
         },
         "pt-PT" : {
