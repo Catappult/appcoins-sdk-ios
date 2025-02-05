@@ -43,8 +43,8 @@
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "I accept Aptoide's %@ and %@"
+            "state" : "translated",
+            "value" : "من %@ و %@ Aptoide را قبول می کنم"
           }
         },
         "fr" : {
@@ -97,8 +97,8 @@
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "I accept Aptoide's %@ and %@"
+            "state" : "translated",
+            "value" : "Saya terima %@ dan %@ Aptoide"
           }
         },
         "my" : {
@@ -109,8 +109,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "I accept Aptoide's %@ and %@"
+            "state" : "translated",
+            "value" : "Ik accepteer de %@ en het %@ van Aptoide"
           }
         },
         "pa" : {
@@ -157,8 +157,8 @@
         },
         "th" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "I accept Aptoide's %@ and %@"
+            "state" : "translated",
+            "value" : "ฉันยอมรับของ %@ และ %@ ของ Aptoide"
           }
         },
         "tr" : {
@@ -235,8 +235,8 @@
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
+            "state" : "translated",
+            "value" : "لطفا شرایط، ضوابط و سیاست حریم خصوصی Aptoide را بخوانید و تایید کنید"
           }
         },
         "fr" : {
@@ -289,8 +289,8 @@
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
+            "state" : "translated",
+            "value" : "Sila baca dan terima Terma dan Syarat serta Dasar Privasi Aptoide"
           }
         },
         "my" : {
@@ -301,8 +301,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
+            "state" : "translated",
+            "value" : "Lees en accepteer de Algemene voorwaarden en het Privacybeleid van Aptoide"
           }
         },
         "pa" : {
@@ -349,8 +349,8 @@
         },
         "th" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
+            "state" : "translated",
+            "value" : "โปรดอ่านและยอมรับข้อกำหนดและเงื่อนไขและนโยบายความเป็นส่วนตัวของ Aptoide"
           }
         },
         "tr" : {
@@ -1195,8 +1195,8 @@
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You'll get a bonus on every purchase!"
+            "state" : "translated",
+            "value" : "با هر خرید پاداشی دریافت خواهید کرد!"
           }
         },
         "fr" : {
@@ -1249,8 +1249,8 @@
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You'll get a bonus on every purchase!"
+            "state" : "translated",
+            "value" : "Anda dapat bonus bila membeli!"
           }
         },
         "my" : {
@@ -1261,8 +1261,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You'll get a bonus on every purchase!"
+            "state" : "translated",
+            "value" : "Je krijgt een bonus bij elke aankoop!"
           }
         },
         "pa" : {
@@ -1309,8 +1309,8 @@
         },
         "th" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You'll get a bonus on every purchase!"
+            "state" : "translated",
+            "value" : "คุณจะได้รับโบนัสทุกครั้งที่ซื้อ!"
           }
         },
         "tr" : {
@@ -2155,8 +2155,8 @@
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Check your email"
+            "state" : "translated",
+            "value" : "ایمیل خود را چک کنید"
           }
         },
         "fr" : {
@@ -2209,8 +2209,8 @@
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Check your email"
+            "state" : "translated",
+            "value" : "Semak e-mel anda"
           }
         },
         "my" : {
@@ -2221,8 +2221,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Check your email"
+            "state" : "translated",
+            "value" : "Controleer je inbox"
           }
         },
         "pa" : {
@@ -2269,14 +2269,14 @@
         },
         "th" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Check your email"
+            "state" : "translated",
+            "value" : "ตรวจสอบอีเมลของคุณ"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Check your email"
+            "state" : "translated",
+            "value" : "E-postanı kontrol et"
           }
         },
         "uk" : {
@@ -2539,8 +2539,8 @@
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Choose your payment method"
+            "state" : "translated",
+            "value" : "روش پرداخت خود را انتخاب کنید"
           }
         },
         "fr" : {
@@ -2593,8 +2593,8 @@
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Choose your payment method"
+            "state" : "translated",
+            "value" : "Pilih kaedah bayaran anda"
           }
         },
         "my" : {
@@ -2605,8 +2605,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Choose your payment method"
+            "state" : "translated",
+            "value" : "Kies je betaalmethode"
           }
         },
         "pa" : {
@@ -2653,14 +2653,14 @@
         },
         "th" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Choose your payment method"
+            "state" : "translated",
+            "value" : "เลือกวิธีการชำระเงินของคุณ"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Choose your payment method"
+            "state" : "translated",
+            "value" : "Ödeme yöntemini seç"
           }
         },
         "uk" : {
@@ -2731,8 +2731,8 @@
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
+            "state" : "translated",
+            "value" : "کد"
           }
         },
         "fr" : {
@@ -2785,8 +2785,8 @@
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
+            "state" : "translated",
+            "value" : "Kod"
           }
         },
         "my" : {
@@ -2797,7 +2797,7 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "Code"
           }
         },
@@ -2845,14 +2845,14 @@
         },
         "th" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
+            "state" : "translated",
+            "value" : "รหัส"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
+            "state" : "translated",
+            "value" : "Kod"
           }
         },
         "uk" : {
@@ -2923,8 +2923,8 @@
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Are you sure you want to log out?"
+            "state" : "translated",
+            "value" : "آیا مطمئن هستیم که می‌خواهید از سیستم خارج شوید؟"
           }
         },
         "fr" : {
@@ -2977,8 +2977,8 @@
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Are you sure you want to log out?"
+            "state" : "translated",
+            "value" : "Mahu log keluar?"
           }
         },
         "my" : {
@@ -2989,8 +2989,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Are you sure you want to log out?"
+            "state" : "translated",
+            "value" : "Weet je zeker dat je je wilt afmelden?"
           }
         },
         "pa" : {
@@ -3037,14 +3037,14 @@
         },
         "th" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Are you sure you want to log out?"
+            "state" : "translated",
+            "value" : "คุณต้องการลงชื่อออกใช่ไหม?"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Are you sure you want to log out?"
+            "state" : "translated",
+            "value" : "Çıkış yapmak istediğine emin misin?"
           }
         },
         "uk" : {
@@ -3115,8 +3115,8 @@
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "I authorize Aptoide to use my email for marketing purposes"
+            "state" : "translated",
+            "value" : "من به Aptoide اجازه استفاده از ایمیل خود را برای مقاصد بازاریابی می‌دهم"
           }
         },
         "fr" : {
@@ -3169,8 +3169,8 @@
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "I authorize Aptoide to use my email for marketing purposes"
+            "state" : "translated",
+            "value" : "Saya izinkan Aptoide guna e-mel saya untuk tujuan pemasaran"
           }
         },
         "my" : {
@@ -3181,8 +3181,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "I authorize Aptoide to use my email for marketing purposes"
+            "state" : "translated",
+            "value" : "Ik geef Aptoide toestemming om mijn e-mailadres te gebruiken voor marketingdoeleinden"
           }
         },
         "pa" : {
@@ -3229,14 +3229,14 @@
         },
         "th" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "I authorize Aptoide to use my email for marketing purposes"
+            "state" : "translated",
+            "value" : "ฉันอนุญาตให้ Aptoide ใช้อีเมลของฉันเพื่อวัตถุประสงค์ทางการตลาด"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "I authorize Aptoide to use my email for marketing purposes"
+            "state" : "translated",
+            "value" : "Aptoide'e e-postamı pazarlama amacıyla kullanması için yetki veriyorum"
           }
         },
         "uk" : {
@@ -3307,8 +3307,8 @@
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Continue"
+            "state" : "translated",
+            "value" : "ادامه"
           }
         },
         "fr" : {
@@ -3361,8 +3361,8 @@
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Continue"
+            "state" : "translated",
+            "value" : "Teruskan"
           }
         },
         "my" : {
@@ -3373,8 +3373,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Continue"
+            "state" : "translated",
+            "value" : "Doorgaan"
           }
         },
         "pa" : {
@@ -3421,14 +3421,14 @@
         },
         "th" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Continue"
+            "state" : "translated",
+            "value" : "ต่อ"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Continue"
+            "state" : "translated",
+            "value" : "Devam et"
           }
         },
         "uk" : {
@@ -3691,8 +3691,8 @@
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Email"
+            "state" : "translated",
+            "value" : "ایمیل"
           }
         },
         "fr" : {
@@ -3745,8 +3745,8 @@
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Email"
+            "state" : "translated",
+            "value" : "E-mel"
           }
         },
         "my" : {
@@ -3757,8 +3757,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Email"
+            "state" : "translated",
+            "value" : "E-mail"
           }
         },
         "pa" : {
@@ -3805,14 +3805,14 @@
         },
         "th" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Email"
+            "state" : "translated",
+            "value" : "อีเมล"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Email"
+            "state" : "translated",
+            "value" : "E-posta"
           }
         },
         "uk" : {
@@ -4075,8 +4075,8 @@
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your code is incorrect."
+            "state" : "translated",
+            "value" : "کد شما غلط است."
           }
         },
         "fr" : {
@@ -4129,8 +4129,8 @@
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your code is incorrect."
+            "state" : "translated",
+            "value" : "Kod tidak betul."
           }
         },
         "my" : {
@@ -4141,8 +4141,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your code is incorrect."
+            "state" : "translated",
+            "value" : "De code is onjuist."
           }
         },
         "pa" : {
@@ -4189,14 +4189,14 @@
         },
         "th" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your code is incorrect."
+            "state" : "translated",
+            "value" : "รหัสของคุณไม่ถูกต้อง"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your code is incorrect."
+            "state" : "translated",
+            "value" : "Kodun hatalı."
           }
         },
         "uk" : {
@@ -4651,8 +4651,8 @@
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Invalid email address."
+            "state" : "translated",
+            "value" : "آدرس ایمل نامعتبر است."
           }
         },
         "fr" : {
@@ -4705,8 +4705,8 @@
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Invalid email address."
+            "state" : "translated",
+            "value" : "Alamat e-mel tidak sah."
           }
         },
         "my" : {
@@ -4717,8 +4717,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Invalid email address."
+            "state" : "translated",
+            "value" : "Ongeldig e-mailadres."
           }
         },
         "pa" : {
@@ -4765,14 +4765,14 @@
         },
         "th" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Invalid email address."
+            "state" : "translated",
+            "value" : "ไม่มีที่อยู่อีเมล"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Invalid email address."
+            "state" : "translated",
+            "value" : "Geçersiz e-posta adresi."
           }
         },
         "uk" : {
@@ -5035,8 +5035,8 @@
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Login Failed"
+            "state" : "translated",
+            "value" : "ورود به سیستم با خطا"
           }
         },
         "fr" : {
@@ -5089,8 +5089,8 @@
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Login Failed"
+            "state" : "translated",
+            "value" : "Gagal Log Masuk"
           }
         },
         "my" : {
@@ -5101,8 +5101,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Login Failed"
+            "state" : "translated",
+            "value" : "Aanmelden is niet gelukt"
           }
         },
         "pa" : {
@@ -5149,14 +5149,14 @@
         },
         "th" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Login Failed"
+            "state" : "translated",
+            "value" : "การเข้าสู่ระบบล้มเหลว"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Login Failed"
+            "state" : "translated",
+            "value" : "Giriş Başarısız"
           }
         },
         "uk" : {
@@ -5227,8 +5227,8 @@
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Missing fields"
+            "state" : "translated",
+            "value" : "بخش‌هایی پر نشده"
           }
         },
         "fr" : {
@@ -5281,8 +5281,8 @@
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Missing fields"
+            "state" : "translated",
+            "value" : "Ruang perlu diisi"
           }
         },
         "my" : {
@@ -5293,8 +5293,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Missing fields"
+            "state" : "translated",
+            "value" : "Ontbrekende velden"
           }
         },
         "pa" : {
@@ -5341,14 +5341,14 @@
         },
         "th" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Missing fields"
+            "state" : "translated",
+            "value" : "ฟิลด์ที่ว่างไว้"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Missing fields"
+            "state" : "translated",
+            "value" : "Eksik alan"
           }
         },
         "uk" : {
@@ -5803,8 +5803,8 @@
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
+            "state" : "translated",
+            "value" : "یا ادامه با:"
           }
         },
         "fr" : {
@@ -5857,8 +5857,8 @@
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
+            "state" : "translated",
+            "value" : "Atau teruskan dengan:"
           }
         },
         "my" : {
@@ -5869,8 +5869,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
+            "state" : "translated",
+            "value" : "Of doorgaan met:"
           }
         },
         "pa" : {
@@ -5917,14 +5917,14 @@
         },
         "th" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
+            "state" : "translated",
+            "value" : "หรือดำเนินการต่อด้วย:"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
+            "state" : "translated",
+            "value" : "Veya şununla devam et:"
           }
         },
         "uk" : {
@@ -6187,8 +6187,8 @@
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Privacy Policy"
+            "state" : "translated",
+            "value" : "سیاست حفظ حریم خصوصی"
           }
         },
         "fr" : {
@@ -6241,8 +6241,8 @@
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Privacy Policy"
+            "state" : "translated",
+            "value" : "Dasar Privasi"
           }
         },
         "my" : {
@@ -6253,8 +6253,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Privacy Policy"
+            "state" : "translated",
+            "value" : "Privacybeleid"
           }
         },
         "pa" : {
@@ -6301,14 +6301,14 @@
         },
         "th" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Privacy Policy"
+            "state" : "translated",
+            "value" : "นโยบายความเป็นส่วนตัว"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Privacy Policy"
+            "state" : "translated",
+            "value" : "Gizlilik Politikası"
           }
         },
         "uk" : {
@@ -6571,8 +6571,8 @@
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "*Purchase Bonus:* %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "*بونوس بخرید:* %@ در AppCoins Credits"
           }
         },
         "fr" : {
@@ -6625,8 +6625,8 @@
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "*Purchase Bonus:* %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "*Bonus Pembelian:* %@ dalam Kredit AppCoins"
           }
         },
         "my" : {
@@ -6637,8 +6637,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "*Purchase Bonus:* %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "*Aankoopbonus:* %@ in AppCoins Credits"
           }
         },
         "pa" : {
@@ -6685,14 +6685,14 @@
         },
         "th" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "*Purchase Bonus:* %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "*โบนัสการซื้อ:* %@ ในเครดิต AppCoins"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "*Purchase Bonus:* %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "*Satın Alma Bonusu* %@ AppCoins Kredisi"
           }
         },
         "uk" : {
@@ -6763,8 +6763,8 @@
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Redeem bonus"
+            "state" : "translated",
+            "value" : "استفاده از بونوس"
           }
         },
         "fr" : {
@@ -6817,8 +6817,8 @@
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Redeem bonus"
+            "state" : "translated",
+            "value" : "Tebus bonus"
           }
         },
         "my" : {
@@ -6829,8 +6829,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Redeem bonus"
+            "state" : "translated",
+            "value" : "Bonus inwisselen"
           }
         },
         "pa" : {
@@ -6877,14 +6877,14 @@
         },
         "th" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Redeem bonus"
+            "state" : "translated",
+            "value" : "แลกโบนัส"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Redeem bonus"
+            "state" : "translated",
+            "value" : "Bonus kullan"
           }
         },
         "uk" : {
@@ -6955,8 +6955,8 @@
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Re-send Email"
+            "state" : "translated",
+            "value" : "ارسال مجدد ایمیل"
           }
         },
         "fr" : {
@@ -7009,8 +7009,8 @@
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Re-send Email"
+            "state" : "translated",
+            "value" : "Hantar semula E-mel"
           }
         },
         "my" : {
@@ -7021,8 +7021,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Re-send Email"
+            "state" : "translated",
+            "value" : "E-mail opnieuw verzenden"
           }
         },
         "pa" : {
@@ -7069,14 +7069,14 @@
         },
         "th" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Re-send Email"
+            "state" : "translated",
+            "value" : "ส่งอีเมลอีกครั้ง"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Re-send Email"
+            "state" : "translated",
+            "value" : "E-postayı yeniden gönder"
           }
         },
         "uk" : {
@@ -7147,8 +7147,8 @@
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "If you have not received an email, you can retry again in %@ seconds."
+            "state" : "translated",
+            "value" : "اگر هنوز ایمیلی دریافت نکردید مجددا در %@ ثانیه امتحان کنید."
           }
         },
         "fr" : {
@@ -7201,8 +7201,8 @@
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "If you have not received an email, you can retry again in %@ seconds."
+            "state" : "translated",
+            "value" : "Jika anda belum terima e-mel, sila cuba lagi dalam masa %@ saat."
           }
         },
         "my" : {
@@ -7213,8 +7213,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "If you have not received an email, you can retry again in %@ seconds."
+            "state" : "translated",
+            "value" : "Als je geen e-mail hebt ontvangen, kun je het over %@ seconden opnieuw proberen."
           }
         },
         "pa" : {
@@ -7261,14 +7261,14 @@
         },
         "th" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "If you have not received an email, you can retry again in %@ seconds."
+            "state" : "translated",
+            "value" : "หากคุณยังไม่ได้รับอีเมล คุณสามารถลองอีกครั้งได้ในอีก %@ วินาที"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "If you have not received an email, you can retry again in %@ seconds."
+            "state" : "translated",
+            "value" : "E-postayı almadıysan %@ saniye içinde tekrar deneyebilirsin."
           }
         },
         "uk" : {
@@ -7531,8 +7531,8 @@
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Select payment method"
+            "state" : "translated",
+            "value" : "انتخاب روش پرداخت"
           }
         },
         "fr" : {
@@ -7585,8 +7585,8 @@
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Select payment method"
+            "state" : "translated",
+            "value" : "Pilih kaedah bayaran"
           }
         },
         "my" : {
@@ -7597,8 +7597,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Select payment method"
+            "state" : "translated",
+            "value" : "Betaalmethode selecteren"
           }
         },
         "pa" : {
@@ -7645,14 +7645,14 @@
         },
         "th" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Select payment method"
+            "state" : "translated",
+            "value" : "เลือกวิธีการชำระเงิน"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Select payment method"
+            "state" : "translated",
+            "value" : "Ödeme yöntemini seç"
           }
         },
         "uk" : {
@@ -7723,8 +7723,8 @@
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent a code to"
+            "state" : "translated",
+            "value" : "کدی ارسال کردیم به"
           }
         },
         "fr" : {
@@ -7777,8 +7777,8 @@
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent a code to"
+            "state" : "translated",
+            "value" : "Kami telah hantar kod ke"
           }
         },
         "my" : {
@@ -7789,8 +7789,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent a code to"
+            "state" : "translated",
+            "value" : "We hebben een code verzonden naar"
           }
         },
         "pa" : {
@@ -7837,14 +7837,14 @@
         },
         "th" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent a code to"
+            "state" : "translated",
+            "value" : "เราได้ส่งรหัสไปที่"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent a code to"
+            "state" : "translated",
+            "value" : "Kodu gönderdik:"
           }
         },
         "uk" : {
@@ -7915,8 +7915,8 @@
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent an email to: %@"
+            "state" : "translated",
+            "value" : "ایمیلی ارسال کرده‌ایم به: %@"
           }
         },
         "fr" : {
@@ -7969,8 +7969,8 @@
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent an email to: %@"
+            "state" : "translated",
+            "value" : "Kami telah hantar e-mel ke: %@"
           }
         },
         "my" : {
@@ -7981,8 +7981,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent an email to: %@"
+            "state" : "translated",
+            "value" : "We hebben een e-mail verzonden naar: %@"
           }
         },
         "pa" : {
@@ -8029,14 +8029,14 @@
         },
         "th" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent an email to: %@"
+            "state" : "translated",
+            "value" : "เราได้ส่งอีเมลไปที่: %@"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent an email to: %@"
+            "state" : "translated",
+            "value" : "Şu adrese bir e-posta gönderdik: %@"
           }
         },
         "uk" : {
@@ -8107,8 +8107,8 @@
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in and join us!"
+            "state" : "translated",
+            "value" : "وارد سیستم شوید و عضو شوید!"
           }
         },
         "fr" : {
@@ -8161,8 +8161,8 @@
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in and join us!"
+            "state" : "translated",
+            "value" : "Daftar masuk dan sertai kami!"
           }
         },
         "my" : {
@@ -8173,8 +8173,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in and join us!"
+            "state" : "translated",
+            "value" : "Meld je aan en profiteer!"
           }
         },
         "pa" : {
@@ -8221,14 +8221,14 @@
         },
         "th" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in and join us!"
+            "state" : "translated",
+            "value" : "เข้าสู่ระบบและเข้าร่วมกับเรา!"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in and join us!"
+            "state" : "translated",
+            "value" : "Giriş yap ve bize katıl!"
           }
         },
         "uk" : {
@@ -8299,8 +8299,8 @@
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in"
+            "state" : "translated",
+            "value" : "ورود به سیستم"
           }
         },
         "fr" : {
@@ -8353,8 +8353,8 @@
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in"
+            "state" : "translated",
+            "value" : "Daftar masuk"
           }
         },
         "my" : {
@@ -8365,8 +8365,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in"
+            "state" : "translated",
+            "value" : "Aanmelden"
           }
         },
         "pa" : {
@@ -8413,14 +8413,14 @@
         },
         "th" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in"
+            "state" : "translated",
+            "value" : "เข้าสู่ระบบ"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in"
+            "state" : "translated",
+            "value" : "Giriş Yap"
           }
         },
         "uk" : {
@@ -8491,8 +8491,8 @@
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
+            "state" : "translated",
+            "value" : "شما %@ از خریدهای داخل اپلیکیشنی خود بدست آوردید. وارد سیستم شوید تا آن را دریافت کنید و در خرید بعدی خود استفاده کنید!"
           }
         },
         "fr" : {
@@ -8545,8 +8545,8 @@
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
+            "state" : "translated",
+            "value" : "Anda dapat %@ daripada pembelian dalam aplikasi anda. Daftar masuk untuk terima dan guna pada pembelian seterusnya!"
           }
         },
         "my" : {
@@ -8557,8 +8557,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
+            "state" : "translated",
+            "value" : "Je hebt %@ verdiend met je in-app aankopen. Meld je aan om je bonus te ontvangen en bij je volgende aankopen te gebruiken!"
           }
         },
         "pa" : {
@@ -8605,14 +8605,14 @@
         },
         "th" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
+            "state" : "translated",
+            "value" : "คุณได้รับ %@ จากการซื้อในแอปของคุณ ลงชื่อเข้าใช้เพื่อรับมันและใช้ในการซื้อครั้งต่อไปของคุณ!"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
+            "state" : "translated",
+            "value" : "Uygulama içi alışverişlerinden %@ kazandın. Bonusu almak ve bir sonraki alışverişinde kullanmak için giriş yap!"
           }
         },
         "uk" : {
@@ -8683,8 +8683,8 @@
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Facebook"
+            "state" : "translated",
+            "value" : "با فیسبوک وارد شوید"
           }
         },
         "fr" : {
@@ -8737,8 +8737,8 @@
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Facebook"
+            "state" : "translated",
+            "value" : "Daftar masuk dengan Facebook"
           }
         },
         "my" : {
@@ -8749,8 +8749,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Facebook"
+            "state" : "translated",
+            "value" : "Aanmelden met Facebook"
           }
         },
         "pa" : {
@@ -8797,14 +8797,14 @@
         },
         "th" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Facebook"
+            "state" : "translated",
+            "value" : "เข้าสู่ระบบด้วย Facebook"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Facebook"
+            "state" : "translated",
+            "value" : "Facebook ile giriş yap"
           }
         },
         "uk" : {
@@ -8875,8 +8875,8 @@
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Google"
+            "state" : "translated",
+            "value" : "با گوگل وارد شوید"
           }
         },
         "fr" : {
@@ -8929,8 +8929,8 @@
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Google"
+            "state" : "translated",
+            "value" : "Daftar masuk dengan Google"
           }
         },
         "my" : {
@@ -8941,8 +8941,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Google"
+            "state" : "translated",
+            "value" : "Aanmelden met Google"
           }
         },
         "pa" : {
@@ -8989,14 +8989,14 @@
         },
         "th" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Google"
+            "state" : "translated",
+            "value" : "ลงชื่อเข้าใช้งานด้วย Google"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Google"
+            "state" : "translated",
+            "value" : "Google ile giriş yap"
           }
         },
         "uk" : {
@@ -9067,8 +9067,8 @@
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in to get your bonus"
+            "state" : "translated",
+            "value" : "برای دریافت بونوس خود وارد شوید"
           }
         },
         "fr" : {
@@ -9121,8 +9121,8 @@
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in to get your bonus"
+            "state" : "translated",
+            "value" : "Daftar masuk untuk terima bonus"
           }
         },
         "my" : {
@@ -9133,8 +9133,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in to get your bonus"
+            "state" : "translated",
+            "value" : "Meld je aan om je bonus te ontvangen"
           }
         },
         "pa" : {
@@ -9181,14 +9181,14 @@
         },
         "th" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in to get your bonus"
+            "state" : "translated",
+            "value" : "ลงชื่อเข้าใช้เพื่อรับโบนัสของคุณ"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in to get your bonus"
+            "state" : "translated",
+            "value" : "Bonus kazanmak için giriş yap"
           }
         },
         "uk" : {
@@ -10987,8 +10987,8 @@
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Terms and Conditions"
+            "state" : "translated",
+            "value" : "شرایط و ضوابط"
           }
         },
         "fr" : {
@@ -11041,8 +11041,8 @@
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Terms and Conditions"
+            "state" : "translated",
+            "value" : "Terma dan Syarat"
           }
         },
         "my" : {
@@ -11053,8 +11053,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Terms and Conditions"
+            "state" : "translated",
+            "value" : "Algemene voorwaarden"
           }
         },
         "pa" : {
@@ -11101,14 +11101,14 @@
         },
         "th" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Terms and Conditions"
+            "state" : "translated",
+            "value" : "ข้อกำหนดและเงื่อนไข"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Terms and Conditions"
+            "state" : "translated",
+            "value" : "Şartlar ve Koşullar"
           }
         },
         "uk" : {
@@ -11179,8 +11179,8 @@
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Try again"
+            "state" : "translated",
+            "value" : "دوباره امتحان کنید"
           }
         },
         "fr" : {
@@ -11233,8 +11233,8 @@
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Try again"
+            "state" : "translated",
+            "value" : "Cuba lagi"
           }
         },
         "my" : {
@@ -11245,8 +11245,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Try again"
+            "state" : "translated",
+            "value" : "Opnieuw proberen"
           }
         },
         "pa" : {
@@ -11293,14 +11293,14 @@
         },
         "th" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Try again"
+            "state" : "translated",
+            "value" : "ลองอีกครั้ง"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Try again"
+            "state" : "translated",
+            "value" : "Tekrar dene"
           }
         },
         "uk" : {
@@ -11947,8 +11947,8 @@
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your Balance: %@"
+            "state" : "translated",
+            "value" : "بالانس شما: %@"
           }
         },
         "fr" : {
@@ -12001,8 +12001,8 @@
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your Balance: %@"
+            "state" : "translated",
+            "value" : "Baki Anda: %@"
           }
         },
         "my" : {
@@ -12013,8 +12013,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your Balance: %@"
+            "state" : "translated",
+            "value" : "Je saldo: %@"
           }
         },
         "pa" : {
@@ -12061,14 +12061,14 @@
         },
         "th" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your Balance: %@"
+            "state" : "translated",
+            "value" : "ยอดคงเหลือของคุณ: %@"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your Balance: %@"
+            "state" : "translated",
+            "value" : "Bakiyen: %@"
           }
         },
         "uk" : {
@@ -12330,8 +12330,8 @@
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your email here"
+            "state" : "translated",
+            "value" : "ایمیل شما در اینجا"
           }
         },
         "fr" : {
@@ -12384,8 +12384,8 @@
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your email here"
+            "state" : "translated",
+            "value" : "E-mel di sini"
           }
         },
         "my" : {
@@ -12396,8 +12396,8 @@
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your email here"
+            "state" : "translated",
+            "value" : "Voer hier je e-mailadres in"
           }
         },
         "pa" : {
@@ -12444,14 +12444,14 @@
         },
         "th" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your email here"
+            "state" : "translated",
+            "value" : "อีเมลของคุณที่นี่"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your email here"
+            "state" : "translated",
+            "value" : "E-postanı buraya yaz"
           }
         },
         "uk" : {
