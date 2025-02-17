@@ -37,8 +37,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "I accept Aptoide's %@ and %@"
+            "state" : "translated",
+            "value" : "Acepto los %@ y la %@ de Aptoide"
           }
         },
         "fa" : {
@@ -229,8 +229,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
+            "state" : "translated",
+            "value" : "Por favor, lee y acepta los Términos y Condiciones y la Política de Privacidad"
           }
         },
         "fa" : {
@@ -1189,8 +1189,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You'll get a bonus on every purchase!"
+            "state" : "translated",
+            "value" : "¡Recibirás un bonus en todas tus compras!"
           }
         },
         "fa" : {
@@ -2149,8 +2149,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Check your email"
+            "state" : "translated",
+            "value" : "Comprueba tu email"
           }
         },
         "fa" : {
@@ -2533,8 +2533,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Choose your payment method"
+            "state" : "translated",
+            "value" : "Elige un método de pago"
           }
         },
         "fa" : {
@@ -2725,8 +2725,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
+            "state" : "translated",
+            "value" : "Código"
           }
         },
         "fa" : {
@@ -2917,8 +2917,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Are you sure you want to log out?"
+            "state" : "translated",
+            "value" : "¿Estás seguro de que quieres salir?"
           }
         },
         "fa" : {
@@ -3109,8 +3109,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "I authorize Aptoide to use my email for marketing purposes"
+            "state" : "translated",
+            "value" : "Autorizo que Aptoide use mi email con fines de marketing"
           }
         },
         "fa" : {
@@ -3301,8 +3301,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Continue"
+            "state" : "translated",
+            "value" : "Continuar"
           }
         },
         "fa" : {
@@ -3685,7 +3685,7 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "Email"
           }
         },
@@ -4069,8 +4069,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your code is incorrect."
+            "state" : "translated",
+            "value" : "El código no es correcto."
           }
         },
         "fa" : {
@@ -4645,8 +4645,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Invalid email address."
+            "state" : "translated",
+            "value" : "Dirección de email no válida."
           }
         },
         "fa" : {
@@ -5029,8 +5029,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Login Failed"
+            "state" : "translated",
+            "value" : "El inicio de sesión falló."
           }
         },
         "fa" : {
@@ -5221,8 +5221,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Missing fields"
+            "state" : "translated",
+            "value" : "Faltan campos"
           }
         },
         "fa" : {
@@ -5797,8 +5797,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
+            "state" : "translated",
+            "value" : "O continúa con:"
           }
         },
         "fa" : {
@@ -6181,8 +6181,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Privacy Policy"
+            "state" : "translated",
+            "value" : "Política de Privacidad"
           }
         },
         "fa" : {
@@ -6565,8 +6565,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "*Purchase Bonus:* %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "*Bonus de Compra:* %@ en AppCoins Credits"
           }
         },
         "fa" : {
@@ -6757,8 +6757,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Redeem bonus"
+            "state" : "translated",
+            "value" : "Canjear bonus"
           }
         },
         "fa" : {
@@ -6949,8 +6949,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Re-send Email"
+            "state" : "translated",
+            "value" : "Reenviar email"
           }
         },
         "fa" : {
@@ -7141,8 +7141,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "If you have not received an email, you can retry again in %@ seconds."
+            "state" : "translated",
+            "value" : "Si no has recibido el email, puedes intentarlo de nuevo en %@ segundos."
           }
         },
         "fa" : {
@@ -7525,8 +7525,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Select payment method"
+            "state" : "translated",
+            "value" : "Escoge el método de pago"
           }
         },
         "fa" : {
@@ -7717,8 +7717,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent a code to"
+            "state" : "translated",
+            "value" : "Hemos enviado un código a"
           }
         },
         "fa" : {
@@ -7909,8 +7909,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent an email to: %@"
+            "state" : "translated",
+            "value" : "Hemos enviado un email a: %@"
           }
         },
         "fa" : {
@@ -8101,8 +8101,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in and join us!"
+            "state" : "translated",
+            "value" : "¡Inicia sesión y únete!"
           }
         },
         "fa" : {
@@ -8293,8 +8293,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in"
+            "state" : "translated",
+            "value" : "Iniciar sesión"
           }
         },
         "fa" : {
@@ -8485,8 +8485,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
+            "state" : "translated",
+            "value" : "Has ganado %@ por tus compras in-app. ¡Inicia sesión recibirlo y usarlo en tus próximas compras!"
           }
         },
         "fa" : {
@@ -8677,8 +8677,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Facebook"
+            "state" : "translated",
+            "value" : "Iniciar sesión con Facebook"
           }
         },
         "fa" : {
@@ -8869,8 +8869,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Google"
+            "state" : "translated",
+            "value" : "Iniciar sesión con Google"
           }
         },
         "fa" : {
@@ -9061,8 +9061,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in to get your bonus"
+            "state" : "translated",
+            "value" : "Iniciar sesión para recibir el bonus"
           }
         },
         "fa" : {
@@ -10981,8 +10981,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Terms and Conditions"
+            "state" : "translated",
+            "value" : "Términos y Condiciones"
           }
         },
         "fa" : {
@@ -11173,8 +11173,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Try again"
+            "state" : "translated",
+            "value" : "Intentar de nuevo"
           }
         },
         "fa" : {
@@ -11941,8 +11941,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your Balance: %@"
+            "state" : "translated",
+            "value" : "Tu saldo: %@"
           }
         },
         "fa" : {
@@ -12324,8 +12324,8 @@
         },
         "es" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your email here"
+            "state" : "translated",
+            "value" : "Tu email aquí"
           }
         },
         "fa" : {
