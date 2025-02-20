@@ -11,11 +11,11 @@ internal class SDKRepository: SDKRepositoryProtocol {
     
     private let userPreferencesLocalService: UserPreferencesLocalService = UserPreferencesLocalClient()
     
-    internal func isDefault() -> Bool { return (userPreferencesLocalService.getIsSDKDefault() == "true") ? true : false }
+    internal func isDefault() -> Bool { return (userPreferencesLocalService.isSDKDefault() == "true") ? true : false }
     
     internal func toggleSDKDefault() {
-        let currentValue = userPreferencesLocalService.getIsSDKDefault()
+        let currentValue = userPreferencesLocalService.isSDKDefault()
         let newValue = (currentValue == "true") ? "false" : "true"
-        userPreferencesLocalService.setIsSDKDefault(value: newValue)
+        userPreferencesLocalService.setSDKDefault(value: newValue)
     }
 }
