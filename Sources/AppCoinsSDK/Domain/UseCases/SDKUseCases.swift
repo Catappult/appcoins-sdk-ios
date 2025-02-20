@@ -15,6 +15,6 @@ internal class SDKUseCases {
     private init(repository: SDKRepositoryProtocol = SDKRepository()) { self.repository = repository }
     
     internal func isDefault() -> Bool { self.repository.isDefault() }
-    internal func setSDKDefault() { self.repository.setSDKDefault() }
+    internal func toggleSDKDefault() { self.repository.toggleSDKDefault() }
     
 }

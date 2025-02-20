@@ -13,7 +13,7 @@ internal class SDKRepository: SDKRepositoryProtocol {
     
     internal func isDefault() -> Bool { return (userPreferencesLocalService.getIsSDKDefault() == "true") ? true : false }
     
-    internal func setSDKDefault() {
+    internal func toggleSDKDefault() {
         let currentValue = userPreferencesLocalService.getIsSDKDefault()
         let newValue = (currentValue == "true") ? "false" : "true"
         userPreferencesLocalService.setIsSDKDefault(value: newValue)
