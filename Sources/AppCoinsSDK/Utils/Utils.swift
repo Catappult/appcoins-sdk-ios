@@ -15,14 +15,6 @@ internal struct Utils {
     
     static internal let bottomSafeAreaHeight: CGFloat = UIApplication.shared.windows[0].safeAreaInsets.bottom
  
-    static internal func containsKey(key: String) -> Bool {
-        if UserDefaults.standard.object(forKey: key) != nil {
-            return true
-        } else {
-            return false
-        }
-    }
-    
     static internal func writeToPreferences(key: String, value: String?) throws -> Void {
         let preferences = UserDefaults.standard
         if value != nil { preferences.setValue(value, forKey: key) } else { preferences.removeObject(forKey: key) }
