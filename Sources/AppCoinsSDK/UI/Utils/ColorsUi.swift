@@ -10,6 +10,7 @@ import SwiftUI
 
 internal struct ColorsUi {
     static internal var APC_Pink: Color = Color(red: 1, green: 0.388, blue: 0.506, opacity: 1)
+    static internal var APC_LightPink: Color = Color(red: 0.95, green: 0.84, blue: 0.88, opacity: 1)
     static internal var APC_Black: Color = Color(red: 0.098, green: 0.137, blue: 0.165, opacity: 1)
     static internal var APC_DarkBlue: Color = Color(red: 0.067, green: 0.106, blue: 0.224, opacity: 1)
     static internal var APC_DarkGray: Color = Color(red: 0.533, green: 0.533, blue: 0.549, opacity: 1)
@@ -30,6 +31,10 @@ internal struct ColorsUi {
     static internal var APC_BottomSheet_LightGray_Background: Color = Color(red: 0.95, green: 0.95, blue: 0.97)
     static internal var APC_BottomSheet_APPC: Color = Color(red: 0.39, green: 0.39, blue: 0.4)
     static internal var APC_BonusBannerBackground: Color = Color(red: 0.9, green: 0.9, blue: 0.92)
+    
+    // Login
+    static internal var APC_LoginIcon: Color = Color(red: 0.56, green: 0.56, blue: 0.58)
+    static internal var APC_SelectionArrow: Color = Color(red: 0.56, green: 0.56, blue: 0.58).opacity(0.3)
     
 }
 

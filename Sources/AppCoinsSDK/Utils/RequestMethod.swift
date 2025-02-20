@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  RequestMethod.swift
 //  
 //
 //  Created by aptoide on 02/10/2024.
