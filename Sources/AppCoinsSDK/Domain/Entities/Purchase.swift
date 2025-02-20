@@ -338,4 +338,18 @@ public class Purchase: Codable {
         }
         return sortedPurchases
     }
+    
+    // Defines a Stream that will emit updates for non-direct IAP
+    private static var purchaseContinuation: AsyncStream<VerificationResult>.Continuation?
+    private static let purchaseStream: AsyncStream<VerificationResult> = {
+        AsyncStream { continuation in purchaseContinuation = continuation }
+    }()
+    
+    public static var updates: AsyncStream<VerificationResult> {
+        return purchaseStream
+    }
+
+    internal static func send(_ verificationResult: VerificationResult) {
+        purchaseContinuation?.yield(verificationResult)
+    }
 }

@@ -82,13 +82,18 @@ public struct AppcSDK {
                     return true
                 } else if pathRoot == "purchase" {
                     if let sku = queryItems?.first(where: { $0.name == "product" })?.value {
-                        let payload: String? = queryItems?.first(where: { $0.name == "payload" })?.value
-                        let orderID: String? = queryItems?.first(where: { $0.name == "orderID" })?.value
-                        
+                        let payload = queryItems?.first(where: { $0.name == "payload" })?.value
+                        let orderID = queryItems?.first(where: { $0.name == "orderID" })?.value
+
                         Task {
-                            if let product: Product = await try? Product.products(for: [sku]).first {
-                                if let orderID = orderID { await product.purchase(payload: payload, orderID: orderID) }
-                                else { await product.purchase(payload: payload) }
+                            guard let product = await try? Product.products(for: [sku]).first else { return }
+
+                            let result = orderID != nil
+                                ? await product.purchase(payload: payload, orderID: orderID!)
+                                : await product.purchase(payload: payload)
+
+                            if case let .success(verificationResult) = result {
+                                Purchase.send(verificationResult)
                             }
                         }
                         
