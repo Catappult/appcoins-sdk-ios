@@ -36,18 +36,22 @@ public struct AppcSDK {
             #if targetEnvironment(simulator)
                 return true
             #else
-                do {
-                    let storefront = try await AppDistributor.current
-                    switch storefront {
-                    case .appStore:
+                if Utils.readFromPreferences(key: "is-sdk-default") == "true" {
+                    return true
+                } else {
+                    do {
+                        let storefront = try await AppDistributor.current
+                        switch storefront {
+                        case .appStore:
+                            return false
+                        case .marketplace(let marketplace):
+                            return marketplace == "com.aptoide.ios.store"
+                        default:
+                            return true
+                        }
+                    } catch {
                         return false
-                    case .marketplace(let marketplace):
-                        return marketplace == "com.aptoide.ios.store"
-                    default:
-                        return true
                     }
-                } catch {
-                    return false
                 }
             #endif
         } else { return false }
@@ -74,10 +78,25 @@ public struct AppcSDK {
         
         if let redirectURL = redirectURL {
             if let host = redirectURL.host, host == "wallet.appcoins.io" {
-                let pathRoot = redirectURL.pathComponents[1]
-                if pathRoot == "sync" {
+                switch redirectURL.pathComponents[1] {
+                case "sync":
                     SyncWalletViewModel.shared.importWalletReturn(redirectURL: redirectURL)
                     return true
+                case "default":
+                    do {
+                        let currentValue = Utils.readFromPreferences(key: "is-sdk-default")
+                        let newValue = (currentValue == "true") ? "false" : "true"
+                        
+                        try Utils.writeToPreferences(key: "is-sdk-default", value: newValue)
+                        
+                        Task { await AppcSDK.isAvailable() }
+                        
+                        return true
+                    } catch {
+                        return false
+                    }
+                default:
+                    return false
                 }
             } else {
                 return AdyenController.shared.handleRedirectURL(redirectURL: redirectURL)

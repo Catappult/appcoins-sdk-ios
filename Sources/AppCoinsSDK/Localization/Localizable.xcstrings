@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "accept_terms_body" : {
       "comment" : "I accept Aptoide's %@ and %@",
       "extractionState" : "manual",
