@@ -385,30 +385,6 @@
         }
       }
     },
-    "accept_terms_body" : {
-      "comment" : "I accept Aptoide's %@ and %@",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "I accept Aptoide's %@ and %@"
-          }
-        }
-      }
-    },
-    "accept_terms_error_body" : {
-      "comment" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
-          }
-        }
-      }
-    },
     "add_card_button" : {
       "comment" : "Add new card",
       "extractionState" : "manual",
@@ -3284,30 +3260,6 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "I authorize Aptoide to use my email for marketing purposes"
-          }
-        }
-      }
-    },
-    "confirm_logout_body" : {
-      "comment" : "Are you sure you want to log out?",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Are you sure you want to log out?"
-          }
-        }
-      }
-    },
-    "consent_email_body" : {
-      "comment" : "I authorize Aptoide to use my email for marketing purposes",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
             "value" : "I authorize Aptoide to use my email for marketing purposes"
           }
         }
@@ -7345,30 +7297,6 @@
         }
       }
     },
-    "resend_email_button" : {
-      "comment" : "Re-send Email",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Re-send Email"
-          }
-        }
-      }
-    },
-    "resend_in_time_body" : {
-      "comment" : "If you have not received an email, you can retry again in %@ seconds.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "If you have not received an email, you can retry again in %@ seconds."
-          }
-        }
-      }
-    },
     "retry_connection_button" : {
       "comment" : "Retry Connection",
       "extractionState" : "manual",
@@ -7759,26 +7687,26 @@
       "localizations" : {
         "ar" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "أرسلنا الرمز إلى"
+            "state" : "new",
+            "value" : "We've sent an email to"
           }
         },
         "bn" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "We've sent a code to"
+            "value" : "We've sent an email to"
           }
         },
         "de" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wir haben einen Code gesendet an"
+            "state" : "new",
+            "value" : "We've sent an email to"
           }
         },
         "el" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Στείλαμε έναν κωδικό στο"
+            "state" : "new",
+            "value" : "We've sent an email to"
           }
         },
         "en" : {
@@ -7786,173 +7714,161 @@
             "state" : "translated",
             "value" : "We've sent an email to"
           }
-        }
-      }
-    },
-    "sent_email_to_body" : {
-      "comment" : "We've sent an email to: %@",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "We've sent an email to: %@"
-          }
         },
         "es" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hemos enviado un código a"
+            "state" : "new",
+            "value" : "We've sent an email to"
           }
         },
         "fa" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "کدی ارسال کردیم به"
+            "state" : "new",
+            "value" : "We've sent an email to"
           }
         },
         "fr" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nous avons envoyé un code à"
+            "state" : "new",
+            "value" : "We've sent an email to"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "We've sent a code to"
+            "value" : "We've sent an email to"
           }
         },
         "hu" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Elküldtük a kódot"
+            "state" : "new",
+            "value" : "We've sent an email to"
           }
         },
         "id" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kami sudah mengirim kode ke"
+            "state" : "new",
+            "value" : "We've sent an email to"
           }
         },
         "it" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Abbiamo inviato un codice a"
+            "state" : "new",
+            "value" : "We've sent an email to"
           }
         },
         "ja" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "コードの送信先："
+            "state" : "new",
+            "value" : "We've sent an email to"
           }
         },
         "ko" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "코드를 보냈습니다"
+            "state" : "new",
+            "value" : "We've sent an email to"
           }
         },
         "mr" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "ह्यावर कोड पाठविला आहे"
+            "state" : "new",
+            "value" : "We've sent an email to"
           }
         },
         "ms" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kami telah hantar kod ke"
+            "state" : "new",
+            "value" : "We've sent an email to"
           }
         },
         "my" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "We've sent a code to"
+            "value" : "We've sent an email to"
           }
         },
         "nl" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "We hebben een code verzonden naar"
+            "state" : "new",
+            "value" : "We've sent an email to"
           }
         },
         "pa" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "We've sent a code to"
+            "value" : "We've sent an email to"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "We've sent a code to"
+            "value" : "We've sent an email to"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Enviamos um código para"
+            "state" : "new",
+            "value" : "We've sent an email to"
           }
         },
         "pt-PT" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Enviámos um código para"
+            "state" : "new",
+            "value" : "We've sent an email to"
           }
         },
         "ro" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Am trimis un cod la"
+            "state" : "new",
+            "value" : "We've sent an email to"
           }
         },
         "ru" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Мы отправили код на"
+            "state" : "new",
+            "value" : "We've sent an email to"
           }
         },
         "sr" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Poslali smo kod na"
+            "state" : "new",
+            "value" : "We've sent an email to"
           }
         },
         "th" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "เราได้ส่งรหัสไปที่"
+            "state" : "new",
+            "value" : "We've sent an email to"
           }
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kodu gönderdik:"
+            "state" : "new",
+            "value" : "We've sent an email to"
           }
         },
         "uk" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ми надіслали код на"
+            "state" : "new",
+            "value" : "We've sent an email to"
           }
         },
         "vi" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "Chúng tôi đã gửi một mã đến"
+            "state" : "new",
+            "value" : "We've sent an email to"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
-            "state" : "translated",
-            "value" : "我们已发送验证码至："
+            "state" : "new",
+            "value" : "We've sent an email to"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "We've sent a code to"
+            "value" : "We've sent an email to"
           }
         }
       }
@@ -8720,30 +8636,6 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
-          }
-        }
-      }
-    },
-    "sign_in_button" : {
-      "comment" : "Sign in",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sign in"
-          }
-        }
-      }
-    },
-    "sign_in_to_redeem_body" : {
-      "comment" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
             "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
           }
         }
