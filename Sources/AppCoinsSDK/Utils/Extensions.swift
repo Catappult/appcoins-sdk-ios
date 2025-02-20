@@ -43,3 +43,18 @@ internal extension Bundle {
         #endif
     }()
 }
+
+internal extension UIApplication {
+    func dismissKeyboard() {
+        self.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}
+
+internal extension String {
+    func stripTrailingSpace() -> String {
+        guard let lastCharacter = self.last, lastCharacter == " " else {
+            return self // Return the original string if there's no trailing space
+        }
+        return String(self.dropLast()) // Remove only the last character (trailing space)
+    }
+}
