@@ -36,7 +36,7 @@ public struct AppcSDK {
             #if targetEnvironment(simulator)
                 return true
             #else
-                if Utils.readFromPreferences(key: "is-sdk-default") == "true" {
+            if SDKUseCases.shared.isDefault() {
                     return true
                 } else {
                     do {
@@ -83,16 +83,8 @@ public struct AppcSDK {
                     SyncWalletViewModel.shared.importWalletReturn(redirectURL: redirectURL)
                     return true
                 case "default":
-                    do {
-                        let currentValue = Utils.readFromPreferences(key: "is-sdk-default")
-                        let newValue = (currentValue == "true") ? "false" : "true"
-                        
-                        try Utils.writeToPreferences(key: "is-sdk-default", value: newValue)
-                        
-                        return true
-                    } catch {
-                        return false
-                    }
+                    SDKUseCases.shared.setSDKDefault()
+                    return true
                 default:
                     return false
                 }
