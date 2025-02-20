@@ -133,76 +133,12 @@ internal class WalletLocalClient : WalletLocalService {
         return nil
     }
     
-    internal func importWallet(keystore: String, password: String, privateKey: String, completion: @escaping (Result<ClientWallet?, WalletLocalErrors>) -> Void) {
-        if let keystoreURL = keystoreURL {
-            if let keystoreData = keystore.data(using: .utf8), let jsonObject = try? JSONSerialization.jsonObject(with: keystoreData, options: []) as? [String: Any] {
-                if let address = jsonObject["address"] as? String {
-                    let fileURL = keystoreURL.appendingPathComponent(address)
-                    
-                    do { try keystoreData.write(to: (fileURL)) } catch {
-                        Utils.log(message: "1: \(error.localizedDescription)")
-                        completion(.failure(WalletLocalErrors.failedToCreate))
-                    }
-                    
-                    // store address password
-                    do { try Utils.writeToKeychain(key: address, value: password) }
-                    catch {
-                        try? FileManager.default.removeItem(atPath: fileURL.path)
-                        
-                        Utils.log(message: "2: \(error.localizedDescription)")
-                        completion(.failure(WalletLocalErrors.failedToCreate))
-                    }
-                    
-                    // store private key
-                    do {
-                        try Utils.writeToKeychain(key: "\(address)-pk", value: privateKey)
-                    }
-                    catch {
-                        try? FileManager.default.removeItem(atPath: fileURL.path)
-                        Utils.deleteFromKeychain(key: "\(address)-pk")
-                        
-                        Utils.log(message: "\(error.localizedDescription)")
-                        completion(.failure(WalletLocalErrors.failedToCreate))
-                    }
-                    
-                    // make new address active
-                    do {
-                        try Utils.writeToPreferences(key: "default-appcoins-wallet", value: address)
-                        self.updateWalletSyncingStatus(status: .accepted)
-                        
-                        completion(.success(ClientWallet(fileURL, password)))
-                    }
-                    catch {
-                        try? FileManager.default.removeItem(atPath: fileURL.path)
-                        Utils.deleteFromKeychain(key: "\(address)-pk")
-                        Utils.deleteFromKeychain(key: address)
-                        
-                        Utils.log(message: "4: \(error.localizedDescription)")
-                        completion(.failure(WalletLocalErrors.failedToCreate))
-                    }
-                } else { completion(.failure(WalletLocalErrors.failedToCreate)) }
-            } else { completion(.failure(WalletLocalErrors.failedToCreate)) }
-        } else { completion(.failure(WalletLocalErrors.failedToCreate)) }
-    }
-    
     internal func getPrivateKey(wallet: Wallet) -> Data? {
         if let privateKeyString = Utils.readFromKeychain(key: "\(wallet.getWalletAddress())-pk") {
             return Data(base64Encoded: privateKeyString)
         } else {
             return nil
         }
-    }
-    
-    internal func getWalletSyncingStatus() -> WalletSyncingStatus {
-        switch Utils.readFromPreferences(key: "walletSyncingStatus") {
-            case "accepted": return .accepted
-            case "rejected": return .rejected
-            default: return .none
-        }
-    }
-    
-    internal func updateWalletSyncingStatus(status: WalletSyncingStatus) {
-        try? Utils.writeToPreferences(key: "walletSyncingStatus", value: status.rawValue)
     }
 }
 
