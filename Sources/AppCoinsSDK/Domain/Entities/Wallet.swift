@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Wallet.swift
 //  
 //
 //  Created by aptoide on 12/07/2024.
@@ -11,7 +11,6 @@ internal protocol Wallet: Codable {
     
     func getBalance(completion: @escaping (Result<Balance, AppcTransactionError>) -> Void)
     func getWalletAddress() -> String
-    func getSignedWalletAddress() -> String
-    func getEWT() -> String?
+    func getAuthToken() -> String?
     
 }

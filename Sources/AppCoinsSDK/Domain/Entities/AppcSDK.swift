@@ -79,12 +79,14 @@ public struct AppcSDK {
         if let redirectURL = redirectURL {
             if let host = redirectURL.host, host == "wallet.appcoins.io" {
                 switch redirectURL.pathComponents[1] {
-                case "sync":
-                    SyncWalletViewModel.shared.importWalletReturn(redirectURL: redirectURL)
-                    return true
                 case "default":
                     SDKUseCases.shared.toggleSDKDefault()
                     return true
+                case "auth":
+                    if let code = URLComponents(url: redirectURL, resolvingAgainstBaseURL: false)?.queryItems?.first(where: { $0.name == "code" })?.value {
+                        AuthViewModel.shared.loginWithMagicLink(code: code)
+                        return true
+                    }
                 default:
                     return false
                 }

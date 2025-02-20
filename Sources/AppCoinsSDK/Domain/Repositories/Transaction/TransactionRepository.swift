@@ -225,46 +225,36 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
             completion(result) }
     }
     
-    internal func createBillingAgreementToken(completion: @escaping (Result<CreateBillingAgreementTokenResponseRaw, TransactionError>) -> Void) {
+    internal func createBillingAgreementToken(wallet: Wallet, completion: @escaping (Result<CreateBillingAgreementTokenResponseRaw, TransactionError>) -> Void) {
         let returnURL = BuildConfiguration.billingServiceURL + "/gateways/paypal/billing-agreement/token/return/success"
         let cancelURL = BuildConfiguration.billingServiceURL + "/gateways/paypal/billing-agreement/token/return/cancel"
         
         let raw = CreateBillingAgreementTokenRaw(urls: CreateBillingAgreementTokenURLsRaw(returnURL: returnURL, cancelURL: cancelURL))
         
-        if let wallet = walletService.getActiveWallet() {
-            billingService.createBillingAgreementToken(wa: wallet, raw: raw) { result in
-                completion(result) }
-        } else { completion(.failure(.failed(message: "Failed to create a billing agreement token", description: "There is no active wallet at TransactionRepository.swift:createBillingAgreementToken", request: nil))) }
+        billingService.createBillingAgreementToken(wa: wallet, raw: raw) { result in completion(result) }
     }
     
-    internal func cancelBillingAgreementToken(token: String, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
-        if let wallet = walletService.getActiveWallet() {
-            billingService.cancelBillingAgreementToken(token: token, wa: wallet) { result in
-                completion(result) }
-        } else { completion(.failure(.failed(message: "Failed to cancel billing agreement token", description: "There is no active wallet at TransactionRepository.swift:cancelBillingAgreementToken", request: nil))) }
+    internal func cancelBillingAgreementToken(wallet: Wallet, token: String, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
+        billingService.cancelBillingAgreementToken(token: token, wa: wallet) { result in completion(result) }
     }
     
-    internal func cancelBillingAgreement(completion: @escaping (Result<Bool, TransactionError>) -> Void) {
-        if let wallet = walletService.getActiveWallet() {
-            billingService.cancelBillingAgreement(wa: wallet) { result in
-                self.removeBillingAgreementLocally(wa: wallet.getWalletAddress())
-                completion(result)
+    internal func cancelBillingAgreement(wallet: Wallet, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
+        billingService.cancelBillingAgreement(wa: wallet) { result in
+            self.removeBillingAgreementLocally(wa: wallet.getWalletAddress())
+            completion(result)
+        }
+    }
+    
+    internal func createBillingAgreement(wallet: Wallet, token: String, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
+        billingService.createBillingAgreement(token: token, wa: wallet) { result in
+            switch result {
+            case .success(_):
+                self.storeBillingAgreementLocally(wa: wallet.getWalletAddress())
+                completion(.success(true))
+            case .failure(let error):
+                completion(.failure(error))
             }
-        } else { completion(.failure(.failed(message: "Failed to cancel billing agreement", description: "There is no active wallet at TransactionRepository.swift:cancelBillingAgreement", request: nil))) }
-    }
-    
-    internal func createBillingAgreement(token: String, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
-        if let wallet = walletService.getActiveWallet() {
-            billingService.createBillingAgreement(token: token, wa: wallet) { result in
-                switch result {
-                case .success(_):
-                    self.storeBillingAgreementLocally(wa: wallet.getWalletAddress())
-                    completion(.success(true))
-                case .failure(let error):
-                    completion(.failure(error))
-                }
-            }
-        } else { completion(.failure(.failed(message: "Failed to create billing agreement", description: "There is no active wallet at TransactionRepository.swift:createBillingAgreement", request: nil))) }
+        }
     }
     
     private func storeBillingAgreementLocally(wa: String) {
@@ -275,17 +265,13 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
         userPreferencesService.removeWalletBA(wa: wa)
     }
     
-    internal func getBillingAgreement(completion: @escaping (Result<Bool, TransactionError>) -> Void) {
-        if let wallet = walletService.getActiveWallet() {
-            billingService.getBillingAgreement(wa: wallet) { result in completion(result) }
-        } else { completion(.failure(.failed(message: "Failed to get billing agreement", description: "There is no active wallet at TransactionRepository.swift:getBillingAgreement", request: nil))) }
+    internal func getBillingAgreement(wallet: Wallet, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
+        billingService.getBillingAgreement(wa: wallet) { result in completion(result) }
     }
     
-    internal func hasBillingAgreement() -> Bool {
-        if let wallet = walletService.getActiveWallet() {
-            let wa = wallet.getWalletAddress()
-            return userPreferencesService.getWalletBA(wa: wa) != ""
-        } else { return false }
+    internal func hasBillingAgreement(wallet: Wallet) -> Bool {
+        let wa = wallet.getWalletAddress()
+        return userPreferencesService.getWalletBA(wa: wa) != ""
     }
     
     internal func getLastPaymentMethod() -> Method? {
