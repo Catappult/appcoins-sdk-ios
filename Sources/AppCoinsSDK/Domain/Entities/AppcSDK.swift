@@ -89,8 +89,6 @@ public struct AppcSDK {
                         
                         try Utils.writeToPreferences(key: "is-sdk-default", value: newValue)
                         
-                        Task { await AppcSDK.isAvailable() }
-                        
                         return true
                     } catch {
                         return false
