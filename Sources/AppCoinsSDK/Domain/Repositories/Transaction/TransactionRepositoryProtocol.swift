@@ -35,17 +35,17 @@ internal protocol TransactionRepositoryProtocol {
     
     func createBAPayPalTransaction(wa: Wallet, raw: CreateBAPayPalTransactionRaw, completion: @escaping (Result<CreateBAPayPalTransactionResponseRaw, TransactionError>) -> Void)
     
-    func createBillingAgreementToken(completion: @escaping (Result<CreateBillingAgreementTokenResponseRaw, TransactionError>) -> Void)
+    func createBillingAgreementToken(wallet: Wallet, completion: @escaping (Result<CreateBillingAgreementTokenResponseRaw, TransactionError>) -> Void)
     
-    func cancelBillingAgreementToken(token: String, completion: @escaping (Result<Bool, TransactionError>) -> Void)
+    func cancelBillingAgreementToken(wallet: Wallet, token: String, completion: @escaping (Result<Bool, TransactionError>) -> Void)
     
-    func cancelBillingAgreement(completion: @escaping (Result<Bool, TransactionError>) -> Void)
+    func cancelBillingAgreement(wallet: Wallet, completion: @escaping (Result<Bool, TransactionError>) -> Void)
     
-    func createBillingAgreement(token: String, completion: @escaping (Result<Bool, TransactionError>) -> Void)
+    func createBillingAgreement(wallet: Wallet, token: String, completion: @escaping (Result<Bool, TransactionError>) -> Void)
     
-    func getBillingAgreement(completion: @escaping (Result<Bool, TransactionError>) -> Void)
+    func getBillingAgreement(wallet: Wallet, completion: @escaping (Result<Bool, TransactionError>) -> Void)
     
-    func hasBillingAgreement() -> Bool
+    func hasBillingAgreement(wallet: Wallet) -> Bool
     
     func getLastPaymentMethod() -> Method?
     

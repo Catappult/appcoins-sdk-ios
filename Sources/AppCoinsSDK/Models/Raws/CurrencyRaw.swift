@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  CurrencyRaw.swift
 //  
 //
 //  Created by Graciano Caldeira on 16/08/2024.
