@@ -83,7 +83,7 @@ public struct AppcSDK {
                     SyncWalletViewModel.shared.importWalletReturn(redirectURL: redirectURL)
                     return true
                 case "default":
-                    SDKUseCases.shared.setSDKDefault()
+                    SDKUseCases.shared.toggleSDKDefault()
                     return true
                 default:
                     return false
