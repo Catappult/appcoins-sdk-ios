@@ -69,28 +69,28 @@ internal class TransactionUseCases {
         repository.createBAPayPalTransaction(wa: wa, raw: raw) { result in completion(result) }
     }
     
-    internal func createBillingAgreementToken(completion: @escaping (Result<CreateBillingAgreementTokenResponseRaw, TransactionError>) -> Void) {
-        repository.createBillingAgreementToken() { result in completion(result) }
+    internal func createBillingAgreementToken(wallet: Wallet, completion: @escaping (Result<CreateBillingAgreementTokenResponseRaw, TransactionError>) -> Void) {
+        repository.createBillingAgreementToken(wallet: wallet) { result in completion(result) }
     }
     
-    internal func cancelBillingAgreementToken(token: String, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
-        repository.cancelBillingAgreementToken(token: token) { result in completion(result) }
+    internal func cancelBillingAgreementToken(wallet: Wallet, token: String, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
+        repository.cancelBillingAgreementToken(wallet: wallet, token: token) { result in completion(result) }
     }
     
-    internal func cancelBillingAgreement(completion: @escaping (Result<Bool, TransactionError>) -> Void) {
-        repository.cancelBillingAgreement() { result in completion(result) }
+    internal func cancelBillingAgreement(wallet: Wallet, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
+        repository.cancelBillingAgreement(wallet: wallet) { result in completion(result) }
     }
     
-    internal func createBillingAgreement(token: String, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
-        repository.createBillingAgreement(token: token) { result in completion(result) }
+    internal func createBillingAgreement(wallet: Wallet, token: String, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
+        repository.createBillingAgreement(wallet: wallet, token: token) { result in completion(result) }
     }
     
-    internal func getBillingAgreement(completion: @escaping (Result<Bool, TransactionError>) -> Void) {
-        repository.getBillingAgreement() { result in completion(result) }
+    internal func getBillingAgreement(wallet: Wallet, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
+        repository.getBillingAgreement(wallet: wallet) { result in completion(result) }
     }
     
-    internal func hasBillingAgreement() -> Bool {
-        return repository.hasBillingAgreement()
+    internal func hasBillingAgreement(wallet: Wallet) -> Bool {
+        return repository.hasBillingAgreement(wallet: wallet)
     }
     
     internal func getLastPaymentMethod() -> Method? {
