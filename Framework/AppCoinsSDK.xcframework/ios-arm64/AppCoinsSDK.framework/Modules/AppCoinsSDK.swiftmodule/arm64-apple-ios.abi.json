@@ -4584,6 +4584,68 @@
             "funcSelfKind": "NonMutating"
           },
           {
+            "kind": "Var",
+            "name": "updates",
+            "printedName": "updates",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "AsyncStream",
+                "printedName": "_Concurrency.AsyncStream<AppCoinsSDK.VerificationResult>",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "VerificationResult",
+                    "printedName": "AppCoinsSDK.VerificationResult",
+                    "usr": "s:11AppCoinsSDK18VerificationResultO"
+                  }
+                ],
+                "usr": "s:ScS"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11AppCoinsSDK8PurchaseC7updatesScSyAA18VerificationResultOGvpZ",
+            "mangledName": "$s11AppCoinsSDK8PurchaseC7updatesScSyAA18VerificationResultOGvpZ",
+            "moduleName": "AppCoinsSDK",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "AsyncStream",
+                    "printedName": "_Concurrency.AsyncStream<AppCoinsSDK.VerificationResult>",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "VerificationResult",
+                        "printedName": "AppCoinsSDK.VerificationResult",
+                        "usr": "s:11AppCoinsSDK18VerificationResultO"
+                      }
+                    ],
+                    "usr": "s:ScS"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11AppCoinsSDK8PurchaseC7updatesScSyAA18VerificationResultOGvgZ",
+                "mangledName": "$s11AppCoinsSDK8PurchaseC7updatesScSyAA18VerificationResultOGvgZ",
+                "moduleName": "AppCoinsSDK",
+                "static": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
             "kind": "Constructor",
             "name": "init",
             "printedName": "init(from:)",
