@@ -67,7 +67,6 @@ internal struct Constants {
     static internal let invalidEmail = NSLocalizedString("invalid_email_body", bundle: .APPCModule, comment: "Invalid email address.")
     static internal let redeemBonusText = NSLocalizedString("redeem_bonus_button", bundle: .APPCModule, comment: "Redeem bonus")
     static internal let incorrectCode = NSLocalizedString("incorrect_code_body", bundle: .APPCModule, comment: "Your code is incorrect.")
-    static internal let sentCodeTo = NSLocalizedString("sent_code_to_body", bundle: .APPCModule, comment: "We've sent a code to")
     static internal let codeLabel = NSLocalizedString("code_label", bundle: .APPCModule, comment: "Code")
     static internal let checkYourEmail = NSLocalizedString("check_your_email_body", bundle: .APPCModule, comment: "Check your email")
 
