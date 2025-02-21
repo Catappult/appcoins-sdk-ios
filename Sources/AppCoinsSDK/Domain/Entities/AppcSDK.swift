@@ -36,18 +36,22 @@ public struct AppcSDK {
             #if targetEnvironment(simulator)
                 return true
             #else
-                do {
-                    let storefront = try await AppDistributor.current
-                    switch storefront {
-                    case .appStore:
+            if SDKUseCases.shared.isDefault() {
+                    return true
+                } else {
+                    do {
+                        let storefront = try await AppDistributor.current
+                        switch storefront {
+                        case .appStore:
+                            return false
+                        case .marketplace(let marketplace):
+                            return marketplace == "com.aptoide.ios.store"
+                        default:
+                            return true
+                        }
+                    } catch {
                         return false
-                    case .marketplace(let marketplace):
-                        return marketplace == "com.aptoide.ios.store"
-                    default:
-                        return true
                     }
-                } catch {
-                    return false
                 }
             #endif
         } else { return false }
@@ -75,12 +79,17 @@ public struct AppcSDK {
         if let redirectURL = redirectURL {
             if let host = redirectURL.host, host == "wallet.appcoins.io" {
                 let queryItems = URLComponents(string: redirectURL.absoluteString)?.queryItems
-                let pathRoot = redirectURL.pathComponents[1]
                 
-                if pathRoot == "sync" {
-                    SyncWalletViewModel.shared.importWalletReturn(redirectURL: redirectURL)
+                switch redirectURL.pathComponents[1] {
+                case "default":
+                    SDKUseCases.shared.toggleSDKDefault()
                     return true
-                } else if pathRoot == "purchase" {
+                case "auth":
+                    if let code = URLComponents(url: redirectURL, resolvingAgainstBaseURL: false)?.queryItems?.first(where: { $0.name == "code" })?.value {
+                        AuthViewModel.shared.loginWithMagicLink(code: code)
+                        return true
+                    }
+                case "purchase":
                     if let sku = queryItems?.first(where: { $0.name == "product" })?.value {
                         let payload = queryItems?.first(where: { $0.name == "payload" })?.value
                         let orderID = queryItems?.first(where: { $0.name == "orderID" })?.value
@@ -99,6 +108,8 @@ public struct AppcSDK {
                         
                         return true
                     }
+                default:
+                    return false
                 }
             } else {
                 return AdyenController.shared.handleRedirectURL(redirectURL: redirectURL)
@@ -106,5 +117,4 @@ public struct AppcSDK {
         }
         return false
     }
-    
 }

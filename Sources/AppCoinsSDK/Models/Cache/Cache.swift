@@ -7,13 +7,36 @@
 
 import Foundation
 
+// Non-generic wrapper to hold the shared instances
+private class CacheManager {
+    static var instances: [String: Any] = [:] // Stores cache instances by name
+    static let lock = NSLock() // Thread safety lock
+}
+
 internal class Cache<Key: Hashable & Codable, Value: Codable>: CacheProtocol {
     private let memoryCache: InMemoryCache<Key, Value>
     private let diskCache: DiskCache<Key, Value>
 
-    internal init(cacheName: String) {
+    // Private initializer
+    private init(cacheName: String) {
         self.memoryCache = InMemoryCache<Key, Value>()
         self.diskCache = DiskCache<Key, Value>(cacheName: cacheName)
+    }
+
+    // Factory method to get a singleton instance
+    static func shared(cacheName: String) -> Cache<Key, Value> {
+        CacheManager.lock.lock() // Thread-safe access
+        defer { CacheManager.lock.unlock() } // Schedules lock.unlock() to be executed when the function scope is exited
+        
+        // Check if the cache instance already exists
+        if let existingCache = CacheManager.instances[cacheName] as? Cache<Key, Value> {
+            return existingCache
+        }
+        
+        // Create and store a new cache instance
+        let newCache = Cache<Key, Value>(cacheName: cacheName)
+        CacheManager.instances[cacheName] = newCache
+        return newCache
     }
     
     internal func getValue(forKey key: Key) -> Value? {

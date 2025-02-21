@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  GuestWallet.swift
 //  
 //
 //  Created by aptoide on 12/07/2024.
@@ -19,7 +19,7 @@ internal class GuestWallet: Wallet, Codable {
         self.signature = signature
     }
 
-    func getBalance(completion: @escaping (Result<Balance, AppcTransactionError>) -> Void) {
+    internal func getBalance(completion: @escaping (Result<Balance, AppcTransactionError>) -> Void) {
         CurrencyUseCases.shared.getUserCurrency { result in
             switch result {
             case .success(let currency):
@@ -42,28 +42,27 @@ internal class GuestWallet: Wallet, Codable {
         }
     }
     
-    func getWalletAddress() -> String { return self.address }
+    internal func getWalletAddress() -> String { return self.address }
     
-    func getSignedWalletAddress() -> String { return self.signature }
+    internal func getSignedWalletAddress() -> String { return self.signature }
     
-    func getEWT() -> String? { return "Bearer \(self.ewt)" }
+    internal func getAuthToken() -> String? { return "Bearer \(self.ewt)" }
     
     // Conform to Codable Protocol
-    
-    enum CodingKeys: String, CodingKey {
+    internal enum CodingKeys: String, CodingKey {
             case address
             case ewt
             case signature
         }
         
-    required init(from decoder: Decoder) throws {
+    internal required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         address = try container.decode(String.self, forKey: .address)
         ewt = try container.decode(String.self, forKey: .ewt)
         signature = try container.decode(String.self, forKey: .signature)
     }
     
-    func encode(to encoder: Encoder) throws {
+    internal func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(address, forKey: .address)
         try container.encode(ewt, forKey: .ewt)
