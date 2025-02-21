@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "accept_terms_body" : {
       "comment" : "I accept Aptoide's %@ and %@",
       "extractionState" : "manual",
@@ -380,30 +383,6 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
-          }
-        }
-      }
-    },
-    "accept_terms_body" : {
-      "comment" : "I accept Aptoide's %@ and %@",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "I accept Aptoide's %@ and %@"
-          }
-        }
-      }
-    },
-    "accept_terms_error_body" : {
-      "comment" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
             "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
           }
         }
@@ -3284,30 +3263,6 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "I authorize Aptoide to use my email for marketing purposes"
-          }
-        }
-      }
-    },
-    "confirm_logout_body" : {
-      "comment" : "Are you sure you want to log out?",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Are you sure you want to log out?"
-          }
-        }
-      }
-    },
-    "consent_email_body" : {
-      "comment" : "I authorize Aptoide to use my email for marketing purposes",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
             "value" : "I authorize Aptoide to use my email for marketing purposes"
           }
         }
@@ -7345,30 +7300,6 @@
         }
       }
     },
-    "resend_email_button" : {
-      "comment" : "Re-send Email",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Re-send Email"
-          }
-        }
-      }
-    },
-    "resend_in_time_body" : {
-      "comment" : "If you have not received an email, you can retry again in %@ seconds.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "If you have not received an email, you can retry again in %@ seconds."
-          }
-        }
-      }
-    },
     "retry_connection_button" : {
       "comment" : "Retry Connection",
       "extractionState" : "manual",
@@ -7957,198 +7888,6 @@
         }
       }
     },
-    "sent_email_to_body" : {
-      "comment" : "We've sent an email to: %@",
-      "extractionState" : "manual",
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "أرسلنا رسالة بريد إلكتروني إلى: %@"
-          }
-        },
-        "bn" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent an email to: %@"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wir haben eine E-Mail gesendet an: %@"
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Στείλαμε ένα e-mail στο: %@"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "We've sent an email to: %@"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hemos enviado un email a: %@"
-          }
-        },
-        "fa" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ایمیلی ارسال کرده‌ایم به: %@"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nous avons envoyé un courriel à : %@"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent an email to: %@"
-          }
-        },
-        "hu" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Küldtünk egy e-mailt ide: %@"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kami sudah mengirim email ke %@"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Abbiamo inviato un'email all'indirizzo: %@"
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@にメールを送信しました。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@에게 이메일을 보냈습니다:"
-          }
-        },
-        "mr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "आम्ही %@ वर ईमेल पाठवली आहे"
-          }
-        },
-        "ms" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kami telah hantar e-mel ke: %@"
-          }
-        },
-        "my" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent an email to: %@"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "We hebben een e-mail verzonden naar: %@"
-          }
-        },
-        "pa" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent an email to: %@"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent an email to: %@"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Enviamos um e-mail para: %@"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Enviámos um e-mail para: %@"
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Am trimis un e-mail la: %@"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Мы отправили письмо на: %@"
-          }
-        },
-        "sr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Poslali smo e-poštu na: %@"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "เราได้ส่งอีเมลไปที่: %@"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Şu adrese bir e-posta gönderdik: %@"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ми надіслали листа на адресу %@"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Chúng tôi đã gửi email đến: %@"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "我们已发送一封邮件至：%@"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent an email to: %@"
-          }
-        }
-      }
-    },
     "sign_in_and_join_us_title" : {
       "comment" : "Sign in and join us!",
       "extractionState" : "manual",
@@ -8720,30 +8459,6 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
-          }
-        }
-      }
-    },
-    "sign_in_button" : {
-      "comment" : "Sign in",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sign in"
-          }
-        }
-      }
-    },
-    "sign_in_to_redeem_body" : {
-      "comment" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
             "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
           }
         }
