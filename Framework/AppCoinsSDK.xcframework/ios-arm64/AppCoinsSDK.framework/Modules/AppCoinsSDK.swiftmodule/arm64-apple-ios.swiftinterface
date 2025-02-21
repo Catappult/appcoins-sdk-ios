@@ -95,6 +95,9 @@ public struct Product {
   #if compiler(>=5.3) && $AsyncAwait
   public static func unfinished(domain: Swift.String = (Bundle.main.bundleIdentifier ?? "")) async throws -> [AppCoinsSDK.Purchase]
   #endif
+  public static var updates: _Concurrency.AsyncStream<AppCoinsSDK.VerificationResult> {
+    get
+  }
   @objc deinit
   public func encode(to encoder: any Swift.Encoder) throws
   required public init(from decoder: any Swift.Decoder) throws

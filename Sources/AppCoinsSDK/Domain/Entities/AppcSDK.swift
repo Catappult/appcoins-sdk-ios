@@ -78,6 +78,8 @@ public struct AppcSDK {
         
         if let redirectURL = redirectURL {
             if let host = redirectURL.host, host == "wallet.appcoins.io" {
+                let queryItems = URLComponents(string: redirectURL.absoluteString)?.queryItems
+                
                 switch redirectURL.pathComponents[1] {
                 case "default":
                     SDKUseCases.shared.toggleSDKDefault()
@@ -85,6 +87,25 @@ public struct AppcSDK {
                 case "auth":
                     if let code = URLComponents(url: redirectURL, resolvingAgainstBaseURL: false)?.queryItems?.first(where: { $0.name == "code" })?.value {
                         AuthViewModel.shared.loginWithMagicLink(code: code)
+                        return true
+                    }
+                case "purchase":
+                    if let sku = queryItems?.first(where: { $0.name == "product" })?.value {
+                        let payload = queryItems?.first(where: { $0.name == "payload" })?.value
+                        let orderID = queryItems?.first(where: { $0.name == "orderID" })?.value
+
+                        Task {
+                            guard let product = await try? Product.products(for: [sku]).first else { return }
+
+                            let result = orderID != nil
+                                ? await product.purchase(payload: payload, orderID: orderID!)
+                                : await product.purchase(payload: payload)
+
+                            if case let .success(verificationResult) = result {
+                                Purchase.send(verificationResult)
+                            }
+                        }
+                        
                         return true
                     }
                 default:
@@ -96,5 +117,4 @@ public struct AppcSDK {
         }
         return false
     }
-    
 }
