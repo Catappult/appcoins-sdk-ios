@@ -11,12 +11,20 @@ internal struct LoginButton: View {
     
     internal var action: () -> Void
     internal var orientation: Orientation
+    internal let fontSize: UIFont
     internal let textHeight: CGFloat
     
     internal init(action: @escaping () -> Void, orientation: Orientation) {
         self.action = action
         self.orientation = orientation
-        self.textHeight = Constants.signToGetBonusText.minimumHeightNeeded(withConstrainedWidth: 250, font: UIFont.systemFont(ofSize: 17, weight: .regular), maxLines: 2)
+        self.fontSize = UIFont.systemFont(ofSize: 17, weight: .regular)
+        
+        if Constants.signToGetBonusText.exactWidth(using: self.fontSize) < 280 {
+            print("cabe apenas numa linha")
+            self.textHeight = self.fontSize.lineHeight
+        } else {
+            self.textHeight = Constants.signToGetBonusText.minimumHeightNeeded(withConstrainedWidth: 280, font: self.fontSize, maxLines: 2)
+        }
     }
     
     internal var body: some View {
@@ -27,7 +35,7 @@ internal struct LoginButton: View {
                         .font(FontsUi.APC_Body)
                         .lineLimit(2)
                         .multilineTextAlignment(.leading)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     
                     HStack{}.frame(width: 8)
                     
@@ -39,7 +47,7 @@ internal struct LoginButton: View {
                 }
                 .frame(width: orientation == .landscape ? UIScreen.main.bounds.width - 176 - 32 - 48 : UIScreen.main.bounds.width - 32 - 48, height: textHeight)
             }
-            .frame(width: orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 20 + textHeight)
+            .frame(width: orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: orientation == .landscape ? 40 : 20 + textHeight)
             .background(ColorsUi.APC_White)
             .cornerRadius(10)
         }.buttonStyle(flatButtonStyle())
