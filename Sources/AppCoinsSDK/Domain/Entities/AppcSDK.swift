@@ -36,8 +36,8 @@ public struct AppcSDK {
             #if targetEnvironment(simulator)
                 return true
             #else
-            if SDKUseCases.shared.isDefault() {
-                    return true
+                if let isDefault = SDKUseCases.shared.isDefault() {
+                    return isDefault
                 } else {
                     do {
                         let storefront = try await AppDistributor.current
@@ -82,10 +82,13 @@ public struct AppcSDK {
                 
                 switch redirectURL.pathComponents[1] {
                 case "default":
-                    SDKUseCases.shared.toggleSDKDefault()
-                    return true
+                    if let rawValue = queryItems?.first(where: { $0.name == "value" })?.value {
+                        let value = rawValue.lowercased() == "true" ? true : false
+                        SDKUseCases.shared.setSDKDefault(value: value)
+                        return true
+                    }
                 case "auth":
-                    if let code = URLComponents(url: redirectURL, resolvingAgainstBaseURL: false)?.queryItems?.first(where: { $0.name == "code" })?.value {
+                    if let code = queryItems?.first(where: { $0.name == "code" })?.value {
                         AuthViewModel.shared.loginWithMagicLink(code: code)
                         return true
                     }
@@ -98,8 +101,8 @@ public struct AppcSDK {
                             guard let product = await try? Product.products(for: [sku]).first else { return }
 
                             let result = orderID != nil
-                                ? await product.purchase(payload: payload, orderID: orderID!)
-                                : await product.purchase(payload: payload)
+                                ? await product.indirectPurchase(payload: payload, orderID: orderID!)
+                                : await product.indirectPurchase(payload: payload)
 
                             if case let .success(verificationResult) = result {
                                 Purchase.send(verificationResult)

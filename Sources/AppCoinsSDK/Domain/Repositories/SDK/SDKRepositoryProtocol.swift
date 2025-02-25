@@ -8,6 +8,6 @@
 import Foundation
 
 internal protocol SDKRepositoryProtocol {
-    func isDefault() -> Bool
-    func toggleSDKDefault()
+    func isDefault() -> Bool?
+    func setSDKDefault(value: Bool)
 }

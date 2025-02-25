@@ -124,6 +124,43 @@ public struct Product {
         }
     }
     
+    internal func indirectPurchase(domain: String = (Bundle.main.bundleIdentifier ?? ""), payload: String? = nil, orderID: String = String(Date.timeIntervalSinceReferenceDate)) async -> TransactionResult {
+        
+        if BottomSheetViewModel.shared.hasActiveTransaction {
+            return .failed(error: .purchaseNotAllowed(message: "Purchase Failed", description: "AppcSDK not available or has active transaction at Product.swift:purchase", request: nil))
+        } else {
+            
+            AnalyticsUseCases.shared.recordStartConnection()
+            
+            DispatchQueue.main.async {
+                SDKViewController.presentPurchase()
+                
+                // product – the SKU product
+                // domain – the app's domain registered in catappult
+                // payload – information that the developer might want to pass with the transaction
+                // orderID – a reference so that the developer can identify unique transactions
+                BottomSheetViewModel.shared.buildPurchase(product: self, domain: domain, metadata: payload, reference: orderID)
+            }
+            
+            let result = try? await withCheckedThrowingContinuation { continuation in
+                var observer: NSObjectProtocol?
+                observer = NotificationCenter.default.addObserver(forName: Notification.Name("APPCPurchaseResult"), object: nil, queue: nil) { notification in
+                    if let userInfo = notification.userInfo {
+                        if let status = userInfo["TransactionResult"] as? TransactionResult {
+                            continuation.resume(returning: status)
+                            
+                            if let observer = observer {
+                                NotificationCenter.default.removeObserver(observer)
+                            }
+                        }
+                    }
+                }
+            }
+            
+            if let result = result { return result } else { return .failed(error: .unknown(message: "Purchase failed", description: "Failed to retrieve required value: result is nil at Product.swift:purchase", request: nil)) }
+        }
+    }
+    
     internal func getCurrency(completion: @escaping (Result<Currency, BillingError>) -> Void) {
         CurrencyUseCases.shared.getSupportedCurrency(currency: self.priceCurrency) { result in
             switch result {

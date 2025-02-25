@@ -20,7 +20,6 @@ internal struct LoginButton: View {
         self.fontSize = UIFont.systemFont(ofSize: 17, weight: .regular)
         
         if Constants.signToGetBonusText.exactWidth(using: self.fontSize) < 280 {
-            print("cabe apenas numa linha")
             self.textHeight = self.fontSize.lineHeight
         } else {
             self.textHeight = Constants.signToGetBonusText.minimumHeightNeeded(withConstrainedWidth: 280, font: self.fontSize, maxLines: 2)

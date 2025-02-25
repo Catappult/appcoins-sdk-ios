@@ -30,8 +30,9 @@ internal class UserPreferencesLocalClient: UserPreferencesLocalService {
         Utils.deleteFromPreferences(key: "\(wa)-BA")
     }
     
-    internal func isSDKDefault() -> String {
-        return Utils.readFromPreferences(key: "is-sdk-default")
+    internal func isSDKDefault() -> String? {
+        let isSDKDefault: String = Utils.readFromPreferences(key: "is-sdk-default")
+        return isSDKDefault == "" ? nil : isSDKDefault
     }
     
     internal func setSDKDefault(value: String) {
