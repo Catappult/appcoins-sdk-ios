@@ -30,7 +30,7 @@ internal class ProductRepository: ProductRepositoryProtocol {
     }
     
     internal func getAllProducts(domain: String, currency: Currency, completion: @escaping (Result<[Product], ProductServiceError>) -> Void) {
-        productService.getProductInformation(domain: domain, currency: currency) {
+        productService.getProductInformation(domain: "domain", currency: currency) {
             result in
             
             switch result {
