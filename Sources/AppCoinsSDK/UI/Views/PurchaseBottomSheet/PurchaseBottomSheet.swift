@@ -18,10 +18,6 @@ internal struct PurchaseBottomSheet: View {
     @State private var timer: Timer? = nil
     @State internal var dynamicHeight: CGFloat = 291
     
-//    internal let buttonHeightPlusTopSpace: CGFloat = 58
-//    internal let bottomSheetHeaderHeight: CGFloat = 72
-//    internal let buttonBottomSafeArea: CGFloat = Utils.bottomSafeAreaHeight == 0 ? 5 : 28
-    
     internal var body: some View {
         
         PurchaseBottomSheetWrapper(
