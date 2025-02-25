@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
     "accept_terms_body" : {
       "comment" : "I accept Aptoide's %@ and %@",
       "extractionState" : "manual",
@@ -380,30 +383,6 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
-          }
-        }
-      }
-    },
-    "accept_terms_body" : {
-      "comment" : "I accept Aptoide's %@ and %@",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "I accept Aptoide's %@ and %@"
-          }
-        }
-      }
-    },
-    "accept_terms_error_body" : {
-      "comment" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
             "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
           }
         }
@@ -3284,30 +3263,6 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "I authorize Aptoide to use my email for marketing purposes"
-          }
-        }
-      }
-    },
-    "confirm_logout_body" : {
-      "comment" : "Are you sure you want to log out?",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Are you sure you want to log out?"
-          }
-        }
-      }
-    },
-    "consent_email_body" : {
-      "comment" : "I authorize Aptoide to use my email for marketing purposes",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
             "value" : "I authorize Aptoide to use my email for marketing purposes"
           }
         }
@@ -7345,30 +7300,6 @@
         }
       }
     },
-    "resend_email_button" : {
-      "comment" : "Re-send Email",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Re-send Email"
-          }
-        }
-      }
-    },
-    "resend_in_time_body" : {
-      "comment" : "If you have not received an email, you can retry again in %@ seconds.",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "If you have not received an email, you can retry again in %@ seconds."
-          }
-        }
-      }
-    },
     "retry_connection_button" : {
       "comment" : "Retry Connection",
       "extractionState" : "manual",
@@ -8516,30 +8447,6 @@
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
-          }
-        }
-      }
-    },
-    "sign_in_button" : {
-      "comment" : "Sign in",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sign in"
-          }
-        }
-      }
-    },
-    "sign_in_to_redeem_body" : {
-      "comment" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!",
-      "extractionState" : "manual",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
             "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
           }
         }
