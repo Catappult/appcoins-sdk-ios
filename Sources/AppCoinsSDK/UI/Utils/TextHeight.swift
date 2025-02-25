@@ -17,8 +17,10 @@ extension String {
     func minimumHeightNeeded(withConstrainedWidth width: CGFloat, font: UIFont, maxLines: Int) -> CGFloat {
         let maxHeight = font.lineHeight * CGFloat(maxLines)
         
+        let height = self.height(withConstrainedWidth: width, font: font)
+        
         return min(self.height(withConstrainedWidth: width, font: font), maxHeight)
-    }
+    }	
     
     func numberOfLines(usingFont font: UIFont, withinWidth width: CGFloat) -> Int {
         let maxSize = CGSize(width: width, height: CGFloat.greatestFiniteMagnitude)

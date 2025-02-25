@@ -48,7 +48,7 @@ internal struct PayingViewFormLayer: View {
                 .id(formLayerID)
             }
             
-            HStack{}.frame(height: 86)
+            HStack{}.frame(height: Utils.bottomSafeAreaHeight == 0 ? 63 : 86)
         }
     }
 }
