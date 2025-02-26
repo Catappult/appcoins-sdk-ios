@@ -39,7 +39,10 @@ internal struct PayingViewFormLayer: View {
                         if !authViewModel.isLoggedIn {
                             VStack{}.frame(height: 8)
                             
-                            LoginButton(action: { viewModel.setPurchaseState(newState: .login) }, orientation: viewModel.orientation)
+                            LoginButton(action: {
+                                authViewModel.reset()
+                                viewModel.setPurchaseState(newState: .login)
+                            }, orientation: viewModel.orientation)
                         }
                     }.ignoresSafeArea(.all)
                 }
