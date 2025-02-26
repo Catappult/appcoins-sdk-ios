@@ -102,7 +102,7 @@ public struct Product {
                 // domain – the app's domain registered in catappult
                 // payload – information that the developer might want to pass with the transaction
                 // orderID – a reference so that the developer can identify unique transactions
-                BottomSheetViewModel.shared.buildPurchase(product: self, domain: "domain", metadata: payload, reference: orderID)
+                BottomSheetViewModel.shared.buildPurchase(product: self, domain: domain, metadata: payload, reference: orderID)
             }
             
             let result = try? await withCheckedThrowingContinuation { continuation in
