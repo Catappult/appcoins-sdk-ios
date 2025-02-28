@@ -92,6 +92,11 @@ public struct AppcSDK {
                         AuthViewModel.shared.loginWithMagicLink(code: code)
                         return true
                     }
+                case "checkout":
+                    if redirectURL.pathComponents[2] == "auth" {
+                        AuthViewModel.shared.authDeepLink()
+                        return true
+                    }
                 case "purchase":
                     if let sku = queryItems?.first(where: { $0.name == "product" })?.value {
                         let payload = queryItems?.first(where: { $0.name == "payload" })?.value

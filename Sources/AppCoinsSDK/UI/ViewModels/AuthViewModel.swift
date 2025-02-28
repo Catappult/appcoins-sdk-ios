@@ -248,6 +248,13 @@ internal class AuthViewModel : NSObject, ObservableObject {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { self.reset() }
         }
     }
+    
+    internal func authDeepLink() {
+        DispatchQueue.main.async {
+            BottomSheetViewModel.shared.setPurchaseState(newState: .login)
+            SDKViewController.presentPurchase()
+        }
+    }
 }
 
 // Conform to ASWebAuthenticationPresentationContextProviding
