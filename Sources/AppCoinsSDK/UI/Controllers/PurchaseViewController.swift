@@ -18,7 +18,7 @@ internal class PurchaseViewController: UIViewController {
         
         updateOrientation()
         
-        overrideUserInterfaceStyle = .light
+//        overrideUserInterfaceStyle = .light
         
         // Add the bottom sheet view
         let bottomSheetView = BottomSheetView()
