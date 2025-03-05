@@ -8,9 +8,9 @@
 import Foundation
 
 // Helper to the BottomSheetViewModel
-internal class TransactionViewModel : ObservableObject {
+internal class TransactionViewModel: ObservableObject {
     
-    internal static var shared : TransactionViewModel = TransactionViewModel()
+    internal static var shared: TransactionViewModel = TransactionViewModel()
     
     internal var transactionUseCases: TransactionUseCases = TransactionUseCases.shared
     internal var walletUseCases: WalletUseCases = WalletUseCases.shared
@@ -23,6 +23,8 @@ internal class TransactionViewModel : ObservableObject {
     internal var domain: String? = nil
     internal var metadata: String? = nil
     internal var reference: String? = nil
+    
+    internal var webCheckoutURL: URL? = nil
     
     @Published internal var transaction: TransactionAlertUi?
     internal var transactionParameters: TransactionParameters?
@@ -53,6 +55,8 @@ internal class TransactionViewModel : ObservableObject {
         self.domain = nil
         self.metadata = nil
         self.reference = nil
+        
+        self.webCheckoutURL = nil
         
         self.transaction = nil
         self.transactionParameters = nil
@@ -126,7 +130,9 @@ internal class TransactionViewModel : ObservableObject {
                                                     let oemID = MMPUseCases.shared.getOEMID()
                                                     
                                                     // 8. Build the parameters to process the transaction
-                                                    self.transactionParameters = TransactionParameters(value: String(moneyAmount), currency: product.priceCurrency, domain: domain, product: product.sku, appcAmount: String(appcValue), guestUID: guestUID, oemID: oemID, metadata: self.metadata, reference: self.reference)
+                                                    self.transactionParameters = TransactionParameters(country: "", address: "", signature: "", paymentChannel: "", token: "", origin: "", product: product.sku, domain: domain, type: "", oemID: oemID, reference: self.reference, promoCode: "", guestUID: guestUID, metadata: self.metadata, period: "", trialPeriod: "", userProps: "", value: String(moneyAmount), currency: product.priceCurrency, appcAmount: String(appcValue))
+                                                    
+                                                    self.webCheckoutURL = self.transactionParameters?.createWebCheckoutURL()
                                                     
                                                     // 9. Show payment method options
                                                     self.showPaymentMethodsOnBuild(wallet: wallet, balance: balance)

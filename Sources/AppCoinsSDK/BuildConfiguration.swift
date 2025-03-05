@@ -115,6 +115,15 @@ internal class BuildConfiguration {
         }
     }
     
+    static internal var appCoinsWebCheckoutURL: String {
+        switch environment {
+        case .debugSDKDev, .releaseSDKDev:
+            return "https://wallet.dev.appcoins.io/iap/sdk"
+        case .debugSDKProd, .releaseSDKProd:
+            return "https://wallet.appcoins.io/iap/sdk"
+        }
+    }
+    
     static internal var aptoideOEMID = "a37f1d7a4599d0ba60f23f9ff7b9ce95"
     
     static internal var userUID =  UIDevice.current.identifierForVendor!.uuidString

@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  WebBottomSheetView.swift
 //  AppCoinsSDK
 //
 //  Created by Graciano Caldeira on 03/03/2025.
@@ -10,7 +10,8 @@ import WebKit
 import SwiftUI
 
 struct WebBottomSheetView: UIViewRepresentable {
-    let url: URL = URL(string: "https://wallet.dev.appcoins.io/iap/sdk?origin=BDS&type=INAPP&domain=com.appcoins.diceroll.sdk.dev&product=attempts&country=PT&metadata=user12345&reference=orderId%3D1730891513596&guestWalletID=6cdbdcfae8b682787da5e3cb90bed0099c0d80c6&version=135&lang_code=en")!
+    
+    @ObservedObject var transactionViewModel: TransactionViewModel = TransactionViewModel.shared
 
     func makeUIView(context: Context) -> WKWebView {
         let webView = WKWebView()
@@ -21,7 +22,7 @@ struct WebBottomSheetView: UIViewRepresentable {
     }
 
     func updateUIView(_ webView: WKWebView, context: Context) {
-        if webView.url != url {
+        if let url = transactionViewModel.webCheckoutURL, webView.url != url {
             webView.load(URLRequest(url: url))
         }
     }
