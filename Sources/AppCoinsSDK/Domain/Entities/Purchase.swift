@@ -295,7 +295,7 @@ public class Purchase: Codable {
                 for wallet in walletList {
                     group.enter()
                     queue.sync {
-                        transactionUseCases.getPurchasesByState(domain: domain, state: "PENDING", wa: wallet) {
+                        transactionUseCases.getPurchasesByState(domain: domain, state: ["PENDING", "ACKNOWLEDGED"], wa: wallet) {
                             result in
                             switch result {
                             case .success(let purchases):

@@ -23,7 +23,7 @@ internal protocol AppCoinProductService {
     
     func getAllPurchasesBySKU(domain: String, sku: String, wa: Wallet, result: @escaping (Result<[PurchaseRaw], ProductServiceError>) -> Void)
     
-    func getPurchasesByState(domain: String, state: String, wa: Wallet, result: @escaping (Result<[PurchaseRaw], ProductServiceError>) -> Void)
+    func getPurchasesByState(domain: String, state: [String], wa: Wallet, result: @escaping (Result<[PurchaseRaw], ProductServiceError>) -> Void)
     
     func getDeveloperPublicKey(domain: String, completion: @escaping (Result<String, ProductServiceError>) -> Void)
 }
