@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  GoogleAnalyticsClient.swift
+//
 //
 //  Created by aptoide on 07/03/2025.
 //

@@ -25,8 +25,6 @@ internal class GoogleAnalyticsMeasurementServiceClient : GoogleAnalyticsMeasurem
                 URLQueryItem(name: "api_secret", value: Maze.shared.get(key: measurementKey))
             ]
             
-            print("[AppCoinsSDK] EventData: \(eventData)")
-            
             if let url = urlComponents.url {
                 if let body = try? JSONSerialization.data(withJSONObject: eventData, options: []) {
                     var request = URLRequest(url: url)
@@ -34,13 +32,7 @@ internal class GoogleAnalyticsMeasurementServiceClient : GoogleAnalyticsMeasurem
                     request.httpBody = body
                     request.httpMethod = "POST"
                     
-                    let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in
-                        if let error = error {
-                            print("[AppCoinsSDK] Error sending analytics event: \(error)")
-                        } else {
-                            print("[AppCoinsSDK] Success: \(String(data: data!, encoding: .utf8))")
-                        }
-                    })
+                    let task = URLSession.shared.dataTask(with: request, completionHandler: { data, response, error in })
                     task.resume()
                 }
             }
