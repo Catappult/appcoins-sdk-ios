@@ -10,7 +10,7 @@ import Foundation
 
 internal class AnalyticsRepository: AnalyticsRepositoryProtocol {
     
-    private let AnalyticsService: AnalyticsService = IndicativeAnalyticsClient()
+    private let AnalyticsService: AnalyticsService = GoogleAnalyticsClient()
     private var UserPropertiesCache: Cache<String, AnalyticsUserProperties> = Cache<String, AnalyticsUserProperties>.shared(cacheName: "UserProperties")
     
     internal func initialize() {
