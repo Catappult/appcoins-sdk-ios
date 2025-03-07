@@ -13,7 +13,7 @@ let package = Package(
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "AppCoinsSDK",
-            targets: ["AppCoinsSDK", "IndicativeLibrary", "PPRiskMagnes"]),
+            targets: ["AppCoinsSDK", "PPRiskMagnes"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -43,7 +43,6 @@ let package = Package(
                 .product(name: "DeviceKit", package: "DeviceKit")
             ],
             resources: [.process("Localization")]),
-        .binaryTarget(name: "IndicativeLibrary", path: "./Sources/AppCoinsSDK/Frameworks/IndicativeLibrary.xcframework"),
         .binaryTarget(name: "PPRiskMagnes", path: "./Sources/AppCoinsSDK/Frameworks/PPRiskMagnes.xcframework")
         
     ]
