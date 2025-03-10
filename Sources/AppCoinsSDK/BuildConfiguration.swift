@@ -7,7 +7,6 @@
 
 import Foundation
 import SwiftUI
-@_implementationOnly import Adyen
 
 internal class BuildConfiguration {
     static internal let shared = BuildConfiguration()
@@ -88,15 +87,6 @@ internal class BuildConfiguration {
         }
     }
     
-    static internal var adyenEnvironment: Adyen.Environment {
-        switch environment {
-            case .debugSDKDev, .releaseSDKDev:
-                return .test
-            case .debugSDKProd, .releaseSDKProd:
-                return .liveEurope
-        }
-    }
-    
     static internal var mmpServiceBaseURL: String {
         switch environment {
         case .debugSDKDev, .releaseSDKDev:
@@ -118,8 +108,6 @@ internal class BuildConfiguration {
     static internal var aptoideOEMID = "a37f1d7a4599d0ba60f23f9ff7b9ce95"
     
     static internal var userUID =  UIDevice.current.identifierForVendor!.uuidString
-    
-    static internal var integratedMethods: [Method] = [.appc, .paypalAdyen, .paypalDirect, .creditCard, .sandbox]
     
     static internal var sdkShortVersion: String = "1.6.1"
 }

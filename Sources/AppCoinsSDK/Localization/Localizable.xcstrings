@@ -4036,6 +4036,9 @@
         }
       }
     },
+    "Hello World" : {
+
+    },
     "incorrect_code_body" : {
       "comment" : "Your code is incorrect.",
       "extractionState" : "manual",

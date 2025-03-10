@@ -15,12 +15,11 @@ internal struct TransactionAlertUi {
     internal let sku: String?
     internal let moneyAmount: Double
     internal let moneyCurrency: Currency
-    internal let appcAmount: Double
-    internal let bonusAmount: Double
-    internal let bonusCurrency: Currency
+//    internal let appcAmount: Double
+//    internal let bonusAmount: Double
+//    internal let bonusCurrency: Currency
     internal let balanceAmount: Double
     internal let balanceCurrency: Currency
-    internal var paymentMethods: [PaymentMethod]
     
     internal func getTitle() -> String {
         return description ?? getCategory()

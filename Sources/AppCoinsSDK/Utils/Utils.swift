@@ -8,7 +8,6 @@
 import SwiftUI
 @_implementationOnly import os
 @_implementationOnly import Security
-@_implementationOnly import PPRiskMagnes
 @_implementationOnly import CommonCrypto
 
 internal struct Utils {
@@ -75,27 +74,6 @@ internal struct Utils {
     static internal func transactionResult(result: TransactionResult) {
         NotificationCenter.default.post(name: NSNotification.Name("APPCPurchaseResult"), object: nil, userInfo: ["TransactionResult" : result])
     }
-
-    static internal func getAdyenGatewayAccess() -> String {
-        var key : String
-        switch BuildConfiguration.environment {
-            case .debugSDKDev, .releaseSDKDev:
-                key = "387Y3/Tg6eDn+536/vL54+qc7vmc+u/knO3q7emc/pzj//vz+w=="
-            case .debugSDKProd, .releaseSDKProd:
-                key = "x8LdzvTy7+2d85798urp6P7j5J+c7ujjnpz+/+rl/p3q7f3/ng=="
-        }
-        
-        let obf: UInt8 = 0xAB
-                
-        let keyData = Data(base64Encoded: key)!
-        var deobf = Data()
-
-        for byte in keyData {
-            deobf.append(byte ^ obf)
-        }
-
-        return String(data: deobf, encoding: .utf8) ?? ""
-    }
     
     static internal func getCountryCode() -> String? {
         if let countryCode = (Locale.current as NSLocale).object(forKey: .countryCode) as? String {
@@ -112,12 +90,6 @@ internal struct Utils {
             return UIImage(named: lastIcon) ?? UIImage()
         }
         return UIImage()
-    }
-    
-    // Get PayPal Magnes SDK anti-fraud Client Metadata to send with paypal_v2 gateway requests
-    static func getMagnesSDKClientMetadataID() -> String {
-        let magnesResult: MagnesResult = MagnesSDK.shared().collectAndSubmit()
-        return magnesResult.getPayPalClientMetaDataId()
     }
     
     static func md5(_ string: String) -> String {

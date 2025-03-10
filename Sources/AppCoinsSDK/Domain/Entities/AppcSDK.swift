@@ -62,7 +62,6 @@ public struct AppcSDK {
     /// - It initializes internal processes of the AppCoins SDK: `AppcSDKInternal.initialize()`.
     /// - Deals with two types of redirectURL's:
     ///   - DeepLinks coming from the Appcoins wallet
-    ///   - DeepLinks coming from Adyen payment redirects
     ///
     /// - Parameters:
     ///   - redirectURL: The URL received for redirection, which is from a DeepLink into the application.
@@ -87,11 +86,6 @@ public struct AppcSDK {
                         SDKUseCases.shared.setSDKDefault(value: value)
                         return true
                     }
-                case "auth":
-                    if let code = queryItems?.first(where: { $0.name == "code" })?.value {
-                        AuthViewModel.shared.loginWithMagicLink(code: code)
-                        return true
-                    }
                 case "purchase":
                     if let sku = queryItems?.first(where: { $0.name == "product" })?.value {
                         let payload = queryItems?.first(where: { $0.name == "payload" })?.value
@@ -114,8 +108,6 @@ public struct AppcSDK {
                 default:
                     return false
                 }
-            } else {
-                return AdyenController.shared.handleRedirectURL(redirectURL: redirectURL)
             }
         }
         return false

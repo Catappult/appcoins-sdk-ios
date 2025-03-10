@@ -9,7 +9,7 @@ import Foundation
 
 internal class ProductUseCases {
     
-    static var shared : ProductUseCases = ProductUseCases()
+    static var shared: ProductUseCases = ProductUseCases()
     
     private var repository: ProductRepositoryProtocol
     private var currencyRepository: CurrencyRepositoryProtocol
@@ -50,16 +50,4 @@ internal class ProductUseCases {
             }
         }
     }
-    
-    internal func getProductAppcValue(product: Product, completion: @escaping (Result<String, BillingError>) -> Void) {
-        product.getCurrency { result in
-            switch result {
-            case .success(let currency):
-                self.repository.getProductAppcValue(product: product, productCurrency: currency) { result in completion(result) }
-            case .failure(let failure):
-                completion(.failure(failure))
-            }
-        }
-    }
-    
 }

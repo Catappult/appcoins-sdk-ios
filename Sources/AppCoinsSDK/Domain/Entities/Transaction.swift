@@ -42,22 +42,4 @@ internal struct Transaction {
         self.priceValue = priceValue
         self.priceAppc = priceAppc
     }
-    
-    internal init(raw: GetTransactionInfoRaw) {
-        self.uid = raw.uid
-        self.domain = raw.domain
-        self.product = raw.product
-        self.walletFrom = raw.wallet_from
-        self.country = raw.country
-        self.type = raw.type
-        self.reference = raw.reference
-        self.hash = raw.hash
-        self.origin = raw.origin
-        self.status = raw.status
-        self.developerPayload = raw.metadata?.developer_payload
-        self.purchaseUID = raw.metadata?.purchase_uid
-        self.priceCurrency = raw.price?.currency
-        self.priceValue = raw.price?.value
-        self.priceAppc = raw.price?.appc
-    }
 }
