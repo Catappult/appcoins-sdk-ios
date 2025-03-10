@@ -8,9 +8,9 @@
 import Foundation
 
 // Helper to the BottomSheetViewModel
-internal class TransactionViewModel : ObservableObject {
+internal class TransactionViewModel: ObservableObject {
     
-    internal static var shared : TransactionViewModel = TransactionViewModel()
+    internal static var shared: TransactionViewModel = TransactionViewModel()
     
     internal var walletUseCases: WalletUseCases = WalletUseCases.shared
     internal var bottomSheetViewModel: BottomSheetViewModel = BottomSheetViewModel.shared
@@ -72,10 +72,10 @@ internal class TransactionViewModel : ObservableObject {
                                         let guestUID = MMPUseCases.shared.getGuestUID()
                                         let oemID = MMPUseCases.shared.getOEMID()
                                         
-                                        // 5. Build the parameters to process the transaction
+                                        // 3. Build the parameters to process the transaction
                                         self.transactionParameters = TransactionParameters(value: String(moneyAmount), currency: product.priceCurrency, domain: domain, product: product.sku, guestUID: guestUID, oemID: oemID, metadata: self.metadata, reference: self.reference)
                                         
-                                        // 6. Show loaded view
+                                        // 4. Show loaded view
                                         self.bottomSheetViewModel.setPurchaseState(newState: .paying)
                                     }
                             } else { self.bottomSheetViewModel.transactionFailedWith(error: .unknown(message: "Failed to build transaction", description: "Missig required parameters: moneyAmount is nil at TransactionViewModel.swift:buildTransaction"))
