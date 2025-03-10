@@ -45,7 +45,7 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
         }
     }
     
-    internal func getPurchasesByState(domain: String, state: String, wa: Wallet, completion: @escaping (Result<[Purchase], ProductServiceError>) -> Void) {
+    internal func getPurchasesByState(domain: String, state: [String], wa: Wallet, completion: @escaping (Result<[Purchase], ProductServiceError>) -> Void) {
         productService.getPurchasesByState(domain: domain, state: state, wa: wa) {
             result in
             switch result {

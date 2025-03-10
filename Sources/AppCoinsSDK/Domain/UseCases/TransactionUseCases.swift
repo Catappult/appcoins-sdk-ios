@@ -25,7 +25,7 @@ internal class TransactionUseCases {
         repository.getLatestPurchase(domain: domain, sku: sku, wa: wa) { result in completion(result) }
     }
     
-    internal func getPurchasesByState(domain: String, state: String, wa: Wallet, completion: @escaping (Result<[Purchase], ProductServiceError>) -> Void) {
+    internal func getPurchasesByState(domain: String, state: [String], wa: Wallet, completion: @escaping (Result<[Purchase], ProductServiceError>) -> Void) {
         repository.getPurchasesByState(domain: domain, state: state, wa: wa) { result in completion(result) }
     }
     

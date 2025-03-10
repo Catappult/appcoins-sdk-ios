@@ -109,7 +109,7 @@ internal class BuildConfiguration {
     
     static internal var userUID =  UIDevice.current.identifierForVendor!.uuidString
     
-    static internal var sdkShortVersion: String = "1.6.1"
+    static internal var sdkShortVersion: String = "2.0.0"
 }
 
 internal enum SDKEnvironment: String {

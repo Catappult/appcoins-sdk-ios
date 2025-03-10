@@ -341,13 +341,14 @@ internal class AppCoinProductServiceClient: AppCoinProductService {
         }
     }
     
-    internal func getPurchasesByState(domain: String, state: String, wa: Wallet, result: @escaping (Result<[PurchaseRaw], ProductServiceError>) -> Void) {
+    internal func getPurchasesByState(domain: String, state: [String], wa: Wallet, result: @escaping (Result<[PurchaseRaw], ProductServiceError>) -> Void) {
         var purchases: [PurchaseRaw] = []
         
         if var urlComponents = URLComponents(string: endpoint) {
             urlComponents.path += "/applications/\(domain)/inapp/consumable/purchases"
-            urlComponents.queryItems = [
-                URLQueryItem(name: "state", value: state),
+            
+            let stateQueryItems = state.map { URLQueryItem(name: "state", value: $0) }
+            urlComponents.queryItems = stateQueryItems + [
                 URLQueryItem(name: "platform", value: "IOS")
             ]
             
