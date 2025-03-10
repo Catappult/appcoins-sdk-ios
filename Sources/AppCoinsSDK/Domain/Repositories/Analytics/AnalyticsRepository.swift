@@ -10,7 +10,7 @@ import Foundation
 
 internal class AnalyticsRepository: AnalyticsRepositoryProtocol {
     
-    private let AnalyticsService: AnalyticsService = IndicativeAnalyticsClient()
+    private let AnalyticsService: AnalyticsService = GoogleAnalyticsClient()
     private var UserPropertiesCache: Cache<String, AnalyticsUserProperties> = Cache<String, AnalyticsUserProperties>.shared(cacheName: "UserProperties")
     
     internal func initialize() {
@@ -44,8 +44,10 @@ internal class AnalyticsRepository: AnalyticsRepositoryProtocol {
             let theme = "system_light"
             let deviceModel = Device.current.description
             let iosVersion = Device.current.systemVersion?.description ?? "Unknown iOS version"
+            let country = Locale.current.regionCode ?? "PT"      // ISO-3166-1 alpha-2
+            let language = Locale.current.languageCode ?? "pt"   // ISO-639-1
             
-            let properties = AnalyticsUserProperties(package: package, environment: environment, theme: theme, iosVersion: iosVersion, iphoneModel: deviceModel)
+            let properties = AnalyticsUserProperties(package: package, environment: environment, theme: theme, iosVersion: iosVersion, iphoneModel: deviceModel, country: country, language: language)
             
             self.UserPropertiesCache.setValue(properties, forKey: "userproperties", storageOption: .memory)
             

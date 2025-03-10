@@ -14,13 +14,17 @@ internal struct AnalyticsUserProperties: Codable {
     internal let theme: String
     internal let iosVersion: String
     internal let iphoneModel: String
+    internal let country: String
+    internal let language: String
     
-    internal init(package: String, environment: String, theme: String, iosVersion: String, iphoneModel: String) {
+    internal init(package: String, environment: String, theme: String, iosVersion: String, iphoneModel: String, country: String, language: String) {
         self.package = package
         self.environment = environment
         self.theme = theme
         self.iosVersion = iosVersion
         self.iphoneModel = iphoneModel
+        self.country = country
+        self.language = language
     }
     
     internal func toDict() -> [AnyHashable : Any] {
@@ -29,7 +33,9 @@ internal struct AnalyticsUserProperties: Codable {
             "environment": environment,
             "theme": theme,
             "ios_version": iosVersion,
-            "iphone_model": iphoneModel
+            "iphone_model": iphoneModel,
+            "country": country,
+            "language": language
         ]
     }
 }
