@@ -34,29 +34,29 @@ public struct AppcSDK {
     static public func isAvailable() async -> Bool {
         if #available(iOS 17.4, *) {
             #if targetEnvironment(simulator)
-                return true
+            return true
             #else
-                if let isDefault = SDKUseCases.shared.isDefault() {
-                    return isDefault
-                } else {
-                    do {
-                        let storefront = try await AppDistributor.current
-                        switch storefront {
-                        case .appStore:
-                            return false
-                        case .marketplace(let marketplace):
-                            return marketplace == "com.aptoide.ios.store"
-                        default:
-                            return true
-                        }
-                    } catch {
+            if let isDefault = SDKUseCases.shared.isDefault() {
+                return isDefault
+            } else {
+                do {
+                    let storefront = try await AppDistributor.current
+                    switch storefront {
+                    case .appStore:
                         return false
+                    case .marketplace(let marketplace):
+                        return marketplace == "com.aptoide.ios.store"
+                    default:
+                        return true
                     }
+                } catch {
+                    return false
                 }
+            }
             #endif
         } else { return false }
     }
-
+    
     /// Handles the redirect URL and routes it to the appropriate handler. Should be called at all entrypoints of the application.
     ///
     /// - It initializes internal processes of the AppCoins SDK: `AppcSDKInternal.initialize()`.
@@ -90,14 +90,14 @@ public struct AppcSDK {
                     if let sku = queryItems?.first(where: { $0.name == "product" })?.value {
                         let payload = queryItems?.first(where: { $0.name == "payload" })?.value
                         let orderID = queryItems?.first(where: { $0.name == "orderID" })?.value
-
+                        
                         Task {
                             guard let product = await try? Product.products(for: [sku]).first else { return }
-
+                            
                             let result = orderID != nil
-                                ? await product.indirectPurchase(payload: payload, orderID: orderID!)
-                                : await product.indirectPurchase(payload: payload)
-
+                            ? await product.indirectPurchase(payload: payload, orderID: orderID!)
+                            : await product.indirectPurchase(payload: payload)
+                            
                             if case let .success(verificationResult) = result {
                                 Purchase.send(verificationResult)
                             }

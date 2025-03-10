@@ -14,7 +14,7 @@ internal struct Utils {
     
     static internal let bottomSafeAreaHeight: CGFloat = UIApplication.shared.windows[0].safeAreaInsets.bottom
     static internal let topSafeAreaHeight: CGFloat = UIApplication.shared.windows[0].safeAreaInsets.top
- 
+    
     static internal func writeToPreferences(key: String, value: String?) throws -> Void {
         let preferences = UserDefaults.standard
         if value != nil { preferences.setValue(value, forKey: key) } else { preferences.removeObject(forKey: key) }
@@ -23,7 +23,7 @@ internal struct Utils {
         let didSave = preferences.synchronize()
         if !didSave { throw PreferencesError.error }
     }
-
+    
     static internal func deleteFromPreferences(key: String) -> Void {
         let preferences = UserDefaults.standard
         preferences.removeObject(forKey: key)
@@ -40,11 +40,11 @@ internal struct Utils {
     static internal func writeToKeychain(key: String, value: String) throws -> Void {
         try KeychainHelper().save(value, service: key, account: "com.aptoide.appcoins-wallet")
     }
-
+    
     static internal func deleteFromKeychain(key: String) -> Void {
         KeychainHelper().delete(service: key, account: "com.aptoide.appcoins-wallet")
     }
-
+    
     static internal func readFromKeychain(key: String) -> String? {
         return KeychainHelper().read(service: key, account: "com.aptoide.appcoins-wallet", type: String.self) ?? nil
     }
@@ -86,7 +86,7 @@ internal struct Utils {
            let primaryIcon = icons["CFBundlePrimaryIcon"] as? [String: Any],
            let iconFiles = primaryIcon["CFBundleIconFiles"] as? [String],
            let lastIcon = iconFiles.last {
-
+            
             return UIImage(named: lastIcon) ?? UIImage()
         }
         return UIImage()

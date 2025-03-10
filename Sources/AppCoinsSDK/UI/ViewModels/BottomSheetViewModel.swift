@@ -21,23 +21,10 @@ internal class BottomSheetViewModel: ObservableObject {
     
     // Purchase status
     @Published internal var purchaseState: PurchaseState = .none
-    @Published internal var successfulPurchase: Purchase?
-    
-    // Variables used for BottomSheet animations on changing states
-    @Published internal var isBottomSheetPresented = false
-    @Published internal var isInitialSyncSheetPresented = false
-    @Published internal var successAnimation: Bool = true
-    @Published internal var successSyncAnimation: Bool = false
-    
-    // Variables used for BottomSheet text variable displays
-    @Published internal var finalWalletBalance: String?
-    @Published internal var purchaseFailedMessage: String = Constants.somethingWentWrong
     
     internal var hasActiveTransaction = false
     
     internal var productUseCases: ProductUseCases = ProductUseCases.shared
-    internal var walletUseCases: WalletUseCases = WalletUseCases.shared
-    internal var currencyUseCases: CurrencyUseCases = CurrencyUseCases.shared
     
     // Device Orientation
     @Published internal var orientation: Orientation = .portrait
@@ -45,7 +32,7 @@ internal class BottomSheetViewModel: ObservableObject {
     // Keyboard Dismiss
     @Published internal var isKeyboardVisible: Bool = false
     private var cancellables = Set<AnyCancellable>()
-        
+    
     private init() {
         // Prevents Layout Warning Prints
         UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
@@ -71,10 +58,6 @@ internal class BottomSheetViewModel: ObservableObject {
     private func reset() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.purchaseState = .loading
-            self.successfulPurchase = nil
-            self.finalWalletBalance = nil
-            self.purchaseFailedMessage = Constants.somethingWentWrong
-            
             TransactionViewModel.shared.reset()
         }
     }
@@ -108,8 +91,6 @@ internal class BottomSheetViewModel: ObservableObject {
         case .loading: self.userCancelled()
         case .paying: self.userCancelled()
         case .processing: break
-        case .login: break
-        case .adyen: break
         case .success: break
         case .failed: self.dismissVC()
         case .nointernet: self.dismissVC()
@@ -142,7 +123,6 @@ internal class BottomSheetViewModel: ObservableObject {
     }
     
     internal func transactionFailedWith(error: AppCoinsSDKError, description: String? = nil) {
-        if let description = description { DispatchQueue.main.async { self.purchaseFailedMessage = description } }
         switch error {
         case .networkError:
             let result : TransactionResult = .failed(error: error)

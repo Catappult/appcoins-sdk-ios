@@ -10,7 +10,6 @@ import Foundation
 internal class ProductUseCases {
     
     static var shared: ProductUseCases = ProductUseCases()
-    
     private var repository: ProductRepositoryProtocol
     private var currencyRepository: CurrencyRepositoryProtocol
     

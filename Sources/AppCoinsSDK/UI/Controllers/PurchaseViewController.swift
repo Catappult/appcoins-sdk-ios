@@ -1,6 +1,6 @@
 //
 //  PurchaseViewController.swift
-//  
+//
 //
 //  Created by aptoide on 07/03/2023.
 //
@@ -49,9 +49,7 @@ internal class PurchaseViewController: UIViewController {
         }
     }
     
-    override internal var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-            return orientation
-        }
+    override internal var supportedInterfaceOrientations: UIInterfaceOrientationMask { return orientation }
     
     @objc internal func dismissPurchase() {
         self.dismiss(animated: false, completion: nil)

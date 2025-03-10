@@ -110,294 +110,294 @@ internal class AppCoinProductServiceClient: AppCoinProductService {
     }
     
     internal func acknowledgePurchase(domain: String, uid: String, wa: Wallet, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
-            if var urlComponents = URLComponents(string: endpoint) {
-                urlComponents.path += "/applications/\(domain)/inapp/purchases/\(uid)/acknowledge"
+        if var urlComponents = URLComponents(string: endpoint) {
+            urlComponents.path += "/applications/\(domain)/inapp/purchases/\(uid)/acknowledge"
+            
+            if let url = urlComponents.url {
                 
-                if let url = urlComponents.url {
-                    
-                    var request = URLRequest(url: url)
-                    request.httpMethod = "POST"
-                    
-                    if let token = wa.getAuthToken() {
-                        request.setValue(token, forHTTPHeaderField: "Authorization")
-                    }
-                    
-                    let userAgent = "AppCoinsWalletIOS/.."
-                    request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
-                    
-                    let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                        if let error = error {
-                            if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
-                                completion(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url) at AppCoinProductServiceClient.swift:acknowledgePurchase", request: DebugRequestInfo(request: request, responseData: data, response: response))))
-                            } else {
-                                completion(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url) at AppCoinProductServiceClient.swift:acknowledgePurchase", request: DebugRequestInfo(request: request, responseData: data, response: response))))
-                            }
+                var request = URLRequest(url: url)
+                request.httpMethod = "POST"
+                
+                if let token = wa.getAuthToken() {
+                    request.setValue(token, forHTTPHeaderField: "Authorization")
+                }
+                
+                let userAgent = "AppCoinsWalletIOS/.."
+                request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
+                
+                let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                    if let error = error {
+                        if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
+                            completion(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url) at AppCoinProductServiceClient.swift:acknowledgePurchase", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                         } else {
-                            if let httpResponse = response as? HTTPURLResponse {
-                                let statusCode = httpResponse.statusCode
-                                if statusCode != 204 {
-                                    completion(.failure(.failed(message: "Service Failed", description: "The server hasn't successfully fulfilled the request from endpoint: \(url). Status code: \(statusCode) at AppCoinProductServiceClient.swift:acknowledgePurchase")))
-                                } else {
-                                    completion(.success(true))
-                                }
+                            completion(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url) at AppCoinProductServiceClient.swift:acknowledgePurchase", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                        }
+                    } else {
+                        if let httpResponse = response as? HTTPURLResponse {
+                            let statusCode = httpResponse.statusCode
+                            if statusCode != 204 {
+                                completion(.failure(.failed(message: "Service Failed", description: "The server hasn't successfully fulfilled the request from endpoint: \(url). Status code: \(statusCode) at AppCoinProductServiceClient.swift:acknowledgePurchase")))
+                            } else {
+                                completion(.success(true))
                             }
                         }
                     }
-                    task.resume()
                 }
+                task.resume()
             }
         }
-        
-        internal func consumePurchase(domain: String, uid: String, wa: Wallet, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
-            if var urlComponents = URLComponents(string: endpoint) {
-                urlComponents.path += "/applications/\(domain)/inapp/purchases/\(uid)/consume"
+    }
+    
+    internal func consumePurchase(domain: String, uid: String, wa: Wallet, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
+        if var urlComponents = URLComponents(string: endpoint) {
+            urlComponents.path += "/applications/\(domain)/inapp/purchases/\(uid)/consume"
+            
+            if let url = urlComponents.url {
                 
-                if let url = urlComponents.url {
-                    
-                    var request = URLRequest(url: url)
-                    request.httpMethod = "POST"
-                    
-                    if let token = wa.getAuthToken() {
-                        request.setValue(token, forHTTPHeaderField: "Authorization")
-                    }
-                    
-                    let userAgent = "AppCoinsWalletIOS/.."
-                    request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
-                    
-                    let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                        if let error = error {
-                            if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
-                                completion(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url) at AppCoinProductServiceClient.swift:consumePurchase", request: DebugRequestInfo(request: request, responseData: data, response: response))))
-                            } else {
-                                completion(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url) at AppCoinProductServiceClient.swift:consumePurchase", request: DebugRequestInfo(request: request, responseData: data, response: response))))
-                            }
+                var request = URLRequest(url: url)
+                request.httpMethod = "POST"
+                
+                if let token = wa.getAuthToken() {
+                    request.setValue(token, forHTTPHeaderField: "Authorization")
+                }
+                
+                let userAgent = "AppCoinsWalletIOS/.."
+                request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
+                
+                let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                    if let error = error {
+                        if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
+                            completion(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url) at AppCoinProductServiceClient.swift:consumePurchase", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                         } else {
-                            if let httpResponse = response as? HTTPURLResponse {
-                                let statusCode = httpResponse.statusCode
-                                if statusCode != 204 {
-                                    completion(.failure(.failed(message: "Service Failed", description: "The server hasn't successfully fulfilled the request from endpoint: \(url). Status code: \(statusCode) at AppCoinProductServiceClient.swift:consumePurchase")))
-                                } else {
-                                    completion(.success(true))
-                                }
+                            completion(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url) at AppCoinProductServiceClient.swift:consumePurchase", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                        }
+                    } else {
+                        if let httpResponse = response as? HTTPURLResponse {
+                            let statusCode = httpResponse.statusCode
+                            if statusCode != 204 {
+                                completion(.failure(.failed(message: "Service Failed", description: "The server hasn't successfully fulfilled the request from endpoint: \(url). Status code: \(statusCode) at AppCoinProductServiceClient.swift:consumePurchase")))
+                            } else {
+                                completion(.success(true))
                             }
                         }
                     }
-                    task.resume()
                 }
+                task.resume()
             }
         }
-        
-        internal func getPurchaseInformation(domain: String, uid: String, wa: Wallet, result: @escaping (Result<PurchaseRaw, ProductServiceError>) -> Void) {
-            if var urlComponents = URLComponents(string: endpoint) {
-                urlComponents.path += "/applications/\(domain)/inapp/consumable/purchases/\(uid)"
+    }
+    
+    internal func getPurchaseInformation(domain: String, uid: String, wa: Wallet, result: @escaping (Result<PurchaseRaw, ProductServiceError>) -> Void) {
+        if var urlComponents = URLComponents(string: endpoint) {
+            urlComponents.path += "/applications/\(domain)/inapp/consumable/purchases/\(uid)"
+            
+            if let url = urlComponents.url {
+                var request = URLRequest(url: url)
                 
-                if let url = urlComponents.url {
+                if let token = wa.getAuthToken() {
+                    request.setValue(token, forHTTPHeaderField: "Authorization")
+                }
+                
+                let userAgent = "AppCoinsWalletIOS/.."
+                request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
+                
+                let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                    if let error = error {
+                        if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
+                            result(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url) at AppCoinProductServiceClient.swift:getPurchaseInformation", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                        } else {
+                            result(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url) at AppCoinProductServiceClient.swift:getPurchaseInformation", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                        }
+                    } else {
+                        do {
+                            if let data = data {
+                                let findResult = try JSONDecoder().decode(PurchaseRaw.self, from: data)
+                                result(.success(findResult))
+                            } else {
+                                result(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url) at AppCoinProductServiceClient.swift:getPurchaseInformation")))
+                            }
+                        } catch {
+                            result(.failure(.failed(message: "Service Failed", description: "Failed to decode response from endpoint: \(url). Error: \(error.localizedDescription) at AppCoinProductServiceClient.swift:getPurchaseInformation", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                        }
+                    }
+                }
+                task.resume()
+            }
+        }
+    }
+    
+    internal func getAllPurchases(domain: String, wa: Wallet, result: @escaping (Result<[PurchaseRaw], ProductServiceError>) -> Void) {
+        var purchases: [PurchaseRaw] = []
+        
+        if var urlComponents = URLComponents(string: endpoint) {
+            urlComponents.path += "/applications/\(domain)/inapp/consumable/purchases"
+            urlComponents.queryItems = [
+                URLQueryItem(name: "platform", value: "IOS")
+            ]
+            
+            if let url = urlComponents.url {
+                func getNextPurchasesBatch(url: URL) {
                     var request = URLRequest(url: url)
                     
-                    if let token = wa.getAuthToken() {
-                        request.setValue(token, forHTTPHeaderField: "Authorization")
+                    if let ewt = wa.getAuthToken() {
+                        request.setValue(ewt, forHTTPHeaderField: "Authorization")
                     }
                     
                     let userAgent = "AppCoinsWalletIOS/.."
                     request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
                     
+                    request.httpMethod = "GET"
+                    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+                    request.timeoutInterval = 10
+                    
                     let task = URLSession.shared.dataTask(with: request) { data, response, error in
                         if let error = error {
                             if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
-                                result(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url) at AppCoinProductServiceClient.swift:getPurchaseInformation", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                                result(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url) at AppCoinProductServiceClient.swift:getAllPurchases", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                             } else {
-                                result(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url) at AppCoinProductServiceClient.swift:getPurchaseInformation", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                                result(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url) at AppCoinProductServiceClient.swift:getAllPurchases", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                             }
                         } else {
                             do {
                                 if let data = data {
-                                    let findResult = try JSONDecoder().decode(PurchaseRaw.self, from: data)
-                                    result(.success(findResult))
+                                    let findResult = try JSONDecoder().decode(GetPurchasesRaw.self, from: data)
+                                    purchases.append(contentsOf: findResult.items)
+                                    
+                                    if let nextString = findResult.next?.url, let nextURL = URL(string: nextString) {
+                                        getNextPurchasesBatch(url: nextURL)
+                                    } else {
+                                        result(.success(purchases))
+                                    }
                                 } else {
-                                    result(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url) at AppCoinProductServiceClient.swift:getPurchaseInformation")))
+                                    result(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url) at AppCoinProductServiceClient.swift:getAllPurchases")))
                                 }
                             } catch {
-                                result(.failure(.failed(message: "Service Failed", description: "Failed to decode response from endpoint: \(url). Error: \(error.localizedDescription) at AppCoinProductServiceClient.swift:getPurchaseInformation", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                                result(.failure(.failed(message: "Service Failed", description: "Failed to decode response from endpoint: \(url). Error: \(error.localizedDescription) at AppCoinProductServiceClient.swift:getAllPurchases", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                             }
                         }
                     }
                     task.resume()
                 }
+                getNextPurchasesBatch(url: url)
             }
         }
+    }
+    
+    internal func getAllPurchasesBySKU(domain: String, sku: String, wa: Wallet, result: @escaping (Result<[PurchaseRaw], ProductServiceError>) -> Void) {
+        var purchases: [PurchaseRaw] = []
         
-        internal func getAllPurchases(domain: String, wa: Wallet, result: @escaping (Result<[PurchaseRaw], ProductServiceError>) -> Void) {
-            var purchases: [PurchaseRaw] = []
+        if var urlComponents = URLComponents(string: endpoint) {
+            urlComponents.path += "/applications/\(domain)/inapp/consumable/purchases"
+            urlComponents.queryItems = [
+                URLQueryItem(name: "sku", value: sku),
+                URLQueryItem(name: "platform", value: "IOS")
+            ]
             
-            if var urlComponents = URLComponents(string: endpoint) {
-                urlComponents.path += "/applications/\(domain)/inapp/consumable/purchases"
-                urlComponents.queryItems = [
-                    URLQueryItem(name: "platform", value: "IOS")
-                ]
-                
-                if let url = urlComponents.url {
-                    func getNextPurchasesBatch(url: URL) {
-                        var request = URLRequest(url: url)
-                        
-                        if let ewt = wa.getAuthToken() {
-                            request.setValue(ewt, forHTTPHeaderField: "Authorization")
-                        }
-                        
-                        let userAgent = "AppCoinsWalletIOS/.."
-                        request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
-                        
-                        request.httpMethod = "GET"
-                        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-                        request.timeoutInterval = 10
-                        
-                        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                            if let error = error {
-                                if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
-                                    result(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url) at AppCoinProductServiceClient.swift:getAllPurchases", request: DebugRequestInfo(request: request, responseData: data, response: response))))
-                                } else {
-                                    result(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url) at AppCoinProductServiceClient.swift:getAllPurchases", request: DebugRequestInfo(request: request, responseData: data, response: response))))
-                                }
+            if let url = urlComponents.url {
+                func getNextPurchasesBatch(url: URL) {
+                    var request = URLRequest(url: url)
+                    
+                    if let ewt = wa.getAuthToken() {
+                        request.setValue(ewt, forHTTPHeaderField: "Authorization")
+                    }
+                    
+                    let userAgent = "AppCoinsWalletIOS/.."
+                    request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
+                    
+                    request.httpMethod = "GET"
+                    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+                    request.timeoutInterval = 10
+                    
+                    let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                        if let error = error {
+                            if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
+                                result(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url) at AppCoinProductServiceClient.swift:getAllPurchasesBySKU", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                             } else {
-                                do {
-                                    if let data = data {
-                                        let findResult = try JSONDecoder().decode(GetPurchasesRaw.self, from: data)
-                                        purchases.append(contentsOf: findResult.items)
-                                        
-                                        if let nextString = findResult.next?.url, let nextURL = URL(string: nextString) {
-                                            getNextPurchasesBatch(url: nextURL)
-                                        } else {
-                                            result(.success(purchases))
-                                        }
+                                result(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url) at AppCoinProductServiceClient.swift:getAllPurchasesBySKU", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                            }
+                        } else {
+                            do {
+                                if let data = data {
+                                    let findResult = try JSONDecoder().decode(GetPurchasesRaw.self, from: data)
+                                    purchases.append(contentsOf: findResult.items)
+                                    
+                                    if let nextString = findResult.next?.url, let nextURL = URL(string: nextString) {
+                                        getNextPurchasesBatch(url: nextURL)
                                     } else {
-                                        result(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url) at AppCoinProductServiceClient.swift:getAllPurchases")))
+                                        result(.success(purchases))
                                     }
-                                } catch {
-                                    result(.failure(.failed(message: "Service Failed", description: "Failed to decode response from endpoint: \(url). Error: \(error.localizedDescription) at AppCoinProductServiceClient.swift:getAllPurchases", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                                } else {
+                                    result(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url) at AppCoinProductServiceClient.swift:getAllPurchasesBySKU")))
                                 }
+                            } catch {
+                                result(.failure(.failed(message: "Service Failed", description: "Failed to decode response from endpoint: \(url). Error: \(error.localizedDescription) at AppCoinProductServiceClient.swift:getAllPurchasesBySKU", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                             }
                         }
-                        task.resume()
                     }
-                    getNextPurchasesBatch(url: url)
+                    task.resume()
                 }
+                getNextPurchasesBatch(url: url)
             }
         }
+    }
+    
+    internal func getPurchasesByState(domain: String, state: String, wa: Wallet, result: @escaping (Result<[PurchaseRaw], ProductServiceError>) -> Void) {
+        var purchases: [PurchaseRaw] = []
         
-        internal func getAllPurchasesBySKU(domain: String, sku: String, wa: Wallet, result: @escaping (Result<[PurchaseRaw], ProductServiceError>) -> Void) {
-            var purchases: [PurchaseRaw] = []
+        if var urlComponents = URLComponents(string: endpoint) {
+            urlComponents.path += "/applications/\(domain)/inapp/consumable/purchases"
+            urlComponents.queryItems = [
+                URLQueryItem(name: "state", value: state),
+                URLQueryItem(name: "platform", value: "IOS")
+            ]
             
-            if var urlComponents = URLComponents(string: endpoint) {
-                urlComponents.path += "/applications/\(domain)/inapp/consumable/purchases"
-                urlComponents.queryItems = [
-                    URLQueryItem(name: "sku", value: sku),
-                    URLQueryItem(name: "platform", value: "IOS")
-                ]
-                
-                if let url = urlComponents.url {
-                    func getNextPurchasesBatch(url: URL) {
-                        var request = URLRequest(url: url)
-                        
-                        if let ewt = wa.getAuthToken() {
-                            request.setValue(ewt, forHTTPHeaderField: "Authorization")
-                        }
-                        
-                        let userAgent = "AppCoinsWalletIOS/.."
-                        request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
-                        
-                        request.httpMethod = "GET"
-                        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-                        request.timeoutInterval = 10
-                        
-                        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                            if let error = error {
-                                if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
-                                    result(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url) at AppCoinProductServiceClient.swift:getAllPurchasesBySKU", request: DebugRequestInfo(request: request, responseData: data, response: response))))
-                                } else {
-                                    result(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url) at AppCoinProductServiceClient.swift:getAllPurchasesBySKU", request: DebugRequestInfo(request: request, responseData: data, response: response))))
-                                }
+            if let url = urlComponents.url {
+                func getNextPurchasesBatch(url: URL) {
+                    var request = URLRequest(url: url)
+                    
+                    if let ewt = wa.getAuthToken() {
+                        request.setValue(ewt, forHTTPHeaderField: "Authorization")
+                    }
+                    
+                    let userAgent = "AppCoinsWalletIOS/.."
+                    request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
+                    
+                    request.httpMethod = "GET"
+                    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+                    request.timeoutInterval = 10
+                    
+                    let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                        if let error = error {
+                            if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
+                                result(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url) at AppCoinProductServiceClient.swift:getPurchasesByState", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                             } else {
-                                do {
-                                    if let data = data {
-                                        let findResult = try JSONDecoder().decode(GetPurchasesRaw.self, from: data)
-                                        purchases.append(contentsOf: findResult.items)
-                                        
-                                        if let nextString = findResult.next?.url, let nextURL = URL(string: nextString) {
-                                            getNextPurchasesBatch(url: nextURL)
-                                        } else {
-                                            result(.success(purchases))
-                                        }
+                                result(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url) at AppCoinProductServiceClient.swift:getPurchasesByState", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                            }
+                        } else {
+                            do {
+                                if let data = data {
+                                    let findResult = try JSONDecoder().decode(GetPurchasesRaw.self, from: data)
+                                    purchases.append(contentsOf: findResult.items)
+                                    
+                                    if let nextString = findResult.next?.url, let nextURL = URL(string: nextString) {
+                                        getNextPurchasesBatch(url: nextURL)
                                     } else {
-                                        result(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url) at AppCoinProductServiceClient.swift:getAllPurchasesBySKU")))
+                                        result(.success(purchases))
                                     }
-                                } catch {
-                                    result(.failure(.failed(message: "Service Failed", description: "Failed to decode response from endpoint: \(url). Error: \(error.localizedDescription) at AppCoinProductServiceClient.swift:getAllPurchasesBySKU", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                                } else {
+                                    result(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url) at AppCoinProductServiceClient.swift:getPurchasesByState")))
                                 }
+                            } catch {
+                                result(.failure(.failed(message: "Service Failed", description: "Failed to decode response from endpoint: \(url). Error: \(error.localizedDescription) at AppCoinProductServiceClient.swift:getPurchasesByState", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                             }
                         }
-                        task.resume()
                     }
-                    getNextPurchasesBatch(url: url)
+                    task.resume()
                 }
+                getNextPurchasesBatch(url: url)
             }
         }
-        
-        internal func getPurchasesByState(domain: String, state: String, wa: Wallet, result: @escaping (Result<[PurchaseRaw], ProductServiceError>) -> Void) {
-            var purchases: [PurchaseRaw] = []
-            
-            if var urlComponents = URLComponents(string: endpoint) {
-                urlComponents.path += "/applications/\(domain)/inapp/consumable/purchases"
-                urlComponents.queryItems = [
-                    URLQueryItem(name: "state", value: state),
-                    URLQueryItem(name: "platform", value: "IOS")
-                ]
-                
-                if let url = urlComponents.url {
-                    func getNextPurchasesBatch(url: URL) {
-                        var request = URLRequest(url: url)
-                        
-                        if let ewt = wa.getAuthToken() {
-                            request.setValue(ewt, forHTTPHeaderField: "Authorization")
-                        }
-                        
-                        let userAgent = "AppCoinsWalletIOS/.."
-                        request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
-                        
-                        request.httpMethod = "GET"
-                        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-                        request.timeoutInterval = 10
-                        
-                        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                            if let error = error {
-                                if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
-                                    result(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url) at AppCoinProductServiceClient.swift:getPurchasesByState", request: DebugRequestInfo(request: request, responseData: data, response: response))))
-                                } else {
-                                    result(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url) at AppCoinProductServiceClient.swift:getPurchasesByState", request: DebugRequestInfo(request: request, responseData: data, response: response))))
-                                }
-                            } else {
-                                do {
-                                    if let data = data {
-                                        let findResult = try JSONDecoder().decode(GetPurchasesRaw.self, from: data)
-                                        purchases.append(contentsOf: findResult.items)
-                                        
-                                        if let nextString = findResult.next?.url, let nextURL = URL(string: nextString) {
-                                            getNextPurchasesBatch(url: nextURL)
-                                        } else {
-                                            result(.success(purchases))
-                                        }
-                                    } else {
-                                        result(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url) at AppCoinProductServiceClient.swift:getPurchasesByState")))
-                                    }
-                                } catch {
-                                    result(.failure(.failed(message: "Service Failed", description: "Failed to decode response from endpoint: \(url). Error: \(error.localizedDescription) at AppCoinProductServiceClient.swift:getPurchasesByState", request: DebugRequestInfo(request: request, responseData: data, response: response))))
-                                }
-                            }
-                        }
-                        task.resume()
-                    }
-                    getNextPurchasesBatch(url: url)
-                }
-            }
-        }
+    }
     
     internal func getDeveloperPublicKey(domain: String, completion: @escaping (Result<String, ProductServiceError>) -> Void) {
         if var urlComponents = URLComponents(string: endpoint) {

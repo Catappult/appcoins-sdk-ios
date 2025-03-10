@@ -10,7 +10,7 @@ import Foundation
 internal class ProductRepository: ProductRepositoryProtocol {
     
     private let productService: AppCoinProductService = AppCoinProductServiceClient()
-
+    
     internal func getProduct(domain: String, product: String, currency: Currency, completion: @escaping (Result<Product, ProductServiceError>) -> Void) {
         productService.getProductInformation(domain: domain, sku: product, currency: currency) {
             result in

@@ -16,7 +16,7 @@ public class Purchase: Codable {
     public let payload: String?
     public let created: String
     public let verification: PurchaseVerification
-
+    
     public class PurchaseVerification: Codable {
         public let type: String
         public let data: PurchaseVerificationData
@@ -348,7 +348,7 @@ public class Purchase: Codable {
     public static var updates: AsyncStream<VerificationResult> {
         return purchaseStream
     }
-
+    
     internal static func send(_ verificationResult: VerificationResult) {
         purchaseContinuation?.yield(verificationResult)
     }

@@ -13,9 +13,7 @@ internal class TransactionViewModel : ObservableObject {
     internal static var shared : TransactionViewModel = TransactionViewModel()
     
     internal var walletUseCases: WalletUseCases = WalletUseCases.shared
-    internal var productUseCases: ProductUseCases = ProductUseCases.shared
     internal var bottomSheetViewModel: BottomSheetViewModel = BottomSheetViewModel.shared
-    internal var currencyUseCases: CurrencyUseCases = CurrencyUseCases.shared
     
     // Transaction attributes
     internal var product: Product? = nil
@@ -72,7 +70,7 @@ internal class TransactionViewModel : ObservableObject {
                             
                             if let moneyAmount = Double(product.priceValue) {
                                 
-                                // 5. Get user's balance
+                                // 3. Get user's balance
                                 self.getWalletBalance(wallet: wallet) {
                                     balance in
                                     
@@ -80,16 +78,16 @@ internal class TransactionViewModel : ObservableObject {
                                     let balanceCurrency = balance.balanceCurrency
                                     
                                     DispatchQueue.main.async {
-                                        // 6. Build the Transaction UI
+                                        // 4. Build the Transaction UI
                                         self.transaction = TransactionAlertUi(domain: domain, description: product.title, category: .IAP, sku: product.sku, moneyAmount: moneyAmount, moneyCurrency: productCurrency, balanceAmount: floor(balanceValue*100)/100, balanceCurrency: balanceCurrency)
                                         
                                         let guestUID = MMPUseCases.shared.getGuestUID()
                                         let oemID = MMPUseCases.shared.getOEMID()
                                         
-                                        // 7. Build the parameters to process the transaction
-                                        self.transactionParameters = TransactionParameters(value: String(moneyAmount), currency: product.priceCurrency, domain: domain, product: product.sku,/* appcAmount: String(appcValue),*/ guestUID: guestUID, oemID: oemID, metadata: self.metadata, reference: self.reference)
+                                        // 5. Build the parameters to process the transaction
+                                        self.transactionParameters = TransactionParameters(value: String(moneyAmount), currency: product.priceCurrency, domain: domain, product: product.sku, guestUID: guestUID, oemID: oemID, metadata: self.metadata, reference: self.reference)
                                         
-                                        // 8. Show loaded view
+                                        // 6. Show loaded view
                                         self.bottomSheetViewModel.setPurchaseState(newState: .paying)
                                     }
                                 }
