@@ -21,7 +21,6 @@ internal class TransactionViewModel : ObservableObject {
     internal var metadata: String? = nil
     internal var reference: String? = nil
     
-    @Published internal var transaction: TransactionAlertUi?
     internal var transactionParameters: TransactionParameters?
     
     private init() {}
@@ -32,7 +31,6 @@ internal class TransactionViewModel : ObservableObject {
         self.metadata = nil
         self.reference = nil
         
-        self.transaction = nil
         self.transactionParameters = nil
     }
     
@@ -45,7 +43,6 @@ internal class TransactionViewModel : ObservableObject {
     }
     
     internal func rebuildTransactionOnWalletChanged() {
-        self.transaction = nil
         self.transactionParameters = nil
         
         buildTransaction()
@@ -69,17 +66,8 @@ internal class TransactionViewModel : ObservableObject {
                         case .success(let wallet):
                             
                             if let moneyAmount = Double(product.priceValue) {
-                                
-                                // 3. Get user's balance
-                                self.getWalletBalance(wallet: wallet) {
-                                    balance in
-                                    
-                                    let balanceValue = balance.balance
-                                    let balanceCurrency = balance.balanceCurrency
                                     
                                     DispatchQueue.main.async {
-                                        // 4. Build the Transaction UI
-                                        self.transaction = TransactionAlertUi(domain: domain, description: product.title, category: .IAP, sku: product.sku, moneyAmount: moneyAmount, moneyCurrency: productCurrency, balanceAmount: floor(balanceValue*100)/100, balanceCurrency: balanceCurrency)
                                         
                                         let guestUID = MMPUseCases.shared.getGuestUID()
                                         let oemID = MMPUseCases.shared.getOEMID()
@@ -90,7 +78,6 @@ internal class TransactionViewModel : ObservableObject {
                                         // 6. Show loaded view
                                         self.bottomSheetViewModel.setPurchaseState(newState: .paying)
                                     }
-                                }
                             } else { self.bottomSheetViewModel.transactionFailedWith(error: .unknown(message: "Failed to build transaction", description: "Missig required parameters: moneyAmount is nil at TransactionViewModel.swift:buildTransaction"))
                             }
                         case .failure(let error):
@@ -113,24 +100,6 @@ internal class TransactionViewModel : ObservableObject {
             }
             
         } else { bottomSheetViewModel.transactionFailedWith(error: .systemError(message: "Failed to build transaction", description: "Missing required parameters: product is nil or domain is nil at TransactionViewModel.swift:buildTransaction"))
-        }
-    }
-    
-    private func getWalletBalance(wallet: Wallet, completion: @escaping (Balance) -> Void) {
-        wallet.getBalance {
-            result in
-            
-            switch result {
-            case .success(let balance):
-                completion(balance)
-            case .failure(let error):
-                switch error {
-                case .failed(let message, let description, let request):
-                    self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
-                case .noInternet(let message, let description, let request):
-                    self.bottomSheetViewModel.transactionFailedWith(error: .networkError(message: message, description: description, request: request))
-                }
-            }
         }
     }
 }
