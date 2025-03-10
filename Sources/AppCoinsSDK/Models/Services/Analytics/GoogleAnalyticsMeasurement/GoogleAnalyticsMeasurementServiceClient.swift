@@ -20,6 +20,7 @@ internal class GoogleAnalyticsMeasurementServiceClient : GoogleAnalyticsMeasurem
     
     internal func sendEvent(eventData: [String: Any]) {
         if var urlComponents = URLComponents(string: endpoint) {
+            urlComponents.path += "/mp/collect"
             urlComponents.queryItems = [
                 URLQueryItem(name: "measurement_id", value: Maze.shared.get(key: measurementID)),
                 URLQueryItem(name: "api_secret", value: Maze.shared.get(key: measurementKey))

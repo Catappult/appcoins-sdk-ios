@@ -115,7 +115,7 @@ internal class BuildConfiguration {
         }
     }
     
-    static internal var googleAnalyticsMeasurementServiceURL: String = "https://www.google-analytics.com/mp/collect"
+    static internal var googleAnalyticsMeasurementServiceURL: String = "https://www.google-analytics.com"
     
     static internal var aptoideOEMID = "a37f1d7a4599d0ba60f23f9ff7b9ce95"
     
