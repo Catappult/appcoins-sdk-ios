@@ -15,6 +15,9 @@ on:
         branch:
           required: true
           type: string
+    secrets:
+      DEVELOPMENT_CERTIFICATE:
+        required: true
 
 jobs:
   build:
