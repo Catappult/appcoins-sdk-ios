@@ -10,11 +10,11 @@ import Foundation
 
 internal class AnalyticsRepository: AnalyticsRepositoryProtocol {
     
-    private let AnalyticsService: AnalyticsService = IndicativeAnalyticsClient()
+    private let AnalyticsService: AnalyticsService = GoogleAnalyticsClient()
     private var UserPropertiesCache: Cache<String, AnalyticsUserProperties> = Cache<String, AnalyticsUserProperties>.shared(cacheName: "UserProperties")
     
     internal func initialize() {
-        AnalyticsService.initialize(userProperties: self.getUserProperties())
+        AnalyticsService.initialize(userProperties: getUserProperties())
     }
     
     internal func recordPurchaseIntent(paymentMethod: String) {
@@ -31,7 +31,7 @@ internal class AnalyticsRepository: AnalyticsRepositoryProtocol {
         if let userProperties = self.UserPropertiesCache.getValue(forKey: "userproperties") {
             return userProperties
         } else {
-            let package = Bundle.main.bundleIdentifier ?? "Unknown Bundle ID"
+            let package = Bundle.main.bundleIdentifier ?? "Unknown"
             
             var environment = ""
             switch BuildConfiguration.environment {
@@ -43,9 +43,13 @@ internal class AnalyticsRepository: AnalyticsRepositoryProtocol {
             
             let theme = "system_light"
             let deviceModel = Device.current.description
-            let iosVersion = Device.current.systemVersion?.description ?? "Unknown iOS version"
+            let iosVersion = Device.current.systemVersion?.description ?? "Unknown"
+            let country = Locale.current.regionCode ?? "PT"      // ISO-3166-1 alpha-2
+            let language = Locale.current.languageCode ?? "pt"   // ISO-639-1
+            let guestUID = MMPUseCases.shared.getGuestUID() ?? "Unknown"
+            let OEMID = MMPUseCases.shared.getOEMID() ?? "Unknown"
             
-            let properties = AnalyticsUserProperties(package: package, environment: environment, theme: theme, iosVersion: iosVersion, iphoneModel: deviceModel)
+            let properties = AnalyticsUserProperties(package: package, environment: environment, theme: theme, iosVersion: iosVersion, iphoneModel: deviceModel, country: country, language: language, guestUID: guestUID, OEMID: OEMID)
             
             self.UserPropertiesCache.setValue(properties, forKey: "userproperties", storageOption: .memory)
             
@@ -53,4 +57,3 @@ internal class AnalyticsRepository: AnalyticsRepositoryProtocol {
         }
     }
 }
-
