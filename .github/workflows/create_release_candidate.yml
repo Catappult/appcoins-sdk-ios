@@ -35,8 +35,8 @@ jobs:
           VERSION=${{ github.event.inputs.version }}
           BUILD=${{ github.event.inputs.build_number }}
 
-          sed -i '' "s/^.*sdkShortVersion: String = \".*\"/    static internal var sdkShortVersion: String = \"${VERSION}\"/" Sources/AppCoinsSDK/BuildConfiguration.swift
-          sed -i '' "s/^.*sdkBuildNumber: Int = .*/    static internal var sdkBuildNumber: Int = ${BUILD}/" Sources/AppCoinsSDK/BuildConfiguration.swift
+          sed -i "s/^.*sdkShortVersion: String = \".*\"/    static internal var sdkShortVersion: String = \"${VERSION}\"/" Sources/AppCoinsSDK/BuildConfiguration.swift
+          sed -i "s/^.*sdkBuildNumber: Int = .*/    static internal var sdkBuildNumber: Int = ${BUILD}/" Sources/AppCoinsSDK/BuildConfiguration.swift
 
       - name: Commit changes
         run: |
