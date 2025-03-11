@@ -10,6 +10,7 @@ on:
       - dev
       - 'epic/*'
   workflow_dispatch:
+  workflow_call:
 
 jobs:
   build:
