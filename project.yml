@@ -40,14 +40,6 @@ targets:
       product: SkeletonUI
     - package: SwiftyRSA
       product: SwiftyRSA
-    - package: adyen-ios
-      product: Adyen
-    - package: adyen-ios
-      product: AdyenCard
-    - package: adyen-ios
-      product: AdyenComponents
-    - package: adyen-ios
-      product: AdyenSession
     - package: ActivityIndicatorView
       product: ActivityIndicatorView
     - package: DeviceKit
@@ -88,9 +80,6 @@ packages:
   SwiftyRSA:
     url: https://github.com/TakeScoop/SwiftyRSA.git
     minorVersion: 1.8.0
-  adyen-ios:
-    url: https://github.com/Adyen/adyen-ios.git
-    exactVersion: 5.12.0
   ActivityIndicatorView:
     url: https://github.com/exyte/ActivityIndicatorView.git
     minorVersion: 1.1.0

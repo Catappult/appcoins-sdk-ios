@@ -7,7 +7,7 @@
 
 import Foundation
 
-internal class AppCoinProductServiceClient : AppCoinProductService {
+internal class AppCoinProductServiceClient: AppCoinProductService {
     
     private let endpoint: String
     
@@ -432,5 +432,4 @@ internal class AppCoinProductServiceClient : AppCoinProductService {
             }
         }
     }
-    
 }

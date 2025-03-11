@@ -7,7 +7,6 @@
 
 import Foundation
 import SwiftUI
-@_implementationOnly import Adyen
 
 internal class BuildConfiguration {
     static internal let shared = BuildConfiguration()
@@ -27,73 +26,64 @@ internal class BuildConfiguration {
     
     static internal var appcDomain: String {
         switch environment {
-            case .debugSDKDev, .releaseSDKDev:
-                return "com.appcoins.wallet.dev"
-            case .debugSDKProd, .releaseSDKProd:
-                return "com.appcoins.wallet"
+        case .debugSDKDev, .releaseSDKDev:
+            return "com.appcoins.wallet.dev"
+        case .debugSDKProd, .releaseSDKProd:
+            return "com.appcoins.wallet"
         }
     }
     
     static internal var productServiceURL: String {
         switch environment {
-            case .debugSDKDev, .releaseSDKDev:
-                return "https://api.dev.catappult.io/productv2/8.20240812"
-            case .debugSDKProd, .releaseSDKProd:
-                return "https://api.catappult.io/productv2/8.20240812"
+        case .debugSDKDev, .releaseSDKDev:
+            return "https://api.dev.catappult.io/productv2/8.20240812"
+        case .debugSDKProd, .releaseSDKProd:
+            return "https://api.catappult.io/productv2/8.20240812"
         }
     }
     
     static internal var gamificationServiceURL: String {
         switch environment {
-            case .debugSDKDev, .releaseSDKDev:
-                return "https://apichain.dev.catappult.io/gamification"
-            case .debugSDKProd, .releaseSDKProd:
-                return "https://apichain.catappult.io/gamification"
+        case .debugSDKDev, .releaseSDKDev:
+            return "https://apichain.dev.catappult.io/gamification"
+        case .debugSDKProd, .releaseSDKProd:
+            return "https://apichain.catappult.io/gamification"
         }
     }
     
     static internal var aptoideIosServiceURL: String {
         switch environment {
-            case .debugSDKDev, .releaseSDKDev:
-                return "https://api.dev.aptoide.com/aptoide-ios"
-            case .debugSDKProd, .releaseSDKProd:
-                return "https://api.aptoide.com/aptoide-ios"
+        case .debugSDKDev, .releaseSDKDev:
+            return "https://api.dev.aptoide.com/aptoide-ios"
+        case .debugSDKProd, .releaseSDKProd:
+            return "https://api.aptoide.com/aptoide-ios"
         }
     }
     
     static internal var billingServiceURL: String {
         switch environment {
-            case .debugSDKDev, .releaseSDKDev:
-                return "https://api.dev.catappult.io/broker/8.20240812"
-            case .debugSDKProd, .releaseSDKProd:
-                return "https://api.catappult.io/broker/8.20240812"
+        case .debugSDKDev, .releaseSDKDev:
+            return "https://api.dev.catappult.io/broker/8.20240812"
+        case .debugSDKProd, .releaseSDKProd:
+            return "https://api.catappult.io/broker/8.20240812"
         }
     }
     
     static internal var transactionServiceURL: String {
         switch environment {
-            case .debugSDKDev, .releaseSDKDev:
-                return "https://apichain.dev.catappult.io/transaction"
-            case .debugSDKProd, .releaseSDKProd:
-                return "https://apichain.catappult.io/transaction"
+        case .debugSDKDev, .releaseSDKDev:
+            return "https://apichain.dev.catappult.io/transaction"
+        case .debugSDKProd, .releaseSDKProd:
+            return "https://apichain.catappult.io/transaction"
         }
     }
     
     static internal var APPCServiceURL: String {
         switch environment {
-            case .debugSDKDev, .releaseSDKDev:
-                return "https://apichain.dev.catappult.io/appc"
-            case .debugSDKProd, .releaseSDKProd:
-                return "https://apichain.catappult.io/appc"
-        }
-    }
-    
-    static internal var adyenEnvironment: Adyen.Environment {
-        switch environment {
-            case .debugSDKDev, .releaseSDKDev:
-                return .test
-            case .debugSDKProd, .releaseSDKProd:
-                return .liveEurope
+        case .debugSDKDev, .releaseSDKDev:
+            return "https://apichain.dev.catappult.io/appc"
+        case .debugSDKProd, .releaseSDKProd:
+            return "https://apichain.catappult.io/appc"
         }
     }
     
@@ -119,15 +109,13 @@ internal class BuildConfiguration {
     
     static internal var userUID =  UIDevice.current.identifierForVendor!.uuidString
     
-    static internal var integratedMethods: [Method] = [.appc, .paypalAdyen, .paypalDirect, .creditCard, .sandbox]
-    
     static internal var sdkShortVersion: String = "2.0.0"
 }
 
 internal enum SDKEnvironment: String {
     case debugSDKDev = "Debug AppCoins SDK Dev"
     case releaseSDKDev = "Release AppCoins SDK Dev"
-
+    
     case debugSDKProd = "Debug AppCoins SDK Prod"
     case releaseSDKProd = "Release AppCoins SDK Prod"
 }
