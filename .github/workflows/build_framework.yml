@@ -10,17 +10,22 @@ on:
       - dev
       - 'epic/*'
   workflow_dispatch:
+  workflow_call:
+    inputs:
+        branch:
+          required: true
+          type: string
 
 jobs:
   build:
     runs-on: macos-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout repository 
         uses: actions/checkout@v3
         with:
-          # Fetch all history for all branches and tags to handle pushes to the correct branch
-          fetch-depth: 0
+          ref: ${{ inputs.branch || github.ref_name }}
+          fetch-depth: 0 # Fetch all history for all branches and tags to handle pushes to the correct branch
         
       - name: Decode and save the certificate
         env:
