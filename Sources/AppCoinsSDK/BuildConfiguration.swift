@@ -122,6 +122,8 @@ internal class BuildConfiguration {
     static internal var integratedMethods: [Method] = [.appc, .paypalAdyen, .paypalDirect, .creditCard, .sandbox]
     
     static internal var sdkShortVersion: String = "2.0.0"
+    
+    static internal var sdkBuildNumber: String = "2.0.0"
 }
 
 internal enum SDKEnvironment: String {
