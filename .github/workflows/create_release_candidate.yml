@@ -54,3 +54,6 @@ jobs:
     uses: ./.github/workflows/build_framework.yml
     with:
       branch: release_${{ github.event.inputs.version }}
+    secrets:
+      DEVELOPMENT_CERTIFICATE: ${{ secrets.DEVELOPMENT_CERTIFICATE }}
+      
