@@ -14,7 +14,7 @@ internal class AnalyticsRepository: AnalyticsRepositoryProtocol {
     private var UserPropertiesCache: Cache<String, AnalyticsUserProperties> = Cache<String, AnalyticsUserProperties>.shared(cacheName: "UserProperties")
     
     internal func initialize() {
-        AnalyticsService.initialize(userProperties: self.getUserProperties())
+        AnalyticsService.initialize(userProperties: getUserProperties())
     }
     
     internal func recordPurchaseIntent(paymentMethod: String) {
