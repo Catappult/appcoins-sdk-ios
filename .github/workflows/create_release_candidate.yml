@@ -51,3 +51,5 @@ jobs:
     name: Build Framework
     needs: create_release_candidate   # Ensures it only runs after previous job
     uses: ./.github/workflows/build_framework.yml
+    with:
+      branch: release_${{ github.event.inputs.version }}
