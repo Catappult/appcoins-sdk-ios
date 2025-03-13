@@ -10,6 +10,7 @@ on:
 
 jobs:
   merge_release_into_main:
+    name: Merge Release into Main
     runs-on: macos-latest
     steps:
       - name: Checkout main branch
@@ -32,7 +33,7 @@ jobs:
   
   build_framework:
     name: Build Framework
-    needs: create_release_candidate   # Ensures it only runs after previous job
+    needs: merge_release_into_main   # Ensures it only runs after previous job
     uses: ./.github/workflows/build_framework.yml
     with:
       branch: release_${{ github.event.inputs.version }}
@@ -40,7 +41,9 @@ jobs:
       DEVELOPMENT_CERTIFICATE: ${{ secrets.DEVELOPMENT_CERTIFICATE }}
 
   create_release_tag:
+    name: Create Release Tag
     runs-on: macos-latest
+    needs: build_framework   # Ensures it only runs after previous job
     steps:
       - name: Checkout main branch
         uses: actions/checkout@v3
