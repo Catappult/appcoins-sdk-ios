@@ -4,10 +4,10 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'SDK Version (e.g., 2.1.0)'
+        description: 'SDK Version'
         required: true
       build_number:
-        description: 'SDK Build Number (e.g., 34)'
+        description: 'SDK Build Number'
         required: true
 
 jobs:
