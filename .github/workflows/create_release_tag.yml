@@ -1,0 +1,59 @@
+name: Create Release Tag
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'SDK Version'
+        required: true
+        type: string
+
+jobs:
+  merge_release_into_main:
+    name: Merge Release into Main
+    runs-on: macos-latest
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v3
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Merge release branch into main
+        run: |
+          # Configure git
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          # Fetch the release branch
+          git fetch origin release_${{ github.event.inputs.version }}
+          # Merge the release branch into main
+          git merge origin/release_${{ github.event.inputs.version }} -m "Merge release_${{ github.event.inputs.version }} into main"
+          # Push the updated main branch back to origin
+          git push origin main
+  
+  build_framework:
+    name: Build Framework
+    needs: merge_release_into_main   # Ensures it only runs after previous job
+    uses: ./.github/workflows/build_framework.yml
+    with:
+      branch: release_${{ github.event.inputs.version }}
+    secrets:
+      DEVELOPMENT_CERTIFICATE: ${{ secrets.DEVELOPMENT_CERTIFICATE }}
+
+  create_release_tag:
+    name: Create Release Tag
+    runs-on: macos-latest
+    needs: build_framework   # Ensures it only runs after previous job
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v3
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create Git tag on main
+        run: |
+          # Create the tag using the version input
+          git tag ${{ github.event.inputs.version }}
+          # Push the new tag to origin
+          git push origin ${{ github.event.inputs.version }}
