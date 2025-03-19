@@ -7,7 +7,6 @@
 
 import Foundation
 @_implementationOnly import StoreKit
-@_implementationOnly import IndicativeLibrary
 @_implementationOnly import MarketplaceKit
 
 public struct AppcSDK {

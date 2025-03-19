@@ -69,11 +69,17 @@ internal class BuildConfiguration {
         }
     }
     
+    static internal var googleAnalyticsMeasurementServiceURL: String = "https://www.google-analytics.com"
+    
     static internal var aptoideOEMID = "a37f1d7a4599d0ba60f23f9ff7b9ce95"
     
     static internal var userUID =  UIDevice.current.identifierForVendor!.uuidString
     
-    static internal var sdkShortVersion: String = "2.0.0"
+    // WARNING: Changing this variable definition might break CI/CD
+    static internal var sdkShortVersion: String = "2.1.0"
+    
+    // WARNING: Changing this variable definition might break CI/CD
+    static internal var sdkBuildNumber: Int = 30
 }
 
 internal enum SDKEnvironment: String {
