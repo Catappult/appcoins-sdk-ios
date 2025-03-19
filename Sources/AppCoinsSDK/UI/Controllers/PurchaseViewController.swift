@@ -1,6 +1,6 @@
 //
 //  PurchaseViewController.swift
-//  
+//
 //
 //  Created by aptoide on 07/03/2023.
 //
@@ -49,29 +49,10 @@ internal class PurchaseViewController: UIViewController {
         }
     }
     
-    override internal var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-            return orientation
-        }
+    override internal var supportedInterfaceOrientations: UIInterfaceOrientationMask { return orientation }
     
     @objc internal func dismissPurchase() {
         self.dismiss(animated: false, completion: nil)
     }
     
-    internal func presentLogoutAlert() {
-        let alert = UIAlertController(title: Constants.logOut, message: Constants.confirmLogOutText, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: Constants.cancelText, style: .cancel))
-        alert.addAction(UIAlertAction(title: Constants.logOut, style: .destructive, handler: { _ in
-            AuthViewModel.shared.logout()
-        }))
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    internal func presentPayPalLogoutAlert() {
-        let alert = UIAlertController(title: Constants.logOut, message: Constants.confirmLogOutText, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: Constants.cancelText, style: .cancel))
-        alert.addAction(UIAlertAction(title: Constants.logOut, style: .destructive, handler: { _ in
-            PayPalDirectViewModel.shared.logoutPayPal()
-        }))
-        self.present(alert, animated: true, completion: nil)
-    }
 }

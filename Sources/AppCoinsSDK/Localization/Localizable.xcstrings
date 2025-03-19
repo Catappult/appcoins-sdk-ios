@@ -11910,6 +11910,7 @@
     },
     "your_card_title" : {
       "comment" : "Your card",
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
