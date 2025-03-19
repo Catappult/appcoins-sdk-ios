@@ -21,8 +21,6 @@ internal class TransactionViewModel: ObservableObject {
     internal var metadata: String? = nil
     internal var reference: String? = nil
     
-    internal var transactionParameters: TransactionParameters?
-    
     private init() {}
     
     internal func reset() {
@@ -30,8 +28,6 @@ internal class TransactionViewModel: ObservableObject {
         self.domain = nil
         self.metadata = nil
         self.reference = nil
-        
-        self.transactionParameters = nil
     }
     
     // Called when a user starts a product purchase
@@ -43,8 +39,6 @@ internal class TransactionViewModel: ObservableObject {
     }
     
     internal func rebuildTransactionOnWalletChanged() {
-        self.transactionParameters = nil
-        
         buildTransaction()
     }
     
@@ -52,42 +46,24 @@ internal class TransactionViewModel: ObservableObject {
         bottomSheetViewModel.setPurchaseState(newState: .loading)
         
         if let product = product, let domain = domain {
-            // 1. Get product currency
-            product.getCurrency {
+            // 1. Get Wallet
+            self.walletUseCases.getWallet() {
                 result in
                 
                 switch result {
-                case .success(let productCurrency):
-                    // 2. Get user wallet
-                    self.walletUseCases.getWallet() {
-                        result in
+                case .success(let wallet):
+                    
+                    if let moneyAmount = Double(product.priceValue) {
                         
-                        switch result {
-                        case .success(let wallet):
+                        DispatchQueue.main.async {
                             
-                            if let moneyAmount = Double(product.priceValue) {
-                                    
-                                    DispatchQueue.main.async {
-                                        
-                                        let guestUID = MMPUseCases.shared.getGuestUID()
-                                        let oemID = MMPUseCases.shared.getOEMID()
-                                        
-                                        // 3. Build the parameters to process the transaction
-                                        self.transactionParameters = TransactionParameters(value: String(moneyAmount), currency: product.priceCurrency, domain: domain, product: product.sku, guestUID: guestUID, oemID: oemID, metadata: self.metadata, reference: self.reference)
-                                        
-                                        // 4. Show loaded view
-                                        self.bottomSheetViewModel.setPurchaseState(newState: .paying)
-                                    }
-                            } else { self.bottomSheetViewModel.transactionFailedWith(error: .unknown(message: "Failed to build transaction", description: "Missig required parameters: moneyAmount is nil at TransactionViewModel.swift:buildTransaction"))
-                            }
-                        case .failure(let error):
-                            switch error {
-                            case .failed(let message, let description, let request):
-                                self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
-                            case .noInternet(let message, let description, let request):
-                                self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
-                            }
+                            let guestUID = MMPUseCases.shared.getGuestUID()
+                            let oemID = MMPUseCases.shared.getOEMID()
+                            
+                            // 3. Show loaded view
+                            self.bottomSheetViewModel.setPurchaseState(newState: .paying)
                         }
+                    } else { self.bottomSheetViewModel.transactionFailedWith(error: .unknown(message: "Failed to build transaction", description: "Missig required parameters: moneyAmount is nil at TransactionViewModel.swift:buildTransaction"))
                     }
                 case .failure(let error):
                     switch error {
@@ -98,7 +74,6 @@ internal class TransactionViewModel: ObservableObject {
                     }
                 }
             }
-            
         } else { bottomSheetViewModel.transactionFailedWith(error: .systemError(message: "Failed to build transaction", description: "Missing required parameters: product is nil or domain is nil at TransactionViewModel.swift:buildTransaction"))
         }
     }

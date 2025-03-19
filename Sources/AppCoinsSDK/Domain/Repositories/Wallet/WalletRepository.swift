@@ -12,10 +12,10 @@ internal class WalletRepository: WalletRepositoryProtocol {
     
     private var walletService: WalletLocalService = WalletLocalClient()
     private var appcService: APPCService = APPCServiceClient()
-    private var appcTransactionService: AppCoinTransactionService = AppCoinTransactionClient()
     
     private let ActiveWalletCache: Cache<String, ClientWallet?> = Cache<String, ClientWallet?>.shared(cacheName: "ActiveWalletCache")
     private let WalletListCache: Cache<String, [ClientWallet]> = Cache<String, [ClientWallet]>.shared(cacheName: "WalletListCache")
+    private var appcTransactionService: AppCoinTransactionService = AppCoinTransactionClient()
     
     internal func getClientWallet() -> ClientWallet? {
         if let clientWallet = self.ActiveWalletCache.getValue(forKey: "activeWallet") {
@@ -34,21 +34,6 @@ internal class WalletRepository: WalletRepositoryProtocol {
                 return nil
             }
             return nil
-        }
-    }
-    
-    internal func getGuestWallet(guestUID: String, completion: @escaping (Result<GuestWallet, APPCServiceError>) -> Void) {
-        appcService.getGuestWallet(guestUID: guestUID) { result in
-            switch result {
-            case .success(let guestWalletRaw):
-                if let ewt = guestWalletRaw.ewt, let signature = guestWalletRaw.signature {
-                    completion(.success(GuestWallet(address: guestWalletRaw.address, ewt: ewt, signature: signature)))
-                } else {
-                    completion(.failure(.failed(message: "Failed to get guest wallet", description: "Guest wallet ewt is nil or guest wallet signature is nil at WalletRepository.swift:getGuestWallet", request: nil)))
-                }
-            case .failure(let error):
-                completion(.failure(error))
-            }
         }
     }
     

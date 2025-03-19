@@ -13,45 +13,17 @@ internal class BottomSheetViewModel: ObservableObject {
     
     internal static var shared: BottomSheetViewModel = BottomSheetViewModel()
     
-    // Purchase attributes
-    internal var product: Product? = nil
-    internal var domain: String? = nil
-    internal var metadata: String? = nil
-    internal var reference: String? = nil
-    
     // Purchase status
     @Published internal var purchaseState: PurchaseState = .none
     
     internal var hasActiveTransaction = false
     
-    internal var productUseCases: ProductUseCases = ProductUseCases.shared
-    
     // Device Orientation
     @Published internal var orientation: Orientation = .portrait
-    
-    // Keyboard Dismiss
-    @Published internal var isKeyboardVisible: Bool = false
-    private var cancellables = Set<AnyCancellable>()
     
     private init() {
         // Prevents Layout Warning Prints
         UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
-        
-        NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification)
-            .sink { [weak self] _ in
-                self?.isKeyboardVisible = true
-            }
-            .store(in: &cancellables)
-        
-        NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification)
-            .sink { [weak self] _ in
-                self?.isKeyboardVisible = false
-            }
-            .store(in: &cancellables)
-    }
-    
-    deinit {
-        cancellables.removeAll()
     }
     
     // Resets the BottomSheet
@@ -73,10 +45,6 @@ internal class BottomSheetViewModel: ObservableObject {
     // Called when a user starts a product purchase
     internal func buildPurchase(product: Product, domain: String, metadata: String?, reference: String?) {
         self.hasActiveTransaction = true
-        self.product = product
-        self.domain = domain
-        self.metadata = metadata
-        self.reference = reference
         TransactionViewModel.shared.setUpTransaction(product: product, domain: domain, metadata: metadata, reference: reference)
         
         DispatchQueue(label: "build-transaction", qos: .userInteractive).async { self.initiateTransaction() }
@@ -125,11 +93,11 @@ internal class BottomSheetViewModel: ObservableObject {
     internal func transactionFailedWith(error: AppCoinsSDKError, description: String? = nil) {
         switch error {
         case .networkError:
-            let result : TransactionResult = .failed(error: error)
+            let result: TransactionResult = .failed(error: error)
             Utils.transactionResult(result: result)
             DispatchQueue.main.async { self.purchaseState = .nointernet }
         default:
-            let result : TransactionResult = .failed(error: error)
+            let result: TransactionResult = .failed(error: error)
             Utils.transactionResult(result: result)
             DispatchQueue.main.async { self.purchaseState = .failed }
         }

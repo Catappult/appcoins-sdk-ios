@@ -7,7 +7,7 @@
 
 import Foundation
 
-internal class AppCoinBillingClient : AppCoinBillingService {
+internal class AppCoinBillingClient: AppCoinBillingService {
     
     private let endpoint: String
     

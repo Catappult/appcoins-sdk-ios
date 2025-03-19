@@ -24,57 +24,12 @@ internal class BuildConfiguration {
         return Bundle.main.bundleIdentifier ?? ""
     }
     
-    static internal var appcDomain: String {
-        switch environment {
-        case .debugSDKDev, .releaseSDKDev:
-            return "com.appcoins.wallet.dev"
-        case .debugSDKProd, .releaseSDKProd:
-            return "com.appcoins.wallet"
-        }
-    }
-    
     static internal var productServiceURL: String {
         switch environment {
         case .debugSDKDev, .releaseSDKDev:
             return "https://api.dev.catappult.io/productv2/8.20240812"
         case .debugSDKProd, .releaseSDKProd:
             return "https://api.catappult.io/productv2/8.20240812"
-        }
-    }
-    
-    static internal var gamificationServiceURL: String {
-        switch environment {
-        case .debugSDKDev, .releaseSDKDev:
-            return "https://apichain.dev.catappult.io/gamification"
-        case .debugSDKProd, .releaseSDKProd:
-            return "https://apichain.catappult.io/gamification"
-        }
-    }
-    
-    static internal var aptoideIosServiceURL: String {
-        switch environment {
-        case .debugSDKDev, .releaseSDKDev:
-            return "https://api.dev.aptoide.com/aptoide-ios"
-        case .debugSDKProd, .releaseSDKProd:
-            return "https://api.aptoide.com/aptoide-ios"
-        }
-    }
-    
-    static internal var billingServiceURL: String {
-        switch environment {
-        case .debugSDKDev, .releaseSDKDev:
-            return "https://api.dev.catappult.io/broker/8.20240812"
-        case .debugSDKProd, .releaseSDKProd:
-            return "https://api.catappult.io/broker/8.20240812"
-        }
-    }
-    
-    static internal var transactionServiceURL: String {
-        switch environment {
-        case .debugSDKDev, .releaseSDKDev:
-            return "https://apichain.dev.catappult.io/transaction"
-        case .debugSDKProd, .releaseSDKProd:
-            return "https://apichain.catappult.io/transaction"
         }
     }
     
@@ -96,12 +51,21 @@ internal class BuildConfiguration {
         }
     }
     
-    static internal var aptoideWebservicesBaseURL: String {
+    static internal var transactionServiceURL: String {
         switch environment {
         case .debugSDKDev, .releaseSDKDev:
-            return "https://webservices-devel.aptoide.com/api/7"
+            return "https://apichain.dev.catappult.io/transaction"
         case .debugSDKProd, .releaseSDKProd:
-            return "https://webservices.aptoide.com/api/7"
+            return "https://apichain.catappult.io/transaction"
+        }
+    }
+    
+    static internal var billingServiceURL: String {
+        switch environment {
+        case .debugSDKDev, .releaseSDKDev:
+            return "https://api.dev.catappult.io/broker/8.20240812"
+        case .debugSDKProd, .releaseSDKProd:
+            return "https://api.catappult.io/broker/8.20240812"
         }
     }
     

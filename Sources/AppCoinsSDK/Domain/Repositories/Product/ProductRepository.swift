@@ -11,8 +11,8 @@ internal class ProductRepository: ProductRepositoryProtocol {
     
     private let productService: AppCoinProductService = AppCoinProductServiceClient()
     
-    internal func getProduct(domain: String, product: String, currency: Currency, completion: @escaping (Result<Product, ProductServiceError>) -> Void) {
-        productService.getProductInformation(domain: domain, sku: product, currency: currency) {
+    internal func getProduct(domain: String, product: String, completion: @escaping (Result<Product, ProductServiceError>) -> Void) {
+        productService.getProductInformation(domain: domain, sku: product) {
             result in
             
             switch result {
@@ -28,8 +28,8 @@ internal class ProductRepository: ProductRepositoryProtocol {
         }
     }
     
-    internal func getAllProducts(domain: String, currency: Currency, completion: @escaping (Result<[Product], ProductServiceError>) -> Void) {
-        productService.getProductInformation(domain: domain, currency: currency) {
+    internal func getAllProducts(domain: String, completion: @escaping (Result<[Product], ProductServiceError>) -> Void) {
+        productService.getProductInformation(domain: domain) {
             result in
             
             switch result {

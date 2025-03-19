@@ -55,9 +55,4 @@ internal class PurchaseViewController: UIViewController {
         self.dismiss(animated: false, completion: nil)
     }
     
-    internal func presentLogoutAlert() {
-        let alert = UIAlertController(title: Constants.logOut, message: Constants.confirmLogOutText, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: Constants.cancelText, style: .cancel))
-        self.present(alert, animated: true, completion: nil)
-    }
 }

@@ -81,17 +81,6 @@ internal struct Utils {
         } else { return nil }
     }
     
-    static internal func getAppIcon() -> UIImage {
-        if let icons = Bundle.main.infoDictionary?["CFBundleIcons"] as? [String: Any],
-           let primaryIcon = icons["CFBundlePrimaryIcon"] as? [String: Any],
-           let iconFiles = primaryIcon["CFBundleIconFiles"] as? [String],
-           let lastIcon = iconFiles.last {
-            
-            return UIImage(named: lastIcon) ?? UIImage()
-        }
-        return UIImage()
-    }
-    
     static func md5(_ string: String) -> String {
         let messageData = string.data(using:.utf8)!
         var digestData = Data(count: Int(CC_MD5_DIGEST_LENGTH))

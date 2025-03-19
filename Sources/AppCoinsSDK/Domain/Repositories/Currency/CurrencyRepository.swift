@@ -8,11 +8,11 @@
 import Foundation
 
 internal class CurrencyRepository: CurrencyRepositoryProtocol {
-    
+
     internal let AppCoinBillingService: AppCoinBillingService  = AppCoinBillingClient()
     internal let UserCurrency: Cache<String, Currency> = Cache<String, Currency>.shared(cacheName: "UserCurrencyCache")
     internal let CurrencyListCache: Cache<String, [Currency]> = Cache<String, [Currency]>.shared(cacheName: "CurrencyListCache")
-    
+
     internal func getUserCurrency(completion: @escaping (Result<Currency, BillingError>) -> Void) {
         if let userCurrency = self.UserCurrency.getValue(forKey: "userCurrency") {
             completion(.success(userCurrency))
