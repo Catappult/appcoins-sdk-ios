@@ -377,7 +377,6 @@ internal class AppCoinProductServiceClient : AppCoinProductService {
                         } else {
                             do {
                                 if let data = data {
-                                    
                                     let findResult = try JSONDecoder().decode(GetPurchasesRaw.self, from: data)
                                     purchases.append(contentsOf: findResult.items)
                                     
