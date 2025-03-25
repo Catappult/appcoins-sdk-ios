@@ -347,10 +347,10 @@ internal class AppCoinProductServiceClient : AppCoinProductService {
         if var urlComponents = URLComponents(string: endpoint) {
             urlComponents.path += "/applications/\(domain)/inapp/consumable/purchases"
             
-            let stateString = state.joined(separator: ",")
-            let stateQueryItem = URLQueryItem(name: "state", value: stateString)
-            
-            urlComponents.queryItems = [stateQueryItem, URLQueryItem(name: "platform", value: "IOS")]
+            urlComponents.queryItems = [
+                URLQueryItem(name: "state", value: state.joined(separator: ",")),
+                URLQueryItem(name: "platform", value: "IOS")
+            ]
             
             if let url = urlComponents.url {
                 func getNextPurchasesBatch(url: URL) {
