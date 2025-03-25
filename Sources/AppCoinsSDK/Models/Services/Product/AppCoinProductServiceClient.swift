@@ -345,8 +345,8 @@ internal class AppCoinProductServiceClient: AppCoinProductService {
         if var urlComponents = URLComponents(string: endpoint) {
             urlComponents.path += "/applications/\(domain)/inapp/consumable/purchases"
             
-            let stateQueryItems = state.map { URLQueryItem(name: "state", value: $0) }
-            urlComponents.queryItems = stateQueryItems + [
+            urlComponents.queryItems = [
+                URLQueryItem(name: "state", value: state.joined(separator: ",")),
                 URLQueryItem(name: "platform", value: "IOS")
             ]
             
