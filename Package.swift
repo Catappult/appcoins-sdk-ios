@@ -13,7 +13,7 @@ let package = Package(
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "AppCoinsSDK",
-            targets: ["AppCoinsSDK", "IndicativeLibrary"]),
+            targets: ["AppCoinsSDK"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -33,8 +33,7 @@ let package = Package(
                 .product(name: "SwiftyRSA", package: "SwiftyRSA"),
                 .product(name: "DeviceKit", package: "DeviceKit")
             ],
-            resources: [.process("Localization")]),
-        .binaryTarget(name: "IndicativeLibrary", path: "./Sources/AppCoinsSDK/Frameworks/IndicativeLibrary.xcframework")
+            resources: [.process("Localization")])
     ]
 )
 
