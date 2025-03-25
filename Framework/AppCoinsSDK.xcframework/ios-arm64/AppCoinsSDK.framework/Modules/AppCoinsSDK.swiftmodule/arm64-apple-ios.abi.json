@@ -6609,63 +6609,70 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/BuildConfiguration.swift",
       "kind": "StringLiteral",
-      "offset": 4291,
+      "offset": 4359,
       "length": 7,
-      "value": "\"2.0.0\""
+      "value": "\"2.1.0\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/BuildConfiguration.swift",
+      "kind": "IntegerLiteral",
+      "offset": 4486,
+      "length": 2,
+      "value": "30"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/BuildConfiguration.swift",
       "kind": "StringLiteral",
-      "offset": 4364,
+      "offset": 4554,
       "length": 24,
       "value": "\"Debug AppCoins SDK Dev\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/BuildConfiguration.swift",
       "kind": "StringLiteral",
-      "offset": 4414,
+      "offset": 4604,
       "length": 26,
       "value": "\"Release AppCoins SDK Dev\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/BuildConfiguration.swift",
       "kind": "StringLiteral",
-      "offset": 4466,
+      "offset": 4656,
       "length": 25,
       "value": "\"Debug AppCoins SDK Prod\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/BuildConfiguration.swift",
       "kind": "StringLiteral",
-      "offset": 4518,
+      "offset": 4708,
       "length": 27,
       "value": "\"Release AppCoins SDK Prod\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/BuildConfiguration.swift",
       "kind": "StringLiteral",
-      "offset": 4364,
+      "offset": 4554,
       "length": 24,
       "value": "\"Debug AppCoins SDK Dev\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/BuildConfiguration.swift",
       "kind": "StringLiteral",
-      "offset": 4414,
+      "offset": 4604,
       "length": 26,
       "value": "\"Release AppCoins SDK Dev\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/BuildConfiguration.swift",
       "kind": "StringLiteral",
-      "offset": 4466,
+      "offset": 4656,
       "length": 25,
       "value": "\"Debug AppCoins SDK Prod\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/BuildConfiguration.swift",
       "kind": "StringLiteral",
-      "offset": 4518,
+      "offset": 4708,
       "length": 27,
       "value": "\"Release AppCoins SDK Prod\""
     },
