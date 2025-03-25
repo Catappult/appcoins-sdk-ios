@@ -14,7 +14,6 @@ import Foundation
 internal class ClientWallet: Wallet, Codable {
     
     internal var name: String?
-    internal var balance: Balance?
     internal var address: String?
     internal var creationDate: Date
     
@@ -36,41 +35,6 @@ internal class ClientWallet: Wallet, Codable {
         if let address = self.address {
             let bdname = Utils.readFromPreferences(key: address)
             if bdname != "" { self.name = bdname } else { self.name = address }
-            
-            self.getBalance {
-                result in
-                switch result {
-                case .success(let balance):
-                    self.balance = balance
-                case .failure(_):
-                    break
-                }
-            }
-        }
-    }
-    
-    internal func getBalance(completion: @escaping (Result<Balance, AppcTransactionError>) -> Void) {
-        CurrencyUseCases.shared.getUserCurrency { result in
-            switch result {
-            case .success(let currency):
-                if let address = self.address {
-                    WalletUseCases.shared.getWalletBalance(wallet: self, currency: currency) { result in
-                        switch result {
-                        case .success(let balance):
-                            completion(.success(balance))
-                        case .failure(let error):
-                            completion(.failure(error))
-                        }
-                    }
-                }
-            case .failure(let error):
-                switch error {
-                case .failed(let message, let description, let request):
-                    completion(.failure(AppcTransactionError.failed(message: message, description: description, request: request)))
-                case .noInternet(let message, let description, let request):
-                    completion(.failure(AppcTransactionError.noInternet(message: message, description: description, request: request)))
-                }
-            }
         }
     }
     
@@ -155,7 +119,6 @@ internal class ClientWallet: Wallet, Codable {
     // Conform to Codable Protocol
     internal enum CodingKeys: CodingKey {
         case name
-        case balance
         case address
         case creationDate
         case password
@@ -165,7 +128,6 @@ internal class ClientWallet: Wallet, Codable {
     internal required init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         name = try container.decode(String.self, forKey: .name)
-        balance = try container.decode(Balance.self, forKey: .balance)
         address = try container.decode(String.self, forKey: .address)
         creationDate = try container.decode(Date.self, forKey: .creationDate)
         password = try container.decode(String.self, forKey: .password)
@@ -180,7 +142,6 @@ internal class ClientWallet: Wallet, Codable {
     internal func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(name, forKey: .name)
-        try container.encode(balance, forKey: .balance)
         try container.encode(address, forKey: .address)
         try container.encode(creationDate, forKey: .creationDate)
         try container.encode(password, forKey: .password)
