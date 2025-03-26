@@ -10,10 +10,9 @@ import Foundation
 internal class ProductRepository: ProductRepositoryProtocol {
     
     private let productService: AppCoinProductService = AppCoinProductServiceClient()
-    private let billingService: AppCoinBillingService = AppCoinBillingClient()
-
-    internal func getProduct(domain: String, product: String, currency: Currency, completion: @escaping (Result<Product, ProductServiceError>) -> Void) {
-        productService.getProductInformation(domain: domain, sku: product, currency: currency) {
+    
+    internal func getProduct(domain: String, product: String, completion: @escaping (Result<Product, ProductServiceError>) -> Void) {
+        productService.getProductInformation(domain: domain, sku: product) {
             result in
             
             switch result {
@@ -29,8 +28,8 @@ internal class ProductRepository: ProductRepositoryProtocol {
         }
     }
     
-    internal func getAllProducts(domain: String, currency: Currency, completion: @escaping (Result<[Product], ProductServiceError>) -> Void) {
-        productService.getProductInformation(domain: domain, currency: currency) {
+    internal func getAllProducts(domain: String, completion: @escaping (Result<[Product], ProductServiceError>) -> Void) {
+        productService.getProductInformation(domain: domain) {
             result in
             
             switch result {
@@ -44,17 +43,5 @@ internal class ProductRepository: ProductRepositoryProtocol {
                 completion(.failure(error))
             }
         }
-    }
-    
-    internal func getProductAppcValue(product: Product, productCurrency: Currency, completion: @escaping (Result<String, BillingError>) -> Void) {
-        billingService.convertCurrency(money: product.priceValue, fromCurrency: productCurrency, toCurrency: Currency.APPC) {
-                result in
-                switch result {
-                case .success(let converted):
-                    completion(.success(converted.value))
-                case .failure(let error):
-                    completion(.failure(error))
-                }
-            }
     }
 }

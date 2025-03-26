@@ -160,15 +160,4 @@ public struct Product {
             if let result = result { return result } else { return .failed(error: .unknown(message: "Purchase failed", description: "Failed to retrieve required value: result is nil at Product.swift:purchase", request: nil)) }
         }
     }
-    
-    internal func getCurrency(completion: @escaping (Result<Currency, BillingError>) -> Void) {
-        CurrencyUseCases.shared.getSupportedCurrency(currency: self.priceCurrency) { result in
-            switch result {
-            case .success(let currency):
-                completion(.success(currency))
-            case .failure(let failure):
-                completion(.failure(failure))
-            }
-        }
-    }
 }

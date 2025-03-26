@@ -18,5 +18,5 @@ internal struct Balance: Codable {
         self.balance = raw.appcCFiatBalance
         self.appcoinsBalance = raw.appcCNormalizedBalance
     }
-    
 }
+

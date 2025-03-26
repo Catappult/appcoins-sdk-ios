@@ -1,6 +1,6 @@
 //
 //  Purchase.swift
-//  
+//
 //
 //  Created by aptoide on 24/05/2023.
 //
@@ -16,7 +16,7 @@ public class Purchase: Codable {
     public let payload: String?
     public let created: String
     public let verification: PurchaseVerification
-
+    
     public class PurchaseVerification: Codable {
         public let type: String
         public let data: PurchaseVerificationData
@@ -57,81 +57,6 @@ public class Purchase: Codable {
         self.payload = raw.payload
         self.created = raw.created
         self.verification = PurchaseVerification(raw: raw.verification)
-    }
-    
-    internal static func verify(domain: String = (Bundle.main.bundleIdentifier ?? ""), purchaseUID: String, completion: @escaping (Result<Purchase, AppCoinsSDKError>) -> Void ) {
-        let walletUseCases = WalletUseCases.shared
-        let transactionUseCases = TransactionUseCases.shared
-        
-        walletUseCases.getWallet() {
-            result in
-            
-            switch result {
-            case .success(let wallet):
-                transactionUseCases.verifyPurchase(domain: domain, uid: purchaseUID, wa: wallet) {
-                    result in
-                    
-                    switch result {
-                    case .success(let purchase):
-                        completion(.success(purchase))
-                    case .failure(let error):
-                        switch error {
-                        case .failed(let message, let description, let request):
-                            completion(.failure(AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request))))
-                        case .noInternet(let message, let description, let request):
-                            completion(.failure(AppCoinsSDKError.networkError(debugInfo: DebugInfo(message: message, description: description, request: request))))
-                        case .purchaseVerificationFailed(let message, let description, let request):
-                            completion(.failure(AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request))))
-                        }
-                    }
-                }
-            case .failure(let error):
-                switch error {
-                case .failed(let message, let description, let request):
-                    completion(.failure(AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request))))
-                case .noInternet(let message, let description, let request):
-                    completion(.failure(AppCoinsSDKError.networkError(debugInfo: DebugInfo(message: message, description: description, request: request))))
-                }
-            }
-        }
-    }
-    
-    // only accessible internally – the SDK acknowledges the purchase
-    internal func acknowledge(domain: String = (Bundle.main.bundleIdentifier ?? ""), completion: @escaping (AppCoinsSDKError?) -> Void) {
-        let walletUseCases = WalletUseCases.shared
-        let transactionUseCases = TransactionUseCases.shared
-        
-        walletUseCases.getWallet() {
-            result in
-            
-            switch result {
-            case .success(let wallet):
-                transactionUseCases.acknowledgePurchase(domain: domain, uid: self.uid, wa: wallet) {
-                    result in
-                    
-                    switch result {
-                    case .success(_):
-                        self.state = "ACKNOWLEDGED"
-                        completion(nil)
-                    case .failure(let error):
-                        switch error {
-                        case .failed(let message, let description, let request):
-                            completion(AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request)))
-                        case .noInternet(let message, let description, let request):
-                            completion(AppCoinsSDKError.networkError(debugInfo: DebugInfo(message: message, description: description, request: request)))
-                        case .general(let message, let description, let request):
-                            completion(AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request)))
-                        case .noBillingAgreement(let message, let description, let request):
-                            completion(AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request)))
-                        case .timeOut(let message, let description, let request):
-                            completion(AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request)))
-                        }
-                    }
-                }
-            case .failure(_):
-                break
-            }
-        }
     }
     
     // accessible by the developer – the app consumes the purchase and attributes the item to the user
@@ -348,7 +273,7 @@ public class Purchase: Codable {
     public static var updates: AsyncStream<VerificationResult> {
         return purchaseStream
     }
-
+    
     internal static func send(_ verificationResult: VerificationResult) {
         purchaseContinuation?.yield(verificationResult)
     }
