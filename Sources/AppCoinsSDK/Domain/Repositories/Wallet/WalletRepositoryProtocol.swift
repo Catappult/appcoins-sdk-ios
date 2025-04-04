@@ -10,6 +10,5 @@ import Foundation
 internal protocol WalletRepositoryProtocol {
     func getClientWallet() -> ClientWallet?
     func getWalletList() -> [ClientWallet]
-    func getWalletBalance(wallet: Wallet, currency: Currency, completion: @escaping (Result<Balance, AppcTransactionError>) -> Void)
     func getWalletPrivateKey(wallet: Wallet) -> Data?
 }

@@ -75,12 +75,6 @@ internal struct Utils {
         NotificationCenter.default.post(name: NSNotification.Name("APPCPurchaseResult"), object: nil, userInfo: ["TransactionResult" : result])
     }
     
-    static internal func getCountryCode() -> String? {
-        if let countryCode = (Locale.current as NSLocale).object(forKey: .countryCode) as? String {
-            return countryCode
-        } else { return nil }
-    }
-    
     static func md5(_ string: String) -> String {
         let messageData = string.data(using:.utf8)!
         var digestData = Data(count: Int(CC_MD5_DIGEST_LENGTH))

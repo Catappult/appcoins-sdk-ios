@@ -15,7 +15,6 @@ internal class WalletRepository: WalletRepositoryProtocol {
     
     private let ActiveWalletCache: Cache<String, ClientWallet?> = Cache<String, ClientWallet?>.shared(cacheName: "ActiveWalletCache")
     private let WalletListCache: Cache<String, [ClientWallet]> = Cache<String, [ClientWallet]>.shared(cacheName: "WalletListCache")
-    private var appcTransactionService: AppCoinTransactionService = AppCoinTransactionClient()
     
     internal func getClientWallet() -> ClientWallet? {
         if let clientWallet = self.ActiveWalletCache.getValue(forKey: "activeWallet") {
@@ -50,19 +49,6 @@ internal class WalletRepository: WalletRepositoryProtocol {
             let newWalletList = walletService.getWalletList()
             WalletListCache.setValue(newWalletList, forKey: "walletList", storageOption: .memory)
             return newWalletList
-        }
-    }
-    
-    internal func getWalletBalance(wallet: Wallet, currency: Currency, completion: @escaping (Result<Balance, AppcTransactionError>) -> Void) {
-        appcTransactionService.getBalance(wallet: wallet, currency: currency) {
-            result in
-            
-            switch result {
-            case .success(let balanceRaw):
-                completion(.success(Balance(raw: balanceRaw, currency: currency)))
-            case .failure(let failure):
-                completion(.failure(failure))
-            }
         }
     }
     

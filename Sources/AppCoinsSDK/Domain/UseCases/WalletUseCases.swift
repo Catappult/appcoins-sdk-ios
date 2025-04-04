@@ -64,10 +64,6 @@ internal class WalletUseCases {
         //        }
     }
     
-    internal func getWalletBalance(wallet: Wallet, currency: Currency, completion: @escaping (Result<Balance, AppcTransactionError>) -> Void) {
-        repository.getWalletBalance(wallet: wallet, currency: currency) { result in completion(result) }
-    }
-    
     internal func getClientWallet() -> ClientWallet? {
         return repository.getClientWallet()
     }
