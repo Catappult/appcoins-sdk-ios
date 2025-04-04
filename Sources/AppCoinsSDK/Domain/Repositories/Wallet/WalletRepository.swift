@@ -12,7 +12,6 @@ internal class WalletRepository: WalletRepositoryProtocol {
     
     private var walletService: WalletLocalService = WalletLocalClient()
     private var appcService: APPCService = APPCServiceClient()
-    private var appcTransactionService: AppCoinTransactionService = AppCoinTransactionClient()
     
     private let ActiveWalletCache: Cache<String, ClientWallet?> = Cache<String, ClientWallet?>.shared(cacheName: "ActiveWalletCache")
     private let WalletListCache: Cache<String, [ClientWallet]> = Cache<String, [ClientWallet]>.shared(cacheName: "WalletListCache")
@@ -37,21 +36,6 @@ internal class WalletRepository: WalletRepositoryProtocol {
         }
     }
     
-    internal func getGuestWallet(guestUID: String, completion: @escaping (Result<GuestWallet, APPCServiceError>) -> Void) {
-        appcService.getGuestWallet(guestUID: guestUID) { result in
-            switch result {
-            case .success(let guestWalletRaw):
-                if let ewt = guestWalletRaw.ewt, let signature = guestWalletRaw.signature {
-                    completion(.success(GuestWallet(address: guestWalletRaw.address, ewt: ewt, signature: signature)))
-                } else {
-                    completion(.failure(.failed(message: "Failed to get guest wallet", description: "Guest wallet ewt is nil or guest wallet signature is nil at WalletRepository.swift:getGuestWallet", request: nil)))
-                }
-            case .failure(let error):
-                completion(.failure(error))
-            }
-        }
-    }
-    
     internal func getWalletList() -> [ClientWallet] {
         if let walletList = WalletListCache.getValue(forKey: "walletList") {
             if walletList.isEmpty {
@@ -65,19 +49,6 @@ internal class WalletRepository: WalletRepositoryProtocol {
             let newWalletList = walletService.getWalletList()
             WalletListCache.setValue(newWalletList, forKey: "walletList", storageOption: .memory)
             return newWalletList
-        }
-    }
-    
-    internal func getWalletBalance(wallet: Wallet, currency: Currency, completion: @escaping (Result<Balance, AppcTransactionError>) -> Void) {
-        appcTransactionService.getBalance(wallet: wallet, currency: currency) {
-            result in
-            
-            switch result {
-            case .success(let balanceRaw):
-                completion(.success(Balance(raw: balanceRaw, currency: currency)))
-            case .failure(let failure):
-                completion(.failure(failure))
-            }
         }
     }
     
