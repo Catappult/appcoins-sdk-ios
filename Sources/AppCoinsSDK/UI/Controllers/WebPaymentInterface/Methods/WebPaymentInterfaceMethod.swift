@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum WebPaymentInterfaceMethod: String {
+internal enum WebPaymentInterfaceMethod: String {
     case onPurchaseResult = "onPurchaseResult"
     case onError = "onError"
 }

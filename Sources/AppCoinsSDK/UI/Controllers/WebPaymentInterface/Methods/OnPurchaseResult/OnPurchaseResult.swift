@@ -7,9 +7,9 @@
 
 import Foundation
 
-class OnPurchaseResult {
+internal class OnPurchaseResult {
     
-    func handle(body: OnPurchaseResultBody) {
+    internal static func handle(body: OnPurchaseResultBody) {
         let domain: String = BuildConfiguration.packageName
         Purchase.verify(domain: domain, purchaseUID: body.purchaseData.purchaseToken) {
             result in

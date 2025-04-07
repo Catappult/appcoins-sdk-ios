@@ -7,9 +7,9 @@
 
 import Foundation
 
-class OnError {
+internal class OnError {
     
-    func handle(body: OnErrorBody) {
+    internal static func handle(body: OnErrorBody) {
         let error: AppCoinsSDKError = AppCoinsSDKError.fromWebCheckoutError(webCheckoutError: body)
         Utils.log("Checkout failed with error: \(error)")
         TransactionViewModel.shared.sendResult(result: .failed(error: error))
