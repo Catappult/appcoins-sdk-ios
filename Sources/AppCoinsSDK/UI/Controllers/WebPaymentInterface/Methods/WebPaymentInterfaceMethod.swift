@@ -10,5 +10,5 @@ import Foundation
 internal enum WebPaymentInterfaceMethod: String {
     case onPurchaseResult = "onPurchaseResult"
     case onError = "onError"
-    case setNavigation = "setNavigation"
+    case setExternalNavigation = "setExternalNavigation"
 }

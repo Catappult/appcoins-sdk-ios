@@ -1,5 +1,5 @@
 //
-//  SetNavigationBody.swift
+//  SetExternalNavigationBody.swift
 //
 //
 //  Created by aptoide on 07/04/2025.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-internal struct SetNavigationBody: Codable {
+internal struct SetExternalNavigationBody: Codable {
     
     internal let externalURLs: [String]
     internal let externalAuthenticationURLs: [String]

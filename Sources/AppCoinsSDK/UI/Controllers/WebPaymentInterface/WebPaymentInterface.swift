@@ -51,9 +51,12 @@ internal class WebPaymentInterface: NSObject, WKScriptMessageHandler {
                 Utils.log("Failed to parse onError body with error: \(error)")
                 return
             }
-        case .setNavigation:
-            guard let setNavigationBody = try? JSONDecoder().decode(SetNavigationBody.self, from: params) else {
-                Utils.log("Failed to parse setNavigation body")
+        case .setExternalNavigation:
+            do {
+                let setExternalNavigationBody = try JSONDecoder().decode(SetExternalNavigationBody.self, from: params)
+                SetExternalNavigation.handle(body: setExternalNavigationBody)
+            } catch {
+                Utils.log("Failed to parse setNavigation body with error: \(error)")
                 return
             }
         }
