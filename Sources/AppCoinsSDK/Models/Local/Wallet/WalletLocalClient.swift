@@ -81,7 +81,7 @@ internal class WalletLocalClient : WalletLocalService {
                     let fileURL = keystoreURL.appendingPathComponent(wallet_address!)
                     
                     do { try data.write(to: (fileURL)) } catch {
-                        Utils.log(message: "1: \(error.localizedDescription)")
+                        Utils.log("1: \(error.localizedDescription)")
                         throw WalletLocalErrors.failedToCreate
                     }
                     
@@ -90,7 +90,7 @@ internal class WalletLocalClient : WalletLocalService {
                     catch {
                         try FileManager.default.removeItem(atPath: fileURL.path)
                         
-                        Utils.log(message: "2: \(error.localizedDescription)")
+                        Utils.log("2: \(error.localizedDescription)")
                         throw WalletLocalErrors.failedToCreate
                     }
                     
@@ -102,7 +102,7 @@ internal class WalletLocalClient : WalletLocalService {
                         try FileManager.default.removeItem(atPath: fileURL.path)
                         Utils.deleteFromKeychain(key: "\(wallet_address!)-pk")
                         
-                        Utils.log(message: "\(error.localizedDescription)")
+                        Utils.log("\(error.localizedDescription)")
                         throw WalletLocalErrors.failedToCreate
                     }
                     
@@ -117,16 +117,16 @@ internal class WalletLocalClient : WalletLocalService {
                         Utils.deleteFromKeychain(key: "\(wallet_address!)-pk")
                         Utils.deleteFromKeychain(key: wallet_address!)
                         
-                        Utils.log(message: "4: \(error.localizedDescription)")
+                        Utils.log("4: \(error.localizedDescription)")
                         throw WalletLocalErrors.failedToCreate
                     }
                 } else {
                     print("Failed to create a new wallet address")
-                    Utils.log(message: "5: Failed to create a new wallet address")
+                    Utils.log("5: Failed to create a new wallet address")
                     throw WalletLocalErrors.failedToCreate
                 }
             } catch {
-                Utils.log(message: "6: \(error.localizedDescription)")
+                Utils.log("6: \(error.localizedDescription)")
                 throw WalletLocalErrors.failedToCreate
             }
         }
