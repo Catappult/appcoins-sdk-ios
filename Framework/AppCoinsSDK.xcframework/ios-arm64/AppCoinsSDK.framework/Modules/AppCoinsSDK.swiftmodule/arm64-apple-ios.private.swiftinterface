@@ -112,9 +112,6 @@ public enum RequestMethod : Swift.String {
     get
   }
 }
-public struct Sandbox {
-  public static func getTestingWalletAddress() -> Swift.String?
-}
 public enum TransactionResult {
   case success(verificationResult: AppCoinsSDK.VerificationResult)
   case pending
