@@ -44,16 +44,18 @@ internal struct CreateAdyenTransactionRaw: Codable {
     // Review static credit_card use as method
     internal static func fromParameters(parameters: TransactionParameters) -> Result<CreateAdyenTransactionRaw, TransactionError> {
         // normalizes the price to adjust to different time zone price syntaxes
-        let normalizedPrice = parameters.value.replacingOccurrences(of: ",", with: ".")
+//        let normalizedPrice = parameters.value.replacingOccurrences(of: ",", with: ".")
+//        
+//        if let method = parameters.method, let bundleID = Bundle.main.bundleIdentifier {
+//            return .success(
+//                CreateAdyenTransactionRaw(
+//                    domain: parameters.domain, price: normalizedPrice, priceCurrency: parameters.currency,
+//                    product: parameters.product, type: "INAPP", method: method, channel: "IOS", platform: "IOS", paymentChannel: "IOS", paymentReturnUrl: "\(bundleID).iap://api.blockchainds.com/broker", guestUID: parameters.guestUID, oemID: parameters.oemID, metadata: parameters.metadata, reference: parameters.reference
+//                )
+//            )
+//        } else { return .failure(.failed(message: "Failed to create transaction", description: "Adyen transaction creation failed. Unknown method or unknown bundleID at CreateAdyenTransactionRaw.swift:fromParameters")) }
         
-        if let method = parameters.method, let bundleID = Bundle.main.bundleIdentifier {
-            return .success(
-                CreateAdyenTransactionRaw(
-                    domain: parameters.domain, price: normalizedPrice, priceCurrency: parameters.currency,
-                    product: parameters.product, type: "INAPP", method: method, channel: "IOS", platform: "IOS", paymentChannel: "IOS", paymentReturnUrl: "\(bundleID).iap://api.blockchainds.com/broker", guestUID: parameters.guestUID, oemID: parameters.oemID, metadata: parameters.metadata, reference: parameters.reference
-                )
-            )
-        } else { return .failure(.failed(message: "Failed to create transaction", description: "Adyen transaction creation failed. Unknown method or unknown bundleID at CreateAdyenTransactionRaw.swift:fromParameters")) }
+        return .failure(.failed(message: "Failed to create transaction", description: "Adyen transaction creation failed. Unknown method or unknown bundleID at CreateAdyenTransactionRaw.swift:fromParameters"))
     }
     
     internal func toJSON() -> Data? {

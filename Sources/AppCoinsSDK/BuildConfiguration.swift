@@ -120,7 +120,7 @@ internal class BuildConfiguration {
         case .debugSDKDev, .releaseSDKDev:
             return "https://wallet.dev.appcoins.io/iap/sdk"
         case .debugSDKProd, .releaseSDKProd:
-            return "https://wallet.appcoins.io/iap/sdk"
+            return "developers.catappult.io"
         }
     }
     
@@ -131,6 +131,8 @@ internal class BuildConfiguration {
     static internal var integratedMethods: [Method] = [.appc, .paypalAdyen, .paypalDirect, .creditCard, .sandbox]
     
     static internal var sdkShortVersion: String = "1.6.1"
+    
+    static internal var sdkBuildNumber: String = "35"
 }
 
 internal enum SDKEnvironment: String {

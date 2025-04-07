@@ -36,12 +36,17 @@ internal struct CreateBAPayPalTransactionRaw: Codable {
     }
     
     internal static func fromParameters(parameters: TransactionParameters) -> CreateBAPayPalTransactionRaw {
-        // normalizes the price to adjust to different time zone price syntaxes
-        let normalizedPrice = parameters.value.replacingOccurrences(of: ",", with: ".")
         
+        // commented
+        
+//        // normalizes the price to adjust to different time zone price syntaxes
+//        let normalizedPrice = parameters.value.replacingOccurrences(of: ",", with: ".")
+//        
+//        return CreateBAPayPalTransactionRaw(
+//            domain: parameters.domain, price: normalizedPrice, priceCurrency: parameters.currency, product: parameters.product, type: "INAPP", channel: "IOS", platform: "IOS", guestUID: parameters.guestUID, oemID: parameters.oemID, metadata: parameters.metadata, reference: parameters.reference
+//        )
         return CreateBAPayPalTransactionRaw(
-            domain: parameters.domain, price: normalizedPrice, priceCurrency: parameters.currency, product: parameters.product, type: "INAPP", channel: "IOS", platform: "IOS", guestUID: parameters.guestUID, oemID: parameters.oemID, metadata: parameters.metadata, reference: parameters.reference
-        )
+                    domain: "", price: "", priceCurrency: "", product: "", type: "INAPP", channel: "IOS", platform: "IOS", guestUID: "", oemID: "", metadata: "", reference: "")
     }
     
     internal func toJSON() -> Data? {

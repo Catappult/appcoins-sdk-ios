@@ -276,47 +276,50 @@ internal class BottomSheetViewModel: ObservableObject {
     }
     
     internal func buyWithCreditCard() {
-        TransactionViewModel.shared.transactionParameters?.setMethod(method: Method.creditCard)
-        if let parameters = TransactionViewModel.shared.transactionParameters {
-            let raw = CreateAdyenTransactionRaw.fromParameters(parameters: parameters)
-            switch raw {
-            case .success(let raw):
-                self.walletUseCases.getWallet() {
-                    result in
-                    
-                    switch result {
-                    case .success(let wallet):
-                        if let moneyAmount = TransactionViewModel.shared.transaction?.moneyAmount, let moneyCurrrency = TransactionViewModel.shared.transaction?.moneyCurrency {
-                            AdyenViewModel.shared.buyWithCreditCard(raw: raw, wallet: wallet, moneyAmount: moneyAmount, moneyCurrency: moneyCurrrency)
-                        } else { self.transactionFailedWith(error: .systemError(message: "Failed to buy with Credit Card", description: "Unable to unwrap transaction at BottomSheetViewModel.swift:buyWithCreditCard")) }
-                    case .failure(let error):
-                        switch error {
-                        case .failed(let message, let description, let request):
-                            self.transactionFailedWith(error: .notEntitled(message: message, description: description, request: request))
-                        case .noInternet(let message, let description, let request):
-                            self.transactionFailedWith(error: .notEntitled(message: message, description: description, request: request))
-                        }
-                    }
-                }
-            case .failure(let error):
-                switch error {
-                case .failed(let message, let description, let request):
-                    self.transactionFailedWith(error: .unknown(message: message, description: description))
-                case .general(let message, let description, let request):
-                    self.transactionFailedWith(error: .unknown(message: message, description: description))
-                case .noBillingAgreement(let message, let description, let request):
-                    self.transactionFailedWith(error: .unknown(message: message, description: description))
-                case .noInternet(let message, let description, let request):
-                    self.transactionFailedWith(error: .unknown(message: message, description: description))
-                case .timeOut(let message, let description, let request):
-                    self.transactionFailedWith(error: .unknown(message: message, description: description))
-                }
-            }
-        } else { self.transactionFailedWith(error: .systemError(message: "Failed to buy with Credit Card", description: "Missing required transaction parameters at BottomSheetViewModel.swift:buyWithCreditCard")) }
+        
+        // commented
+        
+//        TransactionViewModel.shared.transactionParameters?.setMethod(method: Method.creditCard)
+//        if let parameters = TransactionViewModel.shared.transactionParameters {
+//            let raw = CreateAdyenTransactionRaw.fromParameters(parameters: parameters)
+//            switch raw {
+//            case .success(let raw):
+//                self.walletUseCases.getWallet() {
+//                    result in
+//                    
+//                    switch result {
+//                    case .success(let wallet):
+//                        if let moneyAmount = TransactionViewModel.shared.transaction?.moneyAmount, let moneyCurrrency = TransactionViewModel.shared.transaction?.moneyCurrency {
+//                            AdyenViewModel.shared.buyWithCreditCard(raw: raw, wallet: wallet, moneyAmount: moneyAmount, moneyCurrency: moneyCurrrency)
+//                        } else { self.transactionFailedWith(error: .systemError(message: "Failed to buy with Credit Card", description: "Unable to unwrap transaction at BottomSheetViewModel.swift:buyWithCreditCard")) }
+//                    case .failure(let error):
+//                        switch error {
+//                        case .failed(let message, let description, let request):
+//                            self.transactionFailedWith(error: .notEntitled(message: message, description: description, request: request))
+//                        case .noInternet(let message, let description, let request):
+//                            self.transactionFailedWith(error: .notEntitled(message: message, description: description, request: request))
+//                        }
+//                    }
+//                }
+//            case .failure(let error):
+//                switch error {
+//                case .failed(let message, let description, let request):
+//                    self.transactionFailedWith(error: .unknown(message: message, description: description))
+//                case .general(let message, let description, let request):
+//                    self.transactionFailedWith(error: .unknown(message: message, description: description))
+//                case .noBillingAgreement(let message, let description, let request):
+//                    self.transactionFailedWith(error: .unknown(message: message, description: description))
+//                case .noInternet(let message, let description, let request):
+//                    self.transactionFailedWith(error: .unknown(message: message, description: description))
+//                case .timeOut(let message, let description, let request):
+//                    self.transactionFailedWith(error: .unknown(message: message, description: description))
+//                }
+//            }
+//        } else { self.transactionFailedWith(error: .systemError(message: "Failed to buy with Credit Card", description: "Missing required transaction parameters at BottomSheetViewModel.swift:buyWithCreditCard")) }
     }
     
     internal func buyWithPayPalAdyen() {
-        TransactionViewModel.shared.transactionParameters?.setMethod(method: Method.paypalAdyen)
+//        TransactionViewModel.shared.transactionParameters?.setMethod(method: Method.paypalAdyen)
         if let parameters = TransactionViewModel.shared.transactionParameters {
             let raw = CreateAdyenTransactionRaw.fromParameters(parameters: parameters)
             switch raw {

@@ -38,6 +38,8 @@ internal class TransactionViewModel: ObservableObject {
     @Published internal var isPaypalLogOutPresented = false
     @Published internal var isPaypalLogOutLoadingPresented = false
     
+    internal var webCheckoutParameters: WebCheckoutParameters?
+    
     internal var hasBonus: Bool {
         if paymentMethodSelected?.name == Method.appc.rawValue {
             return false
@@ -130,9 +132,9 @@ internal class TransactionViewModel: ObservableObject {
                                                     let oemID = MMPUseCases.shared.getOEMID()
                                                     
                                                     // 8. Build the parameters to process the transaction
-                                                    self.transactionParameters = TransactionParameters(country: "", address: "", signature: "", paymentChannel: "", token: "", origin: "", product: product.sku, domain: domain, type: "", oemID: oemID, reference: self.reference, promoCode: "", guestUID: guestUID, metadata: self.metadata, period: "", trialPeriod: "", userProps: "", value: String(moneyAmount), currency: product.priceCurrency, appcAmount: String(appcValue))
+                                                    self.webCheckoutParameters = WebCheckoutParameters(domain: domain, product: product.sku, metadata: self.metadata, guestUID: guestUID)
                                                     
-                                                    self.webCheckoutURL = self.transactionParameters?.createWebCheckoutURL()
+                                                    self.webCheckoutURL = self.webCheckoutParameters?.createWebCheckoutURL()
                                                     
                                                     // 9. Show payment method options
                                                     self.showPaymentMethodsOnBuild(wallet: wallet, balance: balance)

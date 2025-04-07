@@ -36,11 +36,15 @@ internal struct CreateSandboxTransactionRaw: Codable {
     }
     
     internal static func fromParameters(parameters: TransactionParameters) -> CreateSandboxTransactionRaw {
-        // normalizes the price to adjust to different time zone price syntaxes
-        let normalizedPrice = (parameters.appcAmount).replacingOccurrences(of: ",", with: ".")
+
+        // commented
         
-        return CreateSandboxTransactionRaw(domain: parameters.domain, price: normalizedPrice, priceCurrency: "APPC", product: parameters.product, type: "INAPP", channel: "IOS", platform: "IOS", guestUID: parameters.guestUID, oemID: parameters.oemID, metadata: parameters.metadata, reference: parameters.reference
-        )
+        //        // normalizes the price to adjust to different time zone price syntaxes
+//        let normalizedPrice = (parameters.appcAmount).replacingOccurrences(of: ",", with: ".")
+//        
+//        return CreateSandboxTransactionRaw(domain: parameters.domain, price: normalizedPrice, priceCurrency: "APPC", product: parameters.product, type: "INAPP", channel: "IOS", platform: "IOS", guestUID: parameters.guestUID, oemID: parameters.oemID, metadata: parameters.metadata, reference: parameters.reference
+//        )
+        return CreateSandboxTransactionRaw(domain: "", price: "", priceCurrency: "APPC", product: "", type: "INAPP", channel: "IOS", platform: "IOS", guestUID: "", oemID: "", metadata: "", reference: "")
     }
     
     internal func toJSON() -> Data? {
