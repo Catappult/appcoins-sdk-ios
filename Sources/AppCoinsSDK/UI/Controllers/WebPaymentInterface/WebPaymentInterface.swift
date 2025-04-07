@@ -9,10 +9,10 @@ import SwiftUI
 import UIKit
 import WebKit
 
-class WebPaymentInterface: NSObject, WKScriptMessageHandler {
+internal class WebPaymentInterface: NSObject, WKScriptMessageHandler {
     
     // Handle JavaScript Messages
-    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+    internal func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         Utils.log("SDK received message for name: \(message.name)")
         guard message.name == "iOSSDKWebPaymentInterface" else { return } // Unknown Handler
         Utils.log("SDK received message with body: \(message.body)")
@@ -36,13 +36,19 @@ class WebPaymentInterface: NSObject, WKScriptMessageHandler {
         
         switch method {
         case .onPurchaseResult: 
-            guard let onPurchaseResultBody = try? JSONDecoder().decode(OnPurchaseResultBody.self, from: params) else {
-                Utils.log("Failed to parse onPurchaseResult body")
+            do {
+                let onPurchaseResultBody = try JSONDecoder().decode(OnPurchaseResultBody.self, from: params)
+                OnPurchaseResult.handle(body: onPurchaseResultBody)
+            } catch {
+                Utils.log("Failed to parse onPurchaseResult body with error: \(error)")
                 return
             }
         case .onError: 
-            guard let onErrorBody = try? JSONDecoder().decode(OnErrorBody.self, from: params) else {
-                Utils.log("Failed to parse onError body")
+            do {
+                let onErrorBody = try JSONDecoder().decode(OnErrorBody.self, from: params)
+                OnError.handle(body: onErrorBody)
+            } catch {
+                Utils.log("Failed to parse onError body with error: \(error)")
                 return
             }
         case .setNavigation:
