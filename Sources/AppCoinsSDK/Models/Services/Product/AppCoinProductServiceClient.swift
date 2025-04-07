@@ -7,7 +7,7 @@
 
 import Foundation
 
-internal class AppCoinProductServiceClient : AppCoinProductService {
+internal class AppCoinProductServiceClient: AppCoinProductService {
     
     private let endpoint: String
     
@@ -15,13 +15,12 @@ internal class AppCoinProductServiceClient : AppCoinProductService {
         self.endpoint = endpoint
     }
     
-    internal func getProductInformation(domain: String, currency: Currency, result: @escaping (Result<[ProductRaw], ProductServiceError>) -> Void) {
+    internal func getProductInformation(domain: String, result: @escaping (Result<[ProductRaw], ProductServiceError>) -> Void) {
         var products: [ProductRaw] = []
         
         if var urlComponents = URLComponents(string: endpoint) {
             urlComponents.path += "/applications/\(domain)/inapp/consumables"
             urlComponents.queryItems = [
-                URLQueryItem(name: "currency", value: currency.currency),
                 URLQueryItem(name: "platform", value: "IOS")
             ]
             
@@ -69,12 +68,11 @@ internal class AppCoinProductServiceClient : AppCoinProductService {
         }
     }
     
-    internal func getProductInformation(domain: String, sku: String, currency: Currency, result: @escaping (Result<ProductRaw?, ProductServiceError>) -> Void) {
+    internal func getProductInformation(domain: String, sku: String, result: @escaping (Result<ProductRaw?, ProductServiceError>) -> Void) {
         if var urlComponents = URLComponents(string: endpoint) {
             urlComponents.path += "/applications/\(domain)/inapp/consumables"
             urlComponents.queryItems = [
                 URLQueryItem(name: "skus", value: sku),
-                URLQueryItem(name: "currency", value: currency.currency),
                 URLQueryItem(name: "platform", value: "IOS")
             ]
             
@@ -341,13 +339,14 @@ internal class AppCoinProductServiceClient : AppCoinProductService {
         }
     }
     
-    internal func getPurchasesByState(domain: String, state: String, wa: Wallet, result: @escaping (Result<[PurchaseRaw], ProductServiceError>) -> Void) {
+    internal func getPurchasesByState(domain: String, state: [String], wa: Wallet, result: @escaping (Result<[PurchaseRaw], ProductServiceError>) -> Void) {
         var purchases: [PurchaseRaw] = []
         
         if var urlComponents = URLComponents(string: endpoint) {
             urlComponents.path += "/applications/\(domain)/inapp/consumable/purchases"
+            
             urlComponents.queryItems = [
-                URLQueryItem(name: "state", value: state),
+                URLQueryItem(name: "state", value: state.joined(separator: ",")),
                 URLQueryItem(name: "platform", value: "IOS")
             ]
             
@@ -431,5 +430,4 @@ internal class AppCoinProductServiceClient : AppCoinProductService {
             }
         }
     }
-    
 }

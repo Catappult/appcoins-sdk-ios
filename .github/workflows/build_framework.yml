@@ -10,18 +10,33 @@ on:
       - dev
       - 'epic/*'
   workflow_dispatch:
+  workflow_call:
+    inputs:
+        branch:
+          required: true
+          type: string
+    secrets:
+      DEVELOPMENT_CERTIFICATE:
+        required: true
 
 jobs:
   build:
     runs-on: macos-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout (workflow_call)
+        if: ${{ github.event_name == 'workflow_call' }}
         uses: actions/checkout@v3
         with:
-          # Fetch all history for all branches and tags to handle pushes to the correct branch
+          ref: ${{ inputs.branch }}
           fetch-depth: 0
-        
+
+      - name: Checkout (normal trigger)
+        if: ${{ github.event_name != 'workflow_call' }}
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          
       - name: Decode and save the certificate
         env:
             DEVELOPMENT_CERTIFICATE: ${{ secrets.DEVELOPMENT_CERTIFICATE }}

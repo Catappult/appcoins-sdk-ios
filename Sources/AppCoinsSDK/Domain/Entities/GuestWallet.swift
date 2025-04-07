@@ -18,29 +18,6 @@ internal class GuestWallet: Wallet, Codable {
         self.ewt = ewt
         self.signature = signature
     }
-
-    internal func getBalance(completion: @escaping (Result<Balance, AppcTransactionError>) -> Void) {
-        CurrencyUseCases.shared.getUserCurrency { result in
-            switch result {
-            case .success(let currency):
-                WalletUseCases.shared.getWalletBalance(wallet: self, currency: currency) { result in
-                    switch result {
-                    case .success(let balance):
-                        completion(.success(balance))
-                    case .failure(let error):
-                        completion(.failure(error))
-                    }
-                }
-            case .failure(let error):
-                switch error {
-                case .failed(let message, let description, let request):
-                    completion(.failure(AppcTransactionError.failed(message: message, description: description, request: request)))
-                case .noInternet(let message, let description, let request):
-                    completion(.failure(AppcTransactionError.noInternet(message: message, description: description, request: request)))
-                }
-            }
-        }
-    }
     
     internal func getWalletAddress() -> String { return self.address }
     

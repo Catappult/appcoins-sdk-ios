@@ -38,11 +38,11 @@ internal struct WebCheckoutParameters {
         self.type = "INAPP"
         self.domain = domain
         self.product = product
-        self.country = TransactionParameters.getLangAndCountry().countryCode
+        self.country = WebCheckoutParameters.getLangAndCountry().countryCode
         self.metadata = metadata
         self.guestUID = guestUID
-        self.version = BuildConfiguration.sdkBuildNumber
-        self.langCode = TransactionParameters.getLangAndCountry().langCode
+        self.version = String(describing: BuildConfiguration.sdkBuildNumber)
+        self.langCode = WebCheckoutParameters.getLangAndCountry().langCode
         self.paymentChannel = "ios_sdk"
     }
     

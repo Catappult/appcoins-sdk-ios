@@ -1,0 +1,59 @@
+name: Create Release Candidate
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'SDK Version'
+        required: true
+      build_number:
+        description: 'SDK Build Number'
+        required: true
+
+jobs:
+  create_release_candidate:
+    name: Create Release Candidate
+    if: github.ref == 'refs/heads/dev'
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout dev branch
+        uses: actions/checkout@v3
+        with:
+          ref: dev
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Create new release branch
+        run: |
+          git checkout -b release_${{ github.event.inputs.version }}
+
+      - name: Update sdkShortVersion and sdkBuildNumber in BuildConfiguration.swift
+        run: |
+          VERSION=${{ github.event.inputs.version }}
+          BUILD=${{ github.event.inputs.build_number }}
+
+          sed -i '' "s/^.*sdkShortVersion: String = \".*\"/    static internal var sdkShortVersion: String = \"${VERSION}\"/" Sources/AppCoinsSDK/BuildConfiguration.swift
+          sed -i '' "s/^.*sdkBuildNumber: Int = .*/    static internal var sdkBuildNumber: Int = ${BUILD}/" Sources/AppCoinsSDK/BuildConfiguration.swift
+
+      - name: Commit changes
+        run: |
+          git add .
+          git commit -m "Created Release Candidate branch: release_${{ github.event.inputs.version }}"
+
+      - name: Push new release branch
+        run: |
+          git push origin release_${{ github.event.inputs.version }}
+
+  build_framework:
+    name: Build Framework
+    needs: create_release_candidate   # Ensures it only runs after previous job
+    uses: ./.github/workflows/build_framework.yml
+    with:
+      branch: release_${{ github.event.inputs.version }}
+    secrets:
+      DEVELOPMENT_CERTIFICATE: ${{ secrets.DEVELOPMENT_CERTIFICATE }}
+      
