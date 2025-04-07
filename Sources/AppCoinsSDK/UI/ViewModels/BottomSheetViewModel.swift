@@ -86,7 +86,7 @@ internal class BottomSheetViewModel: ObservableObject {
     
     internal func userCancelled() {
         let result : TransactionResult = .userCancelled
-        Utils.transactionResult(result: result)
+        TransactionViewModel.shared.sendResult(result: result)
         self.dismissVC()
     }
     
@@ -94,11 +94,11 @@ internal class BottomSheetViewModel: ObservableObject {
         switch error {
         case .networkError:
             let result: TransactionResult = .failed(error: error)
-            Utils.transactionResult(result: result)
+            TransactionViewModel.shared.sendResult(result: result)
             DispatchQueue.main.async { self.purchaseState = .nointernet }
         default:
             let result: TransactionResult = .failed(error: error)
-            Utils.transactionResult(result: result)
+            TransactionViewModel.shared.sendResult(result: result)
             DispatchQueue.main.async { self.purchaseState = .failed }
         }
     }

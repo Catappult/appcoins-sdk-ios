@@ -72,10 +72,6 @@ internal struct Utils {
         return Data(privateKey)
     }
     
-    static internal func transactionResult(result: TransactionResult) {
-        NotificationCenter.default.post(name: NSNotification.Name("APPCPurchaseResult"), object: nil, userInfo: ["TransactionResult" : result])
-    }
-    
     static func md5(_ string: String) -> String {
         let messageData = string.data(using:.utf8)!
         var digestData = Data(count: Int(CC_MD5_DIGEST_LENGTH))
