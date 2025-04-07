@@ -49,7 +49,7 @@ internal struct Utils {
         return KeychainHelper().read(service: key, account: "com.aptoide.appcoins-wallet", type: String.self) ?? nil
     }
     
-    static func log(_ message: String, category: String = "Debug") {
+    static internal func log(_ message: String, category: String = "Debug") {
         let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: category)
         let message = "[AppCoinsSDK] \(message)"
         logger.error("\(message, privacy: .public)")
