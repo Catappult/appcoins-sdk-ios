@@ -16,6 +16,29 @@ public enum AppCoinsSDKError: Error, CustomStringConvertible {
     case purchaseNotAllowed(debugInfo: DebugInfo)
     case unknown(debugInfo: DebugInfo)
     
+    internal static func fromWebCheckoutError(webCheckoutError: OnErrorBody) -> AppCoinsSDKError {
+        switch webCheckoutError.checkoutError {
+        case "failed":
+            return .systemError(
+                message: webCheckoutError.message,
+                description: webCheckoutError.description,
+                request: DebugRequestInfo.fromWebCheckoutErrorRequest(webCheckoutErrorRequest: webCheckoutError.request)
+            )
+        case "network":
+            return .networkError(
+                message: webCheckoutError.message,
+                description: webCheckoutError.description,
+                request: DebugRequestInfo.fromWebCheckoutErrorRequest(webCheckoutErrorRequest: webCheckoutError.request)
+            )
+        default:
+            return .unknown(
+                message: webCheckoutError.message,
+                description: webCheckoutError.description,
+                request: DebugRequestInfo.fromWebCheckoutErrorRequest(webCheckoutErrorRequest: webCheckoutError.request)
+            )
+        }
+    }
+    
     // Convenience initializers for common error types
     internal static func networkError(message: String, description: String, request: DebugRequestInfo? = nil) -> AppCoinsSDKError {
         return .networkError(debugInfo: DebugInfo(message: message, description: description, request: request))
@@ -253,5 +276,23 @@ public class DebugRequestInfo {
         } else {
             self.statusCode = 0 // or handle it differently if desired
         }
+    }
+    
+    internal init(url: String, method: RequestMethod, body: String, responseData: String, statusCode: Int) {
+        self.url = url
+        self.method = method
+        self.body = body
+        self.responseData = responseData
+        self.statusCode = statusCode
+    }
+    
+    internal static func fromWebCheckoutErrorRequest(webCheckoutErrorRequest: OnErrorBody.RequestError) -> DebugRequestInfo {
+        return DebugRequestInfo(
+            url: webCheckoutErrorRequest.url,
+            method: RequestMethod(method: webCheckoutErrorRequest.method),
+            body: webCheckoutErrorRequest.body,
+            responseData: webCheckoutErrorRequest.responseData,
+            statusCode: webCheckoutErrorRequest.statusCode
+        )
     }
 }

@@ -49,8 +49,9 @@ internal struct Utils {
         return KeychainHelper().read(service: key, account: "com.aptoide.appcoins-wallet", type: String.self) ?? nil
     }
     
-    static internal func log(message: String) {
-        let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "network")
+    static internal func log(_ message: String, category: String = "Debug") {
+        let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: category)
+        let message = "[AppCoinsSDK] \(message)"
         logger.error("\(message, privacy: .public)")
     }
     
@@ -69,10 +70,6 @@ internal struct Utils {
         // Generate a random 32-byte private key
         let privateKey = Data(count: 32).map { _ in UInt8.random(in: 0...255) }
         return Data(privateKey)
-    }
-    
-    static internal func transactionResult(result: TransactionResult) {
-        NotificationCenter.default.post(name: NSNotification.Name("APPCPurchaseResult"), object: nil, userInfo: ["TransactionResult" : result])
     }
     
     static func md5(_ string: String) -> String {
