@@ -98,4 +98,3 @@ internal enum SDKEnvironment: String {
     case debugSDKProd = "Debug AppCoins SDK Prod"
     case releaseSDKProd = "Release AppCoins SDK Prod"
 }
-

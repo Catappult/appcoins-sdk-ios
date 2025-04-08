@@ -12,7 +12,7 @@ import SwiftUI
 struct WebBottomSheetView: UIViewRepresentable {
     
     @ObservedObject var transactionViewModel: TransactionViewModel = TransactionViewModel.shared
-
+    
     func makeUIView(context: Context) -> WKWebView {
         let webView = WKWebView()
         webView.navigationDelegate = context.coordinator
@@ -20,18 +20,18 @@ struct WebBottomSheetView: UIViewRepresentable {
         
         return webView
     }
-
+    
     func updateUIView(_ webView: WKWebView, context: Context) {
         if let url = transactionViewModel.webCheckoutURL, webView.url != url { webView.load(URLRequest(url: url)) }
     }
-
+    
     func makeCoordinator() -> Coordinator { Coordinator(self) }
-
+    
     class Coordinator: NSObject, WKNavigationDelegate {
         var parent: WebBottomSheetView
-
+        
         init(_ parent: WebBottomSheetView) { self.parent = parent }
-
+        
         func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) { }
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) { }
     }

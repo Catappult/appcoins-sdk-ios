@@ -1,6 +1,6 @@
 //
 //  WebCheckoutParameters.swift
-//  
+//
 //
 //  Created by Graciano Caldeira on 07/04/2025.
 //
@@ -32,7 +32,7 @@ internal struct WebCheckoutParameters {
         "langCode" : "lang_code",
         "paymentChannel" : "payment_channel"
     ]
-
+    
     init(domain: String, product: String, metadata: String?, guestUID: String?) {
         self.origin = "BDS"
         self.type = "INAPP"
@@ -48,12 +48,12 @@ internal struct WebCheckoutParameters {
     
     internal func asQueryItems() -> [URLQueryItem] {
         let mirror = Mirror(reflecting: self)
-
+        
         return mirror.children.compactMap { (label, value) in
             guard let label = label, let value = value as? String else { return nil }
             
             if let mappedKey = queryKeys[label] { return URLQueryItem(name: mappedKey, value: value) }
-
+            
             return nil
         }
     }
@@ -70,7 +70,7 @@ internal struct WebCheckoutParameters {
         if #available(iOS 16, *) {
             let languageID = Locale.preferredLanguages.first ?? "en-US"
             let locale = Locale(identifier: languageID)
-
+            
             langCode = locale.language.languageCode?.identifier ?? "en"
             countryCode = locale.region?.identifier ?? "US"
         }
