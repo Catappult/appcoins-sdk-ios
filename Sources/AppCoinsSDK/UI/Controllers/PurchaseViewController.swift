@@ -49,8 +49,6 @@ internal class PurchaseViewController: UIViewController {
     
     override internal var supportedInterfaceOrientations: UIInterfaceOrientationMask { return orientation }
     
-    @objc internal func dismissPurchase() {
-        self.dismiss(animated: false, completion: nil)
-    }
+    @objc internal func dismissPurchase() { self.dismiss(animated: false, completion: nil) }
     
 }

@@ -22,29 +22,18 @@ struct WebBottomSheetView: UIViewRepresentable {
     }
 
     func updateUIView(_ webView: WKWebView, context: Context) {
-        if let url = transactionViewModel.webCheckoutURL, webView.url != url {
-            webView.load(URLRequest(url: url))
-        }
+        if let url = transactionViewModel.webCheckoutURL, webView.url != url { webView.load(URLRequest(url: url)) }
     }
 
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
-    }
+    func makeCoordinator() -> Coordinator { Coordinator(self) }
 
     class Coordinator: NSObject, WKNavigationDelegate {
         var parent: WebBottomSheetView
 
-        init(_ parent: WebBottomSheetView) {
-            self.parent = parent
-        }
+        init(_ parent: WebBottomSheetView) { self.parent = parent }
 
-        func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-            
-        }
-
-        func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-            
-        }
+        func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) { }
+        func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) { }
     }
 }
 

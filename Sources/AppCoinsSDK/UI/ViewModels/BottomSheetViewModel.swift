@@ -15,6 +15,7 @@ internal class BottomSheetViewModel: ObservableObject {
     
     // Purchase status
     @Published internal var purchaseState: PurchaseState = .none
+    @Published internal var isBottomSheetPresented: Bool = false
     
     internal var hasActiveTransaction = false
     
@@ -45,7 +46,7 @@ internal class BottomSheetViewModel: ObservableObject {
     // Called when a user starts a product purchase
     internal func buildPurchase(product: Product, domain: String, metadata: String?, reference: String?) {
         self.hasActiveTransaction = true
-        TransactionViewModel.shared.setUpTransaction(product: product, domain: domain, metadata: metadata, reference: reference)
+        TransactionViewModel.shared.setUpTransaction(product: product, domain: domain, metadata: metadata)
         
         DispatchQueue(label: "build-transaction", qos: .userInteractive).async { self.initiateTransaction() }
     }
@@ -76,13 +77,23 @@ internal class BottomSheetViewModel: ObservableObject {
             DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
                 presentedPurchaseVC.dismissPurchase()
                 self.hasActiveTransaction = false
+                self.isBottomSheetPresented = false
             }
         }
         
         self.reset() // Clear data related to finished purchase
     }
     
-    internal func setPurchaseState(newState: PurchaseState) { DispatchQueue.main.async { self.purchaseState = newState } }
+    internal func setPurchaseState(newState: PurchaseState) {
+        DispatchQueue.main.async {
+            if newState == .paying {
+                self.purchaseState = newState
+                self.isBottomSheetPresented = true
+            } else {
+                self.purchaseState = newState
+            }
+        }
+    }
     
     internal func userCancelled() {
         let result : TransactionResult = .userCancelled

@@ -32,7 +32,7 @@ internal class TransactionViewModel: ObservableObject {
     }
     
     // Called when a user starts a product purchase
-    internal func setUpTransaction(product: Product, domain: String, metadata: String?, reference: String?) {
+    internal func setUpTransaction(product: Product, domain: String, metadata: String?) {
         self.product = product
         self.domain = domain
         self.metadata = metadata
