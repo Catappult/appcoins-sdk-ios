@@ -51,14 +51,24 @@ internal class WebPaymentInterface: NSObject, WKScriptMessageHandler {
                 Utils.log("Failed to parse onError body with error: \(error)")
                 return
             }
-        case .setExternalNavigation:
+        case .setWebDeepLinks:
             do {
-                let setExternalNavigationBody = try JSONDecoder().decode(SetExternalNavigationBody.self, from: params)
-                SetExternalNavigation.handle(body: setExternalNavigationBody)
+                let setWebDeepLinksBody = try JSONDecoder().decode(SetWebDeepLinksBody.self, from: params)
+                SetWebDeepLinks.handle(body: setWebDeepLinksBody)
+            } catch {
+                Utils.log("Failed to parse setWebDeepLinks body with error: \(error)")
+                return
+            }
+        case .handleAuthenticationRedirect:
+            do {
+                let handleAuthenticationRedirectBody = try JSONDecoder().decode(HandleAuthenticationRedirectBody.self, from: params)
+                HandleAuthenticationRedirect.handle(body: handleAuthenticationRedirectBody)
             } catch {
                 Utils.log("Failed to parse setNavigation body with error: \(error)")
                 return
             }
+        case .handleExternalRedirect:
+            return
         }
     }
 }

@@ -16,7 +16,5 @@ internal class SDKUseCases {
     
     internal func isDefault() -> Bool? { self.repository.isDefault() }
     internal func setSDKDefault(value: Bool) { self.repository.setSDKDefault(value: value) }
-    internal func setExternalNavigation(externalNavigation: ExternalNavigation) { self.repository.setExternalNavigation(externalNavigation: externalNavigation) }
-    internal func getExternalNavigation() -> ExternalNavigation? { return self.repository.getExternalNavigation() }
     
 }
