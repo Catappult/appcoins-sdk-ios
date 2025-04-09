@@ -83,7 +83,6 @@ public struct AppcSDK {
                     if let rawValue = queryItems?.first(where: { $0.name == "value" })?.value {
                         let value = rawValue.lowercased() == "true" ? true : false
                         SDKUseCases.shared.setSDKDefault(value: value)
-                        return true
                     }
                 case "purchase":
                     if let sku = queryItems?.first(where: { $0.name == "product" })?.value {
@@ -101,14 +100,15 @@ public struct AppcSDK {
                                 Purchase.send(verificationResult)
                             }
                         }
-                        
-                        return true
                     }
                 default:
-                    return false
+                    BottomSheetViewModel.shared.handleWebViewDeeplink(deeplink: redirectURL.absoluteString)
                 }
             }
+            
+            return URLComponents(string: redirectURL.absoluteString)?.scheme == "\(BuildConfiguration.packageName).iap"
+        } else {
+            return false
         }
-        return false
     }
 }

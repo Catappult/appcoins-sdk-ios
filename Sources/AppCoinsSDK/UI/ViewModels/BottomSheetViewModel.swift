@@ -137,7 +137,7 @@ internal class BottomSheetViewModel: NSObject, ObservableObject {
                 if let error = error { return }
                 guard let callbackURL = callbackURL else { return }
                 
-                self.sendAuthenticationRedirectSuccess(redirectURL: callbackURL.absoluteString)
+                self.handleWebViewDeeplink(deeplink: callbackURL.absoluteString)
                 return
             }
             
@@ -147,18 +147,18 @@ internal class BottomSheetViewModel: NSObject, ObservableObject {
         }
     }
     
-    internal func sendAuthenticationRedirectSuccess(redirectURL: String) {
+    internal func handleWebViewDeeplink(deeplink: String) {
         guard let webView = webView else {
             Utils.log("WebView is not defined on authentication redirect")
             return
         }
         
-        guard var components = URLComponents(string: redirectURL) else {
+        guard var components = URLComponents(string: deeplink) else {
             Utils.log("Not a valid URL")
             return
         }
-
-        components.scheme = nil  // Removing the scheme
+        
+        components.scheme = nil
         guard let trimmedURL = components.string else {
             Utils.log("Failed to trim scheme from URL")
             return
