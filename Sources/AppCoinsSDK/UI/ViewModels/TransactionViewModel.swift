@@ -11,15 +11,15 @@ import Foundation
 internal class TransactionViewModel: ObservableObject {
     
     internal static var shared: TransactionViewModel = TransactionViewModel()
-    
-    internal var walletUseCases: WalletUseCases = WalletUseCases.shared
     internal var bottomSheetViewModel: BottomSheetViewModel = BottomSheetViewModel.shared
     
     // Transaction attributes
     internal var product: Product? = nil
     internal var domain: String? = nil
     internal var metadata: String? = nil
-    internal var reference: String? = nil
+    
+    internal var webCheckoutURL: URL? = nil
+    internal var webCheckoutParameters: WebCheckoutParameters?
     
     private init() {}
     
@@ -27,18 +27,20 @@ internal class TransactionViewModel: ObservableObject {
         self.product = nil
         self.domain = nil
         self.metadata = nil
-        self.reference = nil
+        self.webCheckoutURL = nil
+        self.webCheckoutParameters = nil
     }
     
     // Called when a user starts a product purchase
-    internal func setUpTransaction(product: Product, domain: String, metadata: String?, reference: String?) {
+    internal func setUpTransaction(product: Product, domain: String, metadata: String?) {
         self.product = product
         self.domain = domain
         self.metadata = metadata
-        self.reference = reference
     }
     
     internal func rebuildTransactionOnWalletChanged() {
+        self.webCheckoutURL = nil
+        self.webCheckoutParameters = nil
         buildTransaction()
     }
     
@@ -46,33 +48,17 @@ internal class TransactionViewModel: ObservableObject {
         bottomSheetViewModel.setPurchaseState(newState: .loading)
         
         if let product = product, let domain = domain {
-            // 1. Get Wallet
-            self.walletUseCases.getWallet() {
-                result in
+            DispatchQueue.main.async {
+                let guestUID = MMPUseCases.shared.getGuestUID()
                 
-                switch result {
-                case .success(let wallet):
-                    
-                    if let moneyAmount = Double(product.priceValue) {
-                        
-                        DispatchQueue.main.async {
-                            
-                            let guestUID = MMPUseCases.shared.getGuestUID()
-                            let oemID = MMPUseCases.shared.getOEMID()
-                            
-                            // 3. Show loaded view
-                            self.bottomSheetViewModel.setPurchaseState(newState: .paying)
-                        }
-                    } else { self.bottomSheetViewModel.transactionFailedWith(error: .unknown(message: "Failed to build transaction", description: "Missig required parameters: moneyAmount is nil at TransactionViewModel.swift:buildTransaction"))
-                    }
-                case .failure(let error):
-                    switch error {
-                    case .failed(let message, let description, let request):
-                        self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
-                    case .noInternet(let message, let description, let request):
-                        self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
-                    }
-                }
+                // 1. Build the parameters to process the transaction
+                self.webCheckoutParameters = WebCheckoutParameters(domain: domain, product: product.sku, metadata: self.metadata, guestUID: guestUID)
+                
+                // 2. Create web checkout URL
+                self.webCheckoutURL = self.webCheckoutParameters?.createWebCheckoutURL()
+                
+                // 3. Show loaded view
+                self.bottomSheetViewModel.setPurchaseState(newState: .paying)
             }
         } else { bottomSheetViewModel.transactionFailedWith(error: .systemError(message: "Failed to build transaction", description: "Missing required parameters: product is nil or domain is nil at TransactionViewModel.swift:buildTransaction"))
         }
