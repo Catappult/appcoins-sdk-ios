@@ -7,11 +7,10 @@
 
 import Foundation
 import SwiftUI
-@_implementationOnly import AuthenticationServices
 @_implementationOnly import Combine
 @_implementationOnly import WebKit
 
-internal class BottomSheetViewModel: NSObject, ObservableObject {
+internal class BottomSheetViewModel: ObservableObject {
     
     internal static var shared: BottomSheetViewModel = BottomSheetViewModel()
     
@@ -24,7 +23,7 @@ internal class BottomSheetViewModel: NSObject, ObservableObject {
     // Device Orientation
     @Published internal var orientation: Orientation = .portrait
     
-    private override init() {
+    private init() {
         // Prevents Layout Warning Prints
         UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
     }
