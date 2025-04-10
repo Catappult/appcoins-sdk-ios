@@ -15,21 +15,30 @@ internal class HandleAuthenticationRedirect: NSObject {
     private override init() {}
     
     internal func handle(body: HandleAuthenticationRedirectBody) {
-        if let authenticationURL = URL(string: body.URL) {
-            // Initialize ASWebAuthenticationSession
-            var authSession = ASWebAuthenticationSession(url: authenticationURL, callbackURLScheme: "\(Bundle.main.bundleIdentifier).iap") { callbackURL, error in
-                
-                if let error = error { return }
-                guard let callbackURL = callbackURL else { return }
-                
-                BottomSheetViewModel.shared.handleWebViewDeeplink(deeplink: callbackURL.absoluteString)
+        guard let authenticationURL = URL(string: body.URL) else {
+            Utils.log("Invalid URL on handleAuthenticationRedirect")
+            return
+        }
+      
+        // Initialize ASWebAuthenticationSession
+        var authSession = ASWebAuthenticationSession(url: authenticationURL, callbackURLScheme: "\(Bundle.main.bundleIdentifier).iap") { callbackURL, error in
+            
+            if let error = error { 
+                Utils.log("Error on handleAuthenticationRedirect: \(error.localizedDescription)")
+                return
+            }
+            guard let callbackURL = callbackURL else { 
+                Utils.log("Invalid callback URL on handleAuthenticationRedirect")
                 return
             }
             
-            // Start the session
-            authSession.presentationContextProvider = self
-            authSession.start()
+            BottomSheetViewModel.shared.handleWebViewDeeplink(deeplink: callbackURL.absoluteString)
+            return
         }
+        
+        // Start the session
+        authSession.presentationContextProvider = self
+        authSession.start()
     }
 }
 
