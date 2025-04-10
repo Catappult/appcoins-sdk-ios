@@ -7,9 +7,9 @@
 
 import Foundation
 import SwiftUI
-import AuthenticationServices
+@_implementationOnly import AuthenticationServices
 @_implementationOnly import Combine
-import WebKit
+@_implementationOnly import WebKit
 
 internal class BottomSheetViewModel: NSObject, ObservableObject {
     
@@ -106,47 +106,6 @@ internal class BottomSheetViewModel: NSObject, ObservableObject {
         }
     }
     
-//    private func replaceRedirectURIQueryParameter(originalURL: URL) -> URL {
-//        guard var urlComponents = URLComponents(string: originalURL.absoluteString) else {
-//            return originalURL
-//        }
-//        
-//        var queryItems = urlComponents.queryItems ?? []
-//        
-//        let parameter = "redirect_uri"
-//        let newValue = "https://wallet.dev.aptoide.com/api/auth/google/callback"
-//        
-//        if let index = queryItems.firstIndex(where: { $0.name == parameter }) {
-//            // If found, update its value
-//            queryItems[index].value = newValue
-//        } else {
-//            // If not found, append it as a new query item
-//            queryItems.append(URLQueryItem(name: parameter, value: newValue))
-//        }
-//        
-//        // Update the queryItems property with the modified list
-//        urlComponents.queryItems = queryItems
-//        return urlComponents.url ?? originalURL
-//    }
-    
-    internal func presentAuthenticationRedirect(redirectURL: String) {
-        if let authenticationURL = URL(string: redirectURL) {
-            // Initialize ASWebAuthenticationSession
-            var authSession = ASWebAuthenticationSession(url: authenticationURL, callbackURLScheme: "\(Bundle.main.bundleIdentifier).iap") { callbackURL, error in
-                
-                if let error = error { return }
-                guard let callbackURL = callbackURL else { return }
-                
-                self.handleWebViewDeeplink(deeplink: callbackURL.absoluteString)
-                return
-            }
-            
-            // Start the session
-            authSession.presentationContextProvider = self
-            authSession.start()
-        }
-    }
-    
     internal func handleWebViewDeeplink(deeplink: String) {
         guard let webView = webView else {
             Utils.log("WebView is not defined on authentication redirect")
@@ -164,7 +123,8 @@ internal class BottomSheetViewModel: NSObject, ObservableObject {
             return
         }
         
-        let finalURL = trimmedURL.hasPrefix("//") ? String(trimmedURL.dropFirst(2)) : trimmedURL
+        let trimmedPrefixURL = trimmedURL.hasPrefix("//") ? String(trimmedURL.dropFirst(2)) : trimmedURL
+        let finalURL = trimmedPrefixURL.hasSuffix("#") ? String(trimmedPrefixURL.dropLast(1)) : trimmedPrefixURL
         
         webView.evaluateJavaScript("window.handleAuthenticationRedirect('\(finalURL)')") { result, error in
             if let error = error {
@@ -173,12 +133,5 @@ internal class BottomSheetViewModel: NSObject, ObservableObject {
                 Utils.log("Called window.handleAuthenticationRedirect('\(finalURL)') successfully")
             }
         }
-    }
-}
-    
-// Conform to ASWebAuthenticationPresentationContextProviding
-extension BottomSheetViewModel: ASWebAuthenticationPresentationContextProviding {
-    internal func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
-        return UIApplication.shared.windows.first(where: { $0.isKeyWindow }) ?? ASPresentationAnchor()
     }
 }

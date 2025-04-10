@@ -104,6 +104,8 @@ public struct AppcSDK {
                 default:
                     BottomSheetViewModel.shared.handleWebViewDeeplink(deeplink: redirectURL.absoluteString)
                 }
+            } else {
+                BottomSheetViewModel.shared.handleWebViewDeeplink(deeplink: redirectURL.absoluteString)
             }
             
             return URLComponents(string: redirectURL.absoluteString)?.scheme == "\(BuildConfiguration.packageName).iap"
