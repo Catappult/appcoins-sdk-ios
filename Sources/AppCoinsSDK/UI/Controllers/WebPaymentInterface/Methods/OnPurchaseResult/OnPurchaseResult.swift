@@ -9,7 +9,11 @@ import Foundation
 
 internal class OnPurchaseResult {
     
-    internal static func handle(body: OnPurchaseResultBody) {
+    internal static let shared = OnPurchaseResult()
+    
+    private init() {}
+    
+    internal func handle(body: OnPurchaseResultBody) {
         let domain: String = BuildConfiguration.packageName
         Purchase.verify(domain: domain, purchaseUID: body.purchaseData.purchaseToken) {
             result in

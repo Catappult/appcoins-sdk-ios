@@ -8,6 +8,7 @@
 import Foundation
 import SwiftUI
 @_implementationOnly import Combine
+@_implementationOnly import WebKit
 
 internal class BottomSheetViewModel: ObservableObject {
     
@@ -17,6 +18,7 @@ internal class BottomSheetViewModel: ObservableObject {
     @Published internal var purchaseState: PurchaseState = .none
     
     internal var hasActiveTransaction = false
+    var webView: WKWebView?
     
     // Device Orientation
     @Published internal var orientation: Orientation = .portrait
@@ -100,6 +102,35 @@ internal class BottomSheetViewModel: ObservableObject {
             let result: TransactionResult = .failed(error: error)
             TransactionViewModel.shared.sendResult(result: result)
             DispatchQueue.main.async { self.purchaseState = .failed }
+        }
+    }
+    
+    internal func handleWebViewDeeplink(deeplink: String) {
+        guard let webView = webView else {
+            Utils.log("WebView is not defined on authentication redirect")
+            return
+        }
+        
+        guard var components = URLComponents(string: deeplink) else {
+            Utils.log("Not a valid URL")
+            return
+        }
+        
+        components.scheme = nil
+        guard let trimmedURL = components.string else {
+            Utils.log("Failed to trim scheme from URL")
+            return
+        }
+        
+        let trimmedPrefixURL = trimmedURL.hasPrefix("//") ? String(trimmedURL.dropFirst(2)) : trimmedURL
+        let finalURL = trimmedPrefixURL.hasSuffix("#") ? String(trimmedPrefixURL.dropLast(1)) : trimmedPrefixURL
+        
+        webView.evaluateJavaScript("window.handleAuthenticationRedirect('\(finalURL)')") { result, error in
+            if let error = error {
+                Utils.log("Error sending message to WebView: \(error.localizedDescription)")
+            } else {
+                Utils.log("Called window.handleAuthenticationRedirect('\(finalURL)') successfully")
+            }
         }
     }
 }
