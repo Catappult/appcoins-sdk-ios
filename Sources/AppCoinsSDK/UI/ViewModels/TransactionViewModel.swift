@@ -17,6 +17,7 @@ internal class TransactionViewModel: ObservableObject {
     internal var product: Product? = nil
     internal var domain: String? = nil
     internal var metadata: String? = nil
+    internal var reference: String? = nil
     
     internal var webCheckoutURL: URL? = nil
     internal var webCheckout: WebCheckout?
@@ -27,21 +28,17 @@ internal class TransactionViewModel: ObservableObject {
         self.product = nil
         self.domain = nil
         self.metadata = nil
+        self.reference = nil
         self.webCheckoutURL = nil
         self.webCheckout = nil
     }
     
     // Called when a user starts a product purchase
-    internal func setUpTransaction(product: Product, domain: String, metadata: String?) {
+    internal func setUpTransaction(product: Product, domain: String, metadata: String?, reference: String?) {
         self.product = product
         self.domain = domain
         self.metadata = metadata
-    }
-    
-    internal func rebuildTransactionOnWalletChanged() {
-        self.webCheckoutURL = nil
-        self.webCheckout = nil
-        buildTransaction()
+        self.reference = reference
     }
     
     internal func buildTransaction() {
@@ -50,7 +47,7 @@ internal class TransactionViewModel: ObservableObject {
                 let guestUID = MMPUseCases.shared.getGuestUID()
                 
                 // 1. Build the parameters to process the transaction
-                self.webCheckout = WebCheckout(domain: domain, product: product.sku, metadata: self.metadata, guestUID: guestUID)
+                self.webCheckout = WebCheckout(domain: domain, product: product.sku, metadata: self.metadata, reference: self.reference, guestUID: guestUID)
                 
                 // 2. Create web checkout URL
                 self.webCheckoutURL = self.webCheckout?.getURL()

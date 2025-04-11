@@ -15,6 +15,7 @@ internal struct WebCheckout {
     internal let product: String
     internal var country: String
     internal let metadata: String?
+    internal let reference: String?
     internal let guestUID: String?
     internal let version: String
     internal var langCode: String
@@ -27,19 +28,21 @@ internal struct WebCheckout {
         "product" : "product",
         "country" : "country",
         "metadata" : "metadata",
+        "reference" : "reference",
         "guestUID" : "guest_id",
         "version" : "version",
         "langCode" : "lang_code",
         "paymentChannel" : "payment_channel"
     ]
     
-    internal init(domain: String, product: String, metadata: String?, guestUID: String?) {
+    internal init(domain: String, product: String, metadata: String?, reference: String?, guestUID: String?) {
         self.origin = "BDS"
         self.type = "INAPP"
         self.domain = domain
         self.product = product
         self.country = WebCheckout.getLangAndCountry().countryCode
         self.metadata = metadata
+        self.reference = reference
         self.guestUID = guestUID
         self.version = String(describing: BuildConfiguration.sdkBuildNumber)
         self.langCode = WebCheckout.getLangAndCountry().langCode

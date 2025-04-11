@@ -44,7 +44,7 @@ internal class BottomSheetViewModel: ObservableObject {
     // Called when a user starts a product purchase
     internal func buildPurchase(product: Product, domain: String, metadata: String?, reference: String?) {
         self.hasActiveTransaction = true
-        TransactionViewModel.shared.setUpTransaction(product: product, domain: domain, metadata: metadata)
+        TransactionViewModel.shared.setUpTransaction(product: product, domain: domain, metadata: metadata, reference: reference)
         
         DispatchQueue(label: "build-transaction", qos: .userInteractive).async { self.initiateTransaction() }
     }
