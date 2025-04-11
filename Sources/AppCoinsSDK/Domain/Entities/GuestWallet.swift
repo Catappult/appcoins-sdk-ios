@@ -16,7 +16,7 @@ internal class GuestWallet: Wallet, Codable {
     internal init(address: String, ewt: String, signature: String) {
         self.address = address
         self.ewt = ewt
-        self.signature = signature
+        self.signature = signature 
     }
     
     internal func getWalletAddress() -> String { return self.address }
