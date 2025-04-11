@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 import UIKit
-@_implementationOnly import WebKit
+import WebKit
 
 internal struct BottomSheetView: View {
     
