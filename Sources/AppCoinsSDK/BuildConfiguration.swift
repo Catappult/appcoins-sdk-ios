@@ -60,12 +60,12 @@ internal class BuildConfiguration {
         }
     }
     
-    static internal var appCoinsWebCheckoutURL: String {
+    static internal var webCheckoutURL: String {
         switch environment {
         case .debugSDKDev, .releaseSDKDev:
             return "https://wallet.dev.appcoins.io/iap/sdk"
         case .debugSDKProd, .releaseSDKProd:
-            return "developers.catappult.io"
+            return "https://developers.catappult.io"
         }
     }
     
