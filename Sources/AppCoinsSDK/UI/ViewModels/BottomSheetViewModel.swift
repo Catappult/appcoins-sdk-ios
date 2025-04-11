@@ -90,7 +90,7 @@ internal class BottomSheetViewModel: ObservableObject {
     
     internal func userCancelled() {
         let result : TransactionResult = .userCancelled
-        Utils.transactionResult(result: result)
+        TransactionViewModel.shared.sendResult(result: result)
         self.dismissVC()
     }
     

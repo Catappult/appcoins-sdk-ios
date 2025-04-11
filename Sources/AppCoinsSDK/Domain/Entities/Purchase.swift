@@ -59,13 +59,82 @@ public class Purchase: Codable {
         self.verification = PurchaseVerification(raw: raw.verification)
     }
     
+    internal static func verify(domain: String = (Bundle.main.bundleIdentifier ?? ""), purchaseUID: String, completion: @escaping (Result<Purchase, AppCoinsSDKError>) -> Void ) {
+        
+        WalletUseCases.shared.getWallet() {
+            result in
+            
+            switch result {
+            case .success(let wallet):
+                TransactionUseCases.shared.verifyPurchase(domain: domain, uid: purchaseUID, wa: wallet) {
+                    result in
+                    
+                    switch result {
+                    case .success(let purchase):
+                        completion(.success(purchase))
+                    case .failure(let error):
+                        switch error {
+                        case .failed(let message, let description, let request):
+                            completion(.failure(AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request))))
+                        case .noInternet(let message, let description, let request):
+                            completion(.failure(AppCoinsSDKError.networkError(debugInfo: DebugInfo(message: message, description: description, request: request))))
+                        case .purchaseVerificationFailed(let message, let description, let request):
+                            completion(.failure(AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request))))
+                        }
+                    }
+                }
+            case .failure(let error):
+                switch error {
+                case .failed(let message, let description, let request):
+                    completion(.failure(AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request))))
+                case .noInternet(let message, let description, let request):
+                    completion(.failure(AppCoinsSDKError.networkError(debugInfo: DebugInfo(message: message, description: description, request: request))))
+                }
+            }
+        }
+    }
+    
+    // only accessible internally – the SDK acknowledges the purchase
+    internal func acknowledge(domain: String = (Bundle.main.bundleIdentifier ?? ""), completion: @escaping (AppCoinsSDKError?) -> Void) {
+        
+        WalletUseCases.shared.getWallet() {
+            result in
+            
+            switch result {
+            case .success(let wallet):
+                TransactionUseCases.shared.acknowledgePurchase(domain: domain, uid: self.uid, wa: wallet) {
+                    result in
+                    
+                    switch result {
+                    case .success(_):
+                        self.state = "ACKNOWLEDGED"
+                        completion(nil)
+                    case .failure(let error):
+                        switch error {
+                        case .failed(let message, let description, let request):
+                            completion(AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request)))
+                        case .noInternet(let message, let description, let request):
+                            completion(AppCoinsSDKError.networkError(debugInfo: DebugInfo(message: message, description: description, request: request)))
+                        case .general(let message, let description, let request):
+                            completion(AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request)))
+                        case .noBillingAgreement(let message, let description, let request):
+                            completion(AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request)))
+                        case .timeOut(let message, let description, let request):
+                            completion(AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request)))
+                        }
+                    }
+                }
+            case .failure(_):
+                break
+            }
+        }
+    }
+    
     // accessible by the developer – the app consumes the purchase and attributes the item to the user
     public func finish(domain: String = (Bundle.main.bundleIdentifier ?? "")) async throws {
         return try await withCheckedThrowingContinuation { continuation in
-            let walletUseCases = WalletUseCases.shared
-            let transactionUseCases = TransactionUseCases.shared
             
-            walletUseCases.getWalletList() { walletList in
+            WalletUseCases.shared.getWalletList() { walletList in
                 
                 let group = DispatchGroup()
                 let queue = DispatchQueue(label: "consume-queue", attributes: .concurrent)
@@ -77,7 +146,7 @@ public class Purchase: Codable {
                 for wallet in walletList {
                     group.enter()
                     queue.sync {
-                        transactionUseCases.consumePurchase(domain: domain, uid: self.uid, wa: wallet) {
+                        TransactionUseCases.shared.consumePurchase(domain: domain, uid: self.uid, wa: wallet) {
                             result in
                             switch result {
                             case .success(_):
@@ -108,10 +177,8 @@ public class Purchase: Codable {
     // get all the user's purchases
     public static func all(domain: String = (Bundle.main.bundleIdentifier ?? "")) async throws -> [Purchase] {
         return try await withCheckedThrowingContinuation { continuation in
-            let walletUseCases = WalletUseCases.shared
-            let transactionUseCases = TransactionUseCases.shared
             
-            walletUseCases.getWalletList() { walletList in
+            WalletUseCases.shared.getWalletList() { walletList in
                 
                 let group = DispatchGroup()
                 let queue = DispatchQueue(label: "get-all-purchases-queue", attributes: .concurrent)
@@ -122,7 +189,7 @@ public class Purchase: Codable {
                 for wallet in walletList {
                     group.enter()
                     queue.sync {
-                        transactionUseCases.getAllPurchases(domain: domain, wa: wallet) {
+                        TransactionUseCases.shared.getAllPurchases(domain: domain, wa: wallet) {
                             result in
                             
                             switch result {
@@ -157,10 +224,8 @@ public class Purchase: Codable {
     
     public static func latest(domain: String = (Bundle.main.bundleIdentifier ?? ""), sku: String) async throws -> Purchase? {
         return try await withCheckedThrowingContinuation { continuation in
-            let walletUseCases = WalletUseCases.shared
-            let transactionUseCases = TransactionUseCases.shared
             
-            walletUseCases.getWalletList { walletList in
+            WalletUseCases.shared.getWalletList { walletList in
                 
                 let group = DispatchGroup()
                 let queue = DispatchQueue(label: "get-latest-purchase-queue", attributes: .concurrent)
@@ -171,7 +236,7 @@ public class Purchase: Codable {
                 for wallet in walletList {
                     group.enter()
                     queue.sync {
-                        transactionUseCases.getLatestPurchase(domain: domain, sku: sku, wa: wallet) {
+                        TransactionUseCases.shared.getLatestPurchase(domain: domain, sku: sku, wa: wallet) {
                             result in
                             switch result {
                             case .success(let purchase):
@@ -206,10 +271,8 @@ public class Purchase: Codable {
     // we consider unfinished purchases any purchase that have neither been acknowledged nor consumed
     public static func unfinished(domain: String = (Bundle.main.bundleIdentifier ?? "")) async throws -> [Purchase] {
         return try await withCheckedThrowingContinuation { continuation in
-            let walletUseCases = WalletUseCases.shared
-            let transactionUseCases = TransactionUseCases.shared
             
-            walletUseCases.getWalletList { walletList in
+            WalletUseCases.shared.getWalletList { walletList in
                 
                 let group = DispatchGroup()
                 let queue = DispatchQueue(label: "get-unfinished-purchases-queue", attributes: .concurrent)
@@ -220,7 +283,7 @@ public class Purchase: Codable {
                 for wallet in walletList {
                     group.enter()
                     queue.sync {
-                        transactionUseCases.getPurchasesByState(domain: domain, state: ["PENDING", "ACKNOWLEDGED"], wa: wallet) {
+                        TransactionUseCases.shared.getPurchasesByState(domain: domain, state: ["PENDING", "ACKNOWLEDGED"], wa: wallet) {
                             result in
                             switch result {
                             case .success(let purchases):

@@ -58,4 +58,8 @@ internal class TransactionViewModel: ObservableObject {
         } else { bottomSheetViewModel.transactionFailedWith(error: .systemError(message: "Failed to build transaction", description: "Missing required parameters: product is nil or domain is nil at TransactionViewModel.swift:buildTransaction"))
         }
     }
+    
+    internal func sendResult(result: TransactionResult) {
+        NotificationCenter.default.post(name: NSNotification.Name("APPCPurchaseResult"), object: nil, userInfo: ["TransactionResult" : result])
+    }
 }
