@@ -6,8 +6,8 @@
 //
 
 import Foundation
-import WebKit
 import SwiftUI
+@_implementationOnly import WebKit
 
 struct WebCheckoutView: UIViewRepresentable {
     
