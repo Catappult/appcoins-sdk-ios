@@ -14,10 +14,9 @@ internal class BottomSheetViewModel: ObservableObject {
     internal static var shared: BottomSheetViewModel = BottomSheetViewModel()
     
     // Purchase status
-    @Published internal var purchaseState: PurchaseState = .none
-    @Published internal var isBottomSheetPresented: Bool = false
+    @Published internal var webCheckoutState: WebCheckoutState = .none
     
-    internal var hasActiveTransaction = false
+    @Published internal var hasActiveTransaction = false
     
     // Device Orientation
     @Published internal var orientation: Orientation = .portrait
@@ -30,7 +29,7 @@ internal class BottomSheetViewModel: ObservableObject {
     // Resets the BottomSheet
     private func reset() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            self.purchaseState = .loading
+            self.webCheckoutState = .none
             TransactionViewModel.shared.reset()
         }
     }
@@ -39,7 +38,6 @@ internal class BottomSheetViewModel: ObservableObject {
     
     // Reloads the purchase on failure screens
     internal func reload() {
-        DispatchQueue.main.async { self.purchaseState = .loading }
         DispatchQueue.main.asyncAfter(deadline: .now() + 2) { TransactionViewModel.shared.buildTransaction() }
     }
     
@@ -55,12 +53,9 @@ internal class BottomSheetViewModel: ObservableObject {
     
     // Handles the dismiss (click on the zone above the bottom sheet) for the multiple states of the bottom sheet
     internal func dismiss() {
-        switch purchaseState {
+        switch webCheckoutState {
         case .none: break
-        case .loading: self.userCancelled()
-        case .paying: self.userCancelled()
-        case .processing: break
-        case .success: break
+        case .inCheckout: self.userCancelled()
         case .failed: self.dismissVC()
         case .nointernet: self.dismissVC()
         }
@@ -77,20 +72,18 @@ internal class BottomSheetViewModel: ObservableObject {
             DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
                 presentedPurchaseVC.dismissPurchase()
                 self.hasActiveTransaction = false
-                self.isBottomSheetPresented = false
             }
         }
         
         self.reset() // Clear data related to finished purchase
     }
     
-    internal func setPurchaseState(newState: PurchaseState) {
+    internal func setWebCheckoutState(newState: WebCheckoutState) {
         DispatchQueue.main.async {
-            if newState == .paying {
-                self.purchaseState = newState
-                self.isBottomSheetPresented = true
+            if newState == .inCheckout {
+                self.webCheckoutState = newState
             } else {
-                self.purchaseState = newState
+                self.webCheckoutState = newState
             }
         }
     }
@@ -106,11 +99,11 @@ internal class BottomSheetViewModel: ObservableObject {
         case .networkError:
             let result: TransactionResult = .failed(error: error)
             Utils.transactionResult(result: result)
-            DispatchQueue.main.async { self.purchaseState = .nointernet }
+            DispatchQueue.main.async { self.webCheckoutState = .nointernet }
         default:
             let result: TransactionResult = .failed(error: error)
             Utils.transactionResult(result: result)
-            DispatchQueue.main.async { self.purchaseState = .failed }
+            DispatchQueue.main.async { self.webCheckoutState = .failed }
         }
     }
 }

@@ -17,7 +17,7 @@ internal struct BottomSheetView: View {
     
     internal var body: some View {
         HStack(spacing: 0) {}
-            .sheet(isPresented: $viewModel.isBottomSheetPresented, onDismiss: viewModel.dismiss, content: {
+            .sheet(isPresented: $viewModel.hasActiveTransaction, onDismiss: viewModel.dismiss, content: {
                 if #available(iOS 17.4, *) {
                     VStack(spacing: 0) {
                         VStack{}.frame(height: 20)

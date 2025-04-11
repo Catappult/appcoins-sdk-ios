@@ -45,8 +45,6 @@ internal class TransactionViewModel: ObservableObject {
     }
     
     internal func buildTransaction() {
-        bottomSheetViewModel.setPurchaseState(newState: .loading)
-        
         if let product = product, let domain = domain {
             DispatchQueue.main.async {
                 let guestUID = MMPUseCases.shared.getGuestUID()
@@ -58,7 +56,7 @@ internal class TransactionViewModel: ObservableObject {
                 self.webCheckoutURL = self.webCheckout?.getURL()
                 
                 // 3. Show loaded view
-                self.bottomSheetViewModel.setPurchaseState(newState: .paying)
+                self.bottomSheetViewModel.setWebCheckoutState(newState: .inCheckout)
             }
         } else { bottomSheetViewModel.transactionFailedWith(error: .systemError(message: "Failed to build transaction", description: "Missing required parameters: product is nil or domain is nil at TransactionViewModel.swift:buildTransaction"))
         }
