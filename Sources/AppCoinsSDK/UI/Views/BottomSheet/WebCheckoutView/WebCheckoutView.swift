@@ -1,5 +1,5 @@
 //
-//  WebBottomSheetView.swift
+//  WebCheckoutView.swift
 //  AppCoinsSDK
 //
 //  Created by Graciano Caldeira on 03/03/2025.
@@ -9,7 +9,7 @@ import Foundation
 import WebKit
 import SwiftUI
 
-struct WebBottomSheetView: UIViewRepresentable {
+struct WebCheckoutView: UIViewRepresentable {
     
     @ObservedObject var transactionViewModel: TransactionViewModel = TransactionViewModel.shared
     
@@ -28,9 +28,9 @@ struct WebBottomSheetView: UIViewRepresentable {
     func makeCoordinator() -> Coordinator { Coordinator(self) }
     
     class Coordinator: NSObject, WKNavigationDelegate {
-        var parent: WebBottomSheetView
+        var parent: WebCheckoutView
         
-        init(_ parent: WebBottomSheetView) { self.parent = parent }
+        init(_ parent: WebCheckoutView) { self.parent = parent }
         
         func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) { }
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) { }

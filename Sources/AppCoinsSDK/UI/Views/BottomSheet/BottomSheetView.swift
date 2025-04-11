@@ -22,7 +22,7 @@ internal struct BottomSheetView: View {
                     VStack(spacing: 0) {
                         VStack{}.frame(height: 20)
                         
-                        WebBottomSheetView()
+                        WebCheckoutView()
                             .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 116: UIScreen.main.bounds.width)
                             .presentationCompactAdaptation(.sheet)
                             .presentationDetents([viewModel.orientation == .landscape ? .fraction(0.9) : .fraction(0.6)])
