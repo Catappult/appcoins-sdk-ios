@@ -19,7 +19,7 @@ internal class TransactionViewModel: ObservableObject {
     internal var metadata: String? = nil
     
     internal var webCheckoutURL: URL? = nil
-    internal var webCheckoutParameters: WebCheckoutParameters?
+    internal var webCheckout: WebCheckout?
     
     private init() {}
     
@@ -28,7 +28,7 @@ internal class TransactionViewModel: ObservableObject {
         self.domain = nil
         self.metadata = nil
         self.webCheckoutURL = nil
-        self.webCheckoutParameters = nil
+        self.webCheckout = nil
     }
     
     // Called when a user starts a product purchase
@@ -40,7 +40,7 @@ internal class TransactionViewModel: ObservableObject {
     
     internal func rebuildTransactionOnWalletChanged() {
         self.webCheckoutURL = nil
-        self.webCheckoutParameters = nil
+        self.webCheckout = nil
         buildTransaction()
     }
     
@@ -52,10 +52,10 @@ internal class TransactionViewModel: ObservableObject {
                 let guestUID = MMPUseCases.shared.getGuestUID()
                 
                 // 1. Build the parameters to process the transaction
-                self.webCheckoutParameters = WebCheckoutParameters(domain: domain, product: product.sku, metadata: self.metadata, guestUID: guestUID)
+                self.webCheckout = WebCheckout(domain: domain, product: product.sku, metadata: self.metadata, guestUID: guestUID)
                 
                 // 2. Create web checkout URL
-                self.webCheckoutURL = self.webCheckoutParameters?.createWebCheckoutURL()
+                self.webCheckoutURL = self.webCheckout?.getURL()
                 
                 // 3. Show loaded view
                 self.bottomSheetViewModel.setPurchaseState(newState: .paying)

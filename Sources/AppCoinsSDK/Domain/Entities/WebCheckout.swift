@@ -1,5 +1,5 @@
 //
-//  WebCheckoutParameters.swift
+//  WebCheckout.swift
 //
 //
 //  Created by Graciano Caldeira on 07/04/2025.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-internal struct WebCheckoutParameters {
+internal struct WebCheckout {
     
     internal let origin: String
     internal let type: String
@@ -20,7 +20,7 @@ internal struct WebCheckoutParameters {
     internal var langCode: String
     internal let paymentChannel: String
     
-    let queryKeys: [String : String] = [
+    private let queryKeys: [String : String] = [
         "origin" : "origin",
         "type" : "type",
         "domain" : "domain",
@@ -33,20 +33,20 @@ internal struct WebCheckoutParameters {
         "paymentChannel" : "payment_channel"
     ]
     
-    init(domain: String, product: String, metadata: String?, guestUID: String?) {
+    internal init(domain: String, product: String, metadata: String?, guestUID: String?) {
         self.origin = "BDS"
         self.type = "INAPP"
         self.domain = domain
         self.product = product
-        self.country = WebCheckoutParameters.getLangAndCountry().countryCode
+        self.country = WebCheckout.getLangAndCountry().countryCode
         self.metadata = metadata
         self.guestUID = guestUID
         self.version = String(describing: BuildConfiguration.sdkBuildNumber)
-        self.langCode = WebCheckoutParameters.getLangAndCountry().langCode
+        self.langCode = WebCheckout.getLangAndCountry().langCode
         self.paymentChannel = "ios_sdk"
     }
     
-    internal func asQueryItems() -> [URLQueryItem] {
+    private func asQueryItems() -> [URLQueryItem] {
         let mirror = Mirror(reflecting: self)
         
         return mirror.children.compactMap { (label, value) in
@@ -58,13 +58,13 @@ internal struct WebCheckoutParameters {
         }
     }
     
-    internal func createWebCheckoutURL() -> URL? {
-        var components = URLComponents(string: BuildConfiguration.appCoinsWebCheckoutURL)
+    internal func getURL() -> URL? {
+        var components = URLComponents(string: BuildConfiguration.webCheckoutURL)
         components?.queryItems = asQueryItems()
         return components?.url
     }
     
-    internal static func getLangAndCountry() -> (langCode: String, countryCode: String) {
+    private static func getLangAndCountry() -> (langCode: String, countryCode: String) {
         var langCode: String = ""
         var countryCode: String = ""
         if #available(iOS 16, *) {
@@ -73,6 +73,9 @@ internal struct WebCheckoutParameters {
             
             langCode = locale.language.languageCode?.identifier ?? "en"
             countryCode = locale.region?.identifier ?? "US"
+        } else {
+            langCode = "en"
+            countryCode = "US"
         }
         return (langCode, countryCode)
     }
