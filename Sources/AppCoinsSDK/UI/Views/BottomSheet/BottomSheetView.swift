@@ -35,3 +35,10 @@ internal struct BottomSheetView: View {
             })
     }
 }
+
+internal extension BottomSheetView {
+    func toUIView() -> UIView {
+        let hostingController = UIHostingController(rootView: self)
+        return hostingController.view
+    }
+}

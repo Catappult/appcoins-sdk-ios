@@ -36,10 +36,3 @@ struct WebCheckoutView: UIViewRepresentable {
         func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) { }
     }
 }
-
-internal extension BottomSheetView {
-    func toUIView() -> UIView {
-        let hostingController = UIHostingController(rootView: self)
-        return hostingController.view
-    }
-}

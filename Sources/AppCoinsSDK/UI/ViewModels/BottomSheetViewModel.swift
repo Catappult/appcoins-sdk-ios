@@ -100,11 +100,11 @@ internal class BottomSheetViewModel: ObservableObject {
         switch error {
         case .networkError:
             let result: TransactionResult = .failed(error: error)
-            Utils.transactionResult(result: result)
+            TransactionViewModel.shared.sendResult(result: result)
             DispatchQueue.main.async { self.webCheckoutState = .nointernet }
         default:
             let result: TransactionResult = .failed(error: error)
-            Utils.transactionResult(result: result)
+            TransactionViewModel.shared.sendResult(result: result)
             DispatchQueue.main.async { self.webCheckoutState = .failed }
         }
     }
