@@ -38,7 +38,7 @@ internal class WebPaymentInterface: NSObject, WKScriptMessageHandler {
         case .onPurchaseResult: 
             do {
                 let onPurchaseResultBody = try JSONDecoder().decode(OnPurchaseResultBody.self, from: params)
-                OnPurchaseResult.handle(body: onPurchaseResultBody)
+                OnPurchaseResult.shared.handle(body: onPurchaseResultBody)
             } catch {
                 Utils.log("Failed to parse onPurchaseResult body with error: \(error)")
                 return
@@ -46,9 +46,25 @@ internal class WebPaymentInterface: NSObject, WKScriptMessageHandler {
         case .onError: 
             do {
                 let onErrorBody = try JSONDecoder().decode(OnErrorBody.self, from: params)
-                OnError.handle(body: onErrorBody)
+                OnError.shared.handle(body: onErrorBody)
             } catch {
                 Utils.log("Failed to parse onError body with error: \(error)")
+                return
+            }
+        case .handleAuthenticationRedirect:
+            do {
+                let handleAuthenticationRedirectBody = try JSONDecoder().decode(HandleAuthenticationRedirectBody.self, from: params)
+                HandleAuthenticationRedirect.shared.handle(body: handleAuthenticationRedirectBody)
+            } catch {
+                Utils.log("Failed to parse handleAuthenticationRedirect body with error: \(error)")
+                return
+            }
+        case .handleExternalRedirect:
+            do {
+                let handleExternalRedirectBody = try JSONDecoder().decode(HandleExternalRedirectBody.self, from: params)
+                HandleExternalRedirect.shared.handle(body: handleExternalRedirectBody)
+            } catch {
+                Utils.log("Failed to parse handleExternalRedirect body with error: \(error)")
                 return
             }
         }
