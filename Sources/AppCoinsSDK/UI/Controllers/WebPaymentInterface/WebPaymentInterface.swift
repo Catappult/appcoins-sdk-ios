@@ -24,7 +24,6 @@ internal class WebPaymentInterface: NSObject, WKScriptMessageHandler {
             Utils.log("Failed to parse message method")
             return
         }
-        Utils.log("Method: \(method)")
         
         // Parse Params
         guard let paramsDict = body["params"] as? [String: Any],
@@ -32,7 +31,6 @@ internal class WebPaymentInterface: NSObject, WKScriptMessageHandler {
             Utils.log("Failed to parse message params")
             return
         }
-        Utils.log("Params: \(params)")
         
         switch method {
         case .onPurchaseResult: 
@@ -65,6 +63,14 @@ internal class WebPaymentInterface: NSObject, WKScriptMessageHandler {
                 HandleExternalRedirect.shared.handle(body: handleExternalRedirectBody)
             } catch {
                 Utils.log("Failed to parse handleExternalRedirect body with error: \(error)")
+                return
+            }
+        case .setActiveWallet:
+            do {
+                let setActiveWalletBody = try JSONDecoder().decode(SetActiveWalletBody.self, from: params)
+                SetActiveWallet.shared.handle(body: setActiveWalletBody)
+            } catch {
+                Utils.log("Failed to parse setActiveWallet body body with error: \(error)")
                 return
             }
         }

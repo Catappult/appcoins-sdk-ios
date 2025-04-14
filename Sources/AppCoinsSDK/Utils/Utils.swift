@@ -37,16 +37,16 @@ internal struct Utils {
         return preferences.string(forKey: key) ?? ""
     }
     
-    static internal func writeToKeychain(key: String, value: String) throws -> Void {
-        try KeychainHelper().save(value, service: key, account: "com.aptoide.appcoins-wallet")
+    static internal func writeToKeychain<T: Codable>(key: String, value: T) throws {
+        try KeychainHelper.shared.save(value, service: key, account: "com.aptoide.appcoins-wallet")
     }
-    
+
+    static internal func readFromKeychain<T: Codable>(key: String, type: T.Type) -> T? {
+        return KeychainHelper.shared.read(service: key, account: "com.aptoide.appcoins-wallet", type: type)
+    }
+
     static internal func deleteFromKeychain(key: String) -> Void {
-        KeychainHelper().delete(service: key, account: "com.aptoide.appcoins-wallet")
-    }
-    
-    static internal func readFromKeychain(key: String) -> String? {
-        return KeychainHelper().read(service: key, account: "com.aptoide.appcoins-wallet", type: String.self) ?? nil
+        KeychainHelper.shared.delete(service: key, account: "com.aptoide.appcoins-wallet")
     }
     
     static internal func log(_ message: String, category: String = "Debug") {
