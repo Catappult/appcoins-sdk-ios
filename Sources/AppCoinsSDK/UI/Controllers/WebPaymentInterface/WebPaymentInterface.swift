@@ -24,7 +24,6 @@ internal class WebPaymentInterface: NSObject, WKScriptMessageHandler {
             Utils.log("Failed to parse message method")
             return
         }
-        Utils.log("Method: \(method)")
         
         // Parse Params
         guard let paramsDict = body["params"] as? [String: Any],
@@ -32,13 +31,12 @@ internal class WebPaymentInterface: NSObject, WKScriptMessageHandler {
             Utils.log("Failed to parse message params")
             return
         }
-        Utils.log("Params: \(params)")
         
         switch method {
         case .onPurchaseResult: 
             do {
                 let onPurchaseResultBody = try JSONDecoder().decode(OnPurchaseResultBody.self, from: params)
-                OnPurchaseResult.handle(body: onPurchaseResultBody)
+                OnPurchaseResult.shared.handle(body: onPurchaseResultBody)
             } catch {
                 Utils.log("Failed to parse onPurchaseResult body with error: \(error)")
                 return
@@ -46,9 +44,33 @@ internal class WebPaymentInterface: NSObject, WKScriptMessageHandler {
         case .onError: 
             do {
                 let onErrorBody = try JSONDecoder().decode(OnErrorBody.self, from: params)
-                OnError.handle(body: onErrorBody)
+                OnError.shared.handle(body: onErrorBody)
             } catch {
                 Utils.log("Failed to parse onError body with error: \(error)")
+                return
+            }
+        case .handleAuthenticationRedirect:
+            do {
+                let handleAuthenticationRedirectBody = try JSONDecoder().decode(HandleAuthenticationRedirectBody.self, from: params)
+                HandleAuthenticationRedirect.shared.handle(body: handleAuthenticationRedirectBody)
+            } catch {
+                Utils.log("Failed to parse handleAuthenticationRedirect body with error: \(error)")
+                return
+            }
+        case .handleExternalRedirect:
+            do {
+                let handleExternalRedirectBody = try JSONDecoder().decode(HandleExternalRedirectBody.self, from: params)
+                HandleExternalRedirect.shared.handle(body: handleExternalRedirectBody)
+            } catch {
+                Utils.log("Failed to parse handleExternalRedirect body with error: \(error)")
+                return
+            }
+        case .setActiveWallet:
+            do {
+                let setActiveWalletBody = try JSONDecoder().decode(SetActiveWalletBody.self, from: params)
+                SetActiveWallet.shared.handle(body: setActiveWalletBody)
+            } catch {
+                Utils.log("Failed to parse setActiveWallet body body with error: \(error)")
                 return
             }
         }
