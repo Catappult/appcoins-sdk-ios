@@ -19,7 +19,6 @@ internal class TransactionViewModel: ObservableObject {
     internal var metadata: String? = nil
     internal var reference: String? = nil
     
-    internal var webCheckoutURL: URL? = nil
     internal var webCheckout: WebCheckout?
     
     private init() {}
@@ -29,7 +28,6 @@ internal class TransactionViewModel: ObservableObject {
         self.domain = nil
         self.metadata = nil
         self.reference = nil
-        self.webCheckoutURL = nil
         self.webCheckout = nil
     }
     
@@ -46,13 +44,10 @@ internal class TransactionViewModel: ObservableObject {
             DispatchQueue.main.async {
                 let guestUID = MMPUseCases.shared.getGuestUID()
                 
-                // 1. Build the parameters to process the transaction
+                // 1. Build the Web Checkout to process the transaction
                 self.webCheckout = WebCheckout(domain: domain, product: product.sku, metadata: self.metadata, reference: self.reference, guestUID: guestUID)
                 
-                // 2. Create web checkout URL
-                self.webCheckoutURL = self.webCheckout?.getURL()
-                
-                // 3. Show loaded view
+                // 2. Show loaded view
                 self.bottomSheetViewModel.setWebCheckoutState(newState: .inCheckout)
             }
         } else { bottomSheetViewModel.transactionFailedWith(error: .systemError(message: "Failed to build transaction", description: "Missing required parameters: product is nil or domain is nil at TransactionViewModel.swift:buildTransaction"))

@@ -9,17 +9,23 @@ import Foundation
 
 internal struct WebCheckout {
     
-    internal let origin: String
-    internal let type: String
-    internal let domain: String
-    internal let product: String
-    internal var country: String
-    internal let metadata: String?
-    internal let reference: String?
-    internal let guestUID: String?
-    internal let version: String
-    internal var langCode: String
-    internal let paymentChannel: String
+    private let origin: String
+    private let type: String
+    private let domain: String
+    private let product: String
+    private var country: String
+    private let metadata: String?
+    private let reference: String?
+    private let guestUID: String?
+    private let version: String
+    private var langCode: String
+    private let paymentChannel: String
+    
+    internal var URL: URL? {
+        var components = URLComponents(string: BuildConfiguration.webCheckoutURL)
+        components?.queryItems = asQueryItems()
+        return components?.url
+    }
     
     private let queryKeys: [String : String] = [
         "origin" : "origin",
@@ -61,11 +67,11 @@ internal struct WebCheckout {
         }
     }
     
-    internal func getURL() -> URL? {
-        var components = URLComponents(string: BuildConfiguration.webCheckoutURL)
-        components?.queryItems = asQueryItems()
-        return components?.url
-    }
+//    internal func getURL() -> URL? {
+//        var components = URLComponents(string: BuildConfiguration.webCheckoutURL)
+//        components?.queryItems = asQueryItems()
+//        return components?.url
+//    }
     
     private static func getLangAndCountry() -> (langCode: String, countryCode: String) {
         var langCode: String = ""

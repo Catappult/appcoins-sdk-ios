@@ -14,10 +14,25 @@ struct WebCheckoutView: UIViewRepresentable {
     @ObservedObject var transactionViewModel: TransactionViewModel = TransactionViewModel.shared
     
     func makeUIView(context: Context) -> WKWebView {
-        let webView = WKWebView()
+        let contentController = WKUserContentController()
+        
+        // Defines a message handler
+        let webPaymentInterface = WebPaymentInterface()
+        contentController.add(webPaymentInterface, name: "iOSSDKWebPaymentInterface")
+        
+        let preferences = WKPreferences()
+        preferences.setValue(true, forKey: "developerExtrasEnabled")
+        
+        let configuration = WKWebViewConfiguration()
+        configuration.userContentController = contentController
+        configuration.preferences = preferences
+        
+        let webView = WKWebView(frame: .zero, configuration: configuration)
         webView.navigationDelegate = context.coordinator
         webView.allowsBackForwardNavigationGestures = false
-        
+        if #available(iOS 16.4, *) { webView.isInspectable = true }
+
+        BottomSheetViewModel.shared.webView = webView
         return webView
     }
     
