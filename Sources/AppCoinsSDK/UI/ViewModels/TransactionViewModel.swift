@@ -6,14 +6,17 @@
 //
 
 import Foundation
+@_implementationOnly import WebKit
 
 // Helper to the BottomSheetViewModel
 internal class TransactionViewModel: ObservableObject {
     
     internal static var shared: TransactionViewModel = TransactionViewModel()
     
-    internal var walletUseCases: WalletUseCases = WalletUseCases.shared
-    internal var bottomSheetViewModel: BottomSheetViewModel = BottomSheetViewModel.shared
+    @Published internal var hasActiveTransaction = false
+    
+    // Device Orientation
+    @Published internal var orientation: Orientation = .portrait
     
     // Transaction attributes
     internal var product: Product? = nil
@@ -21,64 +24,113 @@ internal class TransactionViewModel: ObservableObject {
     internal var metadata: String? = nil
     internal var reference: String? = nil
     
+    internal var webCheckout: WebCheckout? = nil
+    internal var webView: WKWebView? = nil
+    
     private init() {}
     
     internal func reset() {
+        self.hasActiveTransaction = false
         self.product = nil
         self.domain = nil
         self.metadata = nil
         self.reference = nil
+        self.webCheckout = nil
+        self.webView = nil
     }
     
     // Called when a user starts a product purchase
-    internal func setUpTransaction(product: Product, domain: String, metadata: String?, reference: String?) {
+    internal func purchase(product: Product, domain: String, metadata: String?, reference: String?) {
         self.product = product
         self.domain = domain
         self.metadata = metadata
         self.reference = reference
-    }
-    
-    internal func rebuildTransactionOnWalletChanged() {
-        buildTransaction()
-    }
-    
-    internal func buildTransaction() {
-        bottomSheetViewModel.setPurchaseState(newState: .loading)
         
-        if let product = product, let domain = domain {
-            // 1. Get Wallet
-            self.walletUseCases.getWallet() {
-                result in
-                
-                switch result {
-                case .success(let wallet):
-                    
-                    if let moneyAmount = Double(product.priceValue) {
-                        
-                        DispatchQueue.main.async {
-                            
-                            let guestUID = MMPUseCases.shared.getGuestUID()
-                            let oemID = MMPUseCases.shared.getOEMID()
-                            
-                            // 3. Show loaded view
-                            self.bottomSheetViewModel.setPurchaseState(newState: .paying)
-                        }
-                    } else { self.bottomSheetViewModel.transactionFailedWith(error: .unknown(message: "Failed to build transaction", description: "Missig required parameters: moneyAmount is nil at TransactionViewModel.swift:buildTransaction"))
-                    }
-                case .failure(let error):
-                    switch error {
-                    case .failed(let message, let description, let request):
-                        self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
-                    case .noInternet(let message, let description, let request):
-                        self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
-                    }
-                }
+
+        DispatchQueue.main.async {
+            let guestUID = MMPUseCases.shared.getGuestUID()
+            
+            // 1. Build the Web Checkout to process the transaction
+            self.webCheckout = WebCheckout(domain: domain, product: product.sku, metadata: self.metadata, reference: self.reference, guestUID: guestUID)
+            
+            // 2. Show loaded view
+            self.hasActiveTransaction = true
+        }
+    }
+    
+    // Handles the dismiss (click on the zone above the bottom sheet) for the multiple states of the bottom sheet
+    internal func dismiss() {
+        self.cancel()
+    }
+    
+    // Dismiss Bottom Sheet
+    private func dismissVC() {
+        if let rootViewController = UIApplication.shared.windows.first?.rootViewController,
+           let presentedPurchaseVC = rootViewController.presentedViewController as? PurchaseViewController {
+            
+            var delay = 0.3
+            if KeyboardObserver.shared.isKeyboardVisible { delay = 0.45 }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                presentedPurchaseVC.dismissPurchase()
+                self.hasActiveTransaction = false
             }
-        } else { bottomSheetViewModel.transactionFailedWith(error: .systemError(message: "Failed to build transaction", description: "Missing required parameters: product is nil or domain is nil at TransactionViewModel.swift:buildTransaction"))
+        }
+        
+        self.reset() // Clear data related to finished purchase
+    }
+    
+    internal func cancel() {
+        let result : TransactionResult = .userCancelled
+        TransactionViewModel.shared.sendResult(result: result)
+        self.dismissVC()
+    }
+    
+    internal func failed(error: AppCoinsSDKError, description: String? = nil) {
+        switch error {
+        case .networkError:
+            let result: TransactionResult = .failed(error: error)
+            self.sendResult(result: result)
+            DispatchQueue.main.async { self.hasActiveTransaction = false }
+        default:
+            let result: TransactionResult = .failed(error: error)
+            self.sendResult(result: result)
+            DispatchQueue.main.async { self.hasActiveTransaction = false }
         }
     }
     
     internal func sendResult(result: TransactionResult) {
         NotificationCenter.default.post(name: NSNotification.Name("APPCPurchaseResult"), object: nil, userInfo: ["TransactionResult" : result])
+    }
+    
+    internal func setOrientation(orientation: Orientation) { self.orientation = orientation }
+    
+    internal func handleWebViewDeeplink(deeplink: String) {
+        guard let webView = webView else {
+            Utils.log("WebView is not defined on authentication redirect")
+            return
+        }
+        
+        guard var components = URLComponents(string: deeplink) else {
+            Utils.log("Not a valid URL")
+            return
+        }
+        
+        components.scheme = nil
+        guard let trimmedURL = components.string else {
+            Utils.log("Failed to trim scheme from URL")
+            return
+        }
+        
+        let trimmedPrefixURL = trimmedURL.hasPrefix("//") ? String(trimmedURL.dropFirst(2)) : trimmedURL
+        let finalURL = trimmedPrefixURL.hasSuffix("#") ? String(trimmedPrefixURL.dropLast(1)) : trimmedPrefixURL
+        
+        webView.evaluateJavaScript("window.handleAuthenticationRedirect('\(finalURL)')") { result, error in
+            if let error = error {
+                Utils.log("Error sending message to WebView: \(error.localizedDescription)")
+            } else {
+                Utils.log("Called window.handleAuthenticationRedirect('\(finalURL)') successfully")
+            }
+        }
     }
 }
