@@ -12,8 +12,7 @@ import UIKit
 
 internal struct BottomSheetView: View {
     
-    @State private var isPresented = false
-    @ObservedObject internal var viewModel: BottomSheetViewModel = BottomSheetViewModel.shared
+    @ObservedObject internal var viewModel: TransactionViewModel = TransactionViewModel.shared
     @Environment(\.colorScheme) var colorScheme
     
     internal var body: some View {

@@ -11,7 +11,8 @@ import SwiftUI
 
 struct WebCheckoutView: UIViewRepresentable {
     
-    @ObservedObject var transactionViewModel: TransactionViewModel = TransactionViewModel.shared
+    @ObservedObject var viewModel: TransactionViewModel = TransactionViewModel.shared
+    @Environment(\.colorScheme) var colorScheme
     
     func makeUIView(context: Context) -> WKWebView {
         let contentController = WKUserContentController()
@@ -30,14 +31,16 @@ struct WebCheckoutView: UIViewRepresentable {
         let webView = WKWebView(frame: .zero, configuration: configuration)
         webView.navigationDelegate = context.coordinator
         webView.allowsBackForwardNavigationGestures = false
+        webView.backgroundColor = UIColor(self.colorScheme == .dark ? ColorsUi.APC_WebViewDarkMode : ColorsUi.APC_WebViewLightMode) // or any other UIColor
+        webView.isOpaque = false
         if #available(iOS 16.4, *) { webView.isInspectable = true }
 
-        BottomSheetViewModel.shared.webView = webView
+        TransactionViewModel.shared.webView = webView
         return webView
     }
     
     func updateUIView(_ webView: WKWebView, context: Context) {
-        if let url = transactionViewModel.webCheckoutURL, webView.url != url { webView.load(URLRequest(url: url)) }
+        if let URL = viewModel.webCheckout?.URL, webView.url != URL { webView.load(URLRequest(url: URL)) }
     }
     
     func makeCoordinator() -> Coordinator { Coordinator(self) }
