@@ -67,12 +67,6 @@ internal struct WebCheckout {
         }
     }
     
-//    internal func getURL() -> URL? {
-//        var components = URLComponents(string: BuildConfiguration.webCheckoutURL)
-//        components?.queryItems = asQueryItems()
-//        return components?.url
-//    }
-    
     private static func getLangAndCountry() -> (langCode: String, countryCode: String) {
         var langCode: String = ""
         var countryCode: String = ""
