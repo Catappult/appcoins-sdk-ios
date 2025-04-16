@@ -7,7 +7,7 @@
 
 import SwiftUI
 import UIKit
-import WebKit
+@_implementationOnly import WebKit
 
 internal class WebPaymentInterface: NSObject, WKScriptMessageHandler {
     
