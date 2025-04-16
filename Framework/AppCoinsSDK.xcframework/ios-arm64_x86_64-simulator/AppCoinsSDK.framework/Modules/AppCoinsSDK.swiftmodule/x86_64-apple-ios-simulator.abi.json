@@ -1217,56 +1217,6 @@
       },
       {
         "kind": "Import",
-        "name": "CryptoKit",
-        "printedName": "CryptoKit",
-        "declKind": "Import",
-        "moduleName": "AppCoinsSDK",
-        "declAttributes": [
-          "ImplementationOnly"
-        ]
-      },
-      {
-        "kind": "Import",
-        "name": "CryptoSwift",
-        "printedName": "CryptoSwift",
-        "declKind": "Import",
-        "moduleName": "AppCoinsSDK",
-        "declAttributes": [
-          "ImplementationOnly"
-        ]
-      },
-      {
-        "kind": "Import",
-        "name": "web3swift",
-        "printedName": "web3swift",
-        "declKind": "Import",
-        "moduleName": "AppCoinsSDK",
-        "declAttributes": [
-          "ImplementationOnly"
-        ]
-      },
-      {
-        "kind": "Import",
-        "name": "Web3Core",
-        "printedName": "Web3Core",
-        "declKind": "Import",
-        "moduleName": "AppCoinsSDK",
-        "declAttributes": [
-          "ImplementationOnly"
-        ]
-      },
-      {
-        "kind": "Import",
-        "name": "Foundation",
-        "printedName": "Foundation",
-        "declKind": "Import",
-        "moduleName": "AppCoinsSDK",
-        "declAttributes": [
-          "RawDocComment"
-        ]
-      },
-      {
-        "kind": "Import",
         "name": "SwiftUI",
         "printedName": "SwiftUI",
         "declKind": "Import",
@@ -3790,6 +3740,36 @@
       },
       {
         "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
         "name": "SwiftyRSA",
         "printedName": "SwiftyRSA",
         "declKind": "Import",
@@ -4286,36 +4266,6 @@
       },
       {
         "kind": "Import",
-        "name": "web3swift",
-        "printedName": "web3swift",
-        "declKind": "Import",
-        "moduleName": "AppCoinsSDK",
-        "declAttributes": [
-          "ImplementationOnly"
-        ]
-      },
-      {
-        "kind": "Import",
-        "name": "Web3Core",
-        "printedName": "Web3Core",
-        "declKind": "Import",
-        "moduleName": "AppCoinsSDK",
-        "declAttributes": [
-          "ImplementationOnly"
-        ]
-      },
-      {
-        "kind": "Import",
-        "name": "Foundation",
-        "printedName": "Foundation",
-        "declKind": "Import",
-        "moduleName": "AppCoinsSDK",
-        "declAttributes": [
-          "RawDocComment"
-        ]
-      },
-      {
-        "kind": "Import",
         "name": "Foundation",
         "printedName": "Foundation",
         "declKind": "Import",
@@ -4613,13 +4563,6 @@
       "offset": 224,
       "length": 3,
       "value": "[]"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Entities\/ClientWallet.swift",
-      "kind": "StringLiteral",
-      "offset": 620,
-      "length": 2,
-      "value": "\"\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
@@ -5170,42 +5113,42 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/GuestWalletRaw.swift",
       "kind": "StringLiteral",
-      "offset": 321,
+      "offset": 320,
       "length": 9,
       "value": "\"address\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/GuestWalletRaw.swift",
       "kind": "StringLiteral",
-      "offset": 350,
+      "offset": 349,
       "length": 5,
       "value": "\"ewt\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/GuestWalletRaw.swift",
       "kind": "StringLiteral",
-      "offset": 381,
+      "offset": 380,
       "length": 11,
       "value": "\"signature\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/GuestWalletRaw.swift",
       "kind": "StringLiteral",
-      "offset": 321,
+      "offset": 320,
       "length": 9,
       "value": "\"address\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/GuestWalletRaw.swift",
       "kind": "StringLiteral",
-      "offset": 350,
+      "offset": 349,
       "length": 5,
       "value": "\"ewt\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/GuestWalletRaw.swift",
       "kind": "StringLiteral",
-      "offset": 381,
+      "offset": 380,
       "length": 11,
       "value": "\"signature\""
     },
@@ -5268,7 +5211,7 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/KeychainHelper.swift",
       "kind": "StringLiteral",
-      "offset": 306,
+      "offset": 336,
       "length": 9,
       "value": "\"network\""
     },
@@ -5700,6 +5643,34 @@
       "value": "\"UNKNOWN\""
     },
     {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/StorageWalletRaw.swift",
+      "kind": "StringLiteral",
+      "offset": 1370,
+      "length": 14,
+      "value": "\"GUEST_WALLET\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/StorageWalletRaw.swift",
+      "kind": "StringLiteral",
+      "offset": 1405,
+      "length": 13,
+      "value": "\"USER_WALLET\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/StorageWalletRaw.swift",
+      "kind": "StringLiteral",
+      "offset": 1370,
+      "length": 14,
+      "value": "\"GUEST_WALLET\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/StorageWalletRaw.swift",
+      "kind": "StringLiteral",
+      "offset": 1405,
+      "length": 13,
+      "value": "\"USER_WALLET\""
+    },
+    {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/ViewModels\/TransactionViewModel.swift",
       "kind": "BooleanLiteral",
       "offset": 369,
@@ -5765,23 +5736,23 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Utils.swift",
       "kind": "StringLiteral",
-      "offset": 1896,
+      "offset": 1909,
       "length": 7,
       "value": "\"Debug\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Repositories\/Wallet\/WalletRepository.swift",
       "kind": "StringLiteral",
-      "offset": 432,
-      "length": 19,
-      "value": "\"ActiveWalletCache\""
+      "offset": 438,
+      "length": 18,
+      "value": "\"GuestWalletCache\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Repositories\/Wallet\/WalletRepository.swift",
       "kind": "StringLiteral",
-      "offset": 566,
+      "offset": 563,
       "length": 17,
-      "value": "\"WalletListCache\""
+      "value": "\"UserWalletCache\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Entities\/WebCheckout.swift",
@@ -5828,6 +5799,13 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/WebPaymentInterfaceMethod.swift",
       "kind": "StringLiteral",
+      "offset": 391,
+      "length": 17,
+      "value": "\"setActiveWallet\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/WebPaymentInterfaceMethod.swift",
+      "kind": "StringLiteral",
       "offset": 186,
       "length": 18,
       "value": "\"onPurchaseResult\""
@@ -5852,6 +5830,13 @@
       "offset": 339,
       "length": 24,
       "value": "\"handleExternalRedirect\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/WebPaymentInterfaceMethod.swift",
+      "kind": "StringLiteral",
+      "offset": 391,
+      "length": 17,
+      "value": "\"setActiveWallet\""
     }
   ]
 }

@@ -20,6 +20,13 @@ internal class UserWallet: Wallet, Codable {
         self.refreshToken = refreshToken
         self.added = Date()
     }
+    
+    internal init(raw: UserWalletRaw) {
+        self.address = raw.address
+        self.authToken = raw.authToken
+        self.refreshToken = raw.refreshToken
+        self.added = Date()
+    }
 
     internal func getWalletAddress() -> String { return self.address }
     
