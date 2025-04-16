@@ -1,0 +1,127 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.10 (swiftlang-5.10.0.13 clang-1500.3.9.4)
+// swift-module-flags: -target arm64-apple-ios14.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name AppCoinsSDK
+import DeveloperToolsSupport
+import Foundation
+import Swift
+import SwiftUI
+import UIKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public enum AppCoinsSDKError : Swift.Error, Swift.CustomStringConvertible {
+  case networkError(debugInfo: AppCoinsSDK.DebugInfo)
+  case systemError(debugInfo: AppCoinsSDK.DebugInfo)
+  case notEntitled(debugInfo: AppCoinsSDK.DebugInfo)
+  case productUnavailable(debugInfo: AppCoinsSDK.DebugInfo)
+  case purchaseNotAllowed(debugInfo: AppCoinsSDK.DebugInfo)
+  case unknown(debugInfo: AppCoinsSDK.DebugInfo)
+  public var description: Swift.String {
+    get
+  }
+}
+@_hasMissingDesignatedInitializers public class DebugInfo {
+  final public let message: Swift.String
+  final public let description: Swift.String
+  final public let request: AppCoinsSDK.DebugRequestInfo?
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class DebugRequestInfo {
+  final public let url: Swift.String
+  final public let method: AppCoinsSDK.RequestMethod
+  final public let body: Swift.String
+  final public let responseData: Swift.String
+  final public let statusCode: Swift.Int
+  @objc deinit
+}
+public struct AppcSDK {
+  #if compiler(>=5.3) && $AsyncAwait
+  public static func isAvailable() async -> Swift.Bool
+  #endif
+  public static func handle(redirectURL: Foundation.URL?) -> Swift.Bool
+}
+public struct Product {
+  public let sku: Swift.String
+  public let title: Swift.String
+  public let description: Swift.String?
+  public let priceCurrency: Swift.String
+  public let priceValue: Swift.String
+  public let priceLabel: Swift.String
+  public let priceSymbol: Swift.String
+  #if compiler(>=5.3) && $AsyncAwait
+  public static func products(domain: Swift.String = (Bundle.main.bundleIdentifier ?? ""), for identifiers: [Swift.String]? = nil) async throws -> [AppCoinsSDK.Product]
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  public func purchase(domain: Swift.String = (Bundle.main.bundleIdentifier ?? ""), payload: Swift.String? = nil, orderID: Swift.String = String(Date.timeIntervalSinceReferenceDate)) async -> AppCoinsSDK.TransactionResult
+  #endif
+}
+@_hasMissingDesignatedInitializers public class Purchase : Swift.Codable {
+  final public let uid: Swift.String
+  final public let sku: Swift.String
+  public var state: Swift.String
+  final public let orderUid: Swift.String
+  final public let payload: Swift.String?
+  final public let created: Swift.String
+  final public let verification: AppCoinsSDK.Purchase.PurchaseVerification
+  @_hasMissingDesignatedInitializers public class PurchaseVerification : Swift.Codable {
+    final public let type: Swift.String
+    final public let data: AppCoinsSDK.Purchase.PurchaseVerificationData
+    final public let signature: Swift.String
+    @objc deinit
+    public func encode(to encoder: any Swift.Encoder) throws
+    required public init(from decoder: any Swift.Decoder) throws
+  }
+  @_hasMissingDesignatedInitializers public class PurchaseVerificationData : Swift.Codable {
+    final public let orderId: Swift.String
+    final public let packageName: Swift.String
+    final public let productId: Swift.String
+    final public let purchaseTime: Swift.Int
+    final public let purchaseToken: Swift.String
+    final public let purchaseState: Swift.Int
+    final public let developerPayload: Swift.String
+    @objc deinit
+    public func encode(to encoder: any Swift.Encoder) throws
+    required public init(from decoder: any Swift.Decoder) throws
+  }
+  #if compiler(>=5.3) && $AsyncAwait
+  public func finish(domain: Swift.String = (Bundle.main.bundleIdentifier ?? "")) async throws
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  public static func all(domain: Swift.String = (Bundle.main.bundleIdentifier ?? "")) async throws -> [AppCoinsSDK.Purchase]
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  public static func latest(domain: Swift.String = (Bundle.main.bundleIdentifier ?? ""), sku: Swift.String) async throws -> AppCoinsSDK.Purchase?
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
+  public static func unfinished(domain: Swift.String = (Bundle.main.bundleIdentifier ?? "")) async throws -> [AppCoinsSDK.Purchase]
+  #endif
+  public static var updates: _Concurrency.AsyncStream<AppCoinsSDK.VerificationResult> {
+    get
+  }
+  @objc deinit
+  public func encode(to encoder: any Swift.Encoder) throws
+  required public init(from decoder: any Swift.Decoder) throws
+}
+public enum RequestMethod : Swift.String {
+  case GET
+  case POST
+  case UNKNOWN
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum TransactionResult {
+  case success(verificationResult: AppCoinsSDK.VerificationResult)
+  case pending
+  case userCancelled
+  case failed(error: AppCoinsSDK.AppCoinsSDKError)
+}
+public enum VerificationResult {
+  case verified(purchase: AppCoinsSDK.Purchase)
+  case unverified(purchase: AppCoinsSDK.Purchase, verificationError: AppCoinsSDK.AppCoinsSDKError)
+}
+extension AppCoinsSDK.RequestMethod : Swift.Equatable {}
+extension AppCoinsSDK.RequestMethod : Swift.Hashable {}
+extension AppCoinsSDK.RequestMethod : Swift.RawRepresentable {}
