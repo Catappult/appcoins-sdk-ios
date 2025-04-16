@@ -10,7 +10,7 @@ import Foundation
 internal struct GuestWalletRaw: Codable {
     
     internal let address: String
-    internal let ewt: String?
+    internal let ewt: String
     internal let signature: String?
     
     internal enum CodingKeys: String, CodingKey {
