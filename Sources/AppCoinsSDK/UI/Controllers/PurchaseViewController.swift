@@ -18,8 +18,6 @@ internal class PurchaseViewController: UIViewController {
         
         updateOrientation()
         
-        overrideUserInterfaceStyle = .light
-        
         // Add the bottom sheet view
         let bottomSheetView = BottomSheetView()
         let content: () -> UIView = {
@@ -40,10 +38,10 @@ internal class PurchaseViewController: UIViewController {
     private func updateOrientation() {
         if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
             if scene.interfaceOrientation == .landscapeLeft || scene.interfaceOrientation == .landscapeRight {
-                BottomSheetViewModel.shared.setOrientation(orientation: .landscape)
+                TransactionViewModel.shared.setOrientation(orientation: .landscape)
                 orientation = .landscape
             } else {
-                BottomSheetViewModel.shared.setOrientation(orientation: .portrait)
+                TransactionViewModel.shared.setOrientation(orientation: .portrait)
                 orientation = .portrait
             }
         }
@@ -51,8 +49,6 @@ internal class PurchaseViewController: UIViewController {
     
     override internal var supportedInterfaceOrientations: UIInterfaceOrientationMask { return orientation }
     
-    @objc internal func dismissPurchase() {
-        self.dismiss(animated: false, completion: nil)
-    }
+    @objc internal func dismissPurchase() { self.dismiss(animated: false, completion: nil) }
     
 }

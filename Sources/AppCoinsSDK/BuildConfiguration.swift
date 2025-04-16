@@ -60,6 +60,15 @@ internal class BuildConfiguration {
         }
     }
     
+    static internal var webCheckoutURL: String {
+        switch environment {
+        case .debugSDKDev, .releaseSDKDev:
+            return "https://wallet.dev.appcoins.io/iap/sdk"
+        case .debugSDKProd, .releaseSDKProd:
+            return "https://developers.catappult.io"
+        }
+    }
+    
     static internal var billingServiceURL: String {
         switch environment {
         case .debugSDKDev, .releaseSDKDev:
@@ -89,4 +98,3 @@ internal enum SDKEnvironment: String {
     case debugSDKProd = "Debug AppCoins SDK Prod"
     case releaseSDKProd = "Release AppCoins SDK Prod"
 }
-

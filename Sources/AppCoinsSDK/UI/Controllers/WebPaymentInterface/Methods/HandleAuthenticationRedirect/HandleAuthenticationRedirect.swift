@@ -32,7 +32,7 @@ internal class HandleAuthenticationRedirect: NSObject {
                 return
             }
             
-            BottomSheetViewModel.shared.handleWebViewDeeplink(deeplink: callbackURL.absoluteString)
+            TransactionViewModel.shared.handleWebViewDeeplink(deeplink: callbackURL.absoluteString)
             return
         }
         
