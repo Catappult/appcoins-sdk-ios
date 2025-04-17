@@ -35,7 +35,7 @@ internal struct WebCheckout {
         "country" : "country",
         "metadata" : "metadata",
         "reference" : "reference",
-        "guestUID" : "guest_id",
+        "guestUID" : "guest_uid",
         "version" : "version",
         "langCode" : "lang_code",
         "paymentChannel" : "payment_channel"
