@@ -24,4 +24,9 @@ public struct PurchaseIntent: Sendable, Identifiable, Codable {
         PurchaseIntentManager.shared.unset()
         return await product.purchase(domain: domain, payload: payload, orderID: orderID)
     }
+    
+    /// Reject the purchase intent.
+    public func reject() {
+        PurchaseIntentManager.shared.unset()
+    }
 }
