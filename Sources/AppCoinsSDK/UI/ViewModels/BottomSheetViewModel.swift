@@ -480,8 +480,8 @@ internal class BottomSheetViewModel: ObservableObject {
     internal func transactionSucceeded() {
         if let successfulPurchase = self.successfulPurchase {
             let verificationResult: VerificationResult = .verified(purchase: successfulPurchase)
-            let transactionResult: TransactionResult = .success(verificationResult: verificationResult)
-            Utils.transactionResult(result: transactionResult)
+            let purchaseResult: PurchaseResult = .success(verificationResult: verificationResult)
+            Utils.purchaseResult(result: purchaseResult)
 
             if AuthViewModel.shared.isLoggedIn {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) { self.dismissSuccessWithAnimation() }
@@ -497,19 +497,19 @@ internal class BottomSheetViewModel: ObservableObject {
         if let description = description { DispatchQueue.main.async { self.purchaseFailedMessage = description } }
         switch error {
         case .networkError(let debugInfo):
-            let result : TransactionResult = .failed(error: error)
-            Utils.transactionResult(result: result)
+            let result : PurchaseResult = .failed(error: error)
+            Utils.purchaseResult(result: result)
             DispatchQueue.main.async { self.purchaseState = .nointernet }
         default:
-            let result : TransactionResult = .failed(error: error)
-            Utils.transactionResult(result: result)
+            let result : PurchaseResult = .failed(error: error)
+            Utils.purchaseResult(result: result)
             DispatchQueue.main.async { self.purchaseState = .failed }
         }
     }
     
     internal func userCancelled() {
-        let result : TransactionResult = .userCancelled
-        Utils.transactionResult(result: result)
+        let result : PurchaseResult = .userCancelled
+        Utils.purchaseResult(result: result)
         self.dismissVC()
     }
     
