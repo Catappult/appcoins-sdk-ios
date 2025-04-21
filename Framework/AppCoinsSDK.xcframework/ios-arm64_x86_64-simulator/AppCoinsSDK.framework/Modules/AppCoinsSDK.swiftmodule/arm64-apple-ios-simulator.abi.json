@@ -3283,9 +3283,9 @@
             "children": [
               {
                 "kind": "TypeNominal",
-                "name": "TransactionResult",
-                "printedName": "AppCoinsSDK.TransactionResult",
-                "usr": "s:11AppCoinsSDK17TransactionResultO"
+                "name": "PurchaseResult",
+                "printedName": "AppCoinsSDK.PurchaseResult",
+                "usr": "s:11AppCoinsSDK14PurchaseResultO"
               },
               {
                 "kind": "TypeNominal",
@@ -3318,12 +3318,63 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:11AppCoinsSDK7ProductV8purchase6domain7payload7orderIDAA17TransactionResultOSS_SSSgSStYaF",
-            "mangledName": "$s11AppCoinsSDK7ProductV8purchase6domain7payload7orderIDAA17TransactionResultOSS_SSSgSStYaF",
+            "usr": "s:11AppCoinsSDK7ProductV8purchase6domain7payload7orderIDAA14PurchaseResultOSS_SSSgSStYaF",
+            "mangledName": "$s11AppCoinsSDK7ProductV8purchase6domain7payload7orderIDAA14PurchaseResultOSS_SSSgSStYaF",
             "moduleName": "AppCoinsSDK",
             "declAttributes": [
               "AccessControl"
             ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Product",
+                "printedName": "AppCoinsSDK.Product",
+                "usr": "s:11AppCoinsSDK7ProductV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "any Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11AppCoinsSDK7ProductV4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s11AppCoinsSDK7ProductV4fromACs7Decoder_p_tKcfc",
+            "moduleName": "AppCoinsSDK",
+            "implicit": true,
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "encode",
+            "printedName": "encode(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoder",
+                "printedName": "any Swift.Encoder",
+                "usr": "s:s7EncoderP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11AppCoinsSDK7ProductV6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s11AppCoinsSDK7ProductV6encode2toys7Encoder_p_tKF",
+            "moduleName": "AppCoinsSDK",
+            "implicit": true,
+            "throwing": true,
             "funcSelfKind": "NonMutating"
           }
         ],
@@ -3333,6 +3384,22 @@
         "moduleName": "AppCoinsSDK",
         "declAttributes": [
           "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Decodable",
+            "printedName": "Decodable",
+            "usr": "s:Se",
+            "mangledName": "$sSe"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Encodable",
+            "printedName": "Encodable",
+            "usr": "s:SE",
+            "mangledName": "$sSE"
+          }
         ]
       },
       {
@@ -4591,21 +4658,21 @@
               {
                 "kind": "TypeNominal",
                 "name": "AsyncStream",
-                "printedName": "_Concurrency.AsyncStream<AppCoinsSDK.VerificationResult>",
+                "printedName": "_Concurrency.AsyncStream<AppCoinsSDK.PurchaseIntent>",
                 "children": [
                   {
                     "kind": "TypeNominal",
-                    "name": "VerificationResult",
-                    "printedName": "AppCoinsSDK.VerificationResult",
-                    "usr": "s:11AppCoinsSDK18VerificationResultO"
+                    "name": "PurchaseIntent",
+                    "printedName": "AppCoinsSDK.PurchaseIntent",
+                    "usr": "s:11AppCoinsSDK14PurchaseIntentV"
                   }
                 ],
                 "usr": "s:ScS"
               }
             ],
             "declKind": "Var",
-            "usr": "s:11AppCoinsSDK8PurchaseC7updatesScSyAA18VerificationResultOGvpZ",
-            "mangledName": "$s11AppCoinsSDK8PurchaseC7updatesScSyAA18VerificationResultOGvpZ",
+            "usr": "s:11AppCoinsSDK8PurchaseC7updatesScSyAA0D6IntentVGvpZ",
+            "mangledName": "$s11AppCoinsSDK8PurchaseC7updatesScSyAA0D6IntentVGvpZ",
             "moduleName": "AppCoinsSDK",
             "static": true,
             "declAttributes": [
@@ -4621,21 +4688,83 @@
                   {
                     "kind": "TypeNominal",
                     "name": "AsyncStream",
-                    "printedName": "_Concurrency.AsyncStream<AppCoinsSDK.VerificationResult>",
+                    "printedName": "_Concurrency.AsyncStream<AppCoinsSDK.PurchaseIntent>",
                     "children": [
                       {
                         "kind": "TypeNominal",
-                        "name": "VerificationResult",
-                        "printedName": "AppCoinsSDK.VerificationResult",
-                        "usr": "s:11AppCoinsSDK18VerificationResultO"
+                        "name": "PurchaseIntent",
+                        "printedName": "AppCoinsSDK.PurchaseIntent",
+                        "usr": "s:11AppCoinsSDK14PurchaseIntentV"
                       }
                     ],
                     "usr": "s:ScS"
                   }
                 ],
                 "declKind": "Accessor",
-                "usr": "s:11AppCoinsSDK8PurchaseC7updatesScSyAA18VerificationResultOGvgZ",
-                "mangledName": "$s11AppCoinsSDK8PurchaseC7updatesScSyAA18VerificationResultOGvgZ",
+                "usr": "s:11AppCoinsSDK8PurchaseC7updatesScSyAA0D6IntentVGvgZ",
+                "mangledName": "$s11AppCoinsSDK8PurchaseC7updatesScSyAA0D6IntentVGvgZ",
+                "moduleName": "AppCoinsSDK",
+                "static": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "intent",
+            "printedName": "intent",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "AppCoinsSDK.PurchaseIntent?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "PurchaseIntent",
+                    "printedName": "AppCoinsSDK.PurchaseIntent",
+                    "usr": "s:11AppCoinsSDK14PurchaseIntentV"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11AppCoinsSDK8PurchaseC6intentAA0D6IntentVSgvpZ",
+            "mangledName": "$s11AppCoinsSDK8PurchaseC6intentAA0D6IntentVSgvpZ",
+            "moduleName": "AppCoinsSDK",
+            "static": true,
+            "declAttributes": [
+              "Final",
+              "AccessControl"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "AppCoinsSDK.PurchaseIntent?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "PurchaseIntent",
+                        "printedName": "AppCoinsSDK.PurchaseIntent",
+                        "usr": "s:11AppCoinsSDK14PurchaseIntentV"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11AppCoinsSDK8PurchaseC6intentAA0D6IntentVSgvgZ",
+                "mangledName": "$s11AppCoinsSDK8PurchaseC6intentAA0D6IntentVSgvgZ",
                 "moduleName": "AppCoinsSDK",
                 "static": true,
                 "declAttributes": [
@@ -4790,6 +4919,733 @@
         "moduleName": "AppCoinsSDK",
         "declAttributes": [
           "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "PurchaseIntent",
+        "printedName": "PurchaseIntent",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "id",
+            "printedName": "id",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UUID",
+                "printedName": "Foundation.UUID",
+                "usr": "s:10Foundation4UUIDV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11AppCoinsSDK14PurchaseIntentV2id10Foundation4UUIDVvp",
+            "mangledName": "$s11AppCoinsSDK14PurchaseIntentV2id10Foundation4UUIDVvp",
+            "moduleName": "AppCoinsSDK",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UUID",
+                    "printedName": "Foundation.UUID",
+                    "usr": "s:10Foundation4UUIDV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11AppCoinsSDK14PurchaseIntentV2id10Foundation4UUIDVvg",
+                "mangledName": "$s11AppCoinsSDK14PurchaseIntentV2id10Foundation4UUIDVvg",
+                "moduleName": "AppCoinsSDK",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "product",
+            "printedName": "product",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Product",
+                "printedName": "AppCoinsSDK.Product",
+                "usr": "s:11AppCoinsSDK7ProductV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11AppCoinsSDK14PurchaseIntentV7productAA7ProductVvp",
+            "mangledName": "$s11AppCoinsSDK14PurchaseIntentV7productAA7ProductVvp",
+            "moduleName": "AppCoinsSDK",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Product",
+                    "printedName": "AppCoinsSDK.Product",
+                    "usr": "s:11AppCoinsSDK7ProductV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11AppCoinsSDK14PurchaseIntentV7productAA7ProductVvg",
+                "mangledName": "$s11AppCoinsSDK14PurchaseIntentV7productAA7ProductVvg",
+                "moduleName": "AppCoinsSDK",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "timestamp",
+            "printedName": "timestamp",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Date",
+                "printedName": "Foundation.Date",
+                "usr": "s:10Foundation4DateV"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11AppCoinsSDK14PurchaseIntentV9timestamp10Foundation4DateVvp",
+            "mangledName": "$s11AppCoinsSDK14PurchaseIntentV9timestamp10Foundation4DateVvp",
+            "moduleName": "AppCoinsSDK",
+            "declAttributes": [
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Date",
+                    "printedName": "Foundation.Date",
+                    "usr": "s:10Foundation4DateV"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11AppCoinsSDK14PurchaseIntentV9timestamp10Foundation4DateVvg",
+                "mangledName": "$s11AppCoinsSDK14PurchaseIntentV9timestamp10Foundation4DateVvg",
+                "moduleName": "AppCoinsSDK",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(product:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "PurchaseIntent",
+                "printedName": "AppCoinsSDK.PurchaseIntent",
+                "usr": "s:11AppCoinsSDK14PurchaseIntentV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Product",
+                "printedName": "AppCoinsSDK.Product",
+                "usr": "s:11AppCoinsSDK7ProductV"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11AppCoinsSDK14PurchaseIntentV7productAcA7ProductV_tcfc",
+            "mangledName": "$s11AppCoinsSDK14PurchaseIntentV7productAcA7ProductV_tcfc",
+            "moduleName": "AppCoinsSDK",
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "purchase",
+            "printedName": "purchase(domain:payload:orderID:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "PurchaseResult",
+                "printedName": "AppCoinsSDK.PurchaseResult",
+                "usr": "s:11AppCoinsSDK14PurchaseResultO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "hasDefaultArg": true,
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "hasDefaultArg": true,
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11AppCoinsSDK14PurchaseIntentV8purchase6domain7payload7orderIDAA0D6ResultOSS_SSSgSStYaF",
+            "mangledName": "$s11AppCoinsSDK14PurchaseIntentV8purchase6domain7payload7orderIDAA0D6ResultOSS_SSSgSStYaF",
+            "moduleName": "AppCoinsSDK",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "reject",
+            "printedName": "reject()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11AppCoinsSDK14PurchaseIntentV6rejectyyF",
+            "mangledName": "$s11AppCoinsSDK14PurchaseIntentV6rejectyyF",
+            "moduleName": "AppCoinsSDK",
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Constructor",
+            "name": "init",
+            "printedName": "init(from:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "PurchaseIntent",
+                "printedName": "AppCoinsSDK.PurchaseIntent",
+                "usr": "s:11AppCoinsSDK14PurchaseIntentV"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Decoder",
+                "printedName": "any Swift.Decoder",
+                "usr": "s:s7DecoderP"
+              }
+            ],
+            "declKind": "Constructor",
+            "usr": "s:11AppCoinsSDK14PurchaseIntentV4fromACs7Decoder_p_tKcfc",
+            "mangledName": "$s11AppCoinsSDK14PurchaseIntentV4fromACs7Decoder_p_tKcfc",
+            "moduleName": "AppCoinsSDK",
+            "implicit": true,
+            "throwing": true,
+            "init_kind": "Designated"
+          },
+          {
+            "kind": "Function",
+            "name": "encode",
+            "printedName": "encode(to:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Encoder",
+                "printedName": "any Swift.Encoder",
+                "usr": "s:s7EncoderP"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11AppCoinsSDK14PurchaseIntentV6encode2toys7Encoder_p_tKF",
+            "mangledName": "$s11AppCoinsSDK14PurchaseIntentV6encode2toys7Encoder_p_tKF",
+            "moduleName": "AppCoinsSDK",
+            "implicit": true,
+            "throwing": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:11AppCoinsSDK14PurchaseIntentV",
+        "mangledName": "$s11AppCoinsSDK14PurchaseIntentV",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Identifiable",
+            "printedName": "Identifiable",
+            "children": [
+              {
+                "kind": "TypeWitness",
+                "name": "ID",
+                "printedName": "ID",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UUID",
+                    "printedName": "Foundation.UUID",
+                    "usr": "s:10Foundation4UUIDV"
+                  }
+                ]
+              }
+            ],
+            "usr": "s:s12IdentifiableP",
+            "mangledName": "$ss12IdentifiableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Decodable",
+            "printedName": "Decodable",
+            "usr": "s:Se",
+            "mangledName": "$sSe"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Encodable",
+            "printedName": "Encodable",
+            "usr": "s:SE",
+            "mangledName": "$sSE"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "PurchaseResult",
+        "printedName": "PurchaseResult",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "success",
+            "printedName": "success",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(AppCoinsSDK.PurchaseResult.Type) -> (AppCoinsSDK.VerificationResult) -> AppCoinsSDK.PurchaseResult",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(AppCoinsSDK.VerificationResult) -> AppCoinsSDK.PurchaseResult",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "PurchaseResult",
+                        "printedName": "AppCoinsSDK.PurchaseResult",
+                        "usr": "s:11AppCoinsSDK14PurchaseResultO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(verificationResult: AppCoinsSDK.VerificationResult)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "VerificationResult",
+                            "printedName": "AppCoinsSDK.VerificationResult",
+                            "usr": "s:11AppCoinsSDK18VerificationResultO"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "AppCoinsSDK.PurchaseResult.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "PurchaseResult",
+                        "printedName": "AppCoinsSDK.PurchaseResult",
+                        "usr": "s:11AppCoinsSDK14PurchaseResultO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:11AppCoinsSDK14PurchaseResultO7successyAcA012VerificationE0O_tcACmF",
+            "mangledName": "$s11AppCoinsSDK14PurchaseResultO7successyAcA012VerificationE0O_tcACmF",
+            "moduleName": "AppCoinsSDK"
+          },
+          {
+            "kind": "Var",
+            "name": "pending",
+            "printedName": "pending",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(AppCoinsSDK.PurchaseResult.Type) -> AppCoinsSDK.PurchaseResult",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "PurchaseResult",
+                    "printedName": "AppCoinsSDK.PurchaseResult",
+                    "usr": "s:11AppCoinsSDK14PurchaseResultO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "AppCoinsSDK.PurchaseResult.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "PurchaseResult",
+                        "printedName": "AppCoinsSDK.PurchaseResult",
+                        "usr": "s:11AppCoinsSDK14PurchaseResultO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:11AppCoinsSDK14PurchaseResultO7pendingyA2CmF",
+            "mangledName": "$s11AppCoinsSDK14PurchaseResultO7pendingyA2CmF",
+            "moduleName": "AppCoinsSDK"
+          },
+          {
+            "kind": "Var",
+            "name": "userCancelled",
+            "printedName": "userCancelled",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(AppCoinsSDK.PurchaseResult.Type) -> AppCoinsSDK.PurchaseResult",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "PurchaseResult",
+                    "printedName": "AppCoinsSDK.PurchaseResult",
+                    "usr": "s:11AppCoinsSDK14PurchaseResultO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "AppCoinsSDK.PurchaseResult.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "PurchaseResult",
+                        "printedName": "AppCoinsSDK.PurchaseResult",
+                        "usr": "s:11AppCoinsSDK14PurchaseResultO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:11AppCoinsSDK14PurchaseResultO13userCancelledyA2CmF",
+            "mangledName": "$s11AppCoinsSDK14PurchaseResultO13userCancelledyA2CmF",
+            "moduleName": "AppCoinsSDK"
+          },
+          {
+            "kind": "Var",
+            "name": "failed",
+            "printedName": "failed",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(AppCoinsSDK.PurchaseResult.Type) -> (AppCoinsSDK.AppCoinsSDKError) -> AppCoinsSDK.PurchaseResult",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(AppCoinsSDK.AppCoinsSDKError) -> AppCoinsSDK.PurchaseResult",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "PurchaseResult",
+                        "printedName": "AppCoinsSDK.PurchaseResult",
+                        "usr": "s:11AppCoinsSDK14PurchaseResultO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(error: AppCoinsSDK.AppCoinsSDKError)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "AppCoinsSDKError",
+                            "printedName": "AppCoinsSDK.AppCoinsSDKError",
+                            "usr": "s:11AppCoinsSDK0aB8SDKErrorO"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "AppCoinsSDK.PurchaseResult.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "PurchaseResult",
+                        "printedName": "AppCoinsSDK.PurchaseResult",
+                        "usr": "s:11AppCoinsSDK14PurchaseResultO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:11AppCoinsSDK14PurchaseResultO6failedyAcA0aB8SDKErrorO_tcACmF",
+            "mangledName": "$s11AppCoinsSDK14PurchaseResultO6failedyAcA0aB8SDKErrorO_tcACmF",
+            "moduleName": "AppCoinsSDK"
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:11AppCoinsSDK14PurchaseResultO",
+        "mangledName": "$s11AppCoinsSDK14PurchaseResultO",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "AccessControl"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "VerificationResult",
+        "printedName": "VerificationResult",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "verified",
+            "printedName": "verified",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(AppCoinsSDK.VerificationResult.Type) -> (AppCoinsSDK.Purchase) -> AppCoinsSDK.VerificationResult",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(AppCoinsSDK.Purchase) -> AppCoinsSDK.VerificationResult",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "VerificationResult",
+                        "printedName": "AppCoinsSDK.VerificationResult",
+                        "usr": "s:11AppCoinsSDK18VerificationResultO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(purchase: AppCoinsSDK.Purchase)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Purchase",
+                            "printedName": "AppCoinsSDK.Purchase",
+                            "usr": "s:11AppCoinsSDK8PurchaseC"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "AppCoinsSDK.VerificationResult.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "VerificationResult",
+                        "printedName": "AppCoinsSDK.VerificationResult",
+                        "usr": "s:11AppCoinsSDK18VerificationResultO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:11AppCoinsSDK18VerificationResultO8verifiedyAcA8PurchaseC_tcACmF",
+            "mangledName": "$s11AppCoinsSDK18VerificationResultO8verifiedyAcA8PurchaseC_tcACmF",
+            "moduleName": "AppCoinsSDK"
+          },
+          {
+            "kind": "Var",
+            "name": "unverified",
+            "printedName": "unverified",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(AppCoinsSDK.VerificationResult.Type) -> (AppCoinsSDK.Purchase, AppCoinsSDK.AppCoinsSDKError) -> AppCoinsSDK.VerificationResult",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(AppCoinsSDK.Purchase, AppCoinsSDK.AppCoinsSDKError) -> AppCoinsSDK.VerificationResult",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "VerificationResult",
+                        "printedName": "AppCoinsSDK.VerificationResult",
+                        "usr": "s:11AppCoinsSDK18VerificationResultO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Tuple",
+                        "printedName": "(purchase: AppCoinsSDK.Purchase, verificationError: AppCoinsSDK.AppCoinsSDKError)",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "Purchase",
+                            "printedName": "AppCoinsSDK.Purchase",
+                            "usr": "s:11AppCoinsSDK8PurchaseC"
+                          },
+                          {
+                            "kind": "TypeNominal",
+                            "name": "AppCoinsSDKError",
+                            "printedName": "AppCoinsSDK.AppCoinsSDKError",
+                            "usr": "s:11AppCoinsSDK0aB8SDKErrorO"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "AppCoinsSDK.VerificationResult.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "VerificationResult",
+                        "printedName": "AppCoinsSDK.VerificationResult",
+                        "usr": "s:11AppCoinsSDK18VerificationResultO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:11AppCoinsSDK18VerificationResultO10unverifiedyAcA8PurchaseC_AA0aB8SDKErrorOtcACmF",
+            "mangledName": "$s11AppCoinsSDK18VerificationResultO10unverifiedyAcA8PurchaseC_AA0aB8SDKErrorOtcACmF",
+            "moduleName": "AppCoinsSDK"
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:11AppCoinsSDK18VerificationResultO",
+        "mangledName": "$s11AppCoinsSDK18VerificationResultO",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "AccessControl"
         ]
       },
       {
@@ -5455,352 +6311,6 @@
         "moduleName": "AppCoinsSDK",
         "declAttributes": [
           "RawDocComment"
-        ]
-      },
-      {
-        "kind": "Import",
-        "name": "Foundation",
-        "printedName": "Foundation",
-        "declKind": "Import",
-        "moduleName": "AppCoinsSDK",
-        "declAttributes": [
-          "RawDocComment"
-        ]
-      },
-      {
-        "kind": "TypeDecl",
-        "name": "TransactionResult",
-        "printedName": "TransactionResult",
-        "children": [
-          {
-            "kind": "Var",
-            "name": "success",
-            "printedName": "success",
-            "children": [
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
-                "printedName": "(AppCoinsSDK.TransactionResult.Type) -> (AppCoinsSDK.VerificationResult) -> AppCoinsSDK.TransactionResult",
-                "children": [
-                  {
-                    "kind": "TypeFunc",
-                    "name": "Function",
-                    "printedName": "(AppCoinsSDK.VerificationResult) -> AppCoinsSDK.TransactionResult",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "TransactionResult",
-                        "printedName": "AppCoinsSDK.TransactionResult",
-                        "usr": "s:11AppCoinsSDK17TransactionResultO"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Tuple",
-                        "printedName": "(verificationResult: AppCoinsSDK.VerificationResult)",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "VerificationResult",
-                            "printedName": "AppCoinsSDK.VerificationResult",
-                            "usr": "s:11AppCoinsSDK18VerificationResultO"
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Metatype",
-                    "printedName": "AppCoinsSDK.TransactionResult.Type",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "TransactionResult",
-                        "printedName": "AppCoinsSDK.TransactionResult",
-                        "usr": "s:11AppCoinsSDK17TransactionResultO"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ],
-            "declKind": "EnumElement",
-            "usr": "s:11AppCoinsSDK17TransactionResultO7successyAcA012VerificationE0O_tcACmF",
-            "mangledName": "$s11AppCoinsSDK17TransactionResultO7successyAcA012VerificationE0O_tcACmF",
-            "moduleName": "AppCoinsSDK"
-          },
-          {
-            "kind": "Var",
-            "name": "pending",
-            "printedName": "pending",
-            "children": [
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
-                "printedName": "(AppCoinsSDK.TransactionResult.Type) -> AppCoinsSDK.TransactionResult",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "TransactionResult",
-                    "printedName": "AppCoinsSDK.TransactionResult",
-                    "usr": "s:11AppCoinsSDK17TransactionResultO"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Metatype",
-                    "printedName": "AppCoinsSDK.TransactionResult.Type",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "TransactionResult",
-                        "printedName": "AppCoinsSDK.TransactionResult",
-                        "usr": "s:11AppCoinsSDK17TransactionResultO"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ],
-            "declKind": "EnumElement",
-            "usr": "s:11AppCoinsSDK17TransactionResultO7pendingyA2CmF",
-            "mangledName": "$s11AppCoinsSDK17TransactionResultO7pendingyA2CmF",
-            "moduleName": "AppCoinsSDK"
-          },
-          {
-            "kind": "Var",
-            "name": "userCancelled",
-            "printedName": "userCancelled",
-            "children": [
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
-                "printedName": "(AppCoinsSDK.TransactionResult.Type) -> AppCoinsSDK.TransactionResult",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "TransactionResult",
-                    "printedName": "AppCoinsSDK.TransactionResult",
-                    "usr": "s:11AppCoinsSDK17TransactionResultO"
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Metatype",
-                    "printedName": "AppCoinsSDK.TransactionResult.Type",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "TransactionResult",
-                        "printedName": "AppCoinsSDK.TransactionResult",
-                        "usr": "s:11AppCoinsSDK17TransactionResultO"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ],
-            "declKind": "EnumElement",
-            "usr": "s:11AppCoinsSDK17TransactionResultO13userCancelledyA2CmF",
-            "mangledName": "$s11AppCoinsSDK17TransactionResultO13userCancelledyA2CmF",
-            "moduleName": "AppCoinsSDK"
-          },
-          {
-            "kind": "Var",
-            "name": "failed",
-            "printedName": "failed",
-            "children": [
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
-                "printedName": "(AppCoinsSDK.TransactionResult.Type) -> (AppCoinsSDK.AppCoinsSDKError) -> AppCoinsSDK.TransactionResult",
-                "children": [
-                  {
-                    "kind": "TypeFunc",
-                    "name": "Function",
-                    "printedName": "(AppCoinsSDK.AppCoinsSDKError) -> AppCoinsSDK.TransactionResult",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "TransactionResult",
-                        "printedName": "AppCoinsSDK.TransactionResult",
-                        "usr": "s:11AppCoinsSDK17TransactionResultO"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Tuple",
-                        "printedName": "(error: AppCoinsSDK.AppCoinsSDKError)",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "AppCoinsSDKError",
-                            "printedName": "AppCoinsSDK.AppCoinsSDKError",
-                            "usr": "s:11AppCoinsSDK0aB8SDKErrorO"
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Metatype",
-                    "printedName": "AppCoinsSDK.TransactionResult.Type",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "TransactionResult",
-                        "printedName": "AppCoinsSDK.TransactionResult",
-                        "usr": "s:11AppCoinsSDK17TransactionResultO"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ],
-            "declKind": "EnumElement",
-            "usr": "s:11AppCoinsSDK17TransactionResultO6failedyAcA0aB8SDKErrorO_tcACmF",
-            "mangledName": "$s11AppCoinsSDK17TransactionResultO6failedyAcA0aB8SDKErrorO_tcACmF",
-            "moduleName": "AppCoinsSDK"
-          }
-        ],
-        "declKind": "Enum",
-        "usr": "s:11AppCoinsSDK17TransactionResultO",
-        "mangledName": "$s11AppCoinsSDK17TransactionResultO",
-        "moduleName": "AppCoinsSDK",
-        "declAttributes": [
-          "AccessControl"
-        ]
-      },
-      {
-        "kind": "TypeDecl",
-        "name": "VerificationResult",
-        "printedName": "VerificationResult",
-        "children": [
-          {
-            "kind": "Var",
-            "name": "verified",
-            "printedName": "verified",
-            "children": [
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
-                "printedName": "(AppCoinsSDK.VerificationResult.Type) -> (AppCoinsSDK.Purchase) -> AppCoinsSDK.VerificationResult",
-                "children": [
-                  {
-                    "kind": "TypeFunc",
-                    "name": "Function",
-                    "printedName": "(AppCoinsSDK.Purchase) -> AppCoinsSDK.VerificationResult",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "VerificationResult",
-                        "printedName": "AppCoinsSDK.VerificationResult",
-                        "usr": "s:11AppCoinsSDK18VerificationResultO"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Tuple",
-                        "printedName": "(purchase: AppCoinsSDK.Purchase)",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "Purchase",
-                            "printedName": "AppCoinsSDK.Purchase",
-                            "usr": "s:11AppCoinsSDK8PurchaseC"
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Metatype",
-                    "printedName": "AppCoinsSDK.VerificationResult.Type",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "VerificationResult",
-                        "printedName": "AppCoinsSDK.VerificationResult",
-                        "usr": "s:11AppCoinsSDK18VerificationResultO"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ],
-            "declKind": "EnumElement",
-            "usr": "s:11AppCoinsSDK18VerificationResultO8verifiedyAcA8PurchaseC_tcACmF",
-            "mangledName": "$s11AppCoinsSDK18VerificationResultO8verifiedyAcA8PurchaseC_tcACmF",
-            "moduleName": "AppCoinsSDK"
-          },
-          {
-            "kind": "Var",
-            "name": "unverified",
-            "printedName": "unverified",
-            "children": [
-              {
-                "kind": "TypeFunc",
-                "name": "Function",
-                "printedName": "(AppCoinsSDK.VerificationResult.Type) -> (AppCoinsSDK.Purchase, AppCoinsSDK.AppCoinsSDKError) -> AppCoinsSDK.VerificationResult",
-                "children": [
-                  {
-                    "kind": "TypeFunc",
-                    "name": "Function",
-                    "printedName": "(AppCoinsSDK.Purchase, AppCoinsSDK.AppCoinsSDKError) -> AppCoinsSDK.VerificationResult",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "VerificationResult",
-                        "printedName": "AppCoinsSDK.VerificationResult",
-                        "usr": "s:11AppCoinsSDK18VerificationResultO"
-                      },
-                      {
-                        "kind": "TypeNominal",
-                        "name": "Tuple",
-                        "printedName": "(purchase: AppCoinsSDK.Purchase, verificationError: AppCoinsSDK.AppCoinsSDKError)",
-                        "children": [
-                          {
-                            "kind": "TypeNominal",
-                            "name": "Purchase",
-                            "printedName": "AppCoinsSDK.Purchase",
-                            "usr": "s:11AppCoinsSDK8PurchaseC"
-                          },
-                          {
-                            "kind": "TypeNominal",
-                            "name": "AppCoinsSDKError",
-                            "printedName": "AppCoinsSDK.AppCoinsSDKError",
-                            "usr": "s:11AppCoinsSDK0aB8SDKErrorO"
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "kind": "TypeNominal",
-                    "name": "Metatype",
-                    "printedName": "AppCoinsSDK.VerificationResult.Type",
-                    "children": [
-                      {
-                        "kind": "TypeNominal",
-                        "name": "VerificationResult",
-                        "printedName": "AppCoinsSDK.VerificationResult",
-                        "usr": "s:11AppCoinsSDK18VerificationResultO"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ],
-            "declKind": "EnumElement",
-            "usr": "s:11AppCoinsSDK18VerificationResultO10unverifiedyAcA8PurchaseC_AA0aB8SDKErrorOtcACmF",
-            "mangledName": "$s11AppCoinsSDK18VerificationResultO10unverifiedyAcA8PurchaseC_AA0aB8SDKErrorOtcACmF",
-            "moduleName": "AppCoinsSDK"
-          }
-        ],
-        "declKind": "Enum",
-        "usr": "s:11AppCoinsSDK18VerificationResultO",
-        "mangledName": "$s11AppCoinsSDK18VerificationResultO",
-        "moduleName": "AppCoinsSDK",
-        "declAttributes": [
-          "AccessControl"
         ]
       },
       {
@@ -11824,14 +12334,14 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Entities\/Product.swift",
       "kind": "StringLiteral",
-      "offset": 1207,
+      "offset": 1216,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Entities\/Product.swift",
       "kind": "StringLiteral",
-      "offset": 4191,
+      "offset": 4200,
       "length": 2,
       "value": "\"\""
     },
@@ -11911,6 +12421,20 @@
       "offset": 360,
       "length": 4,
       "value": "true"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Entities\/PurchaseIntent.swift",
+      "kind": "StringLiteral",
+      "offset": 519,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Local\/PurchaseIntent\/PurchaseIntentClient.swift",
+      "kind": "StringLiteral",
+      "offset": 202,
+      "length": 21,
+      "value": "\"PurchaseIntent.json\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/RequestMethod.swift",
