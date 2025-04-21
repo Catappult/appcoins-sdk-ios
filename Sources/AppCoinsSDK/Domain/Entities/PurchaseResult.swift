@@ -1,5 +1,5 @@
 //
-//  TransactionResult.swift
+//  PurchaseResult.swift
 //
 //
 //  Created by aptoide on 24/05/2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum TransactionResult {
+public enum PurchaseResult {
     case success(verificationResult: VerificationResult)
     case pending
     case userCancelled
