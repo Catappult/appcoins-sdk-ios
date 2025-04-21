@@ -95,7 +95,7 @@ public struct AppcSDK {
                     if let sku = queryItems?.first(where: { $0.name == "product" })?.value {
                         Task {
                             guard let product = await try? Product.products(for: [sku]).first else { return }
-                            Purchase.send(PurchaseIntent(product: product))
+                            PurchaseIntentManager.shared.set(intent: PurchaseIntent(product: product))
                         }
                         
                         return true

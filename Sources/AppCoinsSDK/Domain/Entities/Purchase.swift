@@ -352,4 +352,8 @@ public class Purchase: Codable {
     internal static func send(_ intent: PurchaseIntent) {
         purchaseContinuation?.yield(intent)
     }
+    
+    public static var intent: PurchaseIntent? {
+        return PurchaseIntentManager.shared.current
+    }
 }
