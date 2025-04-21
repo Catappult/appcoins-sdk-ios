@@ -35,13 +35,13 @@ struct WebCheckoutView: UIViewRepresentable {
         webView.isOpaque = false
         if #available(iOS 16.4, *) { webView.isInspectable = true }
 
+        if let URL = viewModel.webCheckout?.URL { webView.load(URLRequest(url: URL)) }
+        
         TransactionViewModel.shared.webView = webView
         return webView
     }
     
-    func updateUIView(_ webView: WKWebView, context: Context) {
-        if let URL = viewModel.webCheckout?.URL, webView.url != URL { webView.load(URLRequest(url: URL)) }
-    }
+    func updateUIView(_ webView: WKWebView, context: Context) {}
     
     func makeCoordinator() -> Coordinator { Coordinator(self) }
     
