@@ -28,7 +28,6 @@ internal class SDKRepository: SDKRepositoryProtocol {
     
     internal func fetchPurchaseIntent() -> PurchaseIntent? {
         let intent = purchaseIntentService.fetch()
-        print("[AppCoinsSDK] Stored intent: \(intent)")
         return intent
     }
     

@@ -12,7 +12,6 @@ internal class PurchaseIntentClient: PurchaseIntentService {
     private let filename: String = "PurchaseIntent.json"
     
     internal func persist(intent: PurchaseIntent) {
-        print("[AppCoinsSDK] Persisting intent: \(intent)")
         guard let data = try? JSONEncoder().encode(intent) else { return }
         Utils.writeToFile(filename: filename, content: data)
     }
