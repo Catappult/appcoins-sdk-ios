@@ -8,6 +8,12 @@
 import Foundation
 
 internal protocol SDKRepositoryProtocol {
+    
     func isDefault() -> Bool?
     func setSDKDefault(value: Bool)
+    
+    func persistPurchaseIntent(intent: PurchaseIntent)
+    func fetchPurchaseIntent() -> PurchaseIntent?
+    func removePurchaseIntent()
+    
 }
