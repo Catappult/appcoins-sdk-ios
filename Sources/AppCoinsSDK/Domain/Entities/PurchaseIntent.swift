@@ -22,7 +22,7 @@ public struct PurchaseIntent: Sendable, Identifiable, Codable {
     /// Approve and *actually* perform the purchase.
     public func purchase(domain: String = (Bundle.main.bundleIdentifier ?? ""), payload: String? = nil, orderID: String = String(Date.timeIntervalSinceReferenceDate)) async -> PurchaseResult {
         PurchaseIntentManager.shared.unset()
-        return await product.purchase(domain: domain, payload: payload, orderID: orderID)
+        return await product.indirectPurchase(domain: domain, payload: payload, orderID: orderID)
     }
     
     /// Reject the purchase intent.
