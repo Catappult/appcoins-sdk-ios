@@ -5097,8 +5097,8 @@
           },
           {
             "kind": "Function",
-            "name": "purchase",
-            "printedName": "purchase(domain:payload:orderID:)",
+            "name": "confirm",
+            "printedName": "confirm(domain:payload:orderID:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -5137,8 +5137,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:11AppCoinsSDK14PurchaseIntentV8purchase6domain7payload7orderIDAA0D6ResultOSS_SSSgSStYaF",
-            "mangledName": "$s11AppCoinsSDK14PurchaseIntentV8purchase6domain7payload7orderIDAA0D6ResultOSS_SSSgSStYaF",
+            "usr": "s:11AppCoinsSDK14PurchaseIntentV7confirm6domain7payload7orderIDAA0D6ResultOSS_SSSgSStYaF",
+            "mangledName": "$s11AppCoinsSDK14PurchaseIntentV7confirm6domain7payload7orderIDAA0D6ResultOSS_SSSgSStYaF",
             "moduleName": "AppCoinsSDK",
             "declAttributes": [
               "AccessControl",
@@ -12404,7 +12404,7 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Entities\/PurchaseIntent.swift",
       "kind": "StringLiteral",
-      "offset": 519,
+      "offset": 518,
       "length": 2,
       "value": "\"\""
     },
