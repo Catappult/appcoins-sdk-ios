@@ -15,7 +15,40 @@ internal struct Utils {
     
     static internal let bottomSafeAreaHeight: CGFloat = UIApplication.shared.windows[0].safeAreaInsets.bottom
     static internal let topSafeAreaHeight: CGFloat = UIApplication.shared.windows[0].safeAreaInsets.top
- 
+    
+    static internal func writeToFile(
+        directory: FileManager.SearchPathDirectory = .applicationSupportDirectory,
+        domainMask: FileManager.SearchPathDomainMask = .userDomainMask,
+        filename: String,
+        content: Data
+    ) {
+        let baseURL = FileManager.default.urls(for: directory, in: domainMask)[0]
+        let fileURL = baseURL.appendingPathComponent(filename)
+        
+        let folderURL = fileURL.deletingLastPathComponent()
+        try? FileManager.default.createDirectory(at: folderURL, withIntermediateDirectories: true, attributes: nil)
+        
+        try? content.write(to: fileURL, options: .atomic)
+    }
+    
+    static internal func readFromFile(
+        directory: FileManager.SearchPathDirectory = .applicationSupportDirectory,
+        domainMask: FileManager.SearchPathDomainMask = .userDomainMask,
+        filename: String
+    ) -> Data? {
+        let fileURL: URL = FileManager.default.urls(for: directory, in: domainMask)[0].appendingPathComponent(filename)
+        return try? Data(contentsOf: fileURL)
+    }
+    
+    static internal func deleteFile(
+        directory: FileManager.SearchPathDirectory = .applicationSupportDirectory,
+        domainMask: FileManager.SearchPathDomainMask = .userDomainMask,
+        filename: String
+    ) {
+        let fileURL: URL = FileManager.default.urls(for: directory, in: domainMask)[0].appendingPathComponent(filename)
+        try? FileManager.default.removeItem(at: fileURL)
+    }
+    
     static internal func writeToPreferences(key: String, value: String?) throws -> Void {
         let preferences = UserDefaults.standard
         if value != nil { preferences.setValue(value, forKey: key) } else { preferences.removeObject(forKey: key) }
@@ -72,8 +105,8 @@ internal struct Utils {
         return Data(privateKey)
     }
     
-    static internal func transactionResult(result: TransactionResult) {
-        NotificationCenter.default.post(name: NSNotification.Name("APPCPurchaseResult"), object: nil, userInfo: ["TransactionResult" : result])
+    static internal func purchaseResult(result: PurchaseResult) {
+        NotificationCenter.default.post(name: NSNotification.Name("APPCPurchaseResult"), object: nil, userInfo: ["PurchaseResult" : result])
     }
 
     static internal func getAdyenGatewayAccess() -> String {
