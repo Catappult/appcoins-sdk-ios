@@ -686,6 +686,301 @@
             "moduleName": "AppCoinsSDK"
           },
           {
+            "kind": "Function",
+            "name": "networkError",
+            "printedName": "networkError(message:description:request:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "AppCoinsSDKError",
+                "printedName": "AppCoinsSDK.AppCoinsSDKError",
+                "usr": "s:11AppCoinsSDK0aB8SDKErrorO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "AppCoinsSDK.DebugRequestInfo?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "DebugRequestInfo",
+                    "printedName": "AppCoinsSDK.DebugRequestInfo",
+                    "usr": "s:11AppCoinsSDK16DebugRequestInfoC"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11AppCoinsSDK0aB8SDKErrorO12networkError7message11description7requestACSS_SSAA16DebugRequestInfoCSgtFZ",
+            "mangledName": "$s11AppCoinsSDK0aB8SDKErrorO12networkError7message11description7requestACSS_SSAA16DebugRequestInfoCSgtFZ",
+            "moduleName": "AppCoinsSDK",
+            "static": true,
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "systemError",
+            "printedName": "systemError(message:description:request:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "AppCoinsSDKError",
+                "printedName": "AppCoinsSDK.AppCoinsSDKError",
+                "usr": "s:11AppCoinsSDK0aB8SDKErrorO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "AppCoinsSDK.DebugRequestInfo?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "DebugRequestInfo",
+                    "printedName": "AppCoinsSDK.DebugRequestInfo",
+                    "usr": "s:11AppCoinsSDK16DebugRequestInfoC"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11AppCoinsSDK0aB8SDKErrorO11systemError7message11description7requestACSS_SSAA16DebugRequestInfoCSgtFZ",
+            "mangledName": "$s11AppCoinsSDK0aB8SDKErrorO11systemError7message11description7requestACSS_SSAA16DebugRequestInfoCSgtFZ",
+            "moduleName": "AppCoinsSDK",
+            "static": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "notEntitled",
+            "printedName": "notEntitled(message:description:request:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "AppCoinsSDKError",
+                "printedName": "AppCoinsSDK.AppCoinsSDKError",
+                "usr": "s:11AppCoinsSDK0aB8SDKErrorO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "AppCoinsSDK.DebugRequestInfo?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "DebugRequestInfo",
+                    "printedName": "AppCoinsSDK.DebugRequestInfo",
+                    "usr": "s:11AppCoinsSDK16DebugRequestInfoC"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11AppCoinsSDK0aB8SDKErrorO11notEntitled7message11description7requestACSS_SSAA16DebugRequestInfoCSgtFZ",
+            "mangledName": "$s11AppCoinsSDK0aB8SDKErrorO11notEntitled7message11description7requestACSS_SSAA16DebugRequestInfoCSgtFZ",
+            "moduleName": "AppCoinsSDK",
+            "static": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "productUnavailable",
+            "printedName": "productUnavailable(message:description:request:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "AppCoinsSDKError",
+                "printedName": "AppCoinsSDK.AppCoinsSDKError",
+                "usr": "s:11AppCoinsSDK0aB8SDKErrorO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "AppCoinsSDK.DebugRequestInfo?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "DebugRequestInfo",
+                    "printedName": "AppCoinsSDK.DebugRequestInfo",
+                    "usr": "s:11AppCoinsSDK16DebugRequestInfoC"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11AppCoinsSDK0aB8SDKErrorO18productUnavailable7message11description7requestACSS_SSAA16DebugRequestInfoCSgtFZ",
+            "mangledName": "$s11AppCoinsSDK0aB8SDKErrorO18productUnavailable7message11description7requestACSS_SSAA16DebugRequestInfoCSgtFZ",
+            "moduleName": "AppCoinsSDK",
+            "static": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "purchaseNotAllowed",
+            "printedName": "purchaseNotAllowed(message:description:request:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "AppCoinsSDKError",
+                "printedName": "AppCoinsSDK.AppCoinsSDKError",
+                "usr": "s:11AppCoinsSDK0aB8SDKErrorO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "AppCoinsSDK.DebugRequestInfo?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "DebugRequestInfo",
+                    "printedName": "AppCoinsSDK.DebugRequestInfo",
+                    "usr": "s:11AppCoinsSDK16DebugRequestInfoC"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11AppCoinsSDK0aB8SDKErrorO18purchaseNotAllowed7message11description7requestACSS_SSAA16DebugRequestInfoCSgtFZ",
+            "mangledName": "$s11AppCoinsSDK0aB8SDKErrorO18purchaseNotAllowed7message11description7requestACSS_SSAA16DebugRequestInfoCSgtFZ",
+            "moduleName": "AppCoinsSDK",
+            "static": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "unknown",
+            "printedName": "unknown(message:description:request:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "AppCoinsSDKError",
+                "printedName": "AppCoinsSDK.AppCoinsSDKError",
+                "usr": "s:11AppCoinsSDK0aB8SDKErrorO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "AppCoinsSDK.DebugRequestInfo?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "DebugRequestInfo",
+                    "printedName": "AppCoinsSDK.DebugRequestInfo",
+                    "usr": "s:11AppCoinsSDK16DebugRequestInfoC"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11AppCoinsSDK0aB8SDKErrorO7unknown7message11description7requestACSS_SSAA16DebugRequestInfoCSgtFZ",
+            "mangledName": "$s11AppCoinsSDK0aB8SDKErrorO7unknown7message11description7requestACSS_SSAA16DebugRequestInfoCSgtFZ",
+            "moduleName": "AppCoinsSDK",
+            "static": true,
+            "declAttributes": [
+              "AccessControl"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
             "kind": "Var",
             "name": "description",
             "printedName": "description",
