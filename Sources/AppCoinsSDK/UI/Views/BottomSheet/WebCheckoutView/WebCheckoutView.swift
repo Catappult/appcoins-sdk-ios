@@ -29,6 +29,7 @@ struct WebCheckoutView: UIViewRepresentable {
         configuration.preferences = preferences
         
         let webView = WKWebView(frame: .zero, configuration: configuration)
+        webView.customUserAgent = "AppCoinsWalletIOS/.."
         webView.navigationDelegate = context.coordinator
         webView.allowsBackForwardNavigationGestures = false
         webView.backgroundColor = UIColor(self.colorScheme == .dark ? ColorsUi.APC_WebViewDarkMode : ColorsUi.APC_WebViewLightMode) // or any other UIColor
