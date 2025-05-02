@@ -17,27 +17,27 @@ public enum AppCoinsSDKError: Error, CustomStringConvertible {
     case unknown(debugInfo: DebugInfo)
     
     // Convenience initializers for common error types
-    internal static func networkError(message: String, description: String, request: DebugRequestInfo? = nil) -> AppCoinsSDKError {
+    public static func networkError(message: String, description: String, request: DebugRequestInfo? = nil) -> AppCoinsSDKError {
         return .networkError(debugInfo: DebugInfo(message: message, description: description, request: request))
     }
     
-    internal static func systemError(message: String, description: String, request: DebugRequestInfo? = nil) -> AppCoinsSDKError {
+    public static func systemError(message: String, description: String, request: DebugRequestInfo? = nil) -> AppCoinsSDKError {
         return .systemError(debugInfo: DebugInfo(message: message, description: description, request: request))
     }
     
-    internal static func notEntitled(message: String, description: String, request: DebugRequestInfo? = nil) -> AppCoinsSDKError {
+    public static func notEntitled(message: String, description: String, request: DebugRequestInfo? = nil) -> AppCoinsSDKError {
         return .notEntitled(debugInfo: DebugInfo(message: message, description: description, request: request))
     }
     
-    internal static func productUnavailable(message: String, description: String, request: DebugRequestInfo? = nil) -> AppCoinsSDKError {
+    public static func productUnavailable(message: String, description: String, request: DebugRequestInfo? = nil) -> AppCoinsSDKError {
         return .productUnavailable(debugInfo: DebugInfo(message: message, description: description, request: request))
     }
     
-    internal static func purchaseNotAllowed(message: String, description: String, request: DebugRequestInfo? = nil) -> AppCoinsSDKError {
+    public static func purchaseNotAllowed(message: String, description: String, request: DebugRequestInfo? = nil) -> AppCoinsSDKError {
         return .purchaseNotAllowed(debugInfo: DebugInfo(message: message, description: description, request: request))
     }
     
-    internal static func unknown(message: String, description: String, request: DebugRequestInfo? = nil) -> AppCoinsSDKError {
+    public static func unknown(message: String, description: String, request: DebugRequestInfo? = nil) -> AppCoinsSDKError {
         return .unknown(debugInfo: DebugInfo(message: message, description: description, request: request))
     }
     
