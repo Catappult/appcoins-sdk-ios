@@ -16,6 +16,12 @@ public enum AppCoinsSDKError : Swift.Error, Swift.CustomStringConvertible {
   case productUnavailable(debugInfo: AppCoinsSDK.DebugInfo)
   case purchaseNotAllowed(debugInfo: AppCoinsSDK.DebugInfo)
   case unknown(debugInfo: AppCoinsSDK.DebugInfo)
+  public static func networkError(message: Swift.String, description: Swift.String, request: AppCoinsSDK.DebugRequestInfo? = nil) -> AppCoinsSDK.AppCoinsSDKError
+  public static func systemError(message: Swift.String, description: Swift.String, request: AppCoinsSDK.DebugRequestInfo? = nil) -> AppCoinsSDK.AppCoinsSDKError
+  public static func notEntitled(message: Swift.String, description: Swift.String, request: AppCoinsSDK.DebugRequestInfo? = nil) -> AppCoinsSDK.AppCoinsSDKError
+  public static func productUnavailable(message: Swift.String, description: Swift.String, request: AppCoinsSDK.DebugRequestInfo? = nil) -> AppCoinsSDK.AppCoinsSDKError
+  public static func purchaseNotAllowed(message: Swift.String, description: Swift.String, request: AppCoinsSDK.DebugRequestInfo? = nil) -> AppCoinsSDK.AppCoinsSDKError
+  public static func unknown(message: Swift.String, description: Swift.String, request: AppCoinsSDK.DebugRequestInfo? = nil) -> AppCoinsSDK.AppCoinsSDKError
   public var description: Swift.String {
     get
   }
@@ -115,6 +121,7 @@ public struct PurchaseIntent : Swift.Sendable, Swift.Identifiable, Swift.Codable
   #if compiler(>=5.3) && $AsyncAwait
   public func confirm(domain: Swift.String = (Bundle.main.bundleIdentifier ?? ""), payload: Swift.String? = nil, orderID: Swift.String = String(Date.timeIntervalSinceReferenceDate)) async -> AppCoinsSDK.PurchaseResult
   #endif
+  public func reject()
   public typealias ID = Foundation.UUID
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
