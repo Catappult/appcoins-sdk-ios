@@ -1,5 +1,5 @@
 //
-//  HandleAuthenticationRedirect.swift
+//  HandleIOSRedirect.swift
 //
 //
 //  Created by aptoide on 07/04/2025.
@@ -8,15 +8,15 @@
 import SwiftUI
 @_implementationOnly import AuthenticationServices
 
-internal class HandleAuthenticationRedirect: NSObject {
+internal class HandleIOSRedirect: NSObject {
     
-    internal static let shared = HandleAuthenticationRedirect()
+    internal static let shared = HandleIOSRedirect()
     
     private override init() {}
     
-    internal func handle(body: HandleAuthenticationRedirectBody) {
+    internal func handle(body: HandleIOSRedirectBody) {
         guard let authenticationURL = URL(string: body.URL) else {
-            Utils.log("Invalid URL on handleAuthenticationRedirect")
+            Utils.log("Invalid URL on handleIOSRedirect")
             return
         }
       
@@ -24,11 +24,11 @@ internal class HandleAuthenticationRedirect: NSObject {
         var authSession = ASWebAuthenticationSession(url: authenticationURL, callbackURLScheme: "\(Bundle.main.bundleIdentifier).iap") { callbackURL, error in
             
             if let error = error { 
-                Utils.log("Error on handleAuthenticationRedirect: \(error.localizedDescription)")
+                Utils.log("Error on handleIOSRedirect: \(error.localizedDescription)")
                 return
             }
             guard let callbackURL = callbackURL else { 
-                Utils.log("Invalid callback URL on handleAuthenticationRedirect")
+                Utils.log("Invalid callback URL on handleIOSRedirect")
                 return
             }
             
@@ -43,7 +43,7 @@ internal class HandleAuthenticationRedirect: NSObject {
 }
 
 // Conform to ASWebAuthenticationPresentationContextProviding
-extension HandleAuthenticationRedirect: ASWebAuthenticationPresentationContextProviding {
+extension HandleIOSRedirect: ASWebAuthenticationPresentationContextProviding {
     internal func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
         return UIApplication.shared.windows.first(where: { $0.isKeyWindow }) ?? ASPresentationAnchor()
     }
