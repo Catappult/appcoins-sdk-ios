@@ -49,12 +49,12 @@ internal class WebPaymentInterface: NSObject, WKScriptMessageHandler {
                 Utils.log("Failed to parse onError body with error: \(error)")
                 return
             }
-        case .handleAuthenticationRedirect:
+        case .handleIOSRedirect:
             do {
-                let handleAuthenticationRedirectBody = try JSONDecoder().decode(HandleAuthenticationRedirectBody.self, from: params)
-                HandleAuthenticationRedirect.shared.handle(body: handleAuthenticationRedirectBody)
+                let handleIOSRedirectBody = try JSONDecoder().decode(HandleIOSRedirectBody.self, from: params)
+                HandleIOSRedirect.shared.handle(body: handleIOSRedirectBody)
             } catch {
-                Utils.log("Failed to parse handleAuthenticationRedirect body with error: \(error)")
+                Utils.log("Failed to parse handleIOSRedirect body with error: \(error)")
                 return
             }
         case .handleExternalRedirect:
