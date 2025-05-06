@@ -73,6 +73,14 @@ internal class WebPaymentInterface: NSObject, WKScriptMessageHandler {
                 Utils.log("Failed to parse setActiveWallet body body with error: \(error)")
                 return
             }
+        case .handleInternalRedirect:
+            do {
+                let handleInternalRedirectBody = try JSONDecoder().decode(HandleInternalRedirectBody.self, from: params)
+                HandleInternalRedirect.shared.handle(body: handleInternalRedirectBody)
+            } catch {
+                Utils.log("Failed to parse handleInternalRedirect body with error: \(error)")
+                return
+            }
         }
     }
 }
