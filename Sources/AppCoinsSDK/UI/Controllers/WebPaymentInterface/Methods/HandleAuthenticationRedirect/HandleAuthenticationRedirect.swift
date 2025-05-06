@@ -1,5 +1,5 @@
 //
-//  HandleIOSRedirect.swift
+//  HandleAuthenticationRedirect.swift
 //
 //
 //  Created by aptoide on 07/04/2025.
@@ -8,27 +8,27 @@
 import SwiftUI
 @_implementationOnly import AuthenticationServices
 
-internal class HandleIOSRedirect: NSObject {
+internal class HandleAuthenticationRedirect: NSObject {
     
-    internal static let shared = HandleIOSRedirect()
+    internal static let shared = HandleAuthenticationRedirect()
     
     private override init() {}
     
-    internal func handle(body: HandleIOSRedirectBody) {
+    internal func handle(body: HandleAuthenticationRedirectBody) {
         guard let authenticationURL = URL(string: body.URL) else {
-            Utils.log("Invalid URL on handleIOSRedirect")
+            Utils.log("Invalid URL on handleAuthenticationRedirect")
             return
         }
       
         // Initialize ASWebAuthenticationSession
         var authSession = ASWebAuthenticationSession(url: authenticationURL, callbackURLScheme: "\(Bundle.main.bundleIdentifier).iap") { callbackURL, error in
             
-            if let error = error { 
-                Utils.log("Error on handleIOSRedirect: \(error.localizedDescription)")
+            if let error = error {
+                Utils.log("Error on handleAuthenticationRedirect: \(error.localizedDescription)")
                 return
             }
-            guard let callbackURL = callbackURL else { 
-                Utils.log("Invalid callback URL on handleIOSRedirect")
+            guard let callbackURL = callbackURL else {
+                Utils.log("Invalid callback URL on handleAuthenticationRedirect")
                 return
             }
             
@@ -43,7 +43,7 @@ internal class HandleIOSRedirect: NSObject {
 }
 
 // Conform to ASWebAuthenticationPresentationContextProviding
-extension HandleIOSRedirect: ASWebAuthenticationPresentationContextProviding {
+extension HandleAuthenticationRedirect: ASWebAuthenticationPresentationContextProviding {
     internal func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
         return UIApplication.shared.windows.first(where: { $0.isKeyWindow }) ?? ASPresentationAnchor()
     }

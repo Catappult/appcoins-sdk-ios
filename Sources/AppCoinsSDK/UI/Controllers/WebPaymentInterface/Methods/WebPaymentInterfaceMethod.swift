@@ -10,7 +10,7 @@ import Foundation
 internal enum WebPaymentInterfaceMethod: String {
     case onPurchaseResult = "onPurchaseResult"
     case onError = "onError"
-    case handleIOSRedirect = "handleIOSRedirect"
+    case handleAuthenticationRedirect = "handleAuthenticationRedirect"
     case handleExternalRedirect = "handleExternalRedirect"
     case setActiveWallet = "setActiveWallet"
 }
