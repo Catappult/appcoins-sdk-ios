@@ -81,7 +81,7 @@ internal class TransactionViewModel: ObservableObject {
     }
     
     internal func cancel() {
-        let result : TransactionResult = .userCancelled
+        let result : PurchaseResult = .userCancelled
         TransactionViewModel.shared.sendResult(result: result)
         self.dismissVC()
     }
@@ -89,18 +89,18 @@ internal class TransactionViewModel: ObservableObject {
     internal func failed(error: AppCoinsSDKError, description: String? = nil) {
         switch error {
         case .networkError:
-            let result: TransactionResult = .failed(error: error)
+            let result: PurchaseResult = .failed(error: error)
             self.sendResult(result: result)
             DispatchQueue.main.async { self.hasActiveTransaction = false }
         default:
-            let result: TransactionResult = .failed(error: error)
+            let result: PurchaseResult = .failed(error: error)
             self.sendResult(result: result)
             DispatchQueue.main.async { self.hasActiveTransaction = false }
         }
     }
     
-    internal func sendResult(result: TransactionResult) {
-        NotificationCenter.default.post(name: NSNotification.Name("APPCPurchaseResult"), object: nil, userInfo: ["TransactionResult" : result])
+    internal func sendResult(result: PurchaseResult) {
+        NotificationCenter.default.post(name: NSNotification.Name("APPCPurchaseResult"), object: nil, userInfo: ["PurchaseResult" : result])
     }
     
     internal func setOrientation(orientation: Orientation) { self.orientation = orientation }

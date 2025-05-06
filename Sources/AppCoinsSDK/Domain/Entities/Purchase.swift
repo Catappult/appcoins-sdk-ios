@@ -328,16 +328,20 @@ public class Purchase: Codable {
     }
     
     // Defines a Stream that will emit updates for indirect IAP
-    private static var purchaseContinuation: AsyncStream<VerificationResult>.Continuation?
-    private static let purchaseStream: AsyncStream<VerificationResult> = {
+    private static var purchaseContinuation: AsyncStream<PurchaseIntent>.Continuation?
+    private static let purchaseStream: AsyncStream<PurchaseIntent> = {
         AsyncStream { continuation in purchaseContinuation = continuation }
     }()
     
-    public static var updates: AsyncStream<VerificationResult> {
+    public static var updates: AsyncStream<PurchaseIntent> {
         return purchaseStream
     }
+
+    internal static func send(_ intent: PurchaseIntent) {
+        purchaseContinuation?.yield(intent)
+    }
     
-    internal static func send(_ verificationResult: VerificationResult) {
-        purchaseContinuation?.yield(verificationResult)
+    public static var intent: PurchaseIntent? {
+        return PurchaseIntentManager.shared.current
     }
 }

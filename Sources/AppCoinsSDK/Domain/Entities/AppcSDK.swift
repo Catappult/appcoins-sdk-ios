@@ -86,19 +86,9 @@ public struct AppcSDK {
                     }
                 case "purchase":
                     if let sku = queryItems?.first(where: { $0.name == "product" })?.value {
-                        let payload = queryItems?.first(where: { $0.name == "payload" })?.value
-                        let orderID = queryItems?.first(where: { $0.name == "orderID" })?.value
-                        
                         Task {
                             guard let product = await try? Product.products(for: [sku]).first else { return }
-                            
-                            let result = orderID != nil
-                            ? await product.indirectPurchase(payload: payload, orderID: orderID!)
-                            : await product.indirectPurchase(payload: payload)
-                            
-                            if case let .success(verificationResult) = result {
-                                Purchase.send(verificationResult)
-                            }
+                            PurchaseIntentManager.shared.set(intent: PurchaseIntent(product: product))
                         }
                     }
                 default:

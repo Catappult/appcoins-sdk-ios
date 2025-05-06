@@ -8,7 +8,7 @@
 import Foundation
 @_implementationOnly import StoreKit
 
-public struct Product {
+public struct Product: Codable {
     
     public let sku: String
     public let title: String
@@ -87,7 +87,7 @@ public struct Product {
         }
     }
     
-    public func purchase(domain: String = (Bundle.main.bundleIdentifier ?? ""), payload: String? = nil, orderID: String = String(Date.timeIntervalSinceReferenceDate)) async -> TransactionResult {
+    public func purchase(domain: String = (Bundle.main.bundleIdentifier ?? ""), payload: String? = nil, orderID: String = String(Date.timeIntervalSinceReferenceDate)) async -> PurchaseResult {
         
         if await !AppcSDK.isAvailable() || TransactionViewModel.shared.hasActiveTransaction {
             return .failed(error: .purchaseNotAllowed(message: "Purchase Failed", description: "AppcSDK not available or has active transaction at Product.swift:purchase", request: nil))
@@ -109,7 +109,7 @@ public struct Product {
                 var observer: NSObjectProtocol?
                 observer = NotificationCenter.default.addObserver(forName: Notification.Name("APPCPurchaseResult"), object: nil, queue: nil) { notification in
                     if let userInfo = notification.userInfo {
-                        if let status = userInfo["TransactionResult"] as? TransactionResult {
+                        if let status = userInfo["PurchaseResult"] as? PurchaseResult {
                             continuation.resume(returning: status)
                             
                             if let observer = observer {
@@ -124,7 +124,7 @@ public struct Product {
         }
     }
     
-    internal func indirectPurchase(domain: String = (Bundle.main.bundleIdentifier ?? ""), payload: String? = nil, orderID: String = String(Date.timeIntervalSinceReferenceDate)) async -> TransactionResult {
+    internal func indirectPurchase(domain: String = (Bundle.main.bundleIdentifier ?? ""), payload: String? = nil, orderID: String = String(Date.timeIntervalSinceReferenceDate)) async -> PurchaseResult {
         
         if TransactionViewModel.shared.hasActiveTransaction {
             return .failed(error: .purchaseNotAllowed(message: "Purchase Failed", description: "AppcSDK not available or has active transaction at Product.swift:purchase", request: nil))
@@ -146,7 +146,7 @@ public struct Product {
                 var observer: NSObjectProtocol?
                 observer = NotificationCenter.default.addObserver(forName: Notification.Name("APPCPurchaseResult"), object: nil, queue: nil) { notification in
                     if let userInfo = notification.userInfo {
-                        if let status = userInfo["TransactionResult"] as? TransactionResult {
+                        if let status = userInfo["PurchaseResult"] as? PurchaseResult {
                             continuation.resume(returning: status)
                             
                             if let observer = observer {
