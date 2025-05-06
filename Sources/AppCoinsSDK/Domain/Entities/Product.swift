@@ -89,7 +89,7 @@ public struct Product {
     
     public func purchase(domain: String = (Bundle.main.bundleIdentifier ?? ""), payload: String? = nil, orderID: String = String(Date.timeIntervalSinceReferenceDate)) async -> TransactionResult {
         
-        if await !AppcSDK.isAvailable() || TransactionViewModel.shared.hasActiveTransaction {
+        if await !AppcSDK.isAvailable() || PurchaseViewModel.shared.hasActivePurchase {
             return .failed(error: .purchaseNotAllowed(message: "Purchase Failed", description: "AppcSDK not available or has active transaction at Product.swift:purchase", request: nil))
         } else {
             
@@ -102,7 +102,7 @@ public struct Product {
                 // domain – the app's domain registered in catappult
                 // payload – information that the developer might want to pass with the transaction
                 // orderID – a reference so that the developer can identify unique transactions
-                TransactionViewModel.shared.purchase(product: self, domain: domain, metadata: payload, reference: orderID)
+                PurchaseViewModel.shared.purchase(product: self, domain: domain, metadata: payload, reference: orderID)
             }
             
             let result = try? await withCheckedThrowingContinuation { continuation in
@@ -126,7 +126,7 @@ public struct Product {
     
     internal func indirectPurchase(domain: String = (Bundle.main.bundleIdentifier ?? ""), payload: String? = nil, orderID: String = String(Date.timeIntervalSinceReferenceDate)) async -> TransactionResult {
         
-        if TransactionViewModel.shared.hasActiveTransaction {
+        if PurchaseViewModel.shared.hasActivePurchase {
             return .failed(error: .purchaseNotAllowed(message: "Purchase Failed", description: "AppcSDK not available or has active transaction at Product.swift:purchase", request: nil))
         } else {
             
@@ -139,7 +139,7 @@ public struct Product {
                 // domain – the app's domain registered in catappult
                 // payload – information that the developer might want to pass with the transaction
                 // orderID – a reference so that the developer can identify unique transactions
-                TransactionViewModel.shared.purchase(product: self, domain: domain, metadata: payload, reference: orderID)
+                PurchaseViewModel.shared.purchase(product: self, domain: domain, metadata: payload, reference: orderID)
             }
             
             let result = try? await withCheckedThrowingContinuation { continuation in
