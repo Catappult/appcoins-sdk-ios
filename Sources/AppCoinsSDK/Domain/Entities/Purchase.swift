@@ -1,6 +1,6 @@
 //
 //  Purchase.swift
-//  
+//
 //
 //  Created by aptoide on 24/05/2023.
 //
@@ -16,7 +16,7 @@ public class Purchase: Codable {
     public let payload: String?
     public let created: String
     public let verification: PurchaseVerification
-
+    
     public class PurchaseVerification: Codable {
         public let type: String
         public let data: PurchaseVerificationData
@@ -60,15 +60,13 @@ public class Purchase: Codable {
     }
     
     internal static func verify(domain: String = (Bundle.main.bundleIdentifier ?? ""), purchaseUID: String, completion: @escaping (Result<Purchase, AppCoinsSDKError>) -> Void ) {
-        let walletUseCases = WalletUseCases.shared
-        let transactionUseCases = TransactionUseCases.shared
         
-        walletUseCases.getWallet() {
+        WalletUseCases.shared.getWallet() {
             result in
             
             switch result {
             case .success(let wallet):
-                transactionUseCases.verifyPurchase(domain: domain, uid: purchaseUID, wa: wallet) {
+                TransactionUseCases.shared.verifyPurchase(domain: domain, uid: purchaseUID, wa: wallet) {
                     result in
                     
                     switch result {
@@ -98,15 +96,13 @@ public class Purchase: Codable {
     
     // only accessible internally – the SDK acknowledges the purchase
     internal func acknowledge(domain: String = (Bundle.main.bundleIdentifier ?? ""), completion: @escaping (AppCoinsSDKError?) -> Void) {
-        let walletUseCases = WalletUseCases.shared
-        let transactionUseCases = TransactionUseCases.shared
         
-        walletUseCases.getWallet() {
+        WalletUseCases.shared.getWallet() {
             result in
             
             switch result {
             case .success(let wallet):
-                transactionUseCases.acknowledgePurchase(domain: domain, uid: self.uid, wa: wallet) {
+                TransactionUseCases.shared.acknowledgePurchase(domain: domain, uid: self.uid, wa: wallet) {
                     result in
                     
                     switch result {
@@ -137,10 +133,8 @@ public class Purchase: Codable {
     // accessible by the developer – the app consumes the purchase and attributes the item to the user
     public func finish(domain: String = (Bundle.main.bundleIdentifier ?? "")) async throws {
         return try await withCheckedThrowingContinuation { continuation in
-            let walletUseCases = WalletUseCases.shared
-            let transactionUseCases = TransactionUseCases.shared
             
-            walletUseCases.getWalletList() { walletList in
+            WalletUseCases.shared.getWalletList() { walletList in
                 
                 let group = DispatchGroup()
                 let queue = DispatchQueue(label: "consume-queue", attributes: .concurrent)
@@ -152,7 +146,7 @@ public class Purchase: Codable {
                 for wallet in walletList {
                     group.enter()
                     queue.sync {
-                        transactionUseCases.consumePurchase(domain: domain, uid: self.uid, wa: wallet) {
+                        TransactionUseCases.shared.consumePurchase(domain: domain, uid: self.uid, wa: wallet) {
                             result in
                             switch result {
                             case .success(_):
@@ -183,10 +177,8 @@ public class Purchase: Codable {
     // get all the user's purchases
     public static func all(domain: String = (Bundle.main.bundleIdentifier ?? "")) async throws -> [Purchase] {
         return try await withCheckedThrowingContinuation { continuation in
-            let walletUseCases = WalletUseCases.shared
-            let transactionUseCases = TransactionUseCases.shared
             
-            walletUseCases.getWalletList() { walletList in
+            WalletUseCases.shared.getWalletList() { walletList in
                 
                 let group = DispatchGroup()
                 let queue = DispatchQueue(label: "get-all-purchases-queue", attributes: .concurrent)
@@ -197,7 +189,7 @@ public class Purchase: Codable {
                 for wallet in walletList {
                     group.enter()
                     queue.sync {
-                        transactionUseCases.getAllPurchases(domain: domain, wa: wallet) {
+                        TransactionUseCases.shared.getAllPurchases(domain: domain, wa: wallet) {
                             result in
                             
                             switch result {
@@ -232,10 +224,8 @@ public class Purchase: Codable {
     
     public static func latest(domain: String = (Bundle.main.bundleIdentifier ?? ""), sku: String) async throws -> Purchase? {
         return try await withCheckedThrowingContinuation { continuation in
-            let walletUseCases = WalletUseCases.shared
-            let transactionUseCases = TransactionUseCases.shared
             
-            walletUseCases.getWalletList { walletList in
+            WalletUseCases.shared.getWalletList { walletList in
                 
                 let group = DispatchGroup()
                 let queue = DispatchQueue(label: "get-latest-purchase-queue", attributes: .concurrent)
@@ -246,7 +236,7 @@ public class Purchase: Codable {
                 for wallet in walletList {
                     group.enter()
                     queue.sync {
-                        transactionUseCases.getLatestPurchase(domain: domain, sku: sku, wa: wallet) {
+                        TransactionUseCases.shared.getLatestPurchase(domain: domain, sku: sku, wa: wallet) {
                             result in
                             switch result {
                             case .success(let purchase):
@@ -281,10 +271,8 @@ public class Purchase: Codable {
     // we consider unfinished purchases any purchase that have neither been acknowledged nor consumed
     public static func unfinished(domain: String = (Bundle.main.bundleIdentifier ?? "")) async throws -> [Purchase] {
         return try await withCheckedThrowingContinuation { continuation in
-            let walletUseCases = WalletUseCases.shared
-            let transactionUseCases = TransactionUseCases.shared
             
-            walletUseCases.getWalletList { walletList in
+            WalletUseCases.shared.getWalletList { walletList in
                 
                 let group = DispatchGroup()
                 let queue = DispatchQueue(label: "get-unfinished-purchases-queue", attributes: .concurrent)
@@ -295,7 +283,7 @@ public class Purchase: Codable {
                 for wallet in walletList {
                     group.enter()
                     queue.sync {
-                        transactionUseCases.getPurchasesByState(domain: domain, state: ["PENDING", "ACKNOWLEDGED"], wa: wallet) {
+                        TransactionUseCases.shared.getPurchasesByState(domain: domain, state: ["PENDING", "ACKNOWLEDGED"], wa: wallet) {
                             result in
                             switch result {
                             case .success(let purchases):

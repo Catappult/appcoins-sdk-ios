@@ -1,6 +1,6 @@
 //
 //  PurchaseViewController.swift
-//  
+//
 //
 //  Created by aptoide on 07/03/2023.
 //
@@ -17,8 +17,6 @@ internal class PurchaseViewController: UIViewController {
         super.viewDidLoad()
         
         updateOrientation()
-        
-        overrideUserInterfaceStyle = .light
         
         // Add the bottom sheet view
         let bottomSheetView = BottomSheetView()
@@ -40,38 +38,17 @@ internal class PurchaseViewController: UIViewController {
     private func updateOrientation() {
         if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
             if scene.interfaceOrientation == .landscapeLeft || scene.interfaceOrientation == .landscapeRight {
-                BottomSheetViewModel.shared.setOrientation(orientation: .landscape)
+                TransactionViewModel.shared.setOrientation(orientation: .landscape)
                 orientation = .landscape
             } else {
-                BottomSheetViewModel.shared.setOrientation(orientation: .portrait)
+                TransactionViewModel.shared.setOrientation(orientation: .portrait)
                 orientation = .portrait
             }
         }
     }
     
-    override internal var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-            return orientation
-        }
+    override internal var supportedInterfaceOrientations: UIInterfaceOrientationMask { return orientation }
     
-    @objc internal func dismissPurchase() {
-        self.dismiss(animated: false, completion: nil)
-    }
+    @objc internal func dismissPurchase() { self.dismiss(animated: false, completion: nil) }
     
-    internal func presentLogoutAlert() {
-        let alert = UIAlertController(title: Constants.logOut, message: Constants.confirmLogOutText, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: Constants.cancelText, style: .cancel))
-        alert.addAction(UIAlertAction(title: Constants.logOut, style: .destructive, handler: { _ in
-            AuthViewModel.shared.logout()
-        }))
-        self.present(alert, animated: true, completion: nil)
-    }
-    
-    internal func presentPayPalLogoutAlert() {
-        let alert = UIAlertController(title: Constants.logOut, message: Constants.confirmLogOutText, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: Constants.cancelText, style: .cancel))
-        alert.addAction(UIAlertAction(title: Constants.logOut, style: .destructive, handler: { _ in
-            PayPalDirectViewModel.shared.logoutPayPal()
-        }))
-        self.present(alert, animated: true, completion: nil)
-    }
 }

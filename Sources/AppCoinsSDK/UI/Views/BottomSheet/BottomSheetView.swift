@@ -8,82 +8,30 @@
 import Foundation
 import SwiftUI
 import UIKit
+@_implementationOnly import WebKit
 
 internal struct BottomSheetView: View {
     
-    @ObservedObject internal var viewModel: BottomSheetViewModel = BottomSheetViewModel.shared
-    @ObservedObject internal var adyenController: AdyenController = AdyenController.shared
-    @ObservedObject internal var paypalViewModel: PayPalDirectViewModel = PayPalDirectViewModel.shared
-    @ObservedObject internal var authViewModel: AuthViewModel = AuthViewModel.shared
-    
-    @State private var isSafeAreaPresented = false
+    @ObservedObject internal var viewModel: TransactionViewModel = TransactionViewModel.shared
+    @Environment(\.colorScheme) var colorScheme
     
     internal var body: some View {
-        ZStack {
-            
-            Color.black.opacity(0.3)
-                .onTapGesture {
-                    if viewModel.isKeyboardVisible {
-                        AdyenController.shared.presentableComponent?.viewController.view.findAndResignFirstResponder()
-                        UIApplication.shared.dismissKeyboard()
-                    } else {
-                        viewModel.dismiss()
+        HStack(spacing: 0) {}
+            .sheet(isPresented: $viewModel.hasActiveTransaction, onDismiss: viewModel.dismiss, content: {
+                if #available(iOS 17.4, *) {
+                    VStack(spacing: 0) {
+                        VStack{}.frame(height: 20)
+                        
+                        WebCheckoutView()
+                            .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 116: UIScreen.main.bounds.width)
+                            .presentationCompactAdaptation(.sheet)
+                            .presentationDetents([viewModel.orientation == .landscape ? .fraction(0.9) : .fraction(0.6)])
+                        
                     }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .background(self.colorScheme == .dark ? ColorsUi.APC_WebViewDarkMode : ColorsUi.APC_WebViewLightMode)
                 }
-                .ignoresSafeArea()
-            
-            ZStack {
-                VStack(spacing: 0) {
-                    VStack{ }.frame(maxWidth: .infinity, maxHeight: .infinity)
-                    
-                    if [.loading, .paying, .adyen, .login].contains(viewModel.purchaseState) && !(viewModel.purchaseState == .adyen && adyenController.state == .storedCreditCard) {
-                        PurchaseBottomSheet()
-                    }
-                    
-                    if viewModel.purchaseState == .processing {
-                        ProcessingBottomSheet()
-                    }
-                    
-                    if viewModel.purchaseState == .success {
-                        SuccessBottomSheet()
-                    }
-                    
-                    if viewModel.purchaseState == .failed {
-                        ErrorBottomSheet()
-                    }
-                    
-                    if viewModel.purchaseState == .nointernet {
-                        NoInternetBottomSheet()
-                    }
-                }
-                
-                // Workaround to place multiple sheets on the same view on older iOS versions
-                // https://stackoverflow.com/a/64403206/18917552
-                HStack(spacing: 0) {}
-                    .sheet(isPresented: $paypalViewModel.isPayPalSheetPresented, onDismiss: paypalViewModel.dismissPayPalView) {
-                        if let presentURL = paypalViewModel.presentPayPalSheetURL {
-                            PayPalWebView(url: presentURL, method: paypalViewModel.presentPayPalSheetMethod ?? "POST", successHandler: paypalViewModel.createBillingAgreementAndFinishTransaction, cancelHandler: paypalViewModel.cancelBillingAgreementTokenPayPal)
-                        }
-                    }
-                
-                HStack(spacing: 0) {}
-                    .sheet(isPresented: $adyenController.isAdyenRedirectPresented) {
-                        if let viewController = adyenController.presentableComponent?.viewController {
-                            AdyenViewControllerWrapper(viewController: viewController, orientation: viewModel.orientation)
-                                .ignoresSafeArea(.all)
-                        }
-                    }
-                
-                HStack(spacing: 0) {}
-                    .sheet(isPresented: $viewModel.isPaymentMethodChoiceSheetPresented) {
-                        PaymentMethodListBottomSheet(viewModel: viewModel)
-                    }
-            }
-            .ignoresSafeArea(.all)
-            .offset(y: viewModel.isBottomSheetPresented ? 0 : UIScreen.main.bounds.height)
-            .transition(.move(edge: viewModel.isBottomSheetPresented ? .bottom : .top))
-            .onAppear { withAnimation { viewModel.isBottomSheetPresented = true } }
-        }
+            })
     }
 }
 

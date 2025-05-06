@@ -10,78 +10,150 @@ import SwiftUI
 
 internal class WalletRepository: WalletRepositoryProtocol {
     
-    private var walletService: WalletLocalService = WalletLocalClient()
-    private var appcService: APPCService = APPCServiceClient()
-    private var appcTransactionService: AppCoinTransactionService = AppCoinTransactionClient()
+    private let walletManagerService: WalletManagerService = WalletManagerClient()
+    private let APPCService: APPCService = APPCServiceClient()
     
-    private let ActiveWalletCache: Cache<String, ClientWallet?> = Cache<String, ClientWallet?>.shared(cacheName: "ActiveWalletCache")
-    private let WalletListCache: Cache<String, [ClientWallet]> = Cache<String, [ClientWallet]>.shared(cacheName: "WalletListCache")
+    private let GuestWalletCache: Cache<String, GuestWallet> = Cache<String, GuestWallet>.shared(cacheName: "GuestWalletCache")
+    private let UserWalletCache: Cache<String, UserWallet> = Cache<String, UserWallet>.shared(cacheName: "UserWalletCache")
     
-    internal func getClientWallet() -> ClientWallet? {
-        if let clientWallet = self.ActiveWalletCache.getValue(forKey: "activeWallet") {
-            return clientWallet
-        } else {
-            do {
-                if let wallet = walletService.getActiveWallet() {
-                    ActiveWalletCache.setValue(wallet, forKey: "activeWallet", storageOption: .memory)
-                    return wallet
-                }
-                else { if let newWallet = try walletService.createNewWallet() {
-                    ActiveWalletCache.setValue(newWallet, forKey: "activeWallet", storageOption: .memory)
-                    return newWallet
-                } }
-            } catch {
-                return nil
+    internal func getActiveWallet(completion: @escaping (Wallet?) -> Void) {
+        guard let activeWallet = walletManagerService.getActiveWallet() else {
+            completion(nil)
+            return
+        }
+        
+        switch activeWallet.type {
+        case .guest:
+            guard let storageGuestWallet = activeWallet as? StorageWalletRaw.StorageGuestWallet else {
+                completion(nil)
+                return
             }
-            return nil
+            
+            getGuestWallet(guestUID: storageGuestWallet.guestUID) { result in
+                switch result {
+                case .success(let guestWallet):
+                    completion(guestWallet)
+                case .failure(let failure):
+                    completion(nil)
+                }
+            }
+            
+        case .user:
+            guard let storageUserWallet = activeWallet as? StorageWalletRaw.StorageUserWallet else {
+                completion(nil)
+                return
+            }
+            
+            getUserWallet(refreshToken: storageUserWallet.refreshToken) { result in
+                switch result {
+                case .success(let userWallet):
+                    completion(userWallet)
+                case .failure(let failure):
+                    completion(nil)
+                }
+            }
         }
     }
     
+    internal func setActiveWallet(user: UserWallet) {
+        let storageWallet = StorageWalletRaw.fromUser(wallet: user)
+        walletManagerService.setActiveWallet(wallet: storageWallet)
+        
+        var storedWallets = walletManagerService.getWalletList()
+        if !storedWallets.contains(storageWallet) {
+            storedWallets.append(storageWallet)
+        }
+        
+        walletManagerService.setWalletList(walletList: storedWallets)
+    }
+    
+    internal func setActiveWallet(guest: GuestWallet) {
+        let storageWallet = StorageWalletRaw.fromGuest(wallet: guest)
+        walletManagerService.setActiveWallet(wallet: storageWallet)
+    }
+    
     internal func getGuestWallet(guestUID: String, completion: @escaping (Result<GuestWallet, APPCServiceError>) -> Void) {
-        appcService.getGuestWallet(guestUID: guestUID) { result in
+        if let cachedGuestWallet = GuestWalletCache.getValue(forKey: "guest-wallet") {
+            completion(.success(cachedGuestWallet))
+            return
+        }
+        
+        APPCService.getGuestWallet(guestUID: guestUID) { result in
             switch result {
-            case .success(let guestWalletRaw):
-                if let ewt = guestWalletRaw.ewt, let signature = guestWalletRaw.signature {
-                    completion(.success(GuestWallet(address: guestWalletRaw.address, ewt: ewt, signature: signature)))
-                } else {
-                    completion(.failure(.failed(message: "Failed to get guest wallet", description: "Guest wallet ewt is nil or guest wallet signature is nil at WalletRepository.swift:getGuestWallet", request: nil)))
-                }
+            case .success(let raw):
+                let guestWallet = GuestWallet(guestUID: guestUID, raw: raw)
+                self.GuestWalletCache.setValue(guestWallet, forKey: "guest-wallet", storageOption: .memory)
+                completion(.success(guestWallet))
             case .failure(let error):
                 completion(.failure(error))
             }
         }
     }
     
-    internal func getWalletList() -> [ClientWallet] {
-        if let walletList = WalletListCache.getValue(forKey: "walletList") {
-            if walletList.isEmpty {
-                let newWalletList = walletService.getWalletList()
-                WalletListCache.setValue(newWalletList, forKey: "walletList", storageOption: .memory)
-                return newWalletList
-            } else {
-                return walletList
-            }
-        } else {
-            let newWalletList = walletService.getWalletList()
-            WalletListCache.setValue(newWalletList, forKey: "walletList", storageOption: .memory)
-            return newWalletList
+    internal func getUserWallet(refreshToken: String, completion: @escaping (Result<UserWallet, APPCServiceError>) -> Void) {
+        if let cachedUserWallet = UserWalletCache.getValue(forKey: "user-wallet"),
+           !cachedUserWallet.isExpired() {
+            completion(.success(cachedUserWallet))
+            return
         }
-    }
-    
-    internal func getWalletBalance(wallet: Wallet, currency: Currency, completion: @escaping (Result<Balance, AppcTransactionError>) -> Void) {
-        appcTransactionService.getBalance(wallet: wallet, currency: currency) {
-            result in
-            
+        
+        APPCService.refreshUserWallet(refreshToken: refreshToken) { result in
             switch result {
-            case .success(let balanceRaw):
-                completion(.success(Balance(raw: balanceRaw, currency: currency)))
-            case .failure(let failure):
-                completion(.failure(failure))
+            case .success(let raw):
+                let userWallet = UserWallet(raw: raw)
+                self.UserWalletCache.setValue(userWallet, forKey: "user-wallet", storageOption: .memory)
+                completion(.success(userWallet))
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
     }
     
-    internal func getWalletPrivateKey(wallet: Wallet) -> Data? {
-        return walletService.getPrivateKey(wallet: wallet)
+    internal func getWalletList(completion: @escaping ([Wallet]) -> Void) {
+        let rawWalletList = walletManagerService.getWalletList()
+        
+        var wallets: [Wallet] = []
+        
+        let group = DispatchGroup()
+        for wallet in rawWalletList {
+            group.enter()
+            switch wallet.type {
+            case .guest:
+                guard let storageGuestWallet = wallet as? StorageWalletRaw.StorageGuestWallet else {
+                    group.leave()
+                    continue
+                }
+                
+                getGuestWallet(guestUID: storageGuestWallet.guestUID) { result in
+                    switch result {
+                    case .success(let guestWallet):
+                        wallets.append(guestWallet)
+                    case .failure:
+                        break
+                    }
+                    group.leave()
+                }
+                
+            case .user:
+                guard let storageUserWallet = wallet as? StorageWalletRaw.StorageUserWallet else {
+                    group.leave()
+                    continue
+                }
+                
+                getUserWallet(refreshToken: storageUserWallet.refreshToken) { result in
+                    switch result {
+                    case .success(let userWallet):
+                        wallets.append(userWallet)
+                    case .failure:
+                        break
+                    }
+                    group.leave()
+                }
+            }
+        }
+        
+        group.notify(queue: .main) {
+            completion(wallets)
+        }
     }
 }

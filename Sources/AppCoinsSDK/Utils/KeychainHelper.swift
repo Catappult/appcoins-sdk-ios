@@ -10,7 +10,10 @@ import Foundation
 
 final internal class KeychainHelper {
     
-    static internal let standard = KeychainHelper()
+    static internal let shared = KeychainHelper()
+    
+    private init() {}
+    
     internal let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "network")
     
     internal func save<T>(_ item: T, service: String, account: String) throws where T : Codable {
