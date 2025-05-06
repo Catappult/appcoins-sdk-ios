@@ -18,12 +18,8 @@ internal class HandleInternalRedirect {
             Utils.log("Invalid URL on handleInternalRedirect")
             return
         }
-
-        if UIApplication.shared.canOpenURL(URL) {
-            SDKViewController.presentSafariSheet(url: URL)
-        } else {
-            Utils.log("Cannot open URL on handleExternalRedirect")
-        }
+        
+        SDKViewController.presentSafariSheet(url: URL)
     }
     
 }
