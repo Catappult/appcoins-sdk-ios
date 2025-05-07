@@ -1659,6 +1659,26 @@
       },
       {
         "kind": "Import",
+        "name": "SwiftUI",
+        "printedName": "SwiftUI",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
         "name": "Foundation",
         "printedName": "Foundation",
         "declKind": "Import",
@@ -4861,12 +4881,12 @@
       },
       {
         "kind": "Import",
-        "name": "Foundation",
-        "printedName": "Foundation",
+        "name": "SafariServices",
+        "printedName": "SafariServices",
         "declKind": "Import",
         "moduleName": "AppCoinsSDK",
         "declAttributes": [
-          "RawDocComment"
+          "ImplementationOnly"
         ]
       },
       {
@@ -4893,6 +4913,26 @@
         "kind": "Import",
         "name": "Foundation",
         "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "UIKit",
+        "printedName": "UIKit",
         "declKind": "Import",
         "moduleName": "AppCoinsSDK",
         "declAttributes": [
@@ -5986,6 +6026,20 @@
       "value": "\"URL\""
     },
     {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/HandleInternalRedirect\/HandleInternalRedirectBody.swift",
+      "kind": "StringLiteral",
+      "offset": 292,
+      "length": 5,
+      "value": "\"URL\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/HandleInternalRedirect\/HandleInternalRedirectBody.swift",
+      "kind": "StringLiteral",
+      "offset": 292,
+      "length": 5,
+      "value": "\"URL\""
+    },
+    {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Cache\/InMemoryCache.swift",
       "kind": "StringLiteral",
       "offset": 902,
@@ -6618,7 +6672,14 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/WebPaymentInterfaceMethod.swift",
       "kind": "StringLiteral",
-      "offset": 391,
+      "offset": 398,
+      "length": 24,
+      "value": "\"handleInternalRedirect\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/WebPaymentInterfaceMethod.swift",
+      "kind": "StringLiteral",
+      "offset": 450,
       "length": 17,
       "value": "\"setActiveWallet\""
     },
@@ -6653,7 +6714,14 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/WebPaymentInterfaceMethod.swift",
       "kind": "StringLiteral",
-      "offset": 391,
+      "offset": 398,
+      "length": 24,
+      "value": "\"handleInternalRedirect\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/WebPaymentInterfaceMethod.swift",
+      "kind": "StringLiteral",
+      "offset": 450,
       "length": 17,
       "value": "\"setActiveWallet\""
     }
