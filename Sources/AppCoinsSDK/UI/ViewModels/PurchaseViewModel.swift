@@ -85,7 +85,7 @@ internal class PurchaseViewModel: ObservableObject {
     }
     
     internal func cancel() {
-        let result : TransactionResult = .userCancelled
+        let result : PurchaseResult = .userCancelled
         PurchaseViewModel.shared.sendResult(result: result)
         self.dismissVC()
     }
@@ -93,18 +93,18 @@ internal class PurchaseViewModel: ObservableObject {
     internal func failed(error: AppCoinsSDKError, description: String? = nil) {
         switch error {
         case .networkError:
-            let result: TransactionResult = .failed(error: error)
+            let result: PurchaseResult = .failed(error: error)
             self.sendResult(result: result)
             DispatchQueue.main.async { self.hasActivePurchase = false }
         default:
-            let result: TransactionResult = .failed(error: error)
+            let result: PurchaseResult = .failed(error: error)
             self.sendResult(result: result)
             DispatchQueue.main.async { self.hasActivePurchase = false }
         }
     }
     
-    internal func sendResult(result: TransactionResult) {
-        NotificationCenter.default.post(name: NSNotification.Name("APPCPurchaseResult"), object: nil, userInfo: ["TransactionResult" : result])
+    internal func sendResult(result: PurchaseResult) {
+        NotificationCenter.default.post(name: NSNotification.Name("APPCPurchaseResult"), object: nil, userInfo: ["PurchaseResult" : result])
     }
     
     internal func setOrientation(orientation: Orientation) { self.orientation = orientation }
@@ -129,11 +129,11 @@ internal class PurchaseViewModel: ObservableObject {
         let trimmedPrefixURL = trimmedURL.hasPrefix("//") ? String(trimmedURL.dropFirst(2)) : trimmedURL
         let finalURL = trimmedPrefixURL.hasSuffix("#") ? String(trimmedPrefixURL.dropLast(1)) : trimmedPrefixURL
         
-        webView.evaluateJavaScript("window.handleAuthenticationRedirect('\(finalURL)')") { result, error in
+        webView.evaluateJavaScript("window.handleIOSRedirect('\(finalURL)')") { result, error in
             if let error = error {
                 Utils.log("Error sending message to WebView: \(error.localizedDescription)")
             } else {
-                Utils.log("Called window.handleAuthenticationRedirect('\(finalURL)') successfully")
+                Utils.log("Called window.handleIOSRedirect('\(finalURL)') successfully")
             }
         }
     }

@@ -23,11 +23,11 @@ internal class HandleAuthenticationRedirect: NSObject {
         // Initialize ASWebAuthenticationSession
         var authSession = ASWebAuthenticationSession(url: authenticationURL, callbackURLScheme: "\(Bundle.main.bundleIdentifier).iap") { callbackURL, error in
             
-            if let error = error { 
+            if let error = error {
                 Utils.log("Error on handleAuthenticationRedirect: \(error.localizedDescription)")
                 return
             }
-            guard let callbackURL = callbackURL else { 
+            guard let callbackURL = callbackURL else {
                 Utils.log("Invalid callback URL on handleAuthenticationRedirect")
                 return
             }

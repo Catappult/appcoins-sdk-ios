@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+@_implementationOnly import SafariServices
 
 internal struct SDKViewController {
     
@@ -26,5 +27,14 @@ internal struct SDKViewController {
         let providerViewController = ProviderViewController()
         providerViewController.modalPresentationStyle = .overFullScreen
         rootViewController.present(providerViewController, animated: false, completion: nil)
+    }
+    
+    internal static func presentSafariSheet(url: URL) {
+        guard let topViewController = UIApplication.shared.topMostViewController() else {
+            return
+        }
+        let safariVC = SFSafariViewController(url: url)
+        safariVC.modalPresentationStyle = .pageSheet
+        topViewController.present(safariVC, animated: true)
     }
 }
