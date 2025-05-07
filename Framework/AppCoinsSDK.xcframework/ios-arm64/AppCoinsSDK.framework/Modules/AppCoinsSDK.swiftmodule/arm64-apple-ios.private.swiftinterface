@@ -92,6 +92,9 @@ public struct Product : Swift.Codable {
     required public init(from decoder: any Swift.Decoder) throws
   }
   #if compiler(>=5.3) && $AsyncAwait
+  public static func chooseProvider() async -> AppCoinsSDK.PurchaseProvider?
+  #endif
+  #if compiler(>=5.3) && $AsyncAwait
   public func finish(domain: Swift.String = (Bundle.main.bundleIdentifier ?? "")) async throws
   #endif
   #if compiler(>=5.3) && $AsyncAwait
@@ -126,6 +129,15 @@ public struct PurchaseIntent : Swift.Sendable, Swift.Identifiable, Swift.Codable
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
+public enum PurchaseProvider {
+  case aptoide
+  case apple
+  public static func == (a: AppCoinsSDK.PurchaseProvider, b: AppCoinsSDK.PurchaseProvider) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
 public enum PurchaseResult {
   case success(verificationResult: AppCoinsSDK.VerificationResult)
   case pending
@@ -146,6 +158,8 @@ public enum RequestMethod : Swift.String {
     get
   }
 }
+extension AppCoinsSDK.PurchaseProvider : Swift.Equatable {}
+extension AppCoinsSDK.PurchaseProvider : Swift.Hashable {}
 extension AppCoinsSDK.RequestMethod : Swift.Equatable {}
 extension AppCoinsSDK.RequestMethod : Swift.Hashable {}
 extension AppCoinsSDK.RequestMethod : Swift.RawRepresentable {}
