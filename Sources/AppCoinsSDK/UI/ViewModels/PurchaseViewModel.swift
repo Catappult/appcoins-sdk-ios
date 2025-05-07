@@ -63,6 +63,7 @@ internal class PurchaseViewModel: ObservableObject {
                         self.failed(error: .systemError(message: "Web Checkout URL is invalid", description: "Could not open Browser Web Checkout because URL is invalid at PurchaseViewModel.swift:purchase"))
                         return
                     }
+                    
                     UIApplication.shared.open(checkoutURL, options: [:]) { _ in
                         self.hasActivePurchase = true
                         self.isExternalWebCheckoutPresented = true
