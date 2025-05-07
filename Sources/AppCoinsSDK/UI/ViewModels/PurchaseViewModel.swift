@@ -14,8 +14,8 @@ internal class PurchaseViewModel: ObservableObject {
     internal static var shared: PurchaseViewModel = PurchaseViewModel()
     
     @Published internal var isChoosingProvider = false
-    @Published internal var isInternalWebCheckoutPresented = false
-    @Published internal var isExternalWebCheckoutPresented = false
+    @Published internal var isWebviewWebCheckoutPresented = false
+    @Published internal var isBrowserWebCheckoutPresented = false
     @Published internal var hasActivePurchase = false
     
     // Device Orientation
@@ -35,8 +35,8 @@ internal class PurchaseViewModel: ObservableObject {
     internal func reset() {
         self.hasActivePurchase = false
         self.isChoosingProvider = false
-        self.isInternalWebCheckoutPresented = false
-        self.isExternalWebCheckoutPresented = false
+        self.isWebviewWebCheckoutPresented = false
+        self.isBrowserWebCheckoutPresented = false
         self.product = nil
         self.domain = nil
         self.metadata = nil
@@ -66,13 +66,13 @@ internal class PurchaseViewModel: ObservableObject {
                     
                     UIApplication.shared.open(checkoutURL, options: [:]) { _ in
                         self.hasActivePurchase = true
-                        self.isExternalWebCheckoutPresented = true
+                        self.isBrowserWebCheckoutPresented = true
                     }
                 } else {
                     self.webCheckout = WebCheckout(domain: domain, product: product.sku, metadata: self.metadata, reference: self.reference, guestUID: guestUID, type: .webview)
                     
                     self.hasActivePurchase = true
-                    self.isInternalWebCheckoutPresented = true
+                    self.isWebviewWebCheckoutPresented = true
                 }
             }
         }

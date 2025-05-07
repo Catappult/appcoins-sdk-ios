@@ -17,7 +17,7 @@ internal struct PurchaseBottomSheet: View {
     
     internal var body: some View {
         HStack(spacing: 0) {}
-            .sheet(isPresented: $viewModel.isInternalWebCheckoutPresented, onDismiss: viewModel.dismiss, content: {
+            .sheet(isPresented: $viewModel.isWebviewWebCheckoutPresented, onDismiss: viewModel.dismiss, content: {
                 if #available(iOS 17.4, *) {
                     VStack(spacing: 0) {
                         VStack{}.frame(height: 20)
