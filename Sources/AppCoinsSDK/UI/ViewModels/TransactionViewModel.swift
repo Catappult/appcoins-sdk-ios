@@ -133,11 +133,11 @@ internal class TransactionViewModel: ObservableObject {
         let trimmedPrefixURL = trimmedURL.hasPrefix("//") ? String(trimmedURL.dropFirst(2)) : trimmedURL
         let finalURL = trimmedPrefixURL.hasSuffix("#") ? String(trimmedPrefixURL.dropLast(1)) : trimmedPrefixURL
         
-        webView.evaluateJavaScript("window.handleAuthenticationRedirect('\(finalURL)')") { result, error in
+        webView.evaluateJavaScript("window.handleIOSRedirect('\(finalURL)')") { result, error in
             if let error = error {
                 Utils.log("Error sending message to WebView: \(error.localizedDescription)")
             } else {
-                Utils.log("Called window.handleAuthenticationRedirect('\(finalURL)') successfully")
+                Utils.log("Called window.handleIOSRedirect('\(finalURL)') successfully")
             }
         }
     }

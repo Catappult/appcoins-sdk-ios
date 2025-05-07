@@ -65,7 +65,7 @@ internal class BuildConfiguration {
         case .debugSDKDev, .releaseSDKDev:
             return "https://wallet.dev.appcoins.io/iap/sdk"
         case .debugSDKProd, .releaseSDKProd:
-            return "https://developers.catappult.io"
+            return "https://developers.catappult.io/iap/sdk"
         }
     }
     
