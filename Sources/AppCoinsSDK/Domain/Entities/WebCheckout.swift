@@ -20,6 +20,7 @@ internal struct WebCheckout {
     private let version: String
     private var langCode: String
     private let paymentChannel: String
+    private let isBrowserCheckout: String
     
     internal var URL: URL? {
         var components = URLComponents(string: BuildConfiguration.webCheckoutURL)
@@ -38,10 +39,11 @@ internal struct WebCheckout {
         "guestUID" : "guest_uid",
         "version" : "version",
         "langCode" : "lang_code",
-        "paymentChannel" : "payment_channel"
+        "paymentChannel" : "payment_channel",
+        "isBrowserCheckout": "is_browser_checkout"
     ]
     
-    internal init(domain: String, product: String, metadata: String?, reference: String?, guestUID: String?) {
+    internal init(domain: String, product: String, metadata: String?, reference: String?, guestUID: String?, type: WebCheckoutType) {
         self.origin = "BDS"
         self.type = "INAPP"
         self.domain = domain
@@ -53,6 +55,7 @@ internal struct WebCheckout {
         self.version = String(describing: BuildConfiguration.sdkBuildNumber)
         self.langCode = WebCheckout.getLangAndCountry().langCode
         self.paymentChannel = "ios_sdk"
+        self.isBrowserCheckout = "\(type == .browser)"
     }
     
     private func asQueryItems() -> [URLQueryItem] {

@@ -14,6 +14,8 @@ internal class PurchaseViewModel: ObservableObject {
     internal static var shared: PurchaseViewModel = PurchaseViewModel()
     
     @Published internal var isChoosingProvider = false
+    @Published internal var isWebviewWebCheckoutPresented = false
+    @Published internal var isBrowserWebCheckoutPresented = false
     @Published internal var hasActivePurchase = false
     
     // Device Orientation
@@ -32,6 +34,9 @@ internal class PurchaseViewModel: ObservableObject {
     
     internal func reset() {
         self.hasActivePurchase = false
+        self.isChoosingProvider = false
+        self.isWebviewWebCheckoutPresented = false
+        self.isBrowserWebCheckoutPresented = false
         self.product = nil
         self.domain = nil
         self.metadata = nil
@@ -48,17 +53,28 @@ internal class PurchaseViewModel: ObservableObject {
         self.reference = reference
         
         DispatchQueue.main.async {
-            let guestUID = MMPUseCases.shared.getGuestUID()
-            
-            // 1. Build the Web Checkout to process the transaction
-            self.webCheckout = WebCheckout(domain: domain, product: product.sku, metadata: self.metadata, reference: self.reference, guestUID: guestUID)
-            
-            if let url = self.webCheckout?.URL {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            Task { @MainActor in
+                let guestUID = MMPUseCases.shared.getGuestUID()
+                
+                if await AppcSDK.isAvailableInUS() {
+                    self.webCheckout = WebCheckout(domain: domain, product: product.sku, metadata: self.metadata, reference: self.reference, guestUID: guestUID, type: .browser)
+                    
+                    guard let checkoutURL: URL = self.webCheckout?.URL else {
+                        self.failed(error: .systemError(message: "Web Checkout URL is invalid", description: "Could not open Browser Web Checkout because URL is invalid at PurchaseViewModel.swift:purchase"))
+                        return
+                    }
+                    
+                    UIApplication.shared.open(checkoutURL, options: [:]) { _ in
+                        self.hasActivePurchase = true
+                        self.isBrowserWebCheckoutPresented = true
+                    }
+                } else {
+                    self.webCheckout = WebCheckout(domain: domain, product: product.sku, metadata: self.metadata, reference: self.reference, guestUID: guestUID, type: .webview)
+                    
+                    self.hasActivePurchase = true
+                    self.isWebviewWebCheckoutPresented = true
+                }
             }
-            
-//            // 2. Show loaded view
-//            self.hasActivePurchase = true
         }
     }
     
@@ -77,30 +93,25 @@ internal class PurchaseViewModel: ObservableObject {
             
             DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
                 presentedPurchaseVC.dismissPurchase()
-                self.hasActivePurchase = false
             }
         }
-        
-        self.reset() // Clear data related to finished purchase
     }
     
     internal func cancel() {
         let result : PurchaseResult = .userCancelled
         PurchaseViewModel.shared.sendResult(result: result)
         self.dismissVC()
+        
+        // Clear data related to finished purchase
+        self.reset()
     }
     
-    internal func failed(error: AppCoinsSDKError, description: String? = nil) {
-        switch error {
-        case .networkError:
-            let result: PurchaseResult = .failed(error: error)
-            self.sendResult(result: result)
-            DispatchQueue.main.async { self.hasActivePurchase = false }
-        default:
-            let result: PurchaseResult = .failed(error: error)
-            self.sendResult(result: result)
-            DispatchQueue.main.async { self.hasActivePurchase = false }
-        }
+    internal func failed(error: AppCoinsSDKError) {
+        let result: PurchaseResult = .failed(error: error)
+        self.sendResult(result: result)
+        
+        // Clear data related to finished purchase
+        self.reset()
     }
     
     internal func sendResult(result: PurchaseResult) {
