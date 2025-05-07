@@ -32,7 +32,7 @@ internal class HandleAuthenticationRedirect: NSObject {
                 return
             }
             
-            TransactionViewModel.shared.handleWebViewDeeplink(deeplink: callbackURL.absoluteString)
+            PurchaseViewModel.shared.handleWebViewDeeplink(deeplink: callbackURL.absoluteString)
             return
         }
         

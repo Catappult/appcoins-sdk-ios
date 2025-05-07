@@ -20,6 +20,15 @@ internal struct SDKViewController {
         rootViewController.present(purchaseViewController, animated: false, completion: nil)
     }
     
+    internal static func presentProvider() {
+        guard let rootViewController = UIApplication.shared.windows.first?.rootViewController else {
+            return
+        }
+        let providerViewController = ProviderViewController()
+        providerViewController.modalPresentationStyle = .overFullScreen
+        rootViewController.present(providerViewController, animated: false, completion: nil)
+    }
+    
     internal static func presentSafariSheet(url: URL) {
         guard let topViewController = UIApplication.shared.topMostViewController() else {
             return

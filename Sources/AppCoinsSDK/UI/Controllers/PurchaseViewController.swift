@@ -19,11 +19,11 @@ internal class PurchaseViewController: UIViewController {
         updateOrientation()
         
         // Add the bottom sheet view
-        let bottomSheetView = BottomSheetView()
+        let purchaseBottomSheet = PurchaseBottomSheet()
         let content: () -> UIView = {
-            return bottomSheetView.toUIView()
+            return purchaseBottomSheet.toUIView()
         }
-        let wrapperView = BottomSheetWrapperView(content: content)
+        let wrapperView = PurchaseBottomSheetWrapper(content: content)
         self.view.addSubview(wrapperView)
         wrapperView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -38,10 +38,10 @@ internal class PurchaseViewController: UIViewController {
     private func updateOrientation() {
         if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
             if scene.interfaceOrientation == .landscapeLeft || scene.interfaceOrientation == .landscapeRight {
-                TransactionViewModel.shared.setOrientation(orientation: .landscape)
+                PurchaseViewModel.shared.setOrientation(orientation: .landscape)
                 orientation = .landscape
             } else {
-                TransactionViewModel.shared.setOrientation(orientation: .portrait)
+                PurchaseViewModel.shared.setOrientation(orientation: .portrait)
                 orientation = .portrait
             }
         }
