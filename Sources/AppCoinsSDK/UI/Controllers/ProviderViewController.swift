@@ -1,14 +1,14 @@
 //
-//  PurchaseViewController.swift
+//  ProviderViewController.swift
+//  
 //
-//
-//  Created by aptoide on 07/03/2023.
+//  Created by aptoide on 05/05/2025.
 //
 
 import Foundation
 import SwiftUI
 
-internal class PurchaseViewController: UIViewController {
+internal class ProviderViewController: UIViewController {
     
     @ObservedObject private var keyboardObserver = KeyboardObserver.shared
     internal var orientation: UIInterfaceOrientationMask = .landscape
@@ -19,11 +19,11 @@ internal class PurchaseViewController: UIViewController {
         updateOrientation()
         
         // Add the bottom sheet view
-        let purchaseBottomSheet = PurchaseBottomSheet()
+        let providerBottomSheet = ProviderBottomSheet()
         let content: () -> UIView = {
-            return purchaseBottomSheet.toUIView()
+            return providerBottomSheet.toUIView()
         }
-        let wrapperView = PurchaseBottomSheetWrapper(content: content)
+        let wrapperView = ProviderBottomSheetWrapper(content: content)
         self.view.addSubview(wrapperView)
         wrapperView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -38,10 +38,10 @@ internal class PurchaseViewController: UIViewController {
     private func updateOrientation() {
         if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
             if scene.interfaceOrientation == .landscapeLeft || scene.interfaceOrientation == .landscapeRight {
-                PurchaseViewModel.shared.setOrientation(orientation: .landscape)
+                ProviderViewModel.shared.setOrientation(orientation: .landscape)
                 orientation = .landscape
             } else {
-                PurchaseViewModel.shared.setOrientation(orientation: .portrait)
+                ProviderViewModel.shared.setOrientation(orientation: .portrait)
                 orientation = .portrait
             }
         }
@@ -49,6 +49,6 @@ internal class PurchaseViewController: UIViewController {
     
     override internal var supportedInterfaceOrientations: UIInterfaceOrientationMask { return orientation }
     
-    @objc internal func dismissPurchase() { self.dismiss(animated: false, completion: nil) }
+    @objc internal func dismissProviderChoice(completion: @escaping () -> Void) { self.dismiss(animated: true, completion: completion) }
     
 }

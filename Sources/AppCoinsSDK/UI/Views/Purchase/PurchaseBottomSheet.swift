@@ -1,6 +1,6 @@
 //
-//  BottomSheetView.swift
-//  
+//  PurchaseBottomSheet.swift
+//
 //
 //  Created by aptoide on 07/03/2023.
 //
@@ -10,14 +10,14 @@ import SwiftUI
 import UIKit
 @_implementationOnly import WebKit
 
-internal struct BottomSheetView: View {
+internal struct PurchaseBottomSheet: View {
     
-    @ObservedObject internal var viewModel: TransactionViewModel = TransactionViewModel.shared
+    @ObservedObject internal var viewModel: PurchaseViewModel = PurchaseViewModel.shared
     @Environment(\.colorScheme) var colorScheme
     
     internal var body: some View {
         HStack(spacing: 0) {}
-            .sheet(isPresented: $viewModel.hasActiveTransaction, onDismiss: viewModel.dismiss, content: {
+            .sheet(isPresented: $viewModel.hasActivePurchase, onDismiss: viewModel.dismiss, content: {
                 if #available(iOS 17.4, *) {
                     VStack(spacing: 0) {
                         VStack{}.frame(height: 20)
@@ -35,7 +35,7 @@ internal struct BottomSheetView: View {
     }
 }
 
-internal extension BottomSheetView {
+internal extension PurchaseBottomSheet {
     func toUIView() -> UIView {
         let hostingController = UIHostingController(rootView: self)
         return hostingController.view

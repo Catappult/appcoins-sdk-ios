@@ -11,7 +11,7 @@ import SwiftUI
 
 struct WebCheckoutView: UIViewRepresentable {
     
-    @ObservedObject var viewModel: TransactionViewModel = TransactionViewModel.shared
+    @ObservedObject var viewModel: PurchaseViewModel = PurchaseViewModel.shared
     @Environment(\.colorScheme) var colorScheme
     
     func makeUIView(context: Context) -> WKWebView {
@@ -38,7 +38,7 @@ struct WebCheckoutView: UIViewRepresentable {
 
         if let URL = viewModel.webCheckout?.URL { webView.load(URLRequest(url: URL)) }
         
-        TransactionViewModel.shared.webView = webView
+        PurchaseViewModel.shared.webView = webView
         return webView
     }
     

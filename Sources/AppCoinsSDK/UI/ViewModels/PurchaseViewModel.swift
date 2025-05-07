@@ -1,19 +1,20 @@
 //
-//  TransactionViewModel.swift
+//  PurchaseViewModel.swift
 //
 //
 //  Created by aptoide on 19/10/2023.
 //
 
 import Foundation
+import UIKit
 @_implementationOnly import WebKit
 
-// Helper to the BottomSheetViewModel
-internal class TransactionViewModel: ObservableObject {
+internal class PurchaseViewModel: ObservableObject {
     
-    internal static var shared: TransactionViewModel = TransactionViewModel()
+    internal static var shared: PurchaseViewModel = PurchaseViewModel()
     
-    @Published internal var hasActiveTransaction = false
+    @Published internal var isChoosingProvider = false
+    @Published internal var hasActivePurchase = false
     
     // Device Orientation
     @Published internal var orientation: Orientation = .portrait
@@ -30,7 +31,7 @@ internal class TransactionViewModel: ObservableObject {
     private init() {}
     
     internal func reset() {
-        self.hasActiveTransaction = false
+        self.hasActivePurchase = false
         self.product = nil
         self.domain = nil
         self.metadata = nil
@@ -46,15 +47,18 @@ internal class TransactionViewModel: ObservableObject {
         self.metadata = metadata
         self.reference = reference
         
-
         DispatchQueue.main.async {
             let guestUID = MMPUseCases.shared.getGuestUID()
             
             // 1. Build the Web Checkout to process the transaction
             self.webCheckout = WebCheckout(domain: domain, product: product.sku, metadata: self.metadata, reference: self.reference, guestUID: guestUID)
             
-            // 2. Show loaded view
-            self.hasActiveTransaction = true
+            if let url = self.webCheckout?.URL {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+            
+//            // 2. Show loaded view
+//            self.hasActivePurchase = true
         }
     }
     
@@ -73,7 +77,7 @@ internal class TransactionViewModel: ObservableObject {
             
             DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
                 presentedPurchaseVC.dismissPurchase()
-                self.hasActiveTransaction = false
+                self.hasActivePurchase = false
             }
         }
         
@@ -82,7 +86,7 @@ internal class TransactionViewModel: ObservableObject {
     
     internal func cancel() {
         let result : PurchaseResult = .userCancelled
-        TransactionViewModel.shared.sendResult(result: result)
+        PurchaseViewModel.shared.sendResult(result: result)
         self.dismissVC()
     }
     
@@ -91,11 +95,11 @@ internal class TransactionViewModel: ObservableObject {
         case .networkError:
             let result: PurchaseResult = .failed(error: error)
             self.sendResult(result: result)
-            DispatchQueue.main.async { self.hasActiveTransaction = false }
+            DispatchQueue.main.async { self.hasActivePurchase = false }
         default:
             let result: PurchaseResult = .failed(error: error)
             self.sendResult(result: result)
-            DispatchQueue.main.async { self.hasActiveTransaction = false }
+            DispatchQueue.main.async { self.hasActivePurchase = false }
         }
     }
     

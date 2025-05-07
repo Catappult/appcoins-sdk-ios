@@ -1,5 +1,5 @@
 //
-//  BottomSheetWrapperView.swift
+//  PurchaseBottomSheetWrapper.swift
 //  
 //
 //  Created by aptoide on 07/03/2023.
@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-internal class BottomSheetWrapperView<Content: UIView>: UIView {
+internal class PurchaseBottomSheetWrapper<Content: UIView>: UIView {
     internal let contentView: Content
     
     internal init(content: @escaping () -> Content) {
