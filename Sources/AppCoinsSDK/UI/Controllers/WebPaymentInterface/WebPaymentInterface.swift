@@ -79,6 +79,13 @@ internal class WebPaymentInterface: NSObject, WKScriptMessageHandler {
                 HandleApplicationRedirect.shared.handle(body: handleApplicationRedirectBody)
             } catch {
                 Utils.log("Failed to parse handleApplicationRedirect body with error: \(error)")
+            }
+        case .handleInternalRedirect:
+            do {
+                let handleInternalRedirectBody = try JSONDecoder().decode(HandleInternalRedirectBody.self, from: params)
+                HandleInternalRedirect.shared.handle(body: handleInternalRedirectBody)
+            } catch {
+                Utils.log("Failed to parse handleInternalRedirect body with error: \(error)")
                 return
             }
         }
