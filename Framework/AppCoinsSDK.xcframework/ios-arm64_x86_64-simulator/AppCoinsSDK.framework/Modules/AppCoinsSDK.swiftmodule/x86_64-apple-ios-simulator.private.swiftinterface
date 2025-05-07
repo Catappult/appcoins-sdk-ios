@@ -117,7 +117,6 @@ public struct PurchaseIntent : Swift.Sendable, Swift.Identifiable, Swift.Codable
   public let id: Foundation.UUID
   public let product: AppCoinsSDK.Product
   public let timestamp: Foundation.Date
-  public init(product: AppCoinsSDK.Product)
   #if compiler(>=5.3) && $AsyncAwait
   public func confirm(domain: Swift.String = (Bundle.main.bundleIdentifier ?? ""), payload: Swift.String? = nil, orderID: Swift.String = String(Date.timeIntervalSinceReferenceDate)) async -> AppCoinsSDK.PurchaseResult
   #endif

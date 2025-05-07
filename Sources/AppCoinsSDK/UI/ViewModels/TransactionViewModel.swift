@@ -23,6 +23,8 @@ internal class TransactionViewModel: ObservableObject {
     internal var domain: String? = nil
     internal var metadata: String? = nil
     internal var reference: String? = nil
+    internal var platform: String? = nil
+    internal var oemID: String? = nil
     
     internal var webCheckout: WebCheckout? = nil
     internal var webView: WKWebView? = nil
@@ -35,23 +37,29 @@ internal class TransactionViewModel: ObservableObject {
         self.domain = nil
         self.metadata = nil
         self.reference = nil
+        self.platform = nil
+        self.oemID = nil
         self.webCheckout = nil
         self.webView = nil
     }
     
     // Called when a user starts a product purchase
-    internal func purchase(product: Product, domain: String, metadata: String?, reference: String?) {
+    internal func purchase(product: Product, domain: String, metadata: String?, reference: String?, platform: String? = nil, oemID: String? = nil) {
         self.product = product
         self.domain = domain
         self.metadata = metadata
         self.reference = reference
-        
+        self.platform = platform
+        self.oemID = oemID
 
         DispatchQueue.main.async {
             let guestUID = MMPUseCases.shared.getGuestUID()
+            let checkoutOEMID = oemID ?? MMPUseCases.shared.getOEMID()
             
             // 1. Build the Web Checkout to process the transaction
-            self.webCheckout = WebCheckout(domain: domain, product: product.sku, metadata: self.metadata, reference: self.reference, guestUID: guestUID)
+            self.webCheckout = WebCheckout(domain: domain, product: product.sku, metadata: self.metadata, reference: self.reference, platform: platform, guestUID: guestUID, oemID: checkoutOEMID)
+            
+            Utils.log(self.webCheckout?.URL?.absoluteString ?? "No valid URL")
             
             // 2. Show loaded view
             self.hasActiveTransaction = true

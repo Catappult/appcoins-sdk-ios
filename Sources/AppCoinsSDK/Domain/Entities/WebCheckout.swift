@@ -16,10 +16,12 @@ internal struct WebCheckout {
     private var country: String
     private let metadata: String?
     private let reference: String?
-    private let guestUID: String?
     private let version: String
     private var langCode: String
     private let paymentChannel: String
+    private let platform: String?
+    private let guestUID: String?
+    private let oemID: String?
     
     internal var URL: URL? {
         var components = URLComponents(string: BuildConfiguration.webCheckoutURL)
@@ -35,13 +37,15 @@ internal struct WebCheckout {
         "country" : "country",
         "metadata" : "metadata",
         "reference" : "reference",
-        "guestUID" : "guest_uid",
         "version" : "version",
         "langCode" : "lang_code",
-        "paymentChannel" : "payment_channel"
+        "paymentChannel" : "payment_channel",
+        "platform" : "platform",
+        "guestUID" : "guest_uid",
+        "oemID" : "oemid"
     ]
     
-    internal init(domain: String, product: String, metadata: String?, reference: String?, guestUID: String?) {
+    internal init(domain: String, product: String, metadata: String?, reference: String?, platform: String?, guestUID: String?, oemID: String?) {
         self.origin = "BDS"
         self.type = "INAPP"
         self.domain = domain
@@ -49,10 +53,12 @@ internal struct WebCheckout {
         self.country = WebCheckout.getLangAndCountry().countryCode
         self.metadata = metadata
         self.reference = reference
-        self.guestUID = guestUID
         self.version = String(describing: BuildConfiguration.sdkBuildNumber)
         self.langCode = WebCheckout.getLangAndCountry().langCode
         self.paymentChannel = "ios_sdk"
+        self.platform = platform
+        self.guestUID = guestUID
+        self.oemID = oemID
     }
     
     private func asQueryItems() -> [URLQueryItem] {
