@@ -5524,6 +5524,16 @@
       },
       {
         "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
         "name": "SwiftUI",
         "printedName": "SwiftUI",
         "declKind": "Import",
@@ -6885,7 +6895,21 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/ViewModels\/PurchaseViewModel.swift",
       "kind": "BooleanLiteral",
-      "offset": 384,
+      "offset": 396,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/ViewModels\/PurchaseViewModel.swift",
+      "kind": "BooleanLiteral",
+      "offset": 462,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/ViewModels\/PurchaseViewModel.swift",
+      "kind": "BooleanLiteral",
+      "offset": 516,
       "length": 5,
       "value": "false"
     },
@@ -7039,9 +7063,9 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Entities\/WebCheckout.swift",
       "kind": "Dictionary",
-      "offset": 752,
-      "length": 364,
-      "value": "[(\"origin\", \"origin\"), (\"type\", \"type\"), (\"domain\", \"domain\"), (\"product\", \"product\"), (\"country\", \"country\"), (\"metadata\", \"metadata\"), (\"reference\", \"reference\"), (\"guestUID\", \"guest_uid\"), (\"version\", \"version\"), (\"langCode\", \"lang_code\"), (\"paymentChannel\", \"payment_channel\")]"
+      "offset": 794,
+      "length": 416,
+      "value": "[(\"origin\", \"origin\"), (\"type\", \"type\"), (\"domain\", \"domain\"), (\"product\", \"product\"), (\"country\", \"country\"), (\"metadata\", \"metadata\"), (\"reference\", \"reference\"), (\"guestUID\", \"guest_uid\"), (\"version\", \"version\"), (\"langCode\", \"lang_code\"), (\"paymentChannel\", \"payment_channel\"), (\"isBrowserCheckout\", \"is_browser_checkout\")]"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Views\/Purchase\/WebCheckoutView\/WebCheckoutView.swift",
