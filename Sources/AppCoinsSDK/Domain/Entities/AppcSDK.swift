@@ -50,7 +50,6 @@ public struct AppcSDK {
         
         do {
             let storefront = try await StoreKit.Storefront.current
-            print(storefront)
             return (storefront?.countryCode == "USA")
         } catch {
             // If the Storefront lookup fails, fall back to the locale
@@ -111,6 +110,18 @@ public struct AppcSDK {
                         Task {
                             guard let product = await try? Product.products(for: [sku]).first else { return }
                             PurchaseIntentManager.shared.set(intent: PurchaseIntent(product: product))
+                        }
+                    }
+                case "checkout":
+                    if redirectURL.pathComponents.count > 2 {
+                        switch redirectURL.pathComponents[2] {
+                        case "success":
+                            Utils.log("Success URL: \(redirectURL.absoluteString)")
+                            PurchaseViewModel.shared.handleCheckoutSuccessDeeplink(deeplink: redirectURL)
+//                        case "failure":
+//                            // Handle failure
+                        default:
+                            break
                         }
                     }
                 default:
