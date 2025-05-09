@@ -39,15 +39,15 @@ internal struct PayingHeader: View {
     
     internal var price: some View {
         HStack(spacing: 0) {
-            if let amount = transactionViewModel.transaction?.moneyAmount {
-                Text((transactionViewModel.transaction?.moneyCurrency.sign ?? "") + String(amount))
+            if let amount = transactionViewModel.transaction?.common.moneyAmount {
+                Text((transactionViewModel.transaction?.common.moneyCurrency.sign ?? "") + String(amount))
                     .foregroundColor(ColorsUi.APC_Black)
                     .font(FontsUi.APC_Subheadline_Bold)
                     .lineLimit(1)
                 
                 VStack{}.frame(width: 4)
                 
-                Text(transactionViewModel.transaction?.moneyCurrency.currency ?? "-")
+                Text(transactionViewModel.transaction?.common.moneyCurrency.currency ?? "-")
                     .foregroundColor(ColorsUi.APC_Black)
                     .font(FontsUi.APC_Caption1_Bold)
                     .lineLimit(1)
@@ -62,18 +62,10 @@ internal struct PayingHeader: View {
             
             VStack{}.frame(width: 16)
             
-            if let appcAmount = transactionViewModel.transaction?.appcAmount {
-                Text(verbatim: String(format: "%.2f", appcAmount) + " APPC")
+            if case let .regular(transaction) = transactionViewModel.transaction {
+                Text(verbatim: String(format: "%.2f", transaction.appcAmount) + " APPC")
                     .foregroundColor(ColorsUi.APC_BottomSheet_APPC)
                     .font(FontsUi.APC_Caption2)
-            } else {
-                HStack(spacing: 0) {
-                    Text("")
-                        .skeleton(with: true)
-                        .frame(width: 55, height: 10, alignment: .leading)
-                        .padding(.top, 2)
-                    VStack{}.frame(maxWidth: .infinity)
-                }.frame(maxWidth: .infinity)
             }
         }
         .frame(width: viewModel.orientation == .landscape ? 256 : UIScreen.main.bounds.width - 154, alignment: .bottomLeading)

@@ -124,7 +124,7 @@ public struct Product: Codable {
         }
     }
     
-    internal func indirectPurchase(domain: String = (Bundle.main.bundleIdentifier ?? ""), payload: String? = nil, orderID: String = String(Date.timeIntervalSinceReferenceDate)) async -> PurchaseResult {
+    internal func indirectPurchase(domain: String = (Bundle.main.bundleIdentifier ?? ""), payload: String? = nil, orderID: String = String(Date.timeIntervalSinceReferenceDate), platform: String? = nil, oemID: String? = nil) async -> PurchaseResult {
         
         if BottomSheetViewModel.shared.hasActiveTransaction {
             return .failed(error: .purchaseNotAllowed(message: "Purchase Failed", description: "AppcSDK not available or has active transaction at Product.swift:purchase", request: nil))
@@ -139,7 +139,7 @@ public struct Product: Codable {
                 // domain – the app's domain registered in catappult
                 // payload – information that the developer might want to pass with the transaction
                 // orderID – a reference so that the developer can identify unique transactions
-                BottomSheetViewModel.shared.buildPurchase(product: self, domain: domain, metadata: payload, reference: orderID)
+                BottomSheetViewModel.shared.buildPurchase(product: self, domain: domain, metadata: payload, reference: orderID, platform: platform, oemID: oemID)
             }
             
             let result = try? await withCheckedThrowingContinuation { continuation in

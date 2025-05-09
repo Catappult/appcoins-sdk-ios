@@ -72,7 +72,6 @@ public struct AppcSDK {
     /// if AppcSDK.handle(redirectURL: URLContexts.first?.url) { return }
     /// ```
     static public func handle(redirectURL: URL?) -> Bool {
-        
         AppcSDKInternal.initialize()
         
         if let redirectURL = redirectURL {
@@ -93,9 +92,12 @@ public struct AppcSDK {
                     }
                 case "purchase":
                     if let sku = queryItems?.first(where: { $0.name == "product" })?.value {
+                        let platform = queryItems?.first(where: { $0.name == "platform" })?.value
+                        let oemID = queryItems?.first(where: { $0.name == "oemid" })?.value
+                        
                         Task {
                             guard let product = await try? Product.products(for: [sku]).first else { return }
-                            PurchaseIntentManager.shared.set(intent: PurchaseIntent(product: product))
+                            PurchaseIntentManager.shared.set(intent: PurchaseIntent(product: product, platform: platform, oemID: oemID))
                         }
                         
                         return true

@@ -23,8 +23,8 @@ class PurchaseIntentManager {
 
     internal func set(intent: PurchaseIntent) {
         self.current = intent
-        Purchase.send(intent)
         saveToDisk()
+        Purchase.send(intent)
     }
     
     internal func unset() {
@@ -36,8 +36,10 @@ class PurchaseIntentManager {
         if let current = self.current { SDKUseCases.shared.persistPurchaseIntent(intent: current) }
     }
 
-    private func loadFromDisk() {
-        guard let storedIntent = SDKUseCases.shared.fetchPurchaseIntent() else { return }
+    internal func loadFromDisk() {
+        guard let storedIntent = SDKUseCases.shared.fetchPurchaseIntent() else {
+            return
+        }
         
         if isIntentExpired(intent: storedIntent) {
             removeFromDisk()
