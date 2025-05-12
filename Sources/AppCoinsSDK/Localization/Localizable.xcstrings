@@ -3,6 +3,26 @@
   "strings" : {
     "" : {
 
+    },
+    "-10%" : {
+
+    },
+    "cancel_button" : {
+      "comment" : "Cancel",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        }
+      }
+    },
+    "Pay with Apple" : {
+
+    },
+    "Pay with Trivial Drive" : {
+
     }
   },
   "version" : "1.0"

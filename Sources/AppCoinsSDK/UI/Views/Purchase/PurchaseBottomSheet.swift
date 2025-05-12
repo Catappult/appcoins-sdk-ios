@@ -28,10 +28,35 @@ internal struct PurchaseBottomSheet: View {
                             .presentationDetents([viewModel.orientation == .landscape ? .fraction(0.9) : .fraction(0.6)])
                         
                     }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(self.colorScheme == .dark ? ColorsUi.APC_WebViewDarkMode : ColorsUi.APC_WebViewLightMode)
                 }
             })
+        
+        if viewModel.isBrowserWebCheckoutPresented {
+            if #available(iOS 15, *) {
+                ZStack {
+                    Color.black.opacity(0.7)
+                    
+                    VStack {
+                        VStack {
+                            ProgressView()
+                                .tint(.white)
+                        }
+                        .frame(maxHeight: .infinity)
+
+                        Button {
+                            viewModel.dismiss()
+                        } label: {
+                            Text(Constants.cancelButton)
+                                .frame(maxWidth: .infinity)
+                        }
+                        
+                        HStack{}.frame(height: Utils.bottomSafeAreaHeight)
+                    }
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .ignoresSafeArea()
+            }
+        }
     }
 }
 
