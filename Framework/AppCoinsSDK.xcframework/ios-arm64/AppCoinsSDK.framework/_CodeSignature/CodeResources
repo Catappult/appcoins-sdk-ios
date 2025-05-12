@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/AppCoinsSDK-Swift.h</key>
 		<data>
-		ZS2pl4cCU7zMz/A49/rAmZLOj54=
+		HqzcHmV3yT1IAYqd8V/zOxSy8/Q=
 		</data>
 		<key>Info.plist</key>
 		<data>
@@ -14,11 +14,11 @@
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/Project/arm64-apple-ios.swiftsourceinfo</key>
 		<data>
-		+rqLd87iyUnW79MEfufdLOtelJ4=
+		sSiVzdnJkaTiitNUb3SLC1ieDC8=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.abi.json</key>
 		<data>
-		xak63YN5LArAiperhMxvGvyBF1E=
+		eRbUrpCwzle7MWddXMU8GOOxJO8=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<data>
@@ -34,7 +34,7 @@
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		NQD6GzIyFuvtWnOV5uFhFxx/vbw=
+		i969yXVwu0EdW28P34GTq4rZ6uE=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -56,6 +56,15 @@
 		<data>
 		a4Fr1R8ba8hcUEJEYw4/2XWrbq4=
 		</data>
+		<key>en.lproj/Localizable.strings</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			SdrZhag9RxqcQ16u8iZb/sbnlj4=
+			</data>
+			<key>optional</key>
+			<true/>
+		</dict>
 	</dict>
 	<key>files2</key>
 	<dict>
@@ -63,21 +72,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			7grl7BmqrQSOSvuNAdhzBOVqNr+qcHeIq60cW3d3cBI=
+			IFuh0SyZR4gSDXKGSrsqs84bnf/FbyICdPyTwm8lEz0=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/Project/arm64-apple-ios.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			QRHfcM+7Dp2/1+eiy2cCksNmaBg9Bf4qYsPBUejXf0U=
+			kSPfmiTHpW/X8rSFWXPg68jXR23KpwHKRINMr0NIrzk=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			5ZbTlBag63zf1ZGJzoa1HVeyJHMh6FKuhGx6u0sz1dc=
+			BOMGh4uDK9mait3pFxLx5n9L1Goavibr/iXDoby+qJc=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
@@ -105,7 +114,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			J1n+2J8SXiZHNeZZ7cq18Dc2B4jFmdVY+PJazAuy3L4=
+			cZIlaGzuf4OOA5x25pk2XwvhT5tpqume6cWLfnDXf9M=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -142,6 +151,15 @@
 			<data>
 			YTORKhTgR9bm0LBHzMjxFiScqc1xskwR2fcSLWyRA+k=
 			</data>
+		</dict>
+		<key>en.lproj/Localizable.strings</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			q4uoaUMMC6pMTA95fgQE62GEgA/c+GZdX3wuMNZqBKA=
+			</data>
+			<key>optional</key>
+			<true/>
 		</dict>
 	</dict>
 	<key>rules</key>

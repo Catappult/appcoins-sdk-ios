@@ -1498,6 +1498,26 @@
       },
       {
         "kind": "Import",
+        "name": "SwiftUI",
+        "printedName": "SwiftUI",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
         "name": "Foundation",
         "printedName": "Foundation",
         "declKind": "Import",
@@ -5843,6 +5863,20 @@
       "value": "1.0"
     },
     {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
+      "kind": "StringLiteral",
+      "offset": 222,
+      "length": 15,
+      "value": "\"cancel_button\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
+      "kind": "StringLiteral",
+      "offset": 269,
+      "length": 8,
+      "value": "\"Cancel\""
+    },
+    {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/Cursor.swift",
       "kind": "StringLiteral",
       "offset": 290,
@@ -5883,6 +5917,27 @@
       "offset": 347,
       "length": 5,
       "value": "\"url\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Extensions.swift",
+      "kind": "StringLiteral",
+      "offset": 449,
+      "length": 13,
+      "value": "\"AppCoinsSDK\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Extensions.swift",
+      "kind": "StringLiteral",
+      "offset": 743,
+      "length": 22,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Extensions.swift",
+      "kind": "StringLiteral",
+      "offset": 757,
+      "length": 1,
+      "value": "\".bundle\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/GetProductInformationRaw.swift",
