@@ -22,6 +22,22 @@ internal class SDKRepository: SDKRepositoryProtocol {
         userPreferencesLocalService.setSDKDefault(value: setValue)
     }
     
+    func getDefaultStorefrontLocale() -> String? {
+        return userPreferencesLocalService.getDefaultStorefrontLocale()
+    }
+    
+    func setSDKDefaultStorefrontLocale(locale: String) {
+        userPreferencesLocalService.setSDKDefaultStorefrontLocale(locale: locale)
+    }
+    
+    func getDefaultStorefrontMarketplace() -> String? {
+        return userPreferencesLocalService.getDefaultStorefrontMarketplace()
+    }
+    
+    func setSDKDefaultStorefrontMarketplace(marketplace: String) {
+        userPreferencesLocalService.setSDKDefaultStorefrontMarketplace(marketplace: marketplace)
+    }
+    
     internal func persistPurchaseIntent(intent: PurchaseIntent) {
         purchaseIntentService.persist(intent: intent)
     }
