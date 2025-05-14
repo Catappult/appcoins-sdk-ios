@@ -149,5 +149,4 @@ internal class PurchaseViewModel: ObservableObject {
         }
     }
     
-    internal func dismissBrowserCheckoutLoading() { self.reset() }
 }
