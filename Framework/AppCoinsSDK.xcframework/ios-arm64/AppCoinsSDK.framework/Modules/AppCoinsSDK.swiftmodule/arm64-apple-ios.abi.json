@@ -1619,6 +1619,26 @@
       },
       {
         "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "SwiftUI",
+        "printedName": "SwiftUI",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
         "name": "AuthenticationServices",
         "printedName": "AuthenticationServices",
         "declKind": "Import",
@@ -5998,6 +6018,20 @@
       "value": "\"signature\""
     },
     {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/HandleApplicationRedirect\/HandleApplicationRedirectBody.swift",
+      "kind": "StringLiteral",
+      "offset": 298,
+      "length": 5,
+      "value": "\"URL\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/HandleApplicationRedirect\/HandleApplicationRedirectBody.swift",
+      "kind": "StringLiteral",
+      "offset": 298,
+      "length": 5,
+      "value": "\"URL\""
+    },
+    {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/HandleAuthenticationRedirect\/HandleAuthenticationRedirectBody.swift",
       "kind": "StringLiteral",
       "offset": 281,
@@ -6672,14 +6706,21 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/WebPaymentInterfaceMethod.swift",
       "kind": "StringLiteral",
-      "offset": 398,
+      "offset": 401,
+      "length": 27,
+      "value": "\"handleApplicationRedirect\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/WebPaymentInterfaceMethod.swift",
+      "kind": "StringLiteral",
+      "offset": 463,
       "length": 24,
       "value": "\"handleInternalRedirect\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/WebPaymentInterfaceMethod.swift",
       "kind": "StringLiteral",
-      "offset": 450,
+      "offset": 515,
       "length": 17,
       "value": "\"setActiveWallet\""
     },
@@ -6714,14 +6755,21 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/WebPaymentInterfaceMethod.swift",
       "kind": "StringLiteral",
-      "offset": 398,
+      "offset": 401,
+      "length": 27,
+      "value": "\"handleApplicationRedirect\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/WebPaymentInterfaceMethod.swift",
+      "kind": "StringLiteral",
+      "offset": 463,
       "length": 24,
       "value": "\"handleInternalRedirect\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/WebPaymentInterfaceMethod.swift",
       "kind": "StringLiteral",
-      "offset": 450,
+      "offset": 515,
       "length": 17,
       "value": "\"setActiveWallet\""
     }
