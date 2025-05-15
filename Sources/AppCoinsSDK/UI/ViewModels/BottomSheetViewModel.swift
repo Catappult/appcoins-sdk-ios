@@ -80,6 +80,13 @@ internal class BottomSheetViewModel: ObservableObject {
             self.finalWalletBalance = nil
             self.purchaseFailedMessage = Constants.somethingWentWrong
             
+            self.product = nil
+            self.domain = nil
+            self.metadata = nil
+            self.reference = nil
+            self.discountPolicy = nil
+            self.oemID = nil
+            
             TransactionViewModel.shared.reset()
             AuthViewModel.shared.reset()
             PayPalDirectViewModel.shared.reset()
@@ -214,7 +221,7 @@ internal class BottomSheetViewModel: ObservableObject {
                         case .failure(let error):
                             switch error {
                             case .failed(let message, let description, let request):
-                                self.transactionFailedWith(error: .systemError(debugInfo: DebugInfo(message: message, description: description, request: request)), description: description)
+                                self.transactionFailedWith(error: .systemError(debugInfo: DebugInfo(message: message, description: description, request: request)))
                             case .general(let message, let description, let request):
                                 self.transactionFailedWith(error: .systemError(debugInfo: DebugInfo(message: message, description: description, request: request)))
                             case .noBillingAgreement(let message, let description, let request):
@@ -256,7 +263,7 @@ internal class BottomSheetViewModel: ObservableObject {
                         case .failure(let error):
                             switch error {
                             case .failed(let message, let description, let request):
-                                self.transactionFailedWith(error: .systemError(debugInfo: DebugInfo(message: message, description: description, request: request)), description: description)
+                                self.transactionFailedWith(error: .systemError(debugInfo: DebugInfo(message: message, description: description, request: request)))
                             case .general(let message, let description, let request):
                                 self.transactionFailedWith(error: .systemError(debugInfo: DebugInfo(message: message, description: description, request: request)))
                             case .noBillingAgreement(let message, let description, let request):

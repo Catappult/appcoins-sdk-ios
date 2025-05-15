@@ -155,7 +155,7 @@ internal class TransactionViewModel : ObservableObject {
                                         }
                                     }
                                 }
-                            } else { self.bottomSheetViewModel.transactionFailedWith(error: .unknown(message: "Failed to build transaction", description: "Missig required parameters: moneyAmount is nil at TransactionViewModel.swift:buildTransaction")) }
+                            } else { self.bottomSheetViewModel.transactionFailedWith(error: .unknown(message: "Failed to build transaction", description: "Missig required parameters: moneyAmount is nil at TransactionViewModel.swift:buildRegularTransaction")) }
                         }
                     case .failure(let error):
                         switch error {
@@ -196,30 +196,35 @@ internal class TransactionViewModel : ObservableObject {
                             appcValue in
                             
                             if let moneyAmount = Double(product.priceValue) {
-                                // 5. Get payment methods available
+                                // 4. Get payment methods available
                                 self.getPaymentMethods(value: product.priceValue, currency: productCurrency, wallet: wallet, domain: domain) {
                                     availablePaymentMethods in
                                     
-                                    DispatchQueue.main.async {
-                                        // 7. Build the Transaction UI
-                                        self.transaction = .direct(
-                                            DirectTransactionAlertUI(domain: domain, description: product.title, sku: product.sku, moneyAmount: moneyAmount, moneyCurrency: productCurrency, paymentMethods: availablePaymentMethods)
-                                        )
-                                        
-                                        let guestUID = MMPUseCases.shared.getGuestUID()
-                                        let oemID = self.oemID ?? MMPUseCases.shared.getOEMID()
-                                        
-                                        // 8. Build the parameters to process the transaction
-                                        self.transactionParameters = TransactionParameters(value: moneyAmount, currency: productCurrency, domain: domain, product: product.sku, appcAmount: String(appcValue), discountPolicy: self.discountPolicy, guestUID: guestUID, oemID: oemID, metadata: self.metadata, reference: self.reference)
-                                        
-                                        // 9. Show payment method options
-                                        self.showPaymentMethodsOnBuild(wallet: wallet, balance: nil)
-                                        
-                                        // 10. Show loaded view
-                                        self.bottomSheetViewModel.setPurchaseState(newState: .paying)
+                                    // 5. Get product discount
+                                    if let discountOriginal = product.priceDiscountOriginal, let discountPercentage = product.priceDiscountPercentage {
+                                        DispatchQueue.main.async {
+                                            // 6. Build the Transaction UI
+                                            self.transaction = .direct(
+                                                DirectTransactionAlertUI(domain: domain, description: product.title, sku: product.sku, moneyAmount: moneyAmount, moneyCurrency: productCurrency, discountOriginal: discountOriginal, discountPercentage: discountPercentage, paymentMethods: availablePaymentMethods)
+                                            )
+                                            
+                                            let guestUID = MMPUseCases.shared.getGuestUID()
+                                            let oemID = self.oemID ?? MMPUseCases.shared.getOEMID()
+                                            
+                                            // 7. Build the parameters to process the transaction
+                                            self.transactionParameters = TransactionParameters(value: moneyAmount, currency: productCurrency, domain: domain, product: product.sku, appcAmount: String(appcValue), discountPolicy: self.discountPolicy, guestUID: guestUID, oemID: oemID, metadata: self.metadata, reference: self.reference)
+                                            
+                                            // 8. Show payment method options
+                                            self.showPaymentMethodsOnBuild(wallet: wallet, balance: nil)
+                                            
+                                            // 9. Show loaded view
+                                            self.bottomSheetViewModel.setPurchaseState(newState: .paying)
+                                        }
+                                    } else {
+                                        self.bottomSheetViewModel.transactionFailedWith(error: .unknown(message: "Failed to build transaction", description: "Missig required parameters: discount is nil at TransactionViewModel.swift:buildDirectTransaction"))
                                     }
                                 }
-                            } else { self.bottomSheetViewModel.transactionFailedWith(error: .unknown(message: "Failed to build transaction", description: "Missig required parameters: moneyAmount is nil at TransactionViewModel.swift:buildTransaction")) }
+                            } else { self.bottomSheetViewModel.transactionFailedWith(error: .unknown(message: "Failed to build transaction", description: "Missig required parameters: moneyAmount is nil at TransactionViewModel.swift:buildDirectTransaction")) }
                         }
                     case .failure(let error):
                         switch error {

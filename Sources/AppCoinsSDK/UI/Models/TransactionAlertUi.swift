@@ -61,6 +61,8 @@ internal struct DirectTransactionAlertUI {
     internal let sku: String?
     internal let moneyAmount: Double
     internal let moneyCurrency: Currency
+    internal let discountOriginal: String
+    internal let discountPercentage: String
     internal var paymentMethods: [PaymentMethod]
 }
 
