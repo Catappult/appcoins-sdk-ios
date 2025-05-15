@@ -18,30 +18,20 @@ internal struct PurchaseBonusBanner: View {
             
             VStack{}.frame(width: 16)
                 
-            if transactionViewModel.hasBonus {
+            if case let .regular(transaction) = transactionViewModel.transaction, transactionViewModel.hasBonus {
                 HStack {
                     Image("gift-pink", bundle: Bundle.APPCModule)
                         .resizable()
                         .edgesIgnoringSafeArea(.all)
                         .frame(width: 13, height: 14)
                     
-                    if let bonusCurrency = transactionViewModel.transaction?.bonusCurrency.sign, let bonusAmount = transactionViewModel.transaction?.bonusAmount {
-                        StyledText(
-                            String(format: Constants.purchaseBonus, "\(bonusCurrency)\(String(format: "%.2f", bonusAmount))"),
-                            textStyle: FontsUi.APC_Caption1_Bold,
-                            boldStyle: FontsUi.APC_Caption1_Bold,
-                            textColorRegular: ColorsUi.APC_White,
-                            textColorBold: ColorsUi.APC_Pink
-                        ).frame(height: 16)
-                    } else {
-                        HStack(spacing: 0) {
-                            Text("")
-                                .skeleton(with: true)
-                                .font(FontsUi.APC_Caption1_Bold)
-                                .opacity(0.1)
-                                .frame(width: 40, height: 17)
-                        }
-                    }
+                    StyledText(
+                        String(format: Constants.purchaseBonus, "\(transaction.bonusCurrency.sign)\(String(format: "%.2f", transaction.bonusAmount))"),
+                        textStyle: FontsUi.APC_Caption1_Bold,
+                        boldStyle: FontsUi.APC_Caption1_Bold,
+                        textColorRegular: ColorsUi.APC_White,
+                        textColorBold: ColorsUi.APC_Pink
+                    ).frame(height: 16)
                     
                     Image("appc-payment-method-white", bundle: Bundle.APPCModule)
                         .resizable()

@@ -20,15 +20,17 @@ internal struct PayingViewFormLayer: View {
             if #available(iOS 17.0, *) {
                 OverflowAnimationWrapper(height: viewModel.orientation == .landscape ? (UIScreen.main.bounds.height * 0.9) - 86 - 72 : 420 - 86 - 72, offset: 72) {
                     VStack(spacing: 0) {
-                        PurchaseBonusBanner()
-                        
-                        if authViewModel.isLoggedIn {
-                            VStack{}.frame(height: 8)
+                        if case let .regular(transaction) = transactionViewModel.transaction {
+                            PurchaseBonusBanner()
                             
-                            WalletBalanceBanner()
+                            if authViewModel.isLoggedIn {
+                                VStack{}.frame(height: 8)
+                                
+                                WalletBalanceBanner()
+                            }
+                            
+                            VStack{}.frame(height: 16)
                         }
-                        
-                        VStack{}.frame(height: 16)
                         
                         if let paymentMethodSelected = transactionViewModel.paymentMethodSelected { PaymentMethodSelectedBanner(paymentMethodSelected: paymentMethodSelected) }
                         
@@ -36,7 +38,7 @@ internal struct PayingViewFormLayer: View {
                         
                         SelectPaymentMethodButton()
                         
-                        if !authViewModel.isLoggedIn {
+                        if !authViewModel.isLoggedIn, case let .regular(transaction) = transactionViewModel.transaction {
                             VStack{}.frame(height: 8)
                             
                             LoginButton(action: {

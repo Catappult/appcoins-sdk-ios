@@ -14,6 +14,7 @@ internal struct CreateBAPayPalTransactionRaw: Codable {
     internal let priceCurrency: String
     internal let product: String?
     internal let type: String
+    internal let discountPolicy: String?
     internal let channel: String
     internal let platform: String
     internal let guestUID: String?
@@ -27,6 +28,7 @@ internal struct CreateBAPayPalTransactionRaw: Codable {
         case priceCurrency = "price.currency"
         case product = "product"
         case type = "type"
+        case discountPolicy = "discount_policy"
         case channel = "channel"
         case platform = "platform"
         case guestUID = "entity.guest_id"
@@ -37,10 +39,10 @@ internal struct CreateBAPayPalTransactionRaw: Codable {
     
     internal static func fromParameters(parameters: TransactionParameters) -> CreateBAPayPalTransactionRaw {
         // normalizes the price to adjust to different time zone price syntaxes
-        let normalizedPrice = parameters.value.replacingOccurrences(of: ",", with: ".")
+        let normalizedPrice = String(parameters.value).replacingOccurrences(of: ",", with: ".")
         
         return CreateBAPayPalTransactionRaw(
-            domain: parameters.domain, price: normalizedPrice, priceCurrency: parameters.currency, product: parameters.product, type: "INAPP", channel: "IOS", platform: "IOS", guestUID: parameters.guestUID, oemID: parameters.oemID, metadata: parameters.metadata, reference: parameters.reference
+            domain: parameters.domain, price: normalizedPrice, priceCurrency: parameters.currency.currency, product: parameters.product, type: "INAPP", discountPolicy: parameters.discountPolicy, channel: "IOS", platform: "IOS", guestUID: parameters.guestUID, oemID: parameters.oemID, metadata: parameters.metadata, reference: parameters.reference
         )
     }
     

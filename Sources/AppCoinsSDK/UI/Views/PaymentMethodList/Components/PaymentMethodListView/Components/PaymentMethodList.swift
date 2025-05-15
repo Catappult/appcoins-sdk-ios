@@ -14,7 +14,7 @@ internal struct PaymentMethodList: View {
     
     internal var body: some View {
         
-        if let options = transactionViewModel.transaction?.paymentMethods {
+        if let options = transactionViewModel.transaction?.common.paymentMethods {
             VStack(spacing: 0) {
                 ForEach(options, id: \.self) { option in
                     Button(action: {

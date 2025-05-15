@@ -10,6 +10,7 @@ import SwiftUI
 internal struct SuccessBottomSheet: View {
     
     @ObservedObject internal var viewModel: BottomSheetViewModel = BottomSheetViewModel.shared
+    @ObservedObject internal var transactionViewModel: TransactionViewModel = TransactionViewModel.shared
     @ObservedObject internal var authViewModel: AuthViewModel = AuthViewModel.shared
     
     @State internal var isPresented: Bool = false
@@ -18,10 +19,14 @@ internal struct SuccessBottomSheet: View {
         ZStack {
             ColorsUi.APC_BottomSheet_LightGray_Background
             
-            if authViewModel.isLoggedIn {
-                LoggedInSuccessView()
+            if case let .direct(transaction) = transactionViewModel.transaction {
+                WebshopSuccessView()
             } else {
-                LoggedOutSuccessView()
+                if authViewModel.isLoggedIn {
+                    LoggedInSuccessView()
+                } else {
+                    LoggedOutSuccessView()
+                }
             }
             
             VStack(spacing: 0) {

@@ -13,7 +13,7 @@ internal struct LoggedOutSuccessBonusEarnedLabel: View {
     
     internal var body: some View {
         HStack(spacing: 0) {
-            if transactionViewModel.hasBonus {
+            if case let .regular(transaction) = transactionViewModel.transaction, transactionViewModel.hasBonus {
                 Image("gift-pink", bundle: Bundle.APPCModule)
                     .resizable()
                     .edgesIgnoringSafeArea(.all)
@@ -21,7 +21,7 @@ internal struct LoggedOutSuccessBonusEarnedLabel: View {
                 
                 VStack{}.frame(width: 5)
                 
-                Text(String(format: Constants.bonusReceived, "\(transactionViewModel.transaction?.bonusCurrency.sign ?? "")\(String(format: "%.2f", transactionViewModel.transaction?.bonusAmount ?? 0.0))"))
+                Text(String(format: Constants.bonusReceived, "\(transaction.bonusCurrency.sign)\(String(format: "%.2f", transaction.bonusAmount))"))
                     .font(FontsUi.APC_Subheadline_Bold)
                     .foregroundColor(ColorsUi.APC_Black)
             }

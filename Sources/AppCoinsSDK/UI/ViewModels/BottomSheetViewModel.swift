@@ -18,6 +18,8 @@ internal class BottomSheetViewModel: ObservableObject {
     internal var domain: String? = nil
     internal var metadata: String? = nil
     internal var reference: String? = nil
+    internal var discountPolicy: String? = nil
+    internal var oemID: String? = nil
     
     // Purchase status
     @Published internal var purchaseState: PurchaseState = .none
@@ -98,13 +100,16 @@ internal class BottomSheetViewModel: ObservableObject {
     }
     
     // Called when a user starts a product purchase
-    internal func buildPurchase(product: Product, domain: String, metadata: String?, reference: String?) {
+    internal func buildPurchase(product: Product, domain: String, metadata: String?, reference: String?, discountPolicy: String? = nil, oemID: String? = nil) {
         self.hasActiveTransaction = true
         self.product = product
         self.domain = domain
         self.metadata = metadata
         self.reference = reference
-        TransactionViewModel.shared.setUpTransaction(product: product, domain: domain, metadata: metadata, reference: reference)
+        self.discountPolicy = discountPolicy
+        self.oemID = oemID
+        
+        TransactionViewModel.shared.setUpTransaction(product: product, domain: domain, metadata: metadata, reference: reference, discountPolicy: discountPolicy, oemID: oemID)
         
         DispatchQueue(label: "build-transaction", qos: .userInteractive).async { self.initiateTransaction() }
     }
@@ -209,7 +214,7 @@ internal class BottomSheetViewModel: ObservableObject {
                         case .failure(let error):
                             switch error {
                             case .failed(let message, let description, let request):
-                                self.transactionFailedWith(error: .systemError(debugInfo: DebugInfo(message: message, description: description, request: request)), description: description)
+                                self.transactionFailedWith(error: .systemError(debugInfo: DebugInfo(message: message, description: description, request: request)))
                             case .general(let message, let description, let request):
                                 self.transactionFailedWith(error: .systemError(debugInfo: DebugInfo(message: message, description: description, request: request)))
                             case .noBillingAgreement(let message, let description, let request):
@@ -251,7 +256,7 @@ internal class BottomSheetViewModel: ObservableObject {
                         case .failure(let error):
                             switch error {
                             case .failed(let message, let description, let request):
-                                self.transactionFailedWith(error: .systemError(debugInfo: DebugInfo(message: message, description: description, request: request)), description: description)
+                                self.transactionFailedWith(error: .systemError(debugInfo: DebugInfo(message: message, description: description, request: request)))
                             case .general(let message, let description, let request):
                                 self.transactionFailedWith(error: .systemError(debugInfo: DebugInfo(message: message, description: description, request: request)))
                             case .noBillingAgreement(let message, let description, let request):
@@ -286,7 +291,7 @@ internal class BottomSheetViewModel: ObservableObject {
                     
                     switch result {
                     case .success(let wallet):
-                        if let moneyAmount = TransactionViewModel.shared.transaction?.moneyAmount, let moneyCurrrency = TransactionViewModel.shared.transaction?.moneyCurrency {
+                        if let moneyAmount = TransactionViewModel.shared.transactionParameters?.value, let moneyCurrrency = TransactionViewModel.shared.transactionParameters?.currency {
                             AdyenViewModel.shared.buyWithCreditCard(raw: raw, wallet: wallet, moneyAmount: moneyAmount, moneyCurrency: moneyCurrrency)
                         } else { self.transactionFailedWith(error: .systemError(message: "Failed to buy with Credit Card", description: "Unable to unwrap transaction at BottomSheetViewModel.swift:buyWithCreditCard")) }
                     case .failure(let error):
@@ -326,7 +331,7 @@ internal class BottomSheetViewModel: ObservableObject {
                     
                     switch result {
                     case .success(let wallet):
-                        if let moneyAmount = TransactionViewModel.shared.transaction?.moneyAmount, let moneyCurrrency = TransactionViewModel.shared.transaction?.moneyCurrency {
+                        if let moneyAmount = TransactionViewModel.shared.transactionParameters?.value, let moneyCurrrency = TransactionViewModel.shared.transactionParameters?.currency {
                             AdyenViewModel.shared.buyWithPayPalAdyen(raw: raw, wallet: wallet, moneyAmount: moneyAmount, moneyCurrency: moneyCurrrency)
                         } else { self.transactionFailedWith(error: .systemError(message: "Failed to buy with Paypal Adyen", description: "Unable to unwrap transaction at BottomSheetViewModel.swift:buyWithPayPalAdyen")) }
                     case .failure(let error):
@@ -472,7 +477,11 @@ internal class BottomSheetViewModel: ObservableObject {
 
         self.transactionUseCases.setLastPaymentMethod(paymentMethod: method)
         
-        if AuthViewModel.shared.isLoggedIn { DispatchQueue.main.async { self.transactionSucceeded() } }
+        if case var .direct(transaction) = TransactionViewModel.shared.transaction {
+            DispatchQueue.main.async { self.transactionSucceeded() }
+        } else {
+            if AuthViewModel.shared.isLoggedIn { DispatchQueue.main.async { self.transactionSucceeded() } }
+        }
     }
     
     internal func hasCompletedPurchase() -> Bool { return self.successfulPurchase != nil }
@@ -480,13 +489,17 @@ internal class BottomSheetViewModel: ObservableObject {
     internal func transactionSucceeded() {
         if let successfulPurchase = self.successfulPurchase {
             let verificationResult: VerificationResult = .verified(purchase: successfulPurchase)
-            let transactionResult: TransactionResult = .success(verificationResult: verificationResult)
-            Utils.transactionResult(result: transactionResult)
+            let purchaseResult: PurchaseResult = .success(verificationResult: verificationResult)
+            Utils.purchaseResult(result: purchaseResult)
 
-            if AuthViewModel.shared.isLoggedIn {
+            if case var .direct(transaction) = TransactionViewModel.shared.transaction {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) { self.dismissSuccessWithAnimation() }
             } else {
-                self.dismissVC()
+                if AuthViewModel.shared.isLoggedIn {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) { self.dismissSuccessWithAnimation() }
+                } else {
+                    self.dismissVC()
+                }
             }
         } else {
             self.transactionFailedWith(error: .systemError(message: "Failed to set transaction success", description: "Missing required transaction purchase BottomSheetViewModel.swift:transactionSucceeded"))
@@ -497,19 +510,19 @@ internal class BottomSheetViewModel: ObservableObject {
         if let description = description { DispatchQueue.main.async { self.purchaseFailedMessage = description } }
         switch error {
         case .networkError(let debugInfo):
-            let result : TransactionResult = .failed(error: error)
-            Utils.transactionResult(result: result)
+            let result : PurchaseResult = .failed(error: error)
+            Utils.purchaseResult(result: result)
             DispatchQueue.main.async { self.purchaseState = .nointernet }
         default:
-            let result : TransactionResult = .failed(error: error)
-            Utils.transactionResult(result: result)
+            let result : PurchaseResult = .failed(error: error)
+            Utils.purchaseResult(result: result)
             DispatchQueue.main.async { self.purchaseState = .failed }
         }
     }
     
     internal func userCancelled() {
-        let result : TransactionResult = .userCancelled
-        Utils.transactionResult(result: result)
+        let result : PurchaseResult = .userCancelled
+        Utils.purchaseResult(result: result)
         self.dismissVC()
     }
     

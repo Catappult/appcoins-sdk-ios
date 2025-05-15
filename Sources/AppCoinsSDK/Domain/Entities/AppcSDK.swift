@@ -72,7 +72,6 @@ public struct AppcSDK {
     /// if AppcSDK.handle(redirectURL: URLContexts.first?.url) { return }
     /// ```
     static public func handle(redirectURL: URL?) -> Bool {
-        
         AppcSDKInternal.initialize()
         
         if let redirectURL = redirectURL {
@@ -93,19 +92,12 @@ public struct AppcSDK {
                     }
                 case "purchase":
                     if let sku = queryItems?.first(where: { $0.name == "product" })?.value {
-                        let payload = queryItems?.first(where: { $0.name == "payload" })?.value
-                        let orderID = queryItems?.first(where: { $0.name == "orderID" })?.value
-
+                        let discountPolicy = queryItems?.first(where: { $0.name == "discount_policy" })?.value
+                        let oemID = queryItems?.first(where: { $0.name == "oemid" })?.value
+                        
                         Task {
-                            guard let product = await try? Product.products(for: [sku]).first else { return }
-
-                            let result = orderID != nil
-                                ? await product.indirectPurchase(payload: payload, orderID: orderID!)
-                                : await product.indirectPurchase(payload: payload)
-
-                            if case let .success(verificationResult) = result {
-                                Purchase.send(verificationResult)
-                            }
+                            guard let product = await try? Product.products(for: [sku], discountPolicy: discountPolicy).first else { return }
+                            PurchaseIntentManager.shared.set(intent: PurchaseIntent(product: product, discountPolicy: discountPolicy, oemID: oemID))
                         }
                         
                         return true
