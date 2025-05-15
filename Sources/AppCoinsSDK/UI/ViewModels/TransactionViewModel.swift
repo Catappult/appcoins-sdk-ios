@@ -23,8 +23,10 @@ internal class TransactionViewModel : ObservableObject {
     internal var domain: String? = nil
     internal var metadata: String? = nil
     internal var reference: String? = nil
+    internal var discountPolicy: String? = nil
+    internal var oemID: String? = nil
     
-    @Published internal var transaction: TransactionAlertUi?
+    @Published internal var transaction: TransactionUI?
     internal var transactionParameters: TransactionParameters?
     
     // Payment Method choice display variables
@@ -53,6 +55,8 @@ internal class TransactionViewModel : ObservableObject {
         self.domain = nil
         self.metadata = nil
         self.reference = nil
+        self.discountPolicy = nil
+        self.oemID = nil
         
         self.transaction = nil
         self.transactionParameters = nil
@@ -66,11 +70,13 @@ internal class TransactionViewModel : ObservableObject {
     }
     
     // Called when a user starts a product purchase
-    internal func setUpTransaction(product: Product, domain: String, metadata: String?, reference: String?) {
+    internal func setUpTransaction(product: Product, domain: String, metadata: String?, reference: String?, discountPolicy: String? = nil, oemID: String? = nil) {
         self.product = product
         self.domain = domain
         self.metadata = metadata
         self.reference = reference
+        self.discountPolicy = discountPolicy
+        self.oemID = oemID
     }
     
     internal func rebuildTransactionOnWalletChanged() {
@@ -84,80 +90,160 @@ internal class TransactionViewModel : ObservableObject {
         bottomSheetViewModel.setPurchaseState(newState: .loading)
         
         if let product = product, let domain = domain {
-            // 1. Get product currency
-            product.getCurrency {
-                result in
-                
-                switch result {
-                case .success(let productCurrency):
-                    // 2. Get user wallet
-                    self.walletUseCases.getWallet() {
-                        result in
+            switch discountPolicy {
+            case "D2C":
+                buildDirectTransaction(product: product, domain: domain)
+            default:
+                buildRegularTransaction(product: product, domain: domain)
+            }
+        } else { bottomSheetViewModel.transactionFailedWith(error: .systemError(message: "Failed to build transaction", description: "Missing required parameters: product is nil or domain is nil at TransactionViewModel.swift:buildTransaction")) }
+    }
+    
+    private func buildRegularTransaction(product: Product, domain: String) {
+        // 1. Get product currency
+        product.getCurrency {
+            result in
+            
+            switch result {
+            case .success(let productCurrency):
+                // 2. Get user wallet
+                self.walletUseCases.getWallet() {
+                    result in
+                    
+                    switch result {
+                    case .success(let wallet):
+                        AuthViewModel.shared.setLogInState(isLoggedIn: wallet is UserWallet)
                         
-                        switch result {
-                        case .success(let wallet):
-                            AuthViewModel.shared.setLogInState(isLoggedIn: wallet is UserWallet)
+                        // 3. Get product value
+                        self.getProductAppcValue(product: product) {
+                            appcValue in
                             
-                            // 3. Get product value
-                            self.getProductAppcValue(product: product) {
-                                appcValue in
-                                
-                                if let moneyAmount = Double(product.priceValue) {
-                                    // 4. Get user bonus
-                                    self.getTransactionBonus(wallet: wallet, domain: domain, amount: product.priceValue, currency: productCurrency) {
-                                        transactionBonus in
+                            if let moneyAmount = Double(product.priceValue) {
+                                // 4. Get user bonus
+                                self.getTransactionBonus(wallet: wallet, domain: domain, amount: product.priceValue, currency: productCurrency) {
+                                    transactionBonus in
+                                    
+                                    // 5. Get payment methods available
+                                    self.getPaymentMethods(value: product.priceValue, currency: productCurrency, wallet: wallet, domain: domain) {
+                                        availablePaymentMethods in
                                         
-                                        // 5. Get payment methods available
-                                        self.getPaymentMethods(value: product.priceValue, currency: productCurrency, wallet: wallet, domain: domain) {
-                                            availablePaymentMethods in
+                                        // 6. Get user's balance
+                                        self.getWalletBalance(wallet: wallet) {
+                                            balance in
                                             
-                                            // 6. Get user's balance
-                                            self.getWalletBalance(wallet: wallet) {
-                                                balance in
+                                            let balanceValue = balance.balance
+                                            let balanceCurrency = balance.balanceCurrency
+                                            
+                                            DispatchQueue.main.async {
+                                                // 7. Build the Transaction UI
+                                                self.transaction = .regular(
+                                                    TransactionAlertUI(domain: domain, description: product.title, category: .IAP, sku: product.sku, moneyAmount: moneyAmount, moneyCurrency: productCurrency, appcAmount: appcValue, bonusAmount: floor(transactionBonus.value*100)/100, bonusCurrency: transactionBonus.currency, balanceAmount: floor(balanceValue*100)/100, balanceCurrency: balanceCurrency, paymentMethods: availablePaymentMethods)
+                                                )
                                                 
-                                                let balanceValue = balance.balance
-                                                let balanceCurrency = balance.balanceCurrency
+                                                let guestUID = MMPUseCases.shared.getGuestUID()
+                                                let oemID = MMPUseCases.shared.getOEMID()
                                                 
-                                                DispatchQueue.main.async {
-                                                    // 7. Build the Transaction UI
-                                                    self.transaction = TransactionAlertUi(domain: domain, description: product.title, category: .IAP, sku: product.sku, moneyAmount: moneyAmount, moneyCurrency: productCurrency, appcAmount: appcValue, bonusAmount: floor(transactionBonus.value*100)/100, bonusCurrency: transactionBonus.currency, balanceAmount: floor(balanceValue*100)/100, balanceCurrency: balanceCurrency, paymentMethods: availablePaymentMethods)
-                                                    
-                                                    let guestUID = MMPUseCases.shared.getGuestUID()
-                                                    let oemID = MMPUseCases.shared.getOEMID()
-                                                    
-                                                    // 8. Build the parameters to process the transaction
-                                                    self.transactionParameters = TransactionParameters(value: String(moneyAmount), currency: product.priceCurrency, domain: domain, product: product.sku, appcAmount: String(appcValue), guestUID: guestUID, oemID: oemID, metadata: self.metadata, reference: self.reference)
-                                                    
-                                                    // 9. Show payment method options
-                                                    self.showPaymentMethodsOnBuild(wallet: wallet, balance: balance)
-                                                    
-                                                    // 10. Show loaded view
-                                                    self.bottomSheetViewModel.setPurchaseState(newState: .paying)
-                                                }
+                                                // 8. Build the parameters to process the transaction
+                                                self.transactionParameters = TransactionParameters(value: moneyAmount, currency: productCurrency, domain: domain, product: product.sku, appcAmount: String(appcValue), discountPolicy: self.discountPolicy, guestUID: guestUID, oemID: oemID, metadata: self.metadata, reference: self.reference)
+                                                
+                                                // 9. Show payment method options
+                                                self.showPaymentMethodsOnBuild(wallet: wallet, balance: balance)
+                                                
+                                                // 10. Show loaded view
+                                                self.bottomSheetViewModel.setPurchaseState(newState: .paying)
                                             }
                                         }
                                     }
-                                } else { self.bottomSheetViewModel.transactionFailedWith(error: .unknown(message: "Failed to build transaction", description: "Missig required parameters: moneyAmount is nil at TransactionViewModel.swift:buildTransaction")) }
-                            }
-                        case .failure(let error):
-                            switch error {
-                            case .failed(let message, let description, let request):
-                                self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
-                            case .noInternet(let message, let description, let request):
-                                self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
-                            }
+                                }
+                            } else { self.bottomSheetViewModel.transactionFailedWith(error: .unknown(message: "Failed to build transaction", description: "Missig required parameters: moneyAmount is nil at TransactionViewModel.swift:buildRegularTransaction")) }
+                        }
+                    case .failure(let error):
+                        switch error {
+                        case .failed(let message, let description, let request):
+                            self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
+                        case .noInternet(let message, let description, let request):
+                            self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
                         }
                     }
-                case .failure(let error):
-                    switch error {
-                    case .failed(let message, let description, let request):
-                        self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
-                    case .noInternet(let message, let description, let request):
-                        self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
-                    }
+                }
+            case .failure(let error):
+                switch error {
+                case .failed(let message, let description, let request):
+                    self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
+                case .noInternet(let message, let description, let request):
+                    self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
                 }
             }
-        } else { bottomSheetViewModel.transactionFailedWith(error: .systemError(message: "Failed to build transaction", description: "Missing required parameters: product is nil or domain is nil at TransactionViewModel.swift:buildTransaction")) }
+        }
+    }
+    
+    private func buildDirectTransaction(product: Product, domain: String) {
+        // 1. Get product currency
+        product.getCurrency {
+            result in
+            
+            switch result {
+            case .success(let productCurrency):
+                // 2. Get user wallet
+                self.walletUseCases.getWallet() {
+                    result in
+                    
+                    switch result {
+                    case .success(let wallet):
+                        
+                        // 3. Get product value
+                        self.getProductAppcValue(product: product) {
+                            appcValue in
+                            
+                            if let moneyAmount = Double(product.priceValue) {
+                                // 4. Get payment methods available
+                                self.getPaymentMethods(value: product.priceValue, currency: productCurrency, wallet: wallet, domain: domain) {
+                                    availablePaymentMethods in
+                                    
+                                    // 5. Get product discount
+                                    if let discountOriginal = product.priceDiscountOriginal, let discountPercentage = product.priceDiscountPercentage {
+                                        DispatchQueue.main.async {
+                                            // 6. Build the Transaction UI
+                                            self.transaction = .direct(
+                                                DirectTransactionAlertUI(domain: domain, description: product.title, sku: product.sku, moneyAmount: moneyAmount, moneyCurrency: productCurrency, discountOriginal: discountOriginal, discountPercentage: discountPercentage, paymentMethods: availablePaymentMethods)
+                                            )
+                                            
+                                            let guestUID = MMPUseCases.shared.getGuestUID()
+                                            let oemID = self.oemID ?? MMPUseCases.shared.getOEMID()
+                                            
+                                            // 7. Build the parameters to process the transaction
+                                            self.transactionParameters = TransactionParameters(value: moneyAmount, currency: productCurrency, domain: domain, product: product.sku, appcAmount: String(appcValue), discountPolicy: self.discountPolicy, guestUID: guestUID, oemID: oemID, metadata: self.metadata, reference: self.reference)
+                                            
+                                            // 8. Show payment method options
+                                            self.showPaymentMethodsOnBuild(wallet: wallet, balance: nil)
+                                            
+                                            // 9. Show loaded view
+                                            self.bottomSheetViewModel.setPurchaseState(newState: .paying)
+                                        }
+                                    } else {
+                                        self.bottomSheetViewModel.transactionFailedWith(error: .unknown(message: "Failed to build transaction", description: "Missig required parameters: discount is nil at TransactionViewModel.swift:buildDirectTransaction"))
+                                    }
+                                }
+                            } else { self.bottomSheetViewModel.transactionFailedWith(error: .unknown(message: "Failed to build transaction", description: "Missig required parameters: moneyAmount is nil at TransactionViewModel.swift:buildDirectTransaction")) }
+                        }
+                    case .failure(let error):
+                        switch error {
+                        case .failed(let message, let description, let request):
+                            self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
+                        case .noInternet(let message, let description, let request):
+                            self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
+                        }
+                    }
+                }
+            case .failure(let error):
+                switch error {
+                case .failed(let message, let description, let request):
+                    self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
+                case .noInternet(let message, let description, let request):
+                    self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
+                }
+            }
+        }
     }
     
     private func getProductAppcValue(product: Product, completion: @escaping (Double) -> Void) {
@@ -248,9 +334,12 @@ internal class TransactionViewModel : ObservableObject {
         }
     }
     
-    private func showPaymentMethodsOnBuild(wallet: Wallet, balance: Balance) {
+    private func showPaymentMethodsOnBuild(wallet: Wallet, balance: Balance?) {
+        // Filter out the AppCoins payment method if payment comes from webshop
+        removeAppCoinsIfWebshop()
+        
         // Filter out the AppCoins payment method if balance is insufficient
-        disableAppCoinsIfNeeded(balance: balance)
+        if let balance = balance { disableAppCoinsIfInsuffiecientBalance(balance: balance) }
         
         // Quick view of the last payment method used
         if let lastPaymentMethod = self.transactionUseCases.getLastPaymentMethod() {
@@ -259,26 +348,40 @@ internal class TransactionViewModel : ObservableObject {
             self.showOtherPaymentMethods = true
         }
         
-        func disableAppCoinsIfNeeded(balance: Balance) {
-            guard let index = self.transaction?.paymentMethods.firstIndex(where: { $0.name == Method.appc.rawValue }) else {
+        func removeAppCoinsIfWebshop() {
+            guard case var .direct(transaction) = self.transaction else {
                 return
             }
             
-            guard var APPC: PaymentMethod = self.transaction?.paymentMethods[index] else {
+            guard let index = transaction.paymentMethods.firstIndex(where: { $0.name == Method.appc.rawValue }) else {
+                return
+            }
+            transaction.paymentMethods.remove(at: index)
+            self.transaction = .direct(transaction)
+        }
+        
+        func disableAppCoinsIfInsuffiecientBalance(balance: Balance) {
+            guard case var .regular(transaction) = self.transaction else {
                 return
             }
             
-            let hasEnoughBalance: Bool = balance.appcoinsBalance >= self.transaction?.appcAmount ?? 0
+            guard let index = transaction.paymentMethods.firstIndex(where: { $0.name == Method.appc.rawValue }) else {
+                return
+            }
+            
+            var APPC: PaymentMethod = transaction.paymentMethods[index]
+            let hasEnoughBalance: Bool = balance.appcoinsBalance >= transaction.appcAmount ?? 0
             let isLoggedIn: Bool = AuthViewModel.shared.isLoggedIn
             
             if !hasEnoughBalance || !isLoggedIn {
                 APPC.disable()
-                self.transaction?.paymentMethods[index] = APPC
+                transaction.paymentMethods[index] = APPC
+                self.transaction = .regular(transaction)
             }
         }
         
         func showQuickPaymentMethod(wallet: Wallet, lastPaymentMethod: Method) {
-            if let selectedMethod = self.transaction?.paymentMethods.first(where: { $0.name == lastPaymentMethod.rawValue && !$0.disabled }) {
+            if let selectedMethod = self.transaction?.common.paymentMethods.first(where: { $0.name == lastPaymentMethod.rawValue && !$0.disabled }) {
                 self.lastPaymentMethod = selectedMethod
                 self.paymentMethodSelected = selectedMethod
                 
@@ -307,9 +410,9 @@ internal class TransactionViewModel : ObservableObject {
         }
         
         func findFallbackPaymentMethod() -> PaymentMethod? {
-            return self.transaction?.paymentMethods.first(where: {
+            return self.transaction?.common.paymentMethods.first(where: {
                 $0.name == Method.paypalAdyen.rawValue || $0.name == Method.paypalDirect.rawValue
-            }) ?? self.transaction?.paymentMethods.first
+            }) ?? self.transaction?.common.paymentMethods.first
         }
     }
     
@@ -320,13 +423,14 @@ internal class TransactionViewModel : ObservableObject {
     }
     
     internal func transferBonusOnLogin(completion: @escaping (Result<Bool, TransactionError>) -> Void) {
-        guard let clientWallet: Wallet = walletUseCases.getClientWallet() else {
-            completion(.failure(.failed(message: "Failed to transfer bonus on Login", description: "Missing Client Wallet transferring bonus from Client Wallet to User Wallet after Login at TransactionViewModel.swift:transferBonusOnLogin")))
+        
+        guard case let .regular(transaction) = self.transaction else {
+            completion(.failure(.failed(message: "Failed to transfer bonus on Login", description: "Missing active transaction transferring bonus from Client Wallet to User Wallet after Login at TransactionViewModel.swift:transferBonusOnLogin")))
             return
         }
         
-        guard let transaction: TransactionAlertUi = self.transaction else {
-            completion(.failure(.failed(message: "Failed to transfer bonus on Login", description: "Missing active transaction transferring bonus from Client Wallet to User Wallet after Login at TransactionViewModel.swift:transferBonusOnLogin")))
+        guard let clientWallet: Wallet = walletUseCases.getClientWallet() else {
+            completion(.failure(.failed(message: "Failed to transfer bonus on Login", description: "Missing Client Wallet transferring bonus from Client Wallet to User Wallet after Login at TransactionViewModel.swift:transferBonusOnLogin")))
             return
         }
         

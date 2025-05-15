@@ -28,7 +28,7 @@ internal class AdyenViewModel : ObservableObject {
             case .failure(let error):
                 switch error {
                 case .failed(let message, let description, let request):
-                    self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request), description: description)
+                    self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
                 case .general(let message, let description, let request):
                     self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
                 case .noBillingAgreement(let message, let description, let request):
@@ -52,7 +52,7 @@ internal class AdyenViewModel : ObservableObject {
             case .failure(let error):
                 switch error {
                 case .failed(let message, let description, let request):
-                    self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request), description: description)
+                    self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
                 case .general(let message, let description, let request):
                     self.bottomSheetViewModel.transactionFailedWith(error: .systemError(message: message, description: description, request: request))
                 case .noBillingAgreement(let message, let description, let request):

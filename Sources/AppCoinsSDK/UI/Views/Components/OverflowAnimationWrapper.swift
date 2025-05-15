@@ -14,6 +14,8 @@ internal struct OverflowAnimationWrapper<Content: View>: View {
     internal var offset: CGFloat?
     internal let content: () -> Content
     
+    @State private var scrollID: String? = "bottom"
+    
     internal init(height: CGFloat, offset: CGFloat? = nil, @ViewBuilder content: @escaping () -> Content) {
         self.height = height
         self.offset = offset
@@ -21,28 +23,28 @@ internal struct OverflowAnimationWrapper<Content: View>: View {
     }
     
     internal var body: some View {
-        if #available(iOS 17, *) {
-            GeometryReader { geometry in
+        GeometryReader { geometry in
+            VStack {
+                content()
+                    .background(
+                        GeometryReader { innerGeometry in
+                            Color.clear
+                                .onAppear {
+                                    let contentHeight = innerGeometry.size.height
+                                    contentFits = contentHeight <= height
+                                }
+                        }
+                    )
+            }.hidden()
+            
+            if contentFits {
                 VStack {
-                    content()
-                        .background(
-                            GeometryReader { innerGeometry in
-                                Color.clear
-                                    .onAppear {
-                                        let contentHeight = innerGeometry.size.height
-                                        contentFits = contentHeight <= height
-                                    }
-                            }
-                        )
-                }.hidden()
-                
-                if contentFits {
-                    VStack {
-                        VStack{}.frame(height: offset)
-                        
-                        content().frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-                    }
-                } else {
+                    VStack{}.frame(height: offset)
+                    
+                    content().frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                }
+            } else {
+                if #available(iOS 17, *) {
                     ScrollViewReader { scrollViewProxy in
                         ScrollView(.vertical, showsIndicators: false) {
                             VStack {
@@ -57,7 +59,7 @@ internal struct OverflowAnimationWrapper<Content: View>: View {
                                     .id("bottom")
                                     .onAppear {
                                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-                                            withAnimation(.easeInOut(duration: 30)) {
+                                            withAnimation(.easeInOut(duration: 0.5)) {
                                                 scrollViewProxy.scrollTo("top", anchor: .top)
                                             }
                                         }

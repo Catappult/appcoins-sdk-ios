@@ -19,11 +19,11 @@ internal class ProductUseCases {
         self.currencyRepository = currencyRepository
     }
     
-    internal func getProduct(domain: String, product: String, completion: @escaping (Result<Product, ProductServiceError>) -> Void) {
+    internal func getProduct(domain: String, product: String, discountPolicy: String? = nil, completion: @escaping (Result<Product, ProductServiceError>) -> Void) {
         currencyRepository.getUserCurrency { result in
             switch result {
             case .success(let userCurrency): 
-                self.repository.getProduct(domain: domain, product: product, currency: userCurrency) { result in completion(result) }
+                self.repository.getProduct(domain: domain, product: product, currency: userCurrency, discountPolicy: discountPolicy) { result in completion(result) }
             case .failure(let error):
                 switch error {
                 case .failed(let message, let description, let request):
@@ -35,11 +35,11 @@ internal class ProductUseCases {
         }
     }
     
-    internal func getAllProducts(domain: String, completion: @escaping (Result<[Product], ProductServiceError>) -> Void) {
+    internal func getAllProducts(domain: String, discountPolicy: String? = nil, completion: @escaping (Result<[Product], ProductServiceError>) -> Void) {
         currencyRepository.getUserCurrency { result in
             switch result {
             case .success(let userCurrency):
-                self.repository.getAllProducts(domain: domain, currency: userCurrency) { result in completion(result) }
+                self.repository.getAllProducts(domain: domain, currency: userCurrency, discountPolicy: discountPolicy) { result in completion(result) }
             case .failure(let error):
                 switch error {
                 case .failed(let message, let description, let request):

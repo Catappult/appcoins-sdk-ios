@@ -12,5 +12,6 @@ internal class AppcSDKInternal {
     static internal func initialize() {
         MMPUseCases.shared.getAttribution()
         AnalyticsUseCases.shared.initialize()
+        PurchaseIntentManager.shared.initialize()
     }
 }
