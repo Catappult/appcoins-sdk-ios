@@ -80,13 +80,6 @@ internal class BottomSheetViewModel: ObservableObject {
             self.finalWalletBalance = nil
             self.purchaseFailedMessage = Constants.somethingWentWrong
             
-            self.product = nil
-            self.domain = nil
-            self.metadata = nil
-            self.reference = nil
-            self.discountPolicy = nil
-            self.oemID = nil
-            
             TransactionViewModel.shared.reset()
             AuthViewModel.shared.reset()
             PayPalDirectViewModel.shared.reset()
