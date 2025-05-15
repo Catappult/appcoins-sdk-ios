@@ -54,6 +54,8 @@ public struct Product : Swift.Codable {
   public let priceValue: Swift.String
   public let priceLabel: Swift.String
   public let priceSymbol: Swift.String
+  public let priceDiscountOriginal: Swift.String?
+  public let priceDiscountPercentage: Swift.String?
   #if compiler(>=5.3) && $AsyncAwait
   public static func products(domain: Swift.String = (Bundle.main.bundleIdentifier ?? ""), for identifiers: [Swift.String]? = nil) async throws -> [AppCoinsSDK.Product]
   #endif
@@ -117,7 +119,6 @@ public struct PurchaseIntent : Swift.Sendable, Swift.Identifiable, Swift.Codable
   public let id: Foundation.UUID
   public let product: AppCoinsSDK.Product
   public let timestamp: Foundation.Date
-  public init(product: AppCoinsSDK.Product)
   #if compiler(>=5.3) && $AsyncAwait
   public func confirm(domain: Swift.String = (Bundle.main.bundleIdentifier ?? ""), payload: Swift.String? = nil, orderID: Swift.String = String(Date.timeIntervalSinceReferenceDate)) async -> AppCoinsSDK.PurchaseResult
   #endif
