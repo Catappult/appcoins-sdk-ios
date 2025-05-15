@@ -15,6 +15,7 @@ internal struct CreateAdyenTransactionRaw: Codable {
     internal let product: String?
     internal let type: String
     internal let method: String
+    internal let discountPolicy: String?
     internal let channel: String
     internal let platform: String
     internal let paymentChannel: String
@@ -31,6 +32,7 @@ internal struct CreateAdyenTransactionRaw: Codable {
         case product = "product"
         case type = "type"
         case method = "method"
+        case discountPolicy = "discount_policy"
         case channel = "channel"
         case platform = "platform"
         case paymentChannel = "payment.channel"
@@ -50,7 +52,7 @@ internal struct CreateAdyenTransactionRaw: Codable {
             return .success(
                 CreateAdyenTransactionRaw(
                     domain: parameters.domain, price: normalizedPrice, priceCurrency: parameters.currency.currency,
-                    product: parameters.product, type: "INAPP", method: method, channel: "IOS", platform: "IOS", paymentChannel: "IOS", paymentReturnUrl: "\(bundleID).iap://api.blockchainds.com/broker", guestUID: parameters.guestUID, oemID: parameters.oemID, metadata: parameters.metadata, reference: parameters.reference
+                    product: parameters.product, type: "INAPP", method: method, discountPolicy: parameters.discountPolicy, channel: "IOS", platform: "IOS", paymentChannel: "IOS", paymentReturnUrl: "\(bundleID).iap://api.blockchainds.com/broker", guestUID: parameters.guestUID, oemID: parameters.oemID, metadata: parameters.metadata, reference: parameters.reference
                 )
             )
         } else { return .failure(.failed(message: "Failed to create transaction", description: "Adyen transaction creation failed. Unknown method or unknown bundleID at CreateAdyenTransactionRaw.swift:fromParameters")) }

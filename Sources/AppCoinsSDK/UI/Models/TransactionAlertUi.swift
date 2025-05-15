@@ -18,7 +18,7 @@ internal protocol TransactionAlertRepresentable {
 
 internal enum TransactionUI {
     case regular(TransactionAlertUI)
-    case webshop(WebshopTransactionAlertUI)
+    case direct(DirectTransactionAlertUI)
 }
 
 extension TransactionUI {
@@ -26,7 +26,7 @@ extension TransactionUI {
         switch self {
         case .regular(let UI):
             return UI
-        case .webshop(let UI):
+        case .direct(let UI):
             return UI
         }
     }
@@ -54,7 +54,7 @@ internal struct TransactionAlertUI {
 
 extension TransactionAlertUI: TransactionAlertRepresentable {}
 
-internal struct WebshopTransactionAlertUI {
+internal struct DirectTransactionAlertUI {
     
     internal let domain: String?
     internal let description: String?
@@ -64,4 +64,4 @@ internal struct WebshopTransactionAlertUI {
     internal var paymentMethods: [PaymentMethod]
 }
 
-extension WebshopTransactionAlertUI: TransactionAlertRepresentable {}
+extension DirectTransactionAlertUI: TransactionAlertRepresentable {}

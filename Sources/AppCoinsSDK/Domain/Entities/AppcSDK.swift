@@ -92,12 +92,12 @@ public struct AppcSDK {
                     }
                 case "purchase":
                     if let sku = queryItems?.first(where: { $0.name == "product" })?.value {
-                        let platform = queryItems?.first(where: { $0.name == "platform" })?.value
+                        let discountPolicy = queryItems?.first(where: { $0.name == "discount_policy" })?.value
                         let oemID = queryItems?.first(where: { $0.name == "oemid" })?.value
                         
                         Task {
-                            guard let product = await try? Product.products(for: [sku]).first else { return }
-                            PurchaseIntentManager.shared.set(intent: PurchaseIntent(product: product, platform: platform, oemID: oemID))
+                            guard let product = await try? Product.products(for: [sku], discountPolicy: discountPolicy).first else { return }
+                            PurchaseIntentManager.shared.set(intent: PurchaseIntent(product: product, discountPolicy: discountPolicy, oemID: oemID))
                         }
                         
                         return true

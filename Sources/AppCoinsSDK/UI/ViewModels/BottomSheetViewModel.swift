@@ -18,7 +18,7 @@ internal class BottomSheetViewModel: ObservableObject {
     internal var domain: String? = nil
     internal var metadata: String? = nil
     internal var reference: String? = nil
-    internal var platform: String? = nil
+    internal var discountPolicy: String? = nil
     internal var oemID: String? = nil
     
     // Purchase status
@@ -100,16 +100,16 @@ internal class BottomSheetViewModel: ObservableObject {
     }
     
     // Called when a user starts a product purchase
-    internal func buildPurchase(product: Product, domain: String, metadata: String?, reference: String?, platform: String? = nil, oemID: String? = nil) {
+    internal func buildPurchase(product: Product, domain: String, metadata: String?, reference: String?, discountPolicy: String? = nil, oemID: String? = nil) {
         self.hasActiveTransaction = true
         self.product = product
         self.domain = domain
         self.metadata = metadata
         self.reference = reference
-        self.platform = platform
+        self.discountPolicy = discountPolicy
         self.oemID = oemID
         
-        TransactionViewModel.shared.setUpTransaction(product: product, domain: domain, metadata: metadata, reference: reference, platform: platform, oemID: oemID)
+        TransactionViewModel.shared.setUpTransaction(product: product, domain: domain, metadata: metadata, reference: reference, discountPolicy: discountPolicy, oemID: oemID)
         
         DispatchQueue(label: "build-transaction", qos: .userInteractive).async { self.initiateTransaction() }
     }
@@ -477,7 +477,7 @@ internal class BottomSheetViewModel: ObservableObject {
 
         self.transactionUseCases.setLastPaymentMethod(paymentMethod: method)
         
-        if case var .webshop(transaction) = TransactionViewModel.shared.transaction {
+        if case var .direct(transaction) = TransactionViewModel.shared.transaction {
             DispatchQueue.main.async { self.transactionSucceeded() }
         } else {
             if AuthViewModel.shared.isLoggedIn { DispatchQueue.main.async { self.transactionSucceeded() } }
@@ -492,7 +492,7 @@ internal class BottomSheetViewModel: ObservableObject {
             let purchaseResult: PurchaseResult = .success(verificationResult: verificationResult)
             Utils.purchaseResult(result: purchaseResult)
 
-            if case var .webshop(transaction) = TransactionViewModel.shared.transaction {
+            if case var .direct(transaction) = TransactionViewModel.shared.transaction {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) { self.dismissSuccessWithAnimation() }
             } else {
                 if AuthViewModel.shared.isLoggedIn {

@@ -19,7 +19,7 @@ internal struct SuccessBottomSheet: View {
         ZStack {
             ColorsUi.APC_BottomSheet_LightGray_Background
             
-            if case let .webshop(transaction) = transactionViewModel.transaction {
+            if case let .direct(transaction) = transactionViewModel.transaction {
                 WebshopSuccessView()
             } else {
                 if authViewModel.isLoggedIn {

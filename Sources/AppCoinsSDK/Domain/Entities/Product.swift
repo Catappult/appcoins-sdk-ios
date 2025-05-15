@@ -87,6 +87,55 @@ public struct Product: Codable {
         }
     }
     
+    static internal func products(domain: String = (Bundle.main.bundleIdentifier ?? ""), for identifiers: [String]? = nil, discountPolicy: String? = nil) async throws -> [Product] {
+
+        let productUseCases: ProductUseCases = ProductUseCases.shared
+        
+        if let identifiers = identifiers {
+            return try await withCheckedThrowingContinuation { continuation in
+                productUseCases.getAllProducts(domain: domain, discountPolicy: discountPolicy) { result in
+                    switch result {
+                    case .success(let products):
+                        var finalProducts : [Product] = []
+                        for product in products {
+                            if identifiers.contains(product.sku) {
+                                finalProducts.append(product)
+                            }
+                        }
+                        continuation.resume(returning: finalProducts)
+                    case .failure(let failure):
+                        switch failure {
+                        case .failed(let message, let description, let request):
+                            continuation.resume(throwing: AppCoinsSDKError.systemError(message: message, description: description, request: request))
+                        case .noInternet(let message, let description, let request):
+                            continuation.resume(throwing: AppCoinsSDKError.networkError(message: message, description: description, request: request))
+                        case .purchaseVerificationFailed(let message, let description, let request):
+                            continuation.resume(throwing: AppCoinsSDKError.systemError(message: message, description: description, request: request))
+                        }
+                    }
+                }
+            }
+        } else {
+            return try await withCheckedThrowingContinuation { continuation in
+                productUseCases.getAllProducts(domain: domain, discountPolicy: discountPolicy) { result in
+                    switch result {
+                    case .success(let products):
+                        continuation.resume(returning: products)
+                    case .failure(let failure):
+                        switch failure {
+                        case .failed(let message, let description, let request):
+                            continuation.resume(throwing: AppCoinsSDKError.systemError(message: message, description: description, request: request))
+                        case .noInternet(let message, let description, let request):
+                            continuation.resume(throwing: AppCoinsSDKError.networkError(message: message, description: description, request: request))
+                        case .purchaseVerificationFailed(let message, let description, let request):
+                            continuation.resume(throwing: AppCoinsSDKError.systemError(message: message, description: description, request: request))
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     public func purchase(domain: String = (Bundle.main.bundleIdentifier ?? ""), payload: String? = nil, orderID: String = String(Date.timeIntervalSinceReferenceDate)) async -> PurchaseResult {
         
         if await !AppcSDK.isAvailable() || BottomSheetViewModel.shared.hasActiveTransaction {
@@ -124,7 +173,7 @@ public struct Product: Codable {
         }
     }
     
-    internal func indirectPurchase(domain: String = (Bundle.main.bundleIdentifier ?? ""), payload: String? = nil, orderID: String = String(Date.timeIntervalSinceReferenceDate), platform: String? = nil, oemID: String? = nil) async -> PurchaseResult {
+    internal func indirectPurchase(domain: String = (Bundle.main.bundleIdentifier ?? ""), payload: String? = nil, orderID: String = String(Date.timeIntervalSinceReferenceDate), discountPolicy: String? = nil, oemID: String? = nil) async -> PurchaseResult {
         
         if BottomSheetViewModel.shared.hasActiveTransaction {
             return .failed(error: .purchaseNotAllowed(message: "Purchase Failed", description: "AppcSDK not available or has active transaction at Product.swift:purchase", request: nil))
@@ -139,7 +188,7 @@ public struct Product: Codable {
                 // domain – the app's domain registered in catappult
                 // payload – information that the developer might want to pass with the transaction
                 // orderID – a reference so that the developer can identify unique transactions
-                BottomSheetViewModel.shared.buildPurchase(product: self, domain: domain, metadata: payload, reference: orderID, platform: platform, oemID: oemID)
+                BottomSheetViewModel.shared.buildPurchase(product: self, domain: domain, metadata: payload, reference: orderID, discountPolicy: discountPolicy, oemID: oemID)
             }
             
             let result = try? await withCheckedThrowingContinuation { continuation in

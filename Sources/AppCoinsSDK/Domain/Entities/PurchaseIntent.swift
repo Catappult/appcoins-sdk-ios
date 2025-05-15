@@ -12,14 +12,14 @@ public struct PurchaseIntent: Sendable, Identifiable, Codable {
     public let id: UUID
     public let product: Product
     public let timestamp: Date
-    private let platform: String?
+    private let discountPolicy: String?
     private let oemID: String?
     
-    public init(product: Product, platform: String? = nil, oemID: String? = nil) {
+    public init(product: Product, discountPolicy: String? = nil, oemID: String? = nil) {
         self.id = UUID()
         self.product = product
         self.timestamp = Date()
-        self.platform = platform
+        self.discountPolicy = discountPolicy
         self.oemID = oemID
     }
     
@@ -27,7 +27,7 @@ public struct PurchaseIntent: Sendable, Identifiable, Codable {
     public func confirm(domain: String = (Bundle.main.bundleIdentifier ?? ""), payload: String? = nil, orderID: String = String(Date.timeIntervalSinceReferenceDate)) async -> PurchaseResult {
         PurchaseIntentManager.shared.unset()
         PurchaseIntentManager.shared.loadFromDisk()
-        return await product.indirectPurchase(domain: domain, payload: payload, orderID: orderID, platform: platform, oemID: oemID)
+        return await product.indirectPurchase(domain: domain, payload: payload, orderID: orderID, discountPolicy: discountPolicy, oemID: oemID)
     }
     
     /// Reject the purchase intent.

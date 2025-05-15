@@ -23,7 +23,7 @@ internal class TransactionViewModel : ObservableObject {
     internal var domain: String? = nil
     internal var metadata: String? = nil
     internal var reference: String? = nil
-    internal var platform: String? = nil
+    internal var discountPolicy: String? = nil
     internal var oemID: String? = nil
     
     @Published internal var transaction: TransactionUI?
@@ -55,7 +55,7 @@ internal class TransactionViewModel : ObservableObject {
         self.domain = nil
         self.metadata = nil
         self.reference = nil
-        self.platform = nil
+        self.discountPolicy = nil
         self.oemID = nil
         
         self.transaction = nil
@@ -70,12 +70,12 @@ internal class TransactionViewModel : ObservableObject {
     }
     
     // Called when a user starts a product purchase
-    internal func setUpTransaction(product: Product, domain: String, metadata: String?, reference: String?, platform: String? = nil, oemID: String? = nil) {
+    internal func setUpTransaction(product: Product, domain: String, metadata: String?, reference: String?, discountPolicy: String? = nil, oemID: String? = nil) {
         self.product = product
         self.domain = domain
         self.metadata = metadata
         self.reference = reference
-        self.platform = platform
+        self.discountPolicy = discountPolicy
         self.oemID = oemID
     }
     
@@ -90,9 +90,9 @@ internal class TransactionViewModel : ObservableObject {
         bottomSheetViewModel.setPurchaseState(newState: .loading)
         
         if let product = product, let domain = domain {
-            switch platform {
-            case "webshop":
-                buildWebshopTransaction(product: product, domain: domain)
+            switch discountPolicy {
+            case "D2C":
+                buildDirectTransaction(product: product, domain: domain)
             default:
                 buildRegularTransaction(product: product, domain: domain)
             }
@@ -144,7 +144,7 @@ internal class TransactionViewModel : ObservableObject {
                                                 let oemID = MMPUseCases.shared.getOEMID()
                                                 
                                                 // 8. Build the parameters to process the transaction
-                                                self.transactionParameters = TransactionParameters(value: moneyAmount, currency: productCurrency, domain: domain, product: product.sku, appcAmount: String(appcValue), guestUID: guestUID, oemID: oemID, metadata: self.metadata, reference: self.reference)
+                                                self.transactionParameters = TransactionParameters(value: moneyAmount, currency: productCurrency, domain: domain, product: product.sku, appcAmount: String(appcValue), discountPolicy: self.discountPolicy, guestUID: guestUID, oemID: oemID, metadata: self.metadata, reference: self.reference)
                                                 
                                                 // 9. Show payment method options
                                                 self.showPaymentMethodsOnBuild(wallet: wallet, balance: balance)
@@ -177,7 +177,7 @@ internal class TransactionViewModel : ObservableObject {
         }
     }
     
-    private func buildWebshopTransaction(product: Product, domain: String) {
+    private func buildDirectTransaction(product: Product, domain: String) {
         // 1. Get product currency
         product.getCurrency {
             result in
@@ -202,15 +202,15 @@ internal class TransactionViewModel : ObservableObject {
                                     
                                     DispatchQueue.main.async {
                                         // 7. Build the Transaction UI
-                                        self.transaction = .webshop(
-                                            WebshopTransactionAlertUI(domain: domain, description: product.title, sku: product.sku, moneyAmount: moneyAmount, moneyCurrency: productCurrency, paymentMethods: availablePaymentMethods)
+                                        self.transaction = .direct(
+                                            DirectTransactionAlertUI(domain: domain, description: product.title, sku: product.sku, moneyAmount: moneyAmount, moneyCurrency: productCurrency, paymentMethods: availablePaymentMethods)
                                         )
                                         
                                         let guestUID = MMPUseCases.shared.getGuestUID()
-                                        let oemID = MMPUseCases.shared.getOEMID()
+                                        let oemID = self.oemID ?? MMPUseCases.shared.getOEMID()
                                         
                                         // 8. Build the parameters to process the transaction
-                                        self.transactionParameters = TransactionParameters(value: moneyAmount, currency: productCurrency, domain: domain, product: product.sku, appcAmount: String(appcValue), guestUID: guestUID, oemID: oemID, metadata: self.metadata, reference: self.reference)
+                                        self.transactionParameters = TransactionParameters(value: moneyAmount, currency: productCurrency, domain: domain, product: product.sku, appcAmount: String(appcValue), discountPolicy: self.discountPolicy, guestUID: guestUID, oemID: oemID, metadata: self.metadata, reference: self.reference)
                                         
                                         // 9. Show payment method options
                                         self.showPaymentMethodsOnBuild(wallet: wallet, balance: nil)
@@ -344,7 +344,7 @@ internal class TransactionViewModel : ObservableObject {
         }
         
         func removeAppCoinsIfWebshop() {
-            guard case var .webshop(transaction) = self.transaction else {
+            guard case var .direct(transaction) = self.transaction else {
                 return
             }
             
@@ -352,7 +352,7 @@ internal class TransactionViewModel : ObservableObject {
                 return
             }
             transaction.paymentMethods.remove(at: index)
-            self.transaction = .webshop(transaction)
+            self.transaction = .direct(transaction)
         }
         
         func disableAppCoinsIfInsuffiecientBalance(balance: Balance) {
