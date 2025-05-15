@@ -47,14 +47,12 @@ internal class AppCoinProductServiceClient : AppCoinProductService {
                         } else {
                             do {
                                 if let data = data {
-                                    print("[AppCoinsSDK] Product Data: \(String(data: data, encoding: .utf8))")
                                     let findResult = try JSONDecoder().decode(GetProductInformationRaw.self, from: data)
                                     products.append(contentsOf: findResult.items)
                                     
                                     if let nextString = findResult.next?.url, let nextURL = URL(string: nextString) {
                                         getNextProductsBatch(url: nextURL)
                                     } else {
-                                        print("[AppCoinsSDK] Success Products: \(products)")
                                         result(.success(products))
                                     }
                                 } else {
@@ -98,7 +96,6 @@ internal class AppCoinProductServiceClient : AppCoinProductService {
                     } else {
                         do {
                             if let data = data {
-                                print("[AppCoinsSDK] Product Data: \(String(data: data, encoding: .utf8))")
                                 let findResult = try JSONDecoder().decode(GetProductInformationRaw.self, from: data)
                                 result(.success(findResult.items.first))
                             } else {
