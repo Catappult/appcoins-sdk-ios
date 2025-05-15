@@ -15,7 +15,7 @@ public struct PurchaseIntent: Sendable, Identifiable, Codable {
     private let discountPolicy: String?
     private let oemID: String?
     
-    public init(product: Product, discountPolicy: String? = nil, oemID: String? = nil) {
+    internal init(product: Product, discountPolicy: String? = nil, oemID: String? = nil) {
         self.id = UUID()
         self.product = product
         self.timestamp = Date()
