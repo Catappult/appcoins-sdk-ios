@@ -32,30 +32,27 @@ internal struct PurchaseBottomSheet: View {
             })
         
         if viewModel.isBrowserWebCheckoutPresented {
-            if #available(iOS 15, *) {
-                ZStack {
-                    Color.black.opacity(0.7)
-                    
+            ZStack {
+                Color.black.opacity(0.7)
+                
+                VStack {
                     VStack {
-                        VStack {
-                            ProgressView()
-                                .tint(.white)
-                        }
-                        .frame(maxHeight: .infinity)
-
-                        Button {
-                            viewModel.dismiss()
-                        } label: {
-                            Text(Constants.cancelButton)
-                                .frame(maxWidth: .infinity)
-                        }
-                        
-                        HStack{}.frame(height: Utils.bottomSafeAreaHeight)
+                        ProgressView()
                     }
+                    .frame(maxHeight: .infinity)
+                    
+                    Button {
+                        viewModel.dismiss()
+                    } label: {
+                        Text(Constants.cancelButton)
+                            .frame(maxWidth: .infinity)
+                    }
+                    
+                    HStack{}.frame(height: Utils.bottomSafeAreaHeight)
                 }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .ignoresSafeArea()
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .ignoresSafeArea()
         }
     }
 }
