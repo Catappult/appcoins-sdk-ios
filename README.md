@@ -1,6 +1,6 @@
 # AppCoins SDK for iOS
 
-The iOS Billing SDK is a simple solution to implement Catappult billing. It consists of a Billing client that uses an AppCoins Wallet integration and allows you to get your products from Catappult and process the purchase of those items.
+The iOS Billing SDK is a simple solution to implement Catappult billing. It consists of a Billing client that allows you to get your products from Catappult and process the purchase of those items.
 
 ## In Summary
 
@@ -39,32 +39,86 @@ The billing flow in your application with the SDK is as follows:
    5. Click the "+" button to add a new URL Type.
    6. Set the URL Scheme to "$(PRODUCT_BUNDLE_IDENTIFIER).iap" and the role to "Editor".
 
-4. **Add AppCoins Wallet Queried URL Scheme**  
-   To enable the SDK to detect the presence of the AppCoins Wallet app, allowing users to make payments using their Wallet, you need to include the AppCoins Wallet URL scheme in your list of queried URL schemes. Follow these steps to achieve this:
-   1. In the project navigator (left sidebar), select your project.
-   2. Under "TARGETS", select your target.
-   3. Navigate to the "Info" tab.
-   4. If it doesn't already exist, add a new property called "Queried URL Schemes".
-   5. To add the AppCoins Wallet URL scheme, click the "+" button.
-   6. Set the URL Scheme field to "com.aptoide.appcoins-wallet".
-
 ### Implementation
 
 Now that you have the SDK and necessary permissions set-up you can start making use of its functionalities. To do so you must import the SDK module in any files you want to use it by calling the following: `import AppCoinsSDK`.
 
-1. **Handle the Redirect**  
-   In your `SceneDelegate.swift` file (or in another entry point your application might have), you need to handle potential payment redirects when the application is brought to the foreground.
-   ```swift Swift
-   func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
-       if AppcSDK.handle(redirectURL: URLContexts.first?.url) { return }
-       
-       // the rest of your code
-   }
-   ```
-   **🚧 It is important that the `AppcSDK.handle` method precedes the rest of your code.**
+1. **Handle the Redirect**
+
+   The SDK requires integration in your application’s entry points to properly handle deep links. This ensures that payment redirects and other deep link functionalities work seamlessly.
+   
+   Depending on your app’s setup, you should handle deep links either in SceneDelegate.swift (for iOS 13+) or AppDelegate.swift (for older versions and apps that still use it).
+
+   1. `SceneDelegate.swift`
+   
+      If your app uses SceneDelegate.swift, implement the following methods:
+      
+      ```swift Swift
+      func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+         if AppcSDK.handle(redirectURL: URLContexts.first?.url) { return }
+      
+         // Your application initialization
+         initialize()
+      }
+      
+      func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        // Create the SwiftUI view that provides the window contents.
+        let contexts = connectionOptions.urlContexts
+              
+        // Your application initialization
+        initialize()
+              
+        if AppcSDK.handle(redirectURL: contexts.first?.url) { return }
+      }
+      ```
+   
+      Why This Logic?
+   
+      - Initialize First in `willConnectTo`
+         - When the app launches or restores, UI and dependencies must be set up first.
+         - Handling deep links before this can cause issues if SDKs or services aren’t ready.
+      
+      - Prioritize Deep Links in `openURLContexts`
+         - When a deep link arrives while the app is running, handle it immediately and return if processed.
+         - This prevents unnecessary re-initialization and ensures the app responds quickly.
+
+   2. `AppDelegate.swift`
+   
+      If your app doesn’t use SceneDelegate.swift, implement deep link handling in AppDelegate.swift.
+      
+      ```swift Swift
+      func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // Your application initialization
+        initialize()
+      
+        if let url = launchOptions?[.url] as? URL {
+          if AppcSDK.handle(redirectURL: url) { return true }
+        }
+        return true
+      }
+      
+      func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        if AppcSDK.handle(redirectURL: url) { return true }
+        
+        // Your application initialization
+        initialize()
+        return true
+      }
+      ```
+   
+      Why This Logic?
+   
+      - Initialize First in `didFinishLaunchingWithOptions`
+         - Ensure UI and dependencies are ready before processing deep links.
+         - Handling deep links too early could cause issues if services aren’t initialized.
+      
+      - Prioritize Deep Links in `open url`
+         - When a deep link is received while the app is running, handle it immediately.
+         - If `AppcSDK.handle(redirectURL:)` processes the link, return early.
+   
 
 2. **Check AppCoins SDK Availability**  
-   The AppCoins SDK will only be available on devices in the European Union with an iOS version equal to or higher than 17.4. Therefore, before attempting any purchase, you should check if the SDK is available by calling `AppcSDK.isAvailable`.
+   The AppCoins SDK by default will only be available on devices in the European Union with an iOS version equal to or higher than 17.4 and only if the application was not installed through the Apple App Store. Therefore, before attempting a purchase, you should check if the SDK is available by calling `AppcSDK.isAvailable`.
    ```swift
    if await AppcSDK.isAvailable() {
    	// make purchase
@@ -122,8 +176,73 @@ Now that you have the SDK and necessary permissions set-up you can start making 
        case .failed(let error): // deal with any possible errors
    }
    ```
+   
+5. **Handle Purchase Intents**  
+   In addition to standard In-App Purchases, the AppCoins SDK supports In-App Purchase Intents – purchases not directly triggered by a user action (e.g., tapping a “Buy” button within the app). Common use cases include:
 
-5. **Query Purchases**  
+   - Purchasing an item directly from a catalog of In-App Products in the Aptoide Store.
+   - Buying an item through a web link.
+
+   Purchase Intents can be initiated through the following URL format:
+   ```text
+   {domain}.iap://wallet.appcoins.io/purchase?product={sku}&oemid={oemid}&discount_policy={discount_policy}
+   ```
+
+   - `domain` – The Bundle ID of your application.
+   - `oemid` – The OEM ID associated with your developer account on Aptoide Connect.
+   - `discount_policy` – The discount policy to apply (e.g., D2C).
+
+   The SDK allows developers to manage these purchases and deliver consumables to users through the `Purchase.updates` method. This method returns a `Task` object that streams real-time purchase updates, enabling seamless transaction handling.
+
+   The stream emits a `PurchaseIntent` object, which you can manage according to your application logic. The `PurchaseIntent` class provides two methods:
+
+   - `confirm(payload: String?, orderID: String?)`: Confirms and processes the purchase. Equivalent to calling `.purchase()`.
+   - `reject()`: Rejects the intent, making it invalid for future use.
+
+   If you prefer not to handle the intent immediately – for example, waiting for the user to log in so the purchase can be linked to their account – you can ignore the intent at first. Later, when your logic allows, you can call `Purchase.intent`, which returns the current pending intent. You can then confirm or reject it as needed.
+
+   Below is a skeleton implementation for handling In-App Purchase Intents.
+   <br/>
+
+   ```swift
+   import AppCoinsSDK
+   
+   actor PurchaseManager {
+       static let shared = PurchaseManager() // Singleton instance
+   
+       private init() {
+           Task { await observePurchases() }
+       }
+   
+       private func observePurchases() async {
+           for await intent in Purchase.updates {
+               if User.isSignedIn {
+                   let result = await intent.confirm()
+                   await handle(purchaseResult: result)
+               }
+           }
+       }
+   
+       // HINT: You can use the same handle method for both regular and intent IAP
+       private func handle(result: PurchaseResult) async {
+           switch result {
+             case .success(let verificationResult):
+                  switch verificationResult {
+                        case .verified(let purchase):
+                             // consume the item and give it to the user
+                             try await purchase.finish()
+                        case .unverified(let purchase, let verificationError):
+                             // deal with unverified transactions
+                  }
+             case .pending: // transaction is not finished
+             case .userCancelled: // user cancelled the transaction
+             case .failed(let error): // deal with any possible errors
+           }
+       }
+   }
+   ```
+   
+6. **Query Purchases**  
    You can query the user’s purchases by using one of the following methods:
 
    1. `Purchase.all`
@@ -164,27 +283,26 @@ Follow these steps:
 
 For more information, please refer to Apple's official documentation: <https://developer.apple.com/documentation/appdistribution/distributing-your-app-on-an-alternative-marketplace#Test-your-app-during-development>
 
-### Sandbox Testing
+### Testing Both Billing Systems in One Build
 
-You can test the in-app purchase (IAP) functionality using Catappult’s **Sandbox environment**. Follow these steps to set it up:
+To facilitate testing both **Apple Billing** and **Aptoide Billing** within a single build – without the need to generate separate versions of your application – the **AppCoins SDK** includes a deep link mechanism that toggles the SDK’s `isAvailable` method between `true` and `false`. This allows you to seamlessly switch between testing the AppCoins SDK (when available) and Apple Billing (when unavailable).
 
-1. Retrieve your testing wallet address by calling `Sandbox.getTestingWalletAddress()`.
-2. Add your testing wallet address to the **Sandbox menu** in the Developer Console, and use this wallet to make test purchases in your app.
+To enable or disable the AppCoins SDK, open your device’s browser and enter the following URL:
 
-> ⚠️ **Warning:** You must have proven ownership of the app to access the Sandbox environment and test IAPs.
+```text
+{domain}.iap://wallet.appcoins.io/default?value={value}
+```
 
-> ⚠️ **Warning:** Do not delete the app from the testing device, as this will remove the testing wallet. If the app is deleted, you’ll need to obtain a new wallet address and add it again to the Sandbox.
+Where:
 
-#### Testing In-App Purchases
+- `domain` – The Bundle ID of your application.
+- `value` 
+  - `true` → Enables the AppCoins SDK for testing.
+  - `false` → Disables the AppCoins SDK, allowing Apple Billing to be tested instead.
 
-1. Select the item you wish to purchase in the app.
-2. Choose the **Sandbox** option for the transaction.
-3. Once the purchase is completed, verify the transaction in the Wallet by checking the **Sandbox transactions**.
-4. Ensure the purchased item is correctly received in the app.
+### Sandbox
 
-If all steps are successful, your billing solution is fully integrated!
-
-For more detailed instructions, refer to [Catappult's documentation](https://docs.catappult.io/docs/ios-sandbox-environment).
+To verify the successful setup of your billing integration, we offer a sandbox environment where you can simulate purchases and ensure that your clients can smoothly purchase your products. Documentation on how to use this environment can be found at: [Sandbox](doc:ios-sandbox-environment)
 
 ## Extra Steps
 
@@ -254,6 +372,16 @@ The SDK integration is based on four main classes of objects that handle its log
 - `purchaseToken`: String - The token provided to the user's device when the product was purchased. Example: catappult.inapp.purchase.SZYJ5ZRWUATW5YU2
 - `purchaseState`: Integer - The purchase state of the order. Possible values are: 0 (Purchased) and 1 (Canceled)
 - `developerPayload`: String - A developer-specified string that contains supplemental information about an order. Example: myOrderId:12345678
+
+### PurchaseIntent
+
+`PurchaseIntent` represents a user’s intent to make an in-app purchase. It is typically used to confirm or reject a purchase initiated outside the application.
+
+**Properties:**
+
+- `id`: String - A unique identifier for the purchase intent.
+- `timestamp`: Date - The date and time when the intent was created.
+- `product`: Product - The product the user intends to purchase.
 
 ### AppcSDK
 
