@@ -14,26 +14,36 @@ internal class BottomSheetViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = UIColor(color: ColorsUi.APC_WebViewLightMode)
         view.layer.cornerRadius = 16
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         view.clipsToBounds = true
         view.insetsLayoutMarginsFromSafeArea = false
 
-        let hosting = UIHostingController(rootView: WebCheckoutView().ignoresSafeArea(edges: .bottom))
+        let hosting = UIHostingController(rootView: WebCheckoutViewWrapper(background: traitCollection.userInterfaceStyle == .dark ? ColorsUi.APC_WebViewDarkMode : ColorsUi.APC_WebViewLightMode))
+        
+        let spacer = UIView()
+        spacer.translatesAutoresizingMaskIntoConstraints = false
+        spacer.backgroundColor = UIColor(color: ColorsUi.APC_WebViewLightMode)
+        view.addSubview(spacer)
+        
         addChild(hosting)
         view.addSubview(hosting.view)
-
+        
         hosting.view.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            hosting.view.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
+            spacer.topAnchor.constraint(equalTo: view.topAnchor),
+            spacer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            spacer.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            spacer.heightAnchor.constraint(equalToConstant: 20),
+            
+            hosting.view.topAnchor.constraint(equalTo: view.topAnchor),
             hosting.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             hosting.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             hosting.view.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
         hosting.didMove(toParent: self)
     }
-
+    
     @objc private func dismissSheet() {
         dismiss(animated: true, completion: nil)
     }
@@ -43,3 +53,5 @@ internal class BottomSheetViewController: UIViewController {
         onDismiss?()
     }
 }
+
+

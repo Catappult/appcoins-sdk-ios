@@ -16,9 +16,11 @@ internal struct PurchaseBottomSheet: View {
     @Environment(\.colorScheme) var colorScheme
     
     internal var body: some View {
-        BottomSheetPresenter(isPresented: $viewModel.isWebviewWebCheckoutPresented)
-            .ignoresSafeArea(edges: .bottom)
-        
+        if viewModel.isWebviewWebCheckoutPresented {
+            BottomSheetPresenter(isPresented: $viewModel.isWebviewWebCheckoutPresented)
+                .ignoresSafeArea(edges: .bottom)
+        }
+
         if viewModel.isBrowserWebCheckoutPresented {
             ZStack {
                 Color.black.opacity(0.7)

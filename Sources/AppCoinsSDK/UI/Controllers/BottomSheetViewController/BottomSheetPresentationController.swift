@@ -14,7 +14,7 @@ internal class BottomSheetPresentationController: UIPresentationController {
         guard let container = containerView else { return .zero }
 
         let isLandscape = container.bounds.width > container.bounds.height
-        let height: CGFloat = isLandscape ? container.bounds.height * 0.9 : container.bounds.height * 0.55
+        let height: CGFloat = isLandscape ? container.bounds.height * 0.9 : container.bounds.height * 0.6
         let width: CGFloat = isLandscape ? container.bounds.width - 176 : container.bounds.width
         let x: CGFloat = isLandscape ? (container.bounds.width - width) / 2 : 0
 
