@@ -16,20 +16,8 @@ internal struct PurchaseBottomSheet: View {
     @Environment(\.colorScheme) var colorScheme
     
     internal var body: some View {
-        HStack(spacing: 0) {}
-            .sheet(isPresented: $viewModel.isWebviewWebCheckoutPresented, onDismiss: viewModel.dismiss, content: {
-                if #available(iOS 17.4, *) {
-                    VStack(spacing: 0) {
-                        VStack{}.frame(height: 20)
-                        
-                        WebCheckoutView()
-                            .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 116: UIScreen.main.bounds.width)
-                            .presentationCompactAdaptation(.sheet)
-                            .presentationDetents([viewModel.orientation == .landscape ? .fraction(0.9) : .fraction(0.6)])
-                        
-                    }
-                }
-            })
+        BottomSheetPresenter(isPresented: $viewModel.isWebviewWebCheckoutPresented)
+            .ignoresSafeArea(edges: .bottom)
         
         if viewModel.isBrowserWebCheckoutPresented {
             ZStack {
