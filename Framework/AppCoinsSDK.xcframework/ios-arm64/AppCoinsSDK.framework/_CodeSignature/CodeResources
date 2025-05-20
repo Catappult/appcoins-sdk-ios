@@ -14,27 +14,39 @@
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/Project/arm64-apple-ios.swiftsourceinfo</key>
 		<data>
+<<<<<<< HEAD
 		sSiVzdnJkaTiitNUb3SLC1ieDC8=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.abi.json</key>
 		<data>
 		eRbUrpCwzle7MWddXMU8GOOxJO8=
+=======
+		h1z6OxPjGJkSEXobPOww7GZ0zDc=
+		</data>
+		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.abi.json</key>
+		<data>
+		fjLVhUJs0keT90XuJzitIhhoVXQ=
+>>>>>>> epic/APP-3549_us_external_purchase
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<data>
-		hfx35BSbEc5nL+LKxggIAPsYfqM=
+		9aaM9EQ8JypJjvS42i6CZlHJyFk=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<data>
-		o+88wJhmF2JKoDbIPajFlzFvcXc=
+		R50efGcm5u0AoLqjI5dBWHc9xHk=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<data>
-		hfx35BSbEc5nL+LKxggIAPsYfqM=
+		9aaM9EQ8JypJjvS42i6CZlHJyFk=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
+<<<<<<< HEAD
 		i969yXVwu0EdW28P34GTq4rZ6uE=
+=======
+		KCZMghMQEw/Glw7uw3hB5qUvPVA=
+>>>>>>> epic/APP-3549_us_external_purchase
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -79,42 +91,54 @@
 		<dict>
 			<key>hash2</key>
 			<data>
+<<<<<<< HEAD
 			kSPfmiTHpW/X8rSFWXPg68jXR23KpwHKRINMr0NIrzk=
+=======
+			sKvboxQsji7fRDs+Rr2yc8xjW6n2oYW2C66xop+0URg=
+>>>>>>> epic/APP-3549_us_external_purchase
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
+<<<<<<< HEAD
 			BOMGh4uDK9mait3pFxLx5n9L1Goavibr/iXDoby+qJc=
+=======
+			hhNB937ZYeDCrFZofsfcyW3EqPt7ypecejwCJYTDVDk=
+>>>>>>> epic/APP-3549_us_external_purchase
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			blX2EEB15wdKXc6tpl0KlQ8e2IiYwOpsDNKCeYfZuco=
+			XknVJf7TaFqZWpfqYdViX848QcQIext6m/u0v0SHSQg=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			OayiiIOI1imM1fnqIpeQU8kKf/BjtnzXtOR9f4ipTPQ=
+			RFu/01WscfUer0jzvucm8hy5JfWdW+EyMnmT0lDryqY=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			blX2EEB15wdKXc6tpl0KlQ8e2IiYwOpsDNKCeYfZuco=
+			XknVJf7TaFqZWpfqYdViX848QcQIext6m/u0v0SHSQg=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
+<<<<<<< HEAD
 			cZIlaGzuf4OOA5x25pk2XwvhT5tpqume6cWLfnDXf9M=
+=======
+			umb5eq808K3esYeMnbfOknY2nyRzK1o1zdTqmHjvLWg=
+>>>>>>> epic/APP-3549_us_external_purchase
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
