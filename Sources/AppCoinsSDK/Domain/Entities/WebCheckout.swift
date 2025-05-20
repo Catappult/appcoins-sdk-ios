@@ -71,19 +71,23 @@ internal struct WebCheckout {
     }
     
     private static func getLangAndCountry() -> (langCode: String, countryCode: String) {
-        var langCode: String = ""
-        var countryCode: String = ""
         if #available(iOS 16, *) {
             let languageID = Locale.preferredLanguages.first ?? "en-US"
             let locale = Locale(identifier: languageID)
             
-            langCode = locale.language.languageCode?.identifier ?? "en"
-            countryCode = locale.region?.identifier ?? "US"
+            let langCode = locale.language.languageCode?.identifier ?? "en"
+            let countryCode = locale.region?.identifier ?? "US"
+            
+            return (langCode, countryCode)
         } else {
-            langCode = "en"
-            countryCode = "US"
+            let languageID = Locale.preferredLanguages.first ?? "en-US"
+            let locale = Locale(identifier: languageID)
+            
+            let langCode = locale.languageCode ?? "en"
+            let countryCode = locale.regionCode ?? "US"
+            
+            return (langCode, countryCode)
         }
-        return (langCode, countryCode)
     }
     
 }
