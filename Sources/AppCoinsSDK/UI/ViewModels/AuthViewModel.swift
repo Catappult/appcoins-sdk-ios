@@ -32,6 +32,9 @@ internal class AuthViewModel : NSObject, ObservableObject {
     @Published internal var hasAcceptedTC: Bool = false
     @Published internal var presentTCError: Bool = false
     
+    @Published internal var isLogoutAlertPresented: Bool = false
+    @Published internal var isDeleteAccountAlertPresented: Bool = false
+    
     private override init() {}
     
     internal func reset() {
@@ -197,15 +200,24 @@ internal class AuthViewModel : NSObject, ObservableObject {
     }
     
     internal func showLogoutAlert() {
-        if let rootViewController = UIApplication.shared.windows.first?.rootViewController,
-           let presentedPurchaseVC = rootViewController.presentedViewController as? PurchaseViewController {
-            presentedPurchaseVC.presentLogoutAlert()
-        }
+        DispatchQueue.main.async { self.isLogoutAlertPresented = true }
     }
     
     internal func logout() {
         AuthUseCases.shared.logout()
         self.reset()
+        BottomSheetViewModel.shared.dismissManageAccountSheet()
+        TransactionViewModel.shared.rebuildTransactionOnWalletChanged() // Re-build the transaction with the new Client Wallet
+    }
+    
+    internal func showDeleteAccountAlert() {
+        DispatchQueue.main.async { self.isDeleteAccountAlertPresented = true }
+    }
+    
+    internal func deleteAccount() {
+        AuthUseCases.shared.deleteAccount()
+        self.reset()
+        BottomSheetViewModel.shared.dismissManageAccountSheet()
         TransactionViewModel.shared.rebuildTransactionOnWalletChanged() // Re-build the transaction with the new Client Wallet
     }
     

@@ -32,4 +32,8 @@ internal class AuthUseCases {
     internal func logout() {
         self.repository.logout()
     }
+    
+    internal func deleteAccount() {
+        self.repository.deleteAccount()
+    }
 }

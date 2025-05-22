@@ -2890,6 +2890,17 @@
         }
       }
     },
+    "confirm_delete_account_body" : {
+      "comment" : "Are you sure you want to delete your account?",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you sure you want to delete your account?"
+          }
+        }
+      }
+    },
     "confirm_logout_body" : {
       "comment" : "Are you sure you want to log out?",
       "extractionState" : "manual",
@@ -3462,6 +3473,28 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Continue"
+          }
+        }
+      }
+    },
+    "delete_account_button" : {
+      "comment" : "Delete account",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete account"
+          }
+        }
+      }
+    },
+    "delete_button" : {
+      "comment" : "Delete",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete"
           }
         }
       }
@@ -5190,6 +5223,17 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Login Failed"
+          }
+        }
+      }
+    },
+    "manage_account_button" : {
+      "comment" : "Manage account",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Manage account"
           }
         }
       }

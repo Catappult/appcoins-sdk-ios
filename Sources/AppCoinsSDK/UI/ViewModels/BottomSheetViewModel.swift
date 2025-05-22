@@ -50,6 +50,7 @@ internal class BottomSheetViewModel: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     
     @Published internal var isPaymentMethodChoiceSheetPresented: Bool = false
+    @Published internal var isManageAccountSheetPresented: Bool = false
         
     private init() {
         // Prevents Layout Warning Prints
@@ -90,6 +91,10 @@ internal class BottomSheetViewModel: ObservableObject {
     internal func presentPaymentMethodChoiceSheet() { self.isPaymentMethodChoiceSheetPresented = true }
         
     internal func dismissPaymentMethodChoiceSheet() { self.isPaymentMethodChoiceSheetPresented = false }
+    
+    internal func presentManageAccountSheet() { self.isManageAccountSheetPresented = true }
+        
+    internal func dismissManageAccountSheet() { self.isManageAccountSheetPresented = false }
     
     internal func setOrientation(orientation: Orientation) { self.orientation = orientation }
     

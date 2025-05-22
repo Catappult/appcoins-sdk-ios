@@ -95,4 +95,8 @@ internal class AuthRepository: AuthRepositoryProtocol {
     internal func logout() {
         self.UserWalletCache.removeValue(forKey: "userWallet")
     }
+    
+    internal func deleteAccount() {
+        self.UserWalletCache.removeValue(forKey: "userWallet")
+    }
 }

@@ -34,14 +34,16 @@ internal struct WalletBalanceBanner: View {
                         textColorBold: ColorsUi.APC_Black)
                 }.frame(maxWidth: .infinity, alignment: .leading)
                 
-                Button(action: authViewModel.showLogoutAlert) {
-                    Image(systemName: "rectangle.portrait.and.arrow.right")
-                        .resizable()
-                        .foregroundColor(ColorsUi.APC_Black)
-                        .frame(width: 16, height: 18)
+                if !viewModel.isManageAccountSheetPresented {
+                    Button(action: viewModel.presentManageAccountSheet) {
+                        Image(systemName: "arrow.right")
+                            .resizable()
+                            .foregroundColor(ColorsUi.APC_Black)
+                            .frame(width: 12, height: 10)
+                    }
+                    
+                    VStack{}.frame(width: 16)
                 }
-                
-                VStack{}.frame(width: 25)
             }
             .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 40)
             .background(ColorsUi.APC_LightPink)
