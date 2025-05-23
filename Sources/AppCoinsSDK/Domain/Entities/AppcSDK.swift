@@ -126,7 +126,7 @@ public struct AppcSDK {
         
         do {
             let storefront = try await StoreKit.Storefront.current
-            return (storefront?.countryCode == "USA")
+            return (storefront?.countryCode == "PT")
         } catch {
             // If the Storefront lookup fails, fall back to the locale
             return localeIsUS
