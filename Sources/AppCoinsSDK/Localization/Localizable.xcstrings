@@ -7,6 +7,17 @@
     "-10%" : {
 
     },
+    "cancel_button" : {
+      "comment" : "Cancel",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
+          }
+        }
+      }
+    },
     "Pay with Apple" : {
 
     },
