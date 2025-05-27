@@ -32,6 +32,17 @@ internal class AuthViewModel : NSObject, ObservableObject {
     @Published internal var hasAcceptedTC: Bool = false
     @Published internal var presentTCError: Bool = false
     
+    @Published internal var manageAccountState: ManageAccountState = .manage
+    
+    @Published internal var isLogoutAlertPresented: Bool = false
+    @Published internal var isDeleteAccountAlertPresented: Bool = false
+    @Published internal var deleteAccountEmail: String = ""
+    
+    @Published internal var isSendingDelete: Bool = false
+    @Published internal var sentDelete: Date?
+    @Published internal var retryDeleteTimer: Timer?
+    @Published internal var retryDeleteIn: Int = 0
+    
     private override init() {}
     
     internal func reset() {
@@ -42,6 +53,16 @@ internal class AuthViewModel : NSObject, ObservableObject {
         self.hasConsentedEmailStorage = false
         self.hasAcceptedTC = false
         self.presentTCError = false
+        
+        self.manageAccountState = .manage
+        self.isLogoutAlertPresented = false
+        self.isDeleteAccountAlertPresented = false
+        self.deleteAccountEmail = ""
+        
+        self.isSendingDelete = false
+        self.sentDelete = nil
+        self.retryDeleteTimer = nil
+        self.retryDeleteIn = 0
     }
     
     internal func showFocusedTextField() { DispatchQueue.main.async { self.isTextFieldFocused = true } }
@@ -54,13 +75,10 @@ internal class AuthViewModel : NSObject, ObservableObject {
         self.authState = state
     }
     
-    internal func validateEmail() -> Bool {
+    internal func validateEmail(email: String) -> Bool {
         let emailRegex = "^[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"
         let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
-        
-        self.isMagicLinkEmailValid = emailPredicate.evaluate(with: self.magicLinkEmail)
-        
-        return isMagicLinkEmailValid
+        return emailPredicate.evaluate(with: email)
     }
     
     internal func validateTCAcceptance() -> Bool {
@@ -129,10 +147,13 @@ internal class AuthViewModel : NSObject, ObservableObject {
     }
     
     internal func sendMagicLink() {
-        guard self.validateEmail() else { return }
+        guard self.validateEmail(email: self.magicLinkEmail) else { return }
         guard self.validateTCAcceptance() else { return }
         
-        DispatchQueue.main.async { self.isSendingMagicLink = true }
+        DispatchQueue.main.async {
+            self.isMagicLinkEmailValid = true
+            self.isSendingMagicLink = true
+        }
 
         AuthUseCases.shared.sendMagicLink(email: self.magicLinkEmail, acceptedTC: self.hasAcceptedTC) { result in
             switch result {
@@ -152,6 +173,8 @@ internal class AuthViewModel : NSObject, ObservableObject {
     }
     
     internal func loginWithMagicLink(code: String) {
+        if !(BottomSheetViewModel.shared.purchaseState == .login && self.authState == .magicLink) { return } // Do not allow magic link login outside regular flow
+        
         self.stopRetryMagicLinkTimer()
         DispatchQueue.main.async { self.authState = .loading }
         
@@ -197,16 +220,75 @@ internal class AuthViewModel : NSObject, ObservableObject {
     }
     
     internal func showLogoutAlert() {
-        if let rootViewController = UIApplication.shared.windows.first?.rootViewController,
-           let presentedPurchaseVC = rootViewController.presentedViewController as? PurchaseViewController {
-            presentedPurchaseVC.presentLogoutAlert()
-        }
+        DispatchQueue.main.async { self.isLogoutAlertPresented = true }
     }
     
     internal func logout() {
         AuthUseCases.shared.logout()
-        self.reset()
+        BottomSheetViewModel.shared.dismissManageAccountSheet()
         TransactionViewModel.shared.rebuildTransactionOnWalletChanged() // Re-build the transaction with the new Client Wallet
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.reset()
+        }
+    }
+    
+    internal func presentDeleteAccountAlert() {
+        WalletUseCases.shared.getWallet { result in
+            if case .success(let wallet) = result, let wallet = wallet as? UserWallet, let email = wallet.getEmail() {
+                self.deleteAccountEmail = email
+            }
+            
+            DispatchQueue.main.async { [self] in
+                self.isDeleteAccountAlertPresented = true
+                print("[AppCoinsSDK] isDeleteAccountAlertPresented: \(self.isDeleteAccountAlertPresented)")
+            }
+        }
+    }
+    
+    internal func dismissDeleteAccountAlert() { DispatchQueue.main.async { self.isDeleteAccountAlertPresented = false } }
+    
+    internal func deleteAccount() {
+        DispatchQueue.main.async { self.isSendingDelete = true }
+            
+        AuthUseCases.shared.deleteAccount(email: self.deleteAccountEmail) { result in
+            switch result {
+            case .success(_):
+                DispatchQueue.main.async {
+                    self.startRetryDeleteTimer()
+                    self.isSendingDelete = false
+                    self.isDeleteAccountAlertPresented = false
+                    self.manageAccountState = .deleteSent
+                }
+            case .failure(let failure):
+                switch failure {
+                    case .failed: DispatchQueue.main.async { self.manageAccountState = .deleteFailed }
+                    case .noInternet: DispatchQueue.main.async { self.manageAccountState = .deleteFailed }
+                }
+            }
+        }
+    }
+    
+    internal func confirmDelete(code: String) {
+        if !(BottomSheetViewModel.shared.isManageAccountSheetPresented && self.manageAccountState == .deleteSent) { return } // Do not allow delete outside regular flow
+        
+        self.stopRetryDeleteTimer()
+        DispatchQueue.main.async { self.manageAccountState = .deleteLoading }
+        
+        AuthUseCases.shared.confirmDeleteAccount(code: code) { result in
+            switch result {
+            case .success(_):
+                DispatchQueue.main.async { self.manageAccountState = .deleteSuccess }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.25) {
+                    BottomSheetViewModel.shared.dismissManageAccountSheet()
+                    TransactionViewModel.shared.rebuildTransactionOnWalletChanged() // Re-build the transaction with the new User Wallet
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        self.reset()
+                    }
+                }
+            case .failure(let failure):
+                DispatchQueue.main.async { self.manageAccountState = .deleteFailed }
+            }
+        }
     }
     
     internal func startRetryMagicLinkTimer() {
@@ -247,6 +329,41 @@ internal class AuthViewModel : NSObject, ObservableObject {
             DispatchQueue.main.async { BottomSheetViewModel.shared.setPurchaseState(newState: .paying) }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { self.reset() }
         }
+    }
+    
+    internal func startRetryDeleteTimer() {
+        self.sentDelete = Date()
+        updateRetryDeleteIn() // Initialize the value immediately
+        
+        retryDeleteTimer?.invalidate() // Ensure there's no existing timer
+        retryDeleteTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { [weak self] _ in
+            self?.updateRetryDeleteIn()
+        }
+    }
+    
+    private func updateRetryDeleteIn() {
+        guard let sentDelete = sentDelete else {
+            retryDeleteIn = 0
+            retryDeleteTimer?.invalidate() // Stop the timer if there's no sentDelete
+            return
+        }
+        
+        let secondsPassed = Date().timeIntervalSince(sentDelete)
+        let timeLeft = 30 - secondsPassed
+        retryDeleteIn = max(0, Int(timeLeft))
+        
+        if retryDeleteIn == 0 {
+            retryDeleteTimer?.invalidate() // Stop the timer when the countdown reaches 0
+        }
+    }
+    
+    private func stopRetryDeleteTimer() {
+        retryDeleteTimer?.invalidate()
+        retryDeleteTimer = nil
+    }
+    
+    internal func tryAgainDelete() {
+        DispatchQueue.main.async { self.reset() }
     }
 }
 

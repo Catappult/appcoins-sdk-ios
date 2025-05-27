@@ -10,7 +10,7 @@ import UIKit
 
 internal struct FocusableTextField: UIViewRepresentable {
     
-    @ObservedObject internal var authViewModel: AuthViewModel
+    internal var hide: () -> Void
     internal var placeholder: String
     @Binding internal var text: String
 
@@ -26,16 +26,14 @@ internal struct FocusableTextField: UIViewRepresentable {
         uiView.text = text
     }
 
-    internal func makeCoordinator() -> Coordinator { Coordinator(self, authViewModel: authViewModel) }
+    internal func makeCoordinator() -> Coordinator { Coordinator(self) }
     
     internal class Coordinator: NSObject, UITextFieldDelegate {
         internal var parent: FocusableTextField
-        internal var authViewModel: AuthViewModel
         private var keyboardWillHideObserver: NSObjectProtocol?
         
-        internal init(_ parent: FocusableTextField, authViewModel: AuthViewModel) {
+        internal init(_ parent: FocusableTextField) {
             self.parent = parent
-            self.authViewModel = authViewModel
             super.init()
             
             // Add observer for keyboard dismissal
@@ -54,7 +52,7 @@ internal struct FocusableTextField: UIViewRepresentable {
         
         private func keyboardDidHide() {
             withAnimation(.easeInOut(duration: 0.4)) {
-                authViewModel.hideFocusedTextField()
+                parent.hide()
             }
         }
         
@@ -69,7 +67,7 @@ internal struct FocusableTextField: UIViewRepresentable {
         // Keyboard is dismissed after pressing enter/return
         internal func textFieldShouldReturn(_ textField: UITextField) -> Bool {
             withAnimation(.easeInOut(duration: 0.4)) {
-                authViewModel.hideFocusedTextField()
+                parent.hide()
             }
             textField.resignFirstResponder()
             return true

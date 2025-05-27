@@ -18,6 +18,7 @@ internal struct UserAuthRaw: Codable {
     internal let domain: String?
     internal let channel: String?
     internal let consents: [String]
+    internal let action: String?
     
     internal enum CodingKeys: String, CodingKey {
         case credential = "credential"
@@ -29,6 +30,7 @@ internal struct UserAuthRaw: Codable {
         case domain = "domain"
         case channel = "channel"
         case consents = "consents"
+        case action = "action"
     }
     
     internal static func fromGoogleAuth(code: String, acceptedTC: Bool, consents: [String]) -> UserAuthRaw {
@@ -41,7 +43,8 @@ internal struct UserAuthRaw: Codable {
             accepted: acceptedTC ? ["TOS", "PRIVACY", "DISTRIBUTION"] : [],
             domain: Bundle.main.bundleIdentifier,
             channel: "IOS",
-            consents: consents
+            consents: consents,
+            action: nil
         )
     }
     
@@ -55,7 +58,8 @@ internal struct UserAuthRaw: Codable {
             accepted: acceptedTC ? ["TOS", "PRIVACY", "DISTRIBUTION"] : [],
             domain: Bundle.main.bundleIdentifier,
             channel: "IOS",
-            consents: consents
+            consents: consents,
+            action: nil
         )
     }
     
@@ -69,7 +73,38 @@ internal struct UserAuthRaw: Codable {
             accepted: acceptedTC ? ["TOS", "PRIVACY", "DISTRIBUTION"] : [],
             domain: Bundle.main.bundleIdentifier,
             channel: "IOS",
-            consents: []
+            consents: [],
+            action: nil
+        )
+    }
+    
+    internal static func fromDeleteAccountEmail(email: String) -> UserAuthRaw {
+        return UserAuthRaw(
+            credential: email,
+            type: UserAuthType.Email.rawValue,
+            supported: UserAuthSupported.Code.rawValue,
+            state: nil,
+            agent: nil,
+            accepted: ["TOS", "PRIVACY", "DISTRIBUTION"],
+            domain: Bundle.main.bundleIdentifier,
+            channel: "IOS",
+            consents: [],
+            action: "ANONYMIZE"
+        )
+    }
+    
+    internal static func fromConfirmDeleteAccountCode(code: String, state: String) -> UserAuthRaw {
+        return UserAuthRaw(
+            credential: code,
+            type: UserAuthType.Code.rawValue,
+            supported: UserAuthSupported.WalletJWT.rawValue,
+            state: state,
+            agent: nil,
+            accepted: ["TOS", "PRIVACY", "DISTRIBUTION"],
+            domain: Bundle.main.bundleIdentifier,
+            channel: "IOS",
+            consents: [],
+            action: "ANONYMIZE"
         )
     }
     

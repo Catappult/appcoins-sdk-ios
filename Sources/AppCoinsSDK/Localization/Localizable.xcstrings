@@ -3294,6 +3294,28 @@
         }
       }
     },
+    "confirm_delete_account_body" : {
+      "comment" : "Are you sure you want to delete your account?",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Are you sure you want to delete your account?"
+          }
+        }
+      }
+    },
+    "confirm_email_deletion_body" : {
+      "comment" : "Confirm your e-mail to delete your account",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirm your e-mail to delete your account"
+          }
+        }
+      }
+    },
     "confirm_logout_body" : {
       "comment" : "Are you sure you want to log out?",
       "extractionState" : "manual",
@@ -4269,6 +4291,28 @@
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
+            "value" : "Delete"
+          }
+        }
+      }
+    },
+    "delete_account_button" : {
+      "comment" : "Delete account",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Delete account"
+          }
+        }
+      }
+    },
+    "delete_button" : {
+      "comment" : "Delete",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "Delete"
           }
         }
@@ -6199,6 +6243,17 @@
         "en" : {
           "stringUnit" : {
             "state" : "needs_review",
+            "value" : "Manage account"
+          }
+        }
+      }
+    },
+    "manage_account_button" : {
+      "comment" : "Manage account",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "Manage account"
           }
         }

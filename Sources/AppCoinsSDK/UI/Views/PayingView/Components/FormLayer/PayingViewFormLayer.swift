@@ -49,6 +49,7 @@ internal struct PayingViewFormLayer: View {
                     }.ignoresSafeArea(.all)
                 }
                 .onChange(of: viewModel.isPaymentMethodChoiceSheetPresented) { isPresented in if !isPresented { formLayerID = UUID() } }
+                .onChange(of: viewModel.isManageAccountSheetPresented) { isPresented in if !isPresented { formLayerID = UUID() } }
                 .onChange(of: authViewModel.isLoggedIn) { formLayerID = UUID() }
                 .id(formLayerID)
             }
