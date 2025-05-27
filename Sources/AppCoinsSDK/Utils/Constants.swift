@@ -29,6 +29,7 @@ internal struct Constants {
     static internal let chooseYourPaymentMethod = NSLocalizedString("choose_your_payment_method_title", bundle: .APPCModule, comment: "Choose your payment method")
     static internal let deleteAccountText = NSLocalizedString("delete_account_button", bundle: .APPCModule, comment: "Delete account")
     static internal let deleteButton = NSLocalizedString("delete_button", bundle: .APPCModule, comment: "Delete")
+    static internal let confirmEmailDeletionText = NSLocalizedString("confirm_email_deletion_body", bundle: .APPCModule, comment: "Confirm your e-mail to delete your account")
 
     // Success
     static internal let successText = NSLocalizedString("success_title", bundle: .APPCModule, comment: "Success")

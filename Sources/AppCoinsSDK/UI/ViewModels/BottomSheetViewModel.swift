@@ -75,6 +75,7 @@ internal class BottomSheetViewModel: ObservableObject {
     
     // Resets the BottomSheet
     private func reset() {
+        print("[AppCoinsSDK] Reset bottom sheet")
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.purchaseState = .loading
             self.successfulPurchase = nil
@@ -92,9 +93,15 @@ internal class BottomSheetViewModel: ObservableObject {
         
     internal func dismissPaymentMethodChoiceSheet() { self.isPaymentMethodChoiceSheetPresented = false }
     
-    internal func presentManageAccountSheet() { self.isManageAccountSheetPresented = true }
+    internal func presentManageAccountSheet() {
+        AuthViewModel.shared.reset()
+        self.isManageAccountSheetPresented = true
+    }
         
-    internal func dismissManageAccountSheet() { self.isManageAccountSheetPresented = false }
+    internal func dismissManageAccountSheet() {
+        self.isManageAccountSheetPresented = false
+        AuthViewModel.shared.reset()
+    }
     
     internal func setOrientation(orientation: Orientation) { self.orientation = orientation }
     

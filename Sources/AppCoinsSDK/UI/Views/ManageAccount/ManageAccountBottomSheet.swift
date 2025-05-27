@@ -12,10 +12,27 @@ internal struct ManageAccountBottomSheet: View {
     @ObservedObject internal var viewModel: BottomSheetViewModel
     @ObservedObject internal var authViewModel: AuthViewModel
     
+    @State private var alertPresenter = TextFieldAlert()
+    
     internal var body: some View {
         if #available(iOS 16.4, *) {
-            if viewModel.orientation == .landscape {
-                ManageAccountView(viewModel: viewModel, authViewModel: authViewModel)
+            VStack(spacing: 0) {
+                if viewModel.orientation == .landscape {
+                    ZStack {
+                        switch authViewModel.manageAccountState {
+                        case .manage:
+                            ManageAccountView(viewModel: viewModel, authViewModel: authViewModel)
+                        case .deleteSent:
+                            DeleteAccountSentView(viewModel: viewModel, authViewModel: authViewModel)
+                        case .deleteLoading:
+                            APPCLoading()
+                        case .deleteSuccess:
+                            DeleteAccountSuccessView()
+                        case .deleteFailed:
+                            DeleteAccountFailedView()
+                        }
+                        
+                    }
                     .presentationCompactAdaptation(.fullScreenCover)
                     .clipShape(RoundedCorner(radius: 13, corners: [.topLeft, .topRight]))
                     .presentationBackground {
@@ -27,54 +44,73 @@ internal struct ManageAccountBottomSheet: View {
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
                     .ignoresSafeArea(.all)
-                    .alert(
-                        Constants.logOut,
-                        isPresented: $authViewModel.isLogoutAlertPresented,
-                        actions: {
-                            Button(Constants.cancelText, role: .cancel) { }
-                            Button(Constants.logOut, role: .destructive) { AuthViewModel.shared.logout() }
-                        },
-                        message: {
-                            Text(Constants.confirmLogOutText)
+                    
+                } else {
+                    ZStack {
+                        switch authViewModel.manageAccountState {
+                        case .manage:
+                            ManageAccountView(viewModel: viewModel, authViewModel: authViewModel)
+                        case .deleteSent:
+                            DeleteAccountSentView(viewModel: viewModel, authViewModel: authViewModel)
+                        case .deleteLoading:
+                            APPCLoading()
+                        case .deleteSuccess:
+                            DeleteAccountSuccessView()
+                        case .deleteFailed:
+                            DeleteAccountFailedView()
                         }
-                    )
-                    .alert(
-                        Constants.deleteAccountText,
-                        isPresented: $authViewModel.isDeleteAccountAlertPresented,
-                        actions: {
-                            Button(Constants.cancelText, role: .cancel) { }
-                            Button(Constants.deleteButton, role: .destructive) { AuthViewModel.shared.deleteAccount() }
-                        },
-                        message: {
-                            Text(Constants.confirmDeleteAccountText)
-                        }
-                    )
-                
-            } else {
-                ManageAccountView(viewModel: viewModel, authViewModel: authViewModel)
-                    .alert(
-                        Constants.logOut,
-                        isPresented: $authViewModel.isLogoutAlertPresented,
-                        actions: {
-                            Button(Constants.cancelText, role: .cancel) { }
-                            Button(Constants.logOut, role: .destructive) { AuthViewModel.shared.logout() }
-                        },
-                        message: {
-                            Text(Constants.confirmLogOutText)
-                        }
-                    )
-                    .alert(
-                        Constants.deleteAccountText,
-                        isPresented: $authViewModel.isDeleteAccountAlertPresented,
-                        actions: {
-                            Button(Constants.cancelText, role: .cancel) { }
-                            Button(Constants.deleteButton, role: .destructive) { AuthViewModel.shared.deleteAccount() }
-                        },
-                        message: {
-                            Text(Constants.confirmDeleteAccountText)
-                        }
-                    )
+                        
+                    }
                     .presentationDetents([.height(420)])
+                }
+            }.alert(
+                Constants.logOut,
+                isPresented: $authViewModel.isLogoutAlertPresented,
+                actions: {
+                    Button(Constants.cancelText, role: .cancel) { }
+                    Button(Constants.logOut, role: .destructive) { AuthViewModel.shared.logout() }
+                },
+                message: {
+                    Text(Constants.confirmLogOutText)
+                }
+            )
+            .onChange(of: authViewModel.isDeleteAccountAlertPresented) { isPresented in
+                print("[AppCoinsSDK] Should be presenting: \(isPresented)")
+                if isPresented {
+                    print("[AppCoinsSDK] Should be presenting")
+                    if authViewModel.deleteAccountEmail == "" {
+                        self.alertPresenter.present(
+                            title: Constants.deleteAccountText,
+                            message: Constants.confirmDeleteAccountText,
+                            placeholder: Constants.yourEmail,
+                            confirmLabel: Constants.deleteButton,
+                            cancelLabel: Constants.cancelText,
+                            shouldBeEnabled: { text in
+                                authViewModel.deleteAccountEmail = text
+                                return authViewModel.validateEmail(email: text)
+                            },
+                            confirmAction: { text in authViewModel.deleteAccount() },
+                            cancelAction: {
+                                authViewModel.isSendingDelete = false
+                                authViewModel.isDeleteAccountAlertPresented = false
+                            }
+                        )
+                    } else {
+                        self.alertPresenter.present(
+                            title: Constants.deleteAccountText,
+                            message: Constants.confirmDeleteAccountText,
+                            placeholder: nil,
+                            confirmLabel: Constants.deleteButton,
+                            cancelLabel: Constants.cancelText,
+                            shouldBeEnabled: { _ in return true },
+                            confirmAction: { text in authViewModel.deleteAccount() },
+                            cancelAction: {
+                                authViewModel.isSendingDelete = false
+                                authViewModel.isDeleteAccountAlertPresented = false
+                            }
+                        )
+                    }
+                }
             }
         }
     }

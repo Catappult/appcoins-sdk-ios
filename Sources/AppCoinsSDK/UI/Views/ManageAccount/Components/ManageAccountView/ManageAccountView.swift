@@ -29,7 +29,7 @@ internal struct ManageAccountView: View {
             
             // Content
             VStack(spacing: 0) {
-                WalletBalanceBanner()
+                ManageAccountBalanceBanner()
                 
                 VStack{}.frame(maxHeight: .infinity)
                 
@@ -44,14 +44,19 @@ internal struct ManageAccountView: View {
                 .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 50)
                 .foregroundColor(ColorsUi.APC_Black)
 
-                Button(action: authViewModel.showDeleteAccountAlert) {
-                    Text(Constants.deleteAccountText)
+                if authViewModel.isSendingDelete {
+                    HStack(spacing: 0) {
+                        ProgressView()
+                    }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 40)
+                } else {
+                    Button(action: authViewModel.presentDeleteAccountAlert) {
+                        Text(Constants.deleteAccountText)
+                    }
+                    .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 40)
+                    .foregroundColor(ColorsUi.APC_Red)
                 }
-                .frame(maxHeight: .infinity, alignment: .bottom)
-                .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 40)
-                .foregroundColor(ColorsUi.APC_Red)
                 
-                VStack{}.frame(height: Utils.bottomSafeAreaHeight + 8)
+                VStack{}.frame(height: Utils.bottomSafeAreaHeight == 0 ? 5 : 28)
             }
         }
         .frame(maxHeight: .infinity, alignment: .top)

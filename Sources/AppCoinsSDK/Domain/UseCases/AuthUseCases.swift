@@ -33,7 +33,11 @@ internal class AuthUseCases {
         self.repository.logout()
     }
     
-    internal func deleteAccount() {
-        self.repository.deleteAccount()
+    internal func deleteAccount(email: String, completion: @escaping (Result<Bool, AuthError>) -> Void) {
+        self.repository.deleteAccount(email: email) { result in completion(result) }
+    }
+    
+    internal func confirmDeleteAccount(code: String, completion: @escaping (Result<Bool, AuthError>) -> Void) {
+        self.repository.confirmDeleteAccount(code: code) { result in completion(result) }
     }
 }

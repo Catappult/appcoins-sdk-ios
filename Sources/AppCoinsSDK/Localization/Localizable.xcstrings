@@ -2901,6 +2901,17 @@
         }
       }
     },
+    "confirm_email_deletion_body" : {
+      "comment" : "Confirm your e-mail to delete your account",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirm your e-mail to delete your account"
+          }
+        }
+      }
+    },
     "confirm_logout_body" : {
       "comment" : "Are you sure you want to log out?",
       "extractionState" : "manual",
