@@ -10,9 +10,11 @@ import SwiftUI
 internal struct LoggedOutSuccessSignInButton: View {
     
     @ObservedObject internal var viewModel: BottomSheetViewModel = BottomSheetViewModel.shared
+    @ObservedObject internal var authViewModel: AuthViewModel = AuthViewModel.shared
     
     internal var body: some View {
         Button(action: {
+            authViewModel.reset()
             viewModel.setPurchaseState(newState: .login)
         }) {
             ZStack {

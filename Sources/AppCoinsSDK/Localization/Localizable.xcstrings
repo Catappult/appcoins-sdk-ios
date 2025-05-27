@@ -1,6 +1,15 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
+    "-%@%%" : {
+
+    },
+    "~%@~" : {
+
+    },
     "accept_terms_body" : {
       "comment" : "I accept Aptoide's %@ and %@",
       "extractionState" : "manual",
@@ -3263,6 +3272,28 @@
         }
       }
     },
+    "confirm_delete_account_body" : {
+      "comment" : "Are you sure you want to delete your account?",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Are you sure you want to delete your account?"
+          }
+        }
+      }
+    },
+    "confirm_email_deletion_body" : {
+      "comment" : "Confirm your e-mail to delete your account",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Confirm your e-mail to delete your account"
+          }
+        }
+      }
+    },
     "confirm_logout_body" : {
       "comment" : "Are you sure you want to log out?",
       "extractionState" : "manual",
@@ -4217,6 +4248,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "刪除"
+          }
+        }
+      }
+    },
+    "delete_account_button" : {
+      "comment" : "Delete account",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Delete account"
+          }
+        }
+      }
+    },
+    "delete_button" : {
+      "comment" : "Delete",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Delete"
           }
         }
       }
@@ -6136,6 +6189,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "管理帳戶"
+          }
+        }
+      }
+    },
+    "manage_account_button" : {
+      "comment" : "Manage account",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Manage account"
           }
         }
       }

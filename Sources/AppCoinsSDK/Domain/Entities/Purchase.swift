@@ -295,7 +295,7 @@ public class Purchase: Codable {
                 for wallet in walletList {
                     group.enter()
                     queue.sync {
-                        transactionUseCases.getPurchasesByState(domain: domain, state: "PENDING", wa: wallet) {
+                        transactionUseCases.getPurchasesByState(domain: domain, state: ["PENDING", "ACKNOWLEDGED"], wa: wallet) {
                             result in
                             switch result {
                             case .success(let purchases):
@@ -337,5 +337,23 @@ public class Purchase: Codable {
             return date1 > date2
         }
         return sortedPurchases
+    }
+    
+    // Defines a Stream that will emit updates for indirect IAP
+    private static var purchaseContinuation: AsyncStream<PurchaseIntent>.Continuation?
+    private static let purchaseStream: AsyncStream<PurchaseIntent> = {
+        AsyncStream { continuation in purchaseContinuation = continuation }
+    }()
+    
+    public static var updates: AsyncStream<PurchaseIntent> {
+        return purchaseStream
+    }
+
+    internal static func send(_ intent: PurchaseIntent) {
+        purchaseContinuation?.yield(intent)
+    }
+    
+    public static var intent: PurchaseIntent? {
+        return PurchaseIntentManager.shared.current
     }
 }

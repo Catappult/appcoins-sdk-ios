@@ -28,26 +28,50 @@ internal struct PayingHeader: View {
                     .foregroundColor(ColorsUi.APC_Black)
                     .font(FontsUi.APC_Body_Bold)
                     .lineLimit(1)
+                
+                if case let .direct(transaction) = transactionViewModel.transaction {
+                    VStack{}.frame(width: 8)
+                    
+                    ZStack {
+                        ColorsUi.APC_DarkBlue
+                        
+                        Text("-\(transaction.discountPercentage)%")
+                            .foregroundColor(ColorsUi.APC_White)
+                            .font(FontsUi.APC_Caption2_Bold)
+                    }.frame(width: 40)
+                        .cornerRadius(10)
+                }
             } else {
                 Text("")
                     .skeleton(with: true)
                     .frame(width: 125, height: 22, alignment: .leading)
                 VStack{}.frame(maxWidth: .infinity)
             }
+            
+            VStack{}.frame(width: 16)
         }.frame(maxWidth: .infinity, alignment: .leading)
     }
     
     internal var price: some View {
         HStack(spacing: 0) {
-            if let amount = transactionViewModel.transaction?.moneyAmount {
-                Text((transactionViewModel.transaction?.moneyCurrency.sign ?? "") + String(amount))
+            if case let .direct(transaction) = transactionViewModel.transaction, let amount = transactionViewModel.transaction?.common.moneyAmount {
+                Text("~\((transactionViewModel.transaction?.common.moneyCurrency.sign ?? "") + transaction.discountOriginal)~")
+                    .foregroundColor(ColorsUi.APC_DarkGray)
+                    .font(FontsUi.APC_Subheadline)
+                    .lineLimit(1)
+                
+                VStack{}.frame(width: 8)
+            }
+            
+            if let amount = transactionViewModel.transaction?.common.moneyAmount {
+                Text((transactionViewModel.transaction?.common.moneyCurrency.sign ?? "") + String(format: "%.2f", amount))
                     .foregroundColor(ColorsUi.APC_Black)
                     .font(FontsUi.APC_Subheadline_Bold)
                     .lineLimit(1)
                 
                 VStack{}.frame(width: 4)
                 
-                Text(transactionViewModel.transaction?.moneyCurrency.currency ?? "-")
+                Text(transactionViewModel.transaction?.common.moneyCurrency.currency ?? "-")
                     .foregroundColor(ColorsUi.APC_Black)
                     .font(FontsUi.APC_Caption1_Bold)
                     .lineLimit(1)
@@ -60,20 +84,12 @@ internal struct PayingHeader: View {
                 }.frame(maxWidth: .infinity)
             }
             
-            VStack{}.frame(width: 16)
-            
-            if let appcAmount = transactionViewModel.transaction?.appcAmount {
-                Text(verbatim: String(format: "%.2f", appcAmount) + " APPC")
+            if case let .regular(transaction) = transactionViewModel.transaction {
+                VStack{}.frame(width: 16)
+                
+                Text(verbatim: String(format: "%.2f", transaction.appcAmount) + " APPC")
                     .foregroundColor(ColorsUi.APC_BottomSheet_APPC)
                     .font(FontsUi.APC_Caption2)
-            } else {
-                HStack(spacing: 0) {
-                    Text("")
-                        .skeleton(with: true)
-                        .frame(width: 55, height: 10, alignment: .leading)
-                        .padding(.top, 2)
-                    VStack{}.frame(maxWidth: .infinity)
-                }.frame(maxWidth: .infinity)
             }
         }
         .frame(width: viewModel.orientation == .landscape ? 256 : UIScreen.main.bounds.width - 154, alignment: .bottomLeading)

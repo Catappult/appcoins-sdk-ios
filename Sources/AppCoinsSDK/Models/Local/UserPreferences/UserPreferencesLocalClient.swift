@@ -7,7 +7,7 @@
 
 import Foundation
 
-internal class UserPreferencesLocalClient : UserPreferencesLocalService {
+internal class UserPreferencesLocalClient: UserPreferencesLocalService {
     
     internal func getLastPaymentMethod() -> Method? {
         return Method(rawValue: Utils.readFromPreferences(key: "last-payment-method"))
@@ -28,5 +28,14 @@ internal class UserPreferencesLocalClient : UserPreferencesLocalService {
     
     internal func removeWalletBA(wa: String) {
         Utils.deleteFromPreferences(key: "\(wa)-BA")
+    }
+    
+    internal func isSDKDefault() -> String? {
+        let isSDKDefault: String = Utils.readFromPreferences(key: "is-sdk-default")
+        return isSDKDefault == "" ? nil : isSDKDefault
+    }
+    
+    internal func setSDKDefault(value: String) {
+        try? Utils.writeToPreferences(key: "is-sdk-default", value: value)
     }
 }

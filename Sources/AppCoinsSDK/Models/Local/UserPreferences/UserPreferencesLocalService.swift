@@ -17,4 +17,7 @@ internal protocol UserPreferencesLocalService {
     func getWalletBA(wa: String) -> String
     func writeWalletBA(wa: String)
     func removeWalletBA(wa: String)
+    
+    func isSDKDefault() -> String?
+    func setSDKDefault(value: String)
 }

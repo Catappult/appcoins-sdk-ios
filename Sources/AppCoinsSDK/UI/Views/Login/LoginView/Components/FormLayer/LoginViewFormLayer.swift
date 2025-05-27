@@ -22,7 +22,7 @@ internal struct LoginViewFormLayer: View {
                 }
             }
             
-            HStack{}.frame(height: 86)
+            HStack{}.frame(height: Utils.bottomSafeAreaHeight == 0 ? 63 : 86)
         }
     }
 }
