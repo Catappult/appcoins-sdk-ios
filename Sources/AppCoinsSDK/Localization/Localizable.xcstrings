@@ -1,15 +1,6 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
-    "" : {
-
-    },
-    "-%@%%" : {
-
-    },
-    "~%@~" : {
-
-    },
     "accept_terms_body" : {
       "comment" : "I accept Aptoide's %@ and %@",
       "extractionState" : "manual",
@@ -2919,7 +2910,7 @@
         },
         "en" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Are you sure you want to delete your account?"
           }
         },
@@ -3110,7 +3101,7 @@
         },
         "en" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Confirm your e-mail to delete your account"
           }
         },
@@ -3268,50 +3259,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "確認您的電子郵件以刪除您的帳戶"
-          }
-        }
-      }
-    },
-    "confirm_delete_account_body" : {
-      "comment" : "Are you sure you want to delete your account?",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Are you sure you want to delete your account?"
-          }
-        }
-      }
-    },
-    "confirm_email_deletion_body" : {
-      "comment" : "Confirm your e-mail to delete your account",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Confirm your e-mail to delete your account"
-          }
-        }
-      }
-    },
-    "confirm_delete_account_body" : {
-      "comment" : "Are you sure you want to delete your account?",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Are you sure you want to delete your account?"
-          }
-        }
-      }
-    },
-    "confirm_email_deletion_body" : {
-      "comment" : "Confirm your e-mail to delete your account",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Confirm your e-mail to delete your account"
           }
         }
       }
@@ -3921,7 +3868,7 @@
         },
         "en" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Delete account"
           }
         },
@@ -4112,7 +4059,7 @@
         },
         "en" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Delete"
           }
         },
@@ -4270,50 +4217,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "刪除"
-          }
-        }
-      }
-    },
-    "delete_account_button" : {
-      "comment" : "Delete account",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Delete account"
-          }
-        }
-      }
-    },
-    "delete_button" : {
-      "comment" : "Delete",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Delete"
-          }
-        }
-      }
-    },
-    "delete_account_button" : {
-      "comment" : "Delete account",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Delete account"
-          }
-        }
-      }
-    },
-    "delete_button" : {
-      "comment" : "Delete",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Delete"
           }
         }
       }
@@ -6075,7 +5978,7 @@
         },
         "en" : {
           "stringUnit" : {
-            "state" : "needs_review",
+            "state" : "translated",
             "value" : "Manage account"
           }
         },
@@ -6233,28 +6136,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "管理帳戶"
-          }
-        }
-      }
-    },
-    "manage_account_button" : {
-      "comment" : "Manage account",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "needs_review",
-            "value" : "Manage account"
-          }
-        }
-      }
-    },
-    "manage_account_button" : {
-      "comment" : "Manage account",
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Manage account"
           }
         }
       }
