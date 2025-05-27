@@ -1980,6 +1980,16 @@
       },
       {
         "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
         "name": "SwiftUI",
         "printedName": "SwiftUI",
         "declKind": "Import",
@@ -2226,6 +2236,116 @@
         "kind": "Import",
         "name": "Foundation",
         "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "SwiftUI",
+        "printedName": "SwiftUI",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "SwiftUI",
+        "printedName": "SwiftUI",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "SwiftUI",
+        "printedName": "SwiftUI",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "SwiftUI",
+        "printedName": "SwiftUI",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "SwiftUI",
+        "printedName": "SwiftUI",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "SwiftUI",
+        "printedName": "SwiftUI",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "SwiftUI",
+        "printedName": "SwiftUI",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "SwiftUI",
+        "printedName": "SwiftUI",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "SwiftUI",
+        "printedName": "SwiftUI",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "SwiftUI",
+        "printedName": "SwiftUI",
         "declKind": "Import",
         "moduleName": "AppCoinsSDK",
         "declAttributes": [
@@ -2861,6 +2981,53 @@
         "kind": "Import",
         "name": "SwiftUI",
         "printedName": "SwiftUI",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "SwiftUI",
+        "printedName": "SwiftUI",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "SwiftUI",
+        "printedName": "SwiftUI",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK"
+      },
+      {
+        "kind": "Import",
+        "name": "SwiftUI",
+        "printedName": "SwiftUI",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
         "declKind": "Import",
         "moduleName": "AppCoinsSDK",
         "declAttributes": [
@@ -6321,6 +6488,16 @@
       },
       {
         "kind": "Import",
+        "name": "SwiftUI",
+        "printedName": "SwiftUI",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
         "name": "Foundation",
         "printedName": "Foundation",
         "declKind": "Import",
@@ -6539,6 +6716,16 @@
         "moduleName": "AppCoinsSDK",
         "declAttributes": [
           "ImplementationOnly"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "SwiftUI",
+        "printedName": "SwiftUI",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
         ]
       },
       {
@@ -7373,7 +7560,14 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Repositories\/Auth\/AuthRepository.swift",
       "kind": "StringLiteral",
-      "offset": 501,
+      "offset": 492,
+      "length": 16,
+      "value": "\"AuthEmailCache\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Repositories\/Auth\/AuthRepository.swift",
+      "kind": "StringLiteral",
+      "offset": 616,
       "length": 17,
       "value": "\"UserWalletCache\""
     },
@@ -7448,6 +7642,41 @@
       "value": "false"
     },
     {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/ViewModels\/AuthViewModel.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1235,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/ViewModels\/AuthViewModel.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1307,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/ViewModels\/AuthViewModel.swift",
+      "kind": "StringLiteral",
+      "offset": 1370,
+      "length": 2,
+      "value": "\"\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/ViewModels\/AuthViewModel.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1430,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/ViewModels\/AuthViewModel.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1584,
+      "length": 1,
+      "value": "0"
+    },
+    {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Views\/BottomSheet\/BottomSheetView.swift",
       "kind": "BooleanLiteral",
       "offset": 595,
@@ -7504,6 +7733,13 @@
       "value": "false"
     },
     {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/ViewModels\/BottomSheetViewModel.swift",
+      "kind": "BooleanLiteral",
+      "offset": 2005,
+      "length": 5,
+      "value": "false"
+    },
+    {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Views\/BottomSheet\/BottomSheetWrapperView.swift",
       "kind": "StringLiteral",
       "offset": 133,
@@ -7536,7 +7772,7 @@
       "kind": "IntegerLiteral",
       "offset": 4486,
       "length": 2,
-      "value": "37"
+      "value": "38"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/BuildConfiguration.swift",
@@ -7947,247 +8183,317 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
       "kind": "FloatLiteral",
-      "offset": 1437,
+      "offset": 1395,
+      "length": 4,
+      "value": "1.00"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
+      "kind": "FloatLiteral",
+      "offset": 1408,
+      "length": 4,
+      "value": "0.24"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
+      "kind": "FloatLiteral",
+      "offset": 1420,
+      "length": 4,
+      "value": "0.23"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1435,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
+      "kind": "FloatLiteral",
+      "offset": 1532,
       "length": 5,
       "value": "0.898"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
       "kind": "FloatLiteral",
-      "offset": 1451,
+      "offset": 1546,
       "length": 5,
       "value": "0.898"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
       "kind": "FloatLiteral",
-      "offset": 1464,
+      "offset": 1559,
       "length": 5,
       "value": "0.918"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
       "kind": "FloatLiteral",
-      "offset": 1553,
+      "offset": 1648,
       "length": 3,
       "value": "0.5"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
       "kind": "FloatLiteral",
-      "offset": 1565,
+      "offset": 1660,
       "length": 3,
       "value": "0.5"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
       "kind": "FloatLiteral",
-      "offset": 1576,
+      "offset": 1671,
       "length": 3,
       "value": "0.5"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
       "kind": "FloatLiteral",
-      "offset": 1588,
+      "offset": 1683,
       "length": 3,
       "value": "0.2"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
       "kind": "FloatLiteral",
-      "offset": 1665,
+      "offset": 1760,
       "length": 4,
       "value": "0.24"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
       "kind": "FloatLiteral",
-      "offset": 1678,
+      "offset": 1773,
       "length": 4,
       "value": "0.24"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
       "kind": "FloatLiteral",
-      "offset": 1690,
+      "offset": 1785,
       "length": 4,
       "value": "0.24"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
       "kind": "IntegerLiteral",
-      "offset": 1703,
+      "offset": 1798,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
       "kind": "FloatLiteral",
-      "offset": 1779,
+      "offset": 1874,
       "length": 4,
       "value": "0.76"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
       "kind": "FloatLiteral",
-      "offset": 1792,
+      "offset": 1887,
       "length": 4,
       "value": "0.76"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
       "kind": "FloatLiteral",
-      "offset": 1804,
+      "offset": 1899,
       "length": 4,
       "value": "0.76"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
       "kind": "IntegerLiteral",
-      "offset": 1817,
+      "offset": 1912,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
       "kind": "FloatLiteral",
-      "offset": 1903,
+      "offset": 1998,
       "length": 4,
       "value": "0.46"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
       "kind": "FloatLiteral",
-      "offset": 1916,
+      "offset": 2011,
       "length": 4,
       "value": "0.46"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
       "kind": "FloatLiteral",
-      "offset": 1928,
+      "offset": 2023,
       "length": 3,
       "value": "0.5"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
       "kind": "FloatLiteral",
-      "offset": 1941,
+      "offset": 2036,
       "length": 4,
       "value": "0.24"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
       "kind": "FloatLiteral",
-      "offset": 2028,
+      "offset": 2123,
       "length": 4,
       "value": "0.95"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
       "kind": "FloatLiteral",
-      "offset": 2041,
+      "offset": 2136,
       "length": 4,
       "value": "0.95"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
       "kind": "FloatLiteral",
-      "offset": 2053,
+      "offset": 2148,
       "length": 4,
       "value": "0.97"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
       "kind": "FloatLiteral",
-      "offset": 2124,
+      "offset": 2219,
       "length": 4,
       "value": "0.39"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
       "kind": "FloatLiteral",
-      "offset": 2137,
+      "offset": 2232,
       "length": 4,
       "value": "0.39"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
       "kind": "FloatLiteral",
-      "offset": 2149,
+      "offset": 2244,
       "length": 3,
       "value": "0.4"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
       "kind": "FloatLiteral",
-      "offset": 2224,
+      "offset": 2319,
       "length": 3,
       "value": "0.9"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
       "kind": "FloatLiteral",
-      "offset": 2236,
+      "offset": 2331,
       "length": 3,
       "value": "0.9"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
-      "kind": "FloatLiteral",
-      "offset": 2247,
-      "length": 4,
-      "value": "0.92"
-    },
-    {
-      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
-      "kind": "FloatLiteral",
-      "offset": 2329,
-      "length": 4,
-      "value": "0.56"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
       "kind": "FloatLiteral",
       "offset": 2342,
       "length": 4,
+      "value": "0.92"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
+      "kind": "FloatLiteral",
+      "offset": 2424,
+      "length": 4,
       "value": "0.56"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
       "kind": "FloatLiteral",
-      "offset": 2354,
+      "offset": 2437,
+      "length": 4,
+      "value": "0.56"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
+      "kind": "FloatLiteral",
+      "offset": 2449,
       "length": 4,
       "value": "0.58"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
       "kind": "FloatLiteral",
-      "offset": 2423,
+      "offset": 2518,
       "length": 4,
       "value": "0.56"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
       "kind": "FloatLiteral",
-      "offset": 2436,
+      "offset": 2531,
       "length": 4,
       "value": "0.56"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
       "kind": "FloatLiteral",
-      "offset": 2448,
+      "offset": 2543,
       "length": 4,
       "value": "0.58"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Utils\/ColorsUi.swift",
       "kind": "FloatLiteral",
-      "offset": 2462,
+      "offset": 2557,
       "length": 3,
       "value": "0.3"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/ConfirmDeleteAccountResponseRaw.swift",
+      "kind": "StringLiteral",
+      "offset": 343,
+      "length": 6,
+      "value": "\"type\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/ConfirmDeleteAccountResponseRaw.swift",
+      "kind": "StringLiteral",
+      "offset": 371,
+      "length": 7,
+      "value": "\"state\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/ConfirmDeleteAccountResponseRaw.swift",
+      "kind": "StringLiteral",
+      "offset": 401,
+      "length": 8,
+      "value": "\"signup\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/ConfirmDeleteAccountResponseRaw.swift",
+      "kind": "StringLiteral",
+      "offset": 343,
+      "length": 6,
+      "value": "\"type\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/ConfirmDeleteAccountResponseRaw.swift",
+      "kind": "StringLiteral",
+      "offset": 371,
+      "length": 7,
+      "value": "\"state\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/ConfirmDeleteAccountResponseRaw.swift",
+      "kind": "StringLiteral",
+      "offset": 401,
+      "length": 8,
+      "value": "\"signup\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
@@ -8402,686 +8708,756 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 2264,
+      "offset": 2258,
+      "length": 23,
+      "value": "\"manage_account_button\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
+      "kind": "StringLiteral",
+      "offset": 2313,
+      "length": 16,
+      "value": "\"Manage account\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
+      "kind": "StringLiteral",
+      "offset": 2399,
       "length": 34,
       "value": "\"choose_your_payment_method_title\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 2330,
+      "offset": 2465,
       "length": 28,
       "value": "\"Choose your payment method\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 2432,
+      "offset": 2557,
+      "length": 23,
+      "value": "\"delete_account_button\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
+      "kind": "StringLiteral",
+      "offset": 2612,
+      "length": 16,
+      "value": "\"Delete account\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
+      "kind": "StringLiteral",
+      "offset": 2687,
+      "length": 15,
+      "value": "\"delete_button\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
+      "kind": "StringLiteral",
+      "offset": 2734,
+      "length": 8,
+      "value": "\"Delete\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
+      "kind": "StringLiteral",
+      "offset": 2813,
+      "length": 29,
+      "value": "\"confirm_email_deletion_body\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
+      "kind": "StringLiteral",
+      "offset": 2874,
+      "length": 44,
+      "value": "\"Confirm your e-mail to delete your account\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
+      "kind": "StringLiteral",
+      "offset": 2992,
       "length": 15,
       "value": "\"success_title\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 2479,
+      "offset": 3039,
       "length": 9,
       "value": "\"Success\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 2548,
+      "offset": 3108,
       "length": 21,
       "value": "\"bonus_received_body\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 2601,
+      "offset": 3161,
       "length": 19,
       "value": "\"%@ Bonus Received\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 2680,
+      "offset": 3240,
       "length": 21,
       "value": "\"wallet_balance_body\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 2733,
+      "offset": 3293,
       "length": 20,
       "value": "\"Wallet Balance: %@\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 2811,
+      "offset": 3371,
       "length": 19,
       "value": "\"back_to_game_body\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 2862,
+      "offset": 3422,
       "length": 28,
       "value": "\"Tap to go back to the game\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 2960,
+      "offset": 3520,
       "length": 13,
       "value": "\"error_title\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 3005,
+      "offset": 3565,
       "length": 7,
       "value": "\"Error\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 3082,
+      "offset": 3642,
       "length": 28,
       "value": "\"something_went_wrong_title\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 3142,
+      "offset": 3702,
       "length": 23,
       "value": "\"Something went wrong!\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 3230,
+      "offset": 3790,
       "length": 27,
       "value": "\"something_went_wrong_body\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 3289,
+      "offset": 3849,
       "length": 40,
       "value": "\"Oops, something went wrong. Try again!\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 3387,
+      "offset": 3947,
       "length": 25,
       "value": "\"appcoins_support_button\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 3444,
+      "offset": 4004,
       "length": 18,
       "value": "\"AppCoins Support\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 3524,
+      "offset": 4084,
       "length": 19,
       "value": "\"no_internet_title\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 3575,
+      "offset": 4135,
       "length": 24,
       "value": "\"No internet connection\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 3660,
+      "offset": 4220,
       "length": 18,
       "value": "\"no_internet_body\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 3710,
+      "offset": 4270,
       "length": 85,
       "value": "\"It seems you're not connected to the Internet. Check your connection and try again!\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 3857,
+      "offset": 4417,
       "length": 25,
       "value": "\"retry_connection_button\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 3914,
+      "offset": 4474,
       "length": 18,
       "value": "\"Retry Connection\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 4004,
+      "offset": 4564,
       "length": 30,
       "value": "\"support_available_soon_title\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 4066,
+      "offset": 4626,
       "length": 16,
       "value": "\"Available Soon\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 4156,
+      "offset": 4716,
       "length": 29,
       "value": "\"support_available_soon_body\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 4217,
+      "offset": 4777,
       "length": 49,
       "value": "\"AppCoins Support is not available at the moment\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 4321,
+      "offset": 4881,
       "length": 18,
       "value": "\"try_again_button\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 4371,
+      "offset": 4931,
       "length": 11,
       "value": "\"Try again\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 4464,
+      "offset": 5024,
       "length": 32,
       "value": "\"wallet_already_installed_title\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 4528,
+      "offset": 5088,
       "length": 49,
       "value": "\"You already have the AppCoins Wallet installed!\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 4649,
+      "offset": 5209,
       "length": 25,
       "value": "\"wallet_not_synced_title\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 4706,
+      "offset": 5266,
       "length": 41,
       "value": "\"It seems your wallet is not synced yet!\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 4815,
+      "offset": 5375,
       "length": 18,
       "value": "\"sync_wallet_body\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 4865,
+      "offset": 5425,
       "length": 85,
       "value": "\"In just a few seconds you can sync the AppCoins Wallet to *earn even more rewards*.\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 5007,
+      "offset": 5567,
       "length": 20,
       "value": "\"sync_wallet_button\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 5059,
+      "offset": 5619,
       "length": 13,
       "value": "\"Sync Wallet\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 5129,
+      "offset": 5689,
       "length": 18,
       "value": "\"skip_sync_button\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 5179,
+      "offset": 5739,
       "length": 14,
       "value": "\"Skip and buy\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 5265,
+      "offset": 5825,
       "length": 21,
       "value": "\"install_wallet_body\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 5318,
+      "offset": 5878,
       "length": 61,
       "value": "\"Install the AppCoins Wallet to receive *even more rewards*.\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 5433,
+      "offset": 5993,
       "length": 16,
       "value": "\"install_button\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 5481,
+      "offset": 6041,
       "length": 9,
       "value": "\"Install\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 5541,
+      "offset": 6101,
       "length": 13,
       "value": "\"skip_button\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 5586,
+      "offset": 6146,
       "length": 6,
       "value": "\"Skip\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 5665,
+      "offset": 6225,
       "length": 17,
       "value": "\"continue_button\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 5714,
+      "offset": 6274,
       "length": 10,
       "value": "\"Continue\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 5791,
+      "offset": 6351,
       "length": 28,
       "value": "\"sign_in_with_google_button\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 5851,
+      "offset": 6411,
       "length": 21,
       "value": "\"Sign in with Google\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 5941,
+      "offset": 6501,
       "length": 30,
       "value": "\"sign_in_with_facebook_button\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 6003,
+      "offset": 6563,
       "length": 23,
       "value": "\"Sign in with Facebook\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 6083,
+      "offset": 6643,
       "length": 13,
       "value": "\"email_label\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 6128,
+      "offset": 6688,
       "length": 7,
       "value": "\"Email\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 6191,
+      "offset": 6751,
       "length": 29,
       "value": "\"your_email_here_placeholder\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 6252,
+      "offset": 6812,
       "length": 17,
       "value": "\"Your email here\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 6334,
+      "offset": 6894,
       "length": 27,
       "value": "\"sign_in_and_join_us_title\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 6393,
+      "offset": 6953,
       "length": 22,
       "value": "\"Sign in and join us!\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 6483,
+      "offset": 7043,
       "length": 27,
       "value": "\"bonus_every_purchase_body\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 6542,
+      "offset": 7102,
       "length": 39,
       "value": "\"You'll get a bonus on every purchase!\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 6642,
+      "offset": 7202,
       "length": 23,
       "value": "\"or_continue_with_body\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 6697,
+      "offset": 7257,
       "length": 19,
       "value": "\"Or continue with:\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 6775,
+      "offset": 7335,
       "length": 20,
       "value": "\"invalid_email_body\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 6827,
+      "offset": 7387,
       "length": 24,
       "value": "\"Invalid email address.\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 6913,
+      "offset": 7473,
       "length": 21,
       "value": "\"redeem_bonus_button\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 6966,
+      "offset": 7526,
       "length": 14,
       "value": "\"Redeem bonus\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 7040,
+      "offset": 7600,
       "length": 21,
       "value": "\"incorrect_code_body\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 7093,
+      "offset": 7653,
       "length": 25,
       "value": "\"Your code is incorrect.\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 7174,
+      "offset": 7734,
       "length": 12,
       "value": "\"code_label\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 7218,
+      "offset": 7778,
       "length": 6,
       "value": "\"Code\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 7285,
+      "offset": 7845,
       "length": 23,
       "value": "\"check_your_email_body\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 7340,
+      "offset": 7900,
       "length": 18,
       "value": "\"Check your email\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 7417,
+      "offset": 7977,
       "length": 20,
       "value": "\"sent_email_to_body\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 7469,
+      "offset": 8029,
       "length": 28,
       "value": "\"We've sent an email to: %@\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 7555,
+      "offset": 8115,
       "length": 21,
       "value": "\"resend_email_button\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 7608,
+      "offset": 8168,
       "length": 15,
       "value": "\"Re-send Email\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 7682,
+      "offset": 8242,
       "length": 21,
       "value": "\"resend_in_time_body\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 7735,
+      "offset": 8295,
       "length": 71,
       "value": "\"If you have not received an email, you can retry again in %@ seconds.\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 7864,
+      "offset": 8424,
       "length": 14,
       "value": "\"login_failed\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 7910,
+      "offset": 8470,
       "length": 14,
       "value": "\"Login Failed\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 7988,
+      "offset": 8548,
       "length": 21,
       "value": "\"confirm_logout_body\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 8041,
+      "offset": 8601,
       "length": 35,
       "value": "\"Are you sure you want to log out?\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 8135,
+      "offset": 8707,
+      "length": 29,
+      "value": "\"confirm_delete_account_body\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
+      "kind": "StringLiteral",
+      "offset": 8768,
+      "length": 47,
+      "value": "\"Are you sure you want to delete your account?\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
+      "kind": "StringLiteral",
+      "offset": 8874,
       "length": 16,
       "value": "\"sign_in_button\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 8183,
+      "offset": 8922,
       "length": 9,
       "value": "\"Sign in\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 8253,
+      "offset": 8992,
       "length": 24,
       "value": "\"sign_in_to_redeem_body\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 8309,
+      "offset": 9048,
       "length": 103,
       "value": "\"You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 8475,
+      "offset": 9214,
       "length": 20,
       "value": "\"consent_email_body\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 8527,
+      "offset": 9266,
       "length": 60,
       "value": "\"I authorize Aptoide to use my email for marketing purposes\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 8649,
+      "offset": 9388,
       "length": 19,
       "value": "\"accept_terms_body\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 8700,
+      "offset": 9439,
       "length": 30,
       "value": "\"I accept Aptoide's %@ and %@\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 8795,
+      "offset": 9534,
       "length": 23,
       "value": "\"terms_conditions_body\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 8850,
+      "offset": 9589,
       "length": 22,
       "value": "\"Terms and Conditions\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 8932,
+      "offset": 9671,
       "length": 21,
       "value": "\"privacy_policy_body\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 8985,
+      "offset": 9724,
       "length": 16,
       "value": "\"Privacy Policy\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 9061,
+      "offset": 9800,
       "length": 22,
       "value": "\"missing_fields_title\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 9115,
+      "offset": 9854,
       "length": 16,
       "value": "\"Missing fields\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 9198,
+      "offset": 9937,
       "length": 25,
       "value": "\"accept_terms_error_body\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Constants.swift",
       "kind": "StringLiteral",
-      "offset": 9255,
+      "offset": 9994,
       "length": 74,
       "value": "\"Please read and accept Aptoide's Terms and Conditions and Privacy Policy\""
     },
@@ -11018,6 +11394,90 @@
       "value": "\"url\""
     },
     {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/DeleteAccountResponseRaw.swift",
+      "kind": "StringLiteral",
+      "offset": 394,
+      "length": 6,
+      "value": "\"type\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/DeleteAccountResponseRaw.swift",
+      "kind": "StringLiteral",
+      "offset": 422,
+      "length": 7,
+      "value": "\"state\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/DeleteAccountResponseRaw.swift",
+      "kind": "StringLiteral",
+      "offset": 452,
+      "length": 8,
+      "value": "\"signup\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/DeleteAccountResponseRaw.swift",
+      "kind": "StringLiteral",
+      "offset": 481,
+      "length": 6,
+      "value": "\"data\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/DeleteAccountResponseRaw.swift",
+      "kind": "StringLiteral",
+      "offset": 394,
+      "length": 6,
+      "value": "\"type\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/DeleteAccountResponseRaw.swift",
+      "kind": "StringLiteral",
+      "offset": 422,
+      "length": 7,
+      "value": "\"state\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/DeleteAccountResponseRaw.swift",
+      "kind": "StringLiteral",
+      "offset": 452,
+      "length": 8,
+      "value": "\"signup\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/DeleteAccountResponseRaw.swift",
+      "kind": "StringLiteral",
+      "offset": 481,
+      "length": 6,
+      "value": "\"data\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/DeleteAccountResponseRaw.swift",
+      "kind": "StringLiteral",
+      "offset": 716,
+      "length": 6,
+      "value": "\"type\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/DeleteAccountResponseRaw.swift",
+      "kind": "StringLiteral",
+      "offset": 749,
+      "length": 8,
+      "value": "\"method\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/DeleteAccountResponseRaw.swift",
+      "kind": "StringLiteral",
+      "offset": 716,
+      "length": 6,
+      "value": "\"type\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/DeleteAccountResponseRaw.swift",
+      "kind": "StringLiteral",
+      "offset": 749,
+      "length": 8,
+      "value": "\"method\""
+    },
+    {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Extensions.swift",
       "kind": "StringLiteral",
       "offset": 713,
@@ -11048,7 +11508,7 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Views\/Login\/LoginView\/Components\/FormLayer\/Components\/FocusedMagicLink\/Components\/FocusableTextField.swift",
       "kind": "StringLiteral",
-      "offset": 826,
+      "offset": 768,
       "length": 11,
       "value": "\"AppCoinsSDK.Coordinator\""
     },
@@ -12756,44 +13216,58 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/LoginResponseRaw.swift",
       "kind": "StringLiteral",
-      "offset": 722,
+      "offset": 758,
       "length": 9,
       "value": "\"address\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/LoginResponseRaw.swift",
       "kind": "StringLiteral",
-      "offset": 761,
+      "offset": 797,
       "length": 12,
       "value": "\"auth_token\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/LoginResponseRaw.swift",
       "kind": "StringLiteral",
-      "offset": 806,
+      "offset": 842,
       "length": 15,
       "value": "\"refresh_token\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/LoginResponseRaw.swift",
       "kind": "StringLiteral",
-      "offset": 722,
+      "offset": 883,
+      "length": 7,
+      "value": "\"email\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/LoginResponseRaw.swift",
+      "kind": "StringLiteral",
+      "offset": 758,
       "length": 9,
       "value": "\"address\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/LoginResponseRaw.swift",
       "kind": "StringLiteral",
-      "offset": 761,
+      "offset": 797,
       "length": 12,
       "value": "\"auth_token\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/LoginResponseRaw.swift",
       "kind": "StringLiteral",
-      "offset": 806,
+      "offset": 842,
       "length": 15,
       "value": "\"refresh_token\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/LoginResponseRaw.swift",
+      "kind": "StringLiteral",
+      "offset": 883,
+      "length": 7,
+      "value": "\"email\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/Maze.swift",
@@ -13172,6 +13646,13 @@
       "offset": 481,
       "length": 5,
       "value": "false"
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Views\/ManageAccount\/Components\/DeleteAccountSentView\/Components\/TextFieldAlert.swift",
+      "kind": "BooleanLiteral",
+      "offset": 427,
+      "length": 4,
+      "value": "true"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/TopUpAdyenRaw.swift",
@@ -14149,210 +14630,224 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/UserAuthRaw.swift",
       "kind": "StringLiteral",
-      "offset": 523,
+      "offset": 556,
       "length": 12,
       "value": "\"credential\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/UserAuthRaw.swift",
       "kind": "StringLiteral",
-      "offset": 556,
+      "offset": 589,
       "length": 6,
       "value": "\"type\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/UserAuthRaw.swift",
       "kind": "StringLiteral",
-      "offset": 588,
+      "offset": 621,
       "length": 11,
       "value": "\"supported\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/UserAuthRaw.swift",
       "kind": "StringLiteral",
-      "offset": 621,
+      "offset": 654,
       "length": 7,
       "value": "\"state\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/UserAuthRaw.swift",
       "kind": "StringLiteral",
-      "offset": 650,
+      "offset": 683,
       "length": 7,
       "value": "\"agent\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/UserAuthRaw.swift",
       "kind": "StringLiteral",
-      "offset": 682,
+      "offset": 715,
       "length": 10,
       "value": "\"accepted\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/UserAuthRaw.swift",
       "kind": "StringLiteral",
-      "offset": 715,
+      "offset": 748,
       "length": 8,
       "value": "\"domain\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/UserAuthRaw.swift",
       "kind": "StringLiteral",
-      "offset": 747,
+      "offset": 780,
       "length": 9,
       "value": "\"channel\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/UserAuthRaw.swift",
       "kind": "StringLiteral",
-      "offset": 781,
+      "offset": 814,
       "length": 10,
       "value": "\"consents\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/UserAuthRaw.swift",
       "kind": "StringLiteral",
-      "offset": 523,
+      "offset": 847,
+      "length": 8,
+      "value": "\"action\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/UserAuthRaw.swift",
+      "kind": "StringLiteral",
+      "offset": 556,
       "length": 12,
       "value": "\"credential\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/UserAuthRaw.swift",
       "kind": "StringLiteral",
-      "offset": 556,
+      "offset": 589,
       "length": 6,
       "value": "\"type\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/UserAuthRaw.swift",
       "kind": "StringLiteral",
-      "offset": 588,
+      "offset": 621,
       "length": 11,
       "value": "\"supported\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/UserAuthRaw.swift",
       "kind": "StringLiteral",
-      "offset": 621,
+      "offset": 654,
       "length": 7,
       "value": "\"state\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/UserAuthRaw.swift",
       "kind": "StringLiteral",
-      "offset": 650,
+      "offset": 683,
       "length": 7,
       "value": "\"agent\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/UserAuthRaw.swift",
       "kind": "StringLiteral",
-      "offset": 682,
+      "offset": 715,
       "length": 10,
       "value": "\"accepted\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/UserAuthRaw.swift",
       "kind": "StringLiteral",
-      "offset": 715,
+      "offset": 748,
       "length": 8,
       "value": "\"domain\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/UserAuthRaw.swift",
       "kind": "StringLiteral",
-      "offset": 747,
+      "offset": 780,
       "length": 9,
       "value": "\"channel\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/UserAuthRaw.swift",
       "kind": "StringLiteral",
-      "offset": 781,
+      "offset": 814,
       "length": 10,
       "value": "\"consents\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/UserAuthRaw.swift",
       "kind": "StringLiteral",
-      "offset": 2542,
+      "offset": 847,
+      "length": 8,
+      "value": "\"action\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/UserAuthRaw.swift",
+      "kind": "StringLiteral",
+      "offset": 3716,
       "length": 6,
       "value": "\"CODE\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/UserAuthRaw.swift",
       "kind": "StringLiteral",
-      "offset": 2570,
+      "offset": 3744,
       "length": 7,
       "value": "\"EMAIL\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/UserAuthRaw.swift",
       "kind": "StringLiteral",
-      "offset": 2600,
+      "offset": 3774,
       "length": 8,
       "value": "\"GOOGLE\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/UserAuthRaw.swift",
       "kind": "StringLiteral",
-      "offset": 2542,
+      "offset": 3716,
       "length": 6,
       "value": "\"CODE\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/UserAuthRaw.swift",
       "kind": "StringLiteral",
-      "offset": 2570,
+      "offset": 3744,
       "length": 7,
       "value": "\"EMAIL\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/UserAuthRaw.swift",
       "kind": "StringLiteral",
-      "offset": 2600,
+      "offset": 3774,
       "length": 8,
       "value": "\"GOOGLE\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/UserAuthRaw.swift",
       "kind": "StringLiteral",
-      "offset": 2687,
+      "offset": 3861,
       "length": 11,
       "value": "\"WALLETJWT\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/UserAuthRaw.swift",
       "kind": "StringLiteral",
-      "offset": 2719,
+      "offset": 3893,
       "length": 18,
       "value": "\"CODE:TOKEN:EMAIL\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/UserAuthRaw.swift",
       "kind": "StringLiteral",
-      "offset": 2760,
+      "offset": 3934,
       "length": 8,
       "value": "\"OAUTH2\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/UserAuthRaw.swift",
       "kind": "StringLiteral",
-      "offset": 2687,
+      "offset": 3861,
       "length": 11,
       "value": "\"WALLETJWT\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/UserAuthRaw.swift",
       "kind": "StringLiteral",
-      "offset": 2719,
+      "offset": 3893,
       "length": 18,
       "value": "\"CODE:TOKEN:EMAIL\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/UserAuthRaw.swift",
       "kind": "StringLiteral",
-      "offset": 2760,
+      "offset": 3934,
       "length": 8,
       "value": "\"OAUTH2\""
     },
