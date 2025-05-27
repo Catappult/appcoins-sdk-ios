@@ -15,7 +15,7 @@ internal struct APPCLoading: View {
                 isVisible: .constant(true), type: .growingArc(ColorsUi.APC_Gray, lineWidth: 1.5))
             .frame(width: 41, height: 41)
             
-            Image("loading-appc-icon", bundle: Bundle.APPCModule)
+            Image("aptoide-wallet-loading", bundle: Bundle.APPCModule)
                 .resizable()
                 .scaledToFit()
                 .frame(height: 23)

@@ -64,7 +64,7 @@ internal struct PayingHeader: View {
             }
             
             if let amount = transactionViewModel.transaction?.common.moneyAmount {
-                Text((transactionViewModel.transaction?.common.moneyCurrency.sign ?? "") + String(amount))
+                Text((transactionViewModel.transaction?.common.moneyCurrency.sign ?? "") + String(format: "%.2f", amount))
                     .foregroundColor(ColorsUi.APC_Black)
                     .font(FontsUi.APC_Subheadline_Bold)
                     .lineLimit(1)

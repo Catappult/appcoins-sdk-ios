@@ -7529,14 +7529,14 @@
       "kind": "StringLiteral",
       "offset": 4359,
       "length": 7,
-      "value": "\"2.1.1\""
+      "value": "\"3.0.0\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/BuildConfiguration.swift",
       "kind": "IntegerLiteral",
       "offset": 4486,
       "length": 2,
-      "value": "32"
+      "value": "37"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/BuildConfiguration.swift",
@@ -14499,168 +14499,175 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/build\/DerivedData\/Simulator\/Build\/Intermediates.noindex\/AppCoinsSDK.build\/Release-iphonesimulator\/AppCoinsSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
       "kind": "StringLiteral",
-      "offset": 1097,
+      "offset": 1120,
+      "length": 24,
+      "value": "\"aptoide-wallet-loading\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/build\/DerivedData\/Simulator\/Build\/Intermediates.noindex\/AppCoinsSDK.build\/Release-iphonesimulator\/AppCoinsSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
+      "kind": "StringLiteral",
+      "offset": 1273,
       "length": 12,
       "value": "\"bonus-gift\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/build\/DerivedData\/Simulator\/Build\/Intermediates.noindex\/AppCoinsSDK.build\/Release-iphonesimulator\/AppCoinsSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
       "kind": "StringLiteral",
-      "offset": 1250,
+      "offset": 1426,
       "length": 18,
       "value": "\"card-placeholder\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/build\/DerivedData\/Simulator\/Build\/Intermediates.noindex\/AppCoinsSDK.build\/Release-iphonesimulator\/AppCoinsSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
       "kind": "StringLiteral",
-      "offset": 1396,
+      "offset": 1572,
       "length": 11,
       "value": "\"checkmark\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/build\/DerivedData\/Simulator\/Build\/Intermediates.noindex\/AppCoinsSDK.build\/Release-iphonesimulator\/AppCoinsSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
       "kind": "StringLiteral",
-      "offset": 1539,
+      "offset": 1715,
       "length": 13,
       "value": "\"exclamation\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/build\/DerivedData\/Simulator\/Build\/Intermediates.noindex\/AppCoinsSDK.build\/Release-iphonesimulator\/AppCoinsSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
       "kind": "StringLiteral",
-      "offset": 1691,
+      "offset": 1867,
       "length": 17,
       "value": "\"exclamation-red\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/build\/DerivedData\/Simulator\/Build\/Intermediates.noindex\/AppCoinsSDK.build\/Release-iphonesimulator\/AppCoinsSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
       "kind": "StringLiteral",
-      "offset": 1843,
+      "offset": 2019,
       "length": 15,
       "value": "\"facebook-logo\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/build\/DerivedData\/Simulator\/Build\/Intermediates.noindex\/AppCoinsSDK.build\/Release-iphonesimulator\/AppCoinsSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
       "kind": "StringLiteral",
-      "offset": 1979,
+      "offset": 2155,
       "length": 8,
       "value": "\"gift-1\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/build\/DerivedData\/Simulator\/Build\/Intermediates.noindex\/AppCoinsSDK.build\/Release-iphonesimulator\/AppCoinsSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
       "kind": "StringLiteral",
-      "offset": 2116,
+      "offset": 2292,
       "length": 12,
       "value": "\"gift-black\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/build\/DerivedData\/Simulator\/Build\/Intermediates.noindex\/AppCoinsSDK.build\/Release-iphonesimulator\/AppCoinsSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
       "kind": "StringLiteral",
-      "offset": 2255,
+      "offset": 2431,
       "length": 11,
       "value": "\"gift-gray\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/build\/DerivedData\/Simulator\/Build\/Intermediates.noindex\/AppCoinsSDK.build\/Release-iphonesimulator\/AppCoinsSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
       "kind": "StringLiteral",
-      "offset": 2393,
+      "offset": 2569,
       "length": 11,
       "value": "\"gift-pink\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/build\/DerivedData\/Simulator\/Build\/Intermediates.noindex\/AppCoinsSDK.build\/Release-iphonesimulator\/AppCoinsSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
       "kind": "StringLiteral",
-      "offset": 2535,
+      "offset": 2711,
       "length": 13,
       "value": "\"google-logo\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/build\/DerivedData\/Simulator\/Build\/Intermediates.noindex\/AppCoinsSDK.build\/Release-iphonesimulator\/AppCoinsSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
       "kind": "StringLiteral",
-      "offset": 2710,
+      "offset": 2886,
       "length": 29,
       "value": "\"horizontal-bonus-background\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/build\/DerivedData\/Simulator\/Build\/Intermediates.noindex\/AppCoinsSDK.build\/Release-iphonesimulator\/AppCoinsSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
       "kind": "StringLiteral",
-      "offset": 2881,
+      "offset": 3057,
       "length": 19,
       "value": "\"loading-appc-icon\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/build\/DerivedData\/Simulator\/Build\/Intermediates.noindex\/AppCoinsSDK.build\/Release-iphonesimulator\/AppCoinsSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
       "kind": "StringLiteral",
-      "offset": 3042,
+      "offset": 3218,
       "length": 19,
       "value": "\"logo-wallet-white\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/build\/DerivedData\/Simulator\/Build\/Intermediates.noindex\/AppCoinsSDK.build\/Release-iphonesimulator\/AppCoinsSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
       "kind": "StringLiteral",
-      "offset": 3196,
+      "offset": 3372,
       "length": 18,
       "value": "\"magic-link-image\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/build\/DerivedData\/Simulator\/Build\/Intermediates.noindex\/AppCoinsSDK.build\/Release-iphonesimulator\/AppCoinsSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
       "kind": "StringLiteral",
-      "offset": 3356,
+      "offset": 3532,
       "length": 19,
       "value": "\"no-internet-black\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/build\/DerivedData\/Simulator\/Build\/Intermediates.noindex\/AppCoinsSDK.build\/Release-iphonesimulator\/AppCoinsSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
       "kind": "StringLiteral",
-      "offset": 3517,
+      "offset": 3693,
       "length": 19,
       "value": "\"no-internet-white\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/build\/DerivedData\/Simulator\/Build\/Intermediates.noindex\/AppCoinsSDK.build\/Release-iphonesimulator\/AppCoinsSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
       "kind": "StringLiteral",
-      "offset": 3667,
+      "offset": 3843,
       "length": 13,
       "value": "\"pink-wallet\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/build\/DerivedData\/Simulator\/Build\/Intermediates.noindex\/AppCoinsSDK.build\/Release-iphonesimulator\/AppCoinsSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
       "kind": "StringLiteral",
-      "offset": 3838,
+      "offset": 4014,
       "length": 27,
       "value": "\"vertical-bonus-background\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/build\/DerivedData\/Simulator\/Build\/Intermediates.noindex\/AppCoinsSDK.build\/Release-iphonesimulator\/AppCoinsSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
       "kind": "StringLiteral",
-      "offset": 4016,
+      "offset": 4192,
       "length": 24,
       "value": "\"wallet-not-synced-icon\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/build\/DerivedData\/Simulator\/Build\/Intermediates.noindex\/AppCoinsSDK.build\/Release-iphonesimulator\/AppCoinsSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
       "kind": "StringLiteral",
-      "offset": 4186,
+      "offset": 4362,
       "length": 21,
       "value": "\"wallet-sync-graphic\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/build\/DerivedData\/Simulator\/Build\/Intermediates.noindex\/AppCoinsSDK.build\/Release-iphonesimulator\/AppCoinsSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
       "kind": "StringLiteral",
-      "offset": 4351,
+      "offset": 4527,
       "length": 20,
       "value": "\"wallet-sync-shades\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/build\/DerivedData\/Simulator\/Build\/Intermediates.noindex\/AppCoinsSDK.build\/Release-iphonesimulator\/AppCoinsSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
       "kind": "StringLiteral",
-      "offset": 4518,
+      "offset": 4694,
       "length": 22,
       "value": "\"wallet-sync-shades-2\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/build\/DerivedData\/Simulator\/Build\/Intermediates.noindex\/AppCoinsSDK.build\/Release-iphonesimulator\/AppCoinsSDK.build\/DerivedSources\/GeneratedAssetSymbols.swift",
       "kind": "StringLiteral",
-      "offset": 4673,
+      "offset": 4849,
       "length": 14,
       "value": "\"white-wallet\""
     }
