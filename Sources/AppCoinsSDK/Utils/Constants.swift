@@ -25,7 +25,11 @@ internal struct Constants {
     static internal let yourCard = NSLocalizedString("your_card_title", bundle: .APPCModule, comment: "Your card")
     static internal let selectPaymentMethodText = NSLocalizedString("select_payment_method_button", bundle: .APPCModule, comment: "Select payment method")
     static internal let signToGetBonusText = NSLocalizedString("sign_to_get_bonus_button", bundle: .APPCModule, comment: "Sign in to get your bonus")
+    static internal let manageAccountText = NSLocalizedString("manage_account_button", bundle: .APPCModule, comment: "Manage account")
     static internal let chooseYourPaymentMethod = NSLocalizedString("choose_your_payment_method_title", bundle: .APPCModule, comment: "Choose your payment method")
+    static internal let deleteAccountText = NSLocalizedString("delete_account_button", bundle: .APPCModule, comment: "Delete account")
+    static internal let deleteButton = NSLocalizedString("delete_button", bundle: .APPCModule, comment: "Delete")
+    static internal let confirmEmailDeletionText = NSLocalizedString("confirm_email_deletion_body", bundle: .APPCModule, comment: "Confirm your e-mail to delete your account")
 
     // Success
     static internal let successText = NSLocalizedString("success_title", bundle: .APPCModule, comment: "Success")
@@ -75,6 +79,7 @@ internal struct Constants {
     static internal let resendInTime = NSLocalizedString("resend_in_time_body", bundle: .APPCModule, comment: "If you have not received an email, you can retry again in %@ seconds.")
     static internal let loginFailed = NSLocalizedString("login_failed", bundle: .APPCModule, comment: "Login Failed")
     static internal let confirmLogOutText = NSLocalizedString("confirm_logout_body", bundle: .APPCModule, comment: "Are you sure you want to log out?")
+    static internal let confirmDeleteAccountText = NSLocalizedString("confirm_delete_account_body", bundle: .APPCModule, comment: "Are you sure you want to delete your account?")
     static internal let signInButton = NSLocalizedString("sign_in_button", bundle: .APPCModule, comment: "Sign in")
     static internal let signInToRedeem = NSLocalizedString("sign_in_to_redeem_body", bundle: .APPCModule, comment: "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!")
     static internal let consentEmailBody = NSLocalizedString("consent_email_body", bundle: .APPCModule, comment: "I authorize Aptoide to use my email for marketing purposes")
