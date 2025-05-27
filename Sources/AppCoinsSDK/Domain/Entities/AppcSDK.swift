@@ -86,9 +86,21 @@ public struct AppcSDK {
                         return true
                     }
                 case "auth":
-                    if let code = queryItems?.first(where: { $0.name == "code" })?.value {
-                        AuthViewModel.shared.loginWithMagicLink(code: code)
-                        return true
+                    if redirectURL.pathComponents.count > 2 {
+                        switch redirectURL.pathComponents[2] {
+                        case "magiclink":
+                            if let code = queryItems?.first(where: { $0.name == "code" })?.value {
+                                AuthViewModel.shared.loginWithMagicLink(code: code)
+                                return true
+                            }
+                        case "delete":
+                            if let code = queryItems?.first(where: { $0.name == "code" })?.value {
+                                AuthViewModel.shared.confirmDelete(code: code)
+                                return true
+                            }
+                        default:
+                            return false
+                        }
                     }
                 case "purchase":
                     if let sku = queryItems?.first(where: { $0.name == "product" })?.value {

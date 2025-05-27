@@ -27,7 +27,7 @@ internal struct FocusedMagicLink: View {
                         
                         VStack{}.frame(width: 8)
                         
-                        FocusableTextField(authViewModel: authViewModel, placeholder: Constants.yourEmail, text: $authViewModel.magicLinkEmail)
+                        FocusableTextField(hide: authViewModel.hideFocusedTextField, placeholder: Constants.yourEmail, text: $authViewModel.magicLinkEmail)
                         
                     }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 - 32 : UIScreen.main.bounds.width - 48 - 32)
                 }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 44)

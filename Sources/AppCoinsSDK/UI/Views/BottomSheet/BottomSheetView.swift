@@ -78,6 +78,11 @@ internal struct BottomSheetView: View {
                     .sheet(isPresented: $viewModel.isPaymentMethodChoiceSheetPresented) {
                         PaymentMethodListBottomSheet(viewModel: viewModel)
                     }
+                
+                HStack(spacing: 0) {}
+                    .sheet(isPresented: $viewModel.isManageAccountSheetPresented) {
+                        ManageAccountBottomSheet(viewModel: viewModel, authViewModel: authViewModel)
+                    }
             }
             .ignoresSafeArea(.all)
             .offset(y: viewModel.isBottomSheetPresented ? 0 : UIScreen.main.bounds.height)

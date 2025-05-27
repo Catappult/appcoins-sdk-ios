@@ -21,6 +21,7 @@ internal struct ColorsUi {
     static internal var APC_Green: Color = Color(red: 0.235, green: 0.741, blue: 0.561, opacity: 1)
     static internal var APC_FluorescentGreen: Color = Color(red: 0.271, green: 0.886, blue: 0.365, opacity: 1)
     static internal var APC_OpaqueBlack: Color = Color(red: 1, green: 1, blue: 1, opacity: 0.15)
+    static internal var APC_Red: Color = Color(red: 1.00, green: 0.24, blue: 0.23, opacity: 1)
     
     // Button
     static internal var APC_BackgroundLightGray_Button: Color = Color(red: 0.898, green: 0.898, blue: 0.918)

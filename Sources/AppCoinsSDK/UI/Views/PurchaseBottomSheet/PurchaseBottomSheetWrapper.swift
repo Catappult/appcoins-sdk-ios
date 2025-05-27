@@ -60,7 +60,7 @@ internal struct PurchaseBottomSheetWrapper<Header: View, Body: View>: View {
             width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.size.width,
             height: height,
             alignment: .center)
-        .padding(.bottom, keyboardObserver.isKeyboardVisible && viewModel.orientation != .landscape ? keyboardObserver.keyboardHeight: 0)
+        .padding(.bottom, keyboardObserver.isKeyboardVisible && viewModel.orientation != .landscape && !viewModel.isManageAccountSheetPresented ? keyboardObserver.keyboardHeight: 0)
         .background(ColorsUi.APC_BottomSheet_LightGray_Background)
         .cornerRadius(13, corners: [.topLeft, .topRight])
         .offset(y: isPresented ? 0 : UIScreen.main.bounds.height)

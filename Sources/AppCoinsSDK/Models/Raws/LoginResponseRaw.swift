@@ -25,11 +25,13 @@ internal struct LoginResponseRaw: Codable {
         internal let address: String
         internal let authToken: String
         internal let refreshToken: String
+        internal let email: String?
         
         internal enum CodingKeys: String, CodingKey {
             case address = "address"
             case authToken = "auth_token"
             case refreshToken = "refresh_token"
+            case email = "email"
         }
     }
 }
