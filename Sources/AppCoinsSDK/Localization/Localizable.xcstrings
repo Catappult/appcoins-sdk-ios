@@ -130,8 +130,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "I accept Aptoide's %@ and %@"
+            "state" : "translated",
+            "value" : "Akceptuję %@ i %@Aptoide."
           }
         },
         "pt-BR" : {
@@ -172,8 +172,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "I accept Aptoide's %@ and %@"
+            "state" : "translated",
+            "value" : "Aptoide'nin %@ ve %@adreslerini kabul ediyorum."
           }
         },
         "uk" : {
@@ -196,8 +196,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "I accept Aptoide's %@ and %@"
+            "state" : "translated",
+            "value" : "我接受 Aptoide 的 %@ 和 %@"
           }
         }
       }
@@ -322,8 +322,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
+            "state" : "translated",
+            "value" : "Prosimy o zapoznanie się i zaakceptowanie Regulaminu i Polityki prywatności Aptoide."
           }
         },
         "pt-BR" : {
@@ -364,8 +364,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
+            "state" : "translated",
+            "value" : "Lütfen Aptoide'nin Hüküm ve Koşullarını ve Gizlilik Politikasını okuyun ve kabul edin"
           }
         },
         "uk" : {
@@ -388,8 +388,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Please read and accept Aptoide's Terms and Conditions and Privacy Policy"
+            "state" : "translated",
+            "value" : "請閱讀並接納 Aptoide 的條款和條件以及隱私權政策"
           }
         }
       }
@@ -964,8 +964,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "AppCoins Support"
+            "state" : "translated",
+            "value" : "AppCoins 支援"
           }
         }
       }
@@ -1156,8 +1156,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Tap to go back to the game"
+            "state" : "translated",
+            "value" : "點選回到遊戲"
           }
         }
       }
@@ -1282,8 +1282,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You'll get a bonus on every purchase!"
+            "state" : "translated",
+            "value" : "Otrzymasz bonus za każdy zakup!"
           }
         },
         "pt-BR" : {
@@ -1324,8 +1324,8 @@
         },
         "tr" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You'll get a bonus on every purchase!"
+            "state" : "translated",
+            "value" : "Her alışverişinizde bir bonus kazanacaksınız!"
           }
         },
         "uk" : {
@@ -1348,8 +1348,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You'll get a bonus on every purchase!"
+            "state" : "translated",
+            "value" : "每次購物都會獲得獎金！"
           }
         }
       }
@@ -1540,8 +1540,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Bonus not available with this payment method"
+            "state" : "translated",
+            "value" : "此付款方式無法獲得獎金"
           }
         }
       }
@@ -1732,8 +1732,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "%@ Bonus Received"
+            "state" : "translated",
+            "value" : "%@ 收到的獎金"
           }
         }
       }
@@ -2242,8 +2242,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Check your email"
+            "state" : "translated",
+            "value" : "Sprawdź pocztę e-mail"
           }
         },
         "pt-BR" : {
@@ -2308,8 +2308,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Check your email"
+            "state" : "translated",
+            "value" : "檢查您的電子郵件"
           }
         }
       }
@@ -2500,8 +2500,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Choose a Card"
+            "state" : "translated",
+            "value" : "選擇卡片"
           }
         }
       }
@@ -2626,8 +2626,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Choose your payment method"
+            "state" : "translated",
+            "value" : "Wybierz metodę płatności"
           }
         },
         "pt-BR" : {
@@ -2692,8 +2692,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Choose your payment method"
+            "state" : "translated",
+            "value" : "選擇您的付款方式"
           }
         }
       }
@@ -2818,8 +2818,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Code"
+            "state" : "translated",
+            "value" : "Kod"
           }
         },
         "pt-BR" : {
@@ -2884,8 +2884,412 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
+            "state" : "translated",
+            "value" : "代碼"
+          }
+        }
+      }
+    },
+    "confirm_delete_account_body" : {
+      "comment" : "Are you sure you want to delete your account?",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "هل أنت متأكد من رغبتك في حذف حسابك؟"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
             "state" : "new",
-            "value" : "Code"
+            "value" : "Are you sure you want to delete your account?"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sind Sie sicher, dass Sie Ihr Konto löschen möchten?"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Είστε σίγουροι ότι θέλετε να διαγράψετε τον λογαριασμό σας;"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Are you sure you want to delete your account?"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¿Seguro que quieres eliminar tu cuenta?"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Are you sure you want to delete your account?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Êtes-vous sûr de vouloir supprimer votre compte ?"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Are you sure you want to delete your account?"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Biztos, hogy törölni szeretné a fiókját?"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apakah Anda yakin ingin menghapus akun Anda?"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sei sicuro di voler cancellare il tuo account?"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "本当にアカウントを削除しますか？"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "정말 계정을 삭제하시겠습니까?"
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Are you sure you want to delete your account?"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Are you sure you want to delete your account?"
+          }
+        },
+        "my" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Are you sure you want to delete your account?"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Weet je zeker dat je je account wilt verwijderen?"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Are you sure you want to delete your account?"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Czy na pewno chcesz usunąć swoje konto?"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tem certeza de que deseja excluir sua conta?"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tem a certeza de que pretende apagar a sua conta?"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sunteți sigur că doriți să vă ștergeți contul?"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы уверены, что хотите удалить свою учетную запись?"
+          }
+        },
+        "sr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Are you sure you want to delete your account?"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Are you sure you want to delete your account?"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hesabınızı silmek istediğinizden emin misiniz?"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ви впевнені, що хочете видалити свій обліковий запис?"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Are you sure you want to delete your account?"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "您确定要删除账户吗？"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "您確定要刪除您的帳戶嗎？"
+          }
+        }
+      }
+    },
+    "confirm_email_deletion_body" : {
+      "comment" : "Confirm your e-mail to delete your account",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "قم بتأكيد بريدك الإلكتروني لحذف حسابك"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Confirm your e-mail to delete your account"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bestätigen Sie Ihre E-Mail, um Ihr Konto zu löschen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Επιβεβαιώστε το e-mail σας για να διαγράψετε το λογαριασμό σας"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Confirm your e-mail to delete your account"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirme su correo electrónico para eliminar su cuenta"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Confirm your e-mail to delete your account"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirmez votre e-mail pour supprimer votre compte"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Confirm your e-mail to delete your account"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erősítse meg e-mail címét a fiók törléséhez"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konfirmasikan email Anda untuk menghapus akun Anda"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confermare l'e-mail per eliminare l'account"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アカウントを削除するための電子メールを確認する"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "계정을 삭제하려면 이메일을 확인하세요."
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Confirm your e-mail to delete your account"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Confirm your e-mail to delete your account"
+          }
+        },
+        "my" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Confirm your e-mail to delete your account"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bevestig je e-mail om je account te verwijderen"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Confirm your e-mail to delete your account"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Potwierdź swój adres e-mail, aby usunąć konto"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirme seu e-mail para excluir sua conta"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirme o seu e-mail para eliminar a sua conta"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Confirmați e-mailul pentru a vă șterge contul"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подтвердите свой e-mail для удаления учетной записи"
+          }
+        },
+        "sr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Confirm your e-mail to delete your account"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Confirm your e-mail to delete your account"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hesabınızı silmek için e-postanızı onaylayın"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Підтвердіть свою електронну пошту, щоб видалити обліковий запис"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Confirm your e-mail to delete your account"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "确认电子邮件以删除账户"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "確認您的電子郵件以刪除您的帳戶"
+          }
+        }
+      }
+    },
+    "confirm_delete_account_body" : {
+      "comment" : "Are you sure you want to delete your account?",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Are you sure you want to delete your account?"
+          }
+        }
+      }
+    },
+    "confirm_email_deletion_body" : {
+      "comment" : "Confirm your e-mail to delete your account",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Confirm your e-mail to delete your account"
           }
         }
       }
@@ -3032,8 +3436,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Are you sure you want to log out?"
+            "state" : "translated",
+            "value" : "Czy na pewno chcesz się wylogować?"
           }
         },
         "pt-BR" : {
@@ -3098,8 +3502,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Are you sure you want to log out?"
+            "state" : "translated",
+            "value" : "您確定要登出嗎？"
           }
         }
       }
@@ -3224,8 +3628,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "I authorize Aptoide to use my email for marketing purposes"
+            "state" : "translated",
+            "value" : "Upoważniam Aptoide do korzystania z mojego adresu e-mail w celach marketingowych"
           }
         },
         "pt-BR" : {
@@ -3290,8 +3694,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "I authorize Aptoide to use my email for marketing purposes"
+            "state" : "translated",
+            "value" : "我授權 Aptoide 將我的電子郵件用於行銷目的"
           }
         }
       }
@@ -3398,8 +3802,8 @@
         },
         "my" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Continue"
+            "state" : "translated",
+            "value" : "ဆက္လုပ္မည္"
           }
         },
         "nl" : {
@@ -3416,8 +3820,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Continue"
+            "state" : "translated",
+            "value" : "Dalej"
           }
         },
         "pt-BR" : {
@@ -3482,8 +3886,412 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
+            "state" : "translated",
+            "value" : "繼續"
+          }
+        }
+      }
+    },
+    "delete_account_button" : {
+      "comment" : "Delete account",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "حذف الحساب"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
             "state" : "new",
-            "value" : "Continue"
+            "value" : "Delete account"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konto löschen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Διαγραφή λογαριασμού"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Delete account"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminar cuenta"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Delete account"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimer le compte"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Delete account"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fiók törlése"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menghapus akun"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancellare l'account"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アカウント削除"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "계정 삭제"
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Delete account"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Delete account"
+          }
+        },
+        "my" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Delete account"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Account verwijderen"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Delete account"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usuń konto"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Excluir conta"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminar a conta"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ștergeți contul"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить аккаунт"
+          }
+        },
+        "sr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Delete account"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Delete account"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hesap silme"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Видалити обліковий запис"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Delete account"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "删除帐户"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "刪除帳戶"
+          }
+        }
+      }
+    },
+    "delete_button" : {
+      "comment" : "Delete",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "حذف"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Delete"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Löschen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Διαγραφή"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Delete"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eliminar"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "حذف"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Supprimer"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Delete"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Törlés"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elimina"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "削除"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "삭제"
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मिटवा"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Padam"
+          }
+        },
+        "my" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ဖ်က္မည္"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verwijderen"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ਮਿਟਾਓ"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usuń"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Excluir"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apagar"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Șterge"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить"
+          }
+        },
+        "sr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obriši"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ลบ"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sil"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Видалити"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xóa"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "删除"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "刪除"
+          }
+        }
+      }
+    },
+    "delete_account_button" : {
+      "comment" : "Delete account",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Delete account"
+          }
+        }
+      }
+    },
+    "delete_button" : {
+      "comment" : "Delete",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Delete"
           }
         }
       }
@@ -3756,8 +4564,8 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Email"
+            "state" : "translated",
+            "value" : "ईमेल"
           }
         },
         "hu" : {
@@ -3804,8 +4612,8 @@
         },
         "my" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Email"
+            "state" : "translated",
+            "value" : "အီးေမးလ္"
           }
         },
         "nl" : {
@@ -3816,14 +4624,14 @@
         },
         "pa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Email"
+            "state" : "translated",
+            "value" : "ਈ-ਮੇਲ"
           }
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Email"
+            "state" : "translated",
+            "value" : "Adres e-mail"
           }
         },
         "pt-BR" : {
@@ -3888,8 +4696,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Email"
+            "state" : "translated",
+            "value" : "電子郵件"
           }
         }
       }
@@ -4206,8 +5014,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your code is incorrect."
+            "state" : "translated",
+            "value" : "Twój kod jest nieprawidłowy."
           }
         },
         "pt-BR" : {
@@ -4272,8 +5080,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your code is incorrect."
+            "state" : "translated",
+            "value" : "您的程式碼不正確。"
           }
         }
       }
@@ -4656,8 +5464,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Install the AppCoins Wallet to receive *even more rewards*."
+            "state" : "translated",
+            "value" : "安裝AppCoins錢包以獲得*更多的獎勵*。"
           }
         }
       }
@@ -4782,8 +5590,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Invalid email address."
+            "state" : "translated",
+            "value" : "Nieprawidłowy adres e-mail."
           }
         },
         "pt-BR" : {
@@ -4848,8 +5656,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Invalid email address."
+            "state" : "translated",
+            "value" : "無效的電子郵件地址。"
           }
         }
       }
@@ -5040,8 +5848,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Log out"
+            "state" : "translated",
+            "value" : "登出"
           }
         }
       }
@@ -5166,8 +5974,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Login Failed"
+            "state" : "translated",
+            "value" : "Logowanie nie powiodło się"
           }
         },
         "pt-BR" : {
@@ -5232,8 +6040,210 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
+            "state" : "translated",
+            "value" : "登入失敗"
+          }
+        }
+      }
+    },
+    "manage_account_button" : {
+      "comment" : "Manage account",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إدارة الحساب"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
             "state" : "new",
-            "value" : "Login Failed"
+            "value" : "Manage account"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konto verwalten"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Διαχείριση λογαριασμού"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Manage account"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gestionar cuenta"
+          }
+        },
+        "fa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Manage account"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gérer le compte"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Manage account"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Számla kezelése"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kelola akun"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gestione dell'account"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "アカウント管理"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "계정 관리"
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Manage account"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Manage account"
+          }
+        },
+        "my" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Manage account"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Account beheren"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Manage account"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zarządzaj kontem"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gerenciar conta"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gerir a conta"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gestionați contul"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Управление учетной записью"
+          }
+        },
+        "sr" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Manage account"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Manage account"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hesabı yönet"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Керування обліковим записом"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Manage account"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "管理账户"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "管理帳戶"
+          }
+        }
+      }
+    },
+    "manage_account_button" : {
+      "comment" : "Manage account",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Manage account"
           }
         }
       }
@@ -5369,8 +6379,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Missing fields"
+            "state" : "translated",
+            "value" : "Brakujące pola"
           }
         },
         "pt-BR" : {
@@ -5435,8 +6445,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Missing fields"
+            "state" : "translated",
+            "value" : "遺漏欄位"
           }
         }
       }
@@ -5627,8 +6637,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "It seems you're not connected to the Internet. Check your connection and try again!"
+            "state" : "translated",
+            "value" : "您似乎沒有連線到網際網路。請檢查您的連線，然後再試一次！"
           }
         }
       }
@@ -5819,8 +6829,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "No internet connection"
+            "state" : "translated",
+            "value" : "沒有網際網路連線"
           }
         }
       }
@@ -5945,8 +6955,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
+            "state" : "translated",
+            "value" : "Lub kontynuować:"
           }
         },
         "pt-BR" : {
@@ -6011,8 +7021,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Or continue with:"
+            "state" : "translated",
+            "value" : "或者繼續"
           }
         }
       }
@@ -6203,8 +7213,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Other payment methods"
+            "state" : "translated",
+            "value" : "其他付款方式"
           }
         }
       }
@@ -6221,8 +7231,8 @@
         },
         "bn" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Privacy Policy"
+            "state" : "translated",
+            "value" : "গোপনীয়তা নীতি"
           }
         },
         "de" : {
@@ -6263,8 +7273,8 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Privacy Policy"
+            "state" : "translated",
+            "value" : "गोपनीयता नीति"
           }
         },
         "hu" : {
@@ -6311,8 +7321,8 @@
         },
         "my" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Privacy Policy"
+            "state" : "translated",
+            "value" : "ကိုယ္ေရးလံုျခံဳမႈ မူဝါဒ"
           }
         },
         "nl" : {
@@ -6323,14 +7333,14 @@
         },
         "pa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Privacy Policy"
+            "state" : "translated",
+            "value" : "ਗੋਪਨੀਯਤਾ ਨੀਤੀ"
           }
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Privacy Policy"
+            "state" : "translated",
+            "value" : "Polityka prywatności"
           }
         },
         "pt-BR" : {
@@ -6395,8 +7405,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Privacy Policy"
+            "state" : "translated",
+            "value" : "隱私權政策"
           }
         }
       }
@@ -6713,8 +7723,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "*Purchase Bonus:* %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "*Bonus za zakup:* %@ w kredytach AppCoins"
           }
         },
         "pt-BR" : {
@@ -6779,8 +7789,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "*Purchase Bonus:* %@ in AppCoins Credits"
+            "state" : "translated",
+            "value" : "*購買獎金：* %@ AppCoins 積分"
           }
         }
       }
@@ -6905,8 +7915,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Redeem bonus"
+            "state" : "translated",
+            "value" : "Wykorzystaj bonus"
           }
         },
         "pt-BR" : {
@@ -6971,8 +7981,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Redeem bonus"
+            "state" : "translated",
+            "value" : "兌換獎金"
           }
         }
       }
@@ -7097,8 +8107,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Re-send Email"
+            "state" : "translated",
+            "value" : "Ponowne wysłanie wiadomości e-mail"
           }
         },
         "pt-BR" : {
@@ -7163,8 +8173,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Re-send Email"
+            "state" : "translated",
+            "value" : "重新傳送電子郵件"
           }
         }
       }
@@ -7289,8 +8299,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "If you have not received an email, you can retry again in %@ seconds."
+            "state" : "translated",
+            "value" : "Jeśli nie otrzymasz wiadomości e-mail, możesz ponowić próbę za %@ sekund."
           }
         },
         "pt-BR" : {
@@ -7355,8 +8365,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "If you have not received an email, you can retry again in %@ seconds."
+            "state" : "translated",
+            "value" : "如果您未收到電子郵件，您可以在 %@ 秒後再次重試。"
           }
         }
       }
@@ -7547,8 +8557,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Retry Connection"
+            "state" : "translated",
+            "value" : "重試連線"
           }
         }
       }
@@ -7673,8 +8683,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Select payment method"
+            "state" : "translated",
+            "value" : "Wybierz metodę płatności"
           }
         },
         "pt-BR" : {
@@ -7739,8 +8749,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Select payment method"
+            "state" : "translated",
+            "value" : "選擇付款方式"
           }
         }
       }
@@ -7865,8 +8875,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent an email to: %@"
+            "state" : "translated",
+            "value" : "Wysłaliśmy wiadomość e-mail do: %@"
           }
         },
         "pt-BR" : {
@@ -7931,8 +8941,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "We've sent an email to: %@"
+            "state" : "translated",
+            "value" : "我們已發送電子郵件至 %@"
           }
         }
       }
@@ -8057,8 +9067,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in and join us!"
+            "state" : "translated",
+            "value" : "Zaloguj się i dołącz do nas!"
           }
         },
         "pt-BR" : {
@@ -8123,8 +9133,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in and join us!"
+            "state" : "translated",
+            "value" : "登入並加入我們！"
           }
         }
       }
@@ -8249,8 +9259,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in"
+            "state" : "translated",
+            "value" : "Zaloguj się"
           }
         },
         "pt-BR" : {
@@ -8315,8 +9325,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in"
+            "state" : "translated",
+            "value" : "登入"
           }
         }
       }
@@ -8441,8 +9451,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
+            "state" : "translated",
+            "value" : "Zdobyłeś %@ za zakupy w aplikacji. Zaloguj się, aby je otrzymać i wykorzystać przy następnych zakupach!"
           }
         },
         "pt-BR" : {
@@ -8507,8 +9517,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You've earned %@ from your in-app purchases. Sign in to receive it and use it in your next purchases!"
+            "state" : "translated",
+            "value" : "您已從應用程式內購物賺取 %@ 。登錄以接收並在下次購買時使用！"
           }
         }
       }
@@ -8633,8 +9643,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Facebook"
+            "state" : "translated",
+            "value" : "Zaloguj się za pomocą Facebooka"
           }
         },
         "pt-BR" : {
@@ -8699,8 +9709,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Facebook"
+            "state" : "translated",
+            "value" : "使用 Facebook 登入"
           }
         }
       }
@@ -8825,8 +9835,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Google"
+            "state" : "translated",
+            "value" : "Zaloguj się za pomocą Google"
           }
         },
         "pt-BR" : {
@@ -8891,8 +9901,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in with Google"
+            "state" : "translated",
+            "value" : "使用 Google 登入"
           }
         }
       }
@@ -9017,8 +10027,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in to get your bonus"
+            "state" : "translated",
+            "value" : "Zaloguj się, aby otrzymać bonus"
           }
         },
         "pt-BR" : {
@@ -9083,8 +10093,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sign in to get your bonus"
+            "state" : "translated",
+            "value" : "登入以取得獎金"
           }
         }
       }
@@ -9467,8 +10477,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Skip and buy"
+            "state" : "translated",
+            "value" : "跳過並購買"
           }
         }
       }
@@ -10235,8 +11245,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "AppCoins Support is not available at the moment"
+            "state" : "translated",
+            "value" : "AppCoins 支援暫時無法使用"
           }
         }
       }
@@ -10427,8 +11437,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Available Soon"
+            "state" : "translated",
+            "value" : "即將上市"
           }
         }
       }
@@ -10619,8 +11629,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "In just a few seconds you can sync the AppCoins Wallet to *earn even more rewards*."
+            "state" : "translated",
+            "value" : "只要幾秒鐘，您就可以同步AppCoins錢包，*賺取更多獎勵*。"
           }
         }
       }
@@ -10811,8 +11821,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Sync Wallet"
+            "state" : "translated",
+            "value" : "同步錢包"
           }
         }
       }
@@ -10829,8 +11839,8 @@
         },
         "bn" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Terms and Conditions"
+            "state" : "translated",
+            "value" : "শর্তাবলী"
           }
         },
         "de" : {
@@ -10871,8 +11881,8 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Terms and Conditions"
+            "state" : "translated",
+            "value" : "नियम एवं शर्तें"
           }
         },
         "hu" : {
@@ -10919,8 +11929,8 @@
         },
         "my" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Terms and Conditions"
+            "state" : "translated",
+            "value" : "စည္းမ်ဥ္းစည္းကမ္းမ်ား"
           }
         },
         "nl" : {
@@ -10931,14 +11941,14 @@
         },
         "pa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Terms and Conditions"
+            "state" : "translated",
+            "value" : "ਨਿਯਮ ਅਤੇ ਸ਼ਰਤਾਂ"
           }
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Terms and Conditions"
+            "state" : "translated",
+            "value" : "Regulamin"
           }
         },
         "pt-BR" : {
@@ -11003,8 +12013,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Terms and Conditions"
+            "state" : "translated",
+            "value" : "使用條款"
           }
         }
       }
@@ -11021,8 +12031,8 @@
         },
         "bn" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Try again"
+            "state" : "translated",
+            "value" : "পুনরায় প্রচেষ্ঠা করুন"
           }
         },
         "de" : {
@@ -11063,8 +12073,8 @@
         },
         "hi" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Try again"
+            "state" : "translated",
+            "value" : "पुनः प्रयास करें"
           }
         },
         "hu" : {
@@ -11111,8 +12121,8 @@
         },
         "my" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Try again"
+            "state" : "translated",
+            "value" : "ျပန္ႀကိဳးစားပါ"
           }
         },
         "nl" : {
@@ -11123,14 +12133,14 @@
         },
         "pa" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Try again"
+            "state" : "translated",
+            "value" : "ਫਿਰ ਕੋਸ਼ਿਸ਼ ਕਰੋ"
           }
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Try again"
+            "state" : "translated",
+            "value" : "Spróbuj ponownie"
           }
         },
         "pt-BR" : {
@@ -11195,8 +12205,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Try again"
+            "state" : "translated",
+            "value" : "再試一次"
           }
         }
       }
@@ -11387,8 +12397,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "You already have the AppCoins Wallet installed!"
+            "state" : "translated",
+            "value" : "您已經安裝了 AppCoins 電子錢包！"
           }
         }
       }
@@ -11579,8 +12589,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Wallet Balance: %@"
+            "state" : "translated",
+            "value" : "錢包餘額: %@"
           }
         }
       }
@@ -11771,8 +12781,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "It seems your wallet is not synced yet!"
+            "state" : "translated",
+            "value" : "您的錢包似乎尚未同步！"
           }
         }
       }
@@ -11897,8 +12907,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your Balance: %@"
+            "state" : "translated",
+            "value" : "Twoje saldo: %@"
           }
         },
         "pt-BR" : {
@@ -11963,8 +12973,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your Balance: %@"
+            "state" : "translated",
+            "value" : "您的結餘: %@"
           }
         }
       }
@@ -12088,8 +13098,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your card"
+            "state" : "translated",
+            "value" : "Twoja karta"
           }
         },
         "pt-BR" : {
@@ -12154,8 +13164,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your card"
+            "state" : "translated",
+            "value" : "您的卡片"
           }
         }
       }
@@ -12280,8 +13290,8 @@
         },
         "pl" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your email here"
+            "state" : "translated",
+            "value" : "Twój adres e-mail tutaj"
           }
         },
         "pt-BR" : {
@@ -12346,8 +13356,8 @@
         },
         "zh-Hant" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "Your email here"
+            "state" : "translated",
+            "value" : "您的電子郵件"
           }
         }
       }
