@@ -48,7 +48,11 @@ internal struct DeleteAccountSentView: View {
             ResendDeleteAccountButton()
             
             HStack{}.frame(height: Utils.bottomSafeAreaHeight == 0 ? 5 : 28)
-        }.frame(maxWidth: .infinity, alignment: .top)
+        }
+        .frame(maxHeight: .infinity, alignment: .top)
+        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.width, height: viewModel.orientation == .landscape ? UIScreen.main.bounds.height * 0.9 : nil)
+        .background(ColorsUi.APC_BottomSheet_LightGray_Background)
+        .ignoresSafeArea(.all)
         
     }
 }

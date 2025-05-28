@@ -46,7 +46,10 @@ internal struct ManageAccountView: View {
 
                 if authViewModel.isSendingDelete {
                     HStack(spacing: 0) {
-                        ProgressView()
+                        if #available(iOS 16.0, *) {
+                            ProgressView()
+                                .tint(ColorsUi.APC_DarkGray)
+                        }
                     }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 - 48 : UIScreen.main.bounds.width - 48, height: 40)
                 } else {
                     Button(action: authViewModel.presentDeleteAccountAlert) {

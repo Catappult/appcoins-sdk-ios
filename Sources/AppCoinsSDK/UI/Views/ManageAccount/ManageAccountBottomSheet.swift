@@ -19,6 +19,11 @@ internal struct ManageAccountBottomSheet: View {
             VStack(spacing: 0) {
                 if viewModel.orientation == .landscape {
                     ZStack {
+                        ColorsUi.APC_BottomSheet_LightGray_Background
+                            .frame(maxHeight: .infinity, alignment: .top)
+                            .frame(width: UIScreen.main.bounds.width - 176, height: UIScreen.main.bounds.height * 0.9)
+                            .ignoresSafeArea(.all)
+                        
                         switch authViewModel.manageAccountState {
                         case .manage:
                             ManageAccountView(viewModel: viewModel, authViewModel: authViewModel)
@@ -27,9 +32,9 @@ internal struct ManageAccountBottomSheet: View {
                         case .deleteLoading:
                             APPCLoading()
                         case .deleteSuccess:
-                            DeleteAccountSuccessView()
+                            DeleteAccountSuccessView(viewModel: viewModel)
                         case .deleteFailed:
-                            DeleteAccountFailedView()
+                            DeleteAccountFailedView(viewModel: viewModel)
                         }
                         
                     }
@@ -47,6 +52,8 @@ internal struct ManageAccountBottomSheet: View {
                     
                 } else {
                     ZStack {
+                        ColorsUi.APC_BottomSheet_LightGray_Background
+                        
                         switch authViewModel.manageAccountState {
                         case .manage:
                             ManageAccountView(viewModel: viewModel, authViewModel: authViewModel)
@@ -55,13 +62,14 @@ internal struct ManageAccountBottomSheet: View {
                         case .deleteLoading:
                             APPCLoading()
                         case .deleteSuccess:
-                            DeleteAccountSuccessView()
+                            DeleteAccountSuccessView(viewModel: viewModel)
                         case .deleteFailed:
-                            DeleteAccountFailedView()
+                            DeleteAccountFailedView(viewModel: viewModel)
                         }
                         
                     }
                     .presentationDetents([.height(420)])
+                    .background(ColorsUi.APC_BottomSheet_LightGray_Background)
                 }
             }.alert(
                 Constants.logOut,
