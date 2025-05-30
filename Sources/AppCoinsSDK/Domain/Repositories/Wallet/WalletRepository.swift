@@ -70,16 +70,13 @@ internal class WalletRepository: WalletRepositoryProtocol {
     internal func setActiveWallet(guest: GuestWallet) {
         let storageWallet = StorageWalletRaw.fromGuest(wallet: guest)
         walletManagerService.setActiveWallet(wallet: storageWallet)
-        Utils.log("Set Active Wallet: \(storageWallet)")
         
         var storedWallets = walletManagerService.getWalletList()
-        Utils.log("Stored Wallets: \(storedWallets)")
         if !storedWallets.contains(storageWallet) {
             storedWallets.append(storageWallet)
         }
         
         walletManagerService.setWalletList(walletList: storedWallets)
-        Utils.log("Updated Wallets: \(walletManagerService.getWalletList())")
     }
     
     internal func getGuestWallet(guestUID: String, completion: @escaping (Result<GuestWallet, APPCServiceError>) -> Void) {

@@ -163,7 +163,7 @@ public class Purchase: Codable {
         return try await withCheckedThrowingContinuation { continuation in
             
             WalletUseCases.shared.getWalletList() { walletList in
-                Utils.log("Wallet list to consume: \(walletList)")
+                
                 let group = DispatchGroup()
                 let queue = DispatchQueue(label: "consume-queue", attributes: .concurrent)
                 

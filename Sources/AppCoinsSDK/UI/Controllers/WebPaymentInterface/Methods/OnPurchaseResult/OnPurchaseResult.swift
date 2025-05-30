@@ -53,7 +53,6 @@ internal class OnPurchaseResult {
     }
     
     private func setActiveWallet(wallet: OnPurchaseResultQuery.Wallet, completion: @escaping () -> Void) {
-        Utils.log("Setting Active Wallet on UseCases")
         switch wallet {
             case .user(let userWalletQuery):
                 let userWallet = UserWallet(address: userWalletQuery.address, authToken: userWalletQuery.authToken, refreshToken: userWalletQuery.refreshToken)
