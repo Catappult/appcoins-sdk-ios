@@ -12,7 +12,7 @@ internal struct OnErrorBody: Codable {
     internal let checkoutError: String
     internal let message: String
     internal let description: String
-    internal let request: RequestError
+    internal let request: RequestError?
     
     internal enum CodingKeys: String, CodingKey {
         case checkoutError = "checkoutError"

@@ -11155,6 +11155,26 @@
       },
       {
         "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
         "name": "StoreKit",
         "printedName": "StoreKit",
         "declKind": "Import",
@@ -18488,126 +18508,252 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnError\/OnErrorBody.swift",
       "kind": "StringLiteral",
-      "offset": 370,
+      "offset": 371,
       "length": 15,
       "value": "\"checkoutError\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnError\/OnErrorBody.swift",
       "kind": "StringLiteral",
-      "offset": 409,
+      "offset": 410,
       "length": 9,
       "value": "\"message\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnError\/OnErrorBody.swift",
       "kind": "StringLiteral",
-      "offset": 446,
+      "offset": 447,
       "length": 13,
       "value": "\"description\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnError\/OnErrorBody.swift",
       "kind": "StringLiteral",
-      "offset": 483,
+      "offset": 484,
       "length": 9,
       "value": "\"request\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnError\/OnErrorBody.swift",
       "kind": "StringLiteral",
-      "offset": 370,
+      "offset": 371,
       "length": 15,
       "value": "\"checkoutError\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnError\/OnErrorBody.swift",
       "kind": "StringLiteral",
-      "offset": 409,
+      "offset": 410,
       "length": 9,
       "value": "\"message\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnError\/OnErrorBody.swift",
       "kind": "StringLiteral",
-      "offset": 446,
+      "offset": 447,
       "length": 13,
       "value": "\"description\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnError\/OnErrorBody.swift",
       "kind": "StringLiteral",
-      "offset": 483,
+      "offset": 484,
       "length": 9,
       "value": "\"request\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnError\/OnErrorBody.swift",
       "kind": "StringLiteral",
-      "offset": 825,
+      "offset": 826,
       "length": 5,
       "value": "\"url\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnError\/OnErrorBody.swift",
       "kind": "StringLiteral",
-      "offset": 857,
+      "offset": 858,
       "length": 8,
       "value": "\"method\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnError\/OnErrorBody.swift",
       "kind": "StringLiteral",
-      "offset": 890,
+      "offset": 891,
       "length": 6,
       "value": "\"body\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnError\/OnErrorBody.swift",
       "kind": "StringLiteral",
-      "offset": 929,
+      "offset": 930,
       "length": 14,
       "value": "\"responseData\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnError\/OnErrorBody.swift",
       "kind": "StringLiteral",
-      "offset": 974,
+      "offset": 975,
       "length": 12,
       "value": "\"statusCode\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnError\/OnErrorBody.swift",
       "kind": "StringLiteral",
-      "offset": 825,
+      "offset": 826,
       "length": 5,
       "value": "\"url\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnError\/OnErrorBody.swift",
       "kind": "StringLiteral",
-      "offset": 857,
+      "offset": 858,
       "length": 8,
       "value": "\"method\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnError\/OnErrorBody.swift",
       "kind": "StringLiteral",
-      "offset": 890,
+      "offset": 891,
       "length": 6,
       "value": "\"body\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnError\/OnErrorBody.swift",
       "kind": "StringLiteral",
-      "offset": 929,
+      "offset": 930,
       "length": 14,
       "value": "\"responseData\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnError\/OnErrorBody.swift",
       "kind": "StringLiteral",
-      "offset": 974,
+      "offset": 975,
+      "length": 12,
+      "value": "\"statusCode\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnError\/OnErrorQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 362,
+      "length": 15,
+      "value": "\"checkoutError\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnError\/OnErrorQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 401,
+      "length": 9,
+      "value": "\"message\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnError\/OnErrorQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 438,
+      "length": 13,
+      "value": "\"description\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnError\/OnErrorQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 475,
+      "length": 9,
+      "value": "\"request\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnError\/OnErrorQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 362,
+      "length": 15,
+      "value": "\"checkoutError\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnError\/OnErrorQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 401,
+      "length": 9,
+      "value": "\"message\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnError\/OnErrorQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 438,
+      "length": 13,
+      "value": "\"description\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnError\/OnErrorQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 475,
+      "length": 9,
+      "value": "\"request\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnError\/OnErrorQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 817,
+      "length": 5,
+      "value": "\"url\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnError\/OnErrorQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 849,
+      "length": 8,
+      "value": "\"method\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnError\/OnErrorQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 882,
+      "length": 6,
+      "value": "\"body\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnError\/OnErrorQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 921,
+      "length": 14,
+      "value": "\"responseData\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnError\/OnErrorQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 966,
+      "length": 12,
+      "value": "\"statusCode\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnError\/OnErrorQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 817,
+      "length": 5,
+      "value": "\"url\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnError\/OnErrorQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 849,
+      "length": 8,
+      "value": "\"method\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnError\/OnErrorQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 882,
+      "length": 6,
+      "value": "\"body\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnError\/OnErrorQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 921,
+      "length": 14,
+      "value": "\"responseData\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnError\/OnErrorQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 966,
       "length": 12,
       "value": "\"statusCode\""
     },
@@ -18790,6 +18936,188 @@
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnPurchaseResult\/OnPurchaseResultBody.swift",
       "kind": "StringLiteral",
       "offset": 1445,
+      "length": 16,
+      "value": "\"isAutoRenewing\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnPurchaseResult\/OnPurchaseResultQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 422,
+      "length": 14,
+      "value": "\"responseCode\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnPurchaseResult\/OnPurchaseResultQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 465,
+      "length": 14,
+      "value": "\"purchaseData\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnPurchaseResult\/OnPurchaseResultQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 509,
+      "length": 15,
+      "value": "\"dataSignature\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnPurchaseResult\/OnPurchaseResultQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 555,
+      "length": 16,
+      "value": "\"orderReference\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnPurchaseResult\/OnPurchaseResultQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 422,
+      "length": 14,
+      "value": "\"responseCode\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnPurchaseResult\/OnPurchaseResultQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 465,
+      "length": 14,
+      "value": "\"purchaseData\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnPurchaseResult\/OnPurchaseResultQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 509,
+      "length": 15,
+      "value": "\"dataSignature\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnPurchaseResult\/OnPurchaseResultQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 555,
+      "length": 16,
+      "value": "\"orderReference\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnPurchaseResult\/OnPurchaseResultQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 1094,
+      "length": 9,
+      "value": "\"orderId\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnPurchaseResult\/OnPurchaseResultQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 1135,
+      "length": 13,
+      "value": "\"packageName\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnPurchaseResult\/OnPurchaseResultQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 1178,
+      "length": 11,
+      "value": "\"productId\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnPurchaseResult\/OnPurchaseResultQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 1222,
+      "length": 14,
+      "value": "\"purchaseTime\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnPurchaseResult\/OnPurchaseResultQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 1270,
+      "length": 15,
+      "value": "\"purchaseToken\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnPurchaseResult\/OnPurchaseResultQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 1319,
+      "length": 15,
+      "value": "\"purchaseState\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnPurchaseResult\/OnPurchaseResultQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 1371,
+      "length": 18,
+      "value": "\"developerPayload\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnPurchaseResult\/OnPurchaseResultQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 1421,
+      "length": 13,
+      "value": "\"productType\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnPurchaseResult\/OnPurchaseResultQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 1469,
+      "length": 16,
+      "value": "\"isAutoRenewing\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnPurchaseResult\/OnPurchaseResultQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 1094,
+      "length": 9,
+      "value": "\"orderId\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnPurchaseResult\/OnPurchaseResultQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 1135,
+      "length": 13,
+      "value": "\"packageName\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnPurchaseResult\/OnPurchaseResultQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 1178,
+      "length": 11,
+      "value": "\"productId\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnPurchaseResult\/OnPurchaseResultQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 1222,
+      "length": 14,
+      "value": "\"purchaseTime\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnPurchaseResult\/OnPurchaseResultQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 1270,
+      "length": 15,
+      "value": "\"purchaseToken\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnPurchaseResult\/OnPurchaseResultQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 1319,
+      "length": 15,
+      "value": "\"purchaseState\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnPurchaseResult\/OnPurchaseResultQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 1371,
+      "length": 18,
+      "value": "\"developerPayload\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnPurchaseResult\/OnPurchaseResultQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 1421,
+      "length": 13,
+      "value": "\"productType\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Controllers\/WebPaymentInterface\/Methods\/OnPurchaseResult\/OnPurchaseResultQuery.swift",
+      "kind": "StringLiteral",
+      "offset": 1469,
       "length": 16,
       "value": "\"isAutoRenewing\""
     },
@@ -18852,21 +19180,21 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Entities\/Purchase.swift",
       "kind": "StringLiteral",
-      "offset": 9712,
+      "offset": 9762,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Entities\/Purchase.swift",
       "kind": "StringLiteral",
-      "offset": 12209,
+      "offset": 12259,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Entities\/Purchase.swift",
       "kind": "StringLiteral",
-      "offset": 14847,
+      "offset": 14897,
       "length": 2,
       "value": "\"\""
     },
@@ -19069,9 +19397,9 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Entities\/WebCheckout.swift",
       "kind": "Dictionary",
-      "offset": 794,
-      "length": 416,
-      "value": "[(\"origin\", \"origin\"), (\"type\", \"type\"), (\"domain\", \"domain\"), (\"product\", \"product\"), (\"country\", \"country\"), (\"metadata\", \"metadata\"), (\"reference\", \"reference\"), (\"guestUID\", \"guest_uid\"), (\"version\", \"version\"), (\"langCode\", \"lang_code\"), (\"paymentChannel\", \"payment_channel\"), (\"isBrowserCheckout\", \"is_browser_checkout\")]"
+      "offset": 827,
+      "length": 449,
+      "value": "[(\"origin\", \"origin\"), (\"type\", \"type\"), (\"domain\", \"domain\"), (\"product\", \"product\"), (\"country\", \"country\"), (\"metadata\", \"metadata\"), (\"reference\", \"reference\"), (\"guestUID\", \"guest_uid\"), (\"version\", \"version\"), (\"langCode\", \"lang_code\"), (\"paymentChannel\", \"payment_channel\"), (\"platform\", \"platform\"), (\"isBrowserCheckout\", \"is_browser_checkout\")]"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Views\/Purchase\/WebCheckoutView\/WebCheckoutView.swift",
