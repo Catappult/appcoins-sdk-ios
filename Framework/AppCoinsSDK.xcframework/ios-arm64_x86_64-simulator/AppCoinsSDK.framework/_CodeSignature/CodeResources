@@ -10,19 +10,19 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		iWXl0fiv+011Q5QxLiRbJfikx7k=
+		dR7m0NPz+Z8hR82DPwbgCHpXwj8=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		ZpcblD91qfBZ7TGiNw1YRUBj9YY=
+		tMN3uyOlbGZ9Y+k+fIIHZtZBp0A=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		wIeX7W/Rs2784mJwYSIqaZXppFc=
+		Ouqs36ifAJ44GSWtUqoL2g3r7Z8=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		yxGwhD0wkdkrtdq7rFtBF0i+9nk=
+		k/Gv16eqS4Y1qKvCC0cw30NaZWo=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
@@ -38,11 +38,11 @@
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		52SCQTqC+yVhNR3RL2xn9xH5Q6Q=
+		r1Dbe8JvL478inSjb5krjM2O+9A=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		yxGwhD0wkdkrtdq7rFtBF0i+9nk=
+		k/Gv16eqS4Y1qKvCC0cw30NaZWo=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
@@ -58,7 +58,7 @@
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		qSXQPFf02f39P5NwYKlWUInZS6A=
+		EEr5U/ehnQFbqCya/l/oGeZSNF0=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -66,11 +66,11 @@
 		</data>
 		<key>Web3swift_web3swift.bundle/Info.plist</key>
 		<data>
-		niwDYfuR+C/pOD9cgy/xa3XjqUM=
+		39+wr8VQeS7cXnaPLzIb7YQSIBI=
 		</data>
 		<key>Web3swift_web3swift.bundle/_CodeSignature/CodeDirectory</key>
 		<data>
-		KJ4523X39TapmHOFBuSt8BzFC5I=
+		37lWnLq/iDBCMegZzlZzRABeJ+0=
 		</data>
 		<key>Web3swift_web3swift.bundle/_CodeSignature/CodeRequirements</key>
 		<data>
@@ -78,7 +78,7 @@
 		</data>
 		<key>Web3swift_web3swift.bundle/_CodeSignature/CodeRequirements-1</key>
 		<data>
-		mw87nSdhQ7RQLbA7pKIpLKAU87Y=
+		C2pu5OazLCF8k19CPaoKq7179Ek=
 		</data>
 		<key>Web3swift_web3swift.bundle/_CodeSignature/CodeResources</key>
 		<data>
@@ -123,21 +123,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			EDsPWtxmWrNOlgXkVVxprnijNWvcnZGW8Ld4wb6hnqM=
+			XWBz+JJ/yCKQF99RH2G5vspQ17PszaxqmwRPRiZu37A=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			0g1ERoREBlfi2nnDdTmzfzFgY8cwvcnz3ZnBemxxN4U=
+			2GcRfnfgnisahS590Wsn9BGME/ns58tDcRZ148L1rJ0=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			0OCDcn2ADrRIsACk3edagnKpHaeu52XR0/lYgyLsQvc=
+			m0gvoZV0wgk2cPxmkXIL/FBx1HG1XvLX+OVndU0XaKk=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
@@ -165,14 +165,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			8KXBWIjDcRa7TzJ+sHAnRmwUtx9pF2tlY65CYu2UCZs=
+			09p69q3oRWAmzt7J2D+xiH9m0D0E+gfZwKB085e+Vic=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			0OCDcn2ADrRIsACk3edagnKpHaeu52XR0/lYgyLsQvc=
+			m0gvoZV0wgk2cPxmkXIL/FBx1HG1XvLX+OVndU0XaKk=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
@@ -200,7 +200,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			xdK7SLP/vD9lz6kveLN26VjSx1hDOSIfvP1+x4+zkK8=
+			hHKK8/1twIXU2a/mLW1beVlU8wZchx8azCoCrTabKPw=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -214,14 +214,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			/V62g7M9XhsNSVoskwA+dI+AGnC4W2ICEWdIVzc8WFQ=
+			fsVqcLMBWzu07uiFhAsoXU52fBlyywr+4uhU10lxEdw=
 			</data>
 		</dict>
 		<key>Web3swift_web3swift.bundle/_CodeSignature/CodeDirectory</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			/EGL+0/Un73jhUyXPqum68HCXBuQrh+MOg6GBFzGTY4=
+			u4M1Fs/2lkGZyxBPizRTLsD0uYBSGZpk970Q/tm1xvY=
 			</data>
 		</dict>
 		<key>Web3swift_web3swift.bundle/_CodeSignature/CodeRequirements</key>
@@ -235,7 +235,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			yFhHp5d7MF7TYJ/WNkN/EqJvsKfjrzbegW4TG8zjqgI=
+			ahTLJLGUJk2iZiZA0r/Shtt1ObPUGBhPsZM9xciiWyg=
 			</data>
 		</dict>
 		<key>Web3swift_web3swift.bundle/_CodeSignature/CodeResources</key>
