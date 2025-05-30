@@ -14,8 +14,22 @@ internal class OnPurchaseResult {
     private init() {}
     
     internal func handle(body: OnPurchaseResultBody) {
-        let domain: String = BuildConfiguration.packageName
-        Purchase.verify(domain: domain, purchaseUID: body.purchaseData.purchaseToken) {
+        self.verifyPurchase(domain: body.purchaseData.packageName, purchaseToken: body.purchaseData.purchaseToken)
+    }
+    
+    internal func handle(query: OnPurchaseResultQuery) {
+        if let wallet = query.wallet {
+            setActiveWallet(wallet: wallet) {
+                self.verifyPurchase(domain: query.purchaseData.packageName, purchaseToken: query.purchaseData.purchaseToken)
+            }
+        } else {
+            Utils.log("No wallet OnPurchaseResultQuery")
+            self.verifyPurchase(domain: query.purchaseData.packageName, purchaseToken: query.purchaseData.purchaseToken)
+        }
+    }
+    
+    private func verifyPurchase(domain: String, purchaseToken: String) {
+        Purchase.verify(domain: domain, purchaseUID: purchaseToken) {
             result in
             switch result {
             case .success(let purchase):
@@ -30,10 +44,32 @@ internal class OnPurchaseResult {
                         PurchaseViewModel.shared.sendResult(result: .success(verificationResult: .verified(purchase: purchase)))
                     }
                 }
-            case .failure(let error): 
+            case .failure(let error):
                 Utils.log("Failed to verify purchase")
+                Utils.log(error.description)
                 PurchaseViewModel.shared.sendResult(result: .failed(error: error))
             }
+        }
+    }
+    
+    private func setActiveWallet(wallet: OnPurchaseResultQuery.Wallet, completion: @escaping () -> Void) {
+        Utils.log("Setting Active Wallet on UseCases")
+        switch wallet {
+            case .user(let userWalletQuery):
+                let userWallet = UserWallet(address: userWalletQuery.address, authToken: userWalletQuery.authToken, refreshToken: userWalletQuery.refreshToken)
+                WalletUseCases.shared.setActiveWallet(user: userWallet)
+                completion()
+                
+            case .guest(let guestWalletQuery):
+                WalletUseCases.shared.getGuestWallet { result in
+                    switch result {
+                    case .success(let guestWallet):
+                        WalletUseCases.shared.setActiveWallet(guest: guestWallet)
+                        completion()
+                    case .failure(let failure):
+                        return
+                    }
+                }
         }
     }
 }

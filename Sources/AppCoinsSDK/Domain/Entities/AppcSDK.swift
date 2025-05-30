@@ -238,6 +238,18 @@ public struct AppcSDK {
                             PurchaseIntentManager.shared.set(intent: PurchaseIntent(product: product))
                         }
                     }
+                case "checkout":
+                    if redirectURL.pathComponents.count > 2 {
+                        switch redirectURL.pathComponents[2] {
+                        case "success":
+                            Utils.log("Success URL: \(redirectURL.absoluteString)")
+                            PurchaseViewModel.shared.handleCheckoutSuccessDeeplink(deeplink: redirectURL)
+//                        case "failure":
+//                            // Handle failure
+                        default:
+                            break
+                        }
+                    }
                 default:
                     PurchaseViewModel.shared.handleWebViewDeeplink(deeplink: redirectURL.absoluteString)
                 }
