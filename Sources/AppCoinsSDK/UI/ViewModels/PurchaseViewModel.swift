@@ -130,6 +130,15 @@ internal class PurchaseViewModel: ObservableObject {
         }
     }
     
+    internal func handleCheckoutFailureDeeplink(deeplink: URL) {
+        do {
+            let query = try OnErrorQuery(deeplink: deeplink)
+            OnError.shared.handle(query: query)
+        } catch {
+            if let error = error as? AppCoinsSDKError { Utils.log(error.description) }
+        }
+    }
+    
     internal func handleWebViewDeeplink(deeplink: String) {
         guard let webView = webView else {
             Utils.log("WebView is not defined on authentication redirect")

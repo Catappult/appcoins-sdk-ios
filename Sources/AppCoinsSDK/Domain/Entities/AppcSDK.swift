@@ -242,10 +242,9 @@ public struct AppcSDK {
                     if redirectURL.pathComponents.count > 2 {
                         switch redirectURL.pathComponents[2] {
                         case "success":
-                            Utils.log("Success URL: \(redirectURL.absoluteString)")
                             PurchaseViewModel.shared.handleCheckoutSuccessDeeplink(deeplink: redirectURL)
-//                        case "failure":
-//                            // Handle failure
+                        case "failure":
+                            PurchaseViewModel.shared.handleCheckoutFailureDeeplink(deeplink: redirectURL)
                         default:
                             break
                         }
