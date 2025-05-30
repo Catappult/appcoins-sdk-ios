@@ -3,6 +3,15 @@
   "strings" : {
     "" : {
 
+    },
+    "-10%" : {
+
+    },
+    "Pay with Apple" : {
+
+    },
+    "Pay with Trivial Drive" : {
+
     }
   },
   "version" : "1.0"

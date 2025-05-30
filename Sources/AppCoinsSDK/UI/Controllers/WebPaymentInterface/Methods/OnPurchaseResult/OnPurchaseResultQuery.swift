@@ -114,30 +114,30 @@ internal struct OnPurchaseResultQuery {
         guard let dataSignature = string(for: "data_signature") else { throw AppCoinsSDKError.systemError(message: "Failed to process OnPurchaseResult deeplink", description: "Field data_signature is missing or incorrect at OnPurchaseResultQuery.swift:init") }
 
         let purchaseData = try OnPurchaseResultQuery.PurchaseData(
-            orderId: string(for: "purchase_data[order_id]"),
-            packageName: string(for: "purchase_data[package_name]"),
-            productId: string(for: "purchase_data[product_id]"),
-            purchaseTime: string(for: "purchase_data[purchase_time]"),
-            purchaseToken: string(for: "purchase_data[purchase_token]"),
-            purchaseState: string(for: "purchase_data[purchase_state]"),
-            developerPayload: string(for: "purchase_data[developer_payload]"),
-            productType: string(for: "purchase_data[product_type]"),
-            isAutoRenewing: string(for: "purchase_data[is_auto_renewing]")
+            orderId: string(for: "purchase_data.order_id"),
+            packageName: string(for: "purchase_data.package_name"),
+            productId: string(for: "purchase_data.product_id"),
+            purchaseTime: string(for: "purchase_data.purchase_time"),
+            purchaseToken: string(for: "purchase_data.purchase_token"),
+            purchaseState: string(for: "purchase_data.purchase_state"),
+            developerPayload: string(for: "purchase_data.developer_payload"),
+            productType: string(for: "purchase_data.product_type"),
+            isAutoRenewing: string(for: "purchase_data.is_auto_renewing")
         )
         
         var wallet: OnPurchaseResultQuery.Wallet?
-        if let walletType = string(for: "wallet[type]") {
+        if let walletType = string(for: "wallet.type") {
             switch walletType.uppercased() {
-            case "USER":
+            case "USER_WALLET":
                 let user = try OnPurchaseResultQuery.Wallet.User(
-                    address: string(for: "wallet[user][address]"),
-                    authToken: string(for: "wallet[user][auth_token]"),
-                    refreshToken: string(for: "wallet[user][refresh_token]")
+                    address: string(for: "wallet.user.address"),
+                    authToken: string(for: "wallet.user.auth_token"),
+                    refreshToken: string(for: "wallet.user.refresh_token")
                 )
                 wallet = .user(user)
-            case "GUEST":
+            case "GUEST_WALLET":
                 let guest = try OnPurchaseResultQuery.Wallet.Guest(
-                    guestUID: string(for: "wallet[guest][guest_uid]")
+                    guestUID: string(for: "wallet.guest.guest_uid")
                 )
                 wallet = .guest(guest)
             default:

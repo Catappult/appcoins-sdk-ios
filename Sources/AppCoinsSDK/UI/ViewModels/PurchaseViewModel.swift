@@ -58,6 +58,7 @@ internal class PurchaseViewModel: ObservableObject {
                 
                 if await AppcSDK.isAvailableInUS() {
                     self.webCheckout = WebCheckout(domain: domain, product: product.sku, metadata: self.metadata, reference: self.reference, guestUID: guestUID, type: .browser)
+                    Utils.log(self.webCheckout?.URL?.absoluteString ?? "No URL")
                     
                     guard let checkoutURL: URL = self.webCheckout?.URL else {
                         self.failed(error: .systemError(message: "Web Checkout URL is invalid", description: "Could not open Browser Web Checkout because URL is invalid at PurchaseViewModel.swift:purchase"))
