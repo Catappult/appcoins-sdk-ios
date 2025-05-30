@@ -10,15 +10,15 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		SsHSVPW/s7V239ASwPrhTKDbLMc=
+		lyTMmW6vPEahbdbusfwjgsm4dSg=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/Project/arm64-apple-ios.swiftsourceinfo</key>
 		<data>
-		Ha56fvbzRXuq6MC85gD+NQpxNXM=
+		iLiocr8e2KwKn3OlTKJyK+PUE/Y=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.abi.json</key>
 		<data>
-		yxGwhD0wkdkrtdq7rFtBF0i+9nk=
+		vVvC1+okeNq6GT3Nomy2k1cIsHE=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<data>
@@ -34,7 +34,7 @@
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		vj3u/+yVzJNB0vI8bwU5WurkT6Y=
+		xVOUDTQ5QSn41PSdrofakQhFulw=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -42,7 +42,7 @@
 		</data>
 		<key>Web3swift_web3swift.bundle/Info.plist</key>
 		<data>
-		EDn9ze7plwIwMIDUY4JkweJ0h5E=
+		5QMLUZkjBJE0e8wztKWN9AzyHcQ=
 		</data>
 		<key>Web3swift_web3swift.bundle/browser.js</key>
 		<data>
@@ -79,14 +79,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ZwTo9Y5NeRUBow4877tZjebT2cSXVbWfHQWRsL86rE8=
+			6jkS0mS0nXFuwjYu8vweNaOwubKBP9hHc3K5qXnq/RQ=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			0OCDcn2ADrRIsACk3edagnKpHaeu52XR0/lYgyLsQvc=
+			z41e9t3R6omcVDMU70iBvqbTVsHK26NKnuB699bDAno=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
@@ -114,7 +114,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			wWlaaMaQm6vlO/Jj1cZBB8Ak5+nCDUFEZtqWv7cXywM=
+			z1vFlwpfJHmCQCHA2Pwqpu+YR7ncu28K7B4yEZ2Ak5w=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -128,7 +128,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			vApooz5YjV8NQ4Rd8rn+Ch6yAHIFxMHbbkHk8VAM6AE=
+			iofE8kxa4kRGE2zXpPzMmF5dpgTXzDkJ7pq+PDKKGuY=
 			</data>
 		</dict>
 		<key>Web3swift_web3swift.bundle/browser.js</key>

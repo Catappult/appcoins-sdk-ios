@@ -16,25 +16,48 @@ public enum AppCoinsSDKError: Error, CustomStringConvertible {
     case purchaseNotAllowed(debugInfo: DebugInfo)
     case unknown(debugInfo: DebugInfo)
     
-    internal static func fromWebCheckoutError(webCheckoutError: OnErrorBody) -> AppCoinsSDKError {
-        switch webCheckoutError.checkoutError {
+    internal static func fromWebCheckoutError(body: OnErrorBody) -> AppCoinsSDKError {
+        switch body.checkoutError {
         case "failed":
             return .systemError(
-                message: webCheckoutError.message,
-                description: webCheckoutError.description,
-                request: DebugRequestInfo.fromWebCheckoutErrorRequest(webCheckoutErrorRequest: webCheckoutError.request)
+                message: body.message,
+                description: body.description,
+                request: body.request.flatMap { DebugRequestInfo.fromWebCheckoutError(body: $0) }
             )
         case "network":
             return .networkError(
-                message: webCheckoutError.message,
-                description: webCheckoutError.description,
-                request: DebugRequestInfo.fromWebCheckoutErrorRequest(webCheckoutErrorRequest: webCheckoutError.request)
+                message: body.message,
+                description: body.description,
+                request: body.request.flatMap { DebugRequestInfo.fromWebCheckoutError(body: $0) }
             )
         default:
             return .unknown(
-                message: webCheckoutError.message,
-                description: webCheckoutError.description,
-                request: DebugRequestInfo.fromWebCheckoutErrorRequest(webCheckoutErrorRequest: webCheckoutError.request)
+                message: body.message,
+                description: body.description,
+                request: body.request.flatMap { DebugRequestInfo.fromWebCheckoutError(body: $0) }
+            )
+        }
+    }
+    
+    internal static func fromWebCheckoutError(query: OnErrorQuery) -> AppCoinsSDKError {
+        switch query.checkoutError {
+        case "failed":
+            return .systemError(
+                message: query.message,
+                description: query.description,
+                request: query.request.flatMap { DebugRequestInfo.fromWebCheckoutError(query: $0) }
+            )
+        case "network":
+            return .networkError(
+                message: query.message,
+                description: query.description,
+                request: query.request.flatMap { DebugRequestInfo.fromWebCheckoutError(query: $0) }
+            )
+        default:
+            return .unknown(
+                message: query.message,
+                description: query.description,
+                request: query.request.flatMap { DebugRequestInfo.fromWebCheckoutError(query: $0) }
             )
         }
     }
@@ -286,13 +309,23 @@ public class DebugRequestInfo {
         self.statusCode = statusCode
     }
     
-    internal static func fromWebCheckoutErrorRequest(webCheckoutErrorRequest: OnErrorBody.RequestError) -> DebugRequestInfo {
+    internal static func fromWebCheckoutError(body: OnErrorBody.RequestError) -> DebugRequestInfo {
         return DebugRequestInfo(
-            url: webCheckoutErrorRequest.url,
-            method: RequestMethod(method: webCheckoutErrorRequest.method),
-            body: webCheckoutErrorRequest.body,
-            responseData: webCheckoutErrorRequest.responseData,
-            statusCode: webCheckoutErrorRequest.statusCode
+            url: body.url,
+            method: RequestMethod(method: body.method),
+            body: body.body,
+            responseData: body.responseData,
+            statusCode: body.statusCode
+        )
+    }
+    
+    internal static func fromWebCheckoutError(query: OnErrorQuery.RequestError) -> DebugRequestInfo {
+        return DebugRequestInfo(
+            url: query.url,
+            method: RequestMethod(method: query.method),
+            body: query.body,
+            responseData: query.responseData,
+            statusCode: query.statusCode
         )
     }
 }
