@@ -53,6 +53,7 @@ internal class APPCServiceClient : APPCService {
         if let url = URL(string: endpoint + route) {
             
             var request = URLRequest(url: url)
+            request.httpMethod = "POST"
             
             let userAgent = "AppCoinsWalletIOS/.."
             request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
@@ -69,6 +70,7 @@ internal class APPCServiceClient : APPCService {
                     do {
                         if let data = data {
                             let findResult = try JSONDecoder().decode(UserWalletRaw.self, from: data)
+                            Utils.log("Refreshed user wallet with POST successfully")
                             result(.success(findResult))
                         } else {
                             result(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url) at APPCServiceClient.swift:refreshUserWallet")))
