@@ -262,6 +262,8 @@ public struct Product : Swift.Codable {
   public let priceValue: Swift.String
   public let priceLabel: Swift.String
   public let priceSymbol: Swift.String
+  public let priceDiscountOriginal: Swift.String?
+  public let priceDiscountPercentage: Swift.String?
   #if compiler(>=5.3) && $AsyncAwait
   public static func products(domain: Swift.String = (Bundle.main.bundleIdentifier ?? ""), for identifiers: [Swift.String]? = nil) async throws -> [AppCoinsSDK.Product]
   #endif
@@ -300,7 +302,7 @@ public struct Product : Swift.Codable {
     required public init(from decoder: any Swift.Decoder) throws
   }
   #if compiler(>=5.3) && $AsyncAwait
-  public static func chooseProvider() async -> AppCoinsSDK.PurchaseProvider?
+  public static func provider(domain: Swift.String = (Bundle.main.bundleIdentifier ?? ""), for product: AppCoinsSDK.Product) async -> AppCoinsSDK.PurchaseProvider?
   #endif
   #if compiler(>=5.3) && $AsyncAwait
   public func finish(domain: Swift.String = (Bundle.main.bundleIdentifier ?? "")) async throws

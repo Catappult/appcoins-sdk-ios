@@ -40,6 +40,8 @@ targets:
       product: SwiftyRSA
     - package: DeviceKit
       product: DeviceKit
+    - package: SkeletonUI
+      product: SkeletonUI
     resources:
     - path: Sources/AppCoinsSDK/Localization
       explicit: true
@@ -76,3 +78,6 @@ packages:
   DeviceKit:
     url: https://github.com/devicekit/DeviceKit.git
     minorVersion: 4.0.0
+  SkeletonUI:
+    url: https://github.com/CSolanaM/SkeletonUI.git
+    minorVersion: 2.0.1
