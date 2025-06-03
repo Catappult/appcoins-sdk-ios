@@ -19,7 +19,7 @@ internal class HandleInternalRedirect {
             return
         }
         
-        SDKViewController.presentSafariSheet(url: URL)
+        SDKViewController.shared.presentSafariSheet(url: URL)
     }
     
 }
