@@ -16,61 +16,30 @@ internal struct ProviderBottomSheet: View {
     @Environment(\.colorScheme) var colorScheme
     
     internal var body: some View {
-        HStack(spacing: 0) {}
-            .sheet(isPresented: $viewModel.isChoosingProvider, onDismiss: viewModel.dismiss, content: {
-                if #available(iOS 17.4, *) {
+        SDKBottomSheet(
+            content: {
+                VStack(spacing: 0) {
+                    PurchaseHeader()
+                    
                     VStack(spacing: 0) {
-                        VStack(spacing: 0) {
-                            HStack{}.frame(height: 8)
-                            
-                            Button(action: { ProviderViewModel.shared.chooseProvider(provider: .aptoide) }) {
-                                ZStack {
-                                    ColorsUi.APT_AptoideOrange
-                                    
-                                    HStack(spacing: 0) {
-                                        Text("Pay with Trivial Drive")
-                                            .foregroundStyle(Color.white)
-                                        
-                                        VStack{}.frame(width: 10)
-                                        
-                                        ZStack{
-                                            ColorsUi.APT_AptoideBlue
-                                            
-                                            Text("-10%")
-                                                .foregroundStyle(Color.white)
-                                                .font(.footnote)
-                                                .fontWeight(.bold)
-                                        }.frame(width: 48, height: 24)
-                                            .cornerRadius(12)
-                                    }
-                                    
-                                }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 116 - 32: UIScreen.main.bounds.width - 32, height: 48)
-                                    .cornerRadius(12)
-                            }
-                            
-                            HStack{}.frame(height: 8)
-                            
-                            Button(action: { ProviderViewModel.shared.chooseProvider(provider: .apple) }) {
-                                ZStack {
-                                    Color.black
-                                    
-                                    Text("Pay with Apple")
-                                        .foregroundStyle(Color.white)
-                                }.frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 116 - 32: UIScreen.main.bounds.width - 32, height: 48)
-                                    .cornerRadius(12)
-                            }
-                            
-                            HStack{}.frame(height: 8)
-                        }
-                        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 116: UIScreen.main.bounds.width, alignment: .top)
-                        .presentationCompactAdaptation(.sheet)
-                        .presentationDetents([.height(Utils.bottomSafeAreaHeight + 120)])
+                        AptoideProviderButton()
                         
+                        HStack{}.frame(height: 8)
+                        
+                        AppleProviderButton()
+                        
+                        HStack{}.frame(height: 8)
                     }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(self.colorScheme == .dark ? ColorsUi.APC_WebViewDarkMode : ColorsUi.APC_WebViewLightMode)
+                    
+                    HStack{}.frame(height: Utils.bottomSafeAreaHeight)
+                        .onAppear { Utils.log(Utils.bottomSafeAreaHeight.description)}
                 }
-            })
+            },
+            dismiss: viewModel.dismiss,
+            background: self.colorScheme == .dark ? ColorsUi.APC_WebViewDarkMode : ColorsUi.APC_WebViewLightMode,
+            width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 116: UIScreen.main.bounds.width,
+            height: 184 + Utils.bottomSafeAreaHeight
+        )
     }
 }
 

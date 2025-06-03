@@ -4,7 +4,7 @@
     "" : {
 
     },
-    "-10%" : {
+    "-%@%%" : {
 
     },
     "cancel_button" : {
@@ -18,7 +18,7 @@
         }
       }
     },
-    "Pay with Apple" : {
+    "Pay with" : {
 
     },
     "Pay with Trivial Drive" : {

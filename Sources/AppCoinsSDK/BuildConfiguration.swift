@@ -69,7 +69,7 @@ internal class BuildConfiguration {
         }
     }
     
-    static internal var billingServiceURL: String {
+    static internal var brokerServiceURL: String {
         switch environment {
         case .debugSDKDev, .releaseSDKDev:
             return "https://api.dev.catappult.io/broker/8.20240812"

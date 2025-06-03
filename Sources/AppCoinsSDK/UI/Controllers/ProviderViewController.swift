@@ -49,6 +49,9 @@ internal class ProviderViewController: UIViewController {
     
     override internal var supportedInterfaceOrientations: UIInterfaceOrientationMask { return orientation }
     
-    @objc internal func dismissProviderChoice(completion: @escaping () -> Void) { self.dismiss(animated: true, completion: completion) }
+    @objc internal func dismissProviderChoice(completion: @escaping () -> Void) {
+        SDKViewController.shared.dismissBackground()
+        self.dismiss(animated: true, completion: completion)
+    }
     
 }
