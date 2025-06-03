@@ -18,11 +18,16 @@
         }
       }
     },
-    "Pay with" : {
-
-    },
-    "Pay with Trivial Drive" : {
-
+    "pay_with_button" : {
+      "comment" : "Pay with %@",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pay with %@"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

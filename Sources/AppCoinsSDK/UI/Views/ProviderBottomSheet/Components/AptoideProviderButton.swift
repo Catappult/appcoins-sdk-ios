@@ -22,7 +22,7 @@ internal struct AptoideProviderButton: View {
                         
                         VStack{}.frame(width: 16)
                         
-                        Text("Pay with Trivial Drive")
+                        Text(String(format: Constants.payWith, BuildConfiguration.appName))
                             .foregroundColor(Color.white)
                             .font(FontsUi.APC_Body_Bold)
                             .lineLimit(2)

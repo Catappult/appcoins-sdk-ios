@@ -17,11 +17,11 @@ internal struct AppleProviderButton: View {
                 Color.black
                 
                 HStack(spacing: 0) {
-                    Text("Pay with")
+                    Text(String(format: Constants.payWith, ""))
                         .foregroundColor(Color.white)
                         .font(FontsUi.APC_Body_Bold)
                     
-                    HStack{}.frame(width: 6)
+                    HStack{}.frame(width: 4)
                     
                     Image("apple-pay", bundle: Bundle.APPCModule)
                         .resizable()
