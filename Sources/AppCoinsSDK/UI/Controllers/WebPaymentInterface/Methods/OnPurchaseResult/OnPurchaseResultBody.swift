@@ -15,10 +15,10 @@ internal struct OnPurchaseResultBody: Codable {
     internal let orderReference: String?
     
     internal enum CodingKeys: String, CodingKey {
-        case responseCode = "responseCode"
-        case purchaseData = "purchaseData"
-        case dataSignature = "dataSignature"
-        case orderReference = "orderReference"
+        case responseCode = "response_code"
+        case purchaseData = "purchase_data"
+        case dataSignature = "data_signature"
+        case orderReference = "order_reference"
     }
     
     internal struct PurchaseData: Codable {
@@ -34,15 +34,15 @@ internal struct OnPurchaseResultBody: Codable {
         internal let isAutoRenewing: Bool
         
         internal enum CodingKeys: String, CodingKey {
-            case orderId = "orderId"
-            case packageName = "packageName"
-            case productId = "productId"
-            case purchaseTime = "purchaseTime"
-            case purchaseToken = "purchaseToken"
-            case purchaseState = "purchaseState"
-            case developerPayload = "developerPayload"
-            case productType = "productType"
-            case isAutoRenewing = "isAutoRenewing"
+            case orderId = "order_id"
+            case packageName = "package_name"
+            case productId = "product_id"
+            case purchaseTime = "purchase_time"
+            case purchaseToken = "purchase_token"
+            case purchaseState = "purchase_state"
+            case developerPayload = "developer_payload"
+            case productType = "product_type"
+            case isAutoRenewing = "is_auto_renewing"
         }
     }
 }

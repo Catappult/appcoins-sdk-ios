@@ -20,6 +20,7 @@ internal struct WebCheckout {
     private let version: String
     private var langCode: String
     private let paymentChannel: String
+    private let platform: String
     private let isBrowserCheckout: String
     
     internal var URL: URL? {
@@ -40,6 +41,7 @@ internal struct WebCheckout {
         "version" : "version",
         "langCode" : "lang_code",
         "paymentChannel" : "payment_channel",
+        "platform" : "platform",
         "isBrowserCheckout": "is_browser_checkout"
     ]
     
@@ -55,6 +57,7 @@ internal struct WebCheckout {
         self.version = String(describing: BuildConfiguration.sdkBuildNumber)
         self.langCode = WebCheckout.getLangAndCountry().langCode
         self.paymentChannel = "ios_sdk"
+        self.platform = "IOS"
         self.isBrowserCheckout = "\(type == .browser)"
     }
     

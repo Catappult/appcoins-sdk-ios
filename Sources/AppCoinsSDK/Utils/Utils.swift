@@ -104,4 +104,15 @@ internal struct Utils {
         
         return digestData.map { String(format: "%02hhx", $0) }.joined()
     }
+    
+    static internal func getAppIcon() -> UIImage {
+        if let icons = Bundle.main.infoDictionary?["CFBundleIcons"] as? [String: Any],
+           let primaryIcon = icons["CFBundlePrimaryIcon"] as? [String: Any],
+           let iconFiles = primaryIcon["CFBundleIconFiles"] as? [String],
+           let lastIcon = iconFiles.last {
+
+            return UIImage(named: lastIcon) ?? UIImage()
+        }
+        return UIImage()
+    }
 }

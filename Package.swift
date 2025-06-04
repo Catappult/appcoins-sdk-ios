@@ -20,7 +20,8 @@ let package = Package(
         .package(url: "https://github.com/web3swift-team/web3swift.git", .upToNextMinor(from: "3.2.0")),
         .package(url: "https://github.com/krzyzanowskim/CryptoSwift.git", .upToNextMinor(from: "1.5.1")),
         .package(url: "https://github.com/TakeScoop/SwiftyRSA.git", .upToNextMinor(from: "1.8.0")),
-        .package(url: "https://github.com/devicekit/DeviceKit.git", .upToNextMinor(from: "4.0.0"))
+        .package(url: "https://github.com/devicekit/DeviceKit.git", .upToNextMinor(from: "4.0.0")),
+        .package(url: "https://github.com/CSolanaM/SkeletonUI.git", .upToNextMinor(from: "2.0.1"))
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -31,7 +32,8 @@ let package = Package(
                 .product(name: "CryptoSwift", package: "CryptoSwift"),
                 .product(name: "web3swift", package: "web3swift"),
                 .product(name: "SwiftyRSA", package: "SwiftyRSA"),
-                .product(name: "DeviceKit", package: "DeviceKit")
+                .product(name: "DeviceKit", package: "DeviceKit"),
+                .product(name: "SkeletonUI", package: "SkeletonUI")
             ],
             resources: [.process("Localization")])
     ]

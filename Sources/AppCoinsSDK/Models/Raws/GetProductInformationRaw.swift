@@ -18,7 +18,6 @@ internal struct GetProductInformationRaw: Codable {
         case next = "next"
         case previous = "previous"
     }
-    
 }
 
 internal struct ProductRaw: Codable {
@@ -35,20 +34,54 @@ internal struct ProductRaw: Codable {
         case price = "price"
     }
     
+    internal struct ProductPriceInformationRaw: Codable {
+        
+        internal let currency: String
+        internal let value: String
+        internal let label: String
+        internal let symbol: String
+        internal let discount: ProductPriceDiscountRaw?
+        
+        internal enum CodingKeys: String, CodingKey {
+            case currency = "currency"
+            case value = "value"
+            case label = "label"
+            case symbol = "symbol"
+            case discount = "discount"
+        }
+     
+        internal struct ProductPriceDiscountRaw: Codable {
+            
+            internal let percentage: String
+            internal let value: String
+            internal let label: String
+            internal let micros: Int
+            internal let policy: String
+            internal let original: ProductPriceDiscountOriginalRaw
+            
+            internal enum CodingKeys: String, CodingKey {
+                case percentage = "percentage"
+                case value = "value"
+                case label = "label"
+                case micros = "micros"
+                case policy = "policy"
+                case original = "original"
+            }
+         
+            internal struct ProductPriceDiscountOriginalRaw: Codable {
+                
+                internal let value: String
+                internal let label: String
+                internal let micros: Int
+                
+                internal enum CodingKeys: String, CodingKey {
+                    case value = "value"
+                    case label = "label"
+                    case micros = "micros"
+                }
+                
+            }
+        }
+    }
 }
 
-internal struct ProductPriceInformationRaw: Codable {
-    
-    internal let currency: String
-    internal let value: String
-    internal let label: String
-    internal let symbol: String
-    
-    internal enum CodingKeys: String, CodingKey {
-        case currency = "currency"
-        case value = "value"
-        case label = "label"
-        case symbol = "symbol"
-    }
-    
-}
