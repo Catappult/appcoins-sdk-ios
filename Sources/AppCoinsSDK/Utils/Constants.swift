@@ -10,4 +10,5 @@ import Foundation
 internal struct Constants {
     // browser checkout
     static internal let cancelButton = NSLocalizedString("cancel_button", bundle: .APPCModule, comment: "Cancel")
+    static internal let payWith = NSLocalizedString("pay_with_button", bundle: .APPCModule, comment: "Pay with %@")
 }

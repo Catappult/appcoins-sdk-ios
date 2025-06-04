@@ -130,10 +130,10 @@ internal struct StorageWalletRaw: Codable, Equatable {
     }
     
     static func == (lhs: StorageWalletRaw, rhs: StorageWalletRaw) -> Bool {
-        if let lhsGuestWallet = lhs.wallet as? StorageGuestWallet, let rhsGuestWallet = rhs.wallet as? StorageGuestWallet {
+        if case .guest(let lhsGuestWallet) = lhs.wallet, case .guest(let rhsGuestWallet) = rhs.wallet {
             return lhsGuestWallet.guestUID == rhsGuestWallet.guestUID
-        } else if let lhsUserWallet = lhs.wallet as? StorageUserWallet, let rhsUserWallet = rhs.wallet as? StorageUserWallet {
-            return lhsUserWallet.address == rhsUserWallet.address
+        } else if case .user(let lhsUserWallet) = lhs.wallet, case .user(let rhsUserWallet) = rhs.wallet {
+            return lhsUserWallet.address == rhsUserWallet.address && lhsUserWallet.refreshToken == rhsUserWallet.refreshToken
         } else {
             return false
         }
