@@ -96,7 +96,7 @@ internal class PurchaseViewModel: ObservableObject {
     internal func cancel() {
         self.dismissVC {
             let result : PurchaseResult = .userCancelled
-            PurchaseViewModel.shared.sendResult(result: result)
+            self.sendResult(result: result)
             
             // Clear data related to finished purchase
             self.reset()
@@ -113,11 +113,39 @@ internal class PurchaseViewModel: ObservableObject {
         }
     }
     
+    internal func success(verificationResult: VerificationResult) {
+        self.dismissVC {
+            let result: PurchaseResult = .success(verificationResult: verificationResult)
+            self.sendResult(result: result)
+            
+            // Clear data related to finished purchase
+            self.reset()
+        }
+    }
+    
     internal func sendResult(result: PurchaseResult) {
         NotificationCenter.default.post(name: NSNotification.Name("APPCPurchaseResult"), object: nil, userInfo: ["PurchaseResult" : result])
     }
     
     internal func setOrientation(orientation: Orientation) { self.orientation = orientation }
+    
+    internal func handleCheckoutSuccessDeeplink(deeplink: URL) {
+        do {
+            let query = try OnPurchaseResultQuery(deeplink: deeplink)
+            OnPurchaseResult.shared.handle(query: query)
+        } catch {
+            if let error = error as? AppCoinsSDKError { Utils.log(error.description) }
+        }
+    }
+    
+    internal func handleCheckoutFailureDeeplink(deeplink: URL) {
+        do {
+            let query = try OnErrorQuery(deeplink: deeplink)
+            OnError.shared.handle(query: query)
+        } catch {
+            if let error = error as? AppCoinsSDKError { Utils.log(error.description) }
+        }
+    }
     
     internal func handleWebViewDeeplink(deeplink: String) {
         guard let webView = webView else {
