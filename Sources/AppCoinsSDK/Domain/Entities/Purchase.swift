@@ -60,13 +60,13 @@ public class Purchase: Codable {
         self.verification = PurchaseVerification(raw: raw.verification)
     }
     
-    public static func chooseProvider() async -> PurchaseProvider? {
+    public static func provider(domain: String = (Bundle.main.bundleIdentifier ?? ""), for product: Product) async -> PurchaseProvider? {
         guard await AppcSDK.isAvailableInUS() else { return .aptoide }
         
         DispatchQueue.main.async {
-            SDKViewController.presentProvider()
+            SDKViewController.shared.presentProvider()
             
-            ProviderViewModel.shared.showProviderChoice()
+            ProviderViewModel.shared.loadProviderPurchase(domain: domain, for: product)
         }
         
         let result: PurchaseProvider? = try? await withCheckedThrowingContinuation { continuation in
