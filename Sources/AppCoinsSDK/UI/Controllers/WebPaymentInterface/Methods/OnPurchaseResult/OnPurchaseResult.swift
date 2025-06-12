@@ -38,16 +38,16 @@ internal class OnPurchaseResult {
                     error in
                     if let error = error {
                         Utils.log("Failed to acknowledge purchase")
-                        PurchaseViewModel.shared.sendResult(result: .failed(error: error))
+                        PurchaseViewModel.shared.failed(error: error)
                     } else {
                         Utils.log("Purchase acknowledged and transaction succeeded")
-                        PurchaseViewModel.shared.sendResult(result: .success(verificationResult: .verified(purchase: purchase)))
+                        PurchaseViewModel.shared.success(verificationResult: .verified(purchase: purchase))
                     }
                 }
             case .failure(let error):
                 Utils.log("Failed to verify purchase")
                 Utils.log(error.description)
-                PurchaseViewModel.shared.sendResult(result: .failed(error: error))
+                PurchaseViewModel.shared.failed(error: error)
             }
         }
     }

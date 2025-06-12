@@ -24,6 +24,10 @@ internal class BuildConfiguration {
         return Bundle.main.bundleIdentifier ?? ""
     }
     
+    static internal var appName: String {
+        return Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String ?? Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String ?? ""
+    }
+    
     static internal var productServiceURL: String {
         switch environment {
         case .debugSDKDev, .releaseSDKDev:
@@ -69,7 +73,7 @@ internal class BuildConfiguration {
         }
     }
     
-    static internal var billingServiceURL: String {
+    static internal var brokerServiceURL: String {
         switch environment {
         case .debugSDKDev, .releaseSDKDev:
             return "https://api.dev.catappult.io/broker/8.20240812"

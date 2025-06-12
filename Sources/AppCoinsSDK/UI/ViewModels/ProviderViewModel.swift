@@ -12,7 +12,8 @@ internal class ProviderViewModel: ObservableObject {
     
     internal static var shared: ProviderViewModel = ProviderViewModel()
     
-    @Published internal var isChoosingProvider = false
+    @Published internal var product: Product?
+    @Published internal var userCurrency: Currency?
     
     // Device Orientation
     @Published internal var orientation: Orientation = .portrait
@@ -20,11 +21,28 @@ internal class ProviderViewModel: ObservableObject {
     private init() {}
     
     internal func reset() {
-        self.isChoosingProvider = false
+        self.product = nil
+        self.userCurrency = nil
     }
     
-    internal func showProviderChoice() {
-        DispatchQueue.main.async { self.isChoosingProvider = true }
+    internal func loadProviderPurchase(domain: String, for product: Product) {
+        CurrencyUseCases.shared.getUserCurrency { result in
+            switch result {
+            case .success(let currency):
+                DispatchQueue.main.async{ self.userCurrency = currency }
+                
+                ProductUseCases.shared.getProduct(domain: domain, product: product.sku, discountPolicy: .D2C) { result in
+                    switch result {
+                    case .success(let product):
+                        DispatchQueue.main.async{ self.product = product }
+                    case .failure(let failure):
+                        break
+                    }
+                }
+            case .failure(let failure):
+                break
+            }
+        }
     }
     
     internal func chooseProvider(provider: PurchaseProvider) {
@@ -33,7 +51,6 @@ internal class ProviderViewModel: ObservableObject {
             
             DispatchQueue.main.async {
                 presentedProviderVC.dismissProviderChoice() {
-                    self.isChoosingProvider = false
                     self.reset()
                     NotificationCenter.default.post(name: NSNotification.Name("APPCProviderChoice"), object: nil, userInfo: ["ProviderChoice" : provider])
                 }
@@ -48,7 +65,6 @@ internal class ProviderViewModel: ObservableObject {
             
             DispatchQueue.main.async {
                 presentedProviderVC.dismissProviderChoice() {
-                    self.isChoosingProvider = false
                     self.reset()
                     NotificationCenter.default.post(name: NSNotification.Name("APPCProviderChoice"), object: nil, userInfo: ["ProviderChoice" : nil])
                 }

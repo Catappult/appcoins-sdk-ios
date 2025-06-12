@@ -17,16 +17,8 @@ public struct Product: Codable {
     public let priceValue: String
     public let priceLabel: String
     public let priceSymbol: String
-    
-    internal init(sku: String, title: String, description: String, priceCurrency: String, priceValue: String, priceLabel: String, priceSymbol: String) {
-        self.sku = sku
-        self.title = title
-        self.description = description
-        self.priceCurrency = priceCurrency
-        self.priceValue = priceValue
-        self.priceLabel = priceLabel
-        self.priceSymbol = priceSymbol
-    }
+    public let priceDiscountOriginal: String?
+    public let priceDiscountPercentage: String?
     
     internal init(raw: ProductRaw) {
         self.sku = raw.sku
@@ -36,6 +28,8 @@ public struct Product: Codable {
         self.priceValue = raw.price.value
         self.priceLabel = raw.price.label
         self.priceSymbol = raw.price.symbol
+        self.priceDiscountOriginal = raw.price.discount?.original.value
+        self.priceDiscountPercentage = raw.price.discount?.percentage
     }
     
     static public func products(domain: String = (Bundle.main.bundleIdentifier ?? ""), for identifiers: [String]? = nil) async throws -> [Product] {
@@ -96,7 +90,7 @@ public struct Product: Codable {
             AnalyticsUseCases.shared.recordStartConnection()
             
             DispatchQueue.main.async {
-                SDKViewController.presentPurchase()
+                SDKViewController.shared.presentPurchase()
                 
                 // product – the SKU product
                 // domain – the app's domain registered in catappult
@@ -133,7 +127,7 @@ public struct Product: Codable {
             AnalyticsUseCases.shared.recordStartConnection()
             
             DispatchQueue.main.async {
-                SDKViewController.presentPurchase()
+                SDKViewController.shared.presentPurchase()
                 
                 // product – the SKU product
                 // domain – the app's domain registered in catappult

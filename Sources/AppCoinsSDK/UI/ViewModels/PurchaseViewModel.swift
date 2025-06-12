@@ -13,13 +13,10 @@ internal class PurchaseViewModel: ObservableObject {
     
     internal static var shared: PurchaseViewModel = PurchaseViewModel()
     
-    @Published internal var isChoosingProvider = false
-    @Published internal var isWebviewWebCheckoutPresented = false
-    @Published internal var isBrowserWebCheckoutPresented = false
-    @Published internal var hasActivePurchase = false
-    
     // Device Orientation
     @Published internal var orientation: Orientation = .portrait
+    
+    @Published internal var hasActivePurchase = false
     
     // Transaction attributes
     internal var product: Product? = nil
@@ -28,15 +25,14 @@ internal class PurchaseViewModel: ObservableObject {
     internal var reference: String? = nil
     
     internal var webCheckout: WebCheckout? = nil
+    @Published internal var webCheckoutType: WebCheckoutType?
     internal var webView: WKWebView? = nil
     
     private init() {}
     
     internal func reset() {
         self.hasActivePurchase = false
-        self.isChoosingProvider = false
-        self.isWebviewWebCheckoutPresented = false
-        self.isBrowserWebCheckoutPresented = false
+        self.webCheckoutType = nil
         self.product = nil
         self.domain = nil
         self.metadata = nil
@@ -66,13 +62,13 @@ internal class PurchaseViewModel: ObservableObject {
                     
                     UIApplication.shared.open(checkoutURL, options: [:]) { _ in
                         self.hasActivePurchase = true
-                        self.isBrowserWebCheckoutPresented = true
+                        self.webCheckoutType = .browser
                     }
                 } else {
                     self.webCheckout = WebCheckout(domain: domain, product: product.sku, metadata: self.metadata, reference: self.reference, guestUID: guestUID, type: .webview)
                     
                     self.hasActivePurchase = true
-                    self.isWebviewWebCheckoutPresented = true
+                    self.webCheckoutType = .webview
                 }
             }
         }
@@ -84,34 +80,47 @@ internal class PurchaseViewModel: ObservableObject {
     }
     
     // Dismiss Bottom Sheet
-    private func dismissVC() {
+    private func dismissVC(completion: @escaping () -> Void) {
         if let rootViewController = UIApplication.shared.windows.first?.rootViewController,
            let presentedPurchaseVC = rootViewController.presentedViewController as? PurchaseViewController {
             
-            var delay = 0.3
-            if KeyboardObserver.shared.isKeyboardVisible { delay = 0.45 }
+            var delay = 0.0
+            if KeyboardObserver.shared.isKeyboardVisible { delay = 0.15 }
             
             DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-                presentedPurchaseVC.dismissPurchase()
+                presentedPurchaseVC.dismissPurchase(animated: self.webCheckoutType != .browser, completion: completion)
             }
         }
     }
     
     internal func cancel() {
-        let result : PurchaseResult = .userCancelled
-        PurchaseViewModel.shared.sendResult(result: result)
-        self.dismissVC()
-        
-        // Clear data related to finished purchase
-        self.reset()
+        self.dismissVC {
+            let result : PurchaseResult = .userCancelled
+            self.sendResult(result: result)
+            
+            // Clear data related to finished purchase
+            self.reset()
+        }
     }
     
     internal func failed(error: AppCoinsSDKError) {
-        let result: PurchaseResult = .failed(error: error)
-        self.sendResult(result: result)
-        
-        // Clear data related to finished purchase
-        self.reset()
+        self.dismissVC {
+            let result: PurchaseResult = .failed(error: error)
+            self.sendResult(result: result)
+            
+            // Clear data related to finished purchase
+            self.reset()
+        }
+    }
+    
+    internal func success(verificationResult: VerificationResult) {
+        self.dismissVC {
+            let result: PurchaseResult = .success(verificationResult: verificationResult)
+            self.sendResult(result: result)
+            
+            // Clear data related to finished purchase
+            self.reset()
+        }
     }
     
     internal func sendResult(result: PurchaseResult) {
