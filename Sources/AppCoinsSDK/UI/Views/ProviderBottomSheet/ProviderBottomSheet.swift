@@ -32,7 +32,6 @@ internal struct ProviderBottomSheet: View {
                     }
                     
                     HStack{}.frame(height: Utils.bottomSafeAreaHeight)
-                        .onAppear { Utils.log(Utils.bottomSafeAreaHeight.description)}
                 }
             },
             dismiss: viewModel.dismiss,

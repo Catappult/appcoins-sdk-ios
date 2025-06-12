@@ -53,6 +53,9 @@ internal class APPCServiceClient : APPCService {
         if let url = URL(string: endpoint + route) {
             
             var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = "{}".data(using: .utf8)
             
             let userAgent = "AppCoinsWalletIOS/.."
             request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
