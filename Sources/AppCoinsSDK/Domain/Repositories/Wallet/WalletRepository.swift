@@ -70,6 +70,13 @@ internal class WalletRepository: WalletRepositoryProtocol {
     internal func setActiveWallet(guest: GuestWallet) {
         let storageWallet = StorageWalletRaw.fromGuest(wallet: guest)
         walletManagerService.setActiveWallet(wallet: storageWallet)
+        
+        var storedWallets = walletManagerService.getWalletList()
+        if !storedWallets.contains(storageWallet) {
+            storedWallets.append(storageWallet)
+        }
+        
+        walletManagerService.setWalletList(walletList: storedWallets)
     }
     
     internal func getGuestWallet(guestUID: String, completion: @escaping (Result<GuestWallet, APPCServiceError>) -> Void) {
@@ -119,7 +126,7 @@ internal class WalletRepository: WalletRepositoryProtocol {
             group.enter()
             switch wallet.type {
             case .guest:
-                guard let storageGuestWallet = wallet as? StorageWalletRaw.StorageGuestWallet else {
+                guard case .guest(let storageGuestWallet) = wallet.wallet else {
                     group.leave()
                     continue
                 }
@@ -135,7 +142,7 @@ internal class WalletRepository: WalletRepositoryProtocol {
                 }
                 
             case .user:
-                guard let storageUserWallet = wallet as? StorageWalletRaw.StorageUserWallet else {
+                guard case .user(let storageUserWallet) = wallet.wallet else {
                     group.leave()
                     continue
                 }
