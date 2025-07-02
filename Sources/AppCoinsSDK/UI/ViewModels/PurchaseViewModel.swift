@@ -81,14 +81,16 @@ internal class PurchaseViewModel: ObservableObject {
     
     // Dismiss Bottom Sheet
     private func dismissVC(completion: @escaping () -> Void) {
-        if let rootViewController = UIApplication.shared.windows.first?.rootViewController,
-           let presentedPurchaseVC = rootViewController.presentedViewController as? PurchaseViewController {
-            
-            var delay = 0.0
-            if KeyboardObserver.shared.isKeyboardVisible { delay = 0.15 }
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-                presentedPurchaseVC.dismissPurchase(animated: self.webCheckoutType != .browser, completion: completion)
+        DispatchQueue.main.async {
+            if let rootViewController = UIApplication.shared.windows.first?.rootViewController,
+               let presentedPurchaseVC = rootViewController.presentedViewController as? PurchaseViewController {
+                
+                var delay = 0.0
+                if KeyboardObserver.shared.isKeyboardVisible { delay = 0.15 }
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                    presentedPurchaseVC.dismissPurchase(animated: self.webCheckoutType != .browser, completion: completion)
+                }
             }
         }
     }

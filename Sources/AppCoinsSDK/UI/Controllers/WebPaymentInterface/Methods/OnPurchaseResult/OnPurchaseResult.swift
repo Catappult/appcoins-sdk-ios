@@ -14,7 +14,14 @@ internal class OnPurchaseResult {
     private init() {}
     
     internal func handle(body: OnPurchaseResultBody) {
-        self.verifyPurchase(domain: body.purchaseData.packageName, purchaseToken: body.purchaseData.purchaseToken)
+        if let wallet = body.wallet {
+            setActiveWallet(wallet: wallet) {
+                self.verifyPurchase(domain: body.purchaseData.packageName, purchaseToken: body.purchaseData.purchaseToken)
+            }
+        } else {
+            Utils.log("No wallet OnPurchaseResultBody")
+            self.verifyPurchase(domain: body.purchaseData.packageName, purchaseToken: body.purchaseData.purchaseToken)
+        }
     }
     
     internal func handle(query: OnPurchaseResultQuery) {
@@ -48,6 +55,24 @@ internal class OnPurchaseResult {
                 Utils.log("Failed to verify purchase")
                 Utils.log(error.description)
                 PurchaseViewModel.shared.failed(error: error)
+            }
+        }
+    }
+    
+    private func setActiveWallet(wallet: OnPurchaseResultBody.Wallet, completion: @escaping () -> Void) {
+        if let user = wallet.user {
+            let userWallet = UserWallet(address: user.address, authToken: user.authToken, refreshToken: user.refreshToken)
+            WalletUseCases.shared.setActiveWallet(user: userWallet)
+            completion()
+        } else if let guest = wallet.guest {
+            WalletUseCases.shared.getGuestWallet { result in
+                switch result {
+                case .success(let guestWallet):
+                    WalletUseCases.shared.setActiveWallet(guest: guestWallet)
+                    completion()
+                case .failure(let failure):
+                    return
+                }
             }
         }
     }

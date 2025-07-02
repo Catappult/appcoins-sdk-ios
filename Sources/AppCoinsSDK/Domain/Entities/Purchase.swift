@@ -89,34 +89,52 @@ public class Purchase: Codable {
     
     internal static func verify(domain: String = (Bundle.main.bundleIdentifier ?? ""), purchaseUID: String, completion: @escaping (Result<Purchase, AppCoinsSDKError>) -> Void ) {
         
-        WalletUseCases.shared.getWallet() {
-            result in
+        WalletUseCases.shared.getWalletList() { walletList in
+            let group = DispatchGroup()
+            let queue = DispatchQueue(label: "verify-queue", attributes: .concurrent)
             
-            switch result {
-            case .success(let wallet):
-                TransactionUseCases.shared.verifyPurchase(domain: domain, uid: purchaseUID, wa: wallet) {
-                    result in
-                    
-                    switch result {
-                    case .success(let purchase):
-                        completion(.success(purchase))
-                    case .failure(let error):
-                        switch error {
-                        case .failed(let message, let description, let request):
-                            completion(.failure(AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request))))
-                        case .noInternet(let message, let description, let request):
-                            completion(.failure(AppCoinsSDKError.networkError(debugInfo: DebugInfo(message: message, description: description, request: request))))
-                        case .purchaseVerificationFailed(let message, let description, let request):
-                            completion(.failure(AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request))))
+            var isVerified = false
+            var verifiedPurchase: Purchase? = nil
+            var error: AppCoinsSDKError? = nil
+            
+            for wallet in walletList {
+                group.enter()
+                queue.async {
+                    TransactionUseCases.shared.verifyPurchase(domain: domain, uid: purchaseUID, wa: wallet) {
+                        result in
+                        
+                        switch result {
+                        case .success(let purchase):
+                            isVerified = true
+                            verifiedPurchase = purchase
+                        case .failure(let failure):
+                            // If no Wallet can verify the purchase then the error thrown should be the one for the last wallet made active
+                            if wallet.getWalletAddress() == walletList.last?.getWalletAddress() {
+                                switch failure {
+                                case .failed(let message, let description, let request):
+                                    error = AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request))
+                                case .noInternet(let message, let description, let request):
+                                    error = AppCoinsSDKError.networkError(debugInfo: DebugInfo(message: message, description: description, request: request))
+                                case .purchaseVerificationFailed(let message, let description, let request):
+                                    error = AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request))
+                                }
+                            }
                         }
+                        group.leave()
                     }
                 }
-            case .failure(let error):
-                switch error {
-                case .failed(let message, let description, let request):
-                    completion(.failure(AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request))))
-                case .noInternet(let message, let description, let request):
-                    completion(.failure(AppCoinsSDKError.networkError(debugInfo: DebugInfo(message: message, description: description, request: request))))
+            }
+            
+            group.notify(queue: .main) {
+                if isVerified, let verifiedPurchase = verifiedPurchase {
+                    completion(.success(verifiedPurchase))
+                    return
+                }
+                
+                if let error = error {
+                    completion(.failure(error))
+                } else {
+                    completion(.failure(AppCoinsSDKError.unknown(message: "Failed to verify purchase", description: "The purchase was not verified at Purchase.swift:verify")))
                 }
             }
         }
@@ -125,35 +143,57 @@ public class Purchase: Codable {
     // only accessible internally – the SDK acknowledges the purchase
     internal func acknowledge(domain: String = (Bundle.main.bundleIdentifier ?? ""), completion: @escaping (AppCoinsSDKError?) -> Void) {
         
-        WalletUseCases.shared.getWallet() {
-            result in
+        WalletUseCases.shared.getWalletList() { walletList in
             
-            switch result {
-            case .success(let wallet):
-                TransactionUseCases.shared.acknowledgePurchase(domain: domain, uid: self.uid, wa: wallet) {
-                    result in
-                    
-                    switch result {
-                    case .success(_):
-                        self.state = "ACKNOWLEDGED"
-                        completion(nil)
-                    case .failure(let error):
-                        switch error {
-                        case .failed(let message, let description, let request):
-                            completion(AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request)))
-                        case .noInternet(let message, let description, let request):
-                            completion(AppCoinsSDKError.networkError(debugInfo: DebugInfo(message: message, description: description, request: request)))
-                        case .general(let message, let description, let request):
-                            completion(AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request)))
-                        case .noBillingAgreement(let message, let description, let request):
-                            completion(AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request)))
-                        case .timeOut(let message, let description, let request):
-                            completion(AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request)))
+            let group = DispatchGroup()
+            let queue = DispatchQueue(label: "acknowledge-queue", attributes: .concurrent)
+            
+            var isAcknowledged = false
+            var error: AppCoinsSDKError? = nil
+            
+            for wallet in walletList {
+                group.enter()
+                queue.async {
+                    TransactionUseCases.shared.acknowledgePurchase(domain: domain, uid: self.uid, wa: wallet) {
+                        result in
+                        
+                        switch result {
+                        case .success(_):
+                            self.state = "ACKNOWLEDGED"
+                            isAcknowledged = true
+                        case .failure(let failure):
+                            // If no Wallet can acknowledge the purchase then the error thrown should be the one for the last wallet made active
+                            if wallet.getWalletAddress() == walletList.last?.getWalletAddress() {
+                                switch failure {
+                                case .failed(let message, let description, let request):
+                                    error = AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request))
+                                case .noInternet(let message, let description, let request):
+                                    error = AppCoinsSDKError.networkError(debugInfo: DebugInfo(message: message, description: description, request: request))
+                                case .general(let message, let description, let request):
+                                    error = AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request))
+                                case .noBillingAgreement(let message, let description, let request):
+                                    error = AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request))
+                                case .timeOut(let message, let description, let request):
+                                    error = AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request))
+                                }
+                            }
                         }
+                        group.leave()
                     }
                 }
-            case .failure(_):
-                break
+            }
+            
+            group.notify(queue: .main) {
+                if isAcknowledged {
+                    completion(nil)
+                    return
+                }
+                
+                if let error = error {
+                    completion(error)
+                } else {
+                    completion(AppCoinsSDKError.unknown(message: "Failed to acknowledge purchase", description: "The purchase was not acknowledged at Purchase.swift:acknowledge"))
+                }
             }
         }
     }
@@ -168,12 +208,11 @@ public class Purchase: Codable {
                 let queue = DispatchQueue(label: "consume-queue", attributes: .concurrent)
                 
                 var isConsumed = false
-                var isNetworkError = false
                 var error: AppCoinsSDKError? = nil
                 
                 for wallet in walletList {
                     group.enter()
-                    queue.sync {
+                    queue.async {
                         TransactionUseCases.shared.consumePurchase(domain: domain, uid: self.uid, wa: wallet) {
                             result in
                             switch result {
@@ -181,11 +220,20 @@ public class Purchase: Codable {
                                 self.state = "CONSUMED"
                                 isConsumed = true
                             case .failure(let failure):
-                                switch failure {
-                                case .noInternet(let message, let description, let request):
-                                    error = AppCoinsSDKError.networkError(debugInfo: DebugInfo(message: message, description: description, request: request))
-                                    isNetworkError = true
-                                default: break
+                                // If no Wallet can finish the purchase then the error thrown should be the one for the last wallet made active
+                                if wallet.getWalletAddress() == walletList.last?.getWalletAddress() {
+                                    switch failure {
+                                    case .failed(let message, let description, let request):
+                                        error = AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request))
+                                    case .noInternet(let message, let description, let request):
+                                        error = AppCoinsSDKError.networkError(debugInfo: DebugInfo(message: message, description: description, request: request))
+                                    case .general(let message, let description, let request):
+                                        error = AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request))
+                                    case .noBillingAgreement(let message, let description, let request):
+                                        error = AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request))
+                                    case .timeOut(let message, let description, let request):
+                                        error = AppCoinsSDKError.systemError(debugInfo: DebugInfo(message: message, description: description, request: request))
+                                    }
                                 }
                             }
                             group.leave()
@@ -194,9 +242,16 @@ public class Purchase: Codable {
                 }
                 
                 group.notify(queue: .main) {
-                    if isConsumed { continuation.resume() }
-                    else if isNetworkError, let error = error { continuation.resume(throwing: error) }
-                    else { continuation.resume(throwing: AppCoinsSDKError.unknown(message: "Failed to complete the purchase process", description: "The purchase was not consumed and the item was not attributed to the user at Purchase.swift:finish")) }
+                    if isConsumed {
+                        continuation.resume()
+                        return
+                    }
+                    
+                    if let error = error {
+                        continuation.resume(throwing: error)
+                    } else {
+                        continuation.resume(throwing: AppCoinsSDKError.unknown(message: "Failed to complete the purchase process", description: "The purchase was not consumed and the item was not attributed to the user at Purchase.swift:finish"))
+                    }
                 }
             }
         }
@@ -216,7 +271,7 @@ public class Purchase: Codable {
                 
                 for wallet in walletList {
                     group.enter()
-                    queue.sync {
+                    queue.async {
                         TransactionUseCases.shared.getAllPurchases(domain: domain, wa: wallet) {
                             result in
                             
@@ -263,7 +318,7 @@ public class Purchase: Codable {
                 
                 for wallet in walletList {
                     group.enter()
-                    queue.sync {
+                    queue.async {
                         TransactionUseCases.shared.getLatestPurchase(domain: domain, sku: sku, wa: wallet) {
                             result in
                             switch result {
@@ -310,7 +365,7 @@ public class Purchase: Codable {
                 
                 for wallet in walletList {
                     group.enter()
-                    queue.sync {
+                    queue.async {
                         TransactionUseCases.shared.getPurchasesByState(domain: domain, state: ["PENDING", "ACKNOWLEDGED"], wa: wallet) {
                             result in
                             switch result {
