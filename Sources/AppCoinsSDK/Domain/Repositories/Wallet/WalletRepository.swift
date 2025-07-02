@@ -22,13 +22,8 @@ internal class WalletRepository: WalletRepositoryProtocol {
             return
         }
         
-        switch activeWallet.type {
-        case .guest:
-            guard let storageGuestWallet = activeWallet as? StorageWalletRaw.StorageGuestWallet else {
-                completion(nil)
-                return
-            }
-            
+        switch activeWallet.wallet {
+        case .guest(let storageGuestWallet):
             getGuestWallet(guestUID: storageGuestWallet.guestUID) { result in
                 switch result {
                 case .success(let guestWallet):
@@ -38,12 +33,7 @@ internal class WalletRepository: WalletRepositoryProtocol {
                 }
             }
             
-        case .user:
-            guard let storageUserWallet = activeWallet as? StorageWalletRaw.StorageUserWallet else {
-                completion(nil)
-                return
-            }
-            
+        case .user(let storageUserWallet):
             getUserWallet(refreshToken: storageUserWallet.refreshToken) { result in
                 switch result {
                 case .success(let userWallet):
@@ -56,31 +46,49 @@ internal class WalletRepository: WalletRepositoryProtocol {
     }
     
     internal func setActiveWallet(user: UserWallet) {
-        let storageWallet = StorageWalletRaw.fromUser(wallet: user)
-        walletManagerService.setActiveWallet(wallet: storageWallet)
+        let newUserWallet = StorageWalletRaw.fromUser(wallet: user)
+        walletManagerService.setActiveWallet(wallet: newUserWallet)
         
+        var newWalletList: [StorageWalletRaw] = []
         var storedWallets = walletManagerService.getWalletList()
-        if !storedWallets.contains(storageWallet) {
-            storedWallets.append(storageWallet)
+        for storedWallet in storedWallets {
+            switch storedWallet.wallet {
+            case .guest(let storageGuestWallet):
+                newWalletList.append(storedWallet)
+            case .user(let storageUserWallet):
+                if storageUserWallet.address != user.address {
+                    newWalletList.append(storedWallet)
+                }
+            }
         }
+        newWalletList.append(newUserWallet)
         
-        walletManagerService.setWalletList(walletList: storedWallets)
+        walletManagerService.setWalletList(walletList: newWalletList)
     }
     
     internal func setActiveWallet(guest: GuestWallet) {
-        let storageWallet = StorageWalletRaw.fromGuest(wallet: guest)
-        walletManagerService.setActiveWallet(wallet: storageWallet)
+        let newGuestWallet = StorageWalletRaw.fromGuest(wallet: guest)
+        walletManagerService.setActiveWallet(wallet: newGuestWallet)
         
+        var newWalletList: [StorageWalletRaw] = []
         var storedWallets = walletManagerService.getWalletList()
-        if !storedWallets.contains(storageWallet) {
-            storedWallets.append(storageWallet)
+        for storedWallet in storedWallets {
+            switch storedWallet.wallet {
+            case .guest(let storageGuestWallet):
+                if storageGuestWallet.guestUID != guest.guestUID {
+                    newWalletList.append(storedWallet)
+                }
+            case .user(let storageUserWallet):
+                newWalletList.append(storedWallet)
+            }
         }
+        newWalletList.append(newGuestWallet)
         
-        walletManagerService.setWalletList(walletList: storedWallets)
+        walletManagerService.setWalletList(walletList: newWalletList)
     }
     
     internal func getGuestWallet(guestUID: String, completion: @escaping (Result<GuestWallet, APPCServiceError>) -> Void) {
-        if let cachedGuestWallet = GuestWalletCache.getValue(forKey: "guest-wallet") {
+        if let cachedGuestWallet = GuestWalletCache.getValue(forKey: guestUID) {
             completion(.success(cachedGuestWallet))
             return
         }
@@ -89,7 +97,7 @@ internal class WalletRepository: WalletRepositoryProtocol {
             switch result {
             case .success(let raw):
                 let guestWallet = GuestWallet(guestUID: guestUID, raw: raw)
-                self.GuestWalletCache.setValue(guestWallet, forKey: "guest-wallet", storageOption: .memory)
+                self.GuestWalletCache.setValue(guestWallet, forKey: guestUID, storageOption: .memory)
                 completion(.success(guestWallet))
             case .failure(let error):
                 completion(.failure(error))
@@ -119,11 +127,12 @@ internal class WalletRepository: WalletRepositoryProtocol {
     internal func getWalletList(completion: @escaping ([Wallet]) -> Void) {
         let rawWalletList = walletManagerService.getWalletList()
         
-        var wallets: [Wallet] = []
+        var wallets: [Wallet?] = Array(repeating: nil, count: rawWalletList.count)
         
         let group = DispatchGroup()
-        for wallet in rawWalletList {
+        for (index, wallet) in rawWalletList.enumerated() {
             group.enter()
+            
             switch wallet.type {
             case .guest:
                 guard case .guest(let storageGuestWallet) = wallet.wallet else {
@@ -132,11 +141,8 @@ internal class WalletRepository: WalletRepositoryProtocol {
                 }
                 
                 getGuestWallet(guestUID: storageGuestWallet.guestUID) { result in
-                    switch result {
-                    case .success(let guestWallet):
-                        wallets.append(guestWallet)
-                    case .failure:
-                        break
+                    if case .success(let guestWallet) = result {
+                        wallets[index] = guestWallet
                     }
                     group.leave()
                 }
@@ -148,11 +154,8 @@ internal class WalletRepository: WalletRepositoryProtocol {
                 }
                 
                 getUserWallet(refreshToken: storageUserWallet.refreshToken) { result in
-                    switch result {
-                    case .success(let userWallet):
-                        wallets.append(userWallet)
-                    case .failure:
-                        break
+                    if case .success(let userWallet) = result {
+                        wallets[index] = userWallet
                     }
                     group.leave()
                 }
@@ -160,7 +163,7 @@ internal class WalletRepository: WalletRepositoryProtocol {
         }
         
         group.notify(queue: .main) {
-            completion(wallets)
+            completion(wallets.compactMap { $0 }) // Filter out nils but preserve order of successes
         }
     }
 }
