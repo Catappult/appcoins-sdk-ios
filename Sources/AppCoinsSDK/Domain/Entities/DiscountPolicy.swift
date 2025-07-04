@@ -7,6 +7,6 @@
 
 import Foundation
 
-internal enum DiscountPolicy: String {
+internal enum DiscountPolicy: String, Codable {
     case D2C = "D2C"
 }

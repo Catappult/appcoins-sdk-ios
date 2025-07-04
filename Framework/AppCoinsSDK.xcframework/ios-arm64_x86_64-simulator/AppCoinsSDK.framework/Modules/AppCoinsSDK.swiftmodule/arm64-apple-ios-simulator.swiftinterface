@@ -330,7 +330,6 @@ public struct PurchaseIntent : Swift.Sendable, Swift.Identifiable, Swift.Codable
   public let id: Foundation.UUID
   public let product: AppCoinsSDK.Product
   public let timestamp: Foundation.Date
-  public init(product: AppCoinsSDK.Product)
   #if compiler(>=5.3) && $AsyncAwait
   public func confirm(domain: Swift.String = (Bundle.main.bundleIdentifier ?? ""), payload: Swift.String? = nil, orderID: Swift.String = String(Date.timeIntervalSinceReferenceDate)) async -> AppCoinsSDK.PurchaseResult
   #endif
@@ -358,6 +357,15 @@ public enum VerificationResult {
   case verified(purchase: AppCoinsSDK.Purchase)
   case unverified(purchase: AppCoinsSDK.Purchase, verificationError: AppCoinsSDK.AppCoinsSDKError)
 }
+public enum PurchaseType {
+  case direct
+  case indirect
+  public static func == (a: AppCoinsSDK.PurchaseType, b: AppCoinsSDK.PurchaseType) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
 public enum RequestMethod : Swift.String {
   case GET
   case POST
@@ -373,6 +381,8 @@ extension AppCoinsSDK.AppcStorefront.Marketplace : Swift.Hashable {}
 extension AppCoinsSDK.AppcStorefront.Marketplace : Swift.RawRepresentable {}
 extension AppCoinsSDK.PurchaseProvider : Swift.Equatable {}
 extension AppCoinsSDK.PurchaseProvider : Swift.Hashable {}
+extension AppCoinsSDK.PurchaseType : Swift.Equatable {}
+extension AppCoinsSDK.PurchaseType : Swift.Hashable {}
 extension AppCoinsSDK.RequestMethod : Swift.Equatable {}
 extension AppCoinsSDK.RequestMethod : Swift.Hashable {}
 extension AppCoinsSDK.RequestMethod : Swift.RawRepresentable {}
