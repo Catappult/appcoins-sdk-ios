@@ -23,6 +23,8 @@ internal class PurchaseViewModel: ObservableObject {
     internal var domain: String? = nil
     internal var metadata: String? = nil
     internal var reference: String? = nil
+    internal var discountPolicy: DiscountPolicy? = nil
+    internal var oemID: String? = nil
     
     internal var webCheckout: WebCheckout? = nil
     @Published internal var webCheckoutType: WebCheckoutType?
@@ -42,29 +44,39 @@ internal class PurchaseViewModel: ObservableObject {
     }
     
     // Called when a user starts a product purchase
-    internal func purchase(product: Product, domain: String, metadata: String?, reference: String?) {
+    internal func purchase(type: PurchaseType, product: Product, domain: String, metadata: String?, reference: String?, discountPolicy: DiscountPolicy? = nil, oemID: String? = nil) {
         self.product = product
         self.domain = domain
         self.metadata = metadata
         self.reference = reference
+        self.discountPolicy = discountPolicy
+        self.oemID = oemID
         
         DispatchQueue.main.async {
             Task { @MainActor in
                 let guestUID = MMPUseCases.shared.getGuestUID()
                 
-                if await AppcSDK.isAvailableInUS() {
-                    self.webCheckout = WebCheckout(domain: domain, product: product.sku, metadata: self.metadata, reference: self.reference, guestUID: guestUID, type: .browser)
-                    
-                    guard let checkoutURL: URL = self.webCheckout?.URL else {
-                        self.failed(error: .systemError(message: "Web Checkout URL is invalid", description: "Could not open Browser Web Checkout because URL is invalid at PurchaseViewModel.swift:purchase"))
-                        return
-                    }
-                    
-                    UIApplication.shared.open(checkoutURL, options: [:]) { _ in
+                switch type {
+                case .direct:
+                    if await AppcSDK.isAvailableInUS() {
+                        self.webCheckout = WebCheckout(domain: domain, product: product.sku, metadata: self.metadata, reference: self.reference, guestUID: guestUID, type: .browser)
+                        
+                        guard let checkoutURL: URL = self.webCheckout?.URL else {
+                            self.failed(error: .systemError(message: "Web Checkout URL is invalid", description: "Could not open Browser Web Checkout because URL is invalid at PurchaseViewModel.swift:purchase"))
+                            return
+                        }
+                        
+                        UIApplication.shared.open(checkoutURL, options: [:]) { _ in
+                            self.hasActivePurchase = true
+                            self.webCheckoutType = .browser
+                        }
+                    } else {
+                        self.webCheckout = WebCheckout(domain: domain, product: product.sku, metadata: self.metadata, reference: self.reference, guestUID: guestUID, type: .webview)
+                        
                         self.hasActivePurchase = true
-                        self.webCheckoutType = .browser
+                        self.webCheckoutType = .webview
                     }
-                } else {
+                case .indirect:
                     self.webCheckout = WebCheckout(domain: domain, product: product.sku, metadata: self.metadata, reference: self.reference, guestUID: guestUID, type: .webview)
                     
                     self.hasActivePurchase = true
