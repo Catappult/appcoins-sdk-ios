@@ -78,13 +78,13 @@ internal class WalletUseCases {
     
     internal func getWalletList(completion: @escaping ([Wallet]) -> Void) {
         repository.getWalletList { result in 
-            Utils.log("Wallet List:")
+            Utils.log("Wallet List")
             
             for wallet in result {
                 if let wallet = wallet as? UserWallet {
-                    Utils.log("Wallet (Type: User, Address: \(wallet.address))")
+                    Utils.log("– Wallet (Type: User, Address: \(wallet.address))")
                 } else if let wallet = wallet as? GuestWallet {
-                    Utils.log("Wallet (Type: Guest, Address: \(wallet.address))")
+                    Utils.log("– Wallet (Type: Guest, Address: \(wallet.address))")
                 }
             }
             
