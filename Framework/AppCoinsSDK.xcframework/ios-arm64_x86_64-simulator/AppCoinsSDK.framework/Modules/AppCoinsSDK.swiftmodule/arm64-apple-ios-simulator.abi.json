@@ -13732,33 +13732,6 @@
             ]
           },
           {
-            "kind": "Constructor",
-            "name": "init",
-            "printedName": "init(product:)",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "PurchaseIntent",
-                "printedName": "AppCoinsSDK.PurchaseIntent",
-                "usr": "s:11AppCoinsSDK14PurchaseIntentV"
-              },
-              {
-                "kind": "TypeNominal",
-                "name": "Product",
-                "printedName": "AppCoinsSDK.Product",
-                "usr": "s:11AppCoinsSDK7ProductV"
-              }
-            ],
-            "declKind": "Constructor",
-            "usr": "s:11AppCoinsSDK14PurchaseIntentV7productAcA7ProductV_tcfc",
-            "mangledName": "$s11AppCoinsSDK14PurchaseIntentV7productAcA7ProductV_tcfc",
-            "moduleName": "AppCoinsSDK",
-            "declAttributes": [
-              "AccessControl"
-            ],
-            "init_kind": "Designated"
-          },
-          {
             "kind": "Function",
             "name": "confirm",
             "printedName": "confirm(domain:payload:orderID:)",
@@ -14549,6 +14522,207 @@
         "moduleName": "AppCoinsSDK",
         "declAttributes": [
           "ImplementationOnly"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "PurchaseType",
+        "printedName": "PurchaseType",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "direct",
+            "printedName": "direct",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(AppCoinsSDK.PurchaseType.Type) -> AppCoinsSDK.PurchaseType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "PurchaseType",
+                    "printedName": "AppCoinsSDK.PurchaseType",
+                    "usr": "s:11AppCoinsSDK12PurchaseTypeO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "AppCoinsSDK.PurchaseType.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "PurchaseType",
+                        "printedName": "AppCoinsSDK.PurchaseType",
+                        "usr": "s:11AppCoinsSDK12PurchaseTypeO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:11AppCoinsSDK12PurchaseTypeO6directyA2CmF",
+            "mangledName": "$s11AppCoinsSDK12PurchaseTypeO6directyA2CmF",
+            "moduleName": "AppCoinsSDK"
+          },
+          {
+            "kind": "Var",
+            "name": "indirect",
+            "printedName": "indirect",
+            "children": [
+              {
+                "kind": "TypeFunc",
+                "name": "Function",
+                "printedName": "(AppCoinsSDK.PurchaseType.Type) -> AppCoinsSDK.PurchaseType",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "PurchaseType",
+                    "printedName": "AppCoinsSDK.PurchaseType",
+                    "usr": "s:11AppCoinsSDK12PurchaseTypeO"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Metatype",
+                    "printedName": "AppCoinsSDK.PurchaseType.Type",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "PurchaseType",
+                        "printedName": "AppCoinsSDK.PurchaseType",
+                        "usr": "s:11AppCoinsSDK12PurchaseTypeO"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "declKind": "EnumElement",
+            "usr": "s:11AppCoinsSDK12PurchaseTypeO8indirectyA2CmF",
+            "mangledName": "$s11AppCoinsSDK12PurchaseTypeO8indirectyA2CmF",
+            "moduleName": "AppCoinsSDK"
+          },
+          {
+            "kind": "Function",
+            "name": "==",
+            "printedName": "==(_:_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "PurchaseType",
+                "printedName": "AppCoinsSDK.PurchaseType",
+                "usr": "s:11AppCoinsSDK12PurchaseTypeO"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "PurchaseType",
+                "printedName": "AppCoinsSDK.PurchaseType",
+                "usr": "s:11AppCoinsSDK12PurchaseTypeO"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11AppCoinsSDK12PurchaseTypeO2eeoiySbAC_ACtFZ",
+            "mangledName": "$s11AppCoinsSDK12PurchaseTypeO2eeoiySbAC_ACtFZ",
+            "moduleName": "AppCoinsSDK",
+            "static": true,
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Var",
+            "name": "hashValue",
+            "printedName": "hashValue",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:11AppCoinsSDK12PurchaseTypeO9hashValueSivp",
+            "mangledName": "$s11AppCoinsSDK12PurchaseTypeO9hashValueSivp",
+            "moduleName": "AppCoinsSDK",
+            "implicit": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11AppCoinsSDK12PurchaseTypeO9hashValueSivg",
+                "mangledName": "$s11AppCoinsSDK12PurchaseTypeO9hashValueSivg",
+                "moduleName": "AppCoinsSDK",
+                "implicit": true,
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "hash",
+            "printedName": "hash(into:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Hasher",
+                "printedName": "Swift.Hasher",
+                "paramValueOwnership": "InOut",
+                "usr": "s:s6HasherV"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11AppCoinsSDK12PurchaseTypeO4hash4intoys6HasherVz_tF",
+            "mangledName": "$s11AppCoinsSDK12PurchaseTypeO4hash4intoys6HasherVz_tF",
+            "moduleName": "AppCoinsSDK",
+            "implicit": true,
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Enum",
+        "usr": "s:11AppCoinsSDK12PurchaseTypeO",
+        "mangledName": "$s11AppCoinsSDK12PurchaseTypeO",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Equatable",
+            "printedName": "Equatable",
+            "usr": "s:SQ",
+            "mangledName": "$sSQ"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Hashable",
+            "printedName": "Hashable",
+            "usr": "s:SH",
+            "mangledName": "$sSH"
+          }
         ]
       },
       {
@@ -18692,14 +18866,14 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Entities\/DiscountPolicy.swift",
       "kind": "StringLiteral",
-      "offset": 162,
+      "offset": 171,
       "length": 5,
       "value": "\"D2C\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Entities\/DiscountPolicy.swift",
       "kind": "StringLiteral",
-      "offset": 162,
+      "offset": 171,
       "length": 5,
       "value": "\"D2C\""
     },
@@ -20673,7 +20847,7 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Entities\/Product.swift",
       "kind": "StringLiteral",
-      "offset": 6249,
+      "offset": 6264,
       "length": 2,
       "value": "\"\""
     },
@@ -20743,7 +20917,7 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Entities\/PurchaseIntent.swift",
       "kind": "StringLiteral",
-      "offset": 518,
+      "offset": 732,
       "length": 2,
       "value": "\"\""
     },
