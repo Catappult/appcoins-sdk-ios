@@ -96,7 +96,7 @@ public struct Product: Codable {
                 // domain – the app's domain registered in catappult
                 // payload – information that the developer might want to pass with the transaction
                 // orderID – a reference so that the developer can identify unique transactions
-                PurchaseViewModel.shared.purchase(product: self, domain: domain, metadata: payload, reference: orderID)
+                PurchaseViewModel.shared.purchase(type: .direct, product: self, domain: domain, metadata: payload, reference: orderID)
             }
             
             let result = try? await withCheckedThrowingContinuation { continuation in
@@ -118,7 +118,7 @@ public struct Product: Codable {
         }
     }
     
-    internal func indirectPurchase(domain: String = (Bundle.main.bundleIdentifier ?? ""), payload: String? = nil, orderID: String = String(Date.timeIntervalSinceReferenceDate)) async -> PurchaseResult {
+    internal func indirectPurchase(domain: String = (Bundle.main.bundleIdentifier ?? ""), payload: String? = nil, orderID: String = String(Date.timeIntervalSinceReferenceDate), discountPolicy: DiscountPolicy? = nil, oemID: String? = nil) async -> PurchaseResult {
         
         if PurchaseViewModel.shared.hasActivePurchase {
             return .failed(error: .purchaseNotAllowed(message: "Purchase Failed", description: "AppcSDK not available or has active transaction at Product.swift:purchase", request: nil))
@@ -133,7 +133,9 @@ public struct Product: Codable {
                 // domain – the app's domain registered in catappult
                 // payload – information that the developer might want to pass with the transaction
                 // orderID – a reference so that the developer can identify unique transactions
-                PurchaseViewModel.shared.purchase(product: self, domain: domain, metadata: payload, reference: orderID)
+                // discountPolicy – discount policy for the purchase
+                // oemID – developer identifier
+                PurchaseViewModel.shared.purchase(type: .indirect, product: self, domain: domain, metadata: payload, reference: orderID, discountPolicy: discountPolicy, oemID: oemID)
             }
             
             let result = try? await withCheckedThrowingContinuation { continuation in

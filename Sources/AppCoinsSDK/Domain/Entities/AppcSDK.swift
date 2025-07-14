@@ -236,9 +236,18 @@ public struct AppcSDK {
                     }
                 case "purchase":
                     if let sku = queryItems?.first(where: { $0.name == "product" })?.value {
+                        let discountPolicy = queryItems?.first(where: { $0.name == "discount_policy" })?.value.flatMap { DiscountPolicy(rawValue: $0) }
+                        let oemID = queryItems?.first(where: { $0.name == "oemid" })?.value
+                        
                         Task {
-                            guard let product = await try? Product.products(for: [sku]).first else { return }
-                            PurchaseIntentManager.shared.set(intent: PurchaseIntent(product: product))
+                            ProductUseCases.shared.getProduct(domain: BuildConfiguration.packageName, product: sku, discountPolicy: discountPolicy) { result in
+                                
+                                if case .success(let product) = result {
+                                    PurchaseIntentManager.shared.set(intent: PurchaseIntent(product: product, discountPolicy: discountPolicy, oemID: oemID))
+                                } else {
+                                    Utils.log("Indirect purchase failed: product not found for SKU '\(sku)'")
+                                }
+                            }
                         }
                     }
                 case "checkout":
