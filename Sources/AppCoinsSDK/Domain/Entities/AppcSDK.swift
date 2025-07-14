@@ -170,15 +170,18 @@ public struct AppcSDK {
                 return false
             }
             
-            let storefront = try await AppDistributor.current
-            switch storefront {
-            case .appStore:
-                return false
-            case .marketplace(let marketplace):
-                return marketplace == "com.aptoide.ios.store"
-            default:
+            #if targetEnvironment(simulator)
+                Utils.log("Can't validate App Distributor on Simulator. To test different billings (Apple vs. Aptoide) use an actual device or enable AppCoinsDevTools.")
                 return true
-            }
+            #else
+                let storefront = try await AppDistributor.current
+                switch storefront {
+                case .appStore:
+                    return false
+                default:
+                    return true
+                }
+            #endif
         } catch {
             return false
         }
