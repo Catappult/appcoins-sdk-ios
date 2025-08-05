@@ -7791,14 +7791,14 @@
       "kind": "StringLiteral",
       "offset": 4359,
       "length": 7,
-      "value": "\"3.1.0\""
+      "value": "\"3.2.0\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/BuildConfiguration.swift",
       "kind": "IntegerLiteral",
       "offset": 4486,
       "length": 2,
-      "value": "41"
+      "value": "42"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/BuildConfiguration.swift",
