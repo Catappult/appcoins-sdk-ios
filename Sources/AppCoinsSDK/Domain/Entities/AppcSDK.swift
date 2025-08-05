@@ -43,10 +43,16 @@ public struct AppcSDK {
                         switch storefront {
                         case .appStore:
                             return false
-                        case .marketplace(let marketplace):
-                            return marketplace == "com.aptoide.ios.store"
-                        default:
+                        case .testFlight:
+                            return false
+                        case .marketplace:
                             return true
+                        case .web:
+                            return true
+                        case .other:
+                            return true
+                        default:
+                            return false
                         }
                     } catch {
                         return false
