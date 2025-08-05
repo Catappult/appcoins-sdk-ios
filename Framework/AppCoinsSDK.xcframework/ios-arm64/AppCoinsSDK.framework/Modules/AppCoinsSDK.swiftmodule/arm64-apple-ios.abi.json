@@ -7798,7 +7798,7 @@
       "kind": "IntegerLiteral",
       "offset": 4486,
       "length": 2,
-      "value": "42"
+      "value": "44"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/BuildConfiguration.swift",
