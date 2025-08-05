@@ -1,6 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.10 (swiftlang-5.10.0.13 clang-1500.3.9.4)
-// swift-module-flags: -target x86_64-apple-ios14.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name AppCoinsSDK
+// swift-compiler-version: Apple Swift version 6.1 effective-5.10 (swiftlang-6.1.0.110.21 clang-1700.0.13.3)
+// swift-module-flags: -target x86_64-apple-ios14.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name AppCoinsSDK
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -interface-compiler-version 6.1
 import DeveloperToolsSupport
 import Foundation
 import Swift
@@ -41,9 +42,7 @@ public enum AppCoinsSDKError : Swift.Error, Swift.CustomStringConvertible {
   @objc deinit
 }
 public struct AppcSDK {
-  #if compiler(>=5.3) && $AsyncAwait
   public static func isAvailable() async -> Swift.Bool
-  #endif
   public static func handle(redirectURL: Foundation.URL?) -> Swift.Bool
 }
 public struct Product : Swift.Codable {
@@ -56,12 +55,8 @@ public struct Product : Swift.Codable {
   public let priceSymbol: Swift.String
   public let priceDiscountOriginal: Swift.String?
   public let priceDiscountPercentage: Swift.String?
-  #if compiler(>=5.3) && $AsyncAwait
   public static func products(domain: Swift.String = (Bundle.main.bundleIdentifier ?? ""), for identifiers: [Swift.String]? = nil) async throws -> [AppCoinsSDK.Product]
-  #endif
-  #if compiler(>=5.3) && $AsyncAwait
   public func purchase(domain: Swift.String = (Bundle.main.bundleIdentifier ?? ""), payload: Swift.String? = nil, orderID: Swift.String = String(Date.timeIntervalSinceReferenceDate)) async -> AppCoinsSDK.PurchaseResult
-  #endif
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
@@ -93,18 +88,10 @@ public struct Product : Swift.Codable {
     public func encode(to encoder: any Swift.Encoder) throws
     required public init(from decoder: any Swift.Decoder) throws
   }
-  #if compiler(>=5.3) && $AsyncAwait
   public func finish(domain: Swift.String = (Bundle.main.bundleIdentifier ?? "")) async throws
-  #endif
-  #if compiler(>=5.3) && $AsyncAwait
   public static func all(domain: Swift.String = (Bundle.main.bundleIdentifier ?? "")) async throws -> [AppCoinsSDK.Purchase]
-  #endif
-  #if compiler(>=5.3) && $AsyncAwait
   public static func latest(domain: Swift.String = (Bundle.main.bundleIdentifier ?? ""), sku: Swift.String) async throws -> AppCoinsSDK.Purchase?
-  #endif
-  #if compiler(>=5.3) && $AsyncAwait
   public static func unfinished(domain: Swift.String = (Bundle.main.bundleIdentifier ?? "")) async throws -> [AppCoinsSDK.Purchase]
-  #endif
   public static var updates: _Concurrency.AsyncStream<AppCoinsSDK.PurchaseIntent> {
     get
   }
@@ -119,9 +106,7 @@ public struct PurchaseIntent : Swift.Sendable, Swift.Identifiable, Swift.Codable
   public let id: Foundation.UUID
   public let product: AppCoinsSDK.Product
   public let timestamp: Foundation.Date
-  #if compiler(>=5.3) && $AsyncAwait
   public func confirm(domain: Swift.String = (Bundle.main.bundleIdentifier ?? ""), payload: Swift.String? = nil, orderID: Swift.String = String(Date.timeIntervalSinceReferenceDate)) async -> AppCoinsSDK.PurchaseResult
-  #endif
   public func reject()
   public typealias ID = Foundation.UUID
   public func encode(to encoder: any Swift.Encoder) throws
