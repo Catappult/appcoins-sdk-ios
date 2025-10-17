@@ -12,6 +12,7 @@ internal enum WebPaymentInterfaceMethod: String {
     case onError = "onError"
     case handleAuthenticationRedirect = "handleAuthenticationRedirect"
     case handleExternalRedirect = "handleExternalRedirect"
+    case handleApplicationRedirect = "handleApplicationRedirect"
     case handleInternalRedirect = "handleInternalRedirect"
     case setActiveWallet = "setActiveWallet"
 }
