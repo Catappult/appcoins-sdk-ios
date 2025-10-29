@@ -44,7 +44,14 @@ internal class PurchaseViewModel: ObservableObject {
     }
     
     // Called when a user starts a product purchase
-    internal func purchase(type: PurchaseType, product: Product, domain: String, metadata: String?, reference: String?, discountPolicy: DiscountPolicy? = nil, oemID: String? = nil) {
+    internal func purchase(
+        product: Product,
+        domain: String,
+        metadata: String?,
+        reference: String?,
+        discountPolicy: DiscountPolicy? = nil,
+        oemID: String? = nil
+    ) {
         self.product = product
         self.domain = domain
         self.metadata = metadata
@@ -56,32 +63,17 @@ internal class PurchaseViewModel: ObservableObject {
             Task { @MainActor in
                 let guestUID = MMPUseCases.shared.getGuestUID()
                 
-                switch type {
-                case .direct:
-                    if await AppcSDK.isAvailableInUS() {
-                        self.webCheckout = WebCheckout(domain: domain, product: product.sku, metadata: self.metadata, reference: self.reference, guestUID: guestUID, type: .browser)
-                        
-                        guard let checkoutURL: URL = self.webCheckout?.URL else {
-                            self.failed(error: .systemError(message: "Web Checkout URL is invalid", description: "Could not open Browser Web Checkout because URL is invalid at PurchaseViewModel.swift:purchase"))
-                            return
-                        }
-                        
-                        UIApplication.shared.open(checkoutURL, options: [:]) { _ in
-                            self.hasActivePurchase = true
-                            self.webCheckoutType = .browser
-                        }
-                    } else {
-                        self.webCheckout = WebCheckout(domain: domain, product: product.sku, metadata: self.metadata, reference: self.reference, guestUID: guestUID, type: .webview)
-                        
-                        self.hasActivePurchase = true
-                        self.webCheckoutType = .webview
-                    }
-                case .indirect:
-                    self.webCheckout = WebCheckout(domain: domain, product: product.sku, metadata: self.metadata, reference: self.reference, guestUID: guestUID, type: .webview)
-                    
-                    self.hasActivePurchase = true
-                    self.webCheckoutType = .webview
-                }
+                self.webCheckout = WebCheckout(
+                    domain: domain,
+                    product: product.sku,
+                    metadata: self.metadata,
+                    reference: self.reference,
+                    guestUID: guestUID,
+                    type: .webview
+                )
+                
+                self.hasActivePurchase = true
+                self.webCheckoutType = .webview
             }
         }
     }

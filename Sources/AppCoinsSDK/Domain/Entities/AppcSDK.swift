@@ -96,41 +96,8 @@ public struct AppcSDK {
             return isDefault
         }
         
-        let usAllowed = await isAvailableInUS()
         let euAllowed = await isAvailableInEU()
-        return usAllowed || euAllowed
-    }
-    
-    /// Checks availability of the AppcSDK in the United States storefront.
-    ///
-    /// - If `AppCoinsDevTools` is enabled and a default locale is set:
-    ///   - Returns `true` if the default locale equals `.USA`.
-    /// - Otherwise:
-    ///   - On iOS versions prior to 15.0, returns `Locale.current.regionCode == "US"`.
-    ///   - On iOS 15.0 and later, attempts to fetch `StoreKit.Storefront.current`:
-    ///     - Returns `true` if `storefront?.countryCode == "USA"`.
-    ///     - Falls back to the locale check on error.
-    ///
-    /// - Returns: `true` if the SDK can be used in the US, `false` otherwise.
-    static internal func isAvailableInUS() async -> Bool {
-        if AppcSDK.configuration.isAppCoinsDevToolsEnabled, let defaultLocale = AppcSDK.configuration.storefront?.locale {
-            return defaultLocale == AppcStorefront.Locale.USA
-        }
-        
-        let localeIsUS = (Locale.current.regionCode == "US")
-        
-        // On older OS versions just return the locale
-        guard #available(iOS 15.0, *) else {
-            return localeIsUS
-        }
-        
-        do {
-            let storefront = try await StoreKit.Storefront.current
-            return (storefront?.countryCode == "USA")
-        } catch {
-            // If the Storefront lookup fails, fall back to the locale
-            return localeIsUS
-        }
+        return euAllowed
     }
 
     /// Checks availability of the AppcSDK in European Union marketplaces.
