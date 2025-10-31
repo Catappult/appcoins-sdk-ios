@@ -37,9 +37,7 @@ class PurchaseIntentManager {
     }
 
     internal func loadFromDisk() {
-        guard let storedIntent = SDKUseCases.shared.fetchPurchaseIntent() else {
-            return
-        }
+        guard let storedIntent = SDKUseCases.shared.fetchPurchaseIntent() else { return }
         
         if isIntentExpired(intent: storedIntent) {
             removeFromDisk()

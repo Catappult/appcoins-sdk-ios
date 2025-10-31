@@ -1,23 +1,12 @@
 //
 //  Extensions.swift
-//  
+//  AppCoinsSDK
 //
-//  Created by aptoide on 21/09/2023.
+//  Created by Graciano Caldeira on 12/05/2025.
 //
 
 import SwiftUI
-
-internal extension UIView {
-    internal func findAndResignFirstResponder() {
-        if isFirstResponder {
-            resignFirstResponder()
-        } else {
-            for subview in subviews {
-                subview.findAndResignFirstResponder()
-            }
-        }
-    }
-}
+import UIKit
 
 // For some reason this solves the issue 'module' is inaccessible due to 'internal' protection level
 internal extension Bundle {
@@ -44,17 +33,30 @@ internal extension Bundle {
     }()
 }
 
-internal extension UIApplication {
-    func dismissKeyboard() {
-        self.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-    }
-}
+extension UIColor {
+    convenience init?(color: Color) {
+        let uiView = UIHostingController(rootView: Rectangle().fill(color)).view
+        let size = CGSize(width: 1, height: 1)
 
-internal extension String {
-    func stripTrailingSpace() -> String {
-        guard let lastCharacter = self.last, lastCharacter == " " else {
-            return self // Return the original string if there's no trailing space
+        uiView?.bounds = CGRect(origin: .zero, size: size)
+        uiView?.backgroundColor = .clear
+
+        let renderer = UIGraphicsImageRenderer(size: size)
+
+        let image = renderer.image { _ in
+            uiView?.drawHierarchy(in: uiView!.bounds, afterScreenUpdates: true)
         }
-        return String(self.dropLast()) // Remove only the last character (trailing space)
+
+        guard let pixelColor = image.cgImage?.dataProvider?.data,
+              let ptr = CFDataGetBytePtr(pixelColor) else {
+            return nil
+        }
+
+        let r = CGFloat(ptr[0]) / 255.0
+        let g = CGFloat(ptr[1]) / 255.0
+        let b = CGFloat(ptr[2]) / 255.0
+        let a = CGFloat(ptr[3]) / 255.0
+
+        self.init(red: r, green: g, blue: b, alpha: a)
     }
 }

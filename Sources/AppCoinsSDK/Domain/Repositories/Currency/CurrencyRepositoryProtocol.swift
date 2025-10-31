@@ -1,14 +1,14 @@
 //
 //  CurrencyRepositoryProtocol.swift
-//  
+//  AppCoinsSDK
 //
-//  Created by Graciano Caldeira on 16/08/2024.
+//  Created by aptoide on 02/06/2025.
 //
 
 import Foundation
 
 internal protocol CurrencyRepositoryProtocol {
-    func getUserCurrency(completion: @escaping (Result<Currency, BillingError>) -> Void)
-    func getSupportedCurrencies(completion: @escaping (Result<[Currency], BillingError>) -> Void)
-    func getSupportedCurrency(currency: String, completion: @escaping (Result<Currency, BillingError>) -> Void)
+    func getUserCurrency(completion: @escaping (Result<Currency, BrokerError>) -> Void)
+    func getSupportedCurrencies(completion: @escaping (Result<[Currency], BrokerError>) -> Void)
+    func getSupportedCurrency(currency: String, completion: @escaping (Result<Currency, BrokerError>) -> Void)
 }

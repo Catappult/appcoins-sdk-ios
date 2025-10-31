@@ -1,6 +1,6 @@
 //
 //  WalletUseCases.swift
-//  
+//
 //
 //  Created by aptoide on 16/05/2023.
 //
@@ -9,83 +9,86 @@ import Foundation
 
 internal class WalletUseCases {
     
-    static var shared : WalletUseCases = WalletUseCases()
+    static var shared: WalletUseCases = WalletUseCases()
     
     private var repository: WalletRepositoryProtocol
-    private var authRepository: AuthRepositoryProtocol
     private var mmpRepository: MMPRepositoryProtocol
     
-    private init(repository: WalletRepositoryProtocol = WalletRepository(), authRepository: AuthRepositoryProtocol = AuthRepository(), mmpRepository: MMPRepositoryProtocol = MMPRepository()) {
+    private init(repository: WalletRepositoryProtocol = WalletRepository(), mmpRepository: MMPRepositoryProtocol = MMPRepository()) {
         self.repository = repository
-        self.authRepository = authRepository
         self.mmpRepository = mmpRepository
     }
     
-    internal func getWallet(completion: @escaping (Result<Wallet, APPCServiceError>) -> Void)  {
-        authRepository.getUserWallet() { userWallet in
-            if let userWallet = userWallet {
-                completion(.success(userWallet))
-            } else {
-                if let clientWallet = self.repository.getClientWallet() { completion(.success(clientWallet)) }
-                else { completion(.failure(.failed(message: "Failed to get wallet", description: "There is no active wallet, and it was impossible to create a new wallet at WalletUseCases.swift:getWallet", request: nil))) }
+    internal func getWallet(completion: @escaping (Result<Wallet, APPCServiceError>) -> Void) {
+        repository.getActiveWallet() { activeWallet in
+            if let activeWallet = activeWallet {
+                
+                if let activeWallet = activeWallet as? UserWallet {
+                    Utils.log("Active Wallet (Type: User, Address: \(activeWallet.address))")
+                } else if let activeWallet = activeWallet as? GuestWallet {
+                    Utils.log("Active Wallet (Type: Guest, Address: \(activeWallet.address))")
+                }
+                
+                completion(.success(activeWallet))
+                return
+            }
+            
+            self.getGuestWallet() { result in
+                switch result {
+                case .success(let guestWallet):
+                    self.repository.setActiveWallet(guest: guestWallet)
+                    completion(.success(guestWallet))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
             }
         }
+    }
+    
+    internal func setActiveWallet(user: UserWallet) {
+        repository.setActiveWallet(user: user)
+        Utils.log("Set Active Wallet (Type: User, Address: \(user.address))")
+    }
+    
+    internal func setActiveWallet(guest: GuestWallet) {
+        repository.setActiveWallet(guest: guest)
+        Utils.log("Set Active Wallet (Type: Guest, Address: \(guest.address))")
+    }
+    
+    internal func getGuestWallet(completion: @escaping (Result<GuestWallet, APPCServiceError>) -> Void) {
+        guard let guestUID = mmpRepository.getGuestUID() else {
+            completion(.failure(.failed(
+                message: "Guest ID Not Found",
+                description: "Guest ID not found at WalletUseCases.swift:getGuestWallet"
+            )))
+            return
+        }
         
-        // We will not be using guestWallets yet
-//        if let guestUID = mmpRepository.getGuestUID() {
-//            repository.getGuestWallet(guestUID: guestUID) {
-//                result in
-//                
-//                switch result {
-//                case .success(let guestWallet):
-//                    completion(.success(guestWallet))
-//                case .failure(let error):
-//                    if let clientWallet = self.repository.getClientWallet() {
-//                        completion(.success(clientWallet))
-//                    } else {
-//                        completion(.failure(error))
-//                    }
-//                }
-//            }
-//        }
+        repository.getGuestWallet(guestUID: guestUID) {
+            result in
+
+            switch result {
+            case .success(let guestWallet):
+                completion(.success(guestWallet))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
     
     internal func getWalletList(completion: @escaping ([Wallet]) -> Void) {
-        authRepository.getUserWallet() { userWallet in            
-            var clientWallets: [Wallet] = self.repository.getWalletList()
+        repository.getWalletList { result in 
+            Utils.log("Wallet List")
             
-            if let userWallet = userWallet { clientWallets.append(userWallet) }
-            completion(clientWallets)
+            for wallet in result {
+                if let wallet = wallet as? UserWallet {
+                    Utils.log("– Wallet (Type: User, Address: \(wallet.address))")
+                } else if let wallet = wallet as? GuestWallet {
+                    Utils.log("– Wallet (Type: Guest, Address: \(wallet.address))")
+                }
+            }
+            
+            completion(result)
         }
-        
-        // We will not be using guestWallets yet
-//        if let guestUID = mmpRepository.getGuestUID() {
-//            repository.getGuestWallet(guestUID: guestUID) {
-//                result in
-//                
-//                var clientWallets: [Wallet] = self.repository.getWalletList()
-//                
-//                switch result {
-//                case .success(let guestWallet):
-//                    clientWallets.append(guestWallet)
-//                    completion(clientWallets)
-//                case .failure(_):
-//                    completion(clientWallets)
-//                }
-//                
-//            }
-//        }
-    }
-    
-    internal func getClientWallet() -> ClientWallet? {
-        return repository.getClientWallet()
-    }
-    
-    internal func getWalletBalance(wallet: Wallet, currency: Currency, completion: @escaping (Result<Balance, AppcTransactionError>) -> Void) {
-        repository.getWalletBalance(wallet: wallet, currency: currency) { result in completion(result) }
-    }
-    
-    internal func getWalletPrivateKey(wallet: Wallet) -> Data? {
-        return repository.getWalletPrivateKey(wallet: wallet)
     }
 }

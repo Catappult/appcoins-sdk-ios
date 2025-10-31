@@ -8,10 +8,6 @@
 import Foundation
 
 internal protocol ProductRepositoryProtocol {
-    
-    func getProduct(domain: String, product: String, currency: Currency, discountPolicy: String?, completion: @escaping (Result<Product, ProductServiceError>) -> Void)
-    func getAllProducts(domain: String, currency: Currency, discountPolicy: String?, completion: @escaping (Result<[Product], ProductServiceError>) -> Void)
-    func getProductAppcValue(product: Product, productCurrency: Currency, completion: @escaping (Result<String, BillingError>) -> Void)
-    
+    func getProduct(domain: String, product: String, currency: Currency, discountPolicy: DiscountPolicy?, completion: @escaping (Result<Product, ProductServiceError>) -> Void)
+    func getAllProducts(domain: String, currency: Currency, discountPolicy: DiscountPolicy?, completion: @escaping (Result<[Product], ProductServiceError>) -> Void)
 }
-

@@ -12,10 +12,10 @@ public struct PurchaseIntent: Sendable, Identifiable, Codable {
     public let id: UUID
     public let product: Product
     public let timestamp: Date
-    private let discountPolicy: String?
+    private let discountPolicy: DiscountPolicy?
     private let oemID: String?
     
-    internal init(product: Product, discountPolicy: String? = nil, oemID: String? = nil) {
+    internal init(product: Product, discountPolicy: DiscountPolicy? = nil, oemID: String? = nil) {
         self.id = UUID()
         self.product = product
         self.timestamp = Date()
