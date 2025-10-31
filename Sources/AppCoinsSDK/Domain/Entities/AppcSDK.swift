@@ -96,27 +96,6 @@ public struct AppcSDK {
             return isDefault
         }
         
-        let euAllowed = await isAvailableInEU()
-        return euAllowed
-    }
-
-    /// Checks availability of the AppcSDK in European Union marketplaces.
-    ///
-    /// - If `AppCoinsDevTools` is enabled and a default locale is set:
-    ///   - Returns `false` if the locale is outside the EU.
-    ///   - If a default marketplace override exists:
-    ///     - Returns `true` for `.aptoide`.
-    ///     - Returns `false` for `.apple`.
-    /// - Otherwise:
-    ///   - On iOS versions prior to 17.4, always returns `false`.
-    ///   - On iOS 17.4 and later, fetches `AppDistributor.current`:
-    ///     - Returns `false` for `.appStore`.
-    ///     - Returns `true` if `marketplace == "com.aptoide.ios.store"`.
-    ///     - Returns `true` for any other non-App Store marketplace.
-    ///   - Returns `false` on error.
-    ///
-    /// - Returns: `true` if the SDK can be used in the EU, `false` otherwise.
-    static internal func isAvailableInEU() async -> Bool {
         if AppcSDK.configuration.isAppCoinsDevToolsEnabled, let defaultLocale = AppcSDK.configuration.storefront?.locale {
             guard AppcStorefront.Locale.EU.contains(defaultLocale) else {
                 return false
