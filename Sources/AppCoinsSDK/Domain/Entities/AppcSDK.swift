@@ -131,6 +131,16 @@ public struct AppcSDK {
     /// - It initializes internal processes of the AppCoins SDK: `AppcSDKInternal.initialize()`.
     /// - Deals with two types of redirectURL's:
     ///   - DeepLinks coming from the Appcoins wallet
+    ///     Supported URL patterns:
+    ///         - **wallet.appcoins.io/default**
+    ///             - `/default/storefront`: sets the SDK default storefront locale and marketplace using query parameters:
+    ///                 - `locale`: The storefront locale (e.g., `"pt-PT"`).
+    ///                 - `marketplace`: The storefront marketplace (e.g., `"com.aptoide.ios.store"`).
+    ///             - `/default?value=true|false`: enables or disables the SDK default feature flag.
+    ///         - **wallet.appcoins.io/purchase**
+    ///             - Triggers an indirect purchase by fetching product data and preparing a `PurchaseIntent`.
+    ///         - **wallet.appcoins.io/checkout/success** or **/checkout/failure**
+    ///             - Handles checkout result deep links and routes them to `PurchaseViewModel
     ///   - Handles deep links coming from the WebCheckout WebView
     ///
     /// - Parameters:
