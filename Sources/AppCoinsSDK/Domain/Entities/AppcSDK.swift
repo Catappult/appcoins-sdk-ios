@@ -72,19 +72,16 @@ public struct AppcSDK {
         }
     }
     
+    
     /// Checks whether the AppcSDK should be enabled in the current environment.
     ///
     /// - If `BuildConfiguration.isDev` always returns `true`.
-    /// - If `SDKUseCases.shared.isDefault()` returns a non‐nil override, returns that value.
-    /// - Otherwise, enables external purchases if **either**:
-    ///   1. **United States storefront**
-    ///      - Returns `true` if user is in the United States.
-    ///   2. **European Union marketplace**
-    ///      - On iOS 17.4+ uses `AppDistributor.current`:
-    ///         - returns `false` for `.appStore`
-    ///         - returns `true` only if `marketplace == "com.aptoide.ios.store"`
-    ///         - returns `true` for any other non-App Store case
-    ///      - On older OS returns `false`.
+    /// - Checks whether the default locale is valid for EU storefronts.
+    ///    - On iOS 17.4+ uses `AppDistributor.current`:
+    ///       - returns `false` for `.appStore`
+    ///       - returns `true` only if `marketplace == "com.aptoide.ios.store"`
+    ///       - returns `true` for any other non-App Store case
+    ///    - On older OS returns `false`.
     ///
     /// - Returns: `true` if the SDK is available, `false` otherwise.
     static public func isAvailable() async -> Bool {
@@ -134,6 +131,7 @@ public struct AppcSDK {
     /// - It initializes internal processes of the AppCoins SDK: `AppcSDKInternal.initialize()`.
     /// - Deals with two types of redirectURL's:
     ///   - DeepLinks coming from the Appcoins wallet
+    ///   - Handles deep links coming from the WebCheckout WebView
     ///
     /// - Parameters:
     ///   - redirectURL: The URL received for redirection, which is from a DeepLink into the application.
