@@ -52,4 +52,8 @@ internal class SDKRepository: SDKRepositoryProtocol {
     }
     
     internal func setSDKInitialized() { userPreferencesLocalService.setSDKInitialized() }
+    
+    internal func isSDKInitialized() -> Bool {
+        userPreferencesLocalService.isSDKInitialized()
+    }
 }

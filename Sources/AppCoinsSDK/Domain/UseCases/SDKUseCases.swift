@@ -28,4 +28,5 @@ internal class SDKUseCases {
     internal func removePurchaseIntent() { repository.removePurchaseIntent() }
     
     internal func setSDKInitialized() { repository.setSDKInitialized() }
+    internal func isSDKInitialized() -> Bool { repository.isSDKInitialized() }
 }

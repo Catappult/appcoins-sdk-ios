@@ -23,4 +23,5 @@ internal protocol SDKRepositoryProtocol {
     func removePurchaseIntent()
     
     func setSDKInitialized()
+    func isSDKInitialized() -> Bool
 }
