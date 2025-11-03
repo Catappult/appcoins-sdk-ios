@@ -16,4 +16,6 @@ internal protocol UserPreferencesLocalService {
     
     func getDefaultStorefrontMarketplace() -> String?
     func setSDKDefaultStorefrontMarketplace(marketplace: String)
+    
+    func setSDKInitialized()
 }

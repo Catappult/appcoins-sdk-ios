@@ -35,4 +35,8 @@ internal class UserPreferencesLocalClient: UserPreferencesLocalService {
     func setSDKDefaultStorefrontMarketplace(marketplace: String) {
         try? Utils.writeToPreferences(key: "sdk-default-storefront-marketplace", value: marketplace)
     }
+    
+    func setSDKInitialized() {
+        try? Utils.writeToPreferences(key: "is-sdk-initialized", value: "true")
+    }
 }
