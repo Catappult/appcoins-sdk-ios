@@ -16,6 +16,52 @@ public enum AppCoinsSDKError: Error, CustomStringConvertible {
     case purchaseNotAllowed(debugInfo: DebugInfo)
     case unknown(debugInfo: DebugInfo)
     
+    internal static func fromWebCheckoutError(body: OnErrorBody) -> AppCoinsSDKError {
+        switch body.checkoutError {
+        case "failed":
+            return .systemError(
+                message: body.message,
+                description: body.description,
+                request: body.request.flatMap { DebugRequestInfo.fromWebCheckoutError(body: $0) }
+            )
+        case "network":
+            return .networkError(
+                message: body.message,
+                description: body.description,
+                request: body.request.flatMap { DebugRequestInfo.fromWebCheckoutError(body: $0) }
+            )
+        default:
+            return .unknown(
+                message: body.message,
+                description: body.description,
+                request: body.request.flatMap { DebugRequestInfo.fromWebCheckoutError(body: $0) }
+            )
+        }
+    }
+    
+    internal static func fromWebCheckoutError(query: OnErrorQuery) -> AppCoinsSDKError {
+        switch query.checkoutError {
+        case "failed":
+            return .systemError(
+                message: query.message,
+                description: query.description,
+                request: query.request.flatMap { DebugRequestInfo.fromWebCheckoutError(query: $0) }
+            )
+        case "network":
+            return .networkError(
+                message: query.message,
+                description: query.description,
+                request: query.request.flatMap { DebugRequestInfo.fromWebCheckoutError(query: $0) }
+            )
+        default:
+            return .unknown(
+                message: query.message,
+                description: query.description,
+                request: query.request.flatMap { DebugRequestInfo.fromWebCheckoutError(query: $0) }
+            )
+        }
+    }
+    
     // Convenience initializers for common error types
     public static func networkError(message: String, description: String, request: DebugRequestInfo? = nil) -> AppCoinsSDKError {
         return .networkError(debugInfo: DebugInfo(message: message, description: description, request: request))
@@ -253,5 +299,33 @@ public class DebugRequestInfo {
         } else {
             self.statusCode = 0 // or handle it differently if desired
         }
+    }
+    
+    internal init(url: String, method: RequestMethod, body: String, responseData: String, statusCode: Int) {
+        self.url = url
+        self.method = method
+        self.body = body
+        self.responseData = responseData
+        self.statusCode = statusCode
+    }
+    
+    internal static func fromWebCheckoutError(body: OnErrorBody.RequestError) -> DebugRequestInfo {
+        return DebugRequestInfo(
+            url: body.url,
+            method: RequestMethod(method: body.method),
+            body: body.body,
+            responseData: body.responseData,
+            statusCode: body.statusCode
+        )
+    }
+    
+    internal static func fromWebCheckoutError(query: OnErrorQuery.RequestError) -> DebugRequestInfo {
+        return DebugRequestInfo(
+            url: query.url,
+            method: RequestMethod(method: query.method),
+            body: query.body,
+            responseData: query.responseData,
+            statusCode: query.statusCode
+        )
     }
 }

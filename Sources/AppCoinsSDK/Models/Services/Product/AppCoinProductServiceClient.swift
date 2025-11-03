@@ -7,7 +7,7 @@
 
 import Foundation
 
-internal class AppCoinProductServiceClient : AppCoinProductService {
+internal class AppCoinProductServiceClient: AppCoinProductService {
     
     private let endpoint: String
     
@@ -15,7 +15,7 @@ internal class AppCoinProductServiceClient : AppCoinProductService {
         self.endpoint = endpoint
     }
     
-    internal func getProductInformation(domain: String, currency: Currency, discountPolicy: String? = nil, result: @escaping (Result<[ProductRaw], ProductServiceError>) -> Void) {
+    internal func getProductInformation(domain: String, currency: Currency, discountPolicy: DiscountPolicy? = nil, result: @escaping (Result<[ProductRaw], ProductServiceError>) -> Void) {
         var products: [ProductRaw] = []
         
         if var urlComponents = URLComponents(string: endpoint) {
@@ -23,7 +23,7 @@ internal class AppCoinProductServiceClient : AppCoinProductService {
             urlComponents.queryItems = [
                 URLQueryItem(name: "currency", value: currency.currency),
                 URLQueryItem(name: "platform", value: "IOS"),
-                discountPolicy.map { URLQueryItem(name: "discount_policy", value: $0) }
+                discountPolicy.map { URLQueryItem(name: "discount_policy", value: $0.rawValue) }
             ].compactMap { $0 }
             
             if let url = urlComponents.url {
@@ -70,14 +70,14 @@ internal class AppCoinProductServiceClient : AppCoinProductService {
         }
     }
     
-    internal func getProductInformation(domain: String, sku: String, currency: Currency, discountPolicy: String? = nil, result: @escaping (Result<ProductRaw?, ProductServiceError>) -> Void) {
+    internal func getProductInformation(domain: String, sku: String, currency: Currency, discountPolicy: DiscountPolicy? = nil, result: @escaping (Result<ProductRaw?, ProductServiceError>) -> Void) {
         if var urlComponents = URLComponents(string: endpoint) {
             urlComponents.path += "/applications/\(domain)/inapp/consumables"
             urlComponents.queryItems = [
                 URLQueryItem(name: "skus", value: sku),
                 URLQueryItem(name: "currency", value: currency.currency),
                 URLQueryItem(name: "platform", value: "IOS"),
-                discountPolicy.map { URLQueryItem(name: "discount_policy", value: $0) }
+                discountPolicy.map { URLQueryItem(name: "discount_policy", value: $0.rawValue) }
             ].compactMap { $0 }
             
             if let url = urlComponents.url {
@@ -434,5 +434,4 @@ internal class AppCoinProductServiceClient : AppCoinProductService {
             }
         }
     }
-    
 }

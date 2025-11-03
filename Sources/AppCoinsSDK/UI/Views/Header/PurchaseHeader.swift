@@ -1,41 +1,41 @@
 //
 //  PurchaseHeader.swift
+//  AppCoinsSDK
 //
-//
-//  Created by aptoide on 02/01/2025.
+//  Created by aptoide on 30/05/2025.
 //
 
 import SwiftUI
 
-internal struct PurchaseHeader<Content: View>: View {
-        
-    @ObservedObject internal var viewModel: BottomSheetViewModel = BottomSheetViewModel.shared
-    internal let blurred: Bool
-    internal let content: () -> Content
+internal struct PurchaseHeader: View {
     
-    internal init(blurred: Bool = true, @ViewBuilder content: @escaping () -> Content) {
-        self.blurred = blurred
-        self.content = content
-    }
+    @ObservedObject internal var viewModel: ProviderViewModel = ProviderViewModel.shared
     
     internal var body: some View {
         HStack(spacing: 0) {
-            
+                    
             VStack{}.frame(width: 24)
             
             VStack(alignment: .leading, spacing: 0) {
-                content()
+                HStack(spacing: 0) {
+                    PurchaseIcon()
+                    
+                    VStack{}.frame(width: 15)
+                    
+                    VStack(alignment: .leading, spacing: 0) {
+                        PurchaseTitle()
+                        
+                        PurchasePrice()
+                        
+                        VStack{}.frame(height: 4)
+                    }
+                }
             }.frame(maxWidth: .infinity, maxHeight: 40, alignment: .leading)
             
             CloseButton(action: viewModel.dismiss)
             
             VStack{}.frame(width: 24)
         }
-        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 176 : UIScreen.main.bounds.width, height: 72)
-        .background(blurred ? BlurView(style: .systemMaterial) : nil)
-        .onTapGesture {
-            UIApplication.shared.dismissKeyboard()
-            if viewModel.isKeyboardVisible { AdyenController.shared.presentableComponent?.viewController.view.findAndResignFirstResponder() }
-        }
+        .frame(width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 116 : UIScreen.main.bounds.width, height: 72)
     }
 }

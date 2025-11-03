@@ -1,23 +1,23 @@
 //
 //  CurrencyRepository.swift
+//  AppCoinsSDK
 //
-//
-//  Created by Graciano Caldeira on 16/08/2024.
+//  Created by aptoide on 02/06/2025.
 //
 
 import Foundation
 
 internal class CurrencyRepository: CurrencyRepositoryProtocol {
 
-    internal let AppCoinBillingService: AppCoinBillingService  = AppCoinBillingClient()
+    internal let BrokerService: BrokerService  = BrokerClient()
     internal let UserCurrency: Cache<String, Currency> = Cache<String, Currency>.shared(cacheName: "UserCurrencyCache")
     internal let CurrencyListCache: Cache<String, [Currency]> = Cache<String, [Currency]>.shared(cacheName: "CurrencyListCache")
 
-    internal func getUserCurrency(completion: @escaping (Result<Currency, BillingError>) -> Void) {
+    internal func getUserCurrency(completion: @escaping (Result<Currency, BrokerError>) -> Void) {
         if let userCurrency = self.UserCurrency.getValue(forKey: "userCurrency") {
             completion(.success(userCurrency))
         } else {
-            AppCoinBillingService.convertCurrency(money: "1.0", fromCurrency: Currency.APPC, toCurrency: nil) { result in
+            BrokerService.convertCurrency(money: "1.0", fromCurrency: Currency.APPC, toCurrency: nil) { result in
                 switch result {
                 case .success(let userCurrencyRaw):
                     self.UserCurrency.setValue(Currency(convertCurrencyRaw: userCurrencyRaw), forKey: "userCurrency", storageOption: .memory)
@@ -28,11 +28,11 @@ internal class CurrencyRepository: CurrencyRepositoryProtocol {
         }
     }
     
-    internal func getSupportedCurrencies(completion: @escaping (Result<[Currency], BillingError>) -> Void) {
+    internal func getSupportedCurrencies(completion: @escaping (Result<[Currency], BrokerError>) -> Void) {
         if let currencyList = self.CurrencyListCache.getValue(forKey: "currencyList") {
             completion(.success(currencyList))
         } else {
-            self.AppCoinBillingService.getSupportedCurrencies { result in
+            self.BrokerService.getSupportedCurrencies { result in
                 switch result {
                 case .success(let currencyListRaw):
                     var currencyList: [Currency] = []
@@ -48,7 +48,7 @@ internal class CurrencyRepository: CurrencyRepositoryProtocol {
         }
     }
     
-    internal func getSupportedCurrency(currency: String, completion: @escaping (Result<Currency, BillingError>) -> Void) {
+    internal func getSupportedCurrency(currency: String, completion: @escaping (Result<Currency, BrokerError>) -> Void) {
         self.getSupportedCurrencies { result in
             switch result {
             case .success(let supportedCurrencies):

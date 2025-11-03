@@ -18,7 +18,6 @@ internal struct GetProductInformationRaw: Codable {
         case next = "next"
         case previous = "previous"
     }
-    
 }
 
 internal struct ProductRaw: Codable {
@@ -85,5 +84,4 @@ internal struct ProductRaw: Codable {
         }
     }
 }
-
 
