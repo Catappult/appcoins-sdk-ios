@@ -59,34 +59,7 @@ public class Purchase: Codable {
         self.created = raw.created
         self.verification = PurchaseVerification(raw: raw.verification)
     }
-    
-    public static func provider(domain: String = (Bundle.main.bundleIdentifier ?? ""), for product: Product) async -> PurchaseProvider? {
-        guard await AppcSDK.isAvailableInUS() else { return .aptoide }
-        
-        DispatchQueue.main.async {
-            SDKViewController.shared.presentProvider()
-            
-            ProviderViewModel.shared.loadProviderPurchase(domain: domain, for: product)
-        }
-        
-        let result: PurchaseProvider? = try? await withCheckedThrowingContinuation { continuation in
-            var observer: NSObjectProtocol?
-            observer = NotificationCenter.default.addObserver(forName: Notification.Name("APPCProviderChoice"), object: nil, queue: nil) { notification in
-                guard let userInfo = notification.userInfo, let provider = userInfo["ProviderChoice"] as? PurchaseProvider else {
-                    continuation.resume(returning: nil)
-                    if let observer = observer { NotificationCenter.default.removeObserver(observer) }
-                    return
-                }
-                
-                continuation.resume(returning: provider)
-                if let observer = observer { NotificationCenter.default.removeObserver(observer) }
-                return
-            }
-        }
-        
-        return result
-    }
-    
+
     internal static func verify(domain: String = (Bundle.main.bundleIdentifier ?? ""), purchaseUID: String, completion: @escaping (Result<Purchase, AppCoinsSDKError>) -> Void ) {
         
         WalletUseCases.shared.getWalletList() { walletList in
