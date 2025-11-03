@@ -72,19 +72,16 @@ public struct AppcSDK {
         }
     }
     
+    
     /// Checks whether the AppcSDK should be enabled in the current environment.
     ///
     /// - If `BuildConfiguration.isDev` always returns `true`.
-    /// - If `SDKUseCases.shared.isDefault()` returns a non‐nil override, returns that value.
-    /// - Otherwise, enables external purchases if **either**:
-    ///   1. **United States storefront**
-    ///      - Returns `true` if user is in the United States.
-    ///   2. **European Union marketplace**
-    ///      - On iOS 17.4+ uses `AppDistributor.current`:
-    ///         - returns `false` for `.appStore`
-    ///         - returns `true` only if `marketplace == "com.aptoide.ios.store"`
-    ///         - returns `true` for any other non-App Store case
-    ///      - On older OS returns `false`.
+    /// - Checks whether the default locale is valid for EU storefronts.
+    ///    - On iOS 17.4+ uses `AppDistributor.current`:
+    ///       - returns `false` for `.appStore`
+    ///       - returns `true` only if `marketplace == "com.aptoide.ios.store"`
+    ///       - returns `true` for any other non-App Store case
+    ///    - On older OS returns `false`.
     ///
     /// - Returns: `true` if the SDK is available, `false` otherwise.
     static public func isAvailable() async -> Bool {
@@ -92,64 +89,6 @@ public struct AppcSDK {
             return true
         }
         
-        if let isDefault = SDKUseCases.shared.isDefault() {
-            return isDefault
-        }
-        
-        let usAllowed = await isAvailableInUS()
-        let euAllowed = await isAvailableInEU()
-        return usAllowed || euAllowed
-    }
-    
-    /// Checks availability of the AppcSDK in the United States storefront.
-    ///
-    /// - If `AppCoinsDevTools` is enabled and a default locale is set:
-    ///   - Returns `true` if the default locale equals `.USA`.
-    /// - Otherwise:
-    ///   - On iOS versions prior to 15.0, returns `Locale.current.regionCode == "US"`.
-    ///   - On iOS 15.0 and later, attempts to fetch `StoreKit.Storefront.current`:
-    ///     - Returns `true` if `storefront?.countryCode == "USA"`.
-    ///     - Falls back to the locale check on error.
-    ///
-    /// - Returns: `true` if the SDK can be used in the US, `false` otherwise.
-    static internal func isAvailableInUS() async -> Bool {
-        if AppcSDK.configuration.isAppCoinsDevToolsEnabled, let defaultLocale = AppcSDK.configuration.storefront?.locale {
-            return defaultLocale == AppcStorefront.Locale.USA
-        }
-        
-        let localeIsUS = (Locale.current.regionCode == "US")
-        
-        // On older OS versions just return the locale
-        guard #available(iOS 15.0, *) else {
-            return localeIsUS
-        }
-        
-        do {
-            let storefront = try await StoreKit.Storefront.current
-            return (storefront?.countryCode == "USA")
-        } catch {
-            // If the Storefront lookup fails, fall back to the locale
-            return localeIsUS
-        }
-    }
-
-    /// Checks availability of the AppcSDK in European Union marketplaces.
-    ///
-    /// - If `AppCoinsDevTools` is enabled and a default locale is set:
-    ///   - Returns `false` if the locale is outside the EU.
-    ///   - If a default marketplace override exists:
-    ///     - Returns `true` for `.aptoide`.
-    ///     - Returns `false` for `.apple`.
-    /// - Otherwise:
-    ///   - On iOS versions prior to 17.4, always returns `false`.
-    ///   - On iOS 17.4 and later, fetches `AppDistributor.current`:
-    ///     - Returns `false` for `.appStore`.
-    ///     - Returns `true` if `marketplace == "com.aptoide.ios.store"`.
-    ///     - Returns `true` for any other non-App Store marketplace.
-    ///   - Returns `false` on error.
-    ///
-    /// - Returns: `true` if the SDK can be used in the EU, `false` otherwise.
-    static internal func isAvailableInEU() async -> Bool {
         if AppcSDK.configuration.isAppCoinsDevToolsEnabled, let defaultLocale = AppcSDK.configuration.storefront?.locale {
             guard AppcStorefront.Locale.EU.contains(defaultLocale) else {
                 return false
@@ -192,6 +131,17 @@ public struct AppcSDK {
     /// - It initializes internal processes of the AppCoins SDK: `AppcSDKInternal.initialize()`.
     /// - Deals with two types of redirectURL's:
     ///   - DeepLinks coming from the Appcoins wallet
+    ///     Supported URL patterns:
+    ///         - **wallet.appcoins.io/default**
+    ///             - `/default/storefront`: sets the SDK default storefront locale and marketplace using query parameters:
+    ///                 - `locale`: The storefront locale (e.g., `"pt-PT"`).
+    ///                 - `marketplace`: The storefront marketplace (e.g., `"com.aptoide.ios.store"`).
+    ///             - `/default?value=true|false`: enables or disables the SDK default feature flag.
+    ///         - **wallet.appcoins.io/purchase**
+    ///             - Triggers an indirect purchase by fetching product data and preparing a `PurchaseIntent`.
+    ///         - **wallet.appcoins.io/checkout/success** or **/checkout/failure**
+    ///             - Handles checkout result deep links and routes them to `PurchaseViewModel
+    ///   - Handles deep links coming from the WebCheckout WebView
     ///
     /// - Parameters:
     ///   - redirectURL: The URL received for redirection, which is from a DeepLink into the application.

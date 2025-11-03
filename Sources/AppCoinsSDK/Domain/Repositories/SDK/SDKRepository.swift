@@ -50,4 +50,10 @@ internal class SDKRepository: SDKRepositoryProtocol {
     internal func removePurchaseIntent() {
         purchaseIntentService.remove()
     }
+    
+    internal func setSDKInitialized() { userPreferencesLocalService.setSDKInitialized() }
+    
+    internal func isSDKInitialized() -> Bool {
+        userPreferencesLocalService.isSDKInitialized()
+    }
 }
