@@ -18,11 +18,11 @@
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		RtxR3oZ28ZDLBK+kAKbFUjUI0TY=
+		Q4YHw8PgDzrxfaHhyKFK4oY8ST0=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		kZP0B7OuSf8SEpXc7cIEmdF2Wbw=
+		ej+aZC7S0A7nTNNv0dgknlsPt6s=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
@@ -34,7 +34,7 @@
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		QTAT3ttiGeBlFBeZAKusmODauMU=
+		xX8BCB7A0BNrSrd4Dlbj/xOUd8o=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		fXHrZPUAiULaVtDjL0e4X2hPmaU=
+		GB7XLPPLbOQmzsWv/O3tItH8+pw=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
@@ -134,14 +134,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			+HaFJCZ8sHuYYp1LeiyaJKVdyeu4mzJKqRwrIfT9C4A=
+			pRqBGsD/iiXfTfwgibVfSTA7CpY71xYKcUxRV6rynD0=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			KStDejhuEbuB2A7yXokbfxh7zo0LiPN12uqFhAv5CMQ=
+			7hdhITQ2p9aNxSw9pxh5OxrcRhaCIGoxKJ014DNjJr0=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
@@ -162,7 +162,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			lFG8IXwLIrPSnKSJiuXh0EUUDKNUYR+gtpcUPkFTEDM=
+			dqLyKKiuzRKlAvSB5cxgUXuqDixYM5kozurti4mF/lQ=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
@@ -197,7 +197,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			C5GqYDzmfiN9+U1vDefCsZLLw8t/u0PlYAVibUzxFzo=
+			oQJuBrN327T7Y2GYkRD6luJVxqh8so+W4UwlpR+7uyY=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
