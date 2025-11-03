@@ -92,10 +92,6 @@ public struct AppcSDK {
             return true
         }
         
-        if let isDefault = SDKUseCases.shared.isDefault() {
-            return isDefault
-        }
-        
         if AppcSDK.configuration.isAppCoinsDevToolsEnabled, let defaultLocale = AppcSDK.configuration.storefront?.locale {
             guard AppcStorefront.Locale.EU.contains(defaultLocale) else {
                 return false
