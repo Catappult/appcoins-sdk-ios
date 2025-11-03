@@ -32,21 +32,6 @@ internal struct SDKViewController {
         rootViewController.present(purchaseViewController, animated: true, completion: nil)
     }
     
-    internal func presentProvider() {
-        guard let rootViewController = UIApplication.shared.windows.first?.rootViewController else {
-            return
-        }
-        
-        let opaqueView = UIView(frame: rootViewController.view.bounds)
-        opaqueView.backgroundColor = UIColor(ColorsUi.APC_Black.opacity(0.3))
-        rootViewController.view.addSubview(opaqueView)
-        SDKViewController.shared.background = opaqueView
-        
-        let providerViewController = ProviderViewController()
-        providerViewController.modalPresentationStyle = .overFullScreen
-        rootViewController.present(providerViewController, animated: true, completion: nil)
-    }
-    
     internal func presentSafariSheet(url: URL) {
         guard let topViewController = UIApplication.shared.topMostViewController() else {
             return
