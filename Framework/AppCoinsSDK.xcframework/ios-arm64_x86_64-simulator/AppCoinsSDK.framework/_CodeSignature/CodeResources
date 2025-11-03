@@ -4,385 +4,9 @@
 <dict>
 	<key>files</key>
 	<dict>
-		<key>Adyen_Adyen.bundle/Assets.car</key>
-		<data>
-		oMD6Sy8sG+3Z9W5nqLwafnXLEeo=
-		</data>
-		<key>Adyen_Adyen.bundle/Info.plist</key>
-		<data>
-		Vp+EQ+9/2/wB/K5s88SyGTwG6oY=
-		</data>
-		<key>Adyen_Adyen.bundle/PrivacyInfo.xcprivacy</key>
-		<data>
-		GaaAzmeUuJzmWhoeRecEmLSyYE8=
-		</data>
-		<key>Adyen_Adyen.bundle/_CodeSignature/CodeDirectory</key>
-		<data>
-		mJKWMstN6YtjOF9zGwKrA54xjHQ=
-		</data>
-		<key>Adyen_Adyen.bundle/_CodeSignature/CodeRequirements</key>
-		<data>
-		OnX22wWFKRSOFN1+obRynMCeyXM=
-		</data>
-		<key>Adyen_Adyen.bundle/_CodeSignature/CodeRequirements-1</key>
-		<data>
-		xe83g3CfkyyYbmcTcetCsH2Qhfg=
-		</data>
-		<key>Adyen_Adyen.bundle/_CodeSignature/CodeResources</key>
-		<data>
-		Erc3qGd1y8mXtSbB4Z2XV17z6M0=
-		</data>
-		<key>Adyen_Adyen.bundle/_CodeSignature/CodeSignature</key>
-		<data>
-		2jmj7l5rSw0yVb/vlWAYkK/YBwk=
-		</data>
-		<key>Adyen_Adyen.bundle/ar.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			hugXUIycEppRZw5tBTasfz2COi8=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/bg-BG.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			2X7XDPEdmcotwqr1kOEKX+Utje4=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/ca-ES.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			i+RoVJ4L4jpXR5JkmVbpC8FEbFA=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/cs-CZ.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			o3102BO7UtNLUFX2SzjumkGebIU=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/da-DK.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			Eoq73PtoryxObXUaxMw0B8kx4NQ=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/de-DE.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			2e46S4bLaDIlMTR38vwrLuZUoKo=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/el-GR.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			ZR7CX2pOlOsbuLt42/U3QrO1FHw=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/en-US.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			v26eHVr2FhAnhxgwNiCR2Xq0Gqg=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/es-ES.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			MwYJ87XmQEfgDDAws9M/7OZC+No=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/et-EE.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			/XP1E14sM6zOtslkGZbP58vqL10=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/fi.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			5PfXyRs3k7O1L83sJHAh0x4v+OE=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/fr-FR.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			fu2DdHJQxNO/m3hm9mtCx/l6gkk=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/hr-HR.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			ihdVP5/Oc7OZnG/mEih8oiQUVFE=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/hu-HU.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			e8XjDNR8g6INm6Sj9yW2I612ROc=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/is-IS.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			wRPV8fC8CgmC59BD801soS27UxI=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/it-IT.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			o83bPReFBSKl/ZDh0s2NEpYSacY=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/ja-JP.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			zW0xuQALsx+l8cH7srdFgb7q7zE=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/ko.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			vYoEvGVLW0yWoUwN0BnDSITxfps=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/lt-LT.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			ibI+KcTEULLRNxw2hHZL/oEfAeE=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/lv-LV.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			CAPrqL4YyNBIzzZ6Jw57OppnEGE=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/nb-NO.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			n5suaDoWvzGm+2bi9rHKurT5NRE=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/nl-NL.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			0R4nwreACKTB4vpJQRPIscmCk+w=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/pl-PL.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			s7H+PEAbl/Rw/OV9ucQMltOzQio=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/pt-BR.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			EfR14uHKrOEhDBqUpn4BvaG+wBE=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/pt-PT.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			VIZLKS4iWoS8G0UdudqK+E0kbbc=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/ro-RO.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			KXSdBaiKHRWPRlkKAf4XJL4+XNA=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/ru-RU.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			8S938tefb0yqN0ATIifXwsWuqdQ=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/sk-SK.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			5dVJk86DruU4uIeEeXdoqkHJs0A=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/sl-SI.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			y40WDcnqytxIcN7VyP7beZjITgk=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/sv-SE.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			rVuPOZorhkwxwlgSZNwlViOl1Y4=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/zh-CN.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			pc8c4TJ1L0dAora/MROwzx3yyQk=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/zh-TW.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			rifITm6pe0UulaXrphgKcEJtpus=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_AdyenActions.bundle/Assets.car</key>
-		<data>
-		lmJvKLYVBcVtTjpjDXvWmUJzaFw=
-		</data>
-		<key>Adyen_AdyenActions.bundle/Info.plist</key>
-		<data>
-		/4vgavdYrINScUzM+xXm2bQ1OdA=
-		</data>
-		<key>Adyen_AdyenActions.bundle/_CodeSignature/CodeDirectory</key>
-		<data>
-		O2lVRKEq+3Uw2v8eSRsdtW2Zjqs=
-		</data>
-		<key>Adyen_AdyenActions.bundle/_CodeSignature/CodeRequirements</key>
-		<data>
-		OnX22wWFKRSOFN1+obRynMCeyXM=
-		</data>
-		<key>Adyen_AdyenActions.bundle/_CodeSignature/CodeRequirements-1</key>
-		<data>
-		6i9VRwLgidTl5IXNLl4dsBwWrdU=
-		</data>
-		<key>Adyen_AdyenActions.bundle/_CodeSignature/CodeResources</key>
-		<data>
-		xXJEDibHxjoGYlx2DzwQx3NXhNs=
-		</data>
-		<key>Adyen_AdyenActions.bundle/_CodeSignature/CodeSignature</key>
-		<data>
-		2jmj7l5rSw0yVb/vlWAYkK/YBwk=
-		</data>
-		<key>Adyen_AdyenCard.bundle/Assets.car</key>
-		<data>
-		RDRTonxUt5ueL4BIEaKytEy3bYY=
-		</data>
-		<key>Adyen_AdyenCard.bundle/Info.plist</key>
-		<data>
-		tC4W65UQjBzMzUGL72qltOholmc=
-		</data>
-		<key>Adyen_AdyenCard.bundle/_CodeSignature/CodeDirectory</key>
-		<data>
-		lv4+xj8YLmT1fK9v/zUBfL+Q7IY=
-		</data>
-		<key>Adyen_AdyenCard.bundle/_CodeSignature/CodeRequirements</key>
-		<data>
-		OnX22wWFKRSOFN1+obRynMCeyXM=
-		</data>
-		<key>Adyen_AdyenCard.bundle/_CodeSignature/CodeRequirements-1</key>
-		<data>
-		xoUDbGlkLWXsZVsMW9CNu1fef5M=
-		</data>
-		<key>Adyen_AdyenCard.bundle/_CodeSignature/CodeResources</key>
-		<data>
-		07qZFc20iOug0ruLOdY3wOYrnw0=
-		</data>
-		<key>Adyen_AdyenCard.bundle/_CodeSignature/CodeSignature</key>
-		<data>
-		2jmj7l5rSw0yVb/vlWAYkK/YBwk=
-		</data>
 		<key>Assets.car</key>
 		<data>
-		fzgEG/LA/2hyennic4sfAGzgrCA=
+		Fs+A5+RcIvZhIo4N18g3OktZs8A=
 		</data>
 		<key>Headers/AppCoinsSDK-Swift.h</key>
 		<data>
@@ -390,55 +14,55 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		OJMSnjGJvW1JVsZW9ijRRM4gV4E=
+		5Q4VF7GAwmHyHMyvTfNkDwh4T94=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		OUvE86fdZeBg8Mgcp6KTyx2MLSo=
+		7jUNWRKoerivM5Mxmn5z5dsDfBA=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		oTlGhVxfs63OZ4ozlTBjoMJbwB4=
+		fgXG3ijUDXx5noGx0+ZyyEdByjg=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		v6vXCh2F77dIAFB3opT8m189bAQ=
+		s/0mBxcfcCODKDAVxNzxuYXZ6uQ=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		4uUFDRYL+tIpczS/cEfWW6DdF4c=
+		uz00RqkyRZecjU4uYQPLHNVZTmY=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		MADjPWB8OnhLIJxMA914ugkNWbI=
+		QTAT3ttiGeBlFBeZAKusmODauMU=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		4uUFDRYL+tIpczS/cEfWW6DdF4c=
+		uz00RqkyRZecjU4uYQPLHNVZTmY=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		WprtnEsWJoo/xfLxPWuJMxkXzvA=
+		dh4SaKUlMDlqqIn4apaMzaxBCwY=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		v6vXCh2F77dIAFB3opT8m189bAQ=
+		s/0mBxcfcCODKDAVxNzxuYXZ6uQ=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		8pQ15fKSI1bEVoZ1J1t/627WAHo=
+		HYIbsBYU1xtNhcjms/43nSYyal8=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		rNC5k0ibP6WufXTaBwkQlOk4tdk=
+		fXHrZPUAiULaVtDjL0e4X2hPmaU=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		8pQ15fKSI1bEVoZ1J1t/627WAHo=
+		HYIbsBYU1xtNhcjms/43nSYyal8=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		mn8MnqYTWi0ZMPDy14Z18y6Q9mM=
+		ylDAvcIY2OoktFQrbLFBXTkTJPo=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -446,11 +70,11 @@
 		</data>
 		<key>Web3swift_web3swift.bundle/Info.plist</key>
 		<data>
-		SuCLIb4bVd1JM5tgICF+GoisThE=
+		W0zgk3odzHH3gkRAh6HKB0DAl+8=
 		</data>
 		<key>Web3swift_web3swift.bundle/_CodeSignature/CodeDirectory</key>
 		<data>
-		Yr3T3DdbLQli4V/sJCGGMGjKGeg=
+		dO4AZvl0VrUUzN0EIaqlRVcLQCU=
 		</data>
 		<key>Web3swift_web3swift.bundle/_CodeSignature/CodeRequirements</key>
 		<data>
@@ -458,7 +82,7 @@
 		</data>
 		<key>Web3swift_web3swift.bundle/_CodeSignature/CodeRequirements-1</key>
 		<data>
-		w2mNzsWAu3aC+aEmpHqJ8UnuyxA=
+		SyZf2KzHHm7kPjeNaHJ+8YO4TZ8=
 		</data>
 		<key>Web3swift_web3swift.bundle/_CodeSignature/CodeResources</key>
 		<data>
@@ -480,281 +104,11 @@
 		<data>
 		a4Fr1R8ba8hcUEJEYw4/2XWrbq4=
 		</data>
-		<key>ar.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			2RVi+DssVR9hrYe6gtcT/mOCn7I=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>bn.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			4nFXvTGPlpsKHao8L4/9Uzku/IE=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>de.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			V61wLxuFjmtrgNjZH4MAJ2e10Pc=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>el.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			og9Shj3LoXV7+PA77SaON1Tl9zA=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
 		<key>en.lproj/Localizable.strings</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			BrE4KH220mopb2HmKSaPztHKmGM=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>es.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			A/ZxuPcEHv+c079HnYnU9dskqlw=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>fa.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			GkjQ3pijMmrrayOV9Ra1oHqMyVY=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>fr.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			9f2q3LN52+VkkDQ8Eg9jszIoPUs=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>hi.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			hguA4KxXrh8FX/XSjDl5w8wqe5U=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>hu.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			2/Nj6FDz3acq73tIoEkmsuMLnME=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>id.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			DRHUA0IBGqfAvNp+IrCGV3y5TJA=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>it.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			/xSrSKGc/GLEUbQr2Pmgx1jo3SY=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>ja.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			lgL8w9SqI2TpAHHiuiyeWuxuSoc=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>ko.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			kRBfpUMBkKWvJdIziNc7LwpIegA=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>mr.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			+WfMQKYIhMN3u1YSaU+84GoNF2Q=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>ms.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			s88ip0SImGxFacse+QN+MozlD78=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>my.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			C0AjbfqGpDxCQ4SmQMC89GljmXc=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>nl.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			JGxexoDpgfSK+2FoVmggDBOo4Sc=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>pa.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			UPSlYpaaCz0TaBJTexUMi1FgI48=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>pl.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			YLCe1ifaNpHL64XLsCDK24PI7oA=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>pt-BR.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			4dceg8ZG+24wEVcLCV2DHEoMnSw=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>pt-PT.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			64/1c+scI45JJlgtakeoJorMqVk=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>ro.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			dvmdxsaShWkiz5awupfO9364ymw=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>ru.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			+U99/kFPeSH0egJU6EHevcQeMQs=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>sr.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			ruDOTEWOF26bRUoNfIEeYnmhHHA=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>th.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			bJPyU+n+syGtRJy6EhTB801lb8s=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>tr.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			mGbtcvz/AawxrVUl+hWRY6PErc8=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>uk.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			W3BQU9ygb0pBn5rzzWWeT2kHvsI=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>vi.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			VdkwmwycdMnMYFxva55kQ7SXlfQ=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>zh-Hans.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			R42emWBBP6pNZPZ+yYMKfcQz/gA=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>zh-Hant.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			iUU9sp4XGbFwlASRQa2K9FyPQe8=
+			ePlum+qdE5L8wGC2Q7kaEdYAw3o=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -762,453 +116,11 @@
 	</dict>
 	<key>files2</key>
 	<dict>
-		<key>Adyen_Adyen.bundle/Assets.car</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			5ltMvUNueKN/AMCkYCO4O+PMbPw9Gr2FdV85Vn8bl7g=
-			</data>
-		</dict>
-		<key>Adyen_Adyen.bundle/Info.plist</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			n/7OT59KgUpZC3haSxJpwEyJkJl2S+jWpfoFcU1bFZc=
-			</data>
-		</dict>
-		<key>Adyen_Adyen.bundle/PrivacyInfo.xcprivacy</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			+GUsg4v3AjmYAzq4d86bYQ02BZ76+1f9cLINQvey3H4=
-			</data>
-		</dict>
-		<key>Adyen_Adyen.bundle/_CodeSignature/CodeDirectory</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			P5d8luB1LClWR/uMhwnQJlCNCSlSrZGGk8IK/a66/gM=
-			</data>
-		</dict>
-		<key>Adyen_Adyen.bundle/_CodeSignature/CodeRequirements</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			mHkgkE6rZQ51eIwFSqCwUk5qgL/HGqMt+NI3phdD+YY=
-			</data>
-		</dict>
-		<key>Adyen_Adyen.bundle/_CodeSignature/CodeRequirements-1</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			W+tzA6UV4cgg3rNoA3iXWQ8dsaQv86oRolQwGFIGgY4=
-			</data>
-		</dict>
-		<key>Adyen_Adyen.bundle/_CodeSignature/CodeResources</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			1uiAVPxI3KHBPyvtJB7rT/9gENxrfm8sGLgzbEDsQgY=
-			</data>
-		</dict>
-		<key>Adyen_Adyen.bundle/_CodeSignature/CodeSignature</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=
-			</data>
-		</dict>
-		<key>Adyen_Adyen.bundle/ar.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			ffOIO+EtN0+no1XI/yTLf7lhthNu1MUOPUvbjDP/sWU=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/bg-BG.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			j/Z2/VEbS8tfUPNDKksc1LhxUEoy7WcP5yyCcYXz9P4=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/ca-ES.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			a3AuoNNj4l3HvfiUbt0yjFFalBh5RQabHn9bbfUUhDo=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/cs-CZ.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			V2TBvqK+6t21tFtVuBimDQP2HmbWP3itvAbC0ES1ehM=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/da-DK.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			Hv16vT7XGoqcrsjNcRPSY017RXwSOUzbIAmIIgGIY1Y=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/de-DE.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			6cg/q72EYg3hnr6erusjqFKD6mW/MMxIcv0qJP2GjfA=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/el-GR.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			HsJ6jomToS4Fm4VXGVRfyUCgPWV6yPEdUs3EVloUvms=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/en-US.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			PB34HXeqm4WNWmaGfSBOfp2hiUGOlIkWNI/NT432NtY=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/es-ES.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			KnhxNNn0LII7Kev6AXX7aw0i6msi1JVz3dMo6XOfYuo=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/et-EE.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			XISn2M1snpeF1HyJFLyMZP9JOjXP1M8HWNbzJDQwup4=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/fi.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			lxiUmvLRoyb50wGYGL7PY7FEF8CW6HaetJRAFmyIh4c=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/fr-FR.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			NGZkqWjBb218hwqsVQ3l9qfE/h7WRKLF0SPLAYNRWN0=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/hr-HR.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			Lrww7RcCvd3j8fpnQUg+OslACp5d9yPQ39puW+xCHuk=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/hu-HU.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			TecgW4wCIlZibXZanLBbANIqQFvLrczDlM7ehkV0p40=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/is-IS.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			WRM4MWM8Kwjj5ZYJh+wse3GyKxE2KBiKFxkdRRzVzws=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/it-IT.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			8eSAtcK0uzh9dtieotC4DREKXX7hmJoAYoAGdpVJOHU=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/ja-JP.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			GrpBZbsKO0/hBrGmuQFnHaTvgN5wG8fcCEwN4U2qENM=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/ko.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			cpbFgmk8arPRebPFy3IA7OdHW3/Z90h8MQh9bo3yXV4=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/lt-LT.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			Y2H2wZT9ocaKx13Owps/LI7BkTyWekrsT/HBQHFI7K0=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/lv-LV.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			TF6YPdy+xDXLotYAoCYkEUlr7QNuws9ombfibvtAT/I=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/nb-NO.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			7AJ5syI9oUpFcNF28bxi4tqOjnpKrrx4GjwZ1Eif9aw=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/nl-NL.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			CE/YVcn/T/nCZaVN2gv3gARPpIAlXKOLQnZv0Hbl4y0=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/pl-PL.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			gu7p4M5uJNpnzRFabAlJ6GPFl39w4ivPo23ELyCfEv8=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/pt-BR.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			kiwO34aeIs8aFNlLo06cP+dlZvxuIsrTC1PcKwCRU3Y=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/pt-PT.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			hiteGPD0AUiOWgAeWxhu3T+rdI1Aser+veVvPTZmgnc=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/ro-RO.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			LO1t97iREKrp0tuS5Zqdo+ZxMvlWLdsMkZoL61iJCbY=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/ru-RU.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			MUcJS0VX5ssy68PafPNGhs6ef1x3nSI1SymnIvj0DP0=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/sk-SK.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			QGsqMMu4bmBstxlwTm8PHAmUCkEb2LFak4wSwHitsag=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/sl-SI.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			XK+PM20K9mV0gpEePMomwEh8jN79/BWR50vy8voyzl8=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/sv-SE.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			1tQn/3ToZcC1bVsSAADm0zoM/wy48pT+wBqJocA/5YI=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/zh-CN.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			uNOUloYiF4pdOE1BMAgKn36bYWKSC4d8yuhWrgdRU6Y=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_Adyen.bundle/zh-TW.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			qeo4H+P+YFBoy5OKKJTevpPv0mOx4SPbd7qZO7Q5U1Y=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>Adyen_AdyenActions.bundle/Assets.car</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			I7zr9mIXYzgfScQotzvhN/qW/1vyb6Gw5uJCqFUDBXY=
-			</data>
-		</dict>
-		<key>Adyen_AdyenActions.bundle/Info.plist</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			uTxpZbR1qHgJ1M+IeRGSFm/TKfdO9Fwb5LPpmzbuAYQ=
-			</data>
-		</dict>
-		<key>Adyen_AdyenActions.bundle/_CodeSignature/CodeDirectory</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			UgGP3fmhh/YnadlNo3u+v4wrsbvv8D9zBXbl1ylfgYs=
-			</data>
-		</dict>
-		<key>Adyen_AdyenActions.bundle/_CodeSignature/CodeRequirements</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			mHkgkE6rZQ51eIwFSqCwUk5qgL/HGqMt+NI3phdD+YY=
-			</data>
-		</dict>
-		<key>Adyen_AdyenActions.bundle/_CodeSignature/CodeRequirements-1</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			2C0jKMaYi2H3QR78XvA9cZjVGvB4cB4b9peHoYMC13o=
-			</data>
-		</dict>
-		<key>Adyen_AdyenActions.bundle/_CodeSignature/CodeResources</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			yiAGy3vTYPp3GDyM5N/Vflw04nh23NTtK6mDJMAf2zo=
-			</data>
-		</dict>
-		<key>Adyen_AdyenActions.bundle/_CodeSignature/CodeSignature</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=
-			</data>
-		</dict>
-		<key>Adyen_AdyenCard.bundle/Assets.car</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			YzqWw9/eGSMIvwXlItwadOncTelL2hUF2wJCWSXx+s8=
-			</data>
-		</dict>
-		<key>Adyen_AdyenCard.bundle/Info.plist</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			CgcjdpzAA3G/b1PfBpVtZSJj/M8VH0QnzE22SeOJTTo=
-			</data>
-		</dict>
-		<key>Adyen_AdyenCard.bundle/_CodeSignature/CodeDirectory</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			SRtREAuV4JOWMfOFC5ytADusxmXT5L30kdp+XFJv8mg=
-			</data>
-		</dict>
-		<key>Adyen_AdyenCard.bundle/_CodeSignature/CodeRequirements</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			mHkgkE6rZQ51eIwFSqCwUk5qgL/HGqMt+NI3phdD+YY=
-			</data>
-		</dict>
-		<key>Adyen_AdyenCard.bundle/_CodeSignature/CodeRequirements-1</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			Pa0RHvqywFG7+qS/+5EMO5h/6trfGfvqPWTCmtXueQI=
-			</data>
-		</dict>
-		<key>Adyen_AdyenCard.bundle/_CodeSignature/CodeResources</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			ogJyzXnVE/5HRr7GwYhis3lXht376Mhp7rX8LCZ7FhM=
-			</data>
-		</dict>
-		<key>Adyen_AdyenCard.bundle/_CodeSignature/CodeSignature</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=
-			</data>
-		</dict>
 		<key>Assets.car</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			m5LPo1XRUAf+XcccQomvH0G6IuyiEnTT1ZaRsKeF25g=
+			rnaGqk/OGqae+XxnLzvV/fOJU5bbR228DkLG9grgLUE=
 			</data>
 		</dict>
 		<key>Headers/AppCoinsSDK-Swift.h</key>
@@ -1222,84 +134,84 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			0ZuE1ry5yjqgZ69I8pwB3Sv0opXU0TgOvsAIPoFPdXo=
+			H6yE6sd4+OcGpToo87kI1SsxVE9kP3SFAl+wwneTTlU=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			VpwtNaeCqRHXFIqxoNJIruaOJQGvMuf99A0M41sbXHY=
+			67dnN9dQ8D961BvBvrFltvLBFXtAF53im3w5jhQ3EMs=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			4AUIEPCMmn3rmFagu6HpajxUDQ2JNK/HonEOsshfGXU=
+			DvNhLxu+vp7lv9miSAD9hQA73rqWHDhyxcOzeZSms9A=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			tVU/2i9TnTXE1b+AyZ3DeNEpA2qLUF4KIv/jqaArvTc=
+			6i378OKN/56pI+R6eZ5sWvMCkYaJiYITyB3NAS3eZ00=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			JPlwUoRBaiD8Znq/V678rRYh3uj5X70WYYxj3Et9j1o=
+			lFG8IXwLIrPSnKSJiuXh0EUUDKNUYR+gtpcUPkFTEDM=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			tVU/2i9TnTXE1b+AyZ3DeNEpA2qLUF4KIv/jqaArvTc=
+			6i378OKN/56pI+R6eZ5sWvMCkYaJiYITyB3NAS3eZ00=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			REHoBheSeILSp3BoKIj/0cZ+5OLbhkaqERFoXxOfo6Q=
+			sL7NfUMLqPyQr9f6AZSzc1oijKkbUmkIAXiF88IGw+w=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			4AUIEPCMmn3rmFagu6HpajxUDQ2JNK/HonEOsshfGXU=
+			DvNhLxu+vp7lv9miSAD9hQA73rqWHDhyxcOzeZSms9A=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			SvQ7bueevsog/J4v+6JY2CN8XMb0FuToZV2rsey3siY=
+			rRTA3qVl01RQAOygHvSCvxFBk0Soln9yDDYoBa0Nz8o=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			xhzxUAcTk+5VLPVVgokC1w/pJLc3UoqKfU748cFk2MU=
+			C5GqYDzmfiN9+U1vDefCsZLLw8t/u0PlYAVibUzxFzo=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			SvQ7bueevsog/J4v+6JY2CN8XMb0FuToZV2rsey3siY=
+			rRTA3qVl01RQAOygHvSCvxFBk0Soln9yDDYoBa0Nz8o=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			xGJiiA8Vt2LzxVGnz+za/2ZCLTCReDj2u09OfqjWjl0=
+			/S7/R5EMUPL7QBvZX5EzcdRMfVIOkDc7YYxTW5syops=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -1313,14 +225,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			yfhH74Hq5HVTmb4f06ykXUopdjcgMVh5QNFK2WD4RKM=
+			6niHed8XwrTnOZamvRJqN33RSoGGtQ4jMOoTPYKFaVU=
 			</data>
 		</dict>
 		<key>Web3swift_web3swift.bundle/_CodeSignature/CodeDirectory</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			V1chuh9gIFhDgL8jpDEc9WhEaFCe0MX9Zp4cdMAhNzg=
+			K2K82Ae4igMQzd4NxgAjyBnTGPAwOZ9c5/DicKEi0Zk=
 			</data>
 		</dict>
 		<key>Web3swift_web3swift.bundle/_CodeSignature/CodeRequirements</key>
@@ -1334,7 +246,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			3rnEgFEtvSDRT66pjBy4c+/zjIF44s8qEj/3rw1UxWA=
+			BJ9mh3ebd/jGNlngf1aQc0Y3c0z93ZYKZnmwauieVB0=
 			</data>
 		</dict>
 		<key>Web3swift_web3swift.bundle/_CodeSignature/CodeResources</key>
@@ -1372,281 +284,11 @@
 			YTORKhTgR9bm0LBHzMjxFiScqc1xskwR2fcSLWyRA+k=
 			</data>
 		</dict>
-		<key>ar.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			Cf8BCACCXeC3DGT0JYFWatsbuDdBzbZKyI5s2BlVZYU=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>bn.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			iF6qmC18ea+XqVMRUAiNydB8oFlcKD4c3V9kqX/oxio=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>de.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			arhRvH6joZTF8eo51XIgURnEskUUsbNIMg7NYGKU3+E=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>el.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			feH5zZkpwqnq1iGq6B8Um4oSOJVWfjSrti59mK4iEgU=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
 		<key>en.lproj/Localizable.strings</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			XTAUkwVREJkY6IRSduW7JxJdJGaoPI6EBZRJvwylR8g=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>es.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			bg9BgmJDbPquXw53tzbYKGfE6zDihvAOHv4VHDbZq54=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>fa.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			rEERCYWG3SNS61E5wFeLMjEaXB6lDIgFwWc3cpkjMoE=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>fr.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			dJRp6W28Eq7/ryHrEJ2/919ITWGg/amjRa0qENlV8pY=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>hi.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			BxjeusA+2Df3RAEarr4MCfgT26b5RNG7hp4zEkg7qO8=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>hu.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			U7/CXOuh+/tH8CSmxng5IbBVO4s+zs6bLIiD7WZSFPQ=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>id.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			ZaKrqtzEiFdNB0IQZ8pnV7OkSU77SwHr8mcOiOl5Zg4=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>it.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			pUL0znpJgul06LzHezy5gMwwc4hF8+1BO5BzglIRmyo=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>ja.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			IEvDiIqx0iDK1tOk2O0xwQtCWXKbFGHQD66vhJz8TJ8=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>ko.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			pkoVicVdd/LfiZF4Hjk0+DpPQNbvMYit6GJGAWYq06U=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>mr.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			ChvjBXCYXLqOozw2qcy6zVGZjWRYFM9tJJ3184PIDmw=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>ms.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			NCjX9pmYNDEi7L0Gvdbn19k6LmeJjnqoloqiE3IuuxA=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>my.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			PWMc0vB4/c6pOpv8BZkITmZqRMqV4VlTajDA9hmAHB4=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>nl.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			3zLkPwZiV+lEX1I9vt2kZMJXlFejkDfeVsZu7hsVYRo=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>pa.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			ioiLAuonAFHGYnBfZSwRGgRCCEJ3QCIpX/qWj4/HkrA=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>pl.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			BKHG5K1pc3vBdHQJzVzlPHWbUc8ui+romegU+bCC7ms=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>pt-BR.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			Rzr8XXYlO7/ZU8A2R0cLJcSykAeJ0qnpx76IMaZwXlc=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>pt-PT.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			PfD+UH4tk0arca2qNbrJf7UbI7wr4zqfBZgNZ0c5RYw=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>ro.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			XUsyMkekilEAJ6U5jQPzZNuUar4YoY/JNS1O04FNpvA=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>ru.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			BhlponUYvUh1gxS96rXSsX62tHdEfP8vtd+Q64EfYKk=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>sr.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			QtQmuVImBxUyc2hg+cYfLBISL7hHiBzSelLcnYleHD4=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>th.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			Gi0hq7EZiTyJgxfgsAcUJwe5OvJ+NJeWMzHm+Gnu8ms=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>tr.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			p8iEd4vm5jUgkRQ44UUCf2tJtJd21NGJLz6wCKP7P1U=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>uk.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			jjtCrfqjzPjGbIw7vtx0ymWI9oBfFeVqEk0ii/CrsjY=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>vi.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			PFkVlms+2ZAzfNV1nbvB0oFshXpe/5LPEYJyPQyAYHM=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>zh-Hans.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			otKiDfSOyAovfKnS49nqCB0hzobyuzReJysw7SAYohc=
-			</data>
-			<key>optional</key>
-			<true/>
-		</dict>
-		<key>zh-Hant.lproj/Localizable.strings</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			Tdr2/3IYSZOFMqp4s3golgMFisd64DmCUacAoS+g6Xk=
+			gZS1HE66taXWOsRBtZajgBEHcChxSln1qebzXaa8c70=
 			</data>
 			<key>optional</key>
 			<true/>

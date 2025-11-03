@@ -1,11 +1,10 @@
 //
 //  CornerRadiusExtension.swift
-//  
+//  AppCoinsSDK
 //
-//  Created by aptoide on 07/03/2023.
+//  Created by aptoide on 02/06/2025.
 //
 
-import Foundation
 import SwiftUI
 
 internal extension View {

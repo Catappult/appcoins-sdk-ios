@@ -1,8 +1,8 @@
 //
 //  ConvertCurrencyRaw.swift
-//  
+//  AppCoinsSDK
 //
-//  Created by aptoide on 15/05/2023.
+//  Created by aptoide on 02/06/2025.
 //
 
 import Foundation

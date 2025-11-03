@@ -1,8 +1,8 @@
 //
 //  CurrencyRaw.swift
-//  
+//  AppCoinsSDK
 //
-//  Created by Graciano Caldeira on 16/08/2024.
+//  Created by aptoide on 02/06/2025.
 //
 
 import Foundation
