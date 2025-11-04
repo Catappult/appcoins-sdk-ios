@@ -135,8 +135,7 @@ public struct Product: Codable {
                     .purchaseNotAllowed(
                         message: "Purchase Failed",
                         description: "AppcSDK not initialized at Product.swift:purchase. " +
-                        "Make sure to call 'AppcSDK.handle(redirectURL: URLContexts.first?.url)' whenever your app opens " +
-                        "(e.g., in `(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>)`).",
+                        "Make sure to call 'AppcSDK.handle(redirectURL)' whenever your app opens",
                         request: nil
                     )
             )

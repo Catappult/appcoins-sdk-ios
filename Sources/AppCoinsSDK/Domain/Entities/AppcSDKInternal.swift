@@ -10,9 +10,9 @@ import Foundation
 internal class AppcSDKInternal {
     
     static internal func initialize() {
-        SDKUseCases.shared.setSDKInitialized()
         MMPUseCases.shared.getAttribution()
         AnalyticsUseCases.shared.initialize()
         PurchaseIntentManager.shared.initialize()
+        SDKUseCases.shared.setSDKInitialized()
     }
 }
