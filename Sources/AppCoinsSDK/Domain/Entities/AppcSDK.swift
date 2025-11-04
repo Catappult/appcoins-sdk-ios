@@ -78,8 +78,7 @@ public struct AppcSDK {
     /// - If `BuildConfiguration.isDev` always returns `true`.
     /// - Checks whether the default locale is valid for EU storefronts.
     ///    - On iOS 17.4+ uses `AppDistributor.current`:
-    ///       - returns `false` for `.appStore`
-    ///       - returns `true` only if `marketplace == "com.aptoide.ios.store"`
+    ///       - returns `false` for `.appStore
     ///       - returns `true` for any other non-App Store case
     ///    - On older OS returns `false`.
     ///
@@ -130,7 +129,7 @@ public struct AppcSDK {
     ///
     /// - It initializes internal processes of the AppCoins SDK: `AppcSDKInternal.initialize()`.
     /// - Deals with two types of redirectURL's:
-    ///   - DeepLinks coming from the Appcoins wallet
+    ///   - DeepLinks related to AppCoins SDK
     ///     Supported URL patterns:
     ///         - **wallet.appcoins.io/default**
     ///             - `/default/storefront`: sets the SDK default storefront locale and marketplace using query parameters:
@@ -141,7 +140,7 @@ public struct AppcSDK {
     ///             - Triggers an indirect purchase by fetching product data and preparing a `PurchaseIntent`.
     ///         - **wallet.appcoins.io/checkout/success** or **/checkout/failure**
     ///             - Handles checkout result deep links and routes them to `PurchaseViewModel
-    ///   - Handles deep links coming from the WebCheckout WebView
+    ///   - DeepLinks related to WebCheckout WebView
     ///
     /// - Parameters:
     ///   - redirectURL: The URL received for redirection, which is from a DeepLink into the application.
