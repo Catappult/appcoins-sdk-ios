@@ -130,6 +130,17 @@ public struct Product: Codable {
         payload: String? = nil,
         orderID: String = String(Date.timeIntervalSinceReferenceDate)
     ) async -> PurchaseResult {
+        guard SDKUseCases.shared.isSDKInitialized() else {
+            return .failed(error:
+                    .purchaseNotAllowed(
+                        message: "Purchase Failed",
+                        description: "AppcSDK not initialized at Product.swift:purchase. " +
+                        "Make sure to call 'AppcSDK.handle(redirectURL)' whenever your app opens",
+                        request: nil
+                    )
+            )
+        }
+        
         if await !AppcSDK.isAvailable() || PurchaseViewModel.shared.hasActivePurchase {
             return .failed(error:
                     .purchaseNotAllowed(

@@ -13,5 +13,6 @@ internal class AppcSDKInternal {
         MMPUseCases.shared.getAttribution()
         AnalyticsUseCases.shared.initialize()
         PurchaseIntentManager.shared.initialize()
+        SDKUseCases.shared.setSDKInitialized()
     }
 }
