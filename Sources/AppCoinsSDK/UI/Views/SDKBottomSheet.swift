@@ -9,7 +9,6 @@ import SwiftUI
 
 internal struct SDKBottomSheet<Content: View>: View {
     
-    @ObservedObject internal var viewModel: ProviderViewModel = ProviderViewModel.shared
     @Environment(\.colorScheme) internal var colorScheme
     internal let content: Content
     internal let dismiss: () -> Void
