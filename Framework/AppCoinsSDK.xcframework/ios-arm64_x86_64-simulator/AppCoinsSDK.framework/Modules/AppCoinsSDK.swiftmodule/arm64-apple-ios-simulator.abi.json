@@ -19474,63 +19474,63 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Entities\/Product.swift",
       "kind": "StringLiteral",
-      "offset": 5593,
+      "offset": 6348,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Entities\/Product.swift",
       "kind": "StringLiteral",
-      "offset": 8627,
+      "offset": 10355,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Entities\/Purchase.swift",
       "kind": "StringLiteral",
-      "offset": 1930,
+      "offset": 1939,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Entities\/Purchase.swift",
       "kind": "StringLiteral",
-      "offset": 4870,
+      "offset": 6470,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Entities\/Purchase.swift",
       "kind": "StringLiteral",
-      "offset": 8189,
+      "offset": 11896,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Entities\/Purchase.swift",
       "kind": "StringLiteral",
-      "offset": 11736,
+      "offset": 17713,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Entities\/Purchase.swift",
       "kind": "StringLiteral",
-      "offset": 14234,
+      "offset": 21529,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Entities\/Purchase.swift",
       "kind": "StringLiteral",
-      "offset": 16873,
+      "offset": 25597,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Entities\/PurchaseIntent.swift",
       "kind": "StringLiteral",
-      "offset": 732,
+      "offset": 741,
       "length": 2,
       "value": "\"\""
     },
