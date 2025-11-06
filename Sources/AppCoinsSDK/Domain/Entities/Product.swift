@@ -36,6 +36,12 @@ public struct Product: Codable {
         domain: String = (Bundle.main.bundleIdentifier ?? ""),
         for identifiers: [String]? = nil
     ) async throws -> [Product] {
+        Utils.log(
+            "Product.products(domain, for indentifiers) at Product.swift",
+            category: "Lifecycle",
+            level: .info
+        )
+        
         let productUseCases: ProductUseCases = ProductUseCases.shared
         
         if let identifiers = identifiers {
@@ -49,8 +55,13 @@ public struct Product: Codable {
                                 finalProducts.append(product)
                             }
                         }
+                        
+                        Utils.log("Get all produts with identifiers successful: \(finalProducts) at Product.swift:products")
+                        
                         continuation.resume(returning: finalProducts)
                     case .failure(let failure):
+                        Utils.log("Get all produts with identifiers failed: \(failure) at Product.swift:products")
+                        
                         switch failure {
                         case .failed(let message, let description, let request):
                             continuation.resume(
@@ -88,8 +99,11 @@ public struct Product: Codable {
                 productUseCases.getAllProducts(domain: domain) { result in
                     switch result {
                     case .success(let products):
+                        Utils.log("Get all products without identifiers successful: \(products) at Product.swift:products")
                         continuation.resume(returning: products)
                     case .failure(let failure):
+                        Utils.log("Get all produts without identifiers failed: \(failure) at Product.swift:products")
+                        
                         switch failure {
                         case .failed(let message, let description, let request):
                             continuation.resume(
@@ -130,7 +144,18 @@ public struct Product: Codable {
         payload: String? = nil,
         orderID: String = String(Date.timeIntervalSinceReferenceDate)
     ) async -> PurchaseResult {
+        Utils.log(
+            "Product.purchase(domain, payload, orderID) with domain: \(domain) at Product.swift",
+            category: "Lifecycle",
+            level: .info
+        )
+        
         guard SDKUseCases.shared.isSDKInitialized() else {
+            Utils.log(
+                "Purchase Failed: AppcSDK not initialized at Product.swift:purchase",
+                level: .error
+            )
+            
             return .failed(error:
                     .purchaseNotAllowed(
                         message: "Purchase Failed",
@@ -142,6 +167,11 @@ public struct Product: Codable {
         }
         
         if await !AppcSDK.isAvailable() || PurchaseViewModel.shared.hasActivePurchase {
+            Utils.log(
+                "Purchase Failed: AppcSDK not available or has active transaction at Product.swift:purchase",
+                level: .error
+            )
+            
             return .failed(error:
                     .purchaseNotAllowed(
                         message: "Purchase Failed",
@@ -150,6 +180,12 @@ public struct Product: Codable {
                     )
             )
         } else {
+            Utils.log(
+                "Starting purchase with domain: \(domain) at Product.swift:purchase",
+                category: "Lifecycle",
+                level: .info
+            )
+            
             AnalyticsUseCases.shared.recordStartConnection()
             
             DispatchQueue.main.async {
@@ -178,8 +214,12 @@ public struct Product: Codable {
             }
             
             if let result = result {
+                Utils.log("Purchase result: \(result) at Product.swift:purchase")
+                
                 return result
             } else {
+                Utils.log("Purchase failed: result is nil at Product.swift:purchase", level: .error)
+                
                 return .failed(error:
                         .unknown(
                             message: "Purchase failed",
@@ -198,15 +238,32 @@ public struct Product: Codable {
         discountPolicy: DiscountPolicy? = nil,
         oemID: String? = nil
     ) async -> PurchaseResult {
+        Utils.log(
+            "Product.indirectPurchase(domain, payload, orderID, discountPolicy, oemID) with domain: \(domain) at Product.swift",
+            category: "Lifecycle",
+            level: .info
+        )
+        
         if PurchaseViewModel.shared.hasActivePurchase {
+            Utils.log(
+                "Indirect purchase failed: AppcSDK has active transaction at Product.swift:indirectPurchase",
+                level: .error
+            )
+            
             return .failed(error:
                     .purchaseNotAllowed(
                         message: "Purchase Failed",
-                        description: "AppcSDK not available or has active transaction at Product.swift:purchase",
+                        description: "AppcSDK not available or has active transaction at Product.swift:indirectPurchase",
                         request: nil
                     )
             )
         } else {
+            Utils.log(
+                "Starting indirect purchase with domain: \(domain) at Product.swift:indirectPurchase",
+                category: "Lifecycle",
+                level: .info
+            )
+            
             AnalyticsUseCases.shared.recordStartConnection()
             
             DispatchQueue.main.async {
@@ -250,12 +307,16 @@ public struct Product: Codable {
             }
             
             if let result = result {
+                Utils.log("Indirect purchase result: \(result) at Product.swift:indirectPurchase")
+                
                 return result
             } else {
+                Utils.log("Indirect purchase failed: result is nil at Product.swift:indirectPurchase")
+                
                 return .failed(error:
                         .unknown(
                             message: "Purchase failed",
-                            description: "Failed to retrieve required value: result is nil at Product.swift:purchase",
+                            description: "Failed to retrieve required value: result is nil at Product.swift:indirectPurchase",
                             request: nil
                         )
                 )

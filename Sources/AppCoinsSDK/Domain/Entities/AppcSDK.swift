@@ -20,6 +20,12 @@ public struct AppcSDK {
         var storefront: AppcStorefront?
         
         init() {
+            Utils.log(
+                "Configuration.init() at AppcSDK.swift",
+                category: "Lifecycle",
+                level: .info
+            )
+            
             self.isAppCoinsDevToolsEnabled = Bundle.main.isAppCoinsDevToolsEnabled
             
             if self.isAppCoinsDevToolsEnabled {
@@ -54,6 +60,12 @@ public struct AppcSDK {
     ///   - locale: Optional `AppcStorefront.Locale` to override the default locale.
     ///   - marketplace: Optional `AppcStorefront.Marketplace` to override the default marketplace.
     static public func configure(locale: AppcStorefront.Locale? = nil, marketplace: AppcStorefront.Marketplace? = nil) {
+        Utils.log(
+            "AppcSDK.configure(locale, marketplace) at AppcSDK.swift",
+            category: "Lifecycle",
+            level: .info
+        )
+        
         if AppcSDK.configuration.isAppCoinsDevToolsEnabled {
             var newLocale: AppcStorefront.Locale? = AppcSDK.configuration.storefront?.locale
             var newMarketplace: AppcStorefront.Marketplace? = AppcSDK.configuration.storefront?.marketplace
@@ -69,6 +81,9 @@ public struct AppcSDK {
             }
             
             AppcSDK.configuration.storefront = AppcStorefront(locale: newLocale, marketplace: newMarketplace)
+            Utils.log("AppCoinsDevTools are enabled. Updating configuration at AppcSDK.swift:configure")
+        } else {
+            Utils.log("AppCoinsDevTools are not enabled. Skipping configuration at AppcSDK.swift:configure")
         }
     }
     
@@ -84,20 +99,30 @@ public struct AppcSDK {
     ///
     /// - Returns: `true` if the SDK is available, `false` otherwise.
     static public func isAvailable() async -> Bool {
+        Utils.log(
+            "AppcSDK.isAvailable() at AppcSDK.swift",
+            category: "Lifecycle",
+            level: .info
+        )
+        
         if BuildConfiguration.isDev {
+            Utils.log("AppcSDK is available in dev mode at AppcSDK.swift:isAvailable")
             return true
         }
         
         if AppcSDK.configuration.isAppCoinsDevToolsEnabled, let defaultLocale = AppcSDK.configuration.storefront?.locale {
             guard AppcStorefront.Locale.EU.contains(defaultLocale) else {
+                Utils.log("AppcSDK is not available in non-EU storefronts at AppcSDK.swift:isAvailable")
                 return false
             }
             
             if let defaultMarketplace = AppcSDK.configuration.storefront?.marketplace {
                 switch defaultMarketplace {
                 case .aptoide:
+                    Utils.log("AppcSDK is available in Aptoide storefronts at AppcSDK.swift:isAvailable")
                     return true
                 case .apple:
+                    Utils.log("AppcSDK is not available in Apple storefronts at AppcSDK.swift:isAvailable")
                     return false
                 }
             }
@@ -105,11 +130,13 @@ public struct AppcSDK {
         
         do {
             guard #available(iOS 17.4, *) else {
+                Utils.log("AppcSDK isn't available for iOS versions below iOS 17.4 at AppcSDK.swift:isAvailable")
                 return false
             }
             
             #if targetEnvironment(simulator)
-                Utils.log("Can't validate App Distributor on Simulator. To test different billings (Apple vs. Aptoide) use an actual device or enable AppCoinsDevTools.")
+                Utils.log("Can't validate App Distributor on Simulator. To test different billings " +
+                          "(Apple vs. Aptoide) use an actual device or enable AppCoinsDevTools.")
                 return true
             #else
                 let storefront = try await AppDistributor.current
@@ -151,28 +178,39 @@ public struct AppcSDK {
     /// if AppcSDK.handle(redirectURL: URLContexts.first?.url) { return }
     /// ```
     static public func handle(redirectURL: URL?) -> Bool {
+        Utils.log(
+            "AppcSDK.handle(redirectURL) at AppcSDK.swift",
+            category: "Lifecycle",
+            level: .info
+        )
         
         AppcSDKInternal.initialize()
         
         if let redirectURL = redirectURL {
+            Utils.log("redirectURL: \(redirectURL) at AppcSDK.swift:handle")
+            
             if let host = redirectURL.host, host == "wallet.appcoins.io" {
                 let queryItems = URLComponents(string: redirectURL.absoluteString)?.queryItems
                 
                 switch redirectURL.pathComponents[1] {
                 case "default":
+                    Utils.log("Default case at AppcSDK.swift:handle")
+                    
                     if redirectURL.pathComponents.count > 2 {
                         if redirectURL.pathComponents[2] == "storefront" {
+                            Utils.log("Storefront case at AppcSDK.swift:handle")
+                            
                             var locale: AppcStorefront.Locale?
                             var marketplace: AppcStorefront.Marketplace?
                             
                             if let rawLocale = queryItems?.first(where: { $0.name == "locale" })?.value {
                                 locale = AppcStorefront.Locale.fromRaw(raw: rawLocale)
-                                if locale == nil { Utils.log("Invalid Storefront Locale: \(rawLocale)") }
+                                if locale == nil { Utils.log("Invalid Storefront Locale: \(rawLocale) at AppcSDK.swift:handle") }
                             }
                             
                             if let rawMarketplace = queryItems?.first(where: { $0.name == "marketplace" })?.value {
                                 marketplace = AppcStorefront.Marketplace.fromRaw(raw: rawMarketplace)
-                                if marketplace == nil { Utils.log("Invalid Storefront Marketplace: \(rawMarketplace)") }
+                                if marketplace == nil { Utils.log("Invalid Storefront Marketplace: \(rawMarketplace) at AppcSDK.swift:handle") }
                             }
                             
                             AppcSDK.configure(locale: locale, marketplace: marketplace)
@@ -181,9 +219,12 @@ public struct AppcSDK {
                         if let rawValue = queryItems?.first(where: { $0.name == "value" })?.value {
                             let value = rawValue.lowercased() == "true" ? true : false
                             SDKUseCases.shared.setSDKDefault(value: value)
+                            Utils.log("SDK Default set to \(value) at AppcSDK.swift:handle")
                         }
                     }
                 case "purchase":
+                    Utils.log("Purchase case at AppcSDK.swift:handle")
+                    
                     if let sku = queryItems?.first(where: { $0.name == "product" })?.value {
                         let discountPolicy = queryItems?.first(where: { $0.name == "discount_policy" })?.value.flatMap { DiscountPolicy(rawValue: $0) }
                         let oemID = queryItems?.first(where: { $0.name == "oemid" })?.value
@@ -192,33 +233,42 @@ public struct AppcSDK {
                             ProductUseCases.shared.getProduct(domain: BuildConfiguration.packageName, product: sku, discountPolicy: discountPolicy) { result in
                                 
                                 if case .success(let product) = result {
+                                    Utils.log("Product found for SKU '\(sku)' at AppcSDK.swift:handle")
                                     PurchaseIntentManager.shared.set(intent: PurchaseIntent(product: product, discountPolicy: discountPolicy, oemID: oemID))
                                 } else {
-                                    Utils.log("Indirect purchase failed: product not found for SKU '\(sku)'")
+                                    Utils.log("Indirect purchase failed: product not found for SKU '\(sku)' at AppcSDK.swift:handle")
                                 }
                             }
                         }
                     }
                 case "checkout":
+                    Utils.log("Checkout case at AppcSDK.swift:handle")
+                    
                     if redirectURL.pathComponents.count > 2 {
                         switch redirectURL.pathComponents[2] {
                         case "success":
+                            Utils.log("Checkout success case at AppcSDK.swift:handle")
                             PurchaseViewModel.shared.handleCheckoutSuccessDeeplink(deeplink: redirectURL)
                         case "failure":
+                            Utils.log("Checkout failure case at AppcSDK.swift:handle")
                             PurchaseViewModel.shared.handleCheckoutFailureDeeplink(deeplink: redirectURL)
                         default:
                             break
                         }
                     }
                 default:
+                    Utils.log("Unknown case at AppcSDK.swift:handle")
                     PurchaseViewModel.shared.handleWebViewDeeplink(deeplink: redirectURL.absoluteString)
                 }
             } else {
+                Utils.log("Unknown case at AppcSDK.swift:handle")
                 PurchaseViewModel.shared.handleWebViewDeeplink(deeplink: redirectURL.absoluteString)
             }
             
             return URLComponents(string: redirectURL.absoluteString)?.scheme == "\(BuildConfiguration.packageName).iap"
         } else {
+            Utils.log("There is no redirect URL at AppcSDK.swift:handle")
+            
             return false
         }
     }
