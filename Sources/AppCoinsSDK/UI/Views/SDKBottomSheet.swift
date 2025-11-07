@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(iOS 14, *)
 internal struct SDKBottomSheet<Content: View>: View {
     
     @Environment(\.colorScheme) internal var colorScheme

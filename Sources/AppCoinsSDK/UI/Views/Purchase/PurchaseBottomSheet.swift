@@ -18,20 +18,22 @@ internal struct PurchaseBottomSheet: View {
     internal var body: some View {
         switch viewModel.webCheckoutType {
         case .webview:
-            SDKBottomSheet(
-                content: {
-                    VStack(spacing: 0) {
-                        VStack{}.frame(height: 20)
-                        WebCheckoutView()
-                    }
-                },
-                dismiss: viewModel.dismiss,
-                background: self.colorScheme == .dark ? ColorsUi.APC_WebViewDarkMode : ColorsUi.APC_WebViewLightMode,
-                width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 116 : UIScreen.main.bounds.width,
-                height: viewModel.orientation == .landscape ? UIScreen.main.bounds.height * 0.9 : UIScreen.main.bounds.height * 0.75
-            )
+            if #available(iOS 14, *) {
+                SDKBottomSheet(
+                    content: {
+                        VStack(spacing: 0) {
+                            VStack{}.frame(height: 20)
+                            WebCheckoutView()
+                        }
+                    },
+                    dismiss: viewModel.dismiss,
+                    background: self.colorScheme == .dark ? ColorsUi.APC_WebViewDarkMode : ColorsUi.APC_WebViewLightMode,
+                    width: viewModel.orientation == .landscape ? UIScreen.main.bounds.width - 116 : UIScreen.main.bounds.width,
+                    height: viewModel.orientation == .landscape ? UIScreen.main.bounds.height * 0.9 : UIScreen.main.bounds.height * 0.75
+                )
+            }
         case .browser:
-            WebCheckoutLoading()
+            if #available(iOS 14, *) { WebCheckoutLoading() }
         case .none:
             EmptyView()
         }
