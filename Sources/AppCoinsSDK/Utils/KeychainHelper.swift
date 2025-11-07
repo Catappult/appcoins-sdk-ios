@@ -14,8 +14,6 @@ final internal class KeychainHelper {
     
     private init() {}
     
-    internal let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "network")
-    
     internal func save<T>(_ item: T, service: String, account: String) throws where T : Codable {
         
         do {
@@ -72,9 +70,9 @@ final internal class KeychainHelper {
                 SecItemUpdate(query, attributesToUpdate)
         }
         
-        logger.error("\(status, privacy: .public)")
+        HelperLoggerWrapper.log("\(status)")
         if status != errSecSuccess && status != errSecDuplicateItem {
-            logger.error("\("2\(status)", privacy: .public)")
+            HelperLoggerWrapper.log("2\(status)")
             throw KeychainError.error
         }
         
@@ -114,4 +112,19 @@ internal enum KeychainError: Error {
 
 internal enum PreferencesError: Error {
   case error
+}
+
+struct HelperLoggerWrapper {
+    static func log(
+        _ status: String,
+        subsystem: String = Bundle.main.bundleIdentifier!,
+        category: String = "network")
+    {
+        if #available(iOS 14, *) {
+            let logger = Logger(subsystem: subsystem, category: category)
+            logger.error( "\(status, privacy: .public)")
+        } else {
+            print("\(status)")
+        }
+    }
 }
