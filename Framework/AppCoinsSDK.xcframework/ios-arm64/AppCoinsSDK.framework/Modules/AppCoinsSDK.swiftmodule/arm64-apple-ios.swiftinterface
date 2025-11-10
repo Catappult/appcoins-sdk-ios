@@ -253,6 +253,9 @@ extension AppCoinsSDK.AppcStorefront.Locale {
   public static let all: [AppCoinsSDK.AppcStorefront.Locale]
   public static let EU: [AppCoinsSDK.AppcStorefront.Locale]
 }
+public func obfuscateFields(_ fields: [Swift.String], in body: Any, mask: (Swift.String) -> Swift.String = { _ in "hidden" }) -> Swift.String
+public func obfuscateFields(_ fields: [Swift.String], in body: Foundation.Data, mask: (Swift.String) -> Swift.String = { _ in "hidden" }) -> Swift.String
+public func obfuscateFields(_ fields: [Swift.String], in body: Swift.String, mask: (Swift.String) -> Swift.String = { _ in "hidden" }) -> Swift.String
 public struct Product : Swift.Codable {
   public let sku: Swift.String
   public let title: Swift.String
