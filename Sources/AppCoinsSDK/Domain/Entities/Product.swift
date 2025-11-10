@@ -166,72 +166,86 @@ public struct Product: Codable {
             )
         }
         
-        let isAvailable = await !AppcSDK.isAvailable()
-        let hasActivePurchase = PurchaseViewModel.shared.hasActivePurchase
+        let isAvailable = await AppcSDK.isAvailable()
         
-        if !isAvailable || hasActivePurchase {
+        guard isAvailable else {
             Utils.log(
-                "Purchase Failed: AppcSDK availability: \(isAvailable) or " +
-                "has active transaction: \(hasActivePurchase) at Product.swift:purchase",
+                "Purchase Failed: AppcSDK not available at Product.swift:purchase",
                 level: .error
             )
             
             return .failed(error:
                     .purchaseNotAllowed(
                         message: "Purchase Failed",
-                        description: "AppcSDK not available or has active transaction at Product.swift:purchase",
+                        description: "AppcSDK not available at Product.swift:purchase",
                         request: nil
                     )
             )
-        } else {
+        }
+        
+        guard !PurchaseViewModel.shared.hasActivePurchase else {
             Utils.log(
-                "Starting purchase with domain: \(domain) at Product.swift:purchase",
-                category: "Lifecycle",
-                level: .info
+                "Purchase Failed: AppcSDK has active transaction at Product.swift:purchase",
+                level: .error
             )
             
-            AnalyticsUseCases.shared.recordStartConnection()
+            return .failed(error:
+                    .purchaseNotAllowed(
+                        message: "Purchase Failed",
+                        description: "AppcSDK has active transaction at Product.swift:purchase",
+                        request: nil
+                    )
+            )
+        }
+        
+        // Proceed with purchase
+        Utils.log(
+            "Starting purchase with domain: \(domain) at Product.swift:purchase",
+            category: "Lifecycle",
+            level: .info
+        )
+        
+        AnalyticsUseCases.shared.recordStartConnection()
+        
+        DispatchQueue.main.async {
+            SDKViewController.shared.presentPurchase()
             
-            DispatchQueue.main.async {
-                SDKViewController.shared.presentPurchase()
-                
-                // product – the SKU product
-                // domain – the app's domain registered in catappult
-                // payload – information that the developer might want to pass with the transaction
-                // orderID – a reference so that the developer can identify unique transactions
-                PurchaseViewModel.shared.purchase(product: self, domain: domain, metadata: payload, reference: orderID)
-            }
-            
-            let result = try? await withCheckedThrowingContinuation { continuation in
-                var observer: NSObjectProtocol?
-                observer = NotificationCenter.default.addObserver(forName: Notification.Name("APPCPurchaseResult"), object: nil, queue: nil) { notification in
-                    if let userInfo = notification.userInfo {
-                        if let status = userInfo["PurchaseResult"] as? PurchaseResult {
-                            continuation.resume(returning: status)
-                            
-                            if let observer = observer {
-                                NotificationCenter.default.removeObserver(observer)
-                            }
+            // product – the SKU product
+            // domain – the app's domain registered in catappult
+            // payload – information that the developer might want to pass with the transaction
+            // orderID – a reference so that the developer can identify unique transactions
+            PurchaseViewModel.shared.purchase(product: self, domain: domain, metadata: payload, reference: orderID)
+        }
+        
+        let result = try? await withCheckedThrowingContinuation { continuation in
+            var observer: NSObjectProtocol?
+            observer = NotificationCenter.default.addObserver(forName: Notification.Name("APPCPurchaseResult"), object: nil, queue: nil) { notification in
+                if let userInfo = notification.userInfo {
+                    if let status = userInfo["PurchaseResult"] as? PurchaseResult {
+                        continuation.resume(returning: status)
+                        
+                        if let observer = observer {
+                            NotificationCenter.default.removeObserver(observer)
                         }
                     }
                 }
             }
+        }
+        
+        if let result = result {
+            Utils.log("Purchase result: \(result) at Product.swift:purchase")
             
-            if let result = result {
-                Utils.log("Purchase result: \(result) at Product.swift:purchase")
-                
-                return result
-            } else {
-                Utils.log("Purchase failed: result is nil at Product.swift:purchase", level: .error)
-                
-                return .failed(error:
-                        .unknown(
-                            message: "Purchase failed",
-                            description: "Failed to retrieve required value: result is nil at Product.swift:purchase",
-                            request: nil
-                        )
-                )
-            }
+            return result
+        } else {
+            Utils.log("Purchase failed: result is nil at Product.swift:purchase", level: .error)
+            
+            return .failed(error:
+                    .unknown(
+                        message: "Purchase failed",
+                        description: "Failed to retrieve required value: result is nil at Product.swift:purchase",
+                        request: nil
+                    )
+            )
         }
     }
     
