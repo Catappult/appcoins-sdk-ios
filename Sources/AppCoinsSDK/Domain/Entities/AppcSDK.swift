@@ -190,7 +190,7 @@ public struct AppcSDK {
         AppcSDKInternal.initialize()
         
         if let redirectURL = redirectURL {
-            Utils.log("redirectURL: \(redirectURL) at AppcSDK.swift:handle")
+            Utils.log("Will handle redirectURL: \(redirectURL) at AppcSDK.swift:handle")
             
             if let host = redirectURL.host, host == "wallet.appcoins.io" {
                 let queryItems = URLComponents(string: redirectURL.absoluteString)?.queryItems
