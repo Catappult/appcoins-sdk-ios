@@ -10,6 +10,12 @@ import Foundation
 internal class AppcSDKInternal {
     
     static internal func initialize() {
+        Utils.log(
+            "AppcSDKInternal.initialize() at AppcSDKInternal.swift",
+            category: "Lifecycle",
+            level: .info
+        )
+        
         MMPUseCases.shared.getAttribution()
         AnalyticsUseCases.shared.initialize()
         PurchaseIntentManager.shared.initialize()

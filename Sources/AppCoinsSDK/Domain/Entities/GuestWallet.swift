@@ -28,11 +28,41 @@ internal class GuestWallet: Wallet, Codable {
         self.signature = raw.signature
     }
     
-    internal func getWalletAddress() -> String { return self.address }
+    internal func getWalletAddress() -> String {
+        Utils.log(
+            "GuestWallet.getWalletAddress() at GuestWallet.swift",
+            category: "Lifecycle",
+            level: .info
+        )
+        
+        Utils.log("Returning wallet address at GuestWallet.swift:getWalletAddress")
+        
+        return self.address
+    }
     
-    internal func getSignedWalletAddress() -> String? { return self.signature }
+    internal func getSignedWalletAddress() -> String? {
+        Utils.log(
+            "GuestWallet.getSignedWalletAddress() at GuestWallet.swift",
+            category: "Lifecycle",
+            level: .info
+        )
+        
+        Utils.log("Returning signed wallet address at GuestWallet.swift:getSignedWalletAddress")
+        
+        return self.signature
+    }
     
-    internal func getAuthToken() -> String? { return "Bearer \(self.ewt)" }
+    internal func getAuthToken() -> String? {
+        Utils.log(
+            "GuestWallet.getAuthToken() at GuestWallet.swift",
+            category: "Lifecycle",
+            level: .info
+        )
+        
+        Utils.log("Returning auth token at GuestWallet.swift:getAuthToken")
+        
+        return "Bearer \(self.ewt)"
+    }
     
     // Conform to Codable Protocol
     internal enum CodingKeys: String, CodingKey {
