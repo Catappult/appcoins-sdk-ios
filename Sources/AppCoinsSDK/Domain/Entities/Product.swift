@@ -166,9 +166,13 @@ public struct Product: Codable {
             )
         }
         
-        if await !AppcSDK.isAvailable() || PurchaseViewModel.shared.hasActivePurchase {
+        let isAvailable = await !AppcSDK.isAvailable()
+        let hasActivePurchase = PurchaseViewModel.shared.hasActivePurchase
+        
+        if !isAvailable || hasActivePurchase {
             Utils.log(
-                "Purchase Failed: AppcSDK not available or has active transaction at Product.swift:purchase",
+                "Purchase Failed: AppcSDK availability: \(isAvailable) or " +
+                "has active transaction: \(hasActivePurchase) at Product.swift:purchase",
                 level: .error
             )
             
