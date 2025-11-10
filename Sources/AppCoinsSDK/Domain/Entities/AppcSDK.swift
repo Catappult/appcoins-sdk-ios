@@ -270,7 +270,7 @@ public struct AppcSDK {
             
             return URLComponents(string: redirectURL.absoluteString)?.scheme == "\(BuildConfiguration.packageName).iap"
         } else {
-            Utils.log("There is no redirect URL at AppcSDK.swift:handle")
+            Utils.log("AppcSDK cannot recognize or process \(redirectURL) at AppcSDK.swift:handle")
             
             return false
         }
