@@ -34,7 +34,7 @@ class PurchaseIntentManager {
 
     internal func set(intent: PurchaseIntent) {
         Utils.log(
-            "PurchaseIntentManager.set(intent) at PurchaseIntentManager.swift",
+            "PurchaseIntentManager.set(intent: \(intent)) at PurchaseIntentManager.swift",
             category: "Lifecycle",
             level: .info
         )

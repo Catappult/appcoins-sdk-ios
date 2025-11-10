@@ -61,7 +61,7 @@ public struct AppcSDK {
     ///   - marketplace: Optional `AppcStorefront.Marketplace` to override the default marketplace.
     static public func configure(locale: AppcStorefront.Locale? = nil, marketplace: AppcStorefront.Marketplace? = nil) {
         Utils.log(
-            "AppcSDK.configure(locale, marketplace) at AppcSDK.swift",
+            "AppcSDK.configure(locale: \(locale), marketplace: \(marketplace)) at AppcSDK.swift",
             category: "Lifecycle",
             level: .info
         )
@@ -112,17 +112,20 @@ public struct AppcSDK {
         
         if AppcSDK.configuration.isAppCoinsDevToolsEnabled, let defaultLocale = AppcSDK.configuration.storefront?.locale {
             guard AppcStorefront.Locale.EU.contains(defaultLocale) else {
-                Utils.log("AppcSDK is not available in non-EU storefronts at AppcSDK.swift:isAvailable")
+                Utils.log("AppCoinsDevTools is enabled: non‑EU storefront detected. " +
+                          "AppcSDK unavailable at AppcSDK.swift:isAvailable")
                 return false
             }
             
             if let defaultMarketplace = AppcSDK.configuration.storefront?.marketplace {
                 switch defaultMarketplace {
                 case .aptoide:
-                    Utils.log("AppcSDK is available in Aptoide storefronts at AppcSDK.swift:isAvailable")
+                    Utils.log("AppCoinsDevTools is enabled: Aptoide storefront detected. " +
+                              "AppcSDK available at AppcSDK.swift:isAvailable")
                     return true
                 case .apple:
-                    Utils.log("AppcSDK is not available in Apple storefronts at AppcSDK.swift:isAvailable")
+                    Utils.log("AppCoinsDevTools is enabled: Apple App Store storefront detected. " +
+                              "AppcSDK unavailable at AppcSDK.swift:isAvailable")
                     return false
                 }
             }
@@ -179,7 +182,7 @@ public struct AppcSDK {
     /// ```
     static public func handle(redirectURL: URL?) -> Bool {
         Utils.log(
-            "AppcSDK.handle(redirectURL) at AppcSDK.swift",
+            "AppcSDK.handle(redirectURL: \(redirectURL)) at AppcSDK.swift",
             category: "Lifecycle",
             level: .info
         )
@@ -187,7 +190,7 @@ public struct AppcSDK {
         AppcSDKInternal.initialize()
         
         if let redirectURL = redirectURL {
-            Utils.log("redirectURL: \(redirectURL) at AppcSDK.swift:handle")
+            Utils.log("Will handle redirectURL: \(redirectURL) at AppcSDK.swift:handle")
             
             if let host = redirectURL.host, host == "wallet.appcoins.io" {
                 let queryItems = URLComponents(string: redirectURL.absoluteString)?.queryItems
@@ -267,7 +270,7 @@ public struct AppcSDK {
             
             return URLComponents(string: redirectURL.absoluteString)?.scheme == "\(BuildConfiguration.packageName).iap"
         } else {
-            Utils.log("There is no redirect URL at AppcSDK.swift:handle")
+            Utils.log("AppcSDK cannot recognize or process \(redirectURL) at AppcSDK.swift:handle")
             
             return false
         }

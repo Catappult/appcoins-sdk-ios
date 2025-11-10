@@ -75,7 +75,7 @@ internal class WalletUseCases {
                 completion(.success(guestWallet))
             case .failure(let error):
                 Utils.log(
-                    "Get guest wallet failed with erro: \(error) at WalletUseCases.swift:getGuestWallet",
+                    "Get guest wallet failed with error: \(error) at WalletUseCases.swift:getGuestWallet",
                     level: .error
                 )
                 completion(.failure(error))

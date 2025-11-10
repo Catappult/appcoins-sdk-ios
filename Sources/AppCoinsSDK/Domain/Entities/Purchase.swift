@@ -67,7 +67,7 @@ public class Purchase: Codable {
         ) -> Void
     ) {
         Utils.log(
-            "Purchase.verify(domain, purchaseUID) at Purchase.swift",
+            "Purchase.verify(domain: \(domain), purchaseUID: \(purchaseUID)) at Purchase.swift",
             category: "Lifecycle",
             level: .info
         )
@@ -157,7 +157,7 @@ public class Purchase: Codable {
     // only accessible internally – the SDK acknowledges the purchase
     internal func acknowledge(domain: String = (Bundle.main.bundleIdentifier ?? ""), completion: @escaping (AppCoinsSDKError?) -> Void) {
         Utils.log(
-            "Purchase.acknowledge(domain) at Purchase.swift",
+            "Purchase.acknowledge(domain: \(domain)) at Purchase.swift",
             category: "Lifecycle",
             level: .info
         )
@@ -264,7 +264,7 @@ public class Purchase: Codable {
     // accessible by the developer – the app consumes the purchase and attributes the item to the user
     public func finish(domain: String = (Bundle.main.bundleIdentifier ?? "")) async throws {
         Utils.log(
-            "Purchase.finish(domain) at Purchase.swift",
+            "Purchase.finish(domain: \(domain)) at Purchase.swift",
             category: "Lifecycle",
             level: .info
         )
@@ -372,7 +372,7 @@ public class Purchase: Codable {
     // get all the user's purchases
     public static func all(domain: String = (Bundle.main.bundleIdentifier ?? "")) async throws -> [Purchase] {
         Utils.log(
-            "Purchase.all(domain) at Purchase.swift",
+            "Purchase.all(domain: \(domain)) at Purchase.swift",
             category: "Lifecycle",
             level: .info
         )
@@ -448,7 +448,7 @@ public class Purchase: Codable {
     
     public static func latest(domain: String = (Bundle.main.bundleIdentifier ?? ""), sku: String) async throws -> Purchase? {
         Utils.log(
-            "Purchase.latest(domain) at Purchase.swift",
+            "Purchase.latest(domain: \(domain)) at Purchase.swift",
             category: "Lifecycle",
             level: .info
         )
@@ -527,7 +527,7 @@ public class Purchase: Codable {
     // we consider unfinished purchases any purchase that have neither been acknowledged nor consumed
     public static func unfinished(domain: String = (Bundle.main.bundleIdentifier ?? "")) async throws -> [Purchase] {
         Utils.log(
-            "Purchase.unfinished(domain) at Purchase.swift",
+            "Purchase.unfinished(domain: \(domain)) at Purchase.swift",
             category: "Lifecycle",
             level: .info
         )
