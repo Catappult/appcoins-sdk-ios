@@ -30,7 +30,7 @@ public struct PurchaseIntent: Sendable, Identifiable, Codable {
         orderID: String = String(Date.timeIntervalSinceReferenceDate)
     ) async -> PurchaseResult {
         Utils.log(
-            "PurchaseIntent.confirm(domain, payload, orderID) at PurchaseIntent.swift",
+            "PurchaseIntent.confirm(domain: \(domain), payload: \(payload), orderID: \(orderID)) at PurchaseIntent.swift",
             category: "Lifecycle",
             level: .info
         )

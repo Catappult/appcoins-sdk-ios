@@ -59,7 +59,8 @@ internal class PurchaseViewModel: ObservableObject {
         oemID: String? = nil
     ) {
         Utils.log(
-            "PurchaseViewModel.purchase(product, domain, metadata, reference, discountPolicy, oemID) at PurchaseViewModel.swift",
+            "PurchaseViewModel.purchase(product: \(product), domain: \(domain), metadata: \(metadata), " +
+            "reference: \(reference), discountPolicy: \(discountPolicy), oemID: \(oemID) at PurchaseViewModel.swift",
             category: "Lifecycle",
             level: .info
         )
@@ -157,7 +158,7 @@ internal class PurchaseViewModel: ObservableObject {
     
     internal func success(verificationResult: VerificationResult) {
         Utils.log(
-            "PurchaseViewModel.success(verificationResult) at PurchaseViewModel.swift",
+            "PurchaseViewModel.success(verificationResult: \(verificationResult)) at PurchaseViewModel.swift",
             category: "Lifecycle",
             level: .info
         )
@@ -173,7 +174,7 @@ internal class PurchaseViewModel: ObservableObject {
     
     internal func sendResult(result: PurchaseResult) {
         Utils.log(
-            "PurchaseViewModel.sendResult(result) at PurchaseViewModel.swift",
+            "PurchaseViewModel.sendResult(result: \(result)) at PurchaseViewModel.swift",
             category: "Lifecycle",
             level: .info
         )
@@ -185,7 +186,7 @@ internal class PurchaseViewModel: ObservableObject {
     
     internal func handleCheckoutSuccessDeeplink(deeplink: URL) {
         Utils.log(
-            "PurchaseViewModel.handleCheckoutSuccessDeeplink(deeplink) at PurchaseViewModel.swift",
+            "PurchaseViewModel.handleCheckoutSuccessDeeplink(deeplink: \(deeplink)) at PurchaseViewModel.swift",
             category: "Lifecycle",
             level: .info
         )
@@ -200,7 +201,7 @@ internal class PurchaseViewModel: ObservableObject {
     
     internal func handleCheckoutFailureDeeplink(deeplink: URL) {
         Utils.log(
-            "PurchaseViewModel.handleCheckoutFailureDeeplink(deeplink) at PurchaseViewModel.swift",
+            "PurchaseViewModel.handleCheckoutFailureDeeplink(deeplink: \(deeplink)) at PurchaseViewModel.swift",
             category: "Lifecycle",
             level: .info
         )
@@ -221,7 +222,7 @@ internal class PurchaseViewModel: ObservableObject {
     
     internal func handleWebViewDeeplink(deeplink: String) {
         Utils.log(
-            "PurchaseViewModel.handleWebViewDeeplink(deeplink) at PurchaseViewModel.swift",
+            "PurchaseViewModel.handleWebViewDeeplink(deeplink: \(deeplink)) at PurchaseViewModel.swift",
             category: "Lifecycle",
             level: .info
         )

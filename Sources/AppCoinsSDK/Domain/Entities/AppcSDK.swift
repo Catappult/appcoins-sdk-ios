@@ -61,7 +61,7 @@ public struct AppcSDK {
     ///   - marketplace: Optional `AppcStorefront.Marketplace` to override the default marketplace.
     static public func configure(locale: AppcStorefront.Locale? = nil, marketplace: AppcStorefront.Marketplace? = nil) {
         Utils.log(
-            "AppcSDK.configure(locale, marketplace) at AppcSDK.swift",
+            "AppcSDK.configure(locale: \(locale), marketplace: \(marketplace)) at AppcSDK.swift",
             category: "Lifecycle",
             level: .info
         )
@@ -182,7 +182,7 @@ public struct AppcSDK {
     /// ```
     static public func handle(redirectURL: URL?) -> Bool {
         Utils.log(
-            "AppcSDK.handle(redirectURL) at AppcSDK.swift",
+            "AppcSDK.handle(redirectURL: \(redirectURL)) at AppcSDK.swift",
             category: "Lifecycle",
             level: .info
         )

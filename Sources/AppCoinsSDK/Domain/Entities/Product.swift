@@ -37,7 +37,7 @@ public struct Product: Codable {
         for identifiers: [String]? = nil
     ) async throws -> [Product] {
         Utils.log(
-            "Product.products(domain, for indentifiers) at Product.swift",
+            "Product.products(domain: \(domain), for indentifiers: \(identifiers) at Product.swift",
             category: "Lifecycle",
             level: .info
         )
@@ -145,7 +145,7 @@ public struct Product: Codable {
         orderID: String = String(Date.timeIntervalSinceReferenceDate)
     ) async -> PurchaseResult {
         Utils.log(
-            "Product.purchase(domain, payload, orderID) with domain: \(domain) at Product.swift",
+            "Product.purchase(domain: \(domain), payload: \(payload), orderID: \(orderID)) at Product.swift",
             category: "Lifecycle",
             level: .info
         )
@@ -243,7 +243,8 @@ public struct Product: Codable {
         oemID: String? = nil
     ) async -> PurchaseResult {
         Utils.log(
-            "Product.indirectPurchase(domain, payload, orderID, discountPolicy, oemID) with domain: \(domain) at Product.swift",
+            "Product.indirectPurchase(domain: \(domain), payload: \(payload), orderID: \(orderID), " +
+            "discountPolicy: \(discountPolicy), oemID: \(oemID) at Product.swift",
             category: "Lifecycle",
             level: .info
         )
