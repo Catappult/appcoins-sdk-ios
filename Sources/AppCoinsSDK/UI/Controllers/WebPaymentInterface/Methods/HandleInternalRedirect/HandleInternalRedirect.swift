@@ -15,7 +15,7 @@ internal class HandleInternalRedirect {
     
     internal func handle(body: HandleInternalRedirectBody) {
         guard let URL = URL(string: body.URL) else {
-            Utils.log("Invalid URL on handleInternalRedirect")
+            Utils.log("Invalid URL at HandleInternalRedirect.swift:handle")
             return
         }
         

@@ -16,38 +16,96 @@ class PurchaseIntentManager {
     private init() {}
     
     internal func initialize() {
+        Utils.log(
+            "PurchaseIntentManager.initialize() at PurchaseIntentManager.swift",
+            category: "Lifecycle",
+            level: .info
+        )
+        
         loadFromDisk()
-        if let current = self.current { Purchase.send(current) }
+        
+        if let current = self.current {
+            Utils.log("Sending current Purchase intent at PurchaseIntentManager.swift:initialize")
+            Purchase.send(current)
+        }
+        
         launchTimeoutMonitor()
     }
 
     internal func set(intent: PurchaseIntent) {
+        Utils.log(
+            "PurchaseIntentManager.set(intent: \(intent)) at PurchaseIntentManager.swift",
+            category: "Lifecycle",
+            level: .info
+        )
+        
         self.current = intent
+        Utils.log("Set purchase intent. Saving to disk at PurchaseIntentManager.swift:set")
+        
         saveToDisk()
+        
+        Utils.log("Sending current purchase intent at PurchaseIntentManager.swift:set")
         Purchase.send(intent)
     }
     
     internal func unset() {
+        Utils.log(
+            "PurchaseIntentManager.unset() at PurchaseIntentManager.swift",
+            category: "Lifecycle",
+            level: .info
+        )
+        
         self.current = nil
+        Utils.log("Unset purchase intent at PurchaseIntentManager.swift:unset")
+        
+        Utils.log("Removing purchase intent from disk at PurchaseIntentManager.swift:unset")
         removeFromDisk()
     }
 
     private func saveToDisk() {
-        if let current = self.current { SDKUseCases.shared.persistPurchaseIntent(intent: current) }
+        Utils.log(
+            "PurchaseIntentManager.saveToDisk() at PurchaseIntentManager.swift",
+            category: "Lifecycle",
+            level: .info
+        )
+        
+        if let current = self.current {
+            Utils.log("Saving purchase intent at PurchaseIntentManager.swift:saveToDisk")
+            SDKUseCases.shared.persistPurchaseIntent(intent: current)
+        }
     }
 
     internal func loadFromDisk() {
-        guard let storedIntent = SDKUseCases.shared.fetchPurchaseIntent() else { return }
+        Utils.log(
+            "PurchaseIntentManager.loadFromDisk() at PurchaseIntentManager.swift",
+            category: "Lifecycle",
+            level: .info
+        )
+        
+        guard let storedIntent = SDKUseCases.shared.fetchPurchaseIntent() else {
+            Utils.log("There is no stored purchase intent at PurchaseIntentManager.swift:loadFromDisk")
+            return
+        }
         
         if isIntentExpired(intent: storedIntent) {
+            Utils.log("Stored purchase intent is expired. Removing from disk at PurchaseIntentManager.swift:loadFromDisk")
             removeFromDisk()
+            
             return
         }
         
         self.current = storedIntent
+        Utils.log("Loaded purchase intent at PurchaseIntentManager.swift:loadFromDisk")
     }
     
     private func removeFromDisk() {
+        Utils.log(
+            "PurchaseIntentManager.removeFromDisk() at PurchaseIntentManager.swift",
+            category: "Lifecycle",
+            level: .info
+        )
+        
+        Utils.log("Removing purchase intent from disk at PurchaseIntentManager.swift:removeFromDisk")
         SDKUseCases.shared.removePurchaseIntent()
     }
 
