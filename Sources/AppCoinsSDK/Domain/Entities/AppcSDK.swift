@@ -112,17 +112,20 @@ public struct AppcSDK {
         
         if AppcSDK.configuration.isAppCoinsDevToolsEnabled, let defaultLocale = AppcSDK.configuration.storefront?.locale {
             guard AppcStorefront.Locale.EU.contains(defaultLocale) else {
-                Utils.log("AppcSDK is not available in non-EU storefronts at AppcSDK.swift:isAvailable")
+                Utils.log("AppCoinsDevTools is enabled: non‑EU storefront detected. " +
+                          "AppcSDK disabled at AppcSDK.swift:isAvailable")
                 return false
             }
             
             if let defaultMarketplace = AppcSDK.configuration.storefront?.marketplace {
                 switch defaultMarketplace {
                 case .aptoide:
-                    Utils.log("AppcSDK is available in Aptoide storefronts at AppcSDK.swift:isAvailable")
+                    Utils.log("AppCoinsDevTools is enabled: Aptoide storefront detected. " +
+                              "AppcSDK enabled at AppcSDK.swift:isAvailable")
                     return true
                 case .apple:
-                    Utils.log("AppcSDK is not available in Apple storefronts at AppcSDK.swift:isAvailable")
+                    Utils.log("AppCoinsDevTools is enabled: Apple App Store storefront detected. " +
+                              "AppcSDK disabled at AppcSDK.swift:isAvailable")
                     return false
                 }
             }
