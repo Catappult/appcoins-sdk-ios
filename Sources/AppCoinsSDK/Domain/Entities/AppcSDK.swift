@@ -73,15 +73,17 @@ public struct AppcSDK {
             if let locale = locale {
                 SDKUseCases.shared.setSDKDefaultStorefrontLocale(locale: locale.code)
                 newLocale = locale
+                Utils.log("Storefront locale set to: \(newLocale) at AppcSDK.swift:configure")
             }
             
             if let marketplace = marketplace {
                 SDKUseCases.shared.setSDKDefaultStorefrontMarketplace(marketplace: marketplace.rawValue)
                 newMarketplace = marketplace
+                Utils.log("Storefront marketplace set to: \(newMarketplace) at AppcSDK.swift:configure")
             }
             
-            AppcSDK.configuration.storefront = AppcStorefront(locale: newLocale, marketplace: newMarketplace)
             Utils.log("AppCoinsDevTools are enabled. Updating configuration at AppcSDK.swift:configure")
+            AppcSDK.configuration.storefront = AppcStorefront(locale: newLocale, marketplace: newMarketplace)
         } else {
             Utils.log("AppCoinsDevTools are not enabled. Skipping configuration at AppcSDK.swift:configure")
         }
@@ -223,6 +225,7 @@ public struct AppcSDK {
                                 if marketplace == nil { Utils.log("Invalid Storefront Marketplace: \(rawMarketplace) at AppcSDK.swift:handle") }
                             }
                             
+                            Utils.log("Configuring Storefront at AppcSDK.swift:handle")
                             AppcSDK.configure(locale: locale, marketplace: marketplace)
                         }
                     } else {
