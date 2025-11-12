@@ -33,6 +33,12 @@ internal class PurchaseViewModel: ObservableObject {
     private init() {}
     
     internal func reset() {
+        Utils.log(
+            "PurchaseViewModel.reset() at PurchaseViewModel.swift",
+            category: "Lifecycle",
+            level: .info
+        )
+        
         self.hasActivePurchase = false
         self.webCheckoutType = nil
         self.product = nil
@@ -52,6 +58,13 @@ internal class PurchaseViewModel: ObservableObject {
         discountPolicy: DiscountPolicy? = nil,
         oemID: String? = nil
     ) {
+        Utils.log(
+            "PurchaseViewModel.purchase(product: \(product), domain: \(domain), metadata: \(metadata), " +
+            "reference: \(reference), discountPolicy: \(discountPolicy), oemID: \(oemID) at PurchaseViewModel.swift",
+            category: "Lifecycle",
+            level: .info
+        )
+        
         self.product = product
         self.domain = domain
         self.metadata = metadata
@@ -80,11 +93,23 @@ internal class PurchaseViewModel: ObservableObject {
     
     // Handles the dismiss (click on the zone above the bottom sheet) for the multiple states of the bottom sheet
     internal func dismiss() {
+        Utils.log(
+            "PurchaseViewModel.dismiss() at PurchaseViewModel.swift",
+            category: "Lifecycle",
+            level: .info
+        )
+        
         self.cancel()
     }
     
     // Dismiss Bottom Sheet
     private func dismissVC(completion: @escaping () -> Void) {
+        Utils.log(
+            "PurchaseViewModel.dismissVC() at PurchaseViewModel.swift",
+            category: "Lifecycle",
+            level: .info
+        )
+        
         DispatchQueue.main.async {
             if let rootViewController = UIApplication.shared.windows.first?.rootViewController,
                let presentedPurchaseVC = rootViewController.presentedViewController as? PurchaseViewController {
@@ -100,6 +125,12 @@ internal class PurchaseViewModel: ObservableObject {
     }
     
     internal func cancel() {
+        Utils.log(
+            "PurchaseViewModel.cancel() at PurchaseViewModel.swift",
+            category: "Lifecycle",
+            level: .info
+        )
+        
         self.dismissVC {
             let result : PurchaseResult = .userCancelled
             self.sendResult(result: result)
@@ -110,6 +141,12 @@ internal class PurchaseViewModel: ObservableObject {
     }
     
     internal func failed(error: AppCoinsSDKError) {
+        Utils.log(
+            "PurchaseViewModel.failed() at PurchaseViewModel.swift",
+            category: "Lifecycle",
+            level: .info
+        )
+        
         self.dismissVC {
             let result: PurchaseResult = .failed(error: error)
             self.sendResult(result: result)
@@ -120,6 +157,12 @@ internal class PurchaseViewModel: ObservableObject {
     }
     
     internal func success(verificationResult: VerificationResult) {
+        Utils.log(
+            "PurchaseViewModel.success(verificationResult: \(verificationResult)) at PurchaseViewModel.swift",
+            category: "Lifecycle",
+            level: .info
+        )
+        
         self.dismissVC {
             let result: PurchaseResult = .success(verificationResult: verificationResult)
             self.sendResult(result: result)
@@ -130,12 +173,24 @@ internal class PurchaseViewModel: ObservableObject {
     }
     
     internal func sendResult(result: PurchaseResult) {
+        Utils.log(
+            "PurchaseViewModel.sendResult(result: \(result)) at PurchaseViewModel.swift",
+            category: "Lifecycle",
+            level: .info
+        )
+        
         NotificationCenter.default.post(name: NSNotification.Name("APPCPurchaseResult"), object: nil, userInfo: ["PurchaseResult" : result])
     }
     
     internal func setOrientation(orientation: Orientation) { self.orientation = orientation }
     
     internal func handleCheckoutSuccessDeeplink(deeplink: URL) {
+        Utils.log(
+            "PurchaseViewModel.handleCheckoutSuccessDeeplink(deeplink: \(deeplink)) at PurchaseViewModel.swift",
+            category: "Lifecycle",
+            level: .info
+        )
+        
         do {
             let query = try OnPurchaseResultQuery(deeplink: deeplink)
             OnPurchaseResult.shared.handle(query: query)
@@ -145,15 +200,33 @@ internal class PurchaseViewModel: ObservableObject {
     }
     
     internal func handleCheckoutFailureDeeplink(deeplink: URL) {
+        Utils.log(
+            "PurchaseViewModel.handleCheckoutFailureDeeplink(deeplink: \(deeplink)) at PurchaseViewModel.swift",
+            category: "Lifecycle",
+            level: .info
+        )
+        
         do {
             let query = try OnErrorQuery(deeplink: deeplink)
             OnError.shared.handle(query: query)
         } catch {
-            if let error = error as? AppCoinsSDKError { Utils.log(error.description) }
+            if let error = error as? AppCoinsSDKError {
+                Utils.log(
+                    "Checkout deeplink handling failed with error: \(error.description) " +
+                          "at PurchaseViewModel.swift.handleCheckoutFailureDeeplink",
+                    level: .error
+                )
+            }
         }
     }
     
     internal func handleWebViewDeeplink(deeplink: String) {
+        Utils.log(
+            "PurchaseViewModel.handleWebViewDeeplink(deeplink: \(deeplink)) at PurchaseViewModel.swift",
+            category: "Lifecycle",
+            level: .info
+        )
+        
         guard let webView = webView else {
             Utils.log("WebView is not defined on authentication redirect")
             return
@@ -175,7 +248,7 @@ internal class PurchaseViewModel: ObservableObject {
         
         webView.evaluateJavaScript("window.handleIOSRedirect('\(finalURL)')") { result, error in
             if let error = error {
-                Utils.log("Error sending message to WebView: \(error.localizedDescription)")
+                Utils.log("Error sending message to WebView: \(error.localizedDescription)", level: .error)
             } else {
                 Utils.log("Called window.handleIOSRedirect('\(finalURL)') successfully")
             }

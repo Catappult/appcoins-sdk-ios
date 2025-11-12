@@ -19,7 +19,7 @@ internal class OnPurchaseResult {
                 self.verifyPurchase(domain: body.purchaseData.packageName, purchaseToken: body.purchaseData.purchaseToken)
             }
         } else {
-            Utils.log("No wallet OnPurchaseResultBody")
+            Utils.log("No wallet found at OnPurchaseResult.swift:handle")
             self.verifyPurchase(domain: body.purchaseData.packageName, purchaseToken: body.purchaseData.purchaseToken)
         }
     }
@@ -30,7 +30,7 @@ internal class OnPurchaseResult {
                 self.verifyPurchase(domain: query.purchaseData.packageName, purchaseToken: query.purchaseData.purchaseToken)
             }
         } else {
-            Utils.log("No wallet OnPurchaseResultQuery")
+            Utils.log("No wallet found at OnPurchaseResult.swift:handle")
             self.verifyPurchase(domain: query.purchaseData.packageName, purchaseToken: query.purchaseData.purchaseToken)
         }
     }
@@ -40,20 +40,15 @@ internal class OnPurchaseResult {
             result in
             switch result {
             case .success(let purchase):
-                Utils.log("Purchase verified with success")
                 purchase.acknowledge(domain: domain) {
                     error in
                     if let error = error {
-                        Utils.log("Failed to acknowledge purchase")
                         PurchaseViewModel.shared.failed(error: error)
                     } else {
-                        Utils.log("Purchase acknowledged and transaction succeeded")
                         PurchaseViewModel.shared.success(verificationResult: .verified(purchase: purchase))
                     }
                 }
             case .failure(let error):
-                Utils.log("Failed to verify purchase")
-                Utils.log(error.description)
                 PurchaseViewModel.shared.failed(error: error)
             }
         }

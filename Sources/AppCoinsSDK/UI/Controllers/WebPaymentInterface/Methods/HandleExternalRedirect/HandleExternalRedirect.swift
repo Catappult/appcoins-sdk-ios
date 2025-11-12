@@ -15,14 +15,14 @@ internal class HandleExternalRedirect {
     
     internal func handle(body: HandleExternalRedirectBody) {
         guard let URL = URL(string: body.URL) else {
-            Utils.log("Invalid URL on handleExternalRedirect")
+            Utils.log("Invalid URL at HandleExternalRedirect.swift:handle")
             return
         }
 
         if UIApplication.shared.canOpenURL(URL) {
             UIApplication.shared.open(URL, options: [:], completionHandler: nil)
         } else {
-            Utils.log("Cannot open URL on handleExternalRedirect")
+            Utils.log("Cannot open URL at HandleExternalRedirect.swift:handle")
         }
     }
     

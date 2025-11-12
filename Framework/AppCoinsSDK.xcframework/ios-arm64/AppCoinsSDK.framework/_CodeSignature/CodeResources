@@ -18,27 +18,27 @@
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/Project/arm64-apple-ios.swiftsourceinfo</key>
 		<data>
-		3FILetsBVQ7AZEi1U7m9RNx4RoM=
+		EnEtyCR8hdNKoNl4LaQbVn3H9qU=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.abi.json</key>
 		<data>
-		zhbF0J4A3315bLI04UnFVHqTppQ=
+		8Bn1Sy4smiLnqOUdr6/IrV7jd9w=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<data>
-		iOHPWIMko7cnI9hFEIRwTDZESVo=
+		aoPisMWZkTyCrXaGQ6cp5m9iTTo=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<data>
-		UCQmCtX1Itc8j7jgzf5v6JC2ja0=
+		whtG4P2VryBtqGsekdr85YdcRqI=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<data>
-		iOHPWIMko7cnI9hFEIRwTDZESVo=
+		aoPisMWZkTyCrXaGQ6cp5m9iTTo=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		ssOoTvqR4Zotd1FjJRQ2XC/ei+8=
+		Dz16T43QQGoLhKUvpgRkXqBRh6A=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -90,42 +90,42 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			SZaS88HTE9NZLLzU7ChZCIOUk3i/2F1q/6fLBf26vII=
+			sY2CCcyhfY+QFdEaJX/K2MnHiCyCOVMFxLUVJBMdwRo=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			IkTvSDGlF/aw71nLxV4xLA9r1X3SC2un+r6ZDX3XdAY=
+			L5t8ou1euSwOfImJZlh/ZnDzdlf2291WdjdA4N73apI=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ZSadS7qdnglnmqPFxZ9NS84X3B09jKjrgQgArdCWmoE=
+			fxvkyb/kWp4fDNHah699Z0jlr1zaO8w5GlzX24ryJOs=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			H80EqPwD9/lUUjJU3B5tdJLxQtbewbApECd+yfMVevc=
+			fX+0GKkod3RSQTlQVgdU9QDjWh56zWIr03yIx2kh8ZI=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ZSadS7qdnglnmqPFxZ9NS84X3B09jKjrgQgArdCWmoE=
+			fxvkyb/kWp4fDNHah699Z0jlr1zaO8w5GlzX24ryJOs=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			txLnHZXhYIuKa5ntzYi+e6hLYv3mSavVML8HvUkIVjw=
+			hyyaSe8KXtZO32bmU8K+eYftfg85KsxlP+sRECi6lzU=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

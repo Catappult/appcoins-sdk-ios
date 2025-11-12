@@ -15,7 +15,10 @@ internal class WebPaymentInterface: NSObject, WKScriptMessageHandler {
     internal func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         Utils.log("SDK received message for name: \(message.name)")
         guard message.name == "iOSSDKWebPaymentInterface" else { return } // Unknown Handler
-        Utils.log("SDK received message with body: \(message.body)")
+        Utils.log(
+            "SDK received message with body: " +
+            "\(obfuscateFields(["authToken", "refreshToken", "auth_token", "refresh_token"], in: message.body))"
+        )
         guard let body = message.body as? [String: Any] else { return } // No Message Body
         
         // Parse Method
