@@ -145,12 +145,19 @@ public struct AppcSDK {
                 let storefront = try await AppDistributor.current
                 switch storefront {
                 case .appStore:
+                    Utils.log("AppcSDK isn't available for storefront: \(storefront) at AppcSDK.swift:isAvailable")
                     return false
                 default:
+                    Utils.log("AppcSDK available for storefront: \(storefront) at AppcSDK.swift:isAvailable")
                     return true
                 }
             #endif
         } catch {
+            Utils.log(
+                "AppcSDK isn't available. Failed to get storefront with error: " +
+                "\(error.localizedDescription) at AppcSDK.swift:isAvailable",
+                level: .error
+            )
             return false
         }
     }
