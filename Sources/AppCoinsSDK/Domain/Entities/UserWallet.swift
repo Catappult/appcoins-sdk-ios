@@ -35,8 +35,6 @@ internal class UserWallet: Wallet, Codable {
             level: .info
         )
         
-        Utils.log("Returning wallet address at UserWallet.swift:getWalletAddress")
-        
         return self.address
     }
     
@@ -46,8 +44,6 @@ internal class UserWallet: Wallet, Codable {
             category: "Lifecycle",
             level: .info
         )
-        
-        Utils.log("Returning auth token at UserWallet.swift:getAuthToken")
         
         return "Bearer \(self.authToken)"
     }
