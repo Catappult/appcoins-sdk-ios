@@ -19,7 +19,7 @@ internal class OnPurchaseResult {
                 self.verifyPurchase(domain: body.purchaseData.packageName, purchaseToken: body.purchaseData.purchaseToken)
             }
         } else {
-            Utils.log("No wallet OnPurchaseResultBody at OnPurchaseResult.swift:handle")
+            Utils.log("No wallet found at OnPurchaseResult.swift:handle")
             self.verifyPurchase(domain: body.purchaseData.packageName, purchaseToken: body.purchaseData.purchaseToken)
         }
     }
@@ -30,7 +30,7 @@ internal class OnPurchaseResult {
                 self.verifyPurchase(domain: query.purchaseData.packageName, purchaseToken: query.purchaseData.purchaseToken)
             }
         } else {
-            Utils.log("No wallet OnPurchaseResultQuery at OnPurchaseResult.swift:handle")
+            Utils.log("No wallet found at OnPurchaseResult.swift:handle")
             self.verifyPurchase(domain: query.purchaseData.packageName, purchaseToken: query.purchaseData.purchaseToken)
         }
     }
@@ -40,19 +40,15 @@ internal class OnPurchaseResult {
             result in
             switch result {
             case .success(let purchase):
-                Utils.log("Purchase verified with success at OnPurchaseResult.swift:verifyPurchase")
                 purchase.acknowledge(domain: domain) {
                     error in
                     if let error = error {
-                        Utils.log("Failed to acknowledge purchase with error: \(error) at OnPurchaseResult.swift:verifyPurchase", level: .error)
                         PurchaseViewModel.shared.failed(error: error)
                     } else {
-                        Utils.log("Purchase acknowledged and transaction succeeded at OnPurchaseResult.swift:verifyPurchase")
                         PurchaseViewModel.shared.success(verificationResult: .verified(purchase: purchase))
                     }
                 }
             case .failure(let error):
-                Utils.log("Failed to verify purchase with error: \(error.description) at OnPurchaseResult.swift:verifyPurchase", level: .error)
                 PurchaseViewModel.shared.failed(error: error)
             }
         }

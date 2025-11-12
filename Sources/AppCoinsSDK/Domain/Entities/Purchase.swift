@@ -130,19 +130,19 @@ public class Purchase: Codable {
             
             group.notify(queue: .main) {
                 if isVerified, let verifiedPurchase = verifiedPurchase {
-                    Utils.log("Purchase verified for domain: \(domain) at Purchase.swift:verify")
+                    Utils.log("Purchase with UID: \(purchaseUID) verified at Purchase.swift:verify")
                     completion(.success(verifiedPurchase))
                     return
                 }
                 
                 if let error = error {
                     Utils.log(
-                        "Purchase verification failed for domain: \(domain) with error: \(error) at Purchase.swift:verify",
+                        "Verification purchase with UID: \(purchaseUID) failed with error: \(error) at Purchase.swift:verify",
                         level: .error
                     )
                     completion(.failure(error))
                 } else {
-                    Utils.log("Purchase verification failed for domain: \(domain) with an unknown error at Purchase.swift:verify")
+                    Utils.log("Verification purchase with UID: \(purchaseUID) failed with an unknown error at Purchase.swift:verify")
                     completion(.failure(
                         AppCoinsSDKError.unknown(
                             message: "Failed to verify purchase",
@@ -161,8 +161,6 @@ public class Purchase: Codable {
             category: "Lifecycle",
             level: .info
         )
-        
-        Utils.log("Getting wallet list at Purchase.swift:acknowledge")
         
         WalletUseCases.shared.getWalletList() { walletList in
             
@@ -236,20 +234,20 @@ public class Purchase: Codable {
             
             group.notify(queue: .main) {
                 if isAcknowledged {
-                    Utils.log("Purchase acknowledged for domain: \(domain) at Purchase.swift:acknowledge")
+                    Utils.log("Purchase acknowledged at Purchase.swift:acknowledge")
                     completion(nil)
                     return
                 }
                 
                 if let error = error {
                     Utils.log(
-                        "Purchase acknowledge for domain: \(domain) failed with error: \(error) at Purchase.swift:acknowledge",
+                        "Purchase could not be acknowledged with error: \(error) at Purchase.swift:acknowledge",
                         level: .error
                     )
                     completion(error)
                 } else {
                     Utils.log(
-                        "Purchase acknowledge for domain: \(domain) failed with an unknown error at Purchase.swift:acknowledge",
+                        "Purchase could not be acknowledged with an unknown error at Purchase.swift:acknowledge",
                         level: .error
                     )
                     completion(AppCoinsSDKError.unknown(
@@ -342,20 +340,20 @@ public class Purchase: Codable {
                 
                 group.notify(queue: .main) {
                     if isConsumed {
-                        Utils.log("Consumed purchase for domain: \(domain) at Purchase.swift:finish")
+                        Utils.log("Consumed purchase at Purchase.swift:finish")
                         continuation.resume()
                         return
                     }
                     
                     if let error = error {
                         Utils.log(
-                            "Purchase could not be consumed for domain: \(domain) with error: \(error) at Purchase.swift:finish",
+                            "Purchase could not be consumed with error: \(error) at Purchase.swift:finish",
                             level: .error
                         )
                         continuation.resume(throwing: error)
                     } else {
                         Utils.log(
-                            "Purchase could not be consumed for domain: \(domain) with an unknown error at Purchase.swift:finish",
+                            "Purchase could not be consumed with an unknown error at Purchase.swift:finish",
                             level: .error
                         )
                         continuation.resume(throwing:
@@ -378,8 +376,6 @@ public class Purchase: Codable {
         )
         
         return try await withCheckedThrowingContinuation { continuation in
-            Utils.log("Getting wallet list at Purchase.swift:all")
-            
             WalletUseCases.shared.getWalletList() { walletList in
                 
                 let group = DispatchGroup()
@@ -432,13 +428,12 @@ public class Purchase: Codable {
                 
                 group.notify(queue: .main) {
                     if let error = error {
-                        Utils.log("Get all purchases for domain: \(domain) failed with error: \(error) at Purchase.swift:all")
+                        Utils.log("Get all purchases failed with error: \(error) at Purchase.swift:all")
                         continuation.resume(throwing: error)
                     } else {
-                        Utils.log("Sorting all purchases at Purchase.swift:all")
                         let sortedPurchases = sortPurchasesByCreated(purchases: purchaseList)
                         
-                        Utils.log("Get all purchases successful for domain: \(domain) at Purchase.swift:all")
+                        Utils.log("List of all purchases: \(sortedPurchases) at Purchase.swift:all")
                         continuation.resume(returning: sortedPurchases)
                     }
                 }
@@ -454,8 +449,6 @@ public class Purchase: Codable {
         )
         
         return try await withCheckedThrowingContinuation { continuation in
-            Utils.log("Getting wallet list at Purchase.swift:latest")
-            
             WalletUseCases.shared.getWalletList { walletList in
                 
                 let group = DispatchGroup()
@@ -508,15 +501,14 @@ public class Purchase: Codable {
                 group.notify(queue: .main) {
                     if let error = error {
                         Utils.log(
-                            "Get latest purchase for domain: \(domain) failed with error: \(error) at Purchase.swift:latest",
+                            "Get latest purchase failed with error: \(error) at Purchase.swift:latest",
                             level: .error
                         )
                         continuation.resume(throwing: error)
                     } else {
-                        Utils.log("Sorting purchase list at Purchase.swift:latest")
                         let sortedPurchases = sortPurchasesByCreated(purchases: purchaseList)
                         
-                        Utils.log("Returning latest purchase for domain: \(domain) at Purchase.swift:latest")
+                        Utils.log("Latest purchase: \(sortedPurchases.first) at Purchase.swift:latest")
                         continuation.resume(returning: sortedPurchases.first)
                     }
                 }
@@ -533,7 +525,6 @@ public class Purchase: Codable {
         )
         
         return try await withCheckedThrowingContinuation { continuation in
-            Utils.log("Getting wallet list at Purchase.swift:unfinished")
             
             WalletUseCases.shared.getWalletList { walletList in
                 
@@ -587,15 +578,14 @@ public class Purchase: Codable {
                 group.notify(queue: .main) {
                     if let error = error {
                         Utils.log(
-                            "Purchase unfinished for domain: \(domain) with error: \(error) at Purchase.swift:unfinished",
+                            "Get unfinished purchases failed with error: \(error) at Purchase.swift:unfinished",
                             level: .error
                         )
                         continuation.resume(throwing: error)
                     } else {
-                        Utils.log("Sorting purchase list at Purchase.swift:unfinished")
                         let sortedPurchases = sortPurchasesByCreated(purchases: purchaseList)
                         
-                        Utils.log("Returning sorted purchase list at Purchase.swift:unfinished")
+                        Utils.log("List of unfinished purchases: \(sortedPurchases) at Purchase.swift:unfinished")
                         continuation.resume(returning: sortedPurchases)
                     }
                 }

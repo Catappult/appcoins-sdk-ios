@@ -35,8 +35,6 @@ internal class GuestWallet: Wallet, Codable {
             level: .info
         )
         
-        Utils.log("Returning wallet address at GuestWallet.swift:getWalletAddress")
-        
         return self.address
     }
     
@@ -47,8 +45,6 @@ internal class GuestWallet: Wallet, Codable {
             level: .info
         )
         
-        Utils.log("Returning signed wallet address at GuestWallet.swift:getSignedWalletAddress")
-        
         return self.signature
     }
     
@@ -58,8 +54,6 @@ internal class GuestWallet: Wallet, Codable {
             category: "Lifecycle",
             level: .info
         )
-        
-        Utils.log("Returning auth token at GuestWallet.swift:getAuthToken")
         
         return "Bearer \(self.ewt)"
     }
