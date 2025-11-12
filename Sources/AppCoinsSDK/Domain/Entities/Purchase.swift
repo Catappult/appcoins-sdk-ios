@@ -342,20 +342,20 @@ public class Purchase: Codable {
                 
                 group.notify(queue: .main) {
                     if isConsumed {
-                        Utils.log("Purchase consumed for domain: \(domain) at Purchase.swift:finish")
+                        Utils.log("Consumed purchase for domain: \(domain) at Purchase.swift:finish")
                         continuation.resume()
                         return
                     }
                     
                     if let error = error {
                         Utils.log(
-                            "Purchase is not consumed for domain: \(domain) with error: \(error) at Purchase.swift:finish",
+                            "Purchase could not be consumed for domain: \(domain) with error: \(error) at Purchase.swift:finish",
                             level: .error
                         )
                         continuation.resume(throwing: error)
                     } else {
                         Utils.log(
-                            "Purchase is not consumed for domain: \(domain) with an unknown error at Purchase.swift:finish",
+                            "Purchase could not be consumed for domain: \(domain) with an unknown error at Purchase.swift:finish",
                             level: .error
                         )
                         continuation.resume(throwing:
