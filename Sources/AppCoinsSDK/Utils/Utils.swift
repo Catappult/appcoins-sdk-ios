@@ -82,10 +82,11 @@ internal struct Utils {
         KeychainHelper.shared.delete(service: key, account: "com.aptoide.appcoins-wallet")
     }
     
-    static internal func log(_ message: String, category: String = "Debug") {
+    static internal func log(_ message: String, category: String = "Debug", level: OSLogType = .debug) {
         if #available(iOS 14, *) {
             let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: category)
-            logger.error("\("[AppCoinsSDK] \(message)", privacy: .public)")
+            let message = "[AppCoinsSDK] \(message)"
+            logger.log(level: level, "\(message, privacy: .public)")
         } else {
             print("[AppCoinsSDK] \(message)")
         }

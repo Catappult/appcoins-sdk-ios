@@ -70,9 +70,7 @@ final internal class KeychainHelper {
                 SecItemUpdate(query, attributesToUpdate)
         }
         
-        HelperLoggerWrapper.log("\(status)")
         if status != errSecSuccess && status != errSecDuplicateItem {
-            HelperLoggerWrapper.log("2\(status)")
             throw KeychainError.error
         }
         
@@ -112,19 +110,4 @@ internal enum KeychainError: Error {
 
 internal enum PreferencesError: Error {
   case error
-}
-
-struct HelperLoggerWrapper {
-    static func log(
-        _ status: String,
-        subsystem: String = Bundle.main.bundleIdentifier!,
-        category: String = "network")
-    {
-        if #available(iOS 14, *) {
-            let logger = Logger(subsystem: subsystem, category: category)
-            logger.error( "\(status, privacy: .public)")
-        } else {
-            print("\(status)")
-        }
-    }
 }
