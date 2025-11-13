@@ -46,6 +46,7 @@ public struct AppcSDK {
   public struct Configuration {
   }
   public static func configure(locale: AppCoinsSDK.AppcStorefront.Locale? = nil, marketplace: AppCoinsSDK.AppcStorefront.Marketplace? = nil)
+  public static func initialize()
   public static func isAvailable() async -> Swift.Bool
   public static func handle(redirectURL: Foundation.URL?) -> Swift.Bool
 }

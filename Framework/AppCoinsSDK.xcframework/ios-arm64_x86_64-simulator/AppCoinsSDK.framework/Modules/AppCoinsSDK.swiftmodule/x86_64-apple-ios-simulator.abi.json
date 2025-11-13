@@ -1531,6 +1531,28 @@
           },
           {
             "kind": "Function",
+            "name": "initialize",
+            "printedName": "initialize()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11AppCoinsSDK04AppcC0V10initializeyyFZ",
+            "mangledName": "$s11AppCoinsSDK04AppcC0V10initializeyyFZ",
+            "moduleName": "AppCoinsSDK",
+            "static": true,
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
             "name": "isAvailable",
             "printedName": "isAvailable()",
             "children": [
@@ -1612,16 +1634,6 @@
             "usr": "s:s9EscapableP",
             "mangledName": "$ss9EscapableP"
           }
-        ]
-      },
-      {
-        "kind": "Import",
-        "name": "Foundation",
-        "printedName": "Foundation",
-        "declKind": "Import",
-        "moduleName": "AppCoinsSDK",
-        "declAttributes": [
-          "RawDocComment"
         ]
       },
       {
@@ -19786,6 +19798,13 @@
       "offset": 195,
       "length": 9,
       "value": "\"UNKNOWN\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Repositories\/SDK\/SDKRepository.swift",
+      "kind": "BooleanLiteral",
+      "offset": 399,
+      "length": 5,
+      "value": "false"
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Raws\/StorageWalletRaw.swift",
