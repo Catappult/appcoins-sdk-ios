@@ -32,7 +32,11 @@ struct WebCheckoutView: UIViewRepresentable {
         webView.customUserAgent = "AppCoinsWalletIOS/.."
         webView.navigationDelegate = context.coordinator
         webView.allowsBackForwardNavigationGestures = false
-        webView.backgroundColor = UIColor(self.colorScheme == .dark ? ColorsUi.APC_WebViewDarkMode : ColorsUi.APC_WebViewLightMode) // or any other UIColor
+        
+        if #available(iOS 14, *) {
+            webView.backgroundColor = UIColor(self.colorScheme == .dark ? ColorsUi.APC_WebViewDarkMode : ColorsUi.APC_WebViewLightMode)
+        }
+        
         webView.isOpaque = false
         if #available(iOS 16.4, *) { webView.isInspectable = true }
 

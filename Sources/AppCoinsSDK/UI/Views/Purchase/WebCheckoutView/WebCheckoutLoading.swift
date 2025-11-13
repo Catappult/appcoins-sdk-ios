@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(iOS 14, *)
 internal struct WebCheckoutLoading: View {
     
     @ObservedObject internal var viewModel: PurchaseViewModel = PurchaseViewModel.shared
