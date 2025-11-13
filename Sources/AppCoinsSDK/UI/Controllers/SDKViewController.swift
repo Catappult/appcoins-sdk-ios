@@ -23,7 +23,11 @@ internal struct SDKViewController {
         }
         
         let opaqueView = UIView(frame: rootViewController.view.bounds)
-        opaqueView.backgroundColor = UIColor(ColorsUi.APC_Black.opacity(0.3))
+        
+        if #available(iOS 14.0, *) {
+            opaqueView.backgroundColor = UIColor(ColorsUi.APC_Black.opacity(0.3))
+        }
+        
         rootViewController.view.addSubview(opaqueView)
         SDKViewController.shared.background = opaqueView
         

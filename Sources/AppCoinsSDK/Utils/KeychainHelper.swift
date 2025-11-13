@@ -14,8 +14,6 @@ final internal class KeychainHelper {
     
     private init() {}
     
-    internal let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "network")
-    
     internal func save<T>(_ item: T, service: String, account: String) throws where T : Codable {
         
         do {
@@ -72,9 +70,7 @@ final internal class KeychainHelper {
                 SecItemUpdate(query, attributesToUpdate)
         }
         
-        logger.error("\(status, privacy: .public)")
         if status != errSecSuccess && status != errSecDuplicateItem {
-            logger.error("\("2\(status)", privacy: .public)")
             throw KeychainError.error
         }
         

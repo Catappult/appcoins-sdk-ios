@@ -83,9 +83,13 @@ internal struct Utils {
     }
     
     static internal func log(_ message: String, category: String = "Debug", level: OSLogType = .debug) {
-        let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: category)
-        let message = "[AppCoinsSDK] \(message)"
-        logger.log(level: level, "\(message, privacy: .public)")
+        if #available(iOS 14, *) {
+            let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: category)
+            let message = "[AppCoinsSDK] \(message)"
+            logger.log(level: level, "\(message, privacy: .public)")
+        } else {
+            print("[AppCoinsSDK] \(message)")
+        }
     }
     
     static internal func purchaseResult(result: PurchaseResult) {

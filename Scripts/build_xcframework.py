@@ -133,7 +133,7 @@ def create_yml_project_file(dependencies, products, binary_targets, bundle_resou
         'options': {
             'bundleIdPrefix': 'com.aptoide',
             'deploymentTarget': {
-                'iOS': '14.0'
+                'iOS': '13.0'
             }
         },
         'settings': {

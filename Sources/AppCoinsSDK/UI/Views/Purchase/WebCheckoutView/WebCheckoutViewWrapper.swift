@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(iOS 14, *)
 internal struct WebCheckoutViewWrapper: View {
     
     internal var background: Color

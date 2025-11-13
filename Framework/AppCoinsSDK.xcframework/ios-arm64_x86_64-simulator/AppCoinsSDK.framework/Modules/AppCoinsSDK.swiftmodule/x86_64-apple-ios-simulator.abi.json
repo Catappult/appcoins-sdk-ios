@@ -19277,13 +19277,6 @@
       "value": "0"
     },
     {
-      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Utils\/KeychainHelper.swift",
-      "kind": "StringLiteral",
-      "offset": 336,
-      "length": 9,
-      "value": "\"network\""
-    },
-    {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/UI\/Views\/Purchase\/LegacyProgressView\/LegacyProgressView.swift",
       "kind": "BooleanLiteral",
       "offset": 196,
