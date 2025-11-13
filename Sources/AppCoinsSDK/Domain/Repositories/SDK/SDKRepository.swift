@@ -12,6 +12,8 @@ internal class SDKRepository: SDKRepositoryProtocol {
     private let userPreferencesLocalService: UserPreferencesLocalService = UserPreferencesLocalClient()
     private let purchaseIntentService: PurchaseIntentService = PurchaseIntentClient()
     
+    private var didInitializeSDK: Bool = false
+    
     internal func isDefault() -> Bool? {
         guard let isSDKDefault = userPreferencesLocalService.isSDKDefault() else { return nil }
         return isSDKDefault == "true" ? true : false
@@ -51,9 +53,6 @@ internal class SDKRepository: SDKRepositoryProtocol {
         purchaseIntentService.remove()
     }
     
-    internal func setSDKInitialized() { userPreferencesLocalService.setSDKInitialized() }
-    
-    internal func isSDKInitialized() -> Bool {
-        userPreferencesLocalService.isSDKInitialized()
-    }
+    internal func setSDKInitialized() { didInitializeSDK = true }
+    internal func isSDKInitialized() -> Bool { return didInitializeSDK }
 }
