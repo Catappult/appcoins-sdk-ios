@@ -89,6 +89,22 @@ public struct AppcSDK {
         }
     }
     
+    /// It initializes internal processes of the AppCoins SDK.
+    /// Should be called at all entrypoints of the application.
+    static public func initialize() {
+        Utils.log(
+            "AppcSDKInternal.initialize() at AppcSDKInternal.swift",
+            category: "Lifecycle",
+            level: .info
+        )
+        
+        MMPUseCases.shared.getAttribution()
+        AnalyticsUseCases.shared.initialize()
+        PurchaseIntentManager.shared.initialize()
+        SDKUseCases.shared.setSDKInitialized()
+        
+        Utils.log("AppcSDK initialized at AppcSDK.swift:initialize")
+    }
     
     /// Checks whether the AppcSDK should be enabled in the current environment.
     ///
@@ -166,7 +182,6 @@ public struct AppcSDK {
     
     /// Handles the redirect URL and routes it to the appropriate handler. Should be called at all entrypoints of the application.
     ///
-    /// - It initializes internal processes of the AppCoins SDK: `AppcSDKInternal.initialize()`.
     /// - Deals with two types of redirectURL's:
     ///   - DeepLinks related to AppCoins SDK
     ///     Supported URL patterns:
@@ -195,8 +210,6 @@ public struct AppcSDK {
             category: "Lifecycle",
             level: .info
         )
-        
-        AppcSDKInternal.initialize()
         
         if let redirectURL = redirectURL {
             Utils.log("Will handle redirectURL: \(redirectURL) at AppcSDK.swift:handle")
