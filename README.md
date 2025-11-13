@@ -16,21 +16,21 @@ The billing flow in your application with the SDK is as follows:
 
 ### Setup
 
-1. **Add AppCoins SDK Swift Package**  
+1. **Add AppCoins SDK Swift Package**
    In XCode add the Swift Package from the repo <https://github.com/Catappult/appcoins-sdk-ios.git>.
 
-2. **Add AppCoins SDK Keychain Access Entitlement**  
-   In order to enable the AppCoins SDK to save the user’s AppCoins Wallet information in the keychain, the application will need to concede the SDK Keychain Access entitlements. To do so, follow these steps:
+2. **Add AppCoins SDK Keychain Access Entitlement**
+   In order to enable the AppCoins SDK to save the user's AppCoins Wallet information in the keychain, the application will need to concede the SDK Keychain Access entitlements. To do so, follow these steps:
    1. Select your project in the project navigator (left sidebar);
    2. Select your target under "TARGETS";
    3. Go to the "Signing & Capabilities" tab;
    4. Click the "+" button to add a new capability;
    5. Search for "Keychain Sharing" and select it;
    6. Enable the "Keychain Sharing" capability by double-clicking it;
-   7. This will automatically write your app’s identifier in the "Keychain Groups" text box, you should replace it with “com.aptoide.appcoins-wallet“;
+   7. This will automatically write your app's identifier in the "Keychain Groups" text box, you should replace it with "com.aptoide.appcoins-wallet";
    8. Xcode will automatically generate an entitlements file (e.g., YourAppName.entitlements) and add it to your project;
 
-3. **Add AppCoins SDK URL Type**  
+3. **Add AppCoins SDK URL Type**
    To manage redirect deep links for specific payment method integrations, your application must include a URL Type in the info.plist file. To do this, follow these steps:
    1. In the project navigator (left sidebar), select your project.
    2. Under "TARGETS", select your target.
@@ -43,81 +43,120 @@ The billing flow in your application with the SDK is as follows:
 
 Now that you have the SDK and necessary permissions set-up you can start making use of its functionalities. To do so you must import the SDK module in any files you want to use it by calling the following: `import AppCoinsSDK`.
 
-1. **Handle the Redirect**
+1. **Initialize the AppCoins SDK**
 
-   The SDK requires integration in your application’s entry points to properly handle deep links. This ensures that payment redirects and other deep link functionalities work seamlessly.
-   
-   Depending on your app’s setup, you should handle deep links either in SceneDelegate.swift (for iOS 13+) or AppDelegate.swift (for older versions and apps that still use it).
+   > ⚠️ **CRITICAL:** You MUST call `AppcSDK.initialize()` at every application entry point before any other SDK functionality is used. This method sets up internal SDK processes and is required for the SDK to function properly.
+
+   The SDK must be initialized in your application's entry point methods. Depending on your app's setup, this will be either in SceneDelegate.swift (for iOS 13+) or AppDelegate.swift.
+
+   **SceneDelegate.swift:**
+   ```swift
+   func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+      AppcSDK.initialize() // REQUIRED
+      // ... rest of your code
+   }
+
+   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+      AppcSDK.initialize() // REQUIRED
+      // ... rest of your code
+   }
+   ```
+
+   **AppDelegate.swift:**
+   ```swift
+   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+      AppcSDK.initialize() // REQUIRED
+      // ... rest of your code
+   }
+
+   func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+      AppcSDK.initialize() // REQUIRED
+      // ... rest of your code
+   }
+   ```
+
+2. **Handle the Redirect**
+
+   The SDK requires integration in your application's entry points to properly handle deep links. This ensures that payment redirects and other deep link functionalities work seamlessly.
+
+   Depending on your app's setup, you should handle deep links either in SceneDelegate.swift (for iOS 13+) or AppDelegate.swift (for older versions and apps that still use it).
 
    1. `SceneDelegate.swift`
-   
+
       If your app uses SceneDelegate.swift, implement the following methods:
-      
-      ```swift Swift
+
+      ```swift
       func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+         AppcSDK.initialize()
+
          if AppcSDK.handle(redirectURL: URLContexts.first?.url) { return }
-      
+
          // Your application initialization
          initialize()
       }
-      
+
       func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Create the SwiftUI view that provides the window contents.
         let contexts = connectionOptions.urlContexts
-              
+
+        AppcSDK.initialize()
+
         // Your application initialization
         initialize()
-              
+
         if AppcSDK.handle(redirectURL: contexts.first?.url) { return }
       }
       ```
-   
+
       Why This Logic?
-   
+
       - Initialize First in `willConnectTo`
          - When the app launches or restores, UI and dependencies must be set up first.
-         - Handling deep links before this can cause issues if SDKs or services aren’t ready.
-      
+         - Handling deep links before this can cause issues if SDKs or services aren't ready.
+
       - Prioritize Deep Links in `openURLContexts`
          - When a deep link arrives while the app is running, handle it immediately and return if processed.
          - This prevents unnecessary re-initialization and ensures the app responds quickly.
 
    2. `AppDelegate.swift`
-   
-      If your app doesn’t use SceneDelegate.swift, implement deep link handling in AppDelegate.swift.
-      
-      ```swift Swift
+
+      If your app doesn't use SceneDelegate.swift, implement deep link handling in AppDelegate.swift.
+
+      ```swift
       func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        AppcSDK.initialize()
+
         // Your application initialization
         initialize()
-      
+
         if let url = launchOptions?[.url] as? URL {
           if AppcSDK.handle(redirectURL: url) { return true }
         }
         return true
       }
-      
+
       func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        AppcSDK.initialize()
+
         if AppcSDK.handle(redirectURL: url) { return true }
-        
+
         // Your application initialization
         initialize()
         return true
       }
       ```
-   
+
       Why This Logic?
-   
+
       - Initialize First in `didFinishLaunchingWithOptions`
          - Ensure UI and dependencies are ready before processing deep links.
-         - Handling deep links too early could cause issues if services aren’t initialized.
-      
+         - Handling deep links too early could cause issues if services aren't initialized.
+
       - Prioritize Deep Links in `open url`
          - When a deep link is received while the app is running, handle it immediately.
          - If `AppcSDK.handle(redirectURL:)` processes the link, return early.
-   
 
-2. **Check AppCoins SDK Availability**  
+3. **Check AppCoins SDK Availability**
    The AppCoins SDK by default will only be available on devices in the European Union with an iOS version equal to or higher than 17.4 and only if the application was not installed through the Apple App Store. Therefore, before attempting a purchase, you should check if the SDK is available by calling `AppcSDK.isAvailable`.
    ```swift
    if await AppcSDK.isAvailable() {
@@ -125,7 +164,7 @@ Now that you have the SDK and necessary permissions set-up you can start making 
    }
    ```
 
-3. **Query In-App Products**  
+4. **Query In-App Products**
    You should start by getting the In-App Products you want to make available to the user. You can do this by calling `Product.products`.
 
    This method can either return all of your Cattapult In-App Products or a specific list.
@@ -147,21 +186,21 @@ Now that you have the SDK and necessary permissions set-up you can start making 
 
    > ⚠️ **Warning:** You will only be able to query your In-App Products once your application is reviewed and approved on Catappult.
 
-4. **Purchase In-App Product**  
+5. **Purchase In-App Product**
    To purchase an In-App Product you must call the function `purchase()` on a Product object. The SDK will handle all of the purchase logic for you and it will return you on completion the result of the purchase. This result can be either `.success(let verificationResult)`, `.pending`, `.userCancelled` or `.failed(let error)`.
 
-   In case of success the application will verify the transaction’s signature locally. After this verification you should handle its result:  
-          – If the purchase is verified you should consume the item and give it to the user:  
+   In case of success the application will verify the transaction's signature locally. After this verification you should handle its result:
+          – If the purchase is verified you should consume the item and give it to the user:
           – If it is not verified you need to make a decision based on your business logic, you either still consume the item and give it to the user, or otherwise the purchase will not be acknowledged and we will refund the user in 24 hours.
 
    In case of failure you can deal with different types of error in a switch statement. Every error returned by the SDK is of type `AppCoinsSDKError` and it is described later in this document.
 
-   You can also pass a Payload to the purchase method in order to associate some sort of information with a specific purchase. You can use this for example to associate a specific user with a Purchase: `gas.purchase(payload: "User123")`.  
+   You can also pass a Payload to the purchase method in order to associate some sort of information with a specific purchase. You can use this for example to associate a specific user with a Purchase: `gas.purchase(payload: "User123")`.
    <br/>
 
    ```swift
    let result = await products?.first?.purchase()
-               
+
    switch result {
        case .success(let verificationResult):
             switch verificationResult {
@@ -176,9 +215,49 @@ Now that you have the SDK and necessary permissions set-up you can start making 
        case .failed(let error): // deal with any possible errors
    }
    ```
-   
-5. **Handle Purchase Intents**  
-   In addition to standard In-App Purchases, the AppCoins SDK supports In-App Purchase Intents – purchases not directly triggered by a user action (e.g., tapping a “Buy” button within the app). Common use cases include:
+
+6. **Handle Unfinished Purchases on App Launch (CRITICAL)**
+
+   > ⚠️ **CRITICAL:** You MUST query and consume unfinished purchases every time your application starts. Failing to do so will result in users not receiving items they've already paid for, and purchases will be automatically refunded after 24 hours if not consumed.
+
+   Unfinished purchases are transactions that have been paid for but not yet consumed by your application. This can happen if:
+   - The app was closed or crashed during a purchase
+   - The user force-quit the app before the purchase was processed
+   - A network error occurred during purchase completion
+
+   Why This is Critical:
+   - Users have already paid for these items
+   - If not consumed within 24 hours, purchases are automatically refunded
+   - Users expect to receive their purchased items immediately upon reopening the app
+
+   Best Practice: Call `Purchase.unfinished()` during your app's initialization flow, ideally after checking SDK availability.
+
+   ```swift
+   // Example: In your app initialization (e.g., ViewModel or app startup)
+   func initializeApp() async {
+       if await AppcSDK.isAvailable() {
+           do {
+               // Query all unfinished purchases
+               let unfinishedPurchases = try await Purchase.unfinished()
+
+               // Consume each purchase and give the user their items
+               for purchase in unfinishedPurchases {
+                   // Give the item to the user based on the SKU
+                   giveItemToUser(sku: purchase.sku)
+
+                   // Mark the purchase as finished
+                   try await purchase.finish()
+               }
+           } catch {
+               // Handle error - log it and potentially retry later
+               print("Failed to process unfinished purchases: \(error)")
+           }
+       }
+   }
+   ```
+
+7. **Handle Purchase Intents**
+   In addition to standard In-App Purchases, the AppCoins SDK supports In-App Purchase Intents – purchases not directly triggered by a user action (e.g., tapping a "Buy" button within the app). Common use cases include:
 
    - Purchasing an item directly from a catalog of In-App Products in the Aptoide Store.
    - Buying an item through a web link.
@@ -206,14 +285,14 @@ Now that you have the SDK and necessary permissions set-up you can start making 
 
    ```swift
    import AppCoinsSDK
-   
+
    actor PurchaseManager {
        static let shared = PurchaseManager() // Singleton instance
-   
+
        private init() {
            Task { await observePurchases() }
        }
-   
+
        private func observePurchases() async {
            for await intent in Purchase.updates {
                if User.isSignedIn {
@@ -222,7 +301,7 @@ Now that you have the SDK and necessary permissions set-up you can start making 
                }
            }
        }
-   
+
        // HINT: You can use the same handle method for both regular and intent IAP
        private func handle(result: PurchaseResult) async {
            switch result {
@@ -241,9 +320,9 @@ Now that you have the SDK and necessary permissions set-up you can start making 
        }
    }
    ```
-   
-6. **Query Purchases**  
-   You can query the user’s purchases by using one of the following methods:
+
+8. **Query Purchases**
+   You can query the user's purchases by using one of the following methods:
 
    1. `Purchase.all`
 
@@ -261,7 +340,9 @@ Now that you have the SDK and necessary permissions set-up you can start making 
       ```
    3. `Purchase.unfinished`
 
-      This method returns all of the user’s unfinished purchases in the application. An unfinished purchase is any purchase that has neither been acknowledged (verified by the SDK) nor consumed. You can use this method for consuming any unfinished purchases.
+      This method returns all of the user's unfinished purchases in the application. An unfinished purchase is any purchase that has neither been acknowledged (verified by the SDK) nor consumed.
+
+      > ⚠️ **CRITICAL:** You MUST call this method during app initialization to ensure users receive items from purchases that were interrupted. See step 6 "Handle Unfinished Purchases on App Launch" for detailed implementation.
 
       ```swift
       let purchases = try await Purchase.unfinished()
@@ -285,9 +366,9 @@ For more information, please refer to Apple's official documentation: <https://d
 
 ### Testing Both Billing Systems in One Build
 
-To facilitate testing both **Apple Billing** and **Aptoide Billing** within a single build – without the need to generate separate versions of your application – the **AppCoins SDK** includes a deep link mechanism that toggles the SDK’s `isAvailable` method between `true` and `false`. This allows you to seamlessly switch between testing the AppCoins SDK (when available) and Apple Billing (when unavailable).
+To facilitate testing both **Apple Billing** and **Aptoide Billing** within a single build – without the need to generate separate versions of your application – the **AppCoins SDK** includes a deep link mechanism that toggles the SDK's `isAvailable` method between `true` and `false`. This allows you to seamlessly switch between testing the AppCoins SDK (when available) and Apple Billing (when unavailable).
 
-To enable or disable the AppCoins SDK, open your device’s browser and enter the following URL:
+To enable or disable the AppCoins SDK, open your device's browser and enter the following URL:
 
 ```text
 {domain}.iap://wallet.appcoins.io/default?value={value}
@@ -296,7 +377,7 @@ To enable or disable the AppCoins SDK, open your device’s browser and enter th
 Where:
 
 - `domain` – The Bundle ID of your application.
-- `value` 
+- `value`
   - `true` → Enables the AppCoins SDK for testing.
   - `false` → Disables the AppCoins SDK, allowing Apple Billing to be tested instead.
 
@@ -330,14 +411,14 @@ The SDK integration is based on four main classes of objects that handle its log
 - `sku`: String - Unique product identifier. Example: gas
 - `title`: String - The product display title. Example: Best Gas
 - `description`: String? - The product description. Example: Buy gas to fill the tank.
-- `priceCurrency`: String - The user’s geolocalized currency. Example: EUR
+- `priceCurrency`: String - The user's geolocalized currency. Example: EUR
 - `priceValue`: String - The value of the product in the specified currency. Example: 0.93
 - `priceLabel`: String - The label of the price displayed to the user. Example: €0.93
 - `priceSymbol`: String - The symbol of the geolocalized currency. Example: €
 
 ### Purchase
 
-`Purchase` represents an in-app purchase. You can use it to statically query the user’s purchases or use a specific instance to consume the respective purchase.
+`Purchase` represents an in-app purchase. You can use it to statically query the user's purchases or use a specific instance to consume the respective purchase.
 
 **Properties:**
 
@@ -375,7 +456,7 @@ The SDK integration is based on four main classes of objects that handle its log
 
 ### PurchaseIntent
 
-`PurchaseIntent` represents a user’s intent to make an in-app purchase. It is typically used to confirm or reject a purchase initiated outside the application.
+`PurchaseIntent` represents a user's intent to make an in-app purchase. It is typically used to confirm or reject a purchase initiated outside the application.
 
 **Properties:**
 
@@ -386,6 +467,12 @@ The SDK integration is based on four main classes of objects that handle its log
 ### AppcSDK
 
 This class is responsible for general purpose methods such as handling redirects or checking if the SDK is available.
+
+**Methods:**
+
+- `initialize()`: **REQUIRED** - Sets up internal SDK processes. Must be called at every application entry point (SceneDelegate or AppDelegate methods). Without this call, the SDK will not function properly.
+- `isAvailable() async -> Bool`: Checks if the AppCoins SDK is available on the current device. Returns true if the device is in the EU, running iOS 17.4+, and the app was not installed through the Apple App Store.
+- `handle(redirectURL: URL?) -> Bool`: Handles deep links for payment redirects and purchase intents. Returns true if the SDK processed the URL.
 
 ### AppCoinsSDKError
 
