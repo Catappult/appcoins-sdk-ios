@@ -14,6 +14,12 @@ internal struct Attribution: Codable {
     let guestUID: String
     
     internal init(_ attributionRaw: AttributionRaw) {
+        Utils.log(
+            "Attribution.init() at Attribution.swift",
+            category: "Lifecycle",
+            level: .info
+        )
+        
         self.package = attributionRaw.package
         self.oemID = attributionRaw.oemID
         self.guestUID = attributionRaw.guestUID

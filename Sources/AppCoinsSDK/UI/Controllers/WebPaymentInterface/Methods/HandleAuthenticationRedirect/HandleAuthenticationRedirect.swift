@@ -16,7 +16,7 @@ internal class HandleAuthenticationRedirect: NSObject {
     
     internal func handle(body: HandleAuthenticationRedirectBody) {
         guard let authenticationURL = URL(string: body.URL) else {
-            Utils.log("Invalid URL on handleAuthenticationRedirect")
+            Utils.log("Invalid URL at HandleAuthenticationRedirect.swift:handle")
             return
         }
       
@@ -24,11 +24,11 @@ internal class HandleAuthenticationRedirect: NSObject {
         var authSession = ASWebAuthenticationSession(url: authenticationURL, callbackURLScheme: "\(Bundle.main.bundleIdentifier).iap") { callbackURL, error in
             
             if let error = error {
-                Utils.log("Error on handleAuthenticationRedirect: \(error.localizedDescription)")
+                Utils.log("Error on handleAuthenticationRedirect: \(error.localizedDescription)", level: .error)
                 return
             }
             guard let callbackURL = callbackURL else {
-                Utils.log("Invalid callback URL on handleAuthenticationRedirect")
+                Utils.log("Invalid callback URL at HandleAuthenticationRedirect.swift:handle")
                 return
             }
             

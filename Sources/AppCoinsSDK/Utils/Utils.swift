@@ -82,10 +82,10 @@ internal struct Utils {
         KeychainHelper.shared.delete(service: key, account: "com.aptoide.appcoins-wallet")
     }
     
-    static internal func log(_ message: String, category: String = "Debug") {
+    static internal func log(_ message: String, category: String = "Debug", level: OSLogType = .debug) {
         let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: category)
         let message = "[AppCoinsSDK] \(message)"
-        logger.error("\(message, privacy: .public)")
+        logger.log(level: level, "\(message, privacy: .public)")
     }
     
     static internal func purchaseResult(result: PurchaseResult) {

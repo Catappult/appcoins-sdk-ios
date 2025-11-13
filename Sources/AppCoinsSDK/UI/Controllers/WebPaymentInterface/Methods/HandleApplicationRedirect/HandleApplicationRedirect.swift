@@ -15,12 +15,12 @@ internal class HandleApplicationRedirect {
     
     internal func handle(body: HandleApplicationRedirectBody) {
         guard let URL = URL(string: body.URL) else {
-            Utils.log("Invalid URL on handleApplicationRedirect")
+            Utils.log("Invalid URL at HandleApplicationRedirect.swift:handle")
             return
         }
         
         UIApplication.shared.open(URL, options: [:]) { success in
-            if !success { Utils.log("Cannot open URL on handleApplicationRedirect") }
+            if !success { Utils.log("Cannot open URL at HandleApplicationRedirect.swift:handle") }
         }
     }
         

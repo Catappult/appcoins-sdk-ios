@@ -15,13 +15,13 @@ internal class OnError {
     
     internal func handle(body: OnErrorBody) {
         let error: AppCoinsSDKError = AppCoinsSDKError.fromWebCheckoutError(body: body)
-        Utils.log("Checkout failed with error: \(error)")
+        Utils.log("Checkout failed with error: \(error) at OnError.swift:handle", level: .error)
         PurchaseViewModel.shared.failed(error: error)
     }
     
     internal func handle(query: OnErrorQuery) {
         let error: AppCoinsSDKError = AppCoinsSDKError.fromWebCheckoutError(query: query)
-        Utils.log("Checkout failed with error: \(error)")
+        Utils.log("Checkout failed with error: \(error) at OnError.swift:handle", level: .error)
         PurchaseViewModel.shared.failed(error: error)
     }
 }

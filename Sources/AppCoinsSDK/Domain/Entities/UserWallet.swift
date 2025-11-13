@@ -28,9 +28,25 @@ internal class UserWallet: Wallet, Codable {
         self.added = Date()
     }
 
-    internal func getWalletAddress() -> String { return self.address }
+    internal func getWalletAddress() -> String {
+        Utils.log(
+            "UserWallet.getWalletAddress() at UserWallet.swift",
+            category: "Lifecycle",
+            level: .info
+        )
+        
+        return self.address
+    }
     
-    internal func getAuthToken() -> String? { return "Bearer \(self.authToken)" }
+    internal func getAuthToken() -> String? {
+        Utils.log(
+            "UserWallet.getAuthToken() at UserWallet.swift",
+            category: "Lifecycle",
+            level: .info
+        )
+        
+        return "Bearer \(self.authToken)"
+    }
     
     internal func isExpired() -> Bool {
         let minutesLived = -self.added.timeIntervalSinceNow / 60
