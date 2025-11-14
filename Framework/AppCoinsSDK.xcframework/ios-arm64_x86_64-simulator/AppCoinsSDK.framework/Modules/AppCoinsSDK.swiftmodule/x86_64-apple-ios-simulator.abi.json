@@ -14944,6 +14944,77 @@
         ]
       },
       {
+        "kind": "TypeDecl",
+        "name": "Sandbox",
+        "printedName": "Sandbox",
+        "children": [
+          {
+            "kind": "Function",
+            "name": "getTestingWalletAddress",
+            "printedName": "getTestingWalletAddress()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:11AppCoinsSDK7SandboxV23getTestingWalletAddressSSSgyYaFZ",
+            "mangledName": "$s11AppCoinsSDK7SandboxV23getTestingWalletAddressSSSgyYaFZ",
+            "moduleName": "AppCoinsSDK",
+            "static": true,
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Struct",
+        "usr": "s:11AppCoinsSDK7SandboxV",
+        "mangledName": "$s11AppCoinsSDK7SandboxV",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "AccessControl"
+        ],
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
         "kind": "Import",
         "name": "Foundation",
         "printedName": "Foundation",

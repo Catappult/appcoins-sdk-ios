@@ -344,6 +344,9 @@ public enum RequestMethod : Swift.String {
     get
   }
 }
+public struct Sandbox {
+  public static func getTestingWalletAddress() async -> Swift.String?
+}
 extension AppCoinsSDK.AppcStorefront.Marketplace : Swift.Equatable {}
 extension AppCoinsSDK.AppcStorefront.Marketplace : Swift.Hashable {}
 extension AppCoinsSDK.AppcStorefront.Marketplace : Swift.RawRepresentable {}
