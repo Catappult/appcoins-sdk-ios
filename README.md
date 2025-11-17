@@ -1,6 +1,6 @@
 # AppCoins SDK for iOS
 
-The iOS Billing SDK is a simple solution to implement Catappult billing. It consists of a Billing client that allows you to get your products from Catappult and process the purchase of those items.
+The iOS Billing SDK is a simple solution to implement Aptoide billing. It consists of a Billing client that allows you to get your products from Aptoide Connect and process the purchase of those items.
 
 ## In Summary
 
