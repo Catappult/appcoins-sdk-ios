@@ -385,19 +385,6 @@ Where:
 
 To verify the successful setup of your billing integration, we offer a sandbox environment where you can simulate purchases and ensure that your clients can smoothly purchase your products. Documentation on how to use this environment can be found at: [Sandbox](https://docs.connect.aptoide.com/docs/ios-sandbox-environment)
 
-## Extra Steps
-
-### Add Localization
-
-In order to add translations for different localizations, the application will need to add a Mixed Localizations permission. Follow these steps:
-
-1. In the Project Navigator (left sidebar), locate the "Info.plist" file. It is typically in the root folder of your project.
-2. Double-click on "Info.plist" to open it in the property list editor.
-3. Add a new row - Right-click on any existing key-value pair in the property list editor and choose "Add Row," or use the "+" button at the top of the editor.
-4. Set the key to `CFBundleAllowMixedLocalizations`.
-5. Set the type of the new key to Boolean.
-6. Set the value to `YES` to allow mixed localizations.
-
 ## Classes Definition and Properties
 
 The SDK integration is based on four main classes of objects that handle its logic:
