@@ -167,24 +167,24 @@ Now that you have the SDK and necessary permissions set-up you can start making 
 4. **Query In-App Products**
    You should start by getting the In-App Products you want to make available to the user. You can do this by calling `Product.products`.
 
-   This method can either return all of your Cattapult In-App Products or a specific list.
+   This method can either return all of your Aptoide In-App Products or a specific list.
 
    1. `Product.products()`
 
-      Returns all application Cattapult In-App Products:
+      Returns all application Aptoide In-App Products:
 
       ```swift
       let products = try await Product.products()
       ```
    2. `Product.products(for: [String])`
 
-      Returns a specific list of Cattapult In-App Products:
+      Returns a specific list of Aptoide In-App Products:
 
       ```swift
       let products = try await Product.products(for: ["gas"])
       ```
 
-   > ⚠️ **Warning:** You will only be able to query your In-App Products once your application is reviewed and approved on Catappult.
+   > ⚠️ **Warning:** You will only be able to query your In-App Products once your application is reviewed and approved on Aptoide Connect.
 
 5. **Purchase In-App Product**
    To purchase an In-App Product you must call the function `purchase()` on a Product object. The SDK will handle all of the purchase logic for you and it will return you on completion the result of the purchase. This result can be either `.success(let verificationResult)`, `.pending`, `.userCancelled` or `.failed(let error)`.
