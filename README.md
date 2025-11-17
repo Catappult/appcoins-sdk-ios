@@ -157,7 +157,7 @@ Now that you have the SDK and necessary permissions set-up you can start making 
          - If `AppcSDK.handle(redirectURL:)` processes the link, return early.
 
 3. **Check AppCoins SDK Availability**
-   The AppCoins SDK by default will only be available on devices in the European Union with an iOS version equal to or higher than 17.4 and only if the application was not installed through the Apple App Store. Therefore, before attempting a purchase, you should check if the SDK is available by calling `AppcSDK.isAvailable`.
+   The AppCoins SDK by default will only be available on devices with an iOS version equal to or higher than 17.4 and only if the application was not installed through the Apple App Store. Therefore, before attempting a purchase, you should check if the SDK is available by calling `AppcSDK.isAvailable`.
    ```swift
    if await AppcSDK.isAvailable() {
    	// make purchase
@@ -471,7 +471,7 @@ This class is responsible for general purpose methods such as handling redirects
 **Methods:**
 
 - `initialize()`: **REQUIRED** - Sets up internal SDK processes. Must be called at every application entry point (SceneDelegate or AppDelegate methods). Without this call, the SDK will not function properly.
-- `isAvailable() async -> Bool`: Checks if the AppCoins SDK is available on the current device. Returns true if the device is in the EU, running iOS 17.4+, and the app was not installed through the Apple App Store.
+- `isAvailable() async -> Bool`: Checks if the AppCoins SDK is available on the current device. Returns true if the device is running iOS 17.4+, and the app was not installed through the Apple App Store.
 - `handle(redirectURL: URL?) -> Bool`: Handles deep links for payment redirects and purchase intents. Returns true if the SDK processed the URL.
 
 ### AppCoinsSDKError
