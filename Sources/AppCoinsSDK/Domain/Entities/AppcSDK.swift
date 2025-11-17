@@ -93,7 +93,7 @@ public struct AppcSDK {
     /// Should be called at all entrypoints of the application.
     static public func initialize() {
         Utils.log(
-            "AppcSDKInternal.initialize() at AppcSDKInternal.swift",
+            "AppcSDK.initialize() at AppcSDK.swift",
             category: "Lifecycle",
             level: .info
         )
@@ -103,7 +103,7 @@ public struct AppcSDK {
         PurchaseIntentManager.shared.initialize()
         SDKUseCases.shared.setSDKInitialized()
         
-        Utils.log("AppcSDK initialized at AppcSDK.swift:initialize")
+        Utils.log("AppcSDK initialized with version \(BuildConfiguration.sdkShortVersion)(\(BuildConfiguration.sdkBuildNumber)) at AppcSDK.swift:initialize")
     }
     
     /// Checks whether the AppcSDK should be enabled in the current environment.
