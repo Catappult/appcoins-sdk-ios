@@ -68,7 +68,7 @@ targets:
 packages:
   web3swift:
     url: https://github.com/web3swift-team/web3swift.git
-    minorVersion: 3.2.0
+    minorVersion: 3.3.0
   CryptoSwift:
     url: https://github.com/krzyzanowskim/CryptoSwift.git
     minorVersion: 1.5.1
