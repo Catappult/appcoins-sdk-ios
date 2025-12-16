@@ -17,7 +17,7 @@ let package = Package(
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-        .package(url: "https://github.com/web3swift-team/web3swift.git", .upToNextMinor(from: "3.2.0")),
+        .package(url: "https://github.com/web3swift-team/web3swift.git", .upToNextMinor(from: "3.3.0")),
         .package(url: "https://github.com/krzyzanowskim/CryptoSwift.git", .upToNextMinor(from: "1.5.1")),
         .package(url: "https://github.com/TakeScoop/SwiftyRSA.git", .upToNextMinor(from: "1.8.0")),
         .package(url: "https://github.com/devicekit/DeviceKit.git", .upToNextMinor(from: "4.0.0")),
