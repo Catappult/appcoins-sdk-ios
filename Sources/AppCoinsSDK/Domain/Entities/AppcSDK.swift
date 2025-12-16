@@ -165,9 +165,21 @@ public struct AppcSDK {
                 case .appStore:
                     Utils.log("AppcSDK isn't available for storefront: \(storefront) at AppcSDK.swift:isAvailable")
                     return false
-                default:
-                    Utils.log("AppcSDK available for storefront: \(storefront) at AppcSDK.swift:isAvailable")
+                case .testFlight:
+                    Utils.log("AppcSDK isn't available for storefront: \(storefront) at AppcSDK.swift:isAvailable")
+                    return false
+                case .marketplace:
+                    Utils.log("AppcSDK is available for storefront: \(storefront) at AppcSDK.swift:isAvailable")
                     return true
+                case .web:
+                    Utils.log("AppcSDK is available for storefront: \(storefront) at AppcSDK.swift:isAvailable")
+                    return true
+                case .other:
+                    Utils.log("AppcSDK is available for storefront: \(storefront) at AppcSDK.swift:isAvailable")
+                    return true
+                default:
+                    Utils.log("AppcSDK isn't available for storefront: \(storefront) at AppcSDK.swift:isAvailable")
+                    return false
                 }
             #endif
         } catch {
