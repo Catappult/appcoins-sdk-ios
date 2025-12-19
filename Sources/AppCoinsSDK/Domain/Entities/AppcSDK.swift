@@ -128,6 +128,11 @@ public struct AppcSDK {
             return true
         }
         
+        if SDKUseCases.shared.isDefault() == true {
+            Utils.log("AppcSDK is available by default at AppcSDK.swift:isAvailable")
+            return true
+        }
+        
         if AppcSDK.configuration.isAppCoinsDevToolsEnabled, let defaultLocale = AppcSDK.configuration.storefront?.locale {
             guard AppcStorefront.Locale.EU.contains(defaultLocale) else {
                 Utils.log("AppCoinsDevTools is enabled: non‑EU storefront detected. " +
