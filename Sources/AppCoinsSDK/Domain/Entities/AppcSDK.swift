@@ -99,6 +99,9 @@ public struct AppcSDK {
         )
         
         MMPUseCases.shared.getAttribution()
+        if #available(iOS 26, *) {
+            ExternalPurchaseUseCases.shared.flushReports()
+        }
         AnalyticsUseCases.shared.initialize()
         PurchaseIntentManager.shared.initialize()
         SDKUseCases.shared.setSDKInitialized()

@@ -72,6 +72,10 @@ internal class PurchaseViewModel: ObservableObject {
         self.discountPolicy = discountPolicy
         self.oemID = oemID
         
+        if #available(iOS 26, *) {
+            ExternalPurchaseUseCases.shared.reportToken()
+        }
+        
         DispatchQueue.main.async {
             Task { @MainActor in
                 let guestUID = MMPUseCases.shared.getGuestUID()

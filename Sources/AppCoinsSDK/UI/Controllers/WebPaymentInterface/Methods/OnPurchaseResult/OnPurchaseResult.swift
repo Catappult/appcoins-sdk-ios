@@ -16,26 +16,46 @@ internal class OnPurchaseResult {
     internal func handle(body: OnPurchaseResultBody) {
         if let wallet = body.wallet {
             setActiveWallet(wallet: wallet) {
-                self.verifyPurchase(domain: body.purchaseData.packageName, purchaseToken: body.purchaseData.purchaseToken)
+                self.verifyPurchase(
+                    domain: body.purchaseData.packageName,
+                    purchaseToken: body.purchaseData.purchaseToken,
+                    orderId: body.purchaseData.orderId
+                )
             }
         } else {
             Utils.log("No wallet found at OnPurchaseResult.swift:handle")
-            self.verifyPurchase(domain: body.purchaseData.packageName, purchaseToken: body.purchaseData.purchaseToken)
+            self.verifyPurchase(
+                domain: body.purchaseData.packageName,
+                purchaseToken: body.purchaseData.purchaseToken,
+                orderId: body.purchaseData.orderId
+            )
         }
     }
     
     internal func handle(query: OnPurchaseResultQuery) {
         if let wallet = query.wallet {
             setActiveWallet(wallet: wallet) {
-                self.verifyPurchase(domain: query.purchaseData.packageName, purchaseToken: query.purchaseData.purchaseToken)
+                self.verifyPurchase(
+                    domain: query.purchaseData.packageName,
+                    purchaseToken: query.purchaseData.purchaseToken,
+                    orderId: query.purchaseData.orderId
+                )
             }
         } else {
             Utils.log("No wallet found at OnPurchaseResult.swift:handle")
-            self.verifyPurchase(domain: query.purchaseData.packageName, purchaseToken: query.purchaseData.purchaseToken)
+            self.verifyPurchase(
+                domain: query.purchaseData.packageName,
+                purchaseToken: query.purchaseData.purchaseToken,
+                orderId: query.purchaseData.orderId
+            )
         }
     }
     
-    private func verifyPurchase(domain: String, purchaseToken: String) {
+    private func verifyPurchase(domain: String, purchaseToken: String, orderId: String) {
+        if #available(iOS 26, *) {
+            ExternalPurchaseUseCases.shared.associateTransaction(transactionUID: orderId)
+        }
+        
         Purchase.verify(domain: domain, purchaseUID: purchaseToken) {
             result in
             switch result {
