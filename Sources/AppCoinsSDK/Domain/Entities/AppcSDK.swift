@@ -99,6 +99,9 @@ public struct AppcSDK {
         )
         
         MMPUseCases.shared.getAttribution()
+        if #available(iOS 26, *) {
+            ExternalPurchaseUseCases.shared.flushReports()
+        }
         AnalyticsUseCases.shared.initialize()
         PurchaseIntentManager.shared.initialize()
         SDKUseCases.shared.setSDKInitialized()
@@ -125,6 +128,11 @@ public struct AppcSDK {
         
         if BuildConfiguration.isDev {
             Utils.log("AppcSDK is available in dev mode at AppcSDK.swift:isAvailable")
+            return true
+        }
+        
+        if SDKUseCases.shared.isDefault() == true {
+            Utils.log("AppcSDK is available by default at AppcSDK.swift:isAvailable")
             return true
         }
         

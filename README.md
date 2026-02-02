@@ -1,6 +1,6 @@
 # AppCoins SDK for iOS
 
-The iOS Billing SDK is a simple solution to implement Catappult billing. It consists of a Billing client that allows you to get your products from Catappult and process the purchase of those items.
+The iOS Billing SDK is a simple solution to implement Aptoide billing. It consists of a Billing client that allows you to get your products from Aptoide Connect and process the purchase of those items.
 
 ## In Summary
 
@@ -157,7 +157,7 @@ Now that you have the SDK and necessary permissions set-up you can start making 
          - If `AppcSDK.handle(redirectURL:)` processes the link, return early.
 
 3. **Check AppCoins SDK Availability**
-   The AppCoins SDK by default will only be available on devices in the European Union with an iOS version equal to or higher than 17.4 and only if the application was not installed through the Apple App Store. Therefore, before attempting a purchase, you should check if the SDK is available by calling `AppcSDK.isAvailable`.
+   The AppCoins SDK by default will only be available on devices with an iOS version equal to or higher than 17.4 and only if the application was not installed through the Apple App Store. Therefore, before attempting a purchase, you should check if the SDK is available by calling `AppcSDK.isAvailable`.
    ```swift
    if await AppcSDK.isAvailable() {
    	// make purchase
@@ -167,24 +167,24 @@ Now that you have the SDK and necessary permissions set-up you can start making 
 4. **Query In-App Products**
    You should start by getting the In-App Products you want to make available to the user. You can do this by calling `Product.products`.
 
-   This method can either return all of your Cattapult In-App Products or a specific list.
+   This method can either return all of your Aptoide In-App Products or a specific list.
 
    1. `Product.products()`
 
-      Returns all application Cattapult In-App Products:
+      Returns all application Aptoide In-App Products:
 
       ```swift
       let products = try await Product.products()
       ```
    2. `Product.products(for: [String])`
 
-      Returns a specific list of Cattapult In-App Products:
+      Returns a specific list of Aptoide In-App Products:
 
       ```swift
       let products = try await Product.products(for: ["gas"])
       ```
 
-   > ⚠️ **Warning:** You will only be able to query your In-App Products once your application is reviewed and approved on Catappult.
+   > ⚠️ **Warning:** You will only be able to query your In-App Products once your application is reviewed and approved on Aptoide Connect.
 
 5. **Purchase In-App Product**
    To purchase an In-App Product you must call the function `purchase()` on a Product object. The SDK will handle all of the purchase logic for you and it will return you on completion the result of the purchase. This result can be either `.success(let verificationResult)`, `.pending`, `.userCancelled` or `.failed(let error)`.
@@ -383,20 +383,7 @@ Where:
 
 ### Sandbox
 
-To verify the successful setup of your billing integration, we offer a sandbox environment where you can simulate purchases and ensure that your clients can smoothly purchase your products. Documentation on how to use this environment can be found at: [Sandbox](doc:ios-sandbox-environment)
-
-## Extra Steps
-
-### Add Localization
-
-In order to add translations for different localizations, the application will need to add a Mixed Localizations permission. Follow these steps:
-
-1. In the Project Navigator (left sidebar), locate the "Info.plist" file. It is typically in the root folder of your project.
-2. Double-click on "Info.plist" to open it in the property list editor.
-3. Add a new row - Right-click on any existing key-value pair in the property list editor and choose "Add Row," or use the "+" button at the top of the editor.
-4. Set the key to `CFBundleAllowMixedLocalizations`.
-5. Set the type of the new key to Boolean.
-6. Set the value to `YES` to allow mixed localizations.
+To verify the successful setup of your billing integration, we offer a sandbox environment where you can simulate purchases and ensure that your clients can smoothly purchase your products. Documentation on how to use this environment can be found at: [Sandbox](https://docs.connect.aptoide.com/docs/ios-sandbox-environment)
 
 ## Classes Definition and Properties
 
@@ -471,7 +458,7 @@ This class is responsible for general purpose methods such as handling redirects
 **Methods:**
 
 - `initialize()`: **REQUIRED** - Sets up internal SDK processes. Must be called at every application entry point (SceneDelegate or AppDelegate methods). Without this call, the SDK will not function properly.
-- `isAvailable() async -> Bool`: Checks if the AppCoins SDK is available on the current device. Returns true if the device is in the EU, running iOS 17.4+, and the app was not installed through the Apple App Store.
+- `isAvailable() async -> Bool`: Checks if the AppCoins SDK is available on the current device. Returns true if the device is running iOS 17.4+, and the app was not installed through the Apple App Store.
 - `handle(redirectURL: URL?) -> Bool`: Handles deep links for payment redirects and purchase intents. Returns true if the SDK processed the URL.
 
 ### AppCoinsSDKError
