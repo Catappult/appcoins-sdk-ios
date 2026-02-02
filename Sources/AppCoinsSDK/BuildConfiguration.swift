@@ -82,6 +82,15 @@ internal class BuildConfiguration {
         }
     }
     
+    static internal var iOSSDKServiceURL: String {
+        switch environment {
+        case .debugSDKDev, .releaseSDKDev:
+            return "https://ios-sdk.dev.aptoide.com/sdk-ios/8.20251222"
+        case .debugSDKProd, .releaseSDKProd:
+            return "https://ios-sdk.aptoide.com/sdk-ios/8.20251222"
+        }
+    }
+    
     static internal var googleAnalyticsMeasurementServiceURL: String = "https://www.google-analytics.com"
     
     static internal var aptoideOEMID = "a37f1d7a4599d0ba60f23f9ff7b9ce95"
