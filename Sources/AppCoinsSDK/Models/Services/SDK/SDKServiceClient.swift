@@ -7,6 +7,7 @@
 
 import Foundation
 
+@available(iOS 26.0, *)
 internal class SDKServiceClient : SDKService {
     
     private let endpoint: String
@@ -46,8 +47,11 @@ internal class SDKServiceClient : SDKService {
                     } else if let httpResponse = response as? HTTPURLResponse {
                         if (200...299).contains(httpResponse.statusCode) {
                             result(.success(true))
-                        } else {
+                        } else if httpResponse.statusCode == 500 {
                             result(.failure(.failed(message: "Service Failed", description: "Server returned status code \(httpResponse.statusCode) at SDKClient.swift:record", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                        } else {
+                            Utils.log("Notified service about External Purchase Token but service could not process it.")
+                            result(.success(false))
                         }
                     } else {
                         result(.failure(.failed(message: "Invalid Response", description: "No valid HTTP response at SDKClient.swift:record", request: DebugRequestInfo(request: request, responseData: data, response: response))))
