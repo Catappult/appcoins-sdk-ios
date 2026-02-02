@@ -21,10 +21,6 @@
 	<dict>
 		<key>browser.js</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			gkBfPiovUvOtKWnbGX45wpMDS0E=
-			</data>
 			<key>hash2</key>
 			<data>
 			0pNKrdlYD4ziaCcejwrHmPYuINRbxoX+Rzfj7YFKuQw=
@@ -32,10 +28,6 @@
 		</dict>
 		<key>browser.min.js</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			Y2xofSirKtBiFJAW2mizmjhMEE8=
-			</data>
 			<key>hash2</key>
 			<data>
 			W1o7WCj8m/swT1Fv6ZeomWIocemzDARTodouEmn8xYM=
@@ -43,10 +35,6 @@
 		</dict>
 		<key>wk.bridge.min.js</key>
 		<dict>
-			<key>hash</key>
-			<data>
-			a4Fr1R8ba8hcUEJEYw4/2XWrbq4=
-			</data>
 			<key>hash2</key>
 			<data>
 			YTORKhTgR9bm0LBHzMjxFiScqc1xskwR2fcSLWyRA+k=

@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.1 effective-5.10 (swiftlang-6.1.0.110.21 clang-1700.0.13.3)
+// swift-compiler-version: Apple Swift version 6.2.3 effective-5.10 (swiftlang-6.2.3.3.21 clang-1700.6.3.2)
 // swift-module-flags: -target arm64-apple-ios13.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name AppCoinsSDK
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface -interface-compiler-version 6.1
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2.3
 import DeveloperToolsSupport
 import Foundation
 import Swift
@@ -17,12 +17,24 @@ public enum AppCoinsSDKError : Swift.Error, Swift.CustomStringConvertible {
   case productUnavailable(debugInfo: AppCoinsSDK.DebugInfo)
   case purchaseNotAllowed(debugInfo: AppCoinsSDK.DebugInfo)
   case unknown(debugInfo: AppCoinsSDK.DebugInfo)
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func networkError(message: Swift.String, description: Swift.String, request: AppCoinsSDK.DebugRequestInfo? = nil) -> AppCoinsSDK.AppCoinsSDKError
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func systemError(message: Swift.String, description: Swift.String, request: AppCoinsSDK.DebugRequestInfo? = nil) -> AppCoinsSDK.AppCoinsSDKError
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func notEntitled(message: Swift.String, description: Swift.String, request: AppCoinsSDK.DebugRequestInfo? = nil) -> AppCoinsSDK.AppCoinsSDKError
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func productUnavailable(message: Swift.String, description: Swift.String, request: AppCoinsSDK.DebugRequestInfo? = nil) -> AppCoinsSDK.AppCoinsSDKError
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func purchaseNotAllowed(message: Swift.String, description: Swift.String, request: AppCoinsSDK.DebugRequestInfo? = nil) -> AppCoinsSDK.AppCoinsSDKError
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func unknown(message: Swift.String, description: Swift.String, request: AppCoinsSDK.DebugRequestInfo? = nil) -> AppCoinsSDK.AppCoinsSDKError
+  #endif
   public var description: Swift.String {
     get
   }
@@ -45,10 +57,14 @@ public struct AppcSDK {
   public static var configuration: AppCoinsSDK.AppcSDK.Configuration
   public struct Configuration {
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func configure(locale: AppCoinsSDK.AppcStorefront.Locale? = nil, marketplace: AppCoinsSDK.AppcStorefront.Marketplace? = nil)
+  #endif
   public static func initialize()
   public static func isAvailable() async -> Swift.Bool
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func handle(redirectURL: Foundation.URL?) -> Swift.Bool
+  #endif
 }
 extension Foundation.Bundle {
   public var isAppCoinsDevToolsEnabled: Swift.Bool {
@@ -61,14 +77,20 @@ public struct AppcStorefront {
   public struct Locale : Swift.Equatable {
     public let code: Swift.String
     public let region: Swift.String
+    #if compiler(>=5.3) && $NonescapableTypes
     public static func fromRaw(raw: Swift.String) -> AppCoinsSDK.AppcStorefront.Locale?
+    #endif
     public static func == (lhs: AppCoinsSDK.AppcStorefront.Locale, rhs: AppCoinsSDK.AppcStorefront.Locale) -> Swift.Bool
   }
   public enum Marketplace : Swift.String {
     case aptoide
     case apple
+    #if compiler(>=5.3) && $NonescapableTypes
     public static func fromRaw(raw: Swift.String) -> AppCoinsSDK.AppcStorefront.Marketplace?
+    #endif
+    #if compiler(>=5.3) && $NonescapableTypes
     public init?(rawValue: Swift.String)
+    #endif
     public typealias RawValue = Swift.String
     public var rawValue: Swift.String {
       get
@@ -267,8 +289,12 @@ public struct Product : Swift.Codable {
   public let priceSymbol: Swift.String
   public let priceDiscountOriginal: Swift.String?
   public let priceDiscountPercentage: Swift.String?
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func products(domain: Swift.String = (Bundle.main.bundleIdentifier ?? ""), for identifiers: [Swift.String]? = nil) async throws -> [AppCoinsSDK.Product]
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   public func purchase(domain: Swift.String = (Bundle.main.bundleIdentifier ?? ""), payload: Swift.String? = nil, orderID: Swift.String = String(Date.timeIntervalSinceReferenceDate)) async -> AppCoinsSDK.PurchaseResult
+  #endif
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
@@ -302,14 +328,18 @@ public struct Product : Swift.Codable {
   }
   public func finish(domain: Swift.String = (Bundle.main.bundleIdentifier ?? "")) async throws
   public static func all(domain: Swift.String = (Bundle.main.bundleIdentifier ?? "")) async throws -> [AppCoinsSDK.Purchase]
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func latest(domain: Swift.String = (Bundle.main.bundleIdentifier ?? ""), sku: Swift.String) async throws -> AppCoinsSDK.Purchase?
+  #endif
   public static func unfinished(domain: Swift.String = (Bundle.main.bundleIdentifier ?? "")) async throws -> [AppCoinsSDK.Purchase]
   public static var updates: _Concurrency.AsyncStream<AppCoinsSDK.PurchaseIntent> {
     get
   }
+  #if compiler(>=5.3) && $NonescapableTypes
   public static var intent: AppCoinsSDK.PurchaseIntent? {
     get
   }
+  #endif
   @objc deinit
   public func encode(to encoder: any Swift.Encoder) throws
   required public init(from decoder: any Swift.Decoder) throws
@@ -318,7 +348,9 @@ public struct PurchaseIntent : Swift.Sendable, Swift.Identifiable, Swift.Codable
   public let id: Foundation.UUID
   public let product: AppCoinsSDK.Product
   public let timestamp: Foundation.Date
+  #if compiler(>=5.3) && $NonescapableTypes
   public func confirm(domain: Swift.String = (Bundle.main.bundleIdentifier ?? ""), payload: Swift.String? = nil, orderID: Swift.String = String(Date.timeIntervalSinceReferenceDate)) async -> AppCoinsSDK.PurchaseResult
+  #endif
   public func reject()
   public typealias ID = Foundation.UUID
   public func encode(to encoder: any Swift.Encoder) throws
@@ -338,14 +370,18 @@ public enum RequestMethod : Swift.String {
   case GET
   case POST
   case UNKNOWN
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.String)
+  #endif
   public typealias RawValue = Swift.String
   public var rawValue: Swift.String {
     get
   }
 }
 public struct Sandbox {
+  #if compiler(>=5.3) && $NonescapableTypes
   public static func getTestingWalletAddress() async -> Swift.String?
+  #endif
 }
 extension AppCoinsSDK.AppcStorefront.Marketplace : Swift.Equatable {}
 extension AppCoinsSDK.AppcStorefront.Marketplace : Swift.Hashable {}
