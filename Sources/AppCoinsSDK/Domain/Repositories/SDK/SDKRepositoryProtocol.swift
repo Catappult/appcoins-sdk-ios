@@ -1,7 +1,6 @@
 //
 //  SDKRepositoryProtocol.swift
 //
-//
 //  Created by Graciano Caldeira on 20/02/2025.
 //
 
