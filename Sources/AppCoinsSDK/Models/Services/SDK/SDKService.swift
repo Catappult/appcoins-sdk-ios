@@ -7,6 +7,7 @@
 
 import Foundation
 
+@available(iOS 26.0, *)
 internal protocol SDKService {
     
     func record(body: RecordTokenRaw, result: @escaping (Result<Bool, SDKServiceError>) -> Void)
