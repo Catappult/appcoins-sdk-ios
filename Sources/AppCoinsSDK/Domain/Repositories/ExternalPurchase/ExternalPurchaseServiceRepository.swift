@@ -6,9 +6,9 @@
 //
 
 import Foundation
-import MarketplaceKit
-import SwiftData
-import SwiftUI
+@_implementationOnly import MarketplaceKit
+@_implementationOnly import SwiftData
+@_implementationOnly import SwiftUI
 
 @available(iOS 26, *)
 internal class ExternalPurchaseServiceRepository: ExternalPurchaseServiceRepositoryProtocol {
@@ -37,18 +37,20 @@ internal class ExternalPurchaseServiceRepository: ExternalPurchaseServiceReposit
                     transactionUID: nil
                 )
                 
-                // Record token on service
-                self.sdkService.record(body: RecordTokenRaw.fromParameters(token: token)) { result in
-                    switch result {
-                    case .success(_):
-                        Utils.log("Reported External Purchase Token: \(token) successfully")
-                        
-                        if let storedToken = storedToken {
-                            self.externalPurchaseTokenDatabaseService.markTokenReported(storedToken)
+                RecordTokenRaw.fromParameters(token: token) { rawToken in
+                    // Record token on service
+                    self.sdkService.record(body: rawToken) { result in
+                        switch result {
+                        case .success(_):
+                            Utils.log("Reported External Purchase Token: \(token) successfully")
+                            
+                            if let storedToken = storedToken {
+                                self.externalPurchaseTokenDatabaseService.markTokenReported(storedToken)
+                            }
+                        case .failure(_):
+                            // Take no action when token can't be recorded – we'll try to flush it later
+                            return
                         }
-                    case .failure(_):
-                        // Take no action when token can't be recorded – we'll try to flush it later
-                        return
                     }
                 }
             case .failure(let failure):
@@ -75,17 +77,19 @@ internal class ExternalPurchaseServiceRepository: ExternalPurchaseServiceReposit
             
             self.externalPurchaseTokenDatabaseService.associateTransaction(storedToken, transactionUID: transactionUID)
             
-            self.sdkService.record(body: RecordTokenRaw.fromParameters(token: token, transactionUID: transactionUID)) {
-                result in
-                
-                switch result {
-                case .success(_):
-                    Utils.log("Reported External Purchase Token: \(token) with associated Transaction ID: \(transactionUID) successfully")
+            RecordTokenRaw.fromParameters(token: token, transactionUID: transactionUID) { rawToken in
+                self.sdkService.record(body: rawToken) {
+                    result in
                     
-                    self.externalPurchaseTokenDatabaseService.markTransactionReported(storedToken)
-                case .failure(_):
-                    // Take no action when token can't be recorded – we'll try to flush it later
-                    return
+                    switch result {
+                    case .success(_):
+                        Utils.log("Reported External Purchase Token: \(token) with associated Transaction ID: \(transactionUID) successfully")
+                        
+                        self.externalPurchaseTokenDatabaseService.markTransactionReported(storedToken)
+                    case .failure(_):
+                        // Take no action when token can't be recorded – we'll try to flush it later
+                        return
+                    }
                 }
             }
         } else {
@@ -102,19 +106,21 @@ internal class ExternalPurchaseServiceRepository: ExternalPurchaseServiceReposit
                         transactionUID: transactionUID
                     )
                     
-                    // Record token on service
-                    self.sdkService.record(body: RecordTokenRaw.fromParameters(token: token, transactionUID: transactionUID)) { result in
-                        switch result {
-                        case .success(_):
-                            Utils.log("Reported External Purchase Token: \(token) with associated Transaction ID: \(transactionUID) successfully")
-                            
-                            if let storedToken = storedToken {
-                                self.externalPurchaseTokenDatabaseService.markTokenReported(storedToken)
-                                self.externalPurchaseTokenDatabaseService.markTransactionReported(storedToken)
+                    RecordTokenRaw.fromParameters(token: token, transactionUID: transactionUID) { rawToken in
+                        // Record token on service
+                        self.sdkService.record(body: rawToken) { result in
+                            switch result {
+                            case .success(_):
+                                Utils.log("Reported External Purchase Token: \(token) with associated Transaction ID: \(transactionUID) successfully")
+                                
+                                if let storedToken = storedToken {
+                                    self.externalPurchaseTokenDatabaseService.markTokenReported(storedToken)
+                                    self.externalPurchaseTokenDatabaseService.markTransactionReported(storedToken)
+                                }
+                            case .failure(_):
+                                // Take no action when token can't be recorded – we'll try to flush it later
+                                return
                             }
-                        case .failure(_):
-                            // Take no action when token can't be recorded – we'll try to flush it later
-                            return
                         }
                     }
                 case .failure(let failure):
@@ -136,15 +142,18 @@ internal class ExternalPurchaseServiceRepository: ExternalPurchaseServiceReposit
                 externalPurchaseId: unreportedTokenRaw.externalPurchaseId,
                 tokenType: unreportedTokenRaw.tokenType
             )
-            Utils.log("Flushing External Purchase Token: \(unreportedToken)")
-            self.sdkService.record(body: RecordTokenRaw.fromParameters(token: unreportedToken)) { result in
-                switch result {
-                case .success(_):
-                    Utils.log("Reported External Purchase Token: \(unreportedToken) successfully")
-                    self.externalPurchaseTokenDatabaseService.markTokenReported(unreportedTokenRaw)
-                case .failure(_):
-                    // Take no action when token can't be recorded – we'll try to flush it later
-                    return
+            Utils.log("Flushing External Purchase Token: \(unreportedToken), reported token at: \(unreportedTokenRaw.reportedTokenAt?.description ?? "NULL"), reported transaction at: \(unreportedTokenRaw.reportedTransactionAt?.description ?? "NULL")")
+            
+            RecordTokenRaw.fromParameters(token: unreportedToken) { rawToken in
+                self.sdkService.record(body: rawToken) { result in
+                    switch result {
+                    case .success(_):
+                        Utils.log("Reported External Purchase Token: \(unreportedToken) successfully")
+                        self.externalPurchaseTokenDatabaseService.markTokenReported(unreportedTokenRaw)
+                    case .failure(_):
+                        // Take no action when token can't be recorded – we'll try to flush it later
+                        return
+                    }
                 }
             }
         }
@@ -157,15 +166,17 @@ internal class ExternalPurchaseServiceRepository: ExternalPurchaseServiceReposit
                 externalPurchaseId: unreportedTransactionRaw.externalPurchaseId,
                 tokenType: unreportedTransactionRaw.tokenType
             )
-            Utils.log("Flushing External Purchase Token: \(unreportedTransactionToken) with associated Transaction ID: \(unreportedTransactionRaw.transactionUID)")
-            self.sdkService.record(body: RecordTokenRaw.fromParameters(token: unreportedTransactionToken, transactionUID: unreportedTransactionRaw.transactionUID)) { result in
-                switch result {
-                case .success(_):
-                    Utils.log("Reported External Purchase Token: \(unreportedTransactionToken) with associated Transaction ID: \(unreportedTransactionRaw.transactionUID) successfully")
-                    self.externalPurchaseTokenDatabaseService.markTokenReported(unreportedTransactionRaw)
-                case .failure(_):
-                    // Take no action when token can't be recorded – we'll try to flush it later
-                    return
+            Utils.log("Flushing External Purchase Token: \(unreportedTransactionToken) with associated Transaction ID: \(unreportedTransactionRaw.transactionUID ?? "NULL"), reported token at: \(unreportedTransactionRaw.reportedTokenAt?.description ?? "NULL"), reported transaction at: \(unreportedTransactionRaw.reportedTransactionAt?.description ?? "NULL")")
+            RecordTokenRaw.fromParameters(token: unreportedTransactionToken, transactionUID: unreportedTransactionRaw.transactionUID) { rawToken in
+                self.sdkService.record(body: rawToken) { result in
+                    switch result {
+                    case .success(_):
+                        Utils.log("Reported External Purchase Token: \(unreportedTransactionToken) with associated Transaction ID: \(unreportedTransactionRaw.transactionUID) successfully")
+                        self.externalPurchaseTokenDatabaseService.markTransactionReported(unreportedTransactionRaw)
+                    case .failure(_):
+                        // Take no action when token can't be recorded – we'll try to flush it later
+                        return
+                    }
                 }
             }
         }

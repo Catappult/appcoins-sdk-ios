@@ -11025,48 +11025,30 @@
         "name": "MarketplaceKit",
         "printedName": "MarketplaceKit",
         "declKind": "Import",
-        "moduleName": "AppCoinsSDK"
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "ImplementationOnly"
+        ]
       },
       {
         "kind": "Import",
         "name": "SwiftData",
         "printedName": "SwiftData",
         "declKind": "Import",
-        "moduleName": "AppCoinsSDK"
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "ImplementationOnly"
+        ]
       },
       {
         "kind": "Import",
         "name": "SwiftUI",
         "printedName": "SwiftUI",
         "declKind": "Import",
-        "moduleName": "AppCoinsSDK"
-      },
-      {
-        "kind": "Import",
-        "name": "Foundation",
-        "printedName": "Foundation",
-        "declKind": "Import",
         "moduleName": "AppCoinsSDK",
         "declAttributes": [
-          "RawDocComment"
+          "ImplementationOnly"
         ]
-      },
-      {
-        "kind": "Import",
-        "name": "Foundation",
-        "printedName": "Foundation",
-        "declKind": "Import",
-        "moduleName": "AppCoinsSDK",
-        "declAttributes": [
-          "RawDocComment"
-        ]
-      },
-      {
-        "kind": "Import",
-        "name": "SwiftData",
-        "printedName": "SwiftData",
-        "declKind": "Import",
-        "moduleName": "AppCoinsSDK"
       },
       {
         "kind": "Import",
@@ -11093,7 +11075,20 @@
         "name": "SwiftData",
         "printedName": "SwiftData",
         "declKind": "Import",
-        "moduleName": "AppCoinsSDK"
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "ImplementationOnly"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
       },
       {
         "kind": "Import",
@@ -11110,7 +11105,30 @@
         "name": "SwiftData",
         "printedName": "SwiftData",
         "declKind": "Import",
-        "moduleName": "AppCoinsSDK"
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "ImplementationOnly"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "SwiftData",
+        "printedName": "SwiftData",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "ImplementationOnly"
+        ]
       },
       {
         "kind": "Import",
@@ -14730,6 +14748,26 @@
         "moduleName": "AppCoinsSDK",
         "declAttributes": [
           "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "MarketplaceKit",
+        "printedName": "MarketplaceKit",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "ImplementationOnly"
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "StoreKit",
+        "printedName": "StoreKit",
+        "declKind": "Import",
+        "moduleName": "AppCoinsSDK",
+        "declAttributes": [
+          "ImplementationOnly"
         ]
       },
       {
@@ -18668,7 +18706,7 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/UseCases\/ExternalPurchaseUseCases.swift",
       "kind": "BooleanLiteral",
-      "offset": 537,
+      "offset": 558,
       "length": 5,
       "value": "false"
     },
@@ -20012,49 +20050,56 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Services\/SDK\/Raws\/RecordTokenRaw.swift",
       "kind": "StringLiteral",
-      "offset": 329,
+      "offset": 466,
       "length": 7,
       "value": "\"token\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Services\/SDK\/Raws\/RecordTokenRaw.swift",
       "kind": "StringLiteral",
-      "offset": 364,
+      "offset": 501,
       "length": 13,
       "value": "\"transaction\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Services\/SDK\/Raws\/RecordTokenRaw.swift",
       "kind": "StringLiteral",
-      "offset": 1096,
+      "offset": 537,
+      "length": 8,
+      "value": "\"locale\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Services\/SDK\/Raws\/RecordTokenRaw.swift",
+      "kind": "StringLiteral",
+      "offset": 1774,
       "length": 14,
       "value": "\"app_apple_id\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Services\/SDK\/Raws\/RecordTokenRaw.swift",
       "kind": "StringLiteral",
-      "offset": 1139,
+      "offset": 1817,
       "length": 11,
       "value": "\"bundle_id\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Services\/SDK\/Raws\/RecordTokenRaw.swift",
       "kind": "StringLiteral",
-      "offset": 1189,
+      "offset": 1867,
       "length": 22,
       "value": "\"external_purchase_id\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Services\/SDK\/Raws\/RecordTokenRaw.swift",
       "kind": "StringLiteral",
-      "offset": 1241,
+      "offset": 1919,
       "length": 12,
       "value": "\"token_type\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Services\/SDK\/Raws\/RecordTokenRaw.swift",
       "kind": "StringLiteral",
-      "offset": 1826,
+      "offset": 2504,
       "length": 5,
       "value": "\"uid\""
     },
@@ -20082,7 +20127,7 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Repositories\/SDK\/SDKRepository.swift",
       "kind": "BooleanLiteral",
-      "offset": 399,
+      "offset": 396,
       "length": 5,
       "value": "false"
     },

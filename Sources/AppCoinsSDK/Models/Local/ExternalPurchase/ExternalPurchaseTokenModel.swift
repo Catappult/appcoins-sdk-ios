@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import SwiftData
+@_implementationOnly import SwiftData
 
 @available(iOS 17, *)
 @Model
