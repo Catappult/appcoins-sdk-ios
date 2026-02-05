@@ -112,11 +112,12 @@ public struct AppcSDK {
     /// Checks whether the AppcSDK should be enabled in the current environment.
     ///
     /// - If `BuildConfiguration.isDev` always returns `true`.
-    /// - Checks whether the default locale is valid for EU storefronts.
-    ///    - On iOS 17.4+ uses `AppDistributor.current`:
-    ///       - returns `false` for `.appStore
-    ///       - returns `true` for any other non-App Store case
-    ///    - On older OS returns `false`.
+    /// - If `SDKUseCases.shared.isDefault()` returns a non‐nil override, returns that value.
+    /// - Otherwise, enables external purchases if **either**:
+    ///   1. **United States storefront** - Returns `true` if user is in the United States.
+    ///   2. **Rest of World** - On iOS 17.4+ uses `AppDistributor.current`:
+    ///      - Returns `false` for `.appStore` and `.testFlight`
+    ///      - Returns `true` for `.marketplace`, `.web`, and `.other` (supports browser-based purchases)
     ///
     /// - Returns: `true` if the SDK is available, `false` otherwise.
     static public func isAvailable() async -> Bool {
@@ -125,44 +126,98 @@ public struct AppcSDK {
             category: "Lifecycle",
             level: .info
         )
-        
+
         if BuildConfiguration.isDev {
             Utils.log("AppcSDK is available in dev mode at AppcSDK.swift:isAvailable")
             return true
         }
-        
-        if SDKUseCases.shared.isDefault() == true {
-            Utils.log("AppcSDK is available by default at AppcSDK.swift:isAvailable")
-            return true
+
+        if let isDefault = SDKUseCases.shared.isDefault() {
+            Utils.log("AppcSDK availability determined by default flag: \(isDefault) at AppcSDK.swift:isAvailable")
+            return isDefault
         }
-        
+
+        let usAllowed = await isAvailableInUS()
+        let rowAllowed = await isAvailableInRestOfWorld()
+
+        Utils.log("AppcSDK availability - US: \(usAllowed), Rest of World: \(rowAllowed) at AppcSDK.swift:isAvailable")
+        return usAllowed || rowAllowed
+    }
+
+    /// Checks availability of the AppcSDK in the United States storefront.
+    ///
+    /// - If `AppCoinsDevTools` is enabled and a default locale is set:
+    ///   - Returns `true` if the default locale equals `.USA`.
+    /// - Otherwise:
+    ///   - On iOS versions prior to 15.0, returns `Locale.current.regionCode == "US"`.
+    ///   - On iOS 15.0 and later, attempts to fetch `StoreKit.Storefront.current`:
+    ///     - Returns `true` if `storefront?.countryCode == "USA"`.
+    ///     - Falls back to the locale check on error.
+    ///
+    /// - Returns: `true` if the SDK can be used in the US, `false` otherwise.
+    static internal func isAvailableInUS() async -> Bool {
         if AppcSDK.configuration.isAppCoinsDevToolsEnabled, let defaultLocale = AppcSDK.configuration.storefront?.locale {
-            guard AppcStorefront.Locale.EU.contains(defaultLocale) else {
-                Utils.log("AppCoinsDevTools is enabled: non‑EU storefront detected. " +
-                          "AppcSDK unavailable at AppcSDK.swift:isAvailable")
-                return false
-            }
-            
+            let isUSA = defaultLocale == AppcStorefront.Locale.USA
+            Utils.log("AppCoinsDevTools is enabled: US storefront check = \(isUSA) at AppcSDK.swift:isAvailableInUS")
+            return isUSA
+        }
+
+        let localeIsUS = (Locale.current.regionCode == "US")
+
+        // On older OS versions just return the locale
+        guard #available(iOS 15.0, *) else {
+            Utils.log("iOS < 15.0: Using locale-based US check = \(localeIsUS) at AppcSDK.swift:isAvailableInUS")
+            return localeIsUS
+        }
+
+        do {
+            let storefront = try await StoreKit.Storefront.current
+            let isUSA = (storefront?.countryCode == "USA")
+            Utils.log("StoreKit storefront countryCode check: \(isUSA) at AppcSDK.swift:isAvailableInUS")
+            return isUSA
+        } catch {
+            // If the Storefront lookup fails, fall back to the locale
+            Utils.log("StoreKit.Storefront.current failed, falling back to locale check = \(localeIsUS) at AppcSDK.swift:isAvailableInUS", level: .error)
+            return localeIsUS
+        }
+    }
+
+    /// Checks availability of the AppcSDK in Rest of World (non-US) markets.
+    /// This includes EU, Japan, and other regions where alternative distribution is supported.
+    ///
+    /// - If `AppCoinsDevTools` is enabled and a default marketplace override exists:
+    ///   - Returns `true` for `.aptoide`.
+    ///   - Returns `false` for `.apple`.
+    /// - Otherwise:
+    ///   - On iOS versions prior to 17.4, always returns `false`.
+    ///   - On iOS 17.4 and later, fetches `AppDistributor.current`:
+    ///     - Returns `false` for `.appStore` and `.testFlight`.
+    ///     - Returns `true` for `.marketplace`, `.web`, and `.other` (supports browser-based purchases).
+    ///   - Returns `false` on error.
+    ///
+    /// - Returns: `true` if the SDK can be used in Rest of World, `false` otherwise.
+    static internal func isAvailableInRestOfWorld() async -> Bool {
+        if AppcSDK.configuration.isAppCoinsDevToolsEnabled {
             if let defaultMarketplace = AppcSDK.configuration.storefront?.marketplace {
                 switch defaultMarketplace {
                 case .aptoide:
                     Utils.log("AppCoinsDevTools is enabled: Aptoide storefront detected. " +
-                              "AppcSDK available at AppcSDK.swift:isAvailable")
+                              "AppcSDK available at AppcSDK.swift:isAvailableInRestOfWorld")
                     return true
                 case .apple:
                     Utils.log("AppCoinsDevTools is enabled: Apple App Store storefront detected. " +
-                              "AppcSDK unavailable at AppcSDK.swift:isAvailable")
+                              "AppcSDK unavailable at AppcSDK.swift:isAvailableInRestOfWorld")
                     return false
                 }
             }
         }
-        
+
         do {
             guard #available(iOS 17.4, *) else {
-                Utils.log("AppcSDK isn't available for iOS versions below iOS 17.4 at AppcSDK.swift:isAvailable")
+                Utils.log("AppcSDK isn't available for iOS versions below iOS 17.4 at AppcSDK.swift:isAvailableInRestOfWorld")
                 return false
             }
-            
+
             #if targetEnvironment(simulator)
                 Utils.log("Can't validate App Distributor on Simulator. To test different billings " +
                           "(Apple vs. Aptoide) use an actual device or enable AppCoinsDevTools.")
@@ -171,29 +226,29 @@ public struct AppcSDK {
                 let storefront = try await AppDistributor.current
                 switch storefront {
                 case .appStore:
-                    Utils.log("AppcSDK isn't available for storefront: \(storefront) at AppcSDK.swift:isAvailable")
+                    Utils.log("AppcSDK isn't available for storefront: \(storefront) at AppcSDK.swift:isAvailableInRestOfWorld")
                     return false
                 case .testFlight:
-                    Utils.log("AppcSDK isn't available for storefront: \(storefront) at AppcSDK.swift:isAvailable")
+                    Utils.log("AppcSDK isn't available for storefront: \(storefront) at AppcSDK.swift:isAvailableInRestOfWorld")
                     return false
                 case .marketplace:
-                    Utils.log("AppcSDK is available for storefront: \(storefront) at AppcSDK.swift:isAvailable")
+                    Utils.log("AppcSDK is available for storefront: \(storefront) at AppcSDK.swift:isAvailableInRestOfWorld")
                     return true
                 case .web:
-                    Utils.log("AppcSDK is available for storefront: \(storefront) at AppcSDK.swift:isAvailable")
+                    Utils.log("AppcSDK is available for storefront: \(storefront) at AppcSDK.swift:isAvailableInRestOfWorld")
                     return true
                 case .other:
-                    Utils.log("AppcSDK is available for storefront: \(storefront) at AppcSDK.swift:isAvailable")
+                    Utils.log("AppcSDK is available for storefront: \(storefront) at AppcSDK.swift:isAvailableInRestOfWorld")
                     return true
                 default:
-                    Utils.log("AppcSDK isn't available for storefront: \(storefront) at AppcSDK.swift:isAvailable")
+                    Utils.log("AppcSDK isn't available for storefront: \(storefront) at AppcSDK.swift:isAvailableInRestOfWorld")
                     return false
                 }
             #endif
         } catch {
             Utils.log(
                 "AppcSDK isn't available. Failed to get storefront with error: " +
-                "\(error.localizedDescription) at AppcSDK.swift:isAvailable",
+                "\(error.localizedDescription) at AppcSDK.swift:isAvailableInRestOfWorld",
                 level: .error
             )
             return false
