@@ -7,7 +7,6 @@
 
 import Foundation
 @_implementationOnly import MarketplaceKit
-@_implementationOnly import StoreKit
 
 @available(iOS 15.0, *)
 internal struct RecordTokenRaw: Codable {
@@ -27,13 +26,9 @@ internal struct RecordTokenRaw: Codable {
         completion: @escaping (RecordTokenRaw) -> Void
     ) {
         Task {
-            var locale: String? = nil
-            if let defaultLocale = AppcSDK.configuration.storefront?.locale {
-                locale = defaultLocale.code
-            } else {
-                locale = await Storefront.current?.countryCode
-            }
-            Utils.log("Reporting External Purchase Token for Locale: \(locale)")
+            // Use device locale settings for consistent 2-letter ISO 3166-1 alpha-2 country codes
+            let locale = Locale.current.regionCode?.uppercased()
+            Utils.log("Reporting External Purchase Token for Locale: \(locale ?? "nil")")
 
             completion(
                 RecordTokenRaw(
