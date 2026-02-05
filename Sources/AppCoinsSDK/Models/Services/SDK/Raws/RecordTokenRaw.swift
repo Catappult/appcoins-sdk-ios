@@ -13,11 +13,13 @@ internal struct RecordTokenRaw: Codable {
     internal let token: RecordTokenRaw.Token
     internal let transaction: RecordTokenRaw.Transaction?
     internal let locale: String?
-    
+    internal let storefront: String?
+
     internal enum CodingKeys: String, CodingKey {
         case token = "token"
         case transaction = "transaction"
         case locale = "locale"
+        case storefront = "storefront"
     }
     
     internal static func fromParameters(
@@ -28,7 +30,11 @@ internal struct RecordTokenRaw: Codable {
         Task {
             // Use device locale settings for consistent 2-letter ISO 3166-1 alpha-2 country codes
             let locale = Locale.current.regionCode?.uppercased()
-            Utils.log("Reporting External Purchase Token for Locale: \(locale ?? "nil")")
+
+            // Get storefront (installation source) from MarketplaceKit
+            let storefront = await AppDistributor.current?.rawValue
+
+            Utils.log("Reporting External Purchase Token - Locale: \(locale ?? "nil"), Storefront: \(storefront ?? "nil")")
 
             completion(
                 RecordTokenRaw(
@@ -36,7 +42,8 @@ internal struct RecordTokenRaw: Codable {
                     transaction: transactionUID.flatMap {
                         RecordTokenRaw.Transaction.fromParameters(transactionUID: $0)
                     },
-                    locale: locale
+                    locale: locale,
+                    storefront: storefront
                 )
             )
         }
