@@ -60,6 +60,48 @@ public class Purchase: Codable {
         self.verification = PurchaseVerification(raw: raw.verification)
     }
 
+    /// Prompts the user to select a payment provider (Apple or Aptoide) for US purchases.
+    ///
+    /// - For US users: Shows provider selection UI and returns the selected provider
+    /// - For non-US users: Automatically returns `.aptoide` without showing UI
+    ///
+    /// - Parameters:
+    ///   - domain: The app's domain (defaults to bundle identifier)
+    ///   - product: The product to be purchased
+    /// - Returns: The selected `PurchaseProvider`, or `nil` if selection was cancelled
+    public static func provider(domain: String = (Bundle.main.bundleIdentifier ?? ""), for product: Product) async -> PurchaseProvider? {
+        guard await AppcSDK.isAvailableInUS() else {
+            Utils.log("Non-US region detected - defaulting to Aptoide provider at Purchase.swift:provider")
+            return .aptoide
+        }
+
+        Utils.log("US region detected - presenting provider selection UI at Purchase.swift:provider")
+
+        DispatchQueue.main.async {
+            SDKViewController.shared.presentProvider()
+            ProviderViewModel.shared.loadProviderPurchase(domain: domain, for: product)
+        }
+
+        let result: PurchaseProvider? = try? await withCheckedThrowingContinuation { continuation in
+            var observer: NSObjectProtocol?
+            observer = NotificationCenter.default.addObserver(forName: Notification.Name("APPCProviderChoice"), object: nil, queue: nil) { notification in
+                guard let userInfo = notification.userInfo, let provider = userInfo["ProviderChoice"] as? PurchaseProvider else {
+                    Utils.log("Provider selection cancelled or invalid at Purchase.swift:provider")
+                    continuation.resume(returning: nil)
+                    if let observer = observer { NotificationCenter.default.removeObserver(observer) }
+                    return
+                }
+
+                Utils.log("Provider selected: \(provider) at Purchase.swift:provider")
+                continuation.resume(returning: provider)
+                if let observer = observer { NotificationCenter.default.removeObserver(observer) }
+                return
+            }
+        }
+
+        return result
+    }
+
     internal static func verify(
         domain: String = (Bundle.main.bundleIdentifier ?? ""),
         purchaseUID: String,

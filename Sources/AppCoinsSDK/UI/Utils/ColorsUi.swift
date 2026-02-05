@@ -20,4 +20,18 @@ internal struct ColorsUi {
     static internal var APC_BackgroundDarkGray_Button: Color = Color(UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 0.2))
     static internal var APC_DarkGray_Xmark: Color = Color(UIColor(red: 0.24, green: 0.24, blue: 0.24, alpha: 1))
     static internal var APC_LightGray_Xmark: Color = Color(UIColor(red: 0.76, green: 0.76, blue: 0.76, alpha: 1))
+    
+    // Provider Choice
+    static internal var APC_AptoideOrange: Color = Color(red: 0.996, green: 0.392, blue: 0.275)
+    static internal var APC_AptoideBlue: Color = Color(red: 0.0, green: 0.4667, blue: 1.0)
+    static internal var APC_AptoidePurple: Color = Color(red: 0.31, green: 0.18, blue: 0.98)
+    static internal var APC_AptoideGradient: LinearGradient = LinearGradient(
+        gradient: Gradient(stops: [
+            .init(color: Color(red: 1.00, green: 0.39, blue: 0.27), location: 0.0),
+            .init(color: Color(red: 1.00, green: 0.39, blue: 0.27), location: 0.75),
+            .init(color: Color(red: 1.00, green: 0.16, blue: 0.00), location: 0.8846)
+        ]),
+        startPoint: .leading,
+        endPoint: .trailing
+    )
 }

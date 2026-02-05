@@ -204,17 +204,33 @@ public struct Product: Codable {
             category: "Lifecycle",
             level: .info
         )
-        
+
+        // For US users, prompt for provider selection (Apple vs Aptoide)
+        let provider: PurchaseProvider? = await Purchase.provider(domain: domain, for: self)
+
+        // If provider selection was cancelled (nil), return user cancelled
+        guard provider != nil else {
+            Utils.log("Provider selection cancelled by user at Product.swift:purchase")
+            return .userCancelled
+        }
+
         AnalyticsUseCases.shared.recordStartConnection()
-        
+
         DispatchQueue.main.async {
             SDKViewController.shared.presentPurchase()
-            
+
             // product – the SKU product
             // domain – the app's domain registered in catappult
             // payload – information that the developer might want to pass with the transaction
             // orderID – a reference so that the developer can identify unique transactions
-            PurchaseViewModel.shared.purchase(product: self, domain: domain, metadata: payload, reference: orderID)
+            // provider – the selected payment provider (Apple or Aptoide)
+            PurchaseViewModel.shared.purchase(
+                product: self,
+                domain: domain,
+                metadata: payload,
+                reference: orderID,
+                provider: provider
+            )
         }
         
         let result = try? await withCheckedThrowingContinuation { continuation in

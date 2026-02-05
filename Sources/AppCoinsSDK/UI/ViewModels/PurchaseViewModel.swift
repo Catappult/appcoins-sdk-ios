@@ -56,22 +56,23 @@ internal class PurchaseViewModel: ObservableObject {
         metadata: String?,
         reference: String?,
         discountPolicy: DiscountPolicy? = nil,
-        oemID: String? = nil
+        oemID: String? = nil,
+        provider: PurchaseProvider? = nil
     ) {
         Utils.log(
             "PurchaseViewModel.purchase(product: \(product), domain: \(domain), metadata: \(metadata), " +
-            "reference: \(reference), discountPolicy: \(discountPolicy), oemID: \(oemID) at PurchaseViewModel.swift",
+            "reference: \(reference), discountPolicy: \(discountPolicy), oemID: \(oemID), provider: \(provider) at PurchaseViewModel.swift",
             category: "Lifecycle",
             level: .info
         )
-        
+
         self.product = product
         self.domain = domain
         self.metadata = metadata
         self.reference = reference
         self.discountPolicy = discountPolicy
         self.oemID = oemID
-        
+
         if #available(iOS 26, *) {
             ExternalPurchaseUseCases.shared.reportToken()
         }
@@ -81,62 +82,79 @@ internal class PurchaseViewModel: ObservableObject {
                 let guestUID = MMPUseCases.shared.getGuestUID()
                 let isUS = await AppcSDK.isAvailableInUS()
 
-                if isUS {
-                    // US users get browser-based checkout
-                    Utils.log("US storefront detected - using browser checkout at PurchaseViewModel.swift:purchase")
+                // For US users with Aptoide provider, or non-US users, proceed with SDK checkout
+                if provider == .aptoide || !isUS {
+                    if isUS {
+                        // US users with Aptoide provider get browser-based checkout
+                        Utils.log("US storefront with Aptoide provider - using browser checkout at PurchaseViewModel.swift:purchase")
 
-                    self.webCheckout = WebCheckout(
-                        domain: domain,
-                        product: product.sku,
-                        metadata: self.metadata,
-                        reference: self.reference,
-                        guestUID: guestUID,
-                        type: .browser
-                    )
-
-                    guard let checkoutURL: URL = self.webCheckout?.URL else {
-                        Utils.log(
-                            "Browser checkout URL is invalid at PurchaseViewModel.swift:purchase",
-                            level: .error
+                        self.webCheckout = WebCheckout(
+                            domain: domain,
+                            product: product.sku,
+                            metadata: self.metadata,
+                            reference: self.reference,
+                            guestUID: guestUID,
+                            type: .browser
                         )
-                        self.failed(error: .systemError(
-                            message: "Web Checkout URL is invalid",
-                            description: "Could not open Browser Web Checkout because URL is invalid at PurchaseViewModel.swift:purchase"
-                        ))
-                        return
-                    }
 
-                    UIApplication.shared.open(checkoutURL, options: [:]) { success in
-                        if success {
-                            Utils.log("Browser checkout opened successfully at PurchaseViewModel.swift:purchase")
-                            self.hasActivePurchase = true
-                            self.webCheckoutType = .browser
-                        } else {
+                        guard let checkoutURL: URL = self.webCheckout?.URL else {
                             Utils.log(
-                                "Failed to open browser checkout at PurchaseViewModel.swift:purchase",
+                                "Browser checkout URL is invalid at PurchaseViewModel.swift:purchase",
                                 level: .error
                             )
                             self.failed(error: .systemError(
-                                message: "Failed to open browser",
-                                description: "Could not open Browser Web Checkout at PurchaseViewModel.swift:purchase"
+                                message: "Web Checkout URL is invalid",
+                                description: "Could not open Browser Web Checkout because URL is invalid at PurchaseViewModel.swift:purchase"
                             ))
+                            return
                         }
+
+                        UIApplication.shared.open(checkoutURL, options: [:]) { success in
+                            if success {
+                                Utils.log("Browser checkout opened successfully at PurchaseViewModel.swift:purchase")
+                                self.hasActivePurchase = true
+                                self.webCheckoutType = .browser
+                            } else {
+                                Utils.log(
+                                    "Failed to open browser checkout at PurchaseViewModel.swift:purchase",
+                                    level: .error
+                                )
+                                self.failed(error: .systemError(
+                                    message: "Failed to open browser",
+                                    description: "Could not open Browser Web Checkout at PurchaseViewModel.swift:purchase"
+                                ))
+                            }
+                        }
+                    } else {
+                        // Rest of World users get webview-based checkout
+                        Utils.log("Non-US storefront detected - using webview checkout at PurchaseViewModel.swift:purchase")
+
+                        self.webCheckout = WebCheckout(
+                            domain: domain,
+                            product: product.sku,
+                            metadata: self.metadata,
+                            reference: self.reference,
+                            guestUID: guestUID,
+                            type: .webview
+                        )
+
+                        self.hasActivePurchase = true
+                        self.webCheckoutType = .webview
                     }
+                } else if provider == .apple {
+                    // US users chose Apple provider - they should use native StoreKit IAP
+                    Utils.log("US storefront with Apple provider selected - user should use native IAP at PurchaseViewModel.swift:purchase")
+
+                    self.failed(error: .purchaseNotAllowed(
+                        message: "Apple Payment Selected",
+                        description: "Please use the app's native In-App Purchase flow to complete your purchase with Apple Pay",
+                        request: nil
+                    ))
                 } else {
-                    // Rest of World users get webview-based checkout
-                    Utils.log("Non-US storefront detected - using webview checkout at PurchaseViewModel.swift:purchase")
+                    // Provider not selected - should not happen in normal flow
+                    Utils.log("Provider not selected at PurchaseViewModel.swift:purchase", level: .error)
 
-                    self.webCheckout = WebCheckout(
-                        domain: domain,
-                        product: product.sku,
-                        metadata: self.metadata,
-                        reference: self.reference,
-                        guestUID: guestUID,
-                        type: .webview
-                    )
-
-                    self.hasActivePurchase = true
-                    self.webCheckoutType = .webview
+                    self.cancel()
                 }
             }
         }
