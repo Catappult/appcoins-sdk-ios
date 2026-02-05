@@ -14762,16 +14762,6 @@
       },
       {
         "kind": "Import",
-        "name": "StoreKit",
-        "printedName": "StoreKit",
-        "declKind": "Import",
-        "moduleName": "AppCoinsSDK",
-        "declAttributes": [
-          "ImplementationOnly"
-        ]
-      },
-      {
-        "kind": "Import",
         "name": "Foundation",
         "printedName": "Foundation",
         "declKind": "Import",
@@ -20050,56 +20040,63 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Services\/SDK\/Raws\/RecordTokenRaw.swift",
       "kind": "StringLiteral",
-      "offset": 466,
+      "offset": 462,
       "length": 7,
       "value": "\"token\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Services\/SDK\/Raws\/RecordTokenRaw.swift",
       "kind": "StringLiteral",
-      "offset": 501,
+      "offset": 497,
       "length": 13,
       "value": "\"transaction\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Services\/SDK\/Raws\/RecordTokenRaw.swift",
       "kind": "StringLiteral",
-      "offset": 537,
+      "offset": 533,
       "length": 8,
       "value": "\"locale\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Services\/SDK\/Raws\/RecordTokenRaw.swift",
       "kind": "StringLiteral",
-      "offset": 1774,
+      "offset": 568,
+      "length": 12,
+      "value": "\"storefront\""
+    },
+    {
+      "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Services\/SDK\/Raws\/RecordTokenRaw.swift",
+      "kind": "StringLiteral",
+      "offset": 2398,
       "length": 14,
       "value": "\"app_apple_id\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Services\/SDK\/Raws\/RecordTokenRaw.swift",
       "kind": "StringLiteral",
-      "offset": 1817,
+      "offset": 2441,
       "length": 11,
       "value": "\"bundle_id\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Services\/SDK\/Raws\/RecordTokenRaw.swift",
       "kind": "StringLiteral",
-      "offset": 1867,
+      "offset": 2491,
       "length": 22,
       "value": "\"external_purchase_id\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Services\/SDK\/Raws\/RecordTokenRaw.swift",
       "kind": "StringLiteral",
-      "offset": 1919,
+      "offset": 2543,
       "length": 12,
       "value": "\"token_type\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Models\/Services\/SDK\/Raws\/RecordTokenRaw.swift",
       "kind": "StringLiteral",
-      "offset": 2504,
+      "offset": 3128,
       "length": 5,
       "value": "\"uid\""
     },
