@@ -8,7 +8,7 @@
 import Foundation
 @_implementationOnly import MarketplaceKit
 
-@available(iOS 15.0, *)
+@available(iOS 26.0, *)
 internal struct RecordTokenRaw: Codable {
     internal let token: RecordTokenRaw.Token
     internal let transaction: RecordTokenRaw.Transaction?
@@ -32,7 +32,22 @@ internal struct RecordTokenRaw: Codable {
             let locale = Locale.current.regionCode?.uppercased()
 
             // Get storefront (installation source) from MarketplaceKit
-            let storefront = await AppDistributor.current?.rawValue
+            var storefront: String?
+            
+            switch await try? AppDistributor.current {
+            case .appStore:
+                storefront = "app_store"
+            case .marketplace(let marketplace):
+                storefront = marketplace
+            case .testFlight:
+                storefront = "testflight"
+            case .web:
+                storefront = "web"
+            case .other:
+                storefront = "other"
+            default:
+                storefront = nil
+            }
 
             Utils.log("Reporting External Purchase Token - Locale: \(locale ?? "nil"), Storefront: \(storefront ?? "nil")")
 
