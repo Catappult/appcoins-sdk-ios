@@ -2,6 +2,8 @@
 
 The iOS Billing SDK is a simple solution to implement Aptoide billing. It consists of a Billing client that allows you to get your products from Aptoide Connect and process the purchase of those items.
 
+The SDK automatically handles transaction reporting to Apple for Core Technology Commission (CTC) calculation, removing this burden from developers. It includes intelligent logic for reporting purchases, refunds, and other transaction events, with region-aware processing that distinguishes which regions require CTC reporting and which do not.
+
 ## In Summary
 
 The billing flow in your application with the SDK is as follows:
@@ -38,6 +40,14 @@ The billing flow in your application with the SDK is as follows:
    4. Scroll down to the "URL Types" section.
    5. Click the "+" button to add a new URL Type.
    6. Set the URL Scheme to "$(PRODUCT_BUNDLE_IDENTIFIER).iap" and the role to "Editor".
+
+4. **Configure Digital Goods Settings**
+   To enable the SDK's automatic transaction reporting for CTC (Core Technology Commission) calculation, you must configure your target to indicate that it sells digital goods. Follow these steps:
+   1. In the project navigator (left sidebar), select your project.
+   2. Under "TARGETS", select your target.
+   3. Navigate to the "Build Settings" tab.
+   4. Search for "MKSellsDigitalGoods" in the search bar.
+   5. Set the value to "YES" to enable digital goods transaction reporting.
 
 ### Implementation
 
