@@ -45,8 +45,8 @@ The billing flow in your application with the SDK is as follows:
    To enable the SDK's automatic transaction reporting for CTC (Core Technology Commission) calculation, you must configure your target to indicate that it sells digital goods. Follow these steps:
    1. In the project navigator (left sidebar), select your project.
    2. Under "TARGETS", select your target.
-   3. Navigate to the "Build Settings" tab.
-   4. Search for "MKSellsDigitalGoods" in the search bar.
+   3. Navigate to the "Info" tab.
+   4. Add a new "MKSellsDigitalGoods" key to your Target Properties.
    5. Set the value to "YES" to enable digital goods transaction reporting.
 
 ### Implementation
