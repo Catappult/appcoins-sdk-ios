@@ -4,6 +4,7 @@
 // swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2.3
 import DeveloperToolsSupport
 import Foundation
+import MarketplaceKit
 import Swift
 import SwiftUI
 import UIKit
