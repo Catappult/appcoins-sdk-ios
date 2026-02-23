@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import MarketplaceKit
 
 internal struct WebCheckout {
     
@@ -22,6 +23,8 @@ internal struct WebCheckout {
     private let paymentChannel: String
     private let platform: String
     private let isBrowserCheckout: String
+    private let oemID: String
+    private let installationOrigin: String
     
     internal var URL: URL? {
         var components = URLComponents(string: BuildConfiguration.webCheckoutURL)
@@ -42,10 +45,19 @@ internal struct WebCheckout {
         "langCode" : "lang_code",
         "paymentChannel" : "payment_channel",
         "platform" : "platform",
-        "isBrowserCheckout": "is_browser_checkout"
+        "isBrowserCheckout": "is_browser_checkout",
+        "oemID": "oem_id",
+        "installationOrigin": "installation_origin"
     ]
     
-    internal init(domain: String, product: String, metadata: String?, reference: String?, guestUID: String?, type: WebCheckoutType) {
+    internal init(
+        domain: String,
+        product: String,
+        metadata: String?,
+        reference: String?,
+        guestUID: String?,
+        type: WebCheckoutType
+    ) async {
         self.origin = "BDS"
         self.type = "INAPP"
         self.domain = domain
@@ -59,6 +71,20 @@ internal struct WebCheckout {
         self.paymentChannel = "ios_sdk"
         self.platform = "IOS"
         self.isBrowserCheckout = "\(type == .browser)"
+        
+        #if targetEnvironment(simulator)
+        self.installationOrigin = "com.aptoide.ios.store"
+        self.oemID = BuildConfiguration.aptoideOEMID
+        #else
+        if #available(iOS 17.4, *),
+           case .marketplace(let marketplace) = try? await AppDistributor.current {
+            self.installationOrigin = marketplace
+            self.oemID = marketplace == "com.aptoide.ios.store.jp" ? BuildConfiguration.appArenaOEMID : BuildConfiguration.aptoideOEMID
+        } else {
+            self.installationOrigin = "com.aptoide.ios.store"
+            self.oemID = BuildConfiguration.aptoideOEMID
+        }
+        #endif
     }
     
     private func asQueryItems() -> [URLQueryItem] {
