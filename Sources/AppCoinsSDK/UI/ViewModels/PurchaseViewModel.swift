@@ -80,7 +80,7 @@ internal class PurchaseViewModel: ObservableObject {
             Task { @MainActor in
                 let guestUID = MMPUseCases.shared.getGuestUID()
                 
-                self.webCheckout = WebCheckout(
+                self.webCheckout = await WebCheckout(
                     domain: domain,
                     product: product.sku,
                     metadata: self.metadata,

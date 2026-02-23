@@ -94,6 +94,7 @@ internal class BuildConfiguration {
     static internal var googleAnalyticsMeasurementServiceURL: String = "https://www.google-analytics.com"
     
     static internal var aptoideOEMID = "a37f1d7a4599d0ba60f23f9ff7b9ce95"
+    static internal var appArenaOEMID = "25110d106a9197a817a94e11f86cd4a6"
     
     static internal var userUID =  UIDevice.current.identifierForVendor!.uuidString
     
