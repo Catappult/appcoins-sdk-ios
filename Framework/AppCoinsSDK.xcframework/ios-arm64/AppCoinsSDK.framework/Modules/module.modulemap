@@ -1,4 +1,0 @@
-framework module AppCoinsSDK {
-  header "AppCoinsSDK-Swift.h"
-  requires objc
-}
