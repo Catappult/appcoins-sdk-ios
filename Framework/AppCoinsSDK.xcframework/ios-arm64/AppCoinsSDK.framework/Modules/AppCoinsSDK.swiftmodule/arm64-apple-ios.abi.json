@@ -15250,13 +15250,10 @@
       },
       {
         "kind": "Import",
-        "name": "SwiftyRSA",
-        "printedName": "SwiftyRSA",
+        "name": "Security",
+        "printedName": "Security",
         "declKind": "Import",
-        "moduleName": "AppCoinsSDK",
-        "declAttributes": [
-          "ImplementationOnly"
-        ]
+        "moduleName": "AppCoinsSDK"
       },
       {
         "kind": "Import",
