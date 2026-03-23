@@ -184,6 +184,7 @@ internal class ExternalPurchaseServiceRepository: ExternalPurchaseServiceReposit
     
     private func generateToken(completion: @escaping (Result<ExternalPurchaseToken, SDKServiceError>) -> Void) {
         Task { @MainActor in
+            #if compiler(>=6.2)
             do {
                 let rawToken = try await TransactionReporting.token(for: .coreTechnology)
                 let token = try decodeBase64URL(rawToken, as: ExternalPurchaseToken.self)
@@ -206,6 +207,15 @@ internal class ExternalPurchaseServiceRepository: ExternalPurchaseServiceReposit
                     )
                 ))
             }
+            #else
+            Utils.log("TransactionReporting API not available — requires Xcode 26+ (Swift 6.2) at generateToken:ExternalPurchaseServiceRepository.swift")
+            completion(.failure(
+                SDKServiceError.failed(
+                    message: "Unsupported Xcode Version",
+                    description: "TransactionReporting requires Xcode 26+ (Swift 6.2) at generateToken:ExternalPurchaseServiceRepository.swift"
+                )
+            ))
+            #endif
         }
     }
     
