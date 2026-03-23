@@ -5,6 +5,7 @@
 import DeveloperToolsSupport
 import Foundation
 import MarketplaceKit
+import Security
 import Swift
 import SwiftUI
 import UIKit

@@ -18,15 +18,15 @@
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/Project/arm64-apple-ios.swiftsourceinfo</key>
 		<data>
-		Od5s7lU5tBZXsBTMnYqxcAbXpRE=
+		p1PX2KCUGp0jAisaFQpprhnPCGI=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.abi.json</key>
 		<data>
-		VTua3ioYUMpnK2NNcKwWKB5/rBc=
+		wjSju8QJkWwdLDJkjJCbrEHWQWQ=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<data>
-		ar/AR+XT/9CZxhXGmVr/OzT4w88=
+		NsrRrwwkBhUcZ2gw4ci/gJE0SEY=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<data>
@@ -34,11 +34,11 @@
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.swiftinterface</key>
 		<data>
-		ar/AR+XT/9CZxhXGmVr/OzT4w88=
+		NsrRrwwkBhUcZ2gw4ci/gJE0SEY=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		OxuGnwHS+I9C63wn8GmfLzpv6cE=
+		2qgA4rRVxqcWGEz97bepyaeXX8k=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -90,21 +90,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			+5CwUAp+4tTdMtkgX887GVUw87yGXCObO3WBLIk4iQI=
+			E02wsgn5oXpa4EAZFZJWBAjJqxjiAcuGC3IyIRA5mYQ=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			HiGCQ528pqWJJQKx9VjZ3yHLaxt1bXxu6CT01jO1l8U=
+			KzVN7Uw/4XurnpT7SSe9TYr3EHlkUlt4JY3eN+YM3BA=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			0o/6zYBm34gk8WtqEoWzu+yCSourUvXuMUdJfJ7UIJg=
+			630cXOvUm12cEEfhHHX8vYdQwHC+PmPDqUfeqA0+fEE=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.swiftdoc</key>
@@ -118,14 +118,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			0o/6zYBm34gk8WtqEoWzu+yCSourUvXuMUdJfJ7UIJg=
+			630cXOvUm12cEEfhHHX8vYdQwHC+PmPDqUfeqA0+fEE=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			hoLC/8Q7xLgZUYfhzGhzZTfJewpQSj6FF9kpEVmJ/oc=
+			UOEEjta112fQqiV1r1EiTVckbQD8c8bP/sx5mXyxzGs=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
