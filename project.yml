@@ -36,8 +36,6 @@ targets:
       product: CryptoSwift
     - package: web3swift
       product: web3swift
-    - package: SwiftyRSA
-      product: SwiftyRSA
     - package: DeviceKit
       product: DeviceKit
     - package: SkeletonUI
@@ -72,9 +70,6 @@ packages:
   CryptoSwift:
     url: https://github.com/krzyzanowskim/CryptoSwift.git
     minorVersion: 1.5.1
-  SwiftyRSA:
-    url: https://github.com/TakeScoop/SwiftyRSA.git
-    minorVersion: 1.8.0
   DeviceKit:
     url: https://github.com/devicekit/DeviceKit.git
     minorVersion: 4.0.0
