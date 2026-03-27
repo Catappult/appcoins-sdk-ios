@@ -163,7 +163,28 @@ internal class WalletRepository: WalletRepositoryProtocol {
         }
         
         group.notify(queue: .main) {
-            completion(wallets.compactMap { $0 }) // Filter out nils but preserve order of successes
+            let resolvedWallets = wallets.compactMap { $0 }
+
+            // Deduplicate by address, preferring UserWallet over GuestWallet
+            var seen: [String: (index: Int, isUser: Bool)] = [:]
+            var deduplicated: [Wallet] = []
+
+            for wallet in resolvedWallets {
+                let address = wallet.getWalletAddress()
+                let isUser = wallet is UserWallet
+
+                if let existing = seen[address] {
+                    if isUser && !existing.isUser {
+                        deduplicated[existing.index] = wallet
+                        seen[address] = (index: existing.index, isUser: true)
+                    }
+                } else {
+                    seen[address] = (index: deduplicated.count, isUser: isUser)
+                    deduplicated.append(wallet)
+                }
+            }
+
+            completion(deduplicated)
         }
     }
 }
