@@ -19,7 +19,7 @@ public struct Sandbox {
         Utils.log(
             "Sandbox.getTestingWalletAddress() at Sandbox.swift",
             category: "Lifecycle",
-            level: .info
+            level: .default
         )
         
         let wallet: Wallet? = try? await withCheckedThrowingContinuation { continuation in

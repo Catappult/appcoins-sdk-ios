@@ -17,7 +17,7 @@ internal struct Attribution: Codable {
         Utils.log(
             "Attribution.init() at Attribution.swift",
             category: "Lifecycle",
-            level: .info
+            level: .default
         )
         
         self.package = attributionRaw.package
