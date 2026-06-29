@@ -39,7 +39,7 @@ public struct Product: Codable {
         Utils.log(
             "Product.products(domain: \(domain), for indentifiers: \(identifiers) at Product.swift",
             category: "Lifecycle",
-            level: .info
+            level: .default
         )
         
         let productUseCases: ProductUseCases = ProductUseCases.shared
@@ -147,7 +147,7 @@ public struct Product: Codable {
         Utils.log(
             "Product.purchase(domain: \(domain), payload: \(payload), orderID: \(orderID)) at Product.swift",
             category: "Lifecycle",
-            level: .info
+            level: .default
         )
         
         guard SDKUseCases.shared.isSDKInitialized() else {
@@ -202,7 +202,7 @@ public struct Product: Codable {
         Utils.log(
             "Starting purchase with domain: \(domain) at Product.swift:purchase",
             category: "Lifecycle",
-            level: .info
+            level: .default
         )
         
         AnalyticsUseCases.shared.recordStartConnection()
@@ -260,7 +260,7 @@ public struct Product: Codable {
             "Product.indirectPurchase(domain: \(domain), payload: \(payload), orderID: \(orderID), " +
             "discountPolicy: \(discountPolicy), oemID: \(oemID) at Product.swift",
             category: "Lifecycle",
-            level: .info
+            level: .default
         )
         
         if PurchaseViewModel.shared.hasActivePurchase {
@@ -280,7 +280,7 @@ public struct Product: Codable {
             Utils.log(
                 "Starting indirect purchase with domain: \(domain) at Product.swift:indirectPurchase",
                 category: "Lifecycle",
-                level: .info
+                level: .default
             )
             
             AnalyticsUseCases.shared.recordStartConnection()

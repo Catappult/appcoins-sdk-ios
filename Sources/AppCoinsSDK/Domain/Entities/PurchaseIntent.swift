@@ -32,7 +32,7 @@ public struct PurchaseIntent: Sendable, Identifiable, Codable {
         Utils.log(
             "PurchaseIntent.confirm(domain: \(domain), payload: \(payload), orderID: \(orderID)) at PurchaseIntent.swift",
             category: "Lifecycle",
-            level: .info
+            level: .default
         )
         
         Utils.log("Purchase intent confirmed. Unsetting purchase intent at PurchaseIntent.swift.confirm")
@@ -49,7 +49,7 @@ public struct PurchaseIntent: Sendable, Identifiable, Codable {
         Utils.log(
             "PurchaseIntent.reject() at PurchaseIntent.swift",
             category: "Lifecycle",
-            level: .info
+            level: .default
         )
         
         Utils.log("Purchase intent rejected. Unsetting purchase intent at PurchaseIntent.swift.reject")

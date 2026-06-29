@@ -36,7 +36,7 @@ internal class PurchaseViewModel: ObservableObject {
         Utils.log(
             "PurchaseViewModel.reset() at PurchaseViewModel.swift",
             category: "Lifecycle",
-            level: .info
+            level: .default
         )
         
         self.hasActivePurchase = false
@@ -62,7 +62,7 @@ internal class PurchaseViewModel: ObservableObject {
             "PurchaseViewModel.purchase(product: \(product), domain: \(domain), metadata: \(metadata), " +
             "reference: \(reference), discountPolicy: \(discountPolicy), oemID: \(oemID) at PurchaseViewModel.swift",
             category: "Lifecycle",
-            level: .info
+            level: .default
         )
         
         self.product = product
@@ -100,7 +100,7 @@ internal class PurchaseViewModel: ObservableObject {
         Utils.log(
             "PurchaseViewModel.dismiss() at PurchaseViewModel.swift",
             category: "Lifecycle",
-            level: .info
+            level: .default
         )
         
         self.cancel()
@@ -111,7 +111,7 @@ internal class PurchaseViewModel: ObservableObject {
         Utils.log(
             "PurchaseViewModel.dismissVC() at PurchaseViewModel.swift",
             category: "Lifecycle",
-            level: .info
+            level: .default
         )
         
         DispatchQueue.main.async {
@@ -132,7 +132,7 @@ internal class PurchaseViewModel: ObservableObject {
         Utils.log(
             "PurchaseViewModel.cancel() at PurchaseViewModel.swift",
             category: "Lifecycle",
-            level: .info
+            level: .default
         )
         
         self.dismissVC {
@@ -148,7 +148,7 @@ internal class PurchaseViewModel: ObservableObject {
         Utils.log(
             "PurchaseViewModel.failed() at PurchaseViewModel.swift",
             category: "Lifecycle",
-            level: .info
+            level: .default
         )
         
         self.dismissVC {
@@ -164,7 +164,7 @@ internal class PurchaseViewModel: ObservableObject {
         Utils.log(
             "PurchaseViewModel.success(verificationResult: \(verificationResult)) at PurchaseViewModel.swift",
             category: "Lifecycle",
-            level: .info
+            level: .default
         )
         
         self.dismissVC {
@@ -180,7 +180,7 @@ internal class PurchaseViewModel: ObservableObject {
         Utils.log(
             "PurchaseViewModel.sendResult(result: \(result)) at PurchaseViewModel.swift",
             category: "Lifecycle",
-            level: .info
+            level: .default
         )
         
         NotificationCenter.default.post(name: NSNotification.Name("APPCPurchaseResult"), object: nil, userInfo: ["PurchaseResult" : result])
@@ -192,7 +192,7 @@ internal class PurchaseViewModel: ObservableObject {
         Utils.log(
             "PurchaseViewModel.handleCheckoutSuccessDeeplink(deeplink: \(deeplink)) at PurchaseViewModel.swift",
             category: "Lifecycle",
-            level: .info
+            level: .default
         )
         
         do {
@@ -207,7 +207,7 @@ internal class PurchaseViewModel: ObservableObject {
         Utils.log(
             "PurchaseViewModel.handleCheckoutFailureDeeplink(deeplink: \(deeplink)) at PurchaseViewModel.swift",
             category: "Lifecycle",
-            level: .info
+            level: .default
         )
         
         do {
@@ -228,7 +228,7 @@ internal class PurchaseViewModel: ObservableObject {
         Utils.log(
             "PurchaseViewModel.handleWebViewDeeplink(deeplink: \(deeplink)) at PurchaseViewModel.swift",
             category: "Lifecycle",
-            level: .info
+            level: .default
         )
         
         guard let webView = webView else {

@@ -23,7 +23,7 @@ public struct AppcSDK {
             Utils.log(
                 "Configuration.init() at AppcSDK.swift",
                 category: "Lifecycle",
-                level: .info
+                level: .default
             )
             
             self.isAppCoinsDevToolsEnabled = Bundle.main.isAppCoinsDevToolsEnabled
@@ -63,7 +63,7 @@ public struct AppcSDK {
         Utils.log(
             "AppcSDK.configure(locale: \(locale), marketplace: \(marketplace)) at AppcSDK.swift",
             category: "Lifecycle",
-            level: .info
+            level: .default
         )
         
         if AppcSDK.configuration.isAppCoinsDevToolsEnabled {
@@ -95,7 +95,7 @@ public struct AppcSDK {
         Utils.log(
             "AppcSDK.initialize() at AppcSDK.swift",
             category: "Lifecycle",
-            level: .info
+            level: .default
         )
         
         Task {
@@ -127,7 +127,7 @@ public struct AppcSDK {
         Utils.log(
             "AppcSDK.isAvailable() at AppcSDK.swift",
             category: "Lifecycle",
-            level: .info
+            level: .default
         )
         
         if BuildConfiguration.isDev {
@@ -232,7 +232,7 @@ public struct AppcSDK {
         Utils.log(
             "AppcSDK.handle(redirectURL: \(redirectURL)) at AppcSDK.swift",
             category: "Lifecycle",
-            level: .info
+            level: .default
         )
         
         if let redirectURL = redirectURL {

@@ -19,7 +19,7 @@ class PurchaseIntentManager {
         Utils.log(
             "PurchaseIntentManager.initialize() at PurchaseIntentManager.swift",
             category: "Lifecycle",
-            level: .info
+            level: .default
         )
         
         loadFromDisk()
@@ -36,7 +36,7 @@ class PurchaseIntentManager {
         Utils.log(
             "PurchaseIntentManager.set(intent: \(intent)) at PurchaseIntentManager.swift",
             category: "Lifecycle",
-            level: .info
+            level: .default
         )
         
         self.current = intent
@@ -52,7 +52,7 @@ class PurchaseIntentManager {
         Utils.log(
             "PurchaseIntentManager.unset() at PurchaseIntentManager.swift",
             category: "Lifecycle",
-            level: .info
+            level: .default
         )
         
         self.current = nil
@@ -66,7 +66,7 @@ class PurchaseIntentManager {
         Utils.log(
             "PurchaseIntentManager.saveToDisk() at PurchaseIntentManager.swift",
             category: "Lifecycle",
-            level: .info
+            level: .default
         )
         
         if let current = self.current {
@@ -79,7 +79,7 @@ class PurchaseIntentManager {
         Utils.log(
             "PurchaseIntentManager.loadFromDisk() at PurchaseIntentManager.swift",
             category: "Lifecycle",
-            level: .info
+            level: .default
         )
         
         guard let storedIntent = SDKUseCases.shared.fetchPurchaseIntent() else {
@@ -102,7 +102,7 @@ class PurchaseIntentManager {
         Utils.log(
             "PurchaseIntentManager.removeFromDisk() at PurchaseIntentManager.swift",
             category: "Lifecycle",
-            level: .info
+            level: .default
         )
         
         Utils.log("Removing purchase intent from disk at PurchaseIntentManager.swift:removeFromDisk")

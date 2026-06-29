@@ -32,7 +32,7 @@ internal class GuestWallet: Wallet, Codable {
         Utils.log(
             "GuestWallet.getWalletAddress() at GuestWallet.swift",
             category: "Lifecycle",
-            level: .info
+            level: .default
         )
         
         return self.address
@@ -42,7 +42,7 @@ internal class GuestWallet: Wallet, Codable {
         Utils.log(
             "GuestWallet.getSignedWalletAddress() at GuestWallet.swift",
             category: "Lifecycle",
-            level: .info
+            level: .default
         )
         
         return self.signature
@@ -52,7 +52,7 @@ internal class GuestWallet: Wallet, Codable {
         Utils.log(
             "GuestWallet.getAuthToken() at GuestWallet.swift",
             category: "Lifecycle",
-            level: .info
+            level: .default
         )
         
         return "Bearer \(self.ewt)"
