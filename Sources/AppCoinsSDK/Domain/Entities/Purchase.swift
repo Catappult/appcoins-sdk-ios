@@ -69,7 +69,7 @@ public class Purchase: Codable {
         Utils.log(
             "Purchase.verify(domain: \(domain), purchaseUID: \(purchaseUID)) at Purchase.swift",
             category: "Lifecycle",
-            level: .info
+            level: .default
         )
         
         Utils.log("Getting wallet list at Purchase.swift:verify")
@@ -159,7 +159,7 @@ public class Purchase: Codable {
         Utils.log(
             "Purchase.acknowledge(domain: \(domain)) at Purchase.swift",
             category: "Lifecycle",
-            level: .info
+            level: .default
         )
         
         WalletUseCases.shared.getWalletList() { walletList in
@@ -264,7 +264,7 @@ public class Purchase: Codable {
         Utils.log(
             "Purchase.finish(domain: \(domain)) at Purchase.swift",
             category: "Lifecycle",
-            level: .info
+            level: .default
         )
         
         return try await withCheckedThrowingContinuation { continuation in
@@ -372,7 +372,7 @@ public class Purchase: Codable {
         Utils.log(
             "Purchase.all(domain: \(domain)) at Purchase.swift",
             category: "Lifecycle",
-            level: .info
+            level: .default
         )
         
         return try await withCheckedThrowingContinuation { continuation in
@@ -445,7 +445,7 @@ public class Purchase: Codable {
         Utils.log(
             "Purchase.latest(domain: \(domain)) at Purchase.swift",
             category: "Lifecycle",
-            level: .info
+            level: .default
         )
         
         return try await withCheckedThrowingContinuation { continuation in
@@ -521,7 +521,7 @@ public class Purchase: Codable {
         Utils.log(
             "Purchase.unfinished(domain: \(domain)) at Purchase.swift",
             category: "Lifecycle",
-            level: .info
+            level: .default
         )
         
         return try await withCheckedThrowingContinuation { continuation in

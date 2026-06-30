@@ -82,11 +82,18 @@ internal struct Utils {
         KeychainHelper.shared.delete(service: key, account: "com.aptoide.appcoins-wallet")
     }
     
-    static internal func log(_ message: String, category: String = "Debug", level: OSLogType = .debug) {
+    // The unified logging system does not persist .debug or .info messages from a custom
+    // subsystem (the host app's bundle identifier) to the on-disk store, so those levels never
+    // appear in a sysdiagnose on a normal device. We log at .default (the lowest persisted
+    // level) by default and floor any lower level up to it, so every SDK log is captured in a
+    // plain sysdiagnose from any device — no logging profile or Mac connection required.
+    // Errors/faults keep their higher level. Avoid passing .debug/.info from call sites.
+    static internal func log(_ message: String, category: String = "Debug", level: OSLogType = .default) {
         if #available(iOS 14, *) {
+            let persistedLevel: OSLogType = (level == .debug || level == .info) ? .default : level
             let logger = Logger(subsystem: Bundle.main.bundleIdentifier!, category: category)
             let message = "[AppCoinsSDK] \(message)"
-            logger.log(level: level, "\(message, privacy: .public)")
+            logger.log(level: persistedLevel, "\(message, privacy: .public)")
         } else {
             print("[AppCoinsSDK] \(message)")
         }
