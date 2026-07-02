@@ -18,15 +18,15 @@
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		FX6q46qGDX1jc+5o77KkfTZz0o4=
+		Id+3a7o6tGK1EN2sVXICehkinqU=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		tiAaEFmQiGGu5AK+ZHADLi/J43g=
+		BaZNwC9qLQ08cYNA/Ec2qscEQUQ=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		aBtmfwBm1BzF3+ryFQhCOjlQqtw=
+		cOAHAMZdXQNS+I2OMNCpiWIRa8E=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
@@ -42,11 +42,11 @@
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		zukgCJRX0MenrFTC3ZIvKKDquA0=
+		uPpR1swa2P3CRimPLq0D0LiriaQ=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		aBtmfwBm1BzF3+ryFQhCOjlQqtw=
+		cOAHAMZdXQNS+I2OMNCpiWIRa8E=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
@@ -62,7 +62,7 @@
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		E5sfsoZ97v4fTlLtCk/9Fmjc2fA=
+		l00yvK4buTW09BxFtzMGssNyxEM=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -130,21 +130,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			vr03TjWUYaVJ8td54EsH0zjbahfCkgQ/RRG7V67WNsI=
+			8hlrsNut41AVic6Mvt0tAJt8807ubPVSouLdjm2GPXk=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			xtZ5KlA3cHioQkoYFqfc8SnE1HpoRcYzb1FswbV+RpI=
+			d69U4hxf30OqzH8slXbIbG2CkUuIvb2yEnveENxgj1E=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ot9s8v5dGkBBA5ua5RN4C/57kRDE++fEk4eAqQkqNUo=
+			529Or1pzqEEV3kzpSebyNVHX5O+U7W9Dg+0KXjvAvmk=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
@@ -172,14 +172,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			qnFs4ClwIjB8UV8Tn+x+cPNrLi9TrWw2jGr+RKsKSN4=
+			2mSCgYYDboSMLxjxDSzLa4e3Bh3Uiy1BWrQ3RYz1dE8=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ot9s8v5dGkBBA5ua5RN4C/57kRDE++fEk4eAqQkqNUo=
+			529Or1pzqEEV3kzpSebyNVHX5O+U7W9Dg+0KXjvAvmk=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
@@ -207,7 +207,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			2Ra7ov20TQfTFnFyBcQSJMa8YnARV4AdBwBtEBORsQA=
+			1OP/n1jLRWqiGQ6pj/jCNH1BeC/V6/Ohd1O2vNE3bnM=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
