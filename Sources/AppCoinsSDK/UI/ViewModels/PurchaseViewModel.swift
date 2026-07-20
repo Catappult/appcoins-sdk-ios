@@ -82,7 +82,7 @@ internal class PurchaseViewModel: ObservableObject {
                 
                 self.webCheckout = await WebCheckout(
                     domain: domain,
-                    product: product.sku,
+                    product: product.id,
                     metadata: self.metadata,
                     reference: self.reference,
                     guestUID: guestUID,
@@ -160,7 +160,7 @@ internal class PurchaseViewModel: ObservableObject {
         }
     }
     
-    internal func success(verificationResult: VerificationResult) {
+    internal func success(verificationResult: VerificationResult<Transaction>) {
         Utils.log(
             "PurchaseViewModel.success(verificationResult: \(verificationResult)) at PurchaseViewModel.swift",
             category: "Lifecycle",

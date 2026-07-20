@@ -23,10 +23,6 @@ internal class SDKUseCases {
     internal func getDefaultStorefrontMarketplace() -> String? { self.repository.getDefaultStorefrontMarketplace() }
     internal func setSDKDefaultStorefrontMarketplace(marketplace: String) { self.repository.setSDKDefaultStorefrontMarketplace(marketplace: marketplace) }
     
-    internal func persistPurchaseIntent(intent: PurchaseIntent) { repository.persistPurchaseIntent(intent: intent) }
-    internal func fetchPurchaseIntent() -> PurchaseIntent? { return repository.fetchPurchaseIntent() }
-    internal func removePurchaseIntent() { repository.removePurchaseIntent() }
-    
     internal func setSDKInitialized() { repository.setSDKInitialized() }
     internal func isSDKInitialized() -> Bool { repository.isSDKInitialized() }
 }

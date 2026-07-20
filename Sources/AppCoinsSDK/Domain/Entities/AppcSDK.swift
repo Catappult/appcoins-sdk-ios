@@ -17,7 +17,7 @@ public struct AppcSDK {
     
     public struct Configuration {
         var isAppCoinsDevToolsEnabled: Bool
-        var storefront: AppcStorefront?
+        var storefront: Storefront?
         
         init() {
             Utils.log(
@@ -31,17 +31,17 @@ public struct AppcSDK {
             if self.isAppCoinsDevToolsEnabled {
                 Utils.log("AppCoinsDevTools are Enabled")
                 
-                var locale: AppcStorefront.Locale?
-                var marketplace: AppcStorefront.Marketplace?
+                var locale: Storefront.Locale?
+                var marketplace: Storefront.Marketplace?
 
                 if let rawLocale = SDKUseCases.shared.getDefaultStorefrontLocale() {
-                    locale = AppcStorefront.Locale.fromRaw(raw: rawLocale)
+                    locale = Storefront.Locale.fromRaw(raw: rawLocale)
                 }
                 if let rawMarketplace = SDKUseCases.shared.getDefaultStorefrontMarketplace() {
-                    marketplace = AppcStorefront.Marketplace.fromRaw(raw: rawMarketplace)
+                    marketplace = Storefront.Marketplace.fromRaw(raw: rawMarketplace)
                 }
                 
-                self.storefront = AppcStorefront(locale: locale, marketplace: marketplace)
+                self.storefront = Storefront(locale: locale, marketplace: marketplace)
             } else {
                 Utils.log("AppCoinsDevTools are not Enabled")
                 self.storefront = nil
@@ -57,9 +57,9 @@ public struct AppcSDK {
     ///   - Updates `AppcSDK.configuration.storefront` with the provided `locale` and `marketplace`.
     ///
     /// - Parameters:
-    ///   - locale: Optional `AppcStorefront.Locale` to override the default locale.
-    ///   - marketplace: Optional `AppcStorefront.Marketplace` to override the default marketplace.
-    static public func configure(locale: AppcStorefront.Locale? = nil, marketplace: AppcStorefront.Marketplace? = nil) {
+    ///   - locale: Optional `Storefront.Locale` to override the default locale.
+    ///   - marketplace: Optional `Storefront.Marketplace` to override the default marketplace.
+    static public func configure(locale: Storefront.Locale? = nil, marketplace: Storefront.Marketplace? = nil) {
         Utils.log(
             "AppcSDK.configure(locale: \(locale), marketplace: \(marketplace)) at AppcSDK.swift",
             category: "Lifecycle",
@@ -67,8 +67,8 @@ public struct AppcSDK {
         )
         
         if AppcSDK.configuration.isAppCoinsDevToolsEnabled {
-            var newLocale: AppcStorefront.Locale? = AppcSDK.configuration.storefront?.locale
-            var newMarketplace: AppcStorefront.Marketplace? = AppcSDK.configuration.storefront?.marketplace
+            var newLocale: Storefront.Locale? = AppcSDK.configuration.storefront?.locale
+            var newMarketplace: Storefront.Marketplace? = AppcSDK.configuration.storefront?.marketplace
             
             if let locale = locale {
                 SDKUseCases.shared.setSDKDefaultStorefrontLocale(locale: locale.code)
@@ -83,7 +83,7 @@ public struct AppcSDK {
             }
             
             Utils.log("AppCoinsDevTools are enabled. Updating configuration at AppcSDK.swift:configure")
-            AppcSDK.configuration.storefront = AppcStorefront(locale: newLocale, marketplace: newMarketplace)
+            AppcSDK.configuration.storefront = Storefront(locale: newLocale, marketplace: newMarketplace)
         } else {
             Utils.log("AppCoinsDevTools are not enabled. Skipping configuration at AppcSDK.swift:configure")
         }
@@ -107,7 +107,6 @@ public struct AppcSDK {
                 }
             }
         }
-        PurchaseIntentManager.shared.initialize()
         SDKUseCases.shared.setSDKInitialized()
         
         Utils.log("AppcSDK initialized with version \(BuildConfiguration.sdkShortVersion)(\(BuildConfiguration.sdkBuildNumber)) at AppcSDK.swift:initialize")
@@ -141,7 +140,7 @@ public struct AppcSDK {
         }
         
         if AppcSDK.configuration.isAppCoinsDevToolsEnabled, let defaultLocale = AppcSDK.configuration.storefront?.locale {
-            guard AppcStorefront.Locale.EU.contains(defaultLocale) else {
+            guard Storefront.Locale.EU.contains(defaultLocale) else {
                 Utils.log("AppCoinsDevTools is enabled: non‑EU storefront detected. " +
                           "AppcSDK unavailable at AppcSDK.swift:isAvailable")
                 return false
@@ -214,8 +213,6 @@ public struct AppcSDK {
     ///                 - `locale`: The storefront locale (e.g., `"pt-PT"`).
     ///                 - `marketplace`: The storefront marketplace (e.g., `"com.aptoide.ios.store"`).
     ///             - `/default?value=true|false`: enables or disables the SDK default feature flag.
-    ///         - **wallet.appcoins.io/purchase**
-    ///             - Triggers an indirect purchase by fetching product data and preparing a `PurchaseIntent`.
     ///         - **wallet.appcoins.io/checkout/success** or **/checkout/failure**
     ///             - Handles checkout result deep links and routes them to `PurchaseViewModel
     ///   - DeepLinks related to WebCheckout WebView
@@ -249,16 +246,16 @@ public struct AppcSDK {
                         if redirectURL.pathComponents[2] == "storefront" {
                             Utils.log("Storefront case at AppcSDK.swift:handle")
                             
-                            var locale: AppcStorefront.Locale?
-                            var marketplace: AppcStorefront.Marketplace?
+                            var locale: Storefront.Locale?
+                            var marketplace: Storefront.Marketplace?
                             
                             if let rawLocale = queryItems?.first(where: { $0.name == "locale" })?.value {
-                                locale = AppcStorefront.Locale.fromRaw(raw: rawLocale)
+                                locale = Storefront.Locale.fromRaw(raw: rawLocale)
                                 if locale == nil { Utils.log("Invalid Storefront Locale: \(rawLocale) at AppcSDK.swift:handle") }
                             }
                             
                             if let rawMarketplace = queryItems?.first(where: { $0.name == "marketplace" })?.value {
-                                marketplace = AppcStorefront.Marketplace.fromRaw(raw: rawMarketplace)
+                                marketplace = Storefront.Marketplace.fromRaw(raw: rawMarketplace)
                                 if marketplace == nil { Utils.log("Invalid Storefront Marketplace: \(rawMarketplace) at AppcSDK.swift:handle") }
                             }
                             
@@ -270,25 +267,6 @@ public struct AppcSDK {
                             let value = rawValue.lowercased() == "true" ? true : false
                             SDKUseCases.shared.setSDKDefault(value: value)
                             Utils.log("SDK Default set to \(value) at AppcSDK.swift:handle")
-                        }
-                    }
-                case "purchase":
-                    Utils.log("Purchase case at AppcSDK.swift:handle")
-                    
-                    if let sku = queryItems?.first(where: { $0.name == "product" })?.value {
-                        let discountPolicy = queryItems?.first(where: { $0.name == "discount_policy" })?.value.flatMap { DiscountPolicy(rawValue: $0) }
-                        let oemID = queryItems?.first(where: { $0.name == "oemid" })?.value
-                        
-                        Task {
-                            ProductUseCases.shared.getProduct(domain: BuildConfiguration.packageName, product: sku, discountPolicy: discountPolicy) { result in
-                                
-                                if case .success(let product) = result {
-                                    Utils.log("Product found for SKU '\(sku)' at AppcSDK.swift:handle")
-                                    PurchaseIntentManager.shared.set(intent: PurchaseIntent(product: product, discountPolicy: discountPolicy, oemID: oemID))
-                                } else {
-                                    Utils.log("Indirect purchase failed: product not found for SKU '\(sku)' at AppcSDK.swift:handle")
-                                }
-                            }
                         }
                     }
                 case "checkout":

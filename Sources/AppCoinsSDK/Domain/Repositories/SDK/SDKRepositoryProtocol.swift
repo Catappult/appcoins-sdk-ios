@@ -17,10 +17,6 @@ internal protocol SDKRepositoryProtocol {
     func getDefaultStorefrontMarketplace() -> String?
     func setSDKDefaultStorefrontMarketplace(marketplace: String)
     
-    func persistPurchaseIntent(intent: PurchaseIntent)
-    func fetchPurchaseIntent() -> PurchaseIntent?
-    func removePurchaseIntent()
-    
     func setSDKInitialized()
     func isSDKInitialized() -> Bool
 }
