@@ -77,6 +77,8 @@ internal class APPCServiceClient : APPCService {
                             result(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url) at APPCServiceClient.swift:refreshUserWallet")))
                         }
                     } catch {
+                        let rawBody = data.flatMap { String(data: $0, encoding: .utf8) } ?? "nil"
+                        Utils.log("refreshUserWallet raw response: \(rawBody)", level: .error)
                         result(.failure(.failed(message: "Service Failed", description: "Failed to decode response from endpoint: \(url). Error: \(error.localizedDescription) at APPCServiceClient.swift:refreshUserWallet", request: DebugRequestInfo(request: request, responseData: data, response: response))))
                     }
                 }
