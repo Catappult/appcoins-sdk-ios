@@ -9,8 +9,6 @@ import Foundation
 internal class SDKRepository: SDKRepositoryProtocol {
     
     private let userPreferencesLocalService: UserPreferencesLocalService = UserPreferencesLocalClient()
-    private let purchaseIntentService: PurchaseIntentService = PurchaseIntentClient()
-    
     private var didInitializeSDK: Bool = false
     
     internal func isDefault() -> Bool? {
@@ -37,19 +35,6 @@ internal class SDKRepository: SDKRepositoryProtocol {
     
     func setSDKDefaultStorefrontMarketplace(marketplace: String) {
         userPreferencesLocalService.setSDKDefaultStorefrontMarketplace(marketplace: marketplace)
-    }
-    
-    internal func persistPurchaseIntent(intent: PurchaseIntent) {
-        purchaseIntentService.persist(intent: intent)
-    }
-    
-    internal func fetchPurchaseIntent() -> PurchaseIntent? {
-        let intent = purchaseIntentService.fetch()
-        return intent
-    }
-    
-    internal func removePurchaseIntent() {
-        purchaseIntentService.remove()
     }
     
     internal func setSDKInitialized() { didInitializeSDK = true }
