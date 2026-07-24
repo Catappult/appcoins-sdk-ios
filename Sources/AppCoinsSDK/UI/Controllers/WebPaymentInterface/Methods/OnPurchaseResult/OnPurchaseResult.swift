@@ -55,17 +55,17 @@ internal class OnPurchaseResult {
         if #available(iOS 26, *) {
             ExternalPurchaseUseCases.shared.associateTransaction(transactionUID: orderId)
         }
-        
-        Purchase.verify(domain: domain, purchaseUID: purchaseToken) {
-            result in
+
+        Transaction.verify(domain: domain, purchaseUID: purchaseToken) { result in
             switch result {
-            case .success(let purchase):
-                purchase.acknowledge(domain: domain) {
-                    error in
+            case .success(let transaction):
+                transaction.acknowledge(domain: domain) { error in
                     if let error = error {
                         PurchaseViewModel.shared.failed(error: error)
                     } else {
-                        PurchaseViewModel.shared.success(verificationResult: .verified(purchase: purchase))
+                        let verificationResult: VerificationResult<Transaction> = .verified(transaction)
+                        Transaction.send(verificationResult)
+                        PurchaseViewModel.shared.success(verificationResult: verificationResult)
                     }
                 }
             case .failure(let error):

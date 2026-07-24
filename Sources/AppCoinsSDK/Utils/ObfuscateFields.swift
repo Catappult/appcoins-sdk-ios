@@ -20,7 +20,7 @@ import Foundation
 /// - Field name matches are **case-insensitive**.
 /// - For non-string field values, the replacement becomes the literal string "REDACTED".
 /// - No attempt is made to preserve original spacing/formatting; goal is readability.
-public func obfuscateFields(
+internal func obfuscateFields(
     _ fields: [String],
     in body: Any,
     mask: (String) -> String = { _ in "hidden" }
@@ -109,7 +109,7 @@ private func prettyJSONString(_ any: Any) -> String {
 // MARK: - Convenience overloads
 
 /// Overload for Data bodies. Returns a readable string (pretty JSON when possible).
-public func obfuscateFields(
+internal func obfuscateFields(
     _ fields: [String],
     in body: Data,
     mask: (String) -> String = { _ in "hidden" }
@@ -118,7 +118,7 @@ public func obfuscateFields(
 }
 
 /// Overload for String bodies. Returns a readable string (pretty JSON when possible).
-public func obfuscateFields(
+internal func obfuscateFields(
     _ fields: [String],
     in body: String,
     mask: (String) -> String = { _ in "hidden" }
