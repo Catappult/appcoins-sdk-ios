@@ -20219,14 +20219,14 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Repositories\/Wallet\/WalletRepository.swift",
       "kind": "StringLiteral",
-      "offset": 438,
+      "offset": 428,
       "length": 18,
       "value": "\"GuestWalletCache\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Repositories\/Wallet\/WalletRepository.swift",
       "kind": "StringLiteral",
-      "offset": 563,
+      "offset": 555,
       "length": 17,
       "value": "\"UserWalletCache\""
     },

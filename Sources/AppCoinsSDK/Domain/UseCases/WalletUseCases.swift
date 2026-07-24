@@ -22,17 +22,25 @@ internal class WalletUseCases {
     internal func getWallet(completion: @escaping (Result<Wallet, APPCServiceError>) -> Void) {
         repository.getActiveWallet() { activeWallet in
             if let activeWallet = activeWallet {
-                
+
                 if let activeWallet = activeWallet as? UserWallet {
                     Utils.log("Active Wallet (Type: User, Address: \(activeWallet.address))")
                 } else if let activeWallet = activeWallet as? GuestWallet {
                     Utils.log("Active Wallet (Type: Guest, Address: \(activeWallet.address))")
                 }
-                
+
                 completion(.success(activeWallet))
                 return
             }
-            
+
+            // Only fall back to a guest wallet if nothing has been stored yet.
+            // If there is a stored wallet but the refresh failed, we should not
+            // overwrite it with a guest wallet.
+            guard !self.repository.hasStoredActiveWallet() else {
+                completion(.failure(.failed(message: "Token Refresh Failed", description: "Active wallet exists in storage but could not be refreshed.")))
+                return
+            }
+
             self.getGuestWallet() { result in
                 switch result {
                 case .success(let guestWallet):
