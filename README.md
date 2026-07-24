@@ -390,8 +390,7 @@ Options you can pass to `purchase(options:)`.
 
 **Properties:**
 
-- `id: UInt64` — Stable numeric identifier derived from the AppCoins transaction UID. Compatible with systems expecting a numeric ID.
-- `transactionUID: String` — The original AppCoins transaction UID, as shown in the Catappult dashboard.
+- `id: String` — The AppCoins transaction UID, as shown in the Catappult dashboard. Unlike StoreKit's `UInt64`, this is the raw identifier returned by the AppCoins service. If you have code that bridges StoreKit and AppCoins transactions, cast StoreKit's `id` to `String` with `String(storeKitTransaction.id)`.
 - `productID: String` — The product identifier that was purchased.
 - `purchaseDate: Date` — The date and time the purchase was made.
 - `appAccountToken: UUID?` — The account token passed during purchase via `Product.PurchaseOption.appAccountToken`.

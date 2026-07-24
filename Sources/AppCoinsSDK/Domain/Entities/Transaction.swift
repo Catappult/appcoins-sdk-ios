@@ -20,10 +20,7 @@ public struct Transaction: Codable {
         case familyShared
     }
 
-    // StoreKit-compatible deterministic identifier (FNV-1a hash of transactionUID)
-    public let id: UInt64
-    // Original AppCoins transaction identifier, as shown in the Catappult dashboard
-    public let transactionUID: String
+    public let id: String
     public let productID: String
     public let purchaseDate: Date
     public let appAccountToken: UUID?
@@ -42,25 +39,13 @@ public struct Transaction: Codable {
     }()
 
     internal init(raw: PurchaseRaw) {
-        self.transactionUID = raw.uid
-        self.id = Transaction.stableID(from: raw.uid)
+        self.id = raw.uid
         self.productID = raw.sku
         self.purchaseDate = Transaction.dateFormatter.date(from: raw.created) ?? Date()
         self.appAccountToken = raw.payload.flatMap { UUID(uuidString: $0) }
         self.revocationDate = nil
         self.revocationReason = nil
         self.ownershipType = .purchased
-    }
-
-    // FNV-1a 64-bit hash — deterministic, no per-session randomization
-    private static func stableID(from uid: String) -> UInt64 {
-        let fnvPrime: UInt64 = 1099511628211
-        var hash: UInt64 = 14695981039346656037
-        for byte in uid.utf8 {
-            hash ^= UInt64(byte)
-            hash = hash &* fnvPrime
-        }
-        return hash
     }
 
     // MARK: - Public static queries
@@ -180,7 +165,7 @@ public struct Transaction: Codable {
                     group.enter()
                     TransactionUseCases.shared.consumeTransaction(
                         domain: domain,
-                        uid: self.transactionUID,
+                        uid: self.id,
                         wa: wallet
                     ) { result in
                         if case .success = result { isConsumed = true }
@@ -281,7 +266,7 @@ public struct Transaction: Codable {
                 queue.async {
                     TransactionUseCases.shared.acknowledgeTransaction(
                         domain: domain,
-                        uid: self.transactionUID,
+                        uid: self.id,
                         wa: wallet
                     ) { result in
                         switch result {
