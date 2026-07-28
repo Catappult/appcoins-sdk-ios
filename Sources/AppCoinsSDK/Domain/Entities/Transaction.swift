@@ -110,11 +110,6 @@ public struct Transaction: Codable {
         }
     }
 
-    // For AppCoins (consumables), currentEntitlements maps to unfinished transactions
-    public static var currentEntitlements: AsyncStream<VerificationResult<Transaction>> {
-        return unfinished
-    }
-
     public static func latest(for productID: String) async -> VerificationResult<Transaction>? {
         let domain = Bundle.main.bundleIdentifier ?? ""
         return await withCheckedContinuation { continuation in
@@ -134,21 +129,6 @@ public struct Transaction: Codable {
                 }
             }
         }
-    }
-
-    // MARK: - Live updates stream
-
-    private static var updatesContinuation: AsyncStream<VerificationResult<Transaction>>.Continuation?
-    private static let updatesStream: AsyncStream<VerificationResult<Transaction>> = {
-        AsyncStream { continuation in updatesContinuation = continuation }
-    }()
-
-    public static var updates: AsyncStream<VerificationResult<Transaction>> {
-        return updatesStream
-    }
-
-    internal static func send(_ result: VerificationResult<Transaction>) {
-        updatesContinuation?.yield(result)
     }
 
     // MARK: - Instance methods
