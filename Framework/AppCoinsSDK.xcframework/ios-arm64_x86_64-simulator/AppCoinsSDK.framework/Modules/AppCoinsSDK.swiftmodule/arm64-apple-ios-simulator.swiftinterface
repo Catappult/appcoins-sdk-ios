@@ -24,227 +24,11 @@ public enum AppCoinsSDKError : Swift.Error, Swift.CustomStringConvertible {
   }
 }
 public struct AppcSDK {
-  public static var configuration: AppCoinsSDK.AppcSDK.Configuration
-  public struct Configuration {
-  }
-  #if compiler(>=5.3) && $NonescapableTypes
-  public static func configure(locale: AppCoinsSDK.Storefront.Locale? = nil, marketplace: AppCoinsSDK.Storefront.Marketplace? = nil)
-  #endif
   public static func initialize()
   public static func isAvailable() async -> Swift.Bool
   #if compiler(>=5.3) && $NonescapableTypes
   public static func handle(redirectURL: Foundation.URL?) -> Swift.Bool
   #endif
-}
-extension Foundation.Bundle {
-  public var isAppCoinsDevToolsEnabled: Swift.Bool {
-    get
-  }
-}
-public struct Storefront {
-  public let locale: AppCoinsSDK.Storefront.Locale?
-  public let marketplace: AppCoinsSDK.Storefront.Marketplace?
-  public struct Locale : Swift.Equatable {
-    public let code: Swift.String
-    public let region: Swift.String
-    #if compiler(>=5.3) && $NonescapableTypes
-    public static func fromRaw(raw: Swift.String) -> AppCoinsSDK.Storefront.Locale?
-    #endif
-    public static func == (lhs: AppCoinsSDK.Storefront.Locale, rhs: AppCoinsSDK.Storefront.Locale) -> Swift.Bool
-  }
-  public enum Marketplace : Swift.String {
-    case aptoide
-    case apple
-    #if compiler(>=5.3) && $NonescapableTypes
-    public static func fromRaw(raw: Swift.String) -> AppCoinsSDK.Storefront.Marketplace?
-    #endif
-    #if compiler(>=5.3) && $NonescapableTypes
-    public init?(rawValue: Swift.String)
-    #endif
-    public typealias RawValue = Swift.String
-    public var rawValue: Swift.String {
-      get
-    }
-  }
-}
-extension AppCoinsSDK.Storefront.Locale {
-  public static let AFG: AppCoinsSDK.Storefront.Locale
-  public static let ALB: AppCoinsSDK.Storefront.Locale
-  public static let DZA: AppCoinsSDK.Storefront.Locale
-  public static let AGO: AppCoinsSDK.Storefront.Locale
-  public static let AIA: AppCoinsSDK.Storefront.Locale
-  public static let ATG: AppCoinsSDK.Storefront.Locale
-  public static let ARG: AppCoinsSDK.Storefront.Locale
-  public static let ARM: AppCoinsSDK.Storefront.Locale
-  public static let AUS: AppCoinsSDK.Storefront.Locale
-  public static let AUT: AppCoinsSDK.Storefront.Locale
-  public static let AZE: AppCoinsSDK.Storefront.Locale
-  public static let BHS: AppCoinsSDK.Storefront.Locale
-  public static let BHR: AppCoinsSDK.Storefront.Locale
-  public static let BRB: AppCoinsSDK.Storefront.Locale
-  public static let BLR: AppCoinsSDK.Storefront.Locale
-  public static let BEL: AppCoinsSDK.Storefront.Locale
-  public static let BLZ: AppCoinsSDK.Storefront.Locale
-  public static let BEN: AppCoinsSDK.Storefront.Locale
-  public static let BMU: AppCoinsSDK.Storefront.Locale
-  public static let BTN: AppCoinsSDK.Storefront.Locale
-  public static let BOL: AppCoinsSDK.Storefront.Locale
-  public static let BIH: AppCoinsSDK.Storefront.Locale
-  public static let BWA: AppCoinsSDK.Storefront.Locale
-  public static let BRA: AppCoinsSDK.Storefront.Locale
-  public static let VGB: AppCoinsSDK.Storefront.Locale
-  public static let BRN: AppCoinsSDK.Storefront.Locale
-  public static let BGR: AppCoinsSDK.Storefront.Locale
-  public static let BFA: AppCoinsSDK.Storefront.Locale
-  public static let KHM: AppCoinsSDK.Storefront.Locale
-  public static let CMR: AppCoinsSDK.Storefront.Locale
-  public static let CAN: AppCoinsSDK.Storefront.Locale
-  public static let CPV: AppCoinsSDK.Storefront.Locale
-  public static let CYM: AppCoinsSDK.Storefront.Locale
-  public static let TCD: AppCoinsSDK.Storefront.Locale
-  public static let CHL: AppCoinsSDK.Storefront.Locale
-  public static let CHN: AppCoinsSDK.Storefront.Locale
-  public static let COL: AppCoinsSDK.Storefront.Locale
-  public static let COD: AppCoinsSDK.Storefront.Locale
-  public static let COG: AppCoinsSDK.Storefront.Locale
-  public static let CRI: AppCoinsSDK.Storefront.Locale
-  public static let CIV: AppCoinsSDK.Storefront.Locale
-  public static let HRV: AppCoinsSDK.Storefront.Locale
-  public static let CYP: AppCoinsSDK.Storefront.Locale
-  public static let CZE: AppCoinsSDK.Storefront.Locale
-  public static let DNK: AppCoinsSDK.Storefront.Locale
-  public static let DMA: AppCoinsSDK.Storefront.Locale
-  public static let DOM: AppCoinsSDK.Storefront.Locale
-  public static let ECU: AppCoinsSDK.Storefront.Locale
-  public static let EGY: AppCoinsSDK.Storefront.Locale
-  public static let SLV: AppCoinsSDK.Storefront.Locale
-  public static let EST: AppCoinsSDK.Storefront.Locale
-  public static let SWZ: AppCoinsSDK.Storefront.Locale
-  public static let FJI: AppCoinsSDK.Storefront.Locale
-  public static let FIN: AppCoinsSDK.Storefront.Locale
-  public static let FRA: AppCoinsSDK.Storefront.Locale
-  public static let GAB: AppCoinsSDK.Storefront.Locale
-  public static let GMB: AppCoinsSDK.Storefront.Locale
-  public static let GEO: AppCoinsSDK.Storefront.Locale
-  public static let DEU: AppCoinsSDK.Storefront.Locale
-  public static let GHA: AppCoinsSDK.Storefront.Locale
-  public static let GRC: AppCoinsSDK.Storefront.Locale
-  public static let GRD: AppCoinsSDK.Storefront.Locale
-  public static let GTM: AppCoinsSDK.Storefront.Locale
-  public static let GNB: AppCoinsSDK.Storefront.Locale
-  public static let GUY: AppCoinsSDK.Storefront.Locale
-  public static let HND: AppCoinsSDK.Storefront.Locale
-  public static let HKG: AppCoinsSDK.Storefront.Locale
-  public static let HUN: AppCoinsSDK.Storefront.Locale
-  public static let ISL: AppCoinsSDK.Storefront.Locale
-  public static let IND: AppCoinsSDK.Storefront.Locale
-  public static let IDN: AppCoinsSDK.Storefront.Locale
-  public static let IRQ: AppCoinsSDK.Storefront.Locale
-  public static let IRL: AppCoinsSDK.Storefront.Locale
-  public static let ISR: AppCoinsSDK.Storefront.Locale
-  public static let ITA: AppCoinsSDK.Storefront.Locale
-  public static let JAM: AppCoinsSDK.Storefront.Locale
-  public static let JPN: AppCoinsSDK.Storefront.Locale
-  public static let JOR: AppCoinsSDK.Storefront.Locale
-  public static let KAZ: AppCoinsSDK.Storefront.Locale
-  public static let KEN: AppCoinsSDK.Storefront.Locale
-  public static let XKS: AppCoinsSDK.Storefront.Locale
-  public static let KWT: AppCoinsSDK.Storefront.Locale
-  public static let KGZ: AppCoinsSDK.Storefront.Locale
-  public static let LAO: AppCoinsSDK.Storefront.Locale
-  public static let LVA: AppCoinsSDK.Storefront.Locale
-  public static let LBN: AppCoinsSDK.Storefront.Locale
-  public static let LBR: AppCoinsSDK.Storefront.Locale
-  public static let LBY: AppCoinsSDK.Storefront.Locale
-  public static let LTU: AppCoinsSDK.Storefront.Locale
-  public static let LUX: AppCoinsSDK.Storefront.Locale
-  public static let MAC: AppCoinsSDK.Storefront.Locale
-  public static let MDG: AppCoinsSDK.Storefront.Locale
-  public static let MWI: AppCoinsSDK.Storefront.Locale
-  public static let MYS: AppCoinsSDK.Storefront.Locale
-  public static let MDV: AppCoinsSDK.Storefront.Locale
-  public static let MLI: AppCoinsSDK.Storefront.Locale
-  public static let MLT: AppCoinsSDK.Storefront.Locale
-  public static let MRT: AppCoinsSDK.Storefront.Locale
-  public static let MUS: AppCoinsSDK.Storefront.Locale
-  public static let MEX: AppCoinsSDK.Storefront.Locale
-  public static let FSM: AppCoinsSDK.Storefront.Locale
-  public static let MDA: AppCoinsSDK.Storefront.Locale
-  public static let MNG: AppCoinsSDK.Storefront.Locale
-  public static let MNE: AppCoinsSDK.Storefront.Locale
-  public static let MSR: AppCoinsSDK.Storefront.Locale
-  public static let MAR: AppCoinsSDK.Storefront.Locale
-  public static let MOZ: AppCoinsSDK.Storefront.Locale
-  public static let MMR: AppCoinsSDK.Storefront.Locale
-  public static let NAM: AppCoinsSDK.Storefront.Locale
-  public static let NRU: AppCoinsSDK.Storefront.Locale
-  public static let NPL: AppCoinsSDK.Storefront.Locale
-  public static let NLD: AppCoinsSDK.Storefront.Locale
-  public static let NZL: AppCoinsSDK.Storefront.Locale
-  public static let NIC: AppCoinsSDK.Storefront.Locale
-  public static let NER: AppCoinsSDK.Storefront.Locale
-  public static let NGA: AppCoinsSDK.Storefront.Locale
-  public static let MKD: AppCoinsSDK.Storefront.Locale
-  public static let NOR: AppCoinsSDK.Storefront.Locale
-  public static let OMN: AppCoinsSDK.Storefront.Locale
-  public static let PAK: AppCoinsSDK.Storefront.Locale
-  public static let PLW: AppCoinsSDK.Storefront.Locale
-  public static let PAN: AppCoinsSDK.Storefront.Locale
-  public static let PNG: AppCoinsSDK.Storefront.Locale
-  public static let PRY: AppCoinsSDK.Storefront.Locale
-  public static let PER: AppCoinsSDK.Storefront.Locale
-  public static let PHL: AppCoinsSDK.Storefront.Locale
-  public static let POL: AppCoinsSDK.Storefront.Locale
-  public static let PRT: AppCoinsSDK.Storefront.Locale
-  public static let QAT: AppCoinsSDK.Storefront.Locale
-  public static let KOR: AppCoinsSDK.Storefront.Locale
-  public static let ROU: AppCoinsSDK.Storefront.Locale
-  public static let RUS: AppCoinsSDK.Storefront.Locale
-  public static let RWA: AppCoinsSDK.Storefront.Locale
-  public static let STP: AppCoinsSDK.Storefront.Locale
-  public static let SAU: AppCoinsSDK.Storefront.Locale
-  public static let SEN: AppCoinsSDK.Storefront.Locale
-  public static let SRB: AppCoinsSDK.Storefront.Locale
-  public static let SYC: AppCoinsSDK.Storefront.Locale
-  public static let SLE: AppCoinsSDK.Storefront.Locale
-  public static let SGP: AppCoinsSDK.Storefront.Locale
-  public static let SVK: AppCoinsSDK.Storefront.Locale
-  public static let SVN: AppCoinsSDK.Storefront.Locale
-  public static let SLB: AppCoinsSDK.Storefront.Locale
-  public static let ZAF: AppCoinsSDK.Storefront.Locale
-  public static let ESP: AppCoinsSDK.Storefront.Locale
-  public static let LKA: AppCoinsSDK.Storefront.Locale
-  public static let KNA: AppCoinsSDK.Storefront.Locale
-  public static let LCA: AppCoinsSDK.Storefront.Locale
-  public static let VCT: AppCoinsSDK.Storefront.Locale
-  public static let SUR: AppCoinsSDK.Storefront.Locale
-  public static let SWE: AppCoinsSDK.Storefront.Locale
-  public static let CHE: AppCoinsSDK.Storefront.Locale
-  public static let TWN: AppCoinsSDK.Storefront.Locale
-  public static let TJK: AppCoinsSDK.Storefront.Locale
-  public static let TZA: AppCoinsSDK.Storefront.Locale
-  public static let THA: AppCoinsSDK.Storefront.Locale
-  public static let TON: AppCoinsSDK.Storefront.Locale
-  public static let TTO: AppCoinsSDK.Storefront.Locale
-  public static let TUN: AppCoinsSDK.Storefront.Locale
-  public static let TUR: AppCoinsSDK.Storefront.Locale
-  public static let TKM: AppCoinsSDK.Storefront.Locale
-  public static let TCA: AppCoinsSDK.Storefront.Locale
-  public static let UGA: AppCoinsSDK.Storefront.Locale
-  public static let UKR: AppCoinsSDK.Storefront.Locale
-  public static let ARE: AppCoinsSDK.Storefront.Locale
-  public static let GBR: AppCoinsSDK.Storefront.Locale
-  public static let USA: AppCoinsSDK.Storefront.Locale
-  public static let URY: AppCoinsSDK.Storefront.Locale
-  public static let UZB: AppCoinsSDK.Storefront.Locale
-  public static let VUT: AppCoinsSDK.Storefront.Locale
-  public static let VEN: AppCoinsSDK.Storefront.Locale
-  public static let VNM: AppCoinsSDK.Storefront.Locale
-  public static let YEM: AppCoinsSDK.Storefront.Locale
-  public static let ZMB: AppCoinsSDK.Storefront.Locale
-  public static let ZWE: AppCoinsSDK.Storefront.Locale
-  public static let all: [AppCoinsSDK.Storefront.Locale]
-  public static let EU: [AppCoinsSDK.Storefront.Locale]
 }
 public struct Product : Swift.Codable {
   public enum ProductType : Swift.String, Swift.Codable, Swift.Equatable, Swift.Hashable {
@@ -337,25 +121,22 @@ public struct Transaction : Swift.Codable {
   public static var all: _Concurrency.AsyncStream<AppCoinsSDK.VerificationResult<AppCoinsSDK.Transaction>> {
     get
   }
-  public static var unfinished: _Concurrency.AsyncStream<AppCoinsSDK.VerificationResult<AppCoinsSDK.Transaction>> {
+  public static var currentEntitlements: _Concurrency.AsyncStream<AppCoinsSDK.VerificationResult<AppCoinsSDK.Transaction>> {
     get
   }
-  public static var currentEntitlements: _Concurrency.AsyncStream<AppCoinsSDK.VerificationResult<AppCoinsSDK.Transaction>> {
+  public static var updates: _Concurrency.AsyncStream<AppCoinsSDK.VerificationResult<AppCoinsSDK.Transaction>> {
+    get
+  }
+  public static var unfinished: _Concurrency.AsyncStream<AppCoinsSDK.VerificationResult<AppCoinsSDK.Transaction>> {
     get
   }
   #if compiler(>=5.3) && $NonescapableTypes
   public static func latest(for productID: Swift.String) async -> AppCoinsSDK.VerificationResult<AppCoinsSDK.Transaction>?
   #endif
-  public static var updates: _Concurrency.AsyncStream<AppCoinsSDK.VerificationResult<AppCoinsSDK.Transaction>> {
-    get
-  }
   public func finish() async
   public func encode(to encoder: any Swift.Encoder) throws
   public init(from decoder: any Swift.Decoder) throws
 }
-extension AppCoinsSDK.Storefront.Marketplace : Swift.Equatable {}
-extension AppCoinsSDK.Storefront.Marketplace : Swift.Hashable {}
-extension AppCoinsSDK.Storefront.Marketplace : Swift.RawRepresentable {}
 extension AppCoinsSDK.Product.ProductType : Swift.RawRepresentable {}
 extension AppCoinsSDK.Transaction.RevocationReason : Swift.RawRepresentable {}
 extension AppCoinsSDK.Transaction.OwnershipType : Swift.RawRepresentable {}
