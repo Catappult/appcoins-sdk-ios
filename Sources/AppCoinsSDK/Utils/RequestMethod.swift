@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum RequestMethod: String {
+internal enum RequestMethod: String {
     case GET = "GET"
     case POST = "POST"
     case UNKNOWN = "UNKNOWN"

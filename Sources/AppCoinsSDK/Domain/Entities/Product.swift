@@ -9,337 +9,175 @@ import Foundation
 @_implementationOnly import StoreKit
 
 public struct Product: Codable {
-    
-    public let sku: String
-    public let title: String
-    public let description: String?
-    public let priceCurrency: String
-    public let priceValue: String
-    public let priceLabel: String
-    public let priceSymbol: String
-    public let priceDiscountOriginal: String?
-    public let priceDiscountPercentage: String?
-    
-    internal init(raw: ProductRaw) {
-        self.sku = raw.sku
-        self.title = raw.title
-        self.description = raw.description
-        self.priceCurrency = raw.price.currency
-        self.priceValue = raw.price.value
-        self.priceLabel = raw.price.label
-        self.priceSymbol = raw.price.symbol
-        self.priceDiscountOriginal = raw.price.discount?.original.value
-        self.priceDiscountPercentage = raw.price.discount?.percentage
+
+    public enum ProductType: String, Codable, Equatable, Hashable {
+        case consumable
+        case nonConsumable
+        case autoRenewable
+        case nonRenewable
     }
-    
-    static public func products(
-        domain: String = (Bundle.main.bundleIdentifier ?? ""),
-        for identifiers: [String]? = nil
-    ) async throws -> [Product] {
+
+    public struct PurchaseOption: Hashable {
+        internal enum Kind: Hashable {
+            case appAccountToken(UUID)
+        }
+        internal let kind: Kind
+
+        public static func appAccountToken(_ token: UUID) -> Product.PurchaseOption {
+            PurchaseOption(kind: .appAccountToken(token))
+        }
+    }
+
+    public enum PurchaseResult {
+        case success(verificationResult: VerificationResult<Transaction>)
+        case userCancelled
+        case pending
+    }
+
+    public let id: String
+    public let type: ProductType
+    public let displayName: String
+    public let description: String
+    public let price: Decimal
+    public let displayPrice: String
+    public let isFamilyShareable: Bool
+
+    internal init(raw: ProductRaw) {
+        self.id = raw.sku
+        self.type = .consumable
+        self.displayName = raw.title
+        self.description = raw.description ?? ""
+        self.price = Decimal(string: raw.price.value) ?? 0
+        self.displayPrice = raw.price.label
+        self.isFamilyShareable = false
+    }
+
+    static public func products(for identifiers: [String]) async throws -> [Product] {
         Utils.log(
-            "Product.products(domain: \(domain), for indentifiers: \(identifiers) at Product.swift",
+            "Product.products(for identifiers: \(identifiers)) at Product.swift",
             category: "Lifecycle",
             level: .default
         )
-        
+
+        let domain = Bundle.main.bundleIdentifier ?? ""
         let productUseCases: ProductUseCases = ProductUseCases.shared
-        
-        if let identifiers = identifiers {
-            return try await withCheckedThrowingContinuation { continuation in
-                productUseCases.getAllProducts(domain: domain) { result in
-                    switch result {
-                    case .success(let products):
-                        var finalProducts : [Product] = []
-                        for product in products {
-                            if identifiers.contains(product.sku) {
-                                finalProducts.append(product)
-                            }
-                        }
-                        
-                        Utils.log("Get all produts with identifiers successful: \(finalProducts) at Product.swift:products")
-                        
-                        continuation.resume(returning: finalProducts)
-                    case .failure(let failure):
-                        Utils.log("Get all produts with identifiers failed: \(failure) at Product.swift:products")
-                        
-                        switch failure {
-                        case .failed(let message, let description, let request):
-                            continuation.resume(
-                                throwing:
-                                    AppCoinsSDKError.systemError(
-                                        message: message,
-                                        description: description,
-                                        request: request
-                                    )
-                            )
-                        case .noInternet(let message, let description, let request):
-                            continuation.resume(
-                                throwing:
-                                    AppCoinsSDKError.networkError(
-                                        message: message,
-                                        description: description,
-                                        request: request
-                                    )
-                            )
-                        case .purchaseVerificationFailed(let message, let description, let request):
-                            continuation.resume(
-                                throwing:
-                                    AppCoinsSDKError.systemError(
-                                        message: message,
-                                        description: description,
-                                        request: request
-                                    )
-                            )
-                        }
-                    }
-                }
-            }
-        } else {
-            return try await withCheckedThrowingContinuation { continuation in
-                productUseCases.getAllProducts(domain: domain) { result in
-                    switch result {
-                    case .success(let products):
-                        Utils.log("Get all products without identifiers successful: \(products) at Product.swift:products")
-                        continuation.resume(returning: products)
-                    case .failure(let failure):
-                        Utils.log("Get all produts without identifiers failed: \(failure) at Product.swift:products")
-                        
-                        switch failure {
-                        case .failed(let message, let description, let request):
-                            continuation.resume(
-                                throwing:
-                                    AppCoinsSDKError.systemError(
-                                        message: message,
-                                        description: description,
-                                        request: request
-                                    )
-                            )
-                        case .noInternet(let message, let description, let request):
-                            continuation.resume(
-                                throwing:
-                                    AppCoinsSDKError.networkError(
-                                        message: message,
-                                        description: description,
-                                        request: request
-                                    )
-                            )
-                        case .purchaseVerificationFailed(let message, let description, let request):
-                            continuation.resume(
-                                throwing:
-                                    AppCoinsSDKError.systemError(
-                                        message: message,
-                                        description: description,
-                                        request: request
-                                    )
-                            )
-                        }
+
+        return try await withCheckedThrowingContinuation { continuation in
+            productUseCases.getAllProducts(domain: domain) { result in
+                switch result {
+                case .success(let products):
+                    let finalProducts = identifiers.isEmpty
+                        ? []
+                        : products.filter { identifiers.contains($0.id) }
+                    Utils.log("Get products successful: \(finalProducts) at Product.swift:products")
+                    continuation.resume(returning: finalProducts)
+                case .failure(let failure):
+                    Utils.log("Get products failed: \(failure) at Product.swift:products")
+                    switch failure {
+                    case .failed(let message, let description, let request):
+                        continuation.resume(throwing: AppCoinsSDKError.systemError(message: message, description: description, request: request))
+                    case .noInternet(let message, let description, let request):
+                        continuation.resume(throwing: AppCoinsSDKError.networkError(message: message, description: description, request: request))
+                    case .purchaseVerificationFailed(let message, let description, let request):
+                        continuation.resume(throwing: AppCoinsSDKError.systemError(message: message, description: description, request: request))
                     }
                 }
             }
         }
     }
-    
-    public func purchase(
-        domain: String = (Bundle.main.bundleIdentifier ?? ""),
-        payload: String? = nil,
-        orderID: String = String(Date.timeIntervalSinceReferenceDate)
-    ) async -> PurchaseResult {
+
+    public func purchase(options: Set<Product.PurchaseOption> = []) async throws -> Product.PurchaseResult {
+        let payload: String? = options.compactMap { option -> String? in
+            guard case .appAccountToken(let token) = option.kind else { return nil }
+            return token.uuidString
+        }.first
+        let orderID = String(Date.timeIntervalSinceReferenceDate)
+        let domain = Bundle.main.bundleIdentifier ?? ""
+
         Utils.log(
-            "Product.purchase(domain: \(domain), payload: \(payload), orderID: \(orderID)) at Product.swift",
+            "Product.purchase(options: \(options)) at Product.swift",
             category: "Lifecycle",
             level: .default
         )
-        
+
         guard SDKUseCases.shared.isSDKInitialized() else {
             Utils.log(
                 "Purchase Failed: AppcSDK not initialized at Product.swift:purchase",
                 level: .error
             )
-            
-            return .failed(error:
-                    .purchaseNotAllowed(
-                        message: "Purchase Failed",
-                        description: "AppcSDK not initialized at Product.swift:purchase. " +
-                        "Make sure to call 'AppcSDK.handle(redirectURL)' whenever your app opens",
-                        request: nil
-                    )
+            throw AppCoinsSDKError.purchaseNotAllowed(
+                message: "Purchase Failed",
+                description: "AppcSDK not initialized at Product.swift:purchase. " +
+                    "Make sure to call 'AppcSDK.handle(redirectURL)' whenever your app opens",
+                request: nil
             )
         }
-        
+
         let isAvailable = await AppcSDK.isAvailable()
-        
         guard isAvailable else {
             Utils.log(
                 "Purchase Failed: AppcSDK not available at Product.swift:purchase",
                 level: .error
             )
-            
-            return .failed(error:
-                    .purchaseNotAllowed(
-                        message: "Purchase Failed",
-                        description: "AppcSDK not available at Product.swift:purchase",
-                        request: nil
-                    )
+            throw AppCoinsSDKError.purchaseNotAllowed(
+                message: "Purchase Failed",
+                description: "AppcSDK not available at Product.swift:purchase",
+                request: nil
             )
         }
-        
+
         guard !PurchaseViewModel.shared.hasActivePurchase else {
             Utils.log(
                 "Purchase Failed: AppcSDK has active transaction at Product.swift:purchase",
                 level: .error
             )
-            
-            return .failed(error:
-                    .purchaseNotAllowed(
-                        message: "Purchase Failed",
-                        description: "AppcSDK has active transaction at Product.swift:purchase",
-                        request: nil
-                    )
+            throw AppCoinsSDKError.purchaseNotAllowed(
+                message: "Purchase Failed",
+                description: "AppcSDK has active transaction at Product.swift:purchase",
+                request: nil
             )
         }
-        
-        // Proceed with purchase
+
         Utils.log(
             "Starting purchase with domain: \(domain) at Product.swift:purchase",
             category: "Lifecycle",
             level: .default
         )
-        
+
         AnalyticsUseCases.shared.recordStartConnection()
-        
+
         DispatchQueue.main.async {
             SDKViewController.shared.presentPurchase()
-            
-            // product – the SKU product
-            // domain – the app's domain registered in catappult
-            // payload – information that the developer might want to pass with the transaction
-            // orderID – a reference so that the developer can identify unique transactions
             PurchaseViewModel.shared.purchase(product: self, domain: domain, metadata: payload, reference: orderID)
         }
-        
-        let result = try? await withCheckedThrowingContinuation { continuation in
+
+        return try await withCheckedThrowingContinuation { continuation in
             var observer: NSObjectProtocol?
-            observer = NotificationCenter.default.addObserver(forName: Notification.Name("APPCPurchaseResult"), object: nil, queue: nil) { notification in
-                if let userInfo = notification.userInfo {
-                    if let status = userInfo["PurchaseResult"] as? PurchaseResult {
-                        continuation.resume(returning: status)
-                        
-                        if let observer = observer {
-                            NotificationCenter.default.removeObserver(observer)
-                        }
+            observer = NotificationCenter.default.addObserver(
+                forName: Notification.Name("APPCPurchaseResult"),
+                object: nil,
+                queue: nil
+            ) { notification in
+                if let userInfo = notification.userInfo,
+                   let status = userInfo["PurchaseResult"] as? AppCoinsSDK.PurchaseResult {
+                    if let observer = observer { NotificationCenter.default.removeObserver(observer) }
+                    switch status {
+                    case .success(let vr): continuation.resume(returning: .success(verificationResult: vr))
+                    case .pending: continuation.resume(returning: .pending)
+                    case .userCancelled: continuation.resume(returning: .userCancelled)
+                    case .failed(let error): continuation.resume(throwing: error)
                     }
                 }
             }
         }
-        
-        if let result = result {
-            Utils.log("Purchase result: \(result) at Product.swift:purchase")
-            
-            return result
-        } else {
-            Utils.log("Purchase failed: result is nil at Product.swift:purchase", level: .error)
-            
-            return .failed(error:
-                    .unknown(
-                        message: "Purchase failed",
-                        description: "Failed to retrieve required value: result is nil at Product.swift:purchase",
-                        request: nil
-                    )
-            )
-        }
     }
-    
-    internal func indirectPurchase(
-        domain: String = (Bundle.main.bundleIdentifier ?? ""),
-        payload: String? = nil,
-        orderID: String = String(Date.timeIntervalSinceReferenceDate),
-        discountPolicy: DiscountPolicy? = nil,
-        oemID: String? = nil
-    ) async -> PurchaseResult {
-        Utils.log(
-            "Product.indirectPurchase(domain: \(domain), payload: \(payload), orderID: \(orderID), " +
-            "discountPolicy: \(discountPolicy), oemID: \(oemID) at Product.swift",
-            category: "Lifecycle",
-            level: .default
-        )
-        
-        if PurchaseViewModel.shared.hasActivePurchase {
-            Utils.log(
-                "Indirect purchase failed: AppcSDK has active transaction at Product.swift:indirectPurchase",
-                level: .error
-            )
-            
-            return .failed(error:
-                    .purchaseNotAllowed(
-                        message: "Purchase Failed",
-                        description: "AppcSDK not available or has active transaction at Product.swift:indirectPurchase",
-                        request: nil
-                    )
-            )
-        } else {
-            Utils.log(
-                "Starting indirect purchase with domain: \(domain) at Product.swift:indirectPurchase",
-                category: "Lifecycle",
-                level: .default
-            )
-            
-            AnalyticsUseCases.shared.recordStartConnection()
-            
-            DispatchQueue.main.async {
-                SDKViewController.shared.presentPurchase()
-                
-                // product – the SKU product
-                // domain – the app's domain registered in catappult
-                // payload – information that the developer might want to pass with the transaction
-                // orderID – a reference so that the developer can identify unique transactions
-                // discountPolicy – discount policy for the purchase
-                // oemID – developer identifier
-                PurchaseViewModel.shared.purchase(
-                    product: self,
-                    domain: domain,
-                    metadata: payload,
-                    reference: orderID,
-                    discountPolicy: discountPolicy,
-                    oemID: oemID
-                )
-            }
-            
-            let result = try? await withCheckedThrowingContinuation { continuation in
-                var observer: NSObjectProtocol?
-                observer = NotificationCenter.default.addObserver(
-                    forName: Notification.Name("APPCPurchaseResult"),
-                    object: nil,
-                    queue: nil
-                ) {
-                    notification in
-                    
-                    if let userInfo = notification.userInfo {
-                        if let status = userInfo["PurchaseResult"] as? PurchaseResult {
-                            continuation.resume(returning: status)
-                            
-                            if let observer = observer {
-                                NotificationCenter.default.removeObserver(observer)
-                            }
-                        }
-                    }
-                }
-            }
-            
-            if let result = result {
-                Utils.log("Indirect purchase result: \(result) at Product.swift:indirectPurchase")
-                
-                return result
-            } else {
-                Utils.log("Indirect purchase failed: result is nil at Product.swift:indirectPurchase")
-                
-                return .failed(error:
-                        .unknown(
-                            message: "Purchase failed",
-                            description: "Failed to retrieve required value: result is nil at Product.swift:indirectPurchase",
-                            request: nil
-                        )
-                )
-            }
-        }
+
+    public var latestTransaction: VerificationResult<Transaction>? {
+        get async { await Transaction.latest(for: id) }
     }
+
+    public var currentEntitlement: VerificationResult<Transaction>? {
+        get async { await Transaction.latest(for: id) }
+    }
+
 }

@@ -7,14 +7,15 @@
 
 import Foundation
 
-public enum PurchaseResult {
-    case success(verificationResult: VerificationResult)
+// Internal — used for the notification mechanism between PurchaseViewModel and Product.purchase()
+internal enum PurchaseResult {
+    case success(verificationResult: VerificationResult<Transaction>)
     case pending
     case userCancelled
     case failed(error: AppCoinsSDKError)
 }
 
-public enum VerificationResult {
-    case verified(purchase: Purchase)
-    case unverified(purchase: Purchase, verificationError: AppCoinsSDKError)
+public enum VerificationResult<SignedType> {
+    case verified(SignedType)
+    case unverified(SignedType, AppCoinsSDKError)
 }
