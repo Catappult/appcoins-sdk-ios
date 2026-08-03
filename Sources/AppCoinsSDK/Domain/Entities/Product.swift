@@ -108,7 +108,7 @@ public struct Product: Codable {
             throw AppCoinsSDKError.purchaseNotAllowed(
                 message: "Purchase Failed",
                 description: "AppcSDK not initialized at Product.swift:purchase. " +
-                    "Make sure to call 'AppcSDK.handle(redirectURL)' whenever your app opens",
+                    "Make sure to call 'AppcSDK.initialize' whenever your app opens",
                 request: nil
             )
         }
