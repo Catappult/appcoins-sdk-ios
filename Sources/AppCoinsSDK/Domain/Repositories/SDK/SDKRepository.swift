@@ -1,42 +1,26 @@
 //
 //  SDKRepository.swift
 //
-//  Created by Graciano Caldeira on 20/02/2025.
-//
 
 import Foundation
 
 internal class SDKRepository: SDKRepositoryProtocol {
-    
+
     private let userPreferencesLocalService: UserPreferencesLocalService = UserPreferencesLocalClient()
     private var didInitializeSDK: Bool = false
-    
-    internal func isDefault() -> Bool? {
-        guard let isSDKDefault = userPreferencesLocalService.isSDKDefault() else { return nil }
-        return isSDKDefault == "true" ? true : false
+
+    internal func getSDKAvailabilityMode() -> SDKAvailabilityMode {
+        guard let raw = userPreferencesLocalService.getSDKAvailabilityMode(),
+              let mode = SDKAvailabilityMode(rawValue: raw) else {
+            return .automatic
+        }
+        return mode
     }
-    
-    internal func setSDKDefault(value: Bool) {
-        let setValue = value ? "true" : "false"
-        userPreferencesLocalService.setSDKDefault(value: setValue)
+
+    internal func setSDKAvailabilityMode(mode: SDKAvailabilityMode) {
+        userPreferencesLocalService.setSDKAvailabilityMode(mode: mode.rawValue)
     }
-    
-    func getDefaultStorefrontLocale() -> String? {
-        return userPreferencesLocalService.getDefaultStorefrontLocale()
-    }
-    
-    func setSDKDefaultStorefrontLocale(locale: String) {
-        userPreferencesLocalService.setSDKDefaultStorefrontLocale(locale: locale)
-    }
-    
-    func getDefaultStorefrontMarketplace() -> String? {
-        return userPreferencesLocalService.getDefaultStorefrontMarketplace()
-    }
-    
-    func setSDKDefaultStorefrontMarketplace(marketplace: String) {
-        userPreferencesLocalService.setSDKDefaultStorefrontMarketplace(marketplace: marketplace)
-    }
-    
+
     internal func setSDKInitialized() { didInitializeSDK = true }
     internal func isSDKInitialized() -> Bool { return didInitializeSDK }
 }
