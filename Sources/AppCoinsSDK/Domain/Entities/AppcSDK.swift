@@ -44,7 +44,7 @@ public struct AppcSDK {
     ///       - returns `false` for `.appStore` and `.testFlight`
     ///       - returns `true` for any other non-App Store case
     ///    - On older OS returns `false`.
-    /// - In `.appCoins` mode: always returns `true`, unless distributed via Apple's App Store.
+    /// - In `.appCoins` mode: always returns `true`.
     /// - In `.apple` mode: always returns `false`.
     ///
     /// - Returns: `true` if the SDK is available, `false` otherwise.
@@ -69,10 +69,6 @@ public struct AppcSDK {
             return false
 
         case .appCoins:
-            if await isAppleAppStoreDistribution() {
-                Utils.log("AppcSDK unavailable: AppCoins mode locked by Apple App Store distribution at AppcSDK.swift:isAvailable")
-                return false
-            }
             Utils.log("AppcSDK available: AppCoins mode at AppcSDK.swift:isAvailable")
             return true
 
@@ -119,7 +115,10 @@ public struct AppcSDK {
                         case "info":
                             Utils.log("Info case at AppcSDK.swift:handle")
                             let mode = SDKUseCases.shared.getSDKAvailabilityMode()
-                            Task { @MainActor in SDKModeInfoPopup.show(mode: mode) }
+                            Task {
+                                let detail = await resolveInfoDetail(mode: mode)
+                                await MainActor.run { SDKModeInfoPopup.show(mode: mode, detail: detail) }
+                            }
 
                         case "mode":
                             Utils.log("Mode case at AppcSDK.swift:handle")
@@ -171,6 +170,42 @@ public struct AppcSDK {
         } else {
             Utils.log("AppcSDK cannot recognize or process redirectURL: \(redirectURL) at AppcSDK.swift:handle")
             return false
+        }
+    }
+
+    private static func resolveInfoDetail(mode: SDKAvailabilityMode) async -> String? {
+        switch mode {
+        case .apple:
+            return nil
+        case .appCoins:
+            return "override active → available"
+        case .automatic:
+            guard #available(iOS 17.4, *) else {
+                return "iOS < 17.4 → unavailable"
+            }
+            #if targetEnvironment(simulator)
+                return "Simulator → available"
+            #else
+                do {
+                    let distributor = try await AppDistributor.current
+                    switch distributor {
+                    case .appStore:
+                        return "App Store → unavailable"
+                    case .testFlight:
+                        return "TestFlight → unavailable"
+                    case .marketplace:
+                        return "Marketplace → available"
+                    case .web:
+                        return "Web → available"
+                    case .other:
+                        return "Other → available"
+                    default:
+                        return "Unknown distributor → unavailable"
+                    }
+                } catch {
+                    return "Detection failed → unavailable"
+                }
+            #endif
         }
     }
 
