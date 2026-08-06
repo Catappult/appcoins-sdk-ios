@@ -64,7 +64,6 @@ internal class OnPurchaseResult {
                         PurchaseViewModel.shared.failed(error: error)
                     } else {
                         let verificationResult: VerificationResult<Transaction> = .verified(transaction)
-                        Transaction.send(verificationResult)
                         PurchaseViewModel.shared.success(verificationResult: verificationResult)
                     }
                 }
