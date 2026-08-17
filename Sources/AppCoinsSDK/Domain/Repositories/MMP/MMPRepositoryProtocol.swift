@@ -11,4 +11,6 @@ internal protocol MMPRepositoryProtocol {
     func getAttribution()
     func getGuestUID() -> String?
     func getOEMID() -> String?
+    func startSession()
+    func sendPurchaseEvent(sku: String, orderID: String, purchaseAmount: String, paymentMethod: String)
 }

@@ -63,6 +63,13 @@ internal class OnPurchaseResult {
                     if let error = error {
                         PurchaseViewModel.shared.failed(error: error)
                     } else {
+                        let purchaseAmount = PurchaseViewModel.shared.product?.displayPrice ?? ""
+                        MMPUseCases.shared.sendPurchaseEvent(
+                            sku: transaction.productID,
+                            orderID: orderId,
+                            purchaseAmount: purchaseAmount,
+                            paymentMethod: "appcoins"
+                        )
                         let verificationResult: VerificationResult<Transaction> = .verified(transaction)
                         PurchaseViewModel.shared.success(verificationResult: verificationResult)
                     }
