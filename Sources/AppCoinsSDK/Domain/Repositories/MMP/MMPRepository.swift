@@ -56,8 +56,8 @@ internal class MMPRepository: MMPRepositoryProtocol {
         }
 
         // Flush previous session data via user_session event
-        if let prevSessionID = UserDefaults.standard.string(forKey: "mmp-session-id"),
-           let prevSessionStart = UserDefaults.standard.object(forKey: "mmp-session-start") as? Double {
+        let prevSessionStart = UserDefaults.standard.double(forKey: "mmp-session-start")
+        if let prevSessionID = UserDefaults.standard.string(forKey: "mmp-session-id"), prevSessionStart > 0 {
             let now = Date().timeIntervalSince1970
             let durationMs = max(0, Int((now - prevSessionStart) * 1000))
             let bundleID = Bundle.main.bundleIdentifier ?? ""
