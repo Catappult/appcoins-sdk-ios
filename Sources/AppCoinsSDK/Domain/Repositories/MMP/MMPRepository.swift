@@ -58,17 +58,19 @@ internal class MMPRepository: MMPRepositoryProtocol {
         // Flush previous session data via user_session event
         if let prevSessionID = UserDefaults.standard.string(forKey: "mmp-session-id"),
            let prevSessionStart = UserDefaults.standard.object(forKey: "mmp-session-start") as? Double {
-            let duration = max(0, Int(Date().timeIntervalSince1970 - prevSessionStart))
+            let now = Date().timeIntervalSince1970
+            let durationMs = max(0, Int((now - prevSessionStart) * 1000))
             let bundleID = Bundle.main.bundleIdentifier ?? ""
-            let oemID = getOEMID() ?? ""
-            let guestUID = getGuestUID() ?? ""
+            let vercode = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""
 
             MMPService.sendUserSession(
                 bundleID: bundleID,
-                oemID: oemID,
-                guestUID: guestUID,
+                oemID: getOEMID() ?? "",
+                guestUID: getGuestUID() ?? "",
                 sessionID: prevSessionID,
-                sessionDuration: duration,
+                sessionTimestamp: Int(prevSessionStart),
+                sessionDuration: durationMs,
+                vercode: vercode,
                 utmSource: UserDefaults.standard.string(forKey: "mmp-utm-source"),
                 utmMedium: UserDefaults.standard.string(forKey: "mmp-utm-medium"),
                 utmCampaign: UserDefaults.standard.string(forKey: "mmp-utm-campaign"),
@@ -100,6 +102,8 @@ internal class MMPRepository: MMPRepositoryProtocol {
             orderID: orderID,
             purchaseAmount: purchaseAmount,
             paymentMethod: paymentMethod,
+            timestamp: Int(Date().timeIntervalSince1970),
+            vercode: Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "",
             utmSource: UserDefaults.standard.string(forKey: "mmp-utm-source"),
             utmMedium: UserDefaults.standard.string(forKey: "mmp-utm-medium"),
             utmCampaign: UserDefaults.standard.string(forKey: "mmp-utm-campaign"),
@@ -120,6 +124,8 @@ internal class MMPRepository: MMPRepositoryProtocol {
             orderID: event.orderID,
             purchaseAmount: event.purchaseAmount,
             paymentMethod: event.paymentMethod,
+            timestamp: event.timestamp,
+            vercode: event.vercode,
             utmSource: event.utmSource,
             utmMedium: event.utmMedium,
             utmCampaign: event.utmCampaign,

@@ -71,7 +71,9 @@ internal class MMPClient: MMPService {
         oemID: String,
         guestUID: String,
         sessionID: String,
+        sessionTimestamp: Int,
         sessionDuration: Int,
+        vercode: String,
         utmSource: String?,
         utmMedium: String?,
         utmCampaign: String?,
@@ -85,18 +87,19 @@ internal class MMPClient: MMPService {
             URLQueryItem(name: "oemid", value: oemID),
             URLQueryItem(name: "guest_uid", value: guestUID),
             URLQueryItem(name: "session_id", value: sessionID),
-            URLQueryItem(name: "session_duration", value: String(sessionDuration)),
+            URLQueryItem(name: "timestamp", value: String(sessionTimestamp)),
+            URLQueryItem(name: "duration", value: String(sessionDuration)),
+            URLQueryItem(name: "vercode", value: vercode),
         ]
-        if let utmSource = utmSource { queryItems.append(URLQueryItem(name: "utm_source", value: utmSource)) }
-        if let utmMedium = utmMedium { queryItems.append(URLQueryItem(name: "utm_medium", value: utmMedium)) }
-        if let utmCampaign = utmCampaign { queryItems.append(URLQueryItem(name: "utm_campaign", value: utmCampaign)) }
-        if let utmContent = utmContent { queryItems.append(URLQueryItem(name: "utm_content", value: utmContent)) }
-        if let utmTerm = utmTerm { queryItems.append(URLQueryItem(name: "utm_term", value: utmTerm)) }
+        if let v = utmSource { queryItems.append(URLQueryItem(name: "utm_source", value: v)) }
+        if let v = utmMedium { queryItems.append(URLQueryItem(name: "utm_medium", value: v)) }
+        if let v = utmCampaign { queryItems.append(URLQueryItem(name: "utm_campaign", value: v)) }
+        if let v = utmContent { queryItems.append(URLQueryItem(name: "utm_content", value: v)) }
+        if let v = utmTerm { queryItems.append(URLQueryItem(name: "utm_term", value: v)) }
         components?.queryItems = queryItems
 
         guard let requestURL = components?.url else {
-            let error = NSError(domain: "MMP", code: -1, userInfo: [NSLocalizedDescriptionKey: "Failed to build user_session URL"])
-            result(.failure(error))
+            result(.failure(NSError(domain: "MMP", code: -1, userInfo: [NSLocalizedDescriptionKey: "Failed to build user_session URL"])))
             return
         }
 
@@ -109,7 +112,7 @@ internal class MMPClient: MMPService {
         let task = URLSession.shared.dataTask(with: request) { _, response, error in
             let statusCode = (response as? HTTPURLResponse)?.statusCode
             if statusCode == 200 {
-                Utils.log("User session event sent successfully (session: \(sessionID), duration: \(sessionDuration)s).", category: "MMP")
+                Utils.log("User session event sent successfully (session: \(sessionID), duration: \(sessionDuration)ms).", category: "MMP")
                 result(.success(()))
             } else {
                 let statusDescription = statusCode.map { "status \($0)" } ?? (error.map { "error: \($0.localizedDescription)" } ?? "unknown failure")
@@ -128,6 +131,8 @@ internal class MMPClient: MMPService {
         orderID: String,
         purchaseAmount: String,
         paymentMethod: String,
+        timestamp: Int,
+        vercode: String,
         utmSource: String?,
         utmMedium: String?,
         utmCampaign: String?,
@@ -144,17 +149,18 @@ internal class MMPClient: MMPService {
             URLQueryItem(name: "order_id", value: orderID),
             URLQueryItem(name: "purchase_amount", value: purchaseAmount),
             URLQueryItem(name: "payment_method", value: paymentMethod),
+            URLQueryItem(name: "timestamp", value: String(timestamp)),
+            URLQueryItem(name: "vercode", value: vercode),
         ]
-        if let utmSource = utmSource { queryItems.append(URLQueryItem(name: "utm_source", value: utmSource)) }
-        if let utmMedium = utmMedium { queryItems.append(URLQueryItem(name: "utm_medium", value: utmMedium)) }
-        if let utmCampaign = utmCampaign { queryItems.append(URLQueryItem(name: "utm_campaign", value: utmCampaign)) }
-        if let utmContent = utmContent { queryItems.append(URLQueryItem(name: "utm_content", value: utmContent)) }
-        if let utmTerm = utmTerm { queryItems.append(URLQueryItem(name: "utm_term", value: utmTerm)) }
+        if let v = utmSource { queryItems.append(URLQueryItem(name: "utm_source", value: v)) }
+        if let v = utmMedium { queryItems.append(URLQueryItem(name: "utm_medium", value: v)) }
+        if let v = utmCampaign { queryItems.append(URLQueryItem(name: "utm_campaign", value: v)) }
+        if let v = utmContent { queryItems.append(URLQueryItem(name: "utm_content", value: v)) }
+        if let v = utmTerm { queryItems.append(URLQueryItem(name: "utm_term", value: v)) }
         components?.queryItems = queryItems
 
         guard let requestURL = components?.url else {
-            let error = NSError(domain: "MMP", code: -1, userInfo: [NSLocalizedDescriptionKey: "Failed to build purchase URL"])
-            result(.failure(error))
+            result(.failure(NSError(domain: "MMP", code: -1, userInfo: [NSLocalizedDescriptionKey: "Failed to build purchase URL"])))
             return
         }
 

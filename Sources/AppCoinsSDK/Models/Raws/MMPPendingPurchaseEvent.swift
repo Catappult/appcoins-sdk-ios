@@ -15,6 +15,8 @@ internal struct MMPPendingPurchaseEvent: Codable {
     internal let orderID: String
     internal let purchaseAmount: String
     internal let paymentMethod: String
+    internal let timestamp: Int
+    internal let vercode: String
     internal let utmSource: String?
     internal let utmMedium: String?
     internal let utmCampaign: String?

@@ -145,7 +145,6 @@ public struct Product: Codable {
         )
 
         AnalyticsUseCases.shared.recordStartConnection()
-        MMPUseCases.shared.startSession()
 
         DispatchQueue.main.async {
             SDKViewController.shared.presentPurchase()
