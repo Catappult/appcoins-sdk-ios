@@ -24,13 +24,13 @@ internal class MMPClient: MMPService {
         self.endpoint = endpoint
     }
 
-    internal func getAttribution(bundleID: String, result: @escaping (Result<AttributionRaw, Error>) -> Void) {
-        self.requestAttribution(bundleID: bundleID, backoff: self.initialBackoff, result: result)
+    internal func getAttribution(bundleID: String, guestUID: String, result: @escaping (Result<AttributionRaw, Error>) -> Void) {
+        self.requestAttribution(bundleID: bundleID, guestUID: guestUID, backoff: self.initialBackoff, result: result)
     }
 
-    private func requestAttribution(bundleID: String, backoff: TimeInterval, result: @escaping (Result<AttributionRaw, Error>) -> Void) {
+    private func requestAttribution(bundleID: String, guestUID: String, backoff: TimeInterval, result: @escaping (Result<AttributionRaw, Error>) -> Void) {
 
-        if let requestURL = URL(string: "\(endpoint)/api/v1/attribution?package_name=\(bundleID)") {
+        if let requestURL = URL(string: "\(endpoint)/api/v1/attribution?package_name=\(bundleID)&guest_uid=\(guestUID)") {
             var request = URLRequest(url: requestURL)
 
             request.httpMethod = "GET"
@@ -52,17 +52,17 @@ internal class MMPClient: MMPService {
                     // retry with exponential backoff until a 200 is eventually received.
                     let statusDescription = statusCode.map { "status \($0)" } ?? (error.map { "error: \($0.localizedDescription)" } ?? "unknown failure")
                     Utils.log("Attribution request failed (\(statusDescription)). Retrying in \(backoff)s.", category: "MMP", level: .error)
-                    self.retryAttribution(bundleID: bundleID, backoff: backoff, result: result)
+                    self.retryAttribution(bundleID: bundleID, guestUID: guestUID, backoff: backoff, result: result)
                 }
             }
             task.resume()
         }
     }
 
-    private func retryAttribution(bundleID: String, backoff: TimeInterval, result: @escaping (Result<AttributionRaw, Error>) -> Void) {
+    private func retryAttribution(bundleID: String, guestUID: String, backoff: TimeInterval, result: @escaping (Result<AttributionRaw, Error>) -> Void) {
         let nextBackoff = min(backoff * self.backoffMultiplier, self.maxBackoff)
         DispatchQueue.global().asyncAfter(deadline: .now() + backoff) {
-            self.requestAttribution(bundleID: bundleID, backoff: nextBackoff, result: result)
+            self.requestAttribution(bundleID: bundleID, guestUID: guestUID, backoff: nextBackoff, result: result)
         }
     }
 
