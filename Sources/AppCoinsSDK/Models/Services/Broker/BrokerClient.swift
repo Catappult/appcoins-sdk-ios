@@ -113,4 +113,42 @@ internal class BrokerClient : BrokerService {
             }
         }
     }
+
+    internal func getTransaction(orderId: String, result: @escaping (Result<BrokerTransactionRaw, BrokerError>) -> Void) {
+        if var urlComponents = URLComponents(string: endpoint) {
+            urlComponents.path += "/transactions/\(orderId)"
+
+            if let url = urlComponents.url {
+                var request = URLRequest(url: url)
+                request.httpMethod = "GET"
+                request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+                request.setValue("AppCoinsWalletIOS/..", forHTTPHeaderField: "User-Agent")
+                request.timeoutInterval = 10
+
+                let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                    let statusCode = (response as? HTTPURLResponse)?.statusCode
+                    if let error = error {
+                        if let nsError = error as NSError?, nsError.code == NSURLErrorNotConnectedToInternet {
+                            result(.failure(.noInternet(message: "Internet Connection Failed", description: "Could not get internet connection to \(url) at BrokerClient.swift:getTransaction", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                        } else {
+                            result(.failure(.failed(message: "Service Failed", description: "Failed to communicate with service on endpoint: \(url) at BrokerClient.swift:getTransaction", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                        }
+                    } else {
+                        do {
+                            if let data = data {
+                                let findResult = try JSONDecoder().decode(BrokerTransactionRaw.self, from: data)
+                                result(.success(findResult))
+                            } else {
+                                result(.failure(.failed(message: "Service Failed", description: "No data received from endpoint: \(url) at BrokerClient.swift:getTransaction")))
+                            }
+                        } catch {
+                            let body = data.flatMap { String(data: $0, encoding: .utf8) } ?? "empty"
+                            result(.failure(.failed(message: "Service Failed", description: "Broker getTransaction failed — status: \(statusCode?.description ?? "nil"), body: \(body) at BrokerClient.swift:getTransaction", request: DebugRequestInfo(request: request, responseData: data, response: response))))
+                        }
+                    }
+                }
+                task.resume()
+            }
+        }
+    }
 }
