@@ -13,42 +13,47 @@ internal class MMPRepository: MMPRepositoryProtocol {
     private var heartbeatActive = false
 
     internal func getAttribution() {
-        let guestUID = UserDefaults.standard.string(forKey: "attribution-guestuid")
+        // Skip if attribution already completed successfully (mirrors Android's ATTRIBUTION_COMPLETE_KEY).
+        guard !isAttributionComplete() else { return }
 
-        // Check if request has already been triggered
-        if guestUID == nil {
-            // Generate and persist a local ID immediately so it is available as a
-            // fallback before the network response arrives.
-            // The guest_wallet endpoint requires exactly 40 word characters (^\w{40}$),
-            // matching the format of server-assigned guest UIDs.
-            let localGuestUID = Self.generateGuestUID()
-            UserDefaults.standard.set(localGuestUID, forKey: "attribution-guestuid")
+        // Generate a local ID immediately if none exists, so it is available as a
+        // fallback before the network response arrives. If a local ID already exists
+        // (from a previous launch where attribution didn't complete), reuse it.
+        // The guest_wallet endpoint requires exactly 40 word characters (^\w{40}$).
+        let guestUID = UserDefaults.standard.string(forKey: "attribution-guestuid") ?? {
+            let id = Self.generateGuestUID()
+            UserDefaults.standard.set(id, forKey: "attribution-guestuid")
+            return id
+        }()
 
-            self.MMPService.getAttribution(bundleID: Bundle.main.bundleIdentifier ?? "") { result in
-                switch result {
-                case .success(let attributionRaw):
-                    // Replace the local ID with the server-assigned one.
-                    UserDefaults.standard.set(String(attributionRaw.guestUID), forKey: "attribution-guestuid")
+        self.MMPService.getAttribution(bundleID: Bundle.main.bundleIdentifier ?? "", guestUID: guestUID) { result in
+            switch result {
+            case .success(let attributionRaw):
+                // Replace the local ID with the server-assigned one and mark complete.
+                UserDefaults.standard.set(String(attributionRaw.guestUID), forKey: "attribution-guestuid")
+                UserDefaults.standard.set(true, forKey: "attribution-complete")
 
-                    if let rawOemID = attributionRaw.oemID, rawOemID != "" {
-                        UserDefaults.standard.set(rawOemID, forKey: "attribution-oemid")
-                    }
-
-                    // Persist UTM fields from attribution for use in session and purchase events
-                    if let v = attributionRaw.utmSource { UserDefaults.standard.set(v, forKey: "mmp-utm-source") }
-                    if let v = attributionRaw.utmMedium { UserDefaults.standard.set(v, forKey: "mmp-utm-medium") }
-                    if let v = attributionRaw.utmCampaign { UserDefaults.standard.set(v, forKey: "mmp-utm-campaign") }
-                    if let v = attributionRaw.utmContent { UserDefaults.standard.set(v, forKey: "mmp-utm-content") }
-                    if let v = attributionRaw.utmTerm { UserDefaults.standard.set(v, forKey: "mmp-utm-term") }
-
-                case .failure: break
+                if let rawOemID = attributionRaw.oemID, rawOemID != "" {
+                    UserDefaults.standard.set(rawOemID, forKey: "attribution-oemid")
                 }
+
+                if let v = attributionRaw.utmSource { UserDefaults.standard.set(v, forKey: "mmp-utm-source") }
+                if let v = attributionRaw.utmMedium { UserDefaults.standard.set(v, forKey: "mmp-utm-medium") }
+                if let v = attributionRaw.utmCampaign { UserDefaults.standard.set(v, forKey: "mmp-utm-campaign") }
+                if let v = attributionRaw.utmContent { UserDefaults.standard.set(v, forKey: "mmp-utm-content") }
+                if let v = attributionRaw.utmTerm { UserDefaults.standard.set(v, forKey: "mmp-utm-term") }
+
+            case .failure: break
             }
         }
     }
 
     internal func getGuestUID() -> String? {
         return UserDefaults.standard.string(forKey: "attribution-guestuid")
+    }
+
+    internal func isAttributionComplete() -> Bool {
+        return UserDefaults.standard.bool(forKey: "attribution-complete")
     }
 
     internal func getOEMID() -> String? {
