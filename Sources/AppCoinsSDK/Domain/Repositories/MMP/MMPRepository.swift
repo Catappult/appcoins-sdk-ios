@@ -29,7 +29,7 @@ internal class MMPRepository: MMPRepositoryProtocol {
         self.MMPService.getAttribution(bundleID: Bundle.main.bundleIdentifier ?? "", guestUID: guestUID) { result in
             switch result {
             case .success(let attributionRaw):
-                // Replace the local ID with the server-assigned one and mark complete.
+                guard !attributionRaw.guestUID.isEmpty else { break }
                 UserDefaults.standard.set(String(attributionRaw.guestUID), forKey: "attribution-guestuid")
                 UserDefaults.standard.set(true, forKey: "attribution-complete")
 
