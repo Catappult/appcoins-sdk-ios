@@ -21,7 +21,7 @@ internal class SetActiveWallet {
             WalletUseCases.shared.setActiveWallet(user: userWallet)
             
         case .guest(let guestWalletBody):
-            WalletUseCases.shared.getGuestWallet { result in
+            WalletUseCases.shared.getGuestWallet(guestUID: guestWalletBody.guestUID) { result in
                 switch result {
                 case .success(let guestWallet):
                     WalletUseCases.shared.setActiveWallet(guest: guestWallet)
