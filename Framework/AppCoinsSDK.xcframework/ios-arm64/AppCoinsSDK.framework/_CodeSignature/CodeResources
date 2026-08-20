@@ -18,7 +18,7 @@
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/Project/arm64-apple-ios.swiftsourceinfo</key>
 		<data>
-		BnUzE1Jo8sPunh3oHMVlrxJxhI0=
+		bLsvwZF4xZUpOXO7Cp6MouOUS0k=
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.abi.json</key>
 		<data>
@@ -38,7 +38,7 @@
 		</data>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		Bki+kbhKNOSgTjmciCyuOxvkWPA=
+		+9zk6sP8a5Fr8/BVy1vIIU0nXow=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -90,7 +90,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			X787NbUiYfBQ0o3atLl3Shsc7HRqzWx7mo8DFd9H1no=
+			jF+pDTCSse7XsxgMu4xG99ofdFkEj8rE4HG0HcWgDU8=
 			</data>
 		</dict>
 		<key>Modules/AppCoinsSDK.swiftmodule/arm64-apple-ios.abi.json</key>
@@ -125,7 +125,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			1goFkDTBQfYnBhFyQW2V6M9DW2dgDWP/lJS6QC+kdeg=
+			yO606smEAMKH3zGz7ZXdDWYmV2xjCp4hLV1Y6o2ElhE=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
