@@ -63,8 +63,29 @@ internal class OnPurchaseResult {
                     if let error = error {
                         PurchaseViewModel.shared.failed(error: error)
                     } else {
+                        let fallbackAmount = "0"
                         let verificationResult: VerificationResult<Transaction> = .verified(transaction)
                         PurchaseViewModel.shared.success(verificationResult: verificationResult)
+                        BrokerUseCases.shared.getTransaction(orderId: orderId) { brokerResult in
+                            let purchaseAmount: String
+                            let paymentMethod: String
+                            switch brokerResult {
+                            case .success(let tx):
+                                Utils.log("Broker transaction fetched — method: \(tx.method ?? "nil"), appc: \(tx.price?.appc ?? "nil")", category: "MMP")
+                                purchaseAmount = tx.price?.appc ?? "0"
+                                paymentMethod = tx.method ?? "appcoins"
+                            case .failure(let error):
+                                Utils.log("Broker transaction fetch failed: \(error.localizedDescription). Using fallback values.", category: "MMP", level: .error)
+                                purchaseAmount = fallbackAmount
+                                paymentMethod = "appcoins"
+                            }
+                            MMPUseCases.shared.sendPurchaseEvent(
+                                sku: transaction.productID,
+                                orderID: orderId,
+                                purchaseAmount: purchaseAmount,
+                                paymentMethod: paymentMethod
+                            )
+                        }
                     }
                 }
             case .failure(let error):

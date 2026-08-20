@@ -8,8 +8,10 @@
 import Foundation
 
 internal protocol BrokerService {
-    
+
     func convertCurrency(money: String, fromCurrency: Currency, toCurrency: Currency?, result: @escaping (Result<ConvertCurrencyRaw, BrokerError>) -> Void)
-    
+
     func getSupportedCurrencies(result: @escaping (Result<[CurrencyRaw], BrokerError>) -> Void)
+
+    func getTransaction(orderId: String, result: @escaping (Result<BrokerTransactionRaw, BrokerError>) -> Void)
 }
