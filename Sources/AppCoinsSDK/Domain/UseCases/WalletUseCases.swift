@@ -66,17 +66,14 @@ internal class WalletUseCases {
     internal func getGuestWallet(completion: @escaping (Result<GuestWallet, APPCServiceError>) -> Void) {
         guard let guestUID = mmpRepository.getGuestUID() else {
             Utils.log("GuestUID not found at WalletUseCases.swift:getGuestWallet", level: .error)
-            
             completion(.failure(.failed(
                 message: "Guest ID Not Found",
                 description: "Guest ID not found at WalletUseCases.swift:getGuestWallet"
             )))
             return
         }
-        
-        repository.getGuestWallet(guestUID: guestUID) {
-            result in
 
+        repository.getGuestWallet(guestUID: guestUID) { result in
             switch result {
             case .success(let guestWallet):
                 Utils.log("Returning guest wallet with address: \(guestWallet.address) at WalletUseCases.swift:getGuestWallet")

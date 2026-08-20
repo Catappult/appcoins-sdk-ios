@@ -17,9 +17,15 @@ internal class MMPRepository: MMPRepositoryProtocol {
 
         // Check if request has already been triggered
         if guestUID == nil {
+            // Generate and persist a local ID immediately so it is available as a
+            // fallback before the network response arrives.
+            let localGuestUID = UUID().uuidString
+            UserDefaults.standard.set(localGuestUID, forKey: "attribution-guestuid")
+
             self.MMPService.getAttribution(bundleID: Bundle.main.bundleIdentifier ?? "") { result in
                 switch result {
                 case .success(let attributionRaw):
+                    // Replace the local ID with the server-assigned one.
                     UserDefaults.standard.set(String(attributionRaw.guestUID), forKey: "attribution-guestuid")
 
                     if let rawOemID = attributionRaw.oemID, rawOemID != "" {
