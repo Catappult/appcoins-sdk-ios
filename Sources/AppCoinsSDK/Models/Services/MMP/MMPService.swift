@@ -8,7 +8,7 @@
 import Foundation
 
 internal protocol MMPService {
-    func getAttribution(bundleID: String, guestUID: String, result: @escaping (Result<AttributionRaw, Error>) -> Void)
+    func getAttribution(bundleID: String, result: @escaping (Result<AttributionRaw, Error>) -> Void)
     func sendUserSession(
         bundleID: String,
         oemID: String,

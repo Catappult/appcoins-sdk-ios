@@ -22,7 +22,7 @@ internal class MMPRepository: MMPRepositoryProtocol {
             let localGuestUID = UUID().uuidString
             UserDefaults.standard.set(localGuestUID, forKey: "attribution-guestuid")
 
-            self.MMPService.getAttribution(bundleID: Bundle.main.bundleIdentifier ?? "", guestUID: localGuestUID) { result in
+            self.MMPService.getAttribution(bundleID: Bundle.main.bundleIdentifier ?? "") { result in
                 switch result {
                 case .success(let attributionRaw):
                     // Replace the local ID with the server-assigned one.
