@@ -19,7 +19,9 @@ internal class MMPRepository: MMPRepositoryProtocol {
         if guestUID == nil {
             // Generate and persist a local ID immediately so it is available as a
             // fallback before the network response arrives.
-            let localGuestUID = UUID().uuidString
+            // The guest_wallet endpoint requires exactly 40 word characters (^\w{40}$),
+            // matching the format of server-assigned guest UIDs.
+            let localGuestUID = Self.generateGuestUID()
             UserDefaults.standard.set(localGuestUID, forKey: "attribution-guestuid")
 
             self.MMPService.getAttribution(bundleID: Bundle.main.bundleIdentifier ?? "") { result in
@@ -199,5 +201,12 @@ internal class MMPRepository: MMPRepositoryProtocol {
         if let data = try? JSONEncoder().encode(events) {
             UserDefaults.standard.set(data, forKey: "mmp-pending-purchases")
         }
+    }
+
+    // Generates a random 40-character hex string matching the ^\w{40}$ pattern
+    // required by the guest_wallet endpoint, consistent with server-assigned guest UIDs.
+    private static func generateGuestUID() -> String {
+        let hex = "0123456789abcdef"
+        return String((0..<40).compactMap { _ in hex.randomElement() })
     }
 }
