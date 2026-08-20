@@ -10,6 +10,7 @@ import Foundation
 internal class MMPRepository: MMPRepositoryProtocol {
 
     private let MMPService: MMPService = MMPClient()
+    private var heartbeatActive = false
 
     internal func getAttribution() {
         let guestUID = UserDefaults.standard.string(forKey: "attribution-guestuid")
@@ -57,16 +58,20 @@ internal class MMPRepository: MMPRepositoryProtocol {
 
         // Flush previous session data via user_session event
         let prevSessionStart = UserDefaults.standard.double(forKey: "mmp-session-start")
-        if let prevSessionID = UserDefaults.standard.string(forKey: "mmp-session-id"), prevSessionStart > 0 {
-            let now = Date().timeIntervalSince1970
-            let durationMs = max(0, Int((now - prevSessionStart) * 1000))
+        if let prevSessionID = UserDefaults.standard.string(forKey: "mmp-session-id"),
+           let guestUID = getGuestUID(), !guestUID.isEmpty,
+           prevSessionStart > 0 {
+            let prevSessionEnd = UserDefaults.standard.double(forKey: "mmp-session-end")
+            let sessionEndWasRecorded = UserDefaults.standard.object(forKey: "mmp-session-end") != nil
+            let endTime = sessionEndWasRecorded ? max(prevSessionEnd, prevSessionStart) : prevSessionStart
+            let durationMs = max(0, Int((endTime - prevSessionStart) * 1000))
             let bundleID = Bundle.main.bundleIdentifier ?? ""
             let vercode = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""
 
             MMPService.sendUserSession(
                 bundleID: bundleID,
                 oemID: getOEMID() ?? "",
-                guestUID: getGuestUID() ?? "",
+                guestUID: guestUID,
                 sessionID: prevSessionID,
                 sessionTimestamp: Int(prevSessionStart),
                 sessionDuration: durationMs,
@@ -87,17 +92,38 @@ internal class MMPRepository: MMPRepositoryProtocol {
         }
 
         // Begin new session
+        let now = Date().timeIntervalSince1970
         UserDefaults.standard.set(UUID().uuidString, forKey: "mmp-session-id")
-        UserDefaults.standard.set(Date().timeIntervalSince1970, forKey: "mmp-session-start")
+        UserDefaults.standard.set(now, forKey: "mmp-session-start")
+        UserDefaults.standard.set(now, forKey: "mmp-session-end")
+        startSessionHeartbeat()
+    }
+
+    private func startSessionHeartbeat() {
+        heartbeatActive = true
+        scheduleHeartbeat()
+    }
+
+    private func scheduleHeartbeat() {
+        guard heartbeatActive else { return }
+        DispatchQueue.global().asyncAfter(deadline: .now() + 10) { [weak self] in
+            guard let self = self, self.heartbeatActive else { return }
+            UserDefaults.standard.set(Date().timeIntervalSince1970, forKey: "mmp-session-end")
+            self.scheduleHeartbeat()
+        }
     }
 
     // MARK: - Purchase
 
     internal func sendPurchaseEvent(sku: String, orderID: String, purchaseAmount: String, paymentMethod: String) {
+        guard let guestUID = getGuestUID(), !guestUID.isEmpty else {
+            Utils.log("Purchase MMP event skipped: guest_uid not available.", category: "MMP")
+            return
+        }
         let event = MMPPendingPurchaseEvent(
             packageName: Bundle.main.bundleIdentifier ?? "",
             oemID: getOEMID() ?? "",
-            guestUID: getGuestUID() ?? "",
+            guestUID: guestUID,
             sku: sku,
             orderID: orderID,
             purchaseAmount: purchaseAmount,

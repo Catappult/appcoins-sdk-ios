@@ -111,7 +111,7 @@ internal class MMPClient: MMPService {
 
         let task = URLSession.shared.dataTask(with: request) { _, response, error in
             let statusCode = (response as? HTTPURLResponse)?.statusCode
-            if statusCode == 200 {
+            if let statusCode = statusCode, (200...299).contains(statusCode) {
                 Utils.log("User session event sent successfully (session: \(sessionID), duration: \(sessionDuration)ms).", category: "MMP")
                 result(.success(()))
             } else {
@@ -172,8 +172,8 @@ internal class MMPClient: MMPService {
 
         let task = URLSession.shared.dataTask(with: request) { _, response, error in
             let statusCode = (response as? HTTPURLResponse)?.statusCode
-            if statusCode == 200 {
-                Utils.log("Purchase MMP event sent successfully (order: \(orderID), sku: \(sku)).", category: "MMP")
+            if let statusCode = statusCode, (200...299).contains(statusCode) {
+                Utils.log("Purchase MMP event sent successfully — order: \(orderID), sku: \(sku), amount: \(purchaseAmount) APPC, method: \(paymentMethod), package: \(bundleID), oemid: \(oemID), guest_uid: \(guestUID), timestamp: \(timestamp), vercode: \(vercode).", category: "MMP")
                 result(.success(()))
             } else {
                 let statusDescription = statusCode.map { "status \($0)" } ?? (error.map { "error: \($0.localizedDescription)" } ?? "unknown failure")
