@@ -100,7 +100,7 @@ internal class OnPurchaseResult {
             WalletUseCases.shared.setActiveWallet(user: userWallet)
             completion()
         } else if let guest = wallet.guest {
-            WalletUseCases.shared.getGuestWallet { result in
+            WalletUseCases.shared.getGuestWallet(guestUID: guest.guestUID) { result in
                 switch result {
                 case .success(let guestWallet):
                     WalletUseCases.shared.setActiveWallet(guest: guestWallet)
@@ -111,16 +111,16 @@ internal class OnPurchaseResult {
             }
         }
     }
-    
+
     private func setActiveWallet(wallet: OnPurchaseResultQuery.Wallet, completion: @escaping () -> Void) {
         switch wallet {
             case .user(let userWalletQuery):
                 let userWallet = UserWallet(address: userWalletQuery.address, authToken: userWalletQuery.authToken, refreshToken: userWalletQuery.refreshToken)
                 WalletUseCases.shared.setActiveWallet(user: userWallet)
                 completion()
-                
+
             case .guest(let guestWalletQuery):
-                WalletUseCases.shared.getGuestWallet { result in
+                WalletUseCases.shared.getGuestWallet(guestUID: guestWalletQuery.guestUID) { result in
                     switch result {
                     case .success(let guestWallet):
                         WalletUseCases.shared.setActiveWallet(guest: guestWallet)
