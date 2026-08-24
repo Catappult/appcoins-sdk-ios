@@ -15,12 +15,12 @@ internal class UserWallet: Wallet, Codable {
     internal let added: Date
     internal let expiresAt: Int?
 
-    internal init(address: String, authToken: String, refreshToken: String) {
+    internal init(address: String, authToken: String, refreshToken: String, expiresAt: Int? = nil) {
         self.address = address
         self.authToken = authToken
         self.refreshToken = refreshToken
         self.added = Date()
-        self.expiresAt = nil
+        self.expiresAt = expiresAt
     }
 
     internal init(raw: UserWalletRaw) {

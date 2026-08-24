@@ -33,18 +33,17 @@ internal class WalletUseCases {
                 return
             }
 
-            // Only fall back to a guest wallet if nothing has been stored yet.
-            // If there is a stored wallet but the refresh failed, we should not
-            // overwrite it with a guest wallet.
-            guard !self.repository.hasStoredActiveWallet() else {
-                completion(.failure(.failed(message: "Token Refresh Failed", description: "Active wallet exists in storage but could not be refreshed.")))
-                return
-            }
+            let hasStoredWallet = self.repository.hasStoredActiveWallet()
 
             self.getGuestWallet() { result in
                 switch result {
                 case .success(let guestWallet):
-                    self.repository.setActiveWallet(guest: guestWallet)
+                    // Only persist as active if there is no stored user wallet — persisting
+                    // would overwrite a valid (but temporarily unreachable) user wallet and
+                    // prevent it from being retried on the next cold start.
+                    if !hasStoredWallet {
+                        self.repository.setActiveWallet(guest: guestWallet)
+                    }
                     completion(.success(guestWallet))
                 case .failure(let error):
                     completion(.failure(error))
