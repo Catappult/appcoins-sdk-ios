@@ -102,7 +102,7 @@ internal class BuildConfiguration {
     static internal var sdkShortVersion: String = "5.0.0"
     
     // WARNING: Changing this variable definition might break CI/CD
-    static internal var sdkBuildNumber: Int = 65
+    static internal var sdkBuildNumber: Int = 67
 }
 
 internal enum SDKEnvironment: String {
