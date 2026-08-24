@@ -1,452 +1,399 @@
 # AppCoins SDK for iOS
 
-The iOS Billing SDK is a simple solution to implement Aptoide billing. It consists of a billing client that allows you to get your products from Aptoide Connect and process the purchase of those items.
+The iOS Billing SDK implements AppCoins billing. It provides a billing client for fetching products from Aptoide Connect and processing purchases.
 
 The SDK automatically handles transaction reporting to Apple for Core Technology Commission (CTC) calculation, removing this burden from developers. It includes intelligent logic for reporting purchases, refunds, and other transaction events, with region-aware processing that distinguishes which regions require CTC reporting and which do not.
 
 The SDK interface mirrors Apple's StoreKit 2, so if your app already supports StoreKit, migrating to AppCoins SDK only requires prepending `AppCoinsSDK.` to each StoreKit type.
 
+> For more detailed information, refer to the official documentation at: https://docs.connect.aptoide.com/docs/in-app-purchases-integration-sdk
+
 ## In Summary
 
 The billing flow in your application with the SDK is as follows:
 
-1. Setup the AppCoins SDK Swift Package;
-2. Query your In-App Products;
-3. User wants to purchase a product;
-4. Application starts the purchase and the SDK handles it, returning the purchase result on completion;
-5. Application gives the product to the user.
+1. Setup the AppCoins SDK Swift Package and configure Xcode;
+2. Initialize the SDK at every application entry point;
+3. Check SDK availability before attempting a purchase;
+4. Query your In-App Products;
+5. User wants to purchase a product;
+6. Application starts the purchase and the SDK handles it, returning the purchase result and verification data on completion;
+7. Application delivers the product to the user and finishes the transaction.
 
 ## Step-by-Step Guide
 
 ### Setup
 
 1. **Add AppCoins SDK Swift Package**
-   In XCode add the Swift Package from the repo <https://github.com/Catappult/appcoins-sdk-ios.git>.
 
-2. **Add AppCoins SDK Keychain Access Entitlement**
-   In order to enable the AppCoins SDK to save the user's AppCoins Wallet information in the keychain, the application will need to concede the SDK Keychain Access entitlements. To do so, follow these steps:
-   1. Select your project in the project navigator (left sidebar);
-   2. Select your target under "TARGETS";
-   3. Go to the "Signing & Capabilities" tab;
-   4. Click the "+" button to add a new capability;
-   5. Search for "Keychain Sharing" and select it;
-   6. Enable the "Keychain Sharing" capability by double-clicking it;
-   7. This will automatically write your app's identifier in the "Keychain Groups" text box, you should replace it with "com.aptoide.appcoins-wallet";
-   8. Xcode will automatically generate an entitlements file (e.g., YourAppName.entitlements) and add it to your project;
+   In Xcode, add the Swift Package from the repository <https://github.com/Catappult/appcoins-sdk-ios.git>. When prompted for a version rule, select **Up to Next Major Version** starting from the latest major version (e.g. `5.0.0`). This ensures you automatically receive patch and minor updates while avoiding breaking changes from a future major release.
 
-3. **Add AppCoins SDK URL Type**
-   To manage redirect deep links for specific payment method integrations, your application must include a URL Type in the info.plist file. To do this, follow these steps:
-   1. In the project navigator (left sidebar), select your project.
-   2. Under "TARGETS", select your target.
-   3. Navigate to the "Info" tab.
-   4. Scroll down to the "URL Types" section.
-   5. Click the "+" button to add a new URL Type.
-   6. Set the URL Scheme to "$(PRODUCT_BUNDLE_IDENTIFIER).iap" and the role to "Editor".
+2. **Add Keychain Sharing Capability**
 
-4. **Configure Digital Goods Settings**
-   To enable the SDK's automatic transaction reporting for CTC (Core Technology Commission) calculation, you must configure your target to indicate that it sells digital goods. Follow these steps:
-   1. In the project navigator (left sidebar), select your project.
-   2. Under "TARGETS", select your target.
-   3. Navigate to the "Info" tab.
-   4. Add a new "MKSellsDigitalGoods" key to your Target Properties.
-   5. Set the value to "YES" to enable digital goods transaction reporting.
+   The SDK stores wallet information in the keychain. Add Keychain Sharing and set the group identifier exactly as shown below:
+
+   1. Select your project in the **Project Navigator** (left sidebar);
+   2. Select your target under **TARGETS**;
+   3. Go to the **Signing & Capabilities** tab;
+   4. Click the **+** button to add a new capability;
+   5. Search for **Keychain Sharing** and select it;
+   6. In the **Keychain Groups** field, replace the default value with exactly `com.aptoide.appcoins-wallet`;
+   7. Xcode will automatically generate an entitlements file and add it to your project.
+
+   > ⚠️ **Warning:** The Keychain Sharing group must be set to exactly `com.aptoide.appcoins-wallet`. Any other value will result in an `AppCoinsSDKError.notEntitled` error at runtime.
+
+3. **Add URL Scheme**
+
+   The SDK requires a URL scheme to handle payment redirect deep links. To add it:
+
+   1. In the **Project Navigator**, select your project;
+   2. Under **TARGETS**, select your target;
+   3. Navigate to the **Info** tab;
+   4. Scroll down to the **URL Types** section;
+   5. Click the **+** button to add a new URL Type;
+   6. Set the URL Scheme to `$(PRODUCT_BUNDLE_IDENTIFIER).iap` and the Role to `Editor`.
+
+4. **Add `MKSellsDigitalGoods` to Info.plist**
+
+   To enable CTC transaction reporting, add the following key to your `Info.plist`:
+
+   - Key: `MKSellsDigitalGoods`
+   - Value: `YES` (Boolean)
 
 ### Implementation
 
-Now that you have the SDK and necessary permissions set up, you can start making use of its functionalities. Import the SDK module in any file you want to use it: `import AppCoinsSDK`.
+Once setup is complete, import the SDK module in any file where you want to use it:
 
-1. **Initialize the AppCoins SDK**
+```swift
+import AppCoinsSDK
+```
 
-   > ⚠️ **CRITICAL:** You MUST call `AppcSDK.initialize()` at every application entry point before any other SDK functionality is used. This method sets up internal SDK processes and is required for the SDK to function properly.
+#### 1. Initialize the AppCoins SDK
 
-   The SDK must be initialized in your application's entry point methods. Depending on your app's setup, this will be either in SceneDelegate.swift (for iOS 13+) or AppDelegate.swift.
+> ⚠️ **CRITICAL:** Call `AppcSDK.initialize()` at every application entry point before any other SDK functionality is used. This method sets up internal SDK processes and is required for the SDK to function correctly.
 
-   **SceneDelegate.swift:**
-   ```swift
-   func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
-      AppcSDK.initialize() // REQUIRED
-      // ... rest of your code
-   }
+Depending on your app's setup, initialize the SDK in `SceneDelegate.swift` (iOS 13+) or `AppDelegate.swift`.
 
-   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-      AppcSDK.initialize() // REQUIRED
-      // ... rest of your code
-   }
-   ```
+**SceneDelegate.swift:**
 
-   **AppDelegate.swift:**
-   ```swift
-   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-      AppcSDK.initialize() // REQUIRED
-      // ... rest of your code
-   }
+```swift
+func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+    AppcSDK.initialize() // REQUIRED
 
-   func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-      AppcSDK.initialize() // REQUIRED
-      // ... rest of your code
-   }
-   ```
+    // Your application initialization
+    initialize()
 
-2. **Handle the Redirect**
+    let contexts = connectionOptions.urlContexts
+    if AppcSDK.handle(redirectURL: contexts.first?.url) { return }
+}
 
-   The SDK requires integration in your application's entry points to properly handle deep links. This ensures that payment redirects work seamlessly.
+func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+    AppcSDK.initialize() // REQUIRED
 
-   Depending on your app's setup, handle deep links either in SceneDelegate.swift (for iOS 13+) or AppDelegate.swift.
+    if AppcSDK.handle(redirectURL: URLContexts.first?.url) { return }
 
-   1. `SceneDelegate.swift`
+    // Your application initialization
+    initialize()
+}
+```
 
-      ```swift
-      func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
-         AppcSDK.initialize()
+**AppDelegate.swift:**
 
-         if AppcSDK.handle(redirectURL: URLContexts.first?.url) { return }
+```swift
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    AppcSDK.initialize() // REQUIRED
 
-         // Your application initialization
-         initialize()
-      }
+    // Your application initialization
+    initialize()
 
-      func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        let contexts = connectionOptions.urlContexts
-
-        AppcSDK.initialize()
-
-        // Your application initialization
-        initialize()
-
-        if AppcSDK.handle(redirectURL: contexts.first?.url) { return }
-      }
-      ```
-
-      Why This Logic?
-
-      - Initialize First in `willConnectTo`
-         - When the app launches or restores, UI and dependencies must be set up first.
-         - Handling deep links before this can cause issues if SDKs or services aren't ready.
-
-      - Prioritize Deep Links in `openURLContexts`
-         - When a deep link arrives while the app is running, handle it immediately and return if processed.
-         - This prevents unnecessary re-initialization and ensures the app responds quickly.
-
-   2. `AppDelegate.swift`
-
-      ```swift
-      func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        AppcSDK.initialize()
-
-        // Your application initialization
-        initialize()
-
-        if let url = launchOptions?[.url] as? URL {
-          if AppcSDK.handle(redirectURL: url) { return true }
-        }
-        return true
-      }
-
-      func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-        AppcSDK.initialize()
-
+    if let url = launchOptions?[.url] as? URL {
         if AppcSDK.handle(redirectURL: url) { return true }
+    }
+    return true
+}
 
-        // Your application initialization
-        initialize()
-        return true
-      }
-      ```
+func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+    AppcSDK.initialize() // REQUIRED
 
-3. **Check AppCoins SDK Availability**
-   The AppCoins SDK is only available on devices running iOS 17.4 or later and only if the app was not installed through the Apple App Store. Before attempting a purchase, check availability:
-   ```swift
-   if await AppcSDK.isAvailable() {
-       // make purchase
-   }
-   ```
+    if AppcSDK.handle(redirectURL: url) { return true }
 
-4. **Query In-App Products**
-   Fetch the In-App Products you want to make available by calling `Product.products(for:)` with an array of product identifiers as defined in Aptoide Connect.
+    // Your application initialization
+    initialize()
+    return true
+}
+```
 
-   ```swift
-   let products = try await Product.products(for: ["gas", "premium"])
-   ```
+**Why this ordering matters:**
 
-   You can also check the latest transaction or current entitlement for a product directly on the `Product` instance:
+- In the "launch" methods (`willConnectTo` / `didFinishLaunchingWithOptions`): initialize the SDK and set up your app's dependencies first, then check for a deep link. Processing a deep link before the app is ready can cause issues if required services are not yet available.
+- In the "open URL" methods (`openURLContexts` / `open url`): handle the deep link immediately and return early if the SDK processed it. This prevents unnecessary re-initialization and ensures the app responds quickly to payment redirects.
 
-   ```swift
-   if let result = await product.latestTransaction {
-       // user has a previous transaction for this product
-   }
-   ```
+#### 2. Handle the Redirect
 
-   > ⚠️ **Warning:** You will only be able to query your In-App Products once your application is reviewed and approved on Aptoide Connect.
+`AppcSDK.handle(redirectURL:)` is already shown in the entry point examples above. It processes payment redirect deep links and returns `true` if the SDK handled the URL. Always call it after `AppcSDK.initialize()` and return early when it returns `true`.
 
-5. **Purchase an In-App Product**
-   Call `purchase()` on a `Product` instance to start a purchase. The method is `async throws` — it throws an `AppCoinsSDKError` on failure and returns a `Product.PurchaseResult` on success or cancellation.
+#### 3. Check AppCoins SDK Availability
 
-   To associate a user account with the purchase, pass an `appAccountToken`:
+`isAvailable()` returns `true` on iOS 17.4+ for any install source that is not the Apple App Store or TestFlight. Before attempting a purchase, check availability:
 
-   ```swift
-   do {
-       let result = try await product.purchase(options: [.appAccountToken(userUUID)])
+```swift
+if await AppcSDK.isAvailable() {
+    // proceed with AppCoins billing
+} else {
+    // fall back to Apple StoreKit
+}
+```
 
-       switch result {
-       case .success(let verificationResult):
-           switch verificationResult {
-           case .verified(let transaction):
-               // Give the item to the user, then finish the transaction
-               await transaction.finish()
-           case .unverified(let transaction, let verificationError):
-               // Decide based on your business logic.
-               // If not finished, the purchase will be refunded after 24 hours.
-           }
-       case .pending:
-           // Transaction is awaiting an external action (e.g., parental approval)
-       case .userCancelled:
-           // User dismissed the purchase sheet
-       }
-   } catch {
-       // Handle AppCoinsSDKError
-       print("Purchase failed: \(error)")
-   }
-   ```
+#### 4. Query In-App Products
 
-6. **Handle Unfinished Transactions on App Launch (CRITICAL)**
+Fetch the In-App Products you want to offer by passing an array of SKU identifier strings to `Product.products(for:)`.
 
-   > ⚠️ **CRITICAL:** You MUST process unfinished transactions every time your application starts. Failing to do so will result in users not receiving items they have already paid for. Purchases are automatically refunded after 24 hours if not consumed.
+```swift
+do {
+    let products = try await Product.products(for: ["gas", "premium_pack"])
+} catch {
+    // handle error
+}
+```
 
-   Unfinished transactions are purchases that have been paid for but not yet consumed. This can happen if the app was closed or crashed mid-purchase, or a network error occurred during completion.
+> ⚠️ **Warning:** In-App Products can only be queried after your application has been reviewed and approved on Aptoide Connect.
 
-   Use `Transaction.unfinished` — an async stream that yields each pending transaction — during your app's initialization flow:
+#### 5. Purchase an In-App Product
 
-   ```swift
-   func initializeApp() async {
-       if await AppcSDK.isAvailable() {
-           for await result in Transaction.unfinished {
-               switch result {
-               case .verified(let transaction):
-                   // Give the item to the user based on transaction.productID
-                   giveItemToUser(productID: transaction.productID)
-                   await transaction.finish()
-               case .unverified(let transaction, _):
-                   // Handle according to your business logic
-                   break
-               }
-           }
-       }
-   }
-   ```
+Call `purchase()` on a `Product` instance. The SDK handles all purchase logic and returns a `Product.PurchaseResult`. Errors are thrown rather than returned as a result case — wrap the call in a `do/catch` block.
 
-7. **Listen for Real-Time Transaction Updates**
+On success, the result contains a `VerificationResult<Transaction>`:
 
-   `Transaction.updates` is a long-lived async stream that emits every transaction completed during the current app session. Observe it for the lifetime of your app to handle purchases as they complete.
+- `.verified` — the transaction signature was validated locally; deliver the item and call `transaction.finish()`.
+- `.unverified` — validation failed; apply your business logic. If you do not call `transaction.finish()`, the purchase will be automatically refunded after 24 hours.
 
-   ```swift
-   import AppCoinsSDK
+You can optionally associate a UUID with a purchase using `Product.PurchaseOption.appAccountToken(_:)` — for example, to link the transaction to a specific user account.
 
-   actor PurchaseManager {
-       static let shared = PurchaseManager()
+```swift
+do {
+    let result = try await product.purchase()
 
-       private init() {
-           Task { await observeTransactions() }
-       }
+    switch result {
+    case .success(let verificationResult):
+        switch verificationResult {
+        case .verified(let transaction):
+            // Deliver the item to the user
+            giveItemToUser(productID: transaction.productID)
+            // Mark the transaction as finished
+            await transaction.finish()
+        case .unverified(let transaction, let verificationError):
+            // Apply your business logic for unverified transactions
+            print("Unverified transaction: \(verificationError.description)")
+        }
+    case .pending:
+        // Transaction is awaiting external action
+        break
+    case .userCancelled:
+        // User dismissed the payment sheet
+        break
+    }
+} catch {
+    // Handle AppCoinsSDKError
+    if let sdkError = error as? AppCoinsSDKError {
+        print(sdkError.description)
+    }
+}
+```
 
-       private func observeTransactions() async {
-           for await result in Transaction.updates {
-               await handle(result: result)
-           }
-       }
+To associate a purchase with a user account token:
 
-       private func handle(result: VerificationResult<Transaction>) async {
-           switch result {
-           case .verified(let transaction):
-               giveItemToUser(productID: transaction.productID)
-               await transaction.finish()
-           case .unverified(let transaction, let error):
-               // Handle according to your business logic
-               break
-           }
-       }
-   }
-   ```
+```swift
+let result = try await product.purchase(options: [.appAccountToken(userUUID)])
+```
 
-8. **Query Transactions**
-   You can query the user's transaction history using the following async streams on `Transaction`:
+#### 6. Handle Unfinished Transactions on App Launch
 
-   1. `Transaction.all`
+> ⚠️ **CRITICAL:** Iterate over `Transaction.unfinished` every time your application starts. Users who paid but did not receive their item — due to a crash, force-quit, or network error during purchase — will not receive it otherwise. Unfinished transactions are automatically refunded after 24 hours if not consumed.
 
-      Yields all transactions the user has performed in your application, ordered by date descending.
+`Transaction.unfinished` is an `AsyncStream` that emits all paid-but-unconsumed transactions. Iterate over it during your app's initialization flow, after confirming SDK availability.
 
-      ```swift
-      for await result in Transaction.all {
-          if case .verified(let transaction) = result {
-              print(transaction.productID)
-          }
-      }
-      ```
+```swift
+func processUnfinishedTransactions() async {
+    guard await AppcSDK.isAvailable() else { return }
 
-   2. `Transaction.latest(for: String)`
+    for await verificationResult in Transaction.unfinished {
+        switch verificationResult {
+        case .verified(let transaction):
+            // Deliver the item and finish the transaction
+            giveItemToUser(productID: transaction.productID)
+            await transaction.finish()
+        case .unverified(let transaction, let verificationError):
+            // Apply your business logic
+            print("Unverified unfinished transaction: \(verificationError.description)")
+        }
+    }
+}
+```
 
-      Returns the most recent transaction for a specific product identifier.
+Call this function from your app's startup sequence, for example in a `ViewModel` or an `@main` `App` struct `init`.
 
-      ```swift
-      if let result = await Transaction.latest(for: "gas") {
-          // ...
-      }
-      ```
+#### 7. Query Transactions
 
-   3. `Transaction.unfinished`
+The SDK provides several ways to query the user's transaction history.
 
-      Yields all transactions that have been paid for but not yet consumed. See step 6 for the recommended usage pattern.
+**All transactions (`Transaction.all`)**
 
-      > ⚠️ **CRITICAL:** Call this during app initialization to ensure users receive items from interrupted purchases.
+An `AsyncStream` of all transactions for your app, newest first:
 
-   4. `Transaction.currentEntitlements`
+```swift
+for await verificationResult in Transaction.all {
+    // process each transaction
+}
+```
 
-      Equivalent to `Transaction.unfinished` for consumable products — yields all unconsumed purchases.
+**Latest transaction for a product (`Transaction.latest(for:)`)**
+
+Returns the most recent transaction for a specific product identifier:
+
+```swift
+if let verificationResult = await Transaction.latest(for: "gas") {
+    // process transaction
+}
+```
+
+**Unfinished transactions (`Transaction.unfinished`)**
+
+An `AsyncStream` of paid but unconsumed transactions. See step 6 for the full implementation pattern.
 
 ### Testing
 
-To test the SDK integration during development, you'll need to set the installation source for development builds, simulating that the app is being distributed through Aptoide. This enables the SDK's `isAvailable` method.
+To test the SDK integration during development, you need to simulate that the app is being distributed through Aptoide. This enables the SDK's `isAvailable` method.
 
-Follow these steps:
-
-1. In your target build settings, search for "Marketplaces".
-2. Under "Deployment", set the key "Marketplaces" or "Alternative Distribution - Marketplaces" to "com.aptoide.ios.store".
+1. In your target's build settings, search for "Marketplaces";
+2. Under **Deployment**, set the **Marketplaces** (or **Alternative Distribution - Marketplaces**) key to `com.aptoide.ios.store`;
 
    ![d9d8b6a-image](https://github.com/user-attachments/assets/6b804dde-26c1-4d60-8f1f-42a95c4fdf81)
-3. In your scheme, go to the "Run" tab, then navigate to the "Options" tab. In the "Distribution" dropdown, select "com.aptoide.ios.store".
+3. In your scheme, go to the **Run** tab, then the **Options** tab. In the **Distribution** dropdown, select `com.aptoide.ios.store`.
 
    ![3af7e14-image](https://github.com/user-attachments/assets/f0a4c178-60b2-40c0-9984-183875ed1686)
 
-For more information, please refer to Apple's official documentation: <https://developer.apple.com/documentation/appdistribution/distributing-your-app-on-an-alternative-marketplace#Test-your-app-during-development>
+For more information, refer to Apple's official documentation: <https://developer.apple.com/documentation/appdistribution/distributing-your-app-on-an-alternative-marketplace#Test-your-app-during-development>
 
 ### Testing Both Billing Systems in One Build
 
-To facilitate testing both **Apple Billing** and **Aptoide Billing** within a single build – without generating separate versions of your application – the **AppCoins SDK** includes a deep link mechanism that toggles the SDK's `isAvailable` method between `true` and `false`.
+To switch between AppCoins billing and Apple billing on a real device without rebuilding, use these deep links from Safari:
 
-To enable or disable the AppCoins SDK, open your device's browser and enter the following URL:
+| Action | Deep link |
+|---|---|
+| Force AppCoins billing | `{domain}.iap://wallet.appcoins.io/default/mode?value=appcoins` |
+| Force Apple billing | `{domain}.iap://wallet.appcoins.io/default/mode?value=apple` |
+| Restore automatic detection | `{domain}.iap://wallet.appcoins.io/default/mode?value=automatic` |
+| Show current mode | `{domain}.iap://wallet.appcoins.io/default/info` |
 
-```text
-{domain}.iap://wallet.appcoins.io/default?value={value}
-```
+Replace `{domain}` with your app's bundle identifier. The mode change persists across launches. The `info` deep link shows a 3-second overlay with the active mode.
 
-Where:
-
-- `domain` – The Bundle ID of your application.
-- `value`
-  - `true` → Enables the AppCoins SDK for testing.
-  - `false` → Disables the AppCoins SDK, allowing Apple Billing to be tested instead.
+> ⚠️ **Warning:** Mode overrides have no effect on builds installed from the Apple App Store, to prevent misuse.
 
 ### Sandbox
 
-To verify the successful setup of your billing integration, we offer a sandbox environment where you can simulate purchases and ensure that your clients can smoothly purchase your products. Documentation on how to use this environment can be found at: [Sandbox](https://docs.connect.aptoide.com/docs/ios-sandbox-environment)
+To verify the successful setup of your billing integration, we offer a sandbox environment where you can simulate purchases and ensure that your users can smoothly purchase your products. Documentation on how to use this environment can be found at: [Sandbox](https://docs.connect.aptoide.com/docs/ios-sandbox-environment)
+
+You can retrieve the current testing wallet address using:
+
+```swift
+if let walletAddress = await Sandbox.getTestingWalletAddress() {
+    print("Testing wallet: \(walletAddress)")
+}
+```
 
 ## API Reference
 
 ### Product
 
-`Product` represents an in-app product. Use it to query products or trigger a purchase.
+`Product` represents an in-app product. Use it to fetch products from Aptoide Connect or to initiate a purchase.
+
+**Static Methods:**
+
+- `Product.products(for: [String]) async throws -> [Product]` — fetches products by their SKU identifier strings.
+
+**Instance Methods:**
+
+- `product.purchase(options: Set<Product.PurchaseOption>) async throws -> Product.PurchaseResult` — initiates a purchase for the product.
 
 **Properties:**
 
-- `id: String` — Unique product identifier as defined in Aptoide Connect. Example: `"gas"`
-- `displayName: String` — The product display title. Example: `"Best Gas"`
-- `description: String` — The product description. Example: `"Buy gas to fill the tank."`
-- `price: Decimal` — The product price in the user's local currency. Example: `0.93`
-- `displayPrice: String` — The formatted price label shown to the user. Example: `"€0.93"`
-- `type: Product.ProductType` — The product type. Always `.consumable` for AppCoins products.
-- `isFamilyShareable: Bool` — Whether the product supports Family Sharing. Always `false`.
+- `id: String` — unique product identifier (SKU). Example: `gas`
+- `displayName: String` — the product display title. Example: `Best Gas`
+- `description: String` — the product description. Example: `Buy gas to fill the tank.`
+- `price: Decimal` — the product price as a decimal number.
+- `displayPrice: String` — the formatted price label shown to the user. Example: `€0.93`
+- `type: Product.ProductType` — always `.consumable` for AppCoins products.
+- `isFamilyShareable: Bool` — always `false` for AppCoins products.
 
-**Static methods:**
+**Async Properties:**
 
-- `products(for identifiers: [String]) async throws -> [Product]` — Returns the products matching the given identifiers.
-
-**Instance methods:**
-
-- `purchase(options: Set<Product.PurchaseOption> = []) async throws -> Product.PurchaseResult` — Starts the purchase flow for this product.
-
-**Async computed properties:**
-
-- `latestTransaction: VerificationResult<Transaction>?` — The most recent transaction for this product.
-- `currentEntitlement: VerificationResult<Transaction>?` — The current unconsumed entitlement for this product.
+- `product.latestTransaction: VerificationResult<Transaction>?` — the most recent transaction for this product.
+- `product.currentEntitlement: VerificationResult<Transaction>?` — the current unfinished transaction for this product, if any.
 
 ### Product.PurchaseResult
 
-The result of a `purchase()` call.
+The result returned by `product.purchase()`. Errors are thrown rather than returned as a case.
 
-- `.success(verificationResult: VerificationResult<Transaction>)` — Purchase completed. Check the verification result before delivering the item.
-- `.pending` — Transaction is awaiting an external action (e.g., parental approval).
-- `.userCancelled` — The user dismissed the purchase sheet.
-
-Errors (network, system, availability) are thrown rather than returned as a case.
+- `.success(verificationResult: VerificationResult<Transaction>)` — purchase completed; inspect the verification result before delivering the item.
+- `.pending` — the transaction is awaiting an external action.
+- `.userCancelled` — the user dismissed the payment sheet.
 
 ### Product.PurchaseOption
 
-Options you can pass to `purchase(options:)`.
+Options that can be passed to `product.purchase(options:)`.
 
-- `.appAccountToken(_ token: UUID)` — Associates a UUID with the purchase (e.g., to link it to a specific user account). Accessible later via `Transaction.appAccountToken`.
+- `.appAccountToken(_ token: UUID)` — associates a UUID (e.g. a user account identifier) with the purchase. Accessible later via `transaction.appAccountToken`.
 
 ### Transaction
 
-`Transaction` represents a completed in-app purchase. Use it to query transaction history or consume purchases.
+`Transaction` represents a completed in-app transaction.
+
+**Static Streams:**
+
+- `Transaction.all` — `AsyncStream` of all transactions for the app, newest first.
+- `Transaction.unfinished` — `AsyncStream` of paid but unconsumed transactions.
+- `Transaction.updates` — `AsyncStream` that emits transactions delivered outside the normal purchase flow (e.g. Ask to Buy approvals, offer code redemptions, or purchases completed on another device).
+- `Transaction.currentEntitlements` — alias for `Transaction.unfinished`.
+
+**Static Methods:**
+
+- `Transaction.latest(for productID: String) async -> VerificationResult<Transaction>?` — returns the most recent transaction for the given product identifier.
+
+**Instance Methods:**
+
+- `transaction.finish() async` — marks the transaction as consumed. Call this after delivering the item to the user.
 
 **Properties:**
 
-- `id: String` — The AppCoins transaction UID, as shown in the Catappult dashboard. Unlike StoreKit's `UInt64`, this is the raw identifier returned by the AppCoins service. If you have code that bridges StoreKit and AppCoins transactions, cast StoreKit's `id` to `String` with `String(storeKitTransaction.id)`.
-- `productID: String` — The product identifier that was purchased.
-- `purchaseDate: Date` — The date and time the purchase was made.
-- `appAccountToken: UUID?` — The account token passed during purchase via `Product.PurchaseOption.appAccountToken`.
-- `revocationDate: Date?` — Always `nil` (AppCoins does not support revocation).
-- `revocationReason: Transaction.RevocationReason?` — Always `nil`.
-- `ownershipType: Transaction.OwnershipType` — Always `.purchased` (Family Sharing is not supported).
-
-**Static async streams:**
-
-- `Transaction.all` — Yields all transactions for the app, ordered by date descending.
-- `Transaction.unfinished` — Yields all transactions that have been paid but not yet consumed.
-- `Transaction.currentEntitlements` — Equivalent to `Transaction.unfinished` for consumables.
-- `Transaction.updates` — Long-lived stream that emits transactions as they complete during the app session.
-
-**Static methods:**
-
-- `Transaction.latest(for productID: String) async -> VerificationResult<Transaction>?` — Returns the most recent transaction for the given product.
-
-**Instance methods:**
-
-- `finish() async` — Consumes the transaction. Call this after delivering the purchased item to the user.
+- `id: String` — unique transaction identifier. Note: this is a `String`, not a `UInt64` as in StoreKit.
+- `productID: String` — the SKU identifier of the purchased product.
+- `purchaseDate: Date` — the date and time the purchase was made.
+- `appAccountToken: UUID?` — the account token associated with the purchase, if one was provided at purchase time.
 
 ### VerificationResult\<Transaction\>
 
-Wraps a `Transaction` with its verification status.
+A generic enum wrapping a `Transaction` with its validation status.
 
-- `.verified(Transaction)` — The transaction signature was validated locally. Safe to deliver the item.
-- `.unverified(Transaction, AppCoinsSDKError)` — Signature validation failed. Apply your business logic to decide whether to deliver the item (unfinished transactions are refunded after 24 hours).
+- `.verified(Transaction)` — the transaction signature was validated locally; it is safe to deliver the item.
+- `.unverified(Transaction, AppCoinsSDKError)` — signature validation failed; apply your business logic. If you do not call `transaction.finish()`, the purchase will be automatically refunded after 24 hours.
 
 ### AppcSDK
 
-Handles SDK lifecycle and deep link routing.
+Provides general-purpose SDK methods for initialization, availability checks, and deep link handling.
 
 **Methods:**
 
-- `initialize()` — **REQUIRED.** Sets up internal SDK processes. Must be called at every application entry point.
-- `isAvailable() async -> Bool` — Returns `true` if the SDK is available (iOS 17.4+, not installed via the Apple App Store).
-- `handle(redirectURL: URL?) -> Bool` — Routes deep links for payment redirects. Returns `true` if the SDK handled the URL.
-- `configure(locale: Storefront.Locale?, marketplace: Storefront.Marketplace?)` — Overrides the default storefront locale and marketplace. Only takes effect when `AppCoinsDevTools` are enabled.
-
-### Storefront
-
-Represents the storefront locale and marketplace used by the SDK.
-
-- `Storefront.Locale` — ISO 3166-1 alpha-3 country codes (e.g., `Storefront.Locale.PRT`).
-- `Storefront.Marketplace` — `.aptoide` or `.apple`.
+- `AppcSDK.initialize()` — **Required.** Sets up internal SDK processes. Must be called at every application entry point before any other SDK call.
+- `AppcSDK.isAvailable() async -> Bool` — returns `true` on iOS 17.4+ for any install source except the Apple App Store and TestFlight. Always returns `true` on the Simulator (`AppDistributor` cannot be queried there).
+- `AppcSDK.handle(redirectURL: URL?) -> Bool` — handles payment redirect deep links. Returns `true` if the SDK processed the URL.
 
 ### AppCoinsSDKError
 
-The error type thrown by SDK methods.
+The error type thrown or returned by SDK operations. Every case has a `.description: String` property with a human-readable explanation.
 
-- `networkError` — Network connectivity issues.
-- `systemError` — Internal AppCoins system errors.
-- `notEntitled` — The host app does not have the required entitlements configured.
-- `productUnavailable` — The requested product is not available.
-- `purchaseNotAllowed` — The user was not permitted to perform the purchase.
-- `unknown` — Other unclassified errors.
-
-All cases carry a description string accessible via `error.description`.
+- `.networkError` — a network connectivity issue prevented the operation.
+- `.systemError` — an internal AppCoins system error occurred.
+- `.notEntitled` — the app is missing the required Keychain Sharing entitlement (`com.aptoide.appcoins-wallet`).
+- `.productUnavailable` — the product was not found or has not been approved in Aptoide Connect.
+- `.purchaseNotAllowed` — the user is not permitted to make purchases (e.g. parental controls, regional restriction).
+- `.unknown` — an unclassified error occurred.
