@@ -109,9 +109,9 @@ internal class WalletRepository: WalletRepositoryProtocol {
     // Fix: keyed by address (not the hardcoded "user-wallet") so multiple user wallets
     // each get their own cache slot and don't collide in getWalletList.
     private func getUserWallet(address: String, refreshToken: String, completion: @escaping (Result<UserWallet, APPCServiceError>) -> Void) {
-        if let cachedUserWallet = UserWalletCache.getValue(forKey: address),
-           !cachedUserWallet.isExpired() {
-            completion(.success(cachedUserWallet))
+        let cachedWallet = UserWalletCache.getValue(forKey: address)
+        if let cachedWallet = cachedWallet, !cachedWallet.isExpired() {
+            completion(.success(cachedWallet))
             return
         }
 
@@ -121,11 +121,36 @@ internal class WalletRepository: WalletRepositoryProtocol {
                 let userWallet = UserWallet(raw: raw)
                 Utils.log("refreshUserWallet succeeded for address: \(userWallet.address)")
                 self.UserWalletCache.setValue(userWallet, forKey: address, storageOption: .memory)
+                self.persistRefreshedWallet(userWallet)
                 completion(.success(userWallet))
             case .failure(let error):
                 Utils.log("refreshUserWallet failed with error: \(error)", level: .error)
-                completion(.failure(error))
+                if let staleWallet = cachedWallet {
+                    Utils.log("refreshUserWallet falling back to stale cached wallet for address: \(address)")
+                    completion(.success(staleWallet))
+                } else {
+                    completion(.failure(error))
+                }
             }
+        }
+    }
+
+    private func persistRefreshedWallet(_ userWallet: UserWallet) {
+        let updatedRaw = StorageWalletRaw.fromUser(wallet: userWallet)
+
+        var walletList = walletManagerService.getWalletList()
+        for (i, stored) in walletList.enumerated() {
+            if case .user(let w) = stored.wallet, w.address == userWallet.address {
+                walletList[i] = updatedRaw
+                walletManagerService.setWalletList(walletList: walletList)
+                break
+            }
+        }
+
+        if let active = walletManagerService.getActiveWallet(),
+           case .user(let activeUser) = active.wallet,
+           activeUser.address == userWallet.address {
+            walletManagerService.setActiveWallet(wallet: updatedRaw)
         }
     }
 
