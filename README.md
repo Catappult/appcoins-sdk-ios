@@ -262,20 +262,6 @@ An `AsyncStream` of paid but unconsumed transactions. See step 6 for the full im
 
 ### Testing
 
-To test the SDK integration during development, you need to simulate that the app is being distributed through Aptoide. This enables the SDK's `isAvailable` method.
-
-1. In your target's build settings, search for "Marketplaces";
-2. Under **Deployment**, set the **Marketplaces** (or **Alternative Distribution - Marketplaces**) key to `com.aptoide.ios.store`;
-
-   ![d9d8b6a-image](https://github.com/user-attachments/assets/6b804dde-26c1-4d60-8f1f-42a95c4fdf81)
-3. In your scheme, go to the **Run** tab, then the **Options** tab. In the **Distribution** dropdown, select `com.aptoide.ios.store`.
-
-   ![3af7e14-image](https://github.com/user-attachments/assets/f0a4c178-60b2-40c0-9984-183875ed1686)
-
-For more information, refer to Apple's official documentation: <https://developer.apple.com/documentation/appdistribution/distributing-your-app-on-an-alternative-marketplace#Test-your-app-during-development>
-
-### Testing Both Billing Systems in One Build
-
 To switch between AppCoins billing and Apple billing on a real device without rebuilding, use these deep links from Safari:
 
 | Action | Deep link |
