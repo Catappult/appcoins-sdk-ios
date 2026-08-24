@@ -104,10 +104,10 @@ internal class OnPurchaseResult {
                 switch result {
                 case .success(let guestWallet):
                     WalletUseCases.shared.setActiveWallet(guest: guestWallet)
-                    completion()
-                case .failure(let failure):
-                    return
+                case .failure:
+                    break
                 }
+                completion()
             }
         }
     }
@@ -124,10 +124,10 @@ internal class OnPurchaseResult {
                     switch result {
                     case .success(let guestWallet):
                         WalletUseCases.shared.setActiveWallet(guest: guestWallet)
-                        completion()
-                    case .failure(let failure):
-                        return
+                    case .failure:
+                        break
                     }
+                    completion()
                 }
         }
     }

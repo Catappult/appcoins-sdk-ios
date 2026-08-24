@@ -24,8 +24,10 @@ public struct AppcSDK {
 
         Task {
             if await AppcSDK.isAvailable() {
-                MMPUseCases.shared.getAttribution()
-                MMPUseCases.shared.startSession()
+                Task.detached(priority: .background) {
+                    MMPUseCases.shared.getAttribution()
+                    MMPUseCases.shared.startSession()
+                }
                 AnalyticsUseCases.shared.initialize()
                 if #available(iOS 26, *) {
                     ExternalPurchaseUseCases.shared.flushReports()
