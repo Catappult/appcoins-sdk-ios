@@ -102,21 +102,26 @@ public struct Transaction: Codable {
                 await withCheckedContinuation { inner in
                     WalletUseCases.shared.getWalletList { walletList in
                         let group = DispatchGroup()
-                        var list: [Transaction] = []
+                        let lock = NSLock()
+                        var list: [VerificationResult<Transaction>] = []
                         for wallet in walletList {
                             group.enter()
-                            TransactionUseCases.shared.getTransactionsByState(
+                            TransactionUseCases.shared.getVerifiedTransactionsByState(
                                 domain: domain,
                                 state: ["PENDING", "ACKNOWLEDGED"],
                                 wa: wallet
                             ) { result in
-                                if case .success(let transactions) = result { list += transactions }
+                                if case .success(let results) = result {
+                                    lock.lock()
+                                    list += results
+                                    lock.unlock()
+                                }
                                 group.leave()
                             }
                         }
                         group.notify(queue: .main) {
-                            for t in list.sorted(by: { $0.purchaseDate > $1.purchaseDate }) {
-                                continuation.yield(.verified(t))
+                            for result in list.sorted(by: { $0.unsafePayloadValue.purchaseDate > $1.unsafePayloadValue.purchaseDate }) {
+                                continuation.yield(result)
                             }
                             continuation.finish()
                             inner.resume()

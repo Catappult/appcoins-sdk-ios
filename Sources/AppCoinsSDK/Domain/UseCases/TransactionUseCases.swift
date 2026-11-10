@@ -29,6 +29,10 @@ internal class TransactionUseCases {
         repository.getTransactionsByState(domain: domain, state: state, wa: wa) { result in completion(result) }
     }
 
+    internal func getVerifiedTransactionsByState(domain: String, state: [String], wa: Wallet, completion: @escaping (Result<[VerificationResult<Transaction>], ProductServiceError>) -> Void) {
+        repository.getVerifiedTransactionsByState(domain: domain, state: state, wa: wa) { result in completion(result) }
+    }
+
     internal func acknowledgeTransaction(domain: String, uid: String, wa: Wallet, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
         repository.acknowledgeTransaction(domain: domain, uid: uid, wa: wa) { result in completion(result) }
     }
