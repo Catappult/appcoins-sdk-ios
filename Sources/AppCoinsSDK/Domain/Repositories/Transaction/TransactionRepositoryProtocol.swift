@@ -15,6 +15,8 @@ internal protocol TransactionRepositoryProtocol {
 
     func getTransactionsByState(domain: String, state: [String], wa: Wallet, completion: @escaping (Result<[Transaction], ProductServiceError>) -> Void)
 
+    func getVerifiedTransactionsByState(domain: String, state: [String], wa: Wallet, completion: @escaping (Result<[VerificationResult<Transaction>], ProductServiceError>) -> Void)
+
     func acknowledgeTransaction(domain: String, uid: String, wa: Wallet, completion: @escaping (Result<Bool, TransactionError>) -> Void)
 
     func consumeTransaction(domain: String, uid: String, wa: Wallet, completion: @escaping (Result<Bool, TransactionError>) -> Void)
