@@ -79,7 +79,7 @@ internal struct WebCheckout {
         if #available(iOS 17.4, *),
            case .marketplace(let marketplace) = try? await AppDistributor.current {
             self.installationOrigin = marketplace
-            self.oemID = marketplace == "com.aptoide.ios.store.jp" ? BuildConfiguration.appArenaOEMID : BuildConfiguration.aptoideOEMID
+            self.oemID = marketplace == "com.aptoide.ios.store.japan" ? BuildConfiguration.appArenaOEMID : BuildConfiguration.aptoideOEMID
         } else {
             self.installationOrigin = "com.aptoide.ios.store"
             self.oemID = BuildConfiguration.aptoideOEMID
