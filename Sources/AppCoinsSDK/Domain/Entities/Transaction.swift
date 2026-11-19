@@ -57,17 +57,22 @@ public struct Transaction: Codable {
                 await withCheckedContinuation { inner in
                     WalletUseCases.shared.getWalletList { walletList in
                         let group = DispatchGroup()
-                        var list: [Transaction] = []
+                        let lock = NSLock()
+                        var list: [VerificationResult<Transaction>] = []
                         for wallet in walletList {
                             group.enter()
                             TransactionUseCases.shared.getAllTransactions(domain: domain, wa: wallet) { result in
-                                if case .success(let transactions) = result { list += transactions }
+                                if case .success(let results) = result {
+                                    lock.lock()
+                                    list += results
+                                    lock.unlock()
+                                }
                                 group.leave()
                             }
                         }
                         group.notify(queue: .main) {
-                            for t in list.sorted(by: { $0.purchaseDate > $1.purchaseDate }) {
-                                continuation.yield(.verified(t))
+                            for result in list.sorted(by: { $0.unsafePayloadValue.purchaseDate > $1.unsafePayloadValue.purchaseDate }) {
+                                continuation.yield(result)
                             }
                             continuation.finish()
                             inner.resume()
@@ -137,17 +142,22 @@ public struct Transaction: Codable {
         return await withCheckedContinuation { continuation in
             WalletUseCases.shared.getWalletList { walletList in
                 let group = DispatchGroup()
-                var list: [Transaction] = []
+                let lock = NSLock()
+                var list: [VerificationResult<Transaction>] = []
                 for wallet in walletList {
                     group.enter()
                     TransactionUseCases.shared.getLatestTransaction(domain: domain, sku: productID, wa: wallet) { result in
-                        if case .success(let t) = result, let t = t { list.append(t) }
+                        if case .success(let latest) = result, let latest = latest {
+                            lock.lock()
+                            list.append(latest)
+                            lock.unlock()
+                        }
                         group.leave()
                     }
                 }
                 group.notify(queue: .main) {
-                    let latest = list.sorted(by: { $0.purchaseDate > $1.purchaseDate }).first
-                    continuation.resume(returning: latest.map { .verified($0) })
+                    let latest = list.sorted(by: { $0.unsafePayloadValue.purchaseDate > $1.unsafePayloadValue.purchaseDate }).first
+                    continuation.resume(returning: latest)
                 }
             }
         }

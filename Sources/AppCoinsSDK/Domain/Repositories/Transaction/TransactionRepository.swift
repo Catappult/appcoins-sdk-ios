@@ -12,22 +12,26 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
 
     private let productService: AppCoinProductService = AppCoinProductServiceClient()
 
-    internal func getAllTransactions(domain: String, wa: Wallet, completion: @escaping (Result<[Transaction], ProductServiceError>) -> Void) {
+    internal func getAllTransactions(domain: String, wa: Wallet, completion: @escaping (Result<[VerificationResult<Transaction>], ProductServiceError>) -> Void) {
         productService.getAllPurchases(domain: domain, wa: wa) { result in
             switch result {
             case .success(let raws):
-                completion(.success(raws.map { Transaction(raw: $0) }))
+                self.verifyTransactions(domain: domain, raws: raws) { results in completion(.success(results)) }
             case .failure(let failure):
                 completion(.failure(failure))
             }
         }
     }
 
-    internal func getLatestTransaction(domain: String, sku: String, wa: Wallet, completion: @escaping (Result<Transaction?, ProductServiceError>) -> Void) {
+    internal func getLatestTransaction(domain: String, sku: String, wa: Wallet, completion: @escaping (Result<VerificationResult<Transaction>?, ProductServiceError>) -> Void) {
         productService.getAllPurchasesBySKU(domain: domain, sku: sku, wa: wa) { result in
             switch result {
             case .success(let raws):
-                completion(.success(raws.first.map { Transaction(raw: $0) }))
+                guard let latest = raws.first else {
+                    completion(.success(nil))
+                    return
+                }
+                self.verifyTransactions(domain: domain, raws: [latest]) { results in completion(.success(results.first)) }
             case .failure(let failure):
                 completion(.failure(failure))
             }
@@ -49,41 +53,46 @@ internal class TransactionRepository: TransactionRepositoryProtocol {
         productService.getPurchasesByState(domain: domain, state: state, wa: wa) { result in
             switch result {
             case .success(let raws):
-                guard !raws.isEmpty else {
-                    completion(.success([]))
-                    return
-                }
-                self.productService.getDeveloperPublicKey(domain: domain) { keyResult in
-                    switch keyResult {
-                    case .success(let publicKeyString):
-                        let results: [VerificationResult<Transaction>] = raws.map { raw in
-                            let transaction = Transaction(raw: raw)
-                            let verified = self.verifySignature(
-                                publicKeyString: publicKeyString,
-                                signature: raw.verification.signature,
-                                message: raw.verification.originalData
-                            )
-                            if verified {
-                                return .verified(transaction)
-                            } else {
-                                Utils.log("Transaction \(raw.uid) signature is invalid at TransactionRepository.swift:getVerifiedTransactionsByState", level: .error)
-                                return .unverified(transaction, AppCoinsSDKError.systemError(
-                                    message: "Failed to verify transaction",
-                                    description: "Transaction signature is invalid at TransactionRepository.swift:getVerifiedTransactionsByState",
-                                    request: nil
-                                ))
-                            }
-                        }
-                        completion(.success(results))
-                    case .failure(let failure):
-                        // Without the developer public key the signatures cannot be checked, so every transaction is unverified
-                        Utils.log("Could not get developer public key to verify transactions: \(failure) at TransactionRepository.swift:getVerifiedTransactionsByState", level: .error)
-                        let error = TransactionRepository.sdkError(from: failure)
-                        completion(.success(raws.map { .unverified(Transaction(raw: $0), error) }))
-                    }
-                }
+                self.verifyTransactions(domain: domain, raws: raws) { results in completion(.success(results)) }
             case .failure(let failure):
                 completion(.failure(failure))
+            }
+        }
+    }
+
+    // Downloads the developer public key once and checks each purchase's signature locally.
+    // If the key can't be fetched, every purchase comes back as .unverified rather than being dropped.
+    private func verifyTransactions(domain: String, raws: [PurchaseRaw], completion: @escaping ([VerificationResult<Transaction>]) -> Void) {
+        guard !raws.isEmpty else {
+            completion([])
+            return
+        }
+        productService.getDeveloperPublicKey(domain: domain) { keyResult in
+            switch keyResult {
+            case .success(let publicKeyString):
+                let results: [VerificationResult<Transaction>] = raws.map { raw in
+                    let transaction = Transaction(raw: raw)
+                    let verified = self.verifySignature(
+                        publicKeyString: publicKeyString,
+                        signature: raw.verification.signature,
+                        message: raw.verification.originalData
+                    )
+                    if verified {
+                        return .verified(transaction)
+                    } else {
+                        Utils.log("Transaction \(raw.uid) signature is invalid at TransactionRepository.swift:verifyTransactions", level: .error)
+                        return .unverified(transaction, AppCoinsSDKError.systemError(
+                            message: "Failed to verify transaction",
+                            description: "Transaction signature is invalid at TransactionRepository.swift:verifyTransactions",
+                            request: nil
+                        ))
+                    }
+                }
+                completion(results)
+            case .failure(let failure):
+                Utils.log("Could not get developer public key to verify transactions: \(failure) at TransactionRepository.swift:verifyTransactions", level: .error)
+                let error = TransactionRepository.sdkError(from: failure)
+                completion(raws.map { .unverified(Transaction(raw: $0), error) })
             }
         }
     }
