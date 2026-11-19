@@ -7056,14 +7056,14 @@
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Entities\/Transaction.swift",
       "kind": "StringLiteral",
-      "offset": 7156,
+      "offset": 7421,
       "length": 2,
       "value": "\"\""
     },
     {
       "filePath": "\/Users\/runner\/work\/appcoins-sdk-ios\/appcoins-sdk-ios\/Sources\/AppCoinsSDK\/Domain\/Entities\/Transaction.swift",
       "kind": "StringLiteral",
-      "offset": 10360,
+      "offset": 10625,
       "length": 2,
       "value": "\"\""
     },

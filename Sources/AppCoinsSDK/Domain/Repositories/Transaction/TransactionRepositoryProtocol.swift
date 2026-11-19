@@ -9,11 +9,13 @@ import Foundation
 
 internal protocol TransactionRepositoryProtocol {
 
-    func getAllTransactions(domain: String, wa: Wallet, completion: @escaping (Result<[Transaction], ProductServiceError>) -> Void)
+    func getAllTransactions(domain: String, wa: Wallet, completion: @escaping (Result<[VerificationResult<Transaction>], ProductServiceError>) -> Void)
 
-    func getLatestTransaction(domain: String, sku: String, wa: Wallet, completion: @escaping (Result<Transaction?, ProductServiceError>) -> Void)
+    func getLatestTransaction(domain: String, sku: String, wa: Wallet, completion: @escaping (Result<VerificationResult<Transaction>?, ProductServiceError>) -> Void)
 
     func getTransactionsByState(domain: String, state: [String], wa: Wallet, completion: @escaping (Result<[Transaction], ProductServiceError>) -> Void)
+
+    func getVerifiedTransactionsByState(domain: String, state: [String], wa: Wallet, completion: @escaping (Result<[VerificationResult<Transaction>], ProductServiceError>) -> Void)
 
     func acknowledgeTransaction(domain: String, uid: String, wa: Wallet, completion: @escaping (Result<Bool, TransactionError>) -> Void)
 

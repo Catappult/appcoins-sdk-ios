@@ -17,16 +17,20 @@ internal class TransactionUseCases {
         self.repository = repository
     }
 
-    internal func getAllTransactions(domain: String, wa: Wallet, completion: @escaping (Result<[Transaction], ProductServiceError>) -> Void) {
+    internal func getAllTransactions(domain: String, wa: Wallet, completion: @escaping (Result<[VerificationResult<Transaction>], ProductServiceError>) -> Void) {
         repository.getAllTransactions(domain: domain, wa: wa) { result in completion(result) }
     }
 
-    internal func getLatestTransaction(domain: String, sku: String, wa: Wallet, completion: @escaping (Result<Transaction?, ProductServiceError>) -> Void) {
+    internal func getLatestTransaction(domain: String, sku: String, wa: Wallet, completion: @escaping (Result<VerificationResult<Transaction>?, ProductServiceError>) -> Void) {
         repository.getLatestTransaction(domain: domain, sku: sku, wa: wa) { result in completion(result) }
     }
 
     internal func getTransactionsByState(domain: String, state: [String], wa: Wallet, completion: @escaping (Result<[Transaction], ProductServiceError>) -> Void) {
         repository.getTransactionsByState(domain: domain, state: state, wa: wa) { result in completion(result) }
+    }
+
+    internal func getVerifiedTransactionsByState(domain: String, state: [String], wa: Wallet, completion: @escaping (Result<[VerificationResult<Transaction>], ProductServiceError>) -> Void) {
+        repository.getVerifiedTransactionsByState(domain: domain, state: state, wa: wa) { result in completion(result) }
     }
 
     internal func acknowledgeTransaction(domain: String, uid: String, wa: Wallet, completion: @escaping (Result<Bool, TransactionError>) -> Void) {
