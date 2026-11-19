@@ -19,3 +19,13 @@ public enum VerificationResult<SignedType> {
     case verified(SignedType)
     case unverified(SignedType, AppCoinsSDKError)
 }
+
+extension VerificationResult {
+    // The payload regardless of verification status, mirroring StoreKit's VerificationResult.unsafePayloadValue
+    internal var unsafePayloadValue: SignedType {
+        switch self {
+        case .verified(let payload): return payload
+        case .unverified(let payload, _): return payload
+        }
+    }
+}
