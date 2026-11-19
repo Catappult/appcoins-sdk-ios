@@ -50,7 +50,15 @@ internal class WalletRepository: WalletRepositoryProtocol {
         walletManagerService.setActiveWallet(wallet: newUserWallet)
         // Fix: populate cache immediately so getActiveWallet/getWalletList don't need a
         // network round-trip right after the wallet is set.
-        UserWalletCache.setValue(user, forKey: user.address, storageOption: .memory)
+        // Preserve the server-provided expiresAt from the existing cache entry if the
+        // incoming wallet was created without one (e.g. from purchase result data).
+        let walletToCache: UserWallet
+        if user.expiresAt == nil, let cachedExpiry = UserWalletCache.getValue(forKey: user.address)?.expiresAt {
+            walletToCache = UserWallet(address: user.address, authToken: user.authToken, refreshToken: user.refreshToken, expiresAt: cachedExpiry)
+        } else {
+            walletToCache = user
+        }
+        UserWalletCache.setValue(walletToCache, forKey: user.address, storageOption: .memory)
 
         var newWalletList: [StorageWalletRaw] = []
         let storedWallets = walletManagerService.getWalletList()
@@ -109,9 +117,9 @@ internal class WalletRepository: WalletRepositoryProtocol {
     // Fix: keyed by address (not the hardcoded "user-wallet") so multiple user wallets
     // each get their own cache slot and don't collide in getWalletList.
     private func getUserWallet(address: String, refreshToken: String, completion: @escaping (Result<UserWallet, APPCServiceError>) -> Void) {
-        if let cachedUserWallet = UserWalletCache.getValue(forKey: address),
-           !cachedUserWallet.isExpired() {
-            completion(.success(cachedUserWallet))
+        let cachedWallet = UserWalletCache.getValue(forKey: address)
+        if let cachedWallet = cachedWallet, !cachedWallet.isExpired() {
+            completion(.success(cachedWallet))
             return
         }
 
@@ -121,11 +129,35 @@ internal class WalletRepository: WalletRepositoryProtocol {
                 let userWallet = UserWallet(raw: raw)
                 Utils.log("refreshUserWallet succeeded for address: \(userWallet.address)")
                 self.UserWalletCache.setValue(userWallet, forKey: address, storageOption: .memory)
+                self.persistRefreshedWallet(userWallet, previousRefreshToken: refreshToken)
                 completion(.success(userWallet))
             case .failure(let error):
                 Utils.log("refreshUserWallet failed with error: \(error)", level: .error)
-                completion(.failure(error))
+                if let staleWallet = cachedWallet {
+                    completion(.success(staleWallet))
+                } else {
+                    completion(.failure(error))
+                }
             }
+        }
+    }
+
+    private func persistRefreshedWallet(_ userWallet: UserWallet, previousRefreshToken: String) {
+        let updatedRaw = StorageWalletRaw.fromUser(wallet: userWallet)
+
+        var walletList = walletManagerService.getWalletList()
+        for (i, stored) in walletList.enumerated() {
+            if case .user(let w) = stored.wallet, w.address == userWallet.address {
+                walletList[i] = updatedRaw
+                walletManagerService.setWalletList(walletList: walletList)
+                break
+            }
+        }
+
+        if let active = walletManagerService.getActiveWallet(),
+           case .user(let activeUser) = active.wallet,
+           activeUser.address == userWallet.address {
+            walletManagerService.setActiveWallet(wallet: updatedRaw)
         }
     }
 
